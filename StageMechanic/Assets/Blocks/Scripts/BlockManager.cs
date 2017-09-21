@@ -1,24 +1,67 @@
-﻿using System.Collections;
+﻿/*  
+ * Copyright (C) Catherine. All rights reserved.  
+ * Licensed under the BSD 3-Clause License.
+ * See LICENSE file in the project root for full license information.
+ * See CONTRIBUTORS file in the project root for full list of contributors.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockManager : MonoBehaviour {
 
 	public GameObject BasicBlockPrefab;
-	private GameObject activeObject;
+	public GameObject CursorPrefab;
+
+
+	private GameObject _activeObject;
+	public GameObject ActiveObject {
+		get {
+			return _activeObject;
+		}
+		set {
+			_activeObject = value;
+		}
+	}
+
+	private GameObject _cursor;
+	public GameObject Cursor {
+		get {
+			return _cursor;
+		}
+		set {
+			_cursor = value;
+		}
+	}
 
 
 	void Start() {
-
+		Cursor = Instantiate (CursorPrefab, transform.position, transform.rotation) as GameObject;
+		Cursor.transform.SetParent (transform, false);
 	}
 
 	void Update() {
 		if (Input.GetKeyDown (KeyCode.C)) {
-			GameObject newBlock = Instantiate (BasicBlockPrefab, transform.position, transform.rotation) as GameObject;
+			//Create a new block and set it as the active game block
+			GameObject newBlock = Instantiate (BasicBlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			newBlock.transform.SetParent (transform, false);
-			activeObject = newBlock;
-		} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			activeObject.transform.position += new Vector3 (0, 1, 0);
+			ActiveObject = newBlock;
+		}
+
+		//Cursor movement cotrol
+		else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			Cursor.transform.position += new Vector3 (0, 1, 0);
+		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+			Cursor.transform.position += new Vector3 (0, -1, 0);
+		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			Cursor.transform.position += new Vector3 (-1, 0, 0);
+		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			Cursor.transform.position += new Vector3 (1, 0, 0);
+		} else if (Input.GetKeyDown (KeyCode.Comma)) {
+			Cursor.transform.position += new Vector3 (0, 0, -1);
+		} else if (Input.GetKeyDown (KeyCode.Period)) {
+			Cursor.transform.position += new Vector3 (0, 0, 1);
 		}
 	}
 
