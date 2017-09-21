@@ -11,9 +11,12 @@ using UnityEngine;
 
 public class BlockManager : MonoBehaviour {
 
-	public GameObject BasicBlockPrefab;
+	// Unity Inspector variables
+
+	public GameObject BlockPrefab;
 	public GameObject CursorPrefab;
 
+	// Properties
 
 	private GameObject _activeObject;
 	public GameObject ActiveObject {
@@ -43,8 +46,8 @@ public class BlockManager : MonoBehaviour {
 
 	void Update() {
 		if (Input.GetKeyDown (KeyCode.C)) {
-			//Create a new block and set it as the active game block
-			GameObject newBlock = Instantiate (BasicBlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			//Create a new block at the cursor position and set it as the active game block
+			GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			newBlock.transform.SetParent (transform, false);
 			ActiveObject = newBlock;
 		}
