@@ -33,6 +33,16 @@ public class Block : MonoBehaviour {
 		Vortex
 	}
 
+	public enum TeleportBlockType {
+		None = 0,
+		Custom,
+		Side,				//Move player up or down along the side of the blocks, allows edge grabbing
+		SideNoGrab,			//Same as Slide, but does not allow edge grabbing
+		Platform,			//Move player to the top of a block from the top of this block
+		PlatformToSide, 	//Move player from top of platform to an edge grab
+		SideToPlatform		//Move player from an edge grab to the top of a platform
+	}
+
 	// Properties
 
 	// Please note that modifying any block properties directly (rather than setting a common type
@@ -49,6 +59,11 @@ public class Block : MonoBehaviour {
 		}
 	}
 
+	//Returns true if this is a customized block type
+	public bool IsCustomType() {
+		return this.Type == BlockType.Custom;
+	}
+
 	// If this block should act as a trap block this property
 	// should be set to a value other than TrapBlockType.None
 	private TrapBlockType _trapType = TrapBlockType.None;
@@ -62,6 +77,13 @@ public class Block : MonoBehaviour {
 		}
 	}
 
+	// Returns true if this block is any type of trap block
+	public bool IsTrap() {
+		return this.TrapType != TrapBlockType.None;
+	}
+
+	// If true, this block will be destoryed BombTimeMS milliseconds
+	// after TriggerBomb() is called.
 	private bool _isBomb = false;
 	public bool IsBomb {
 		get {
@@ -73,7 +95,10 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	private int _bombTimeMS = 5000;
+
+	// Number of miliseconds after TriggerBomb() is called to wait
+	// before destorying the block.
+	private int _bombTimeMS = 0;
 	public int BombTimeMS {
 		get {
 			return _bombTimeMS;
@@ -82,6 +107,40 @@ public class Block : MonoBehaviour {
 			_bombTimeMS = value;
 			this.Type = BlockType.Custom;
 		}
+	}
+
+	// How large of an area should be affected by this blocks destruction
+	// via the TriggerBomb() method is called. Note that one standard
+	// block is 10x10x10 so to affect 3 normal blocks set this to 30.
+	private int _bombRadius = 0;
+	public int BombRadius {
+		get {
+			return _bombRadius;
+		}
+		set {
+			_bombRadius = value;
+			this.Type = BlockType.Custom;
+		}
+	}
+
+	// Property describing the the type of movement action to the player
+	// this block exerts. For example spring blocks move the player up
+	// along the side, allowing grabbing. Ice blocks move the player
+	// along the platform to the next block, etc.
+	private TeleportBlockType _teleportType = TeleportBlockType.None;
+	public TeleportBlockType TeleportType {
+		get {
+			return _teleportType;
+		}
+		set {
+			_teleportType = value;
+			this.Type = BlockType.Custom;
+		}
+	}
+
+	//Returns true if this block is any type of teleport block
+	public bool IsTeleport() {
+		return this.TeleportType != TeleportBlockType.None;
 	}
 
 	// Use this for initialization

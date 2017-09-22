@@ -15,6 +15,7 @@ public class BlockManager : MonoBehaviour {
 
 	public GameObject BlockPrefab;
 	public GameObject CursorPrefab;
+	public Material IceBlockMaterial;
 
 	// Properties
 
@@ -50,6 +51,10 @@ public class BlockManager : MonoBehaviour {
 			GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			newBlock.transform.SetParent (transform, false);
 			ActiveObject = newBlock;
+		} else if (Input.GetKeyDown (KeyCode.I)) {
+			GameObject currentBlock = ActiveObject;
+			Renderer rend = currentBlock.GetComponent<Renderer> ();
+			rend.material = IceBlockMaterial;
 		}
 
 		//Cursor movement cotrol
