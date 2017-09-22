@@ -16,6 +16,8 @@ public class BlockManager : MonoBehaviour {
 	public GameObject BlockPrefab;
 	public GameObject CursorPrefab;
 	public Material IceBlockMaterial;
+	public Material Bomb1Material;
+	public Material HeavyBlockMaterial;
 
 	// Properties
 
@@ -52,9 +54,14 @@ public class BlockManager : MonoBehaviour {
 			newBlock.transform.SetParent (transform, false);
 			ActiveObject = newBlock;
 		} else if (Input.GetKeyDown (KeyCode.I)) {
-			GameObject currentBlock = ActiveObject;
-			Renderer rend = currentBlock.GetComponent<Renderer> ();
+			Renderer rend = ActiveObject.GetComponent<Renderer> ();
 			rend.material = IceBlockMaterial;
+		} else if (Input.GetKeyDown (KeyCode.H)) {
+			Renderer rend = ActiveObject.GetComponent<Renderer> ();
+			rend.material = HeavyBlockMaterial;
+		} else if (Input.GetKeyDown (KeyCode.B)) {
+			Renderer rend = ActiveObject.GetComponent<Renderer> ();
+			rend.material = Bomb1Material;
 		}
 
 		//Cursor movement cotrol
