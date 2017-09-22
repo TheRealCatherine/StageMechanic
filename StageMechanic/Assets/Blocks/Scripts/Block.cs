@@ -144,9 +144,119 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	//Returns true if this block is any type of teleport block
+	// Describes how far away from this block the user should be moved
+	private Vector3 _teleportDistance;
+	public Vector3 TeleportDistance {
+		get {
+			return _teleportDistance;
+		}
+		set {
+			_teleportDistance;
+			this.Type = BlockType.Custom;
+		}
+
+	// Returns true if this block is any type of teleport block
 	public bool IsTeleport() {
 		return this.TeleportType != TeleportBlockType.None;
+	}
+
+	// How many steps on top of the block cause it to destruct
+	// 0 means it collapses on instantiation (perhaps useful for beginning
+	// stage animation) Less than 0 means the block does not collapse.
+	private int _collapseSteps = -1;
+	public int CollapseAfterNSteps {
+		get {
+			return _collapseSteps;
+		}
+		set {
+			_collapseSteps = value;
+			this.Type = BlockType.Custom;
+		}
+	}
+
+	// Return true if the block collapses after a certain number of steps
+	public bool IsCollapseOnStep() {
+		return _collapseSteps >= 0;
+	}
+
+	// How many grabs on the edge of the block cause it to destruct
+	// 0 means it collapses on instantiation (perhaps useful for beginning
+	// stage animation) Less than 0 means the block does not collapse.
+	private int _collapseGrabs = -1;
+	public int CollapseAfterNGrabs {
+		get {
+			return _collapseGrabs;
+		}
+		set {
+			_collapseGrabs = value;
+			this.Type = BlockType.Custom;
+		}
+	}
+
+	// Return true if the block collapses after a certain number of edge grabs
+	public bool IsCollapseOnGrab() {
+		return _collapseGrabs >= 0;
+	}
+
+	// Used to make blocks heavier or lighter (faster/slower to move)
+	// 1 means normal movement speed, 2 takes twice as long, 0.5 takes half as long
+	private float _weightFactor;
+	public float WeightFactor {
+		get {
+			return _weightFactor;
+		}
+		set {
+			_weightFactor = value;
+			this.Type = BlockType.Custom;
+		}
+	}
+
+	// Returns true if the block is heavier than normal
+	public bool IsHeavy() {
+		return _weightFactor > 1.0;
+	}
+
+	// Returns true if the block is lighter than normal
+	public bool IsLight() {
+		return _weightFactor < 1.0;
+	}
+
+	// Set to true if the block cannot be moved by the player
+	private bool _isMovableByPlayer = true;;
+	public bool IsMovableByPlayer {
+		get {
+			return _isMovableByPlayer;
+		}
+		set {
+			_isMovableByPlayer = value;
+			this.Type = BlockType.Custom;
+		}
+	}
+
+	// Set to true if this block cannot be moved by any means even gravity/enemies/etc
+	private bool _isFixedPosition = false;
+	public bool IsFixedPosition {
+		get {
+			return _isFixedPosition;
+		}
+		set {
+			_isFixedPosition = value;
+			this.Type = BlockType.Custom;
+		}
+	}
+
+	// How this block shoudl react to gravity. 1.0 means it falls at the standard speed
+	// 2.0 means it falls twice as quickly.
+	// -1.0 falls upward at normal speed
+	private float _gravityFactor = 1.0;
+	public float GravityFactor {
+		get {
+			return _gravityFactor;
+		}
+		set {
+			_gravityFactor = value;
+			this.Type = BlockType.Custom;
+		}
 	}
 
 	// Use this for initialization
