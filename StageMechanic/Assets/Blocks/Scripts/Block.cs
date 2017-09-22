@@ -151,9 +151,10 @@ public class Block : MonoBehaviour {
 			return _teleportDistance;
 		}
 		set {
-			_teleportDistance;
+			_teleportDistance = value;
 			this.Type = BlockType.Custom;
 		}
+	}
 
 	// Returns true if this block is any type of teleport block
 	public bool IsTeleport() {
@@ -200,7 +201,7 @@ public class Block : MonoBehaviour {
 
 	// Used to make blocks heavier or lighter (faster/slower to move)
 	// 1 means normal movement speed, 2 takes twice as long, 0.5 takes half as long
-	private float _weightFactor;
+	private float _weightFactor = 1.0F;
 	public float WeightFactor {
 		get {
 			return _weightFactor;
@@ -213,16 +214,16 @@ public class Block : MonoBehaviour {
 
 	// Returns true if the block is heavier than normal
 	public bool IsHeavy() {
-		return _weightFactor > 1.0;
+		return _weightFactor > 1.0F;
 	}
 
 	// Returns true if the block is lighter than normal
 	public bool IsLight() {
-		return _weightFactor < 1.0;
+		return _weightFactor < 1.0F;
 	}
 
 	// Set to true if the block cannot be moved by the player
-	private bool _isMovableByPlayer = true;;
+	private bool _isMovableByPlayer = true;
 	public bool IsMovableByPlayer {
 		get {
 			return _isMovableByPlayer;
@@ -245,10 +246,10 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// How this block shoudl react to gravity. 1.0 means it falls at the standard speed
+	// How this block should react to gravity. 1.0 means it falls at the standard speed
 	// 2.0 means it falls twice as quickly.
 	// -1.0 falls upward at normal speed
-	private float _gravityFactor = 1.0;
+	private float _gravityFactor = 1.0F;
 	public float GravityFactor {
 		get {
 			return _gravityFactor;
