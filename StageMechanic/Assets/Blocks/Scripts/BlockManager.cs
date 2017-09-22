@@ -54,15 +54,15 @@ public class BlockManager : MonoBehaviour {
 	void Update() {
 
 		// Buttons for creating blocks
-		if (Input.GetKeyDown (KeyCode.C)) {
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			GameObject newBlock = CreateBlockAtCursor ();
-		} else if (Input.GetKeyDown (KeyCode.I)) {
+		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, IceBlockMaterial);
-		} else if (Input.GetKeyDown (KeyCode.H)) {
+		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, HeavyBlockMaterial);
-		} else if (Input.GetKeyDown (KeyCode.B)) {
+		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, Bomb1Material);
 		} else if (Input.GetKeyDown (KeyCode.Delete)) {
