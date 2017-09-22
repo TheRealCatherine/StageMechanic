@@ -21,6 +21,7 @@ public class BlockManager : MonoBehaviour {
 
 	// Properties
 
+	// The obect (block/item/etc) currently under the cursor
 	private GameObject _activeObject;
 	public GameObject ActiveObject {
 		get {
@@ -31,6 +32,7 @@ public class BlockManager : MonoBehaviour {
 		}
 	}
 
+	// The cursor object
 	private GameObject _cursor;
 	public GameObject Cursor {
 		get {
@@ -41,30 +43,35 @@ public class BlockManager : MonoBehaviour {
 		}
 	}
 
-
+	// Called when the BlockManager is intantiated, when the Level Editor is loaded
 	void Start() {
+		// Create the cursor
 		Cursor = Instantiate (CursorPrefab, transform.position, transform.rotation) as GameObject;
 		Cursor.transform.SetParent (transform, false);
 	}
 
+	// Called once every frame
 	void Update() {
+
+		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.C)) {
-			//Create a new block at the cursor position and set it as the active game block
-			GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
-			newBlock.transform.SetParent (transform, false);
-			ActiveObject = newBlock;
+			GameObject newBlock = CreateBlockAtCursor ();
 		} else if (Input.GetKeyDown (KeyCode.I)) {
-			Renderer rend = ActiveObject.GetComponent<Renderer> ();
-			rend.material = IceBlockMaterial;
+			GameObject newBlock = CreateBlockAtCursor ();
+			SetMaterial (newBlock, IceBlockMaterial);
 		} else if (Input.GetKeyDown (KeyCode.H)) {
-			Renderer rend = ActiveObject.GetComponent<Renderer> ();
-			rend.material = HeavyBlockMaterial;
+			GameObject newBlock = CreateBlockAtCursor ();
+			SetMaterial (newBlock, HeavyBlockMaterial);
 		} else if (Input.GetKeyDown (KeyCode.B)) {
-			Renderer rend = ActiveObject.GetComponent<Renderer> ();
-			rend.material = Bomb1Material;
+			GameObject newBlock = CreateBlockAtCursor ();
+			SetMaterial (newBlock, Bomb1Material);
+		} else if (Input.GetKeyDown (KeyCode.Delete)) {
+			Destroy (ActiveObject);
 		}
 
-		//Cursor movement cotrol
+		// Cursor movement cotrol
+		// Keyboard
+		// TODO update ActiveObject based on cursor position using colliders
 		else if (Input.GetKeyDown (KeyCode.UpArrow)) {
 			Cursor.transform.position += new Vector3 (0, 1, 0);
 		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
@@ -78,12 +85,30 @@ public class BlockManager : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Period)) {
 			Cursor.transform.position += new Vector3 (0, 0, 1);
 		}
+		// Gamepad
+		// TODO
 	}
 
+	// Retrieve a List of all child game objects from a given parent
 	static List<GameObject> GetChildren(GameObject obj) {
 		List<GameObject> list = new List<GameObject>();
 		foreach (Transform child in obj.transform)
 			list.Add (child.gameObject);
 		return list;
+	}
+
+	// Create a basic block at the current cursor position
+	GameObject CreateBlockAtCursor() {
+		//Create a new block at the cursor position and set it as the active game block
+		GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+		newBlock.transform.SetParent (transform, false);
+		ActiveObject = newBlock;
+		return newBlock;
+	}
+
+	// Sets the material for a block
+	void SetMaterial( GameObject block, Material material ) {
+		Renderer rend = block.GetComponent<Renderer> ();
+		rend.material = material;
 	}
 }
