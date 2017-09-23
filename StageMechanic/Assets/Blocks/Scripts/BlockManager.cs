@@ -45,8 +45,12 @@ public class BlockManager : MonoBehaviour {
 
 	// Called when the BlockManager is intantiated, when the Level Editor is loaded
 	void Start() {
-		// Create the cursor
-		Cursor = Instantiate (CursorPrefab, transform.position, transform.rotation) as GameObject;
+        // Create the cursor
+
+        //because you told me to
+        //Cursor = Instantiate (CursorPrefab, transform.position, transform.rotation) as GameObject;
+        Cursor = CursorPrefab;
+
 		Cursor.transform.SetParent (transform, false);
 	}
 
@@ -101,7 +105,10 @@ public class BlockManager : MonoBehaviour {
 	GameObject CreateBlockAtCursor() {
 		//Create a new block at the cursor position and set it as the active game block
 		GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
-		newBlock.transform.SetParent (transform, false);
+
+        //line giving an issue creating a block AROUND the cursor instead of in the world
+		//newBlock.transform.SetParent (transform, false);
+
 		ActiveObject = newBlock;
 		return newBlock;
 	}
