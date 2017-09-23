@@ -56,6 +56,7 @@ public class BlockManager : MonoBehaviour {
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			GameObject newBlock = CreateBlockAtCursor ();
+
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, IceBlockMaterial);

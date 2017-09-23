@@ -190,13 +190,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 223191232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0.107575774, z: -0, w: 0.9941969}
+  m_LocalPosition: {x: 4.02, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -12.351001, z: 0}
 --- !u!1 &267238301
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +323,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cce30059b7a3c4e82408b18ced9672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasicBlockPrefab: {fileID: 1853629512664166, guid: de3b07da1a39d5c4189ad37f17ed6fa9,
+  BlockPrefab: {fileID: 1853629512664166, guid: de3b07da1a39d5c4189ad37f17ed6fa9,
     type: 2}
+  CursorPrefab: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
+    type: 2}
+  IceBlockMaterial: {fileID: 2100000, guid: 944d34a1c204d8b428d093d4a62cc78c, type: 2}
+  Bomb1Material: {fileID: 2100000, guid: 2d690870537d8de40a617e19d09282be, type: 2}
+  HeavyBlockMaterial: {fileID: 2100000, guid: b9ae86564e7648a4f978f689246cb469, type: 2}
 --- !u!1 &762219764
 GameObject:
   m_ObjectHideFlags: 0

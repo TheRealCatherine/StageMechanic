@@ -62,6 +62,262 @@ public class Block : MonoBehaviour {
 		}
 		set {
 			_type = value;
+			Debug.Log ("Setting block to type: " + _type.ToString() );
+			switch (_type) {
+			case BlockType.Basic:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Trap1:
+				_trapType = TrapBlockType.Spike;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Trap2:
+				_trapType = TrapBlockType.Custom;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Spring:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.Side;
+				_teleportDistance = new Vector3(0,5,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Monster:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.SideNoGrab;
+				_teleportDistance = new Vector3(0,1,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Ice:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.Platform;
+				_teleportDistance = new Vector3(1,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Vortex:
+				_trapType = TrapBlockType.Vortex;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;	
+			case BlockType.Bomb1:
+				_trapType = TrapBlockType.None;
+				_isBomb = true;
+				_bombTimeMS = 5000;
+				_bombRadius = 3;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Bomb2:			
+				_trapType = TrapBlockType.None;
+				_isBomb = true;
+				_bombTimeMS = 3000;
+				_bombRadius = 3;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Crack1:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 1;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Crack2:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 2;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Teleport:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.Platform;
+				_teleportDistance = new Vector3(1,1,1);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Heavy1:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 2.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Heavy2:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 4.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Immobile:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Fixed:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Goal:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			case BlockType.Custom:
+			default:
+				_trapType = TrapBlockType.None;
+				_isBomb = false;
+				_bombTimeMS = 0;
+				_bombRadius = 0;
+				_teleportType = TeleportBlockType.None;
+				_teleportDistance = new Vector3(0,0,0);
+				_collapseSteps = 0;
+				_collapseGrabs = 0;
+				_weightFactor = 1.0F;
+				_isMovableByPlayer = true;
+				_isFixedPosition = false;
+				_gravityFactor = 1.0F;
+				break;
+			}
 		}
 	}
 
