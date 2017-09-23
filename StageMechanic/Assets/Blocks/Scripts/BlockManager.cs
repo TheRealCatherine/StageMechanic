@@ -108,7 +108,7 @@ public class BlockManager : MonoBehaviour {
 		GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
 
         //line giving an issue creating a block AROUND the cursor instead of in the world
-		//newBlock.transform.SetParent (transform, false);
+		newBlock.transform.SetParent (transform, false);
 
 		ActiveObject = newBlock;
 		return newBlock;

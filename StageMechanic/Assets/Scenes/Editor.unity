@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -198,6 +198,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 7, y: 0, z: 0}
+--- !u!114 &223191238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -338,8 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockPrefab: {fileID: 1853629512664166, guid: de3b07da1a39d5c4189ad37f17ed6fa9,
     type: 2}
-  CursorPrefab: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
-    type: 2}
+  CursorPrefab: {fileID: 662790149}
   IceBlockMaterial: {fileID: 2100000, guid: 944d34a1c204d8b428d093d4a62cc78c, type: 2}
   Bomb1Material: {fileID: 2100000, guid: 2d690870537d8de40a617e19d09282be, type: 2}
   HeavyBlockMaterial: {fileID: 2100000, guid: b9ae86564e7648a4f978f689246cb469, type: 2}
@@ -541,6 +541,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e, type: 2}
+      propertyPath: m_Name
+      value: Cursor2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2a02ee7551522bc469ad3aba9f1d8d0e, type: 2}
   m_IsPrefabParent: 0
