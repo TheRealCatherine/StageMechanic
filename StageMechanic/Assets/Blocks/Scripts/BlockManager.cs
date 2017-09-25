@@ -23,14 +23,14 @@ public class BlockManager : MonoBehaviour {
 	// Properties
 
 	// The obect (block/item/etc) currently under the cursor
-	// TODO make the above statement accurate ;-)
-	private GameObject _activeObject;
 	public GameObject ActiveObject {
 		get {
-			return _activeObject;
+			CursorCollider col = (CursorCollider)Cursor.GetComponent (typeof(CursorCollider));
+			return col.ObjectUnderCursor;
 		}
 		set {
-			_activeObject = value;
+			CursorCollider col = (CursorCollider)Cursor.GetComponent (typeof(CursorCollider));
+			col.ObjectUnderCursor=value;
 		}
 	}
 

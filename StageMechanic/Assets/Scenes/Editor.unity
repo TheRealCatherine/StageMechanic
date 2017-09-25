@@ -355,6 +355,17 @@ Transform:
   m_PrefabParentObject: {fileID: 4325237548957188, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
     type: 2}
   m_PrefabInternal: {fileID: 1820230822}
+--- !u!114 &662790155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 662790149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9b3e8bb377fce4aa3eb9400ba590d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &762219764
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +557,21 @@ Prefab:
     - target: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e, type: 2}
       propertyPath: m_Name
       value: Cursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 65101708020368696, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65101708020368696, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65101708020368696, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
