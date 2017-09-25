@@ -63,58 +63,7 @@ public class BlockManager : MonoBehaviour {
 
 	// Called once every frame
 	void Update() {
-
-		float vert = Input.GetAxis ("Vertical");
-		float hori = Input.GetAxis ("Horizontal");
-
-		// Buttons for creating blocks
-		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button0)) {
-			CreateBlockAtCursor (Block.BlockType.Basic);
-		} else if (Input.GetKeyDown (KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Joystick1Button1)) {
-			CreateBlockAtCursor (Block.BlockType.Ice);
-		} else if (Input.GetKeyDown (KeyCode.Alpha3 )|| Input.GetKeyDown(KeyCode.Joystick1Button2)) {
-			CreateBlockAtCursor (Block.BlockType.Heavy1);
-		} else if (Input.GetKeyDown (KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Joystick1Button3)) {
-			CreateBlockAtCursor (Block.BlockType.Bomb1);
-		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			CreateBlockAtCursor (Block.BlockType.Bomb2);
-		} else if (Input.GetKeyDown (KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button7)) {
-			if(ActiveObject != null)
-				Destroy (ActiveObject);
-		} else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button6)) {
-			if (ActiveObject != null) {
-				Block block = (Block)ActiveObject.GetComponent (typeof(Block));
-				block.Item = Instantiate (StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
-			}
-		} else if (Input.GetKeyDown (KeyCode.End)) {
-			if (ActiveObject != null) {
-				Block block = (Block)ActiveObject.GetComponent (typeof(Block));
-				block.Item = Instantiate (GoalLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
-			}
-		}
-
-		// Cursor movement cotrol
-		// Keyboard & XBox 360 Input
-		// TODO update ActiveObject based on cursor position using colliders
-		else if (Input.GetKeyDown (KeyCode.UpArrow) || vert > 0) {
-			Cursor.transform.position += new Vector3 (0, 1, 0);
-			Input.ResetInputAxes ();
-		} else if (Input.GetKeyDown (KeyCode.DownArrow) || vert < 0) {
-			Cursor.transform.position += new Vector3 (0, -1, 0);
-			Input.ResetInputAxes ();
-		} else if (Input.GetKeyDown (KeyCode.LeftArrow) || hori < 0) {
-			Cursor.transform.position += new Vector3 (-1, 0, 0);
-			Input.ResetInputAxes ();
-		} else if (Input.GetKeyDown (KeyCode.RightArrow) || hori > 0) {
-			Cursor.transform.position += new Vector3 (1, 0, 0);
-			Input.ResetInputAxes ();
-		} else if (Input.GetKeyDown (KeyCode.Comma) || Input.GetKeyDown(KeyCode.Joystick1Button4)) {
-			Input.ResetInputAxes ();
-			Cursor.transform.position += new Vector3 (0, 0, -1);
-		} else if (Input.GetKeyDown (KeyCode.Period) || Input.GetKeyDown(KeyCode.Joystick8Button5)) {
-			Input.ResetInputAxes ();
-			Cursor.transform.position += new Vector3 (0, 0, 1);
-		}
+		
 	}
 
 	// Retrieve a List of all child game objects from a given parent
@@ -126,7 +75,7 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	// Create a basic block at the current cursor position
-	GameObject CreateBlockAtCursor( Block.BlockType type = Block.BlockType.Custom ) {
+	public GameObject CreateBlockAtCursor( GameObject cursor, Block.BlockType type = Block.BlockType.Custom ) {
 		// If there is a block currently under the cursor destroy it.
 		if (ActiveObject != null)
 			Destroy (ActiveObject);
@@ -135,23 +84,23 @@ public class BlockManager : MonoBehaviour {
 
 		switch (type) {
 		case Block.BlockType.Basic:
-			newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Ice:
-			newBlock = Instantiate (IceBlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (IceBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Heavy1:
-			newBlock = Instantiate (HeavyBlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (HeavyBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Bomb1:
-			newBlock = Instantiate (Bomb1BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Bomb1BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Bomb2:
-			newBlock = Instantiate (Bomb2BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Bomb2BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			break;
 		default:
 			//Create a new block at the cursor position and set it as the active game block
-			newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			break;
 		}
 
