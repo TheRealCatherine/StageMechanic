@@ -13,12 +13,15 @@ public class BlockManager : MonoBehaviour {
 
 	// Unity Inspector variables
 
-	public GameObject BlockPrefab;
 	public GameObject CursorPrefab;
 	public GameObject StartLocationIndicator;
-	public Material IceBlockMaterial;
-	public Material Bomb1Material;
-	public Material HeavyBlockMaterial;
+	public GameObject GoalLocationIndicator;
+
+	public GameObject BlockPrefab;
+	public GameObject IceBlockPrefab;
+	public GameObject HeavyBlockPrefab;
+	public GameObject Bomb1BlockPrefab;
+	public GameObject Bomb2BlockPrefab;
 
 
 
@@ -68,14 +71,13 @@ public class BlockManager : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button0)) {
 			CreateBlockAtCursor (Block.BlockType.Basic);
 		} else if (Input.GetKeyDown (KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Joystick1Button1)) {
-			GameObject newBlock = CreateBlockAtCursor ();
-			SetMaterial (newBlock, IceBlockMaterial);
+			CreateBlockAtCursor (Block.BlockType.Ice);
 		} else if (Input.GetKeyDown (KeyCode.Alpha3 )|| Input.GetKeyDown(KeyCode.Joystick1Button2)) {
-			GameObject newBlock = CreateBlockAtCursor ();
-			SetMaterial (newBlock, HeavyBlockMaterial);
+			CreateBlockAtCursor (Block.BlockType.Heavy1);
 		} else if (Input.GetKeyDown (KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Joystick1Button3)) {
-			GameObject newBlock = CreateBlockAtCursor ();
-			SetMaterial (newBlock, Bomb1Material);
+			CreateBlockAtCursor (Block.BlockType.Bomb1);
+		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+			CreateBlockAtCursor (Block.BlockType.Bomb2);
 		} else if (Input.GetKeyDown (KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button7)) {
 			if(ActiveObject != null)
 				Destroy (ActiveObject);
@@ -83,6 +85,11 @@ public class BlockManager : MonoBehaviour {
 			if (ActiveObject != null) {
 				Block block = (Block)ActiveObject.GetComponent (typeof(Block));
 				block.Item = Instantiate (StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
+			}
+		} else if (Input.GetKeyDown (KeyCode.End)) {
+			if (ActiveObject != null) {
+				Block block = (Block)ActiveObject.GetComponent (typeof(Block));
+				block.Item = Instantiate (GoalLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
 			}
 		}
 
@@ -129,6 +136,18 @@ public class BlockManager : MonoBehaviour {
 		switch (type) {
 		case Block.BlockType.Basic:
 			newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			break;
+		case Block.BlockType.Ice:
+			newBlock = Instantiate (IceBlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			break;
+		case Block.BlockType.Heavy1:
+			newBlock = Instantiate (HeavyBlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			break;
+		case Block.BlockType.Bomb1:
+			newBlock = Instantiate (Bomb1BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			break;
+		case Block.BlockType.Bomb2:
+			newBlock = Instantiate (Bomb2BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
 			break;
 		default:
 			//Create a new block at the cursor position and set it as the active game block
