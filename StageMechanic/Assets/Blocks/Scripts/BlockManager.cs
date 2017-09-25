@@ -20,6 +20,8 @@ public class BlockManager : MonoBehaviour {
 	public Material Bomb1Material;
 	public Material HeavyBlockMaterial;
 
+
+
 	// Properties
 
 	// The obect (block/item/etc) currently under the cursor
@@ -61,8 +63,7 @@ public class BlockManager : MonoBehaviour {
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			GameObject newBlock = CreateBlockAtCursor ();
-
+			CreateBlockAtCursor (Block.BlockType.Basic);
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, IceBlockMaterial);
@@ -111,13 +112,24 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	// Create a basic block at the current cursor position
-	GameObject CreateBlockAtCursor() {
+	GameObject CreateBlockAtCursor( Block.BlockType type = Block.BlockType.Custom ) {
 		// If there is a block currently under the cursor destroy it.
 		if (ActiveObject != null)
 			Destroy (ActiveObject);
 
-		//Create a new block at the cursor position and set it as the active game block
-		GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+		GameObject newBlock = null;
+
+		switch (type) {
+		case Block.BlockType.Basic:
+			newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			break;
+		default:
+			//Create a new block at the cursor position and set it as the active game block
+			newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			break;
+		}
+
+		Debug.Assert (newBlock != null);
 
         //line giving an issue creating a block AROUND the cursor instead of in the world
 		newBlock.transform.SetParent (transform, false);
