@@ -65,21 +65,21 @@ public class BlockManager : MonoBehaviour {
 		float hori = Input.GetAxis ("Horizontal");
 
 		// Buttons for creating blocks
-		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button0)) {
 			CreateBlockAtCursor (Block.BlockType.Basic);
-		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+		} else if (Input.GetKeyDown (KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Joystick1Button1)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, IceBlockMaterial);
-		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+		} else if (Input.GetKeyDown (KeyCode.Alpha3 )|| Input.GetKeyDown(KeyCode.Joystick1Button2)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, HeavyBlockMaterial);
-		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+		} else if (Input.GetKeyDown (KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Joystick1Button3)) {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, Bomb1Material);
-		} else if (Input.GetKeyDown (KeyCode.Delete)) {
+		} else if (Input.GetKeyDown (KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button7)) {
 			if(ActiveObject != null)
 				Destroy (ActiveObject);
-		} else if (Input.GetKeyDown (KeyCode.Home)) {
+		} else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button6)) {
 			if (ActiveObject != null) {
 				Block block = (Block)ActiveObject.GetComponent (typeof(Block));
 				block.Item = Instantiate (StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
