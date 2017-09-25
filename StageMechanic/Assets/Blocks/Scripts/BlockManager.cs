@@ -61,6 +61,9 @@ public class BlockManager : MonoBehaviour {
 	// Called once every frame
 	void Update() {
 
+		float vert = Input.GetAxis ("Vertical");
+		float hori = Input.GetAxis ("Horizontal");
+
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			CreateBlockAtCursor (Block.BlockType.Basic);
@@ -84,23 +87,27 @@ public class BlockManager : MonoBehaviour {
 		}
 
 		// Cursor movement cotrol
-		// Keyboard
+		// Keyboard & XBox 360 Input
 		// TODO update ActiveObject based on cursor position using colliders
-		else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		else if (Input.GetKeyDown (KeyCode.UpArrow) || vert > 0) {
 			Cursor.transform.position += new Vector3 (0, 1, 0);
-		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+			Input.ResetInputAxes ();
+		} else if (Input.GetKeyDown (KeyCode.DownArrow) || vert < 0) {
 			Cursor.transform.position += new Vector3 (0, -1, 0);
-		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			Input.ResetInputAxes ();
+		} else if (Input.GetKeyDown (KeyCode.LeftArrow) || hori < 0) {
 			Cursor.transform.position += new Vector3 (-1, 0, 0);
-		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			Input.ResetInputAxes ();
+		} else if (Input.GetKeyDown (KeyCode.RightArrow) || hori > 0) {
 			Cursor.transform.position += new Vector3 (1, 0, 0);
-		} else if (Input.GetKeyDown (KeyCode.Comma)) {
+			Input.ResetInputAxes ();
+		} else if (Input.GetKeyDown (KeyCode.Comma) || Input.GetKeyDown(KeyCode.Joystick1Button4)) {
+			Input.ResetInputAxes ();
 			Cursor.transform.position += new Vector3 (0, 0, -1);
-		} else if (Input.GetKeyDown (KeyCode.Period)) {
+		} else if (Input.GetKeyDown (KeyCode.Period) || Input.GetKeyDown(KeyCode.Joystick8Button5)) {
+			Input.ResetInputAxes ();
 			Cursor.transform.position += new Vector3 (0, 0, 1);
 		}
-		// Gamepad
-		// TODO
 	}
 
 	// Retrieve a List of all child game objects from a given parent
