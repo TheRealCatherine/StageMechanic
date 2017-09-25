@@ -530,7 +530,14 @@ public class Block : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
+	// Called when this block is destroyed
+	void OnDestroy() {
+		//Destroy any items attached to this block
+		if(_item != null)
+			Destroy (_item);
+	}
+
 	// Update is called once per frame
 	void Update () {
 		

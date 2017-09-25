@@ -73,10 +73,13 @@ public class BlockManager : MonoBehaviour {
 			GameObject newBlock = CreateBlockAtCursor ();
 			SetMaterial (newBlock, Bomb1Material);
 		} else if (Input.GetKeyDown (KeyCode.Delete)) {
-			Destroy (ActiveObject);
+			if(ActiveObject != null)
+				Destroy (ActiveObject);
 		} else if (Input.GetKeyDown (KeyCode.Home)) {
-			Block block = (Block)ActiveObject.GetComponent (typeof(Block));
-			block.Item = Instantiate (StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler(0, 180, 0) ) as GameObject;
+			if (ActiveObject != null) {
+				Block block = (Block)ActiveObject.GetComponent (typeof(Block));
+				block.Item = Instantiate (StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
+			}
 		}
 
 		// Cursor movement cotrol
@@ -109,6 +112,10 @@ public class BlockManager : MonoBehaviour {
 
 	// Create a basic block at the current cursor position
 	GameObject CreateBlockAtCursor() {
+		// If there is a block currently under the cursor destroy it.
+		if (ActiveObject != null)
+			Destroy (ActiveObject);
+
 		//Create a new block at the cursor position and set it as the active game block
 		GameObject newBlock = Instantiate (BlockPrefab, Cursor.transform.position, Cursor.transform.rotation) as GameObject;
 
