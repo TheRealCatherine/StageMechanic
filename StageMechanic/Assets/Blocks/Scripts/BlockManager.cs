@@ -15,6 +15,7 @@ public class BlockManager : MonoBehaviour {
 
 	public GameObject BlockPrefab;
 	public GameObject CursorPrefab;
+	public GameObject StartLocationIndicator;
 	public Material IceBlockMaterial;
 	public Material Bomb1Material;
 	public Material HeavyBlockMaterial;
@@ -22,6 +23,7 @@ public class BlockManager : MonoBehaviour {
 	// Properties
 
 	// The obect (block/item/etc) currently under the cursor
+	// TODO make the above statement accurate ;-)
 	private GameObject _activeObject;
 	public GameObject ActiveObject {
 		get {
@@ -72,6 +74,9 @@ public class BlockManager : MonoBehaviour {
 			SetMaterial (newBlock, Bomb1Material);
 		} else if (Input.GetKeyDown (KeyCode.Delete)) {
 			Destroy (ActiveObject);
+		} else if (Input.GetKeyDown (KeyCode.Home)) {
+			Block block = (Block)ActiveObject.GetComponent (typeof(Block));
+			block.Item = Instantiate (StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler(0, 180, 0) ) as GameObject;
 		}
 
 		// Cursor movement cotrol

@@ -516,6 +516,16 @@ public class Block : MonoBehaviour {
 		}
 	}
 
+	private GameObject _item;
+	public GameObject Item {
+		get {
+			return _item;
+		}
+		set {
+			_item = value;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		
