@@ -23,21 +23,40 @@ public class InputManager : MonoBehaviour {
 		float hori = Input.GetAxis ("Horizontal");
 
 		// Buttons for creating blocks
-		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button0)) {
-			GetBlockManager().CreateBlockAtCursor (Cursor, Block.BlockType.Basic);
-		} else if (Input.GetKeyDown (KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Joystick1Button1)) {
-			GetBlockManager().CreateBlockAtCursor (Cursor, Block.BlockType.Ice);
-		} else if (Input.GetKeyDown (KeyCode.Alpha3 )|| Input.GetKeyDown(KeyCode.Joystick1Button2)) {
-			GetBlockManager().CreateBlockAtCursor (Cursor, Block.BlockType.Heavy1);
-		} else if (Input.GetKeyDown (KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Joystick1Button3)) {
-			GetBlockManager().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb1);
+		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
+			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Basic);
+		} else if (Input.GetKeyDown (KeyCode.Alpha2) || Input.GetKeyDown (KeyCode.Joystick1Button1)) {
+			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Ice);
+		} else if (Input.GetKeyDown (KeyCode.Alpha3) || Input.GetKeyDown (KeyCode.Joystick1Button2)) {
+			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Heavy1);
+		} else if (Input.GetKeyDown (KeyCode.Alpha4) || Input.GetKeyDown (KeyCode.Joystick1Button3)) {
+			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb1);
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			GetBlockManager().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb2);
-		} else if (Input.GetKeyDown (KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button7)) {
+			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb2);
+		}
+
+		// Block type cycling
+		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
+			GetBlockManager ().CreateBlockAtCursor (Cursor, GetBlockManager ().BlockCycleType);
+		} else if (Input.GetKeyDown (KeyCode.LeftBracket)) {
+			Block.BlockType type = GetBlockManager ().PrevBlockType ();
 			if(GetBlockManager().ActiveObject != null)
+				GetBlockManager ().CreateBlockAtCursor (Cursor, type);
+		} else if (Input.GetKeyDown (KeyCode.RightBracket)) {
+			Block.BlockType type = GetBlockManager ().NextBlockType ();
+			if(GetBlockManager().ActiveObject != null)
+				GetBlockManager ().CreateBlockAtCursor (Cursor, type);
+		}
+
+		// Destorying/modifying blocks
+		else if (Input.GetKeyDown (KeyCode.Delete) || Input.GetKeyDown (KeyCode.Joystick1Button7)) {
+			if (GetBlockManager ().ActiveObject != null)
 				//TODO use a method of BlockManager to do this
-				Destroy (GetBlockManager().ActiveObject);
-		} else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button6)) {
+				Destroy (GetBlockManager ().ActiveObject);
+		} 
+
+		// Buttons for setting items
+		else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button6)) {
 			if (GetBlockManager().ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
 				Block block = (Block)GetBlockManager().ActiveObject.GetComponent (typeof(Block));

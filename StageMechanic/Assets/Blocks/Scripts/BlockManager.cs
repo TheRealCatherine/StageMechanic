@@ -50,6 +50,32 @@ public class BlockManager : MonoBehaviour {
 		}
 	}
 
+	private Block.BlockType _blockCycleType = Block.BlockType.Basic;
+	public Block.BlockType BlockCycleType {
+		get {
+			return _blockCycleType;
+		}
+		set {
+			_blockCycleType = value;
+		}
+	}
+
+	public Block.BlockType NextBlockType() {
+		if (BlockCycleType >= Block.BlockType.Goal) {
+			BlockCycleType = Block.BlockType.Basic;
+			return BlockCycleType;
+		}
+		return ++BlockCycleType;
+	}
+
+	public Block.BlockType PrevBlockType() {
+		if (BlockCycleType <= Block.BlockType.Basic) {
+			BlockCycleType = Block.BlockType.Goal;
+			return BlockCycleType;
+		}
+		return --BlockCycleType;
+	}
+
 	// Called when the BlockManager is intantiated, when the Level Editor is loaded
 	void Start() {
         // Create the cursor
