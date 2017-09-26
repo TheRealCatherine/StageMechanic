@@ -89,13 +89,25 @@ public class BlockManager : MonoBehaviour {
 		return --BlockCycleType;
 	}
 
+	private List<GameObject> _rotatableFloors;
+	public List<GameObject> RotatableFloors {
+		get {
+			return _rotatableFloors;
+		}
+		set {
+			_rotatableFloors = value;
+		}
+	}
+
+	private GameObject _activeFloor;
+	public GameObject ActiveFloor;
+
 	// Called when the BlockManager is intantiated, when the Level Editor is loaded
 	void Start() {
         // Create the cursor
 
-        //because you told me to
-        //Cursor = Instantiate (CursorPrefab, transform.position, transform.rotation) as GameObject;
-        Cursor = CursorPrefab;
+		ActiveFloor = Instantiate (PrimitiveType.Plane, transform.position, transform.rotation) as GameObject;
+		RotatableFloors.Add (ActiveFloor);
 
 		Cursor.transform.SetParent (transform, false);
 	}

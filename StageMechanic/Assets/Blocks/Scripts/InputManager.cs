@@ -12,6 +12,10 @@ public class InputManager : MonoBehaviour {
 		return (BlockManager)Stage.GetComponent (typeof(BlockManager));
 	}
 
+	public GameObject GetActiveFloor() {
+		return GetBlockManager ().ActiveFloor;
+	}
+
 	// Use this for initialization
 	void Start () {
 		
