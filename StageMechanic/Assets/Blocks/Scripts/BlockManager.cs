@@ -89,7 +89,7 @@ public class BlockManager : MonoBehaviour {
 		return --BlockCycleType;
 	}
 
-	private List<GameObject> _rotatableFloors;
+	private List<GameObject> _rotatableFloors = new List<GameObject>();
 	public List<GameObject> RotatableFloors {
 		get {
 			return _rotatableFloors;
@@ -106,9 +106,15 @@ public class BlockManager : MonoBehaviour {
 	void Start() {
         // Create the cursor
 
-		ActiveFloor = Instantiate (PrimitiveType.Plane, transform.position, transform.rotation) as GameObject;
+		ActiveFloor = GameObject.CreatePrimitive (PrimitiveType.Plane);
+		ActiveFloor.transform.position = transform.position;
+		ActiveFloor.transform.rotation = transform.rotation;
+		MeshCollider colider = ActiveFloor.GetComponent<MeshCollider> ();
+		colider.isTrigger = false;
+
 		RotatableFloors.Add (ActiveFloor);
 
+		Cursor = CursorPrefab;
 		Cursor.transform.SetParent (transform, false);
 	}
 
@@ -197,7 +203,7 @@ public class BlockManager : MonoBehaviour {
 		Debug.Assert (newBlock != null);
 
         //line giving an issue creating a block AROUND the cursor instead of in the world
-		newBlock.transform.SetParent (transform, false);
+		newBlock.transform.SetParent (ActiveFloor.transform, false);
 
 		ActiveObject = newBlock;
 		return newBlock;
