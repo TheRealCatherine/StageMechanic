@@ -29,6 +29,7 @@ public class Block : MonoBehaviour {
 		Heavy2,			//Even slower to move than Heavy1
 		Immobile,		//Basic blocks that cannot normally be moved by the player
 		Fixed,			//Basic blocks that are fixed in space, cannot be moved no matter what
+		Random,			//Not a fixed type, one of a selectable subset
 		Goal			//Level completion zone
 	}
 

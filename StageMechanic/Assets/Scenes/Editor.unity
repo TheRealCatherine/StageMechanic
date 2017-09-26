@@ -303,6 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426806220}
   - component: {fileID: 426806221}
+  - component: {fileID: 426806222}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -344,14 +345,54 @@ MonoBehaviour:
     type: 3}
   BlockPrefab: {fileID: 1853629512664166, guid: de3b07da1a39d5c4189ad37f17ed6fa9,
     type: 2}
+  Trap1BlockPrefab: {fileID: 1387997212163396, guid: 0ebb7ca9fa1e0ed4ebe55085c01f90f3,
+    type: 2}
+  Trap2BlockPrefab: {fileID: 1080798637978176, guid: e79f17985ac7e8241a9697a858b1a4ef,
+    type: 2}
+  SpringBlockPrefab: {fileID: 1131577961013122, guid: 5df75f3fe45a30843a9d018f351e1d78,
+    type: 2}
+  MonsterBlockPrefab: {fileID: 1378607036211450, guid: 5c39f078d960f9340aa5814cb02982f3,
+    type: 2}
   IceBlockPrefab: {fileID: 1240530952424724, guid: faeb3891ddfe8b1418e4242e92125ba6,
     type: 2}
-  HeavyBlockPrefab: {fileID: 1272273881823940, guid: 8b12980fc8f527a49b1b1d63ccb531d0,
+  VortexBlockPrefab: {fileID: 1056341459242404, guid: d6d79a648f1d433448abb2d2879881d3,
     type: 2}
   Bomb1BlockPrefab: {fileID: 1947124250752930, guid: c13973f5009fad146ab1c3e098cbeaa6,
     type: 2}
   Bomb2BlockPrefab: {fileID: 1672769352407384, guid: 5b45b5022056d5b43b51e982697824cb,
     type: 2}
+  Crack1BlockPrefab: {fileID: 1079187110874380, guid: b105e26813e6d6a48b90ba224961cd91,
+    type: 2}
+  Crack2BlockPrefab: {fileID: 1130345185771716, guid: 5311a46bed88a78498fc8671dbf66ef6,
+    type: 2}
+  TeleportBlockPrefab: {fileID: 1028546297549334, guid: 228434db9d2f9f942952d8fa3f485b4f,
+    type: 2}
+  Heavy1BlockPrefab: {fileID: 1272273881823940, guid: 8b12980fc8f527a49b1b1d63ccb531d0,
+    type: 2}
+  Heavy2BlockPrefab: {fileID: 1691018687510126, guid: 152cff1e1fa3fc84d940dafa9f4745e7,
+    type: 2}
+  ImmobleBlockPrefab: {fileID: 1491157440651148, guid: cb7260b2cf91bbd4d89dd644aa61817a,
+    type: 2}
+  FixedBlockPrefab: {fileID: 1738747662548062, guid: cd63148f5c04b274ab196375176ac791,
+    type: 2}
+  RandomBlockPrefab: {fileID: 1678688784119742, guid: e810054446e84a148b5a7f71a8534c06,
+    type: 2}
+  GoalBlockPrefab: {fileID: 1726037543320594, guid: 94d1b73ba876fd84cb1f675a68f29352,
+    type: 2}
+--- !u!114 &426806222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426806219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ce53ddc6d3b1445938ccc09c0d6fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stage: {fileID: 426806219}
+  Cursor: {fileID: 662790149}
+  Camera: {fileID: 223191232}
 --- !u!1 &662790149 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
