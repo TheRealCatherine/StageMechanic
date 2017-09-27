@@ -16,7 +16,7 @@ We will target both the amateur/casual player of Catherine, Robo5, and Pushmo lo
 
 ## Current state
 
-This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017. So far we have focused on the Level Editor implementation and it is currently possible to easily place blocks in 3D space. Block properties (trap, player movement, bombs, etc) have been defined (though not yet implemented) and textures are in the works. Once the Level Editor as has reached a usable state, development focus will shift to the Play Mode while level designers create the default map set.
+This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017. So far we have focused on the Level Editor implementation and it is currently possible to easily place blocks in 3D space. Block properties (trap, player movement, bombs, etc) have been defined (though not yet implemented) and textures are in the works (but there are placeholders). Once the Level Editor as has reached a usable state, development focus will shift to the Play Mode while level designers create the default map set.
 
 ## Licensing
 
@@ -50,7 +50,7 @@ Step 4: Install git
 
 &nbsp;&nbsp;Windows, Mac:
 
-&nbsp;&nbsp;&nbsp;&nbsp;https://git-scm.com/downloads
+&nbsp;&nbsp;&nbsp;&nbsp;https://desktop.github.com/
 
 &nbsp;&nbsp;Fedora 20:
 
