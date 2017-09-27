@@ -8,6 +8,10 @@ public class InputManager : MonoBehaviour {
 	public GameObject Cursor;
 	public GameObject Camera;
 
+	private bool _ctrlDown = false;
+	private bool _shiftDown = false;
+	private bool _altDown = false;
+
 	public BlockManager GetBlockManager() {
 		return (BlockManager)Stage.GetComponent (typeof(BlockManager));
 	}
@@ -25,6 +29,27 @@ public class InputManager : MonoBehaviour {
 	void Update () {
 		float vert = Input.GetAxis ("Vertical");
 		float hori = Input.GetAxis ("Horizontal");
+
+		// Set/unset key modifiers
+		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
+			_shiftDown = true;
+		}
+		else if (Input.GetKeyUp (KeyCode.LeftShift) || Input.GetKeyUp (KeyCode.RightShift)) {
+			_shiftDown = false;
+		}
+		else if (Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) {
+			_ctrlDown = true;
+		}
+		else if (Input.GetKeyUp (KeyCode.LeftControl) || Input.GetKeyUp (KeyCode.RightControl)) {
+			_ctrlDown = false;
+		}
+		else if (Input.GetKeyDown (KeyCode.LeftAlt) || Input.GetKeyDown (KeyCode.RightAlt)) {
+			_altDown = true;
+		}
+		else if (Input.GetKeyUp (KeyCode.LeftAlt) || Input.GetKeyUp (KeyCode.RightAlt)) {
+			_altDown = false;
+		}
+
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
