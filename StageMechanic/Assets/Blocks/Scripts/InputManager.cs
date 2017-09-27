@@ -30,26 +30,15 @@ public class InputManager : MonoBehaviour {
 		float vert = Input.GetAxis ("Vertical");
 		float hori = Input.GetAxis ("Horizontal");
 
-		// Set/unset key modifiers
+		// (sticky) Set/unset key modifiers
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
-			_shiftDown = true;
-		}
-		else if (Input.GetKeyUp (KeyCode.LeftShift) || Input.GetKeyUp (KeyCode.RightShift)) {
-			_shiftDown = false;
-		}
-		else if (Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) {
-			_ctrlDown = true;
-		}
-		else if (Input.GetKeyUp (KeyCode.LeftControl) || Input.GetKeyUp (KeyCode.RightControl)) {
-			_ctrlDown = false;
+			_shiftDown = !_shiftDown;
+		} else if (Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) {
+			_ctrlDown = !_ctrlDown;
 		}
 		else if (Input.GetKeyDown (KeyCode.LeftAlt) || Input.GetKeyDown (KeyCode.RightAlt)) {
-			_altDown = true;
+			_altDown = !_altDown;
 		}
-		else if (Input.GetKeyUp (KeyCode.LeftAlt) || Input.GetKeyUp (KeyCode.RightAlt)) {
-			_altDown = false;
-		}
-
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
@@ -99,21 +88,41 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 
-		// Cursor movement cotrol
+		// Cursor/stage movement cotrol
 		// Keyboard & XBox 360 Input
 		// TODO update ActiveObject based on cursor position using colliders
 		else if (Input.GetKeyDown (KeyCode.UpArrow) || vert > 0) {
-			Cursor.transform.position += new Vector3 (0, 1, 0);
-			Input.ResetInputAxes ();
+			if (_altDown) {
+				GetBlockManager ().ActiveFloor.transform.Rotate (90, 0, 0);
+				Input.ResetInputAxes ();
+			} else {
+				Cursor.transform.position += new Vector3 (0, 1, 0);
+				Input.ResetInputAxes ();
+			}
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) || vert < 0) {
-			Cursor.transform.position += new Vector3 (0, -1, 0);
-			Input.ResetInputAxes ();
+			if (_altDown) {
+				GetBlockManager ().ActiveFloor.transform.Rotate (-90, 0, 0);
+				Input.ResetInputAxes ();
+			} else {
+				Cursor.transform.position += new Vector3 (0, -1, 0);
+				Input.ResetInputAxes ();
+			}
 		} else if (Input.GetKeyDown (KeyCode.LeftArrow) || hori < 0) {
-			Cursor.transform.position += new Vector3 (-1, 0, 0);
-			Input.ResetInputAxes ();
+			if (_altDown) {
+				GetBlockManager ().ActiveFloor.transform.Rotate (0, 90, 0);
+				Input.ResetInputAxes ();
+			} else {
+				Cursor.transform.position += new Vector3 (-1, 0, 0);
+				Input.ResetInputAxes ();
+			}
 		} else if (Input.GetKeyDown (KeyCode.RightArrow) || hori > 0) {
-			Cursor.transform.position += new Vector3 (1, 0, 0);
-			Input.ResetInputAxes ();
+			if (_altDown) {
+				GetBlockManager ().ActiveFloor.transform.Rotate (0, -90, 0);
+				Input.ResetInputAxes ();
+			} else {
+				Cursor.transform.position += new Vector3 (1, 0, 0);
+				Input.ResetInputAxes ();
+			}
 		} else if (Input.GetKeyDown (KeyCode.Comma) || Input.GetKeyDown(KeyCode.Joystick1Button4)) {
 			Input.ResetInputAxes ();
 			Cursor.transform.position += new Vector3 (0, 0, -1);
