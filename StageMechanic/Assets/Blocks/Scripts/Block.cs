@@ -72,8 +72,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -86,8 +86,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -100,8 +100,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -114,8 +114,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.Side;
 				_teleportDistance = new Vector3(0,5,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -128,8 +128,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.SideNoGrab;
 				_teleportDistance = new Vector3(0,1,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -142,8 +142,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.Platform;
 				_teleportDistance = new Vector3(1,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -156,8 +156,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -170,8 +170,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 3;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -184,8 +184,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 3;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -199,7 +199,7 @@ public class Block : MonoBehaviour {
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
 				_collapseSteps = 1;
-				_collapseGrabs = 0;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -213,7 +213,7 @@ public class Block : MonoBehaviour {
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
 				_collapseSteps = 2;
-				_collapseGrabs = 0;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -226,8 +226,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.Platform;
 				_teleportDistance = new Vector3(1,1,1);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -240,8 +240,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 2.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -254,8 +254,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 4.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -268,8 +268,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -282,8 +282,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -296,8 +296,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -311,8 +311,8 @@ public class Block : MonoBehaviour {
 				_bombRadius = 0;
 				_teleportType = TeleportBlockType.None;
 				_teleportDistance = new Vector3(0,0,0);
-				_collapseSteps = 0;
-				_collapseGrabs = 0;
+				_collapseSteps = -1;
+				_collapseGrabs = -1;
 				_weightFactor = 1.0F;
 				_isMovableByPlayer = true;
 				_isFixedPosition = false;
@@ -529,7 +529,7 @@ public class Block : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		name = System.Guid.NewGuid ().ToString ();
 	}
 
 	// Called when this block is destroyed

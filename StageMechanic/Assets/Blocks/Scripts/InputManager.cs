@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
 			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb2);
 		}
-
+			
 		// Block type cycling
 		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
 			GetBlockManager ().CreateBlockAtCursor (Cursor, GetBlockManager ().BlockCycleType);

@@ -206,6 +206,11 @@ public class BlockManager : MonoBehaviour {
 		newBlock.transform.SetParent (ActiveFloor.transform, false);
 
 		ActiveObject = newBlock;
+
+		Block block = (Block)newBlock.GetComponent (typeof(Block));
+		Debug.Assert (block != null);
+		block.Type = type;
+
 		return newBlock;
 	}
 
@@ -213,5 +218,54 @@ public class BlockManager : MonoBehaviour {
 	void SetMaterial( GameObject block, Material material ) {
 		Renderer rend = block.GetComponent<Renderer> ();
 		rend.material = material;
+	}
+		
+	void OnGUI(){
+		if (ActiveObject != null) {
+
+
+			Block block = null;
+			try {
+				block = (Block)ActiveObject.GetComponent (typeof(Block));
+			}
+			catch(System.InvalidCastException e) {
+			}
+
+			if (block == null)
+				return;
+
+			GUIStyle style = new GUIStyle ();
+			style.normal.textColor = Color.black;
+
+			int YPos = 1;
+
+			GUI.Label (new Rect (10, (YPos*25), 50, 25), "Name: ", style);
+			block.name = GUI.TextField (new Rect (55, (YPos++*25), 250, 25), block.name, 36);
+
+			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Type: " + block.Type.ToString(), style);
+			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Trap Type: " + block.TrapType.ToString(), style);
+
+			if (block.TrapType != Block.TrapBlockType.None) {
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Trigger time (ms): (??TODO??)", style);
+			}
+
+			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Teleport Type: " + block.TeleportType.ToString(), style);
+			if (block.TeleportType != Block.TeleportBlockType.None) {
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Distance: " + block.TeleportDistance.ToString(), style);
+			}
+
+			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Collapse: " + ((block.CollapseAfterNSteps>-1 || block.CollapseAfterNSteps>-1)?"Yes":"No") , style);
+			if (block.CollapseAfterNSteps>-1 || block.CollapseAfterNSteps>-1) {
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Steps: " + (block.CollapseAfterNSteps>-1?block.CollapseAfterNSteps.ToString():"N/A"), style);
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Grabs: " + (block.CollapseAfterNGrabs>-1?block.CollapseAfterNGrabs.ToString():"N/A"), style);
+			}
+
+			GUI.Label (new Rect (10, (YPos*25), 50, 25), "Bomb: ", style);
+			GUI.Toggle (new Rect (55, (YPos++*25), 250, 25), block.IsBomb, (block.IsBomb?"Yes":"No"),style);
+			if (block.IsBomb) {
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Fuse time (ms): " + block.BombTimeMS, style);
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "  Radius: " + block.BombRadius, style);
+			}
+		}
 	}
 }
