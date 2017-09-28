@@ -8,6 +8,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -237,7 +240,13 @@ public class BlockManager : MonoBehaviour {
 
 			if (block == null)
 				continue;
-			output += block.ToString ();
+			//output += block.ToString ();
+			//output += JsonUtility.ToJson(block);
+			MemoryStream ms = new MemoryStream();
+			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(BlockJSONDelegate));
+			serializer.WriteObject (ms, new BlockJSONDelegate (block));
+			output += Encoding.UTF8.GetString(ms.ToArray());
+
 		}
 		output += "\t},\n" +
 			"},\n";
