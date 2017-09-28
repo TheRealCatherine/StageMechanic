@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Block : MonoBehaviour {
 
 	// Conenience enum for setting multiple properties for common types
@@ -542,5 +543,17 @@ public class Block : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public string ToString() {
+		return "\t\tBlock {\n"
+			+ "\t\t\tName: \"" + name + "\",\n" 
+			+ "\t\t\tType: \"" + Type.ToString() + "\",\n"
+			+ "\t\t\tPos: {\n"
+			+ "\t\t\t\tx: " + transform.position.x + ",\n"
+			+ "\t\t\t\ty: " + transform.position.y + ",\n"
+			+ "\t\t\t\tz: " + transform.position.z + ",\n"
+			+ "\t\t\t}\n"
+			+ "\t\t},\n";
 	}
 }

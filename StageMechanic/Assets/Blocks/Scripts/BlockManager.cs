@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class BlockManager : MonoBehaviour {
 
 	// Unity Inspector variables
@@ -109,6 +110,7 @@ public class BlockManager : MonoBehaviour {
 		ActiveFloor = GameObject.CreatePrimitive (PrimitiveType.Plane);
 		ActiveFloor.transform.position = transform.position;
 		ActiveFloor.transform.rotation = transform.rotation;
+		ActiveFloor.name = "Platform1";
 		MeshCollider colider = ActiveFloor.GetComponent<MeshCollider> ();
 		colider.isTrigger = false;
 
@@ -218,6 +220,28 @@ public class BlockManager : MonoBehaviour {
 	void SetMaterial( GameObject block, Material material ) {
 		Renderer rend = block.GetComponent<Renderer> ();
 		rend.material = material;
+	}
+
+	public string BlocksToJSON() {
+		Debug.Assert (ActiveFloor != null);
+		string output = "Platform {\n" +
+			"\tName: \"" + ActiveFloor.name + "\",\n" +
+			"\tBlocks {\n";
+		foreach( Transform transform in ActiveFloor.transform ) {
+			Block block = null;
+			try {
+				block = (Block)transform.gameObject.GetComponent (typeof(Block));
+			}
+			catch(System.InvalidCastException e) {
+			}
+
+			if (block == null)
+				continue;
+			output += block.ToString ();
+		}
+		output += "\t},\n" +
+			"},\n";
+		return output;
 	}
 		
 	void OnGUI(){

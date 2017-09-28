@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class InputManager : MonoBehaviour {
 
 	public GameObject Stage;
@@ -51,6 +52,20 @@ public class InputManager : MonoBehaviour {
 			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb1);
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
 			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb2);
+		}
+
+		else if (Input.GetKeyDown (KeyCode.S)) {
+			string path = UnityEditor.EditorUtility.SaveFilePanel (
+				           "Save level as JSON",
+				           "",
+				           "level.json",
+				           ".json");
+			if (path.Length != 0) {
+				string json = GetBlockManager ().BlocksToJSON ();
+				if (json.Length != 0)
+					System.IO.File.WriteAllText (path, json);
+			}
+
 		}
 			
 		// Block type cycling
