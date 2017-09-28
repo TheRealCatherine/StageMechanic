@@ -11,6 +11,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Xml;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -244,7 +245,10 @@ public class BlockManager : MonoBehaviour {
 			//output += JsonUtility.ToJson(block);
 			MemoryStream ms = new MemoryStream();
 			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(BlockJSONDelegate));
-			serializer.WriteObject (ms, new BlockJSONDelegate (block));
+
+			XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter (ms, Encoding.UTF8, true, true, "    ");
+			serializer.WriteObject (writer, new BlockJSONDelegate (block));
+			writer.Flush ();
 			output += Encoding.UTF8.GetString(ms.ToArray());
 
 		}

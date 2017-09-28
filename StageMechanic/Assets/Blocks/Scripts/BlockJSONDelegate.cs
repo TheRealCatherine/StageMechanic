@@ -28,4 +28,16 @@ public class BlockJSONDelegate {
 		}
 	}
 
+	[DataMember(Name="GlobalPosition")]
+	public Vector3 GlobalPosition {
+		get {
+			Debug.Assert (_block != null);
+			return _block.transform.position;
+		}
+		set {
+			Debug.Assert (_block != null);
+			_block.transform.position = value;
+		}
+	}
+
 }
