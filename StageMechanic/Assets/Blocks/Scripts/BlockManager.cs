@@ -21,6 +21,7 @@ public class BlockManager : MonoBehaviour {
 	// Unity Inspector variables
 
 	public GameObject CursorPrefab;
+	public GameObject BasicPlatformPrefab;
 	public GameObject StartLocationIndicator;
 	public GameObject GoalLocationIndicator;
 
@@ -112,13 +113,14 @@ public class BlockManager : MonoBehaviour {
 	// Called when the BlockManager is intantiated, when the Level Editor is loaded
 	void Start() {
         // Create the cursor
-
-		ActiveFloor = GameObject.CreatePrimitive (PrimitiveType.Plane);
-		ActiveFloor.transform.position = transform.position;
-		ActiveFloor.transform.rotation = transform.rotation;
+		ActiveFloor = Instantiate (BasicPlatformPrefab, new Vector3(0,0,0), new Quaternion(0,0,0,0)) as GameObject;
+		//ActiveFloor = GameObject.CreatePrimitive (PrimitiveType.Plane);
+		//ActiveFloor.transform.position = transform.position;
+		//ActiveFloor.transform.rotation = transform.rotation;
 		ActiveFloor.name = "Platform1";
-		MeshCollider colider = ActiveFloor.GetComponent<MeshCollider> ();
-		colider.isTrigger = false;
+		ActiveFloor.transform.SetParent (transform, false);
+		//MeshCollider colider = ActiveFloor.GetComponent<MeshCollider> ();
+		//colider.isTrigger = false;
 
 		RotatableFloors.Add (ActiveFloor);
 
