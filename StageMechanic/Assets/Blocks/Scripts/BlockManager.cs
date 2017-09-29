@@ -12,6 +12,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Xml;
+using System.Threading;
+using System.Globalization;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -232,25 +234,34 @@ public class BlockManager : MonoBehaviour {
 			"\tName: \"" + ActiveFloor.name + "\",\n" +
 			"\tBlocks {\n";
 		foreach( Transform transform in ActiveFloor.transform ) {
+
 			Block block = null;
-			try {
+			CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+			Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+			try	{
 				block = (Block)transform.gameObject.GetComponent (typeof(Block));
+				MemoryStream ms = new MemoryStream();
+				DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(BlockJSONDelegate));
+				XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter (ms, Encoding.UTF8, true, true, "    ");
+				serializer.WriteObject (writer, new BlockJSONDelegate (block));
+				writer.Flush ();
+				output += Encoding.UTF8.GetString(ms.ToArray());
 			}
-			catch(System.InvalidCastException e) {
+			catch(System.InvalidCastException) {
+				block = null;
+			}
+			catch (System.Exception exception)
+			{
+				Debug.Log(exception.ToString());
+			}
+			finally
+			{
+				Thread.CurrentThread.CurrentCulture = currentCulture;
 			}
 
 			if (block == null)
 				continue;
-			//output += block.ToString ();
-			//output += JsonUtility.ToJson(block);
-			MemoryStream ms = new MemoryStream();
-			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(BlockJSONDelegate));
-
-			XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter (ms, Encoding.UTF8, true, true, "    ");
-			serializer.WriteObject (writer, new BlockJSONDelegate (block));
-			writer.Flush ();
-			output += Encoding.UTF8.GetString(ms.ToArray());
-
 		}
 		output += "\t},\n" +
 			"},\n";

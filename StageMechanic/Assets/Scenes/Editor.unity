@@ -323,9 +323,8 @@ Transform:
   m_Children:
   - {fileID: 762219765}
   - {fileID: 267238302}
-  - {fileID: 662790150}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &426806221
 MonoBehaviour:
@@ -379,6 +378,7 @@ MonoBehaviour:
     type: 2}
   GoalBlockPrefab: {fileID: 1726037543320594, guid: 94d1b73ba876fd84cb1f675a68f29352,
     type: 2}
+  ActiveFloor: {fileID: 0}
 --- !u!114 &426806222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,11 +396,6 @@ MonoBehaviour:
 --- !u!1 &662790149 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1820230822}
---- !u!4 &662790150 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4325237548957188, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
     type: 2}
   m_PrefabInternal: {fileID: 1820230822}
 --- !u!114 &662790155
@@ -568,7 +563,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 426806220}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4325237548957188, guid: 2a02ee7551522bc469ad3aba9f1d8d0e, type: 2}
       propertyPath: m_LocalPosition.x
