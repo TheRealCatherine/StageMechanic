@@ -108,7 +108,14 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	private GameObject _activeFloor;
-	public GameObject ActiveFloor;
+	public GameObject ActiveFloor {
+		get {
+			return _activeFloor;
+		}
+		set {
+			_activeFloor = value;
+		}
+	}
 
 	// Called when the BlockManager is intantiated, when the Level Editor is loaded
 	void Start() {
