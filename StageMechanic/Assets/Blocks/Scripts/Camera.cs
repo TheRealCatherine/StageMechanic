@@ -18,6 +18,6 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = Cursor.transform.position + offset;
+		transform.position = new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, transform.position.z);
     }
 }

@@ -24,13 +24,37 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
-	
+
+	internal const float scrollSpeed = 2.0f;
+
+	public float minX = -360.0f;
+	public float maxX = 360.0f;
+
+	public float minY = -45.0f;
+	public float maxY = 45.0f;
+
+	public float sensX = 100.0f;
+	public float sensY = 100.0f;
+
+	float rotationY = 0.0f;
+	float rotationX = 0.0f;
+
 	// Update is called once per frame
 	void Update () {
+
 		float vert = Input.GetAxis ("Vertical");
 		float hori = Input.GetAxis ("Horizontal");
+
+		float scroll = Input.GetAxis("Mouse ScrollWheel");
+		Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
+
+		if (Input.GetMouseButton (0)) {
+			rotationX += Input.GetAxis ("Mouse X") * sensX * Time.deltaTime;
+			rotationY += Input.GetAxis ("Mouse Y") * sensY * Time.deltaTime;
+			rotationY = Mathf.Clamp (rotationY, minY, maxY);
+			Camera.transform.localEulerAngles = new Vector3 (-rotationY, rotationX, 0);
+		}
 
 		// (sticky) Set/unset key modifiers
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
