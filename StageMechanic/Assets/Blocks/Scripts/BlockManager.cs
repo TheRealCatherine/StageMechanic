@@ -117,6 +117,20 @@ public class BlockManager : MonoBehaviour {
 		}
 	}
 
+	private bool _showBlockInfo = true;
+	public bool ShowBlockInfo {
+		get {
+			return _showBlockInfo;
+		}
+		set {
+			_showBlockInfo = value;
+		}
+	}
+
+	public void ToggleBlockInfo() {
+		this.ShowBlockInfo = !this.ShowBlockInfo;
+	}
+
 	// Called when the BlockManager is intantiated, when the Level Editor is loaded
 	void Start() {
         // Create the cursor
@@ -278,7 +292,7 @@ public class BlockManager : MonoBehaviour {
 	}
 		
 	void OnGUI(){
-		if (ActiveObject != null) {
+		if (ShowBlockInfo && ActiveObject != null) {
 
 
 			Block block = null;

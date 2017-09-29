@@ -54,19 +54,22 @@ public class InputManager : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
 			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb2);
 		}
-
+		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {
 			string path = UnityEditor.EditorUtility.SaveFilePanel (
-				           "Save level as JSON",
-				           "",
-				           "level.json",
-				           ".json");
+				              "Save level as JSON",
+				              "",
+				              "level.json",
+				              ".json");
 			if (path.Length != 0) {
 				string json = GetBlockManager ().BlocksToJSON ();
 				if (json.Length != 0)
 					System.IO.File.WriteAllText (path, json);
 			}
-
+		}
+		// Toggle block info display
+		else if (Input.GetKeyDown (KeyCode.I)) {
+			GetBlockManager ().ToggleBlockInfo ();
 		}
 			
 		// Block type cycling
