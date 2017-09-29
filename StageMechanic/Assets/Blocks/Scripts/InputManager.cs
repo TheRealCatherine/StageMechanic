@@ -71,6 +71,13 @@ public class InputManager : MonoBehaviour {
 		else if (Input.GetKeyDown (KeyCode.I)) {
 			GetBlockManager ().ToggleBlockInfo ();
 		}
+		//Quit
+		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
+			if (UnityEditor.EditorApplication.isPlaying)
+				UnityEditor.EditorApplication.isPlaying = false;
+			else
+				Application.Quit ();
+		}
 			
 		// Block type cycling
 		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
