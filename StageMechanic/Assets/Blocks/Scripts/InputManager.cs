@@ -56,6 +56,8 @@ public class InputManager : MonoBehaviour {
 		}
 		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {
+//TODO WTF UNITY?!
+#if UNITY_EDITOR
 			string path = UnityEditor.EditorUtility.SaveFilePanel (
 				              "Save level as JSON",
 				              "",
@@ -66,6 +68,7 @@ public class InputManager : MonoBehaviour {
 				if (json.Length != 0)
 					System.IO.File.WriteAllText (path, json);
 			}
+#endif
 		}
 		// Toggle block info display
 		else if (Input.GetKeyDown (KeyCode.I)) {
@@ -73,9 +76,11 @@ public class InputManager : MonoBehaviour {
 		}
 		//Quit
 		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
+#if UNITY_EDITOR
 			if (UnityEditor.EditorApplication.isPlaying)
 				UnityEditor.EditorApplication.isPlaying = false;
 			else
+#endif
 				Application.Quit ();
 		}
 			

@@ -557,16 +557,4 @@ public class Block : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	public string ToString() {
-		return "\t\tBlock {\n"
-			+ "\t\t\tName: \"" + name + "\",\n" 
-			+ "\t\t\tType: \"" + Type.ToString() + "\",\n"
-			+ "\t\t\tPos: {\n"
-			+ "\t\t\t\tx: " + transform.position.x + ",\n"
-			+ "\t\t\t\ty: " + transform.position.y + ",\n"
-			+ "\t\t\t\tz: " + transform.position.z + ",\n"
-			+ "\t\t\t}\n"
-			+ "\t\t},\n";
-	}
 }

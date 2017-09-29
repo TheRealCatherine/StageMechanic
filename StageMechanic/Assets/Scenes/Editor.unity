@@ -338,6 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorPrefab: {fileID: 662790149}
+  BasicPlatformPrefab: {fileID: 1869418774853098, guid: fc746ea84d38ad84eacb39f489820fad,
+    type: 2}
   StartLocationIndicator: {fileID: 1000010763024152, guid: f80d861c4664f014cad0b030b62c4174,
     type: 2}
   GoalLocationIndicator: {fileID: 100002, guid: bfabbd992ffd05c4c90256f7f208388f,
@@ -378,7 +380,6 @@ MonoBehaviour:
     type: 2}
   GoalBlockPrefab: {fileID: 1726037543320594, guid: 94d1b73ba876fd84cb1f675a68f29352,
     type: 2}
-  ActiveFloor: {fileID: 0}
 --- !u!114 &426806222
 MonoBehaviour:
   m_ObjectHideFlags: 0

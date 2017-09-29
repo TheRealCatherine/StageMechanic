@@ -298,45 +298,75 @@ public class BlockManager : MonoBehaviour {
 			Block block = null;
 			try {
 				block = (Block)ActiveObject.GetComponent (typeof(Block));
+			} catch (System.InvalidCastException) {
+				block = null;
 			}
-			catch(System.InvalidCastException e) {
-			}
-
-			if (block == null)
-				return;
 
 			GUIStyle style = new GUIStyle ();
 			style.normal.textColor = Color.black;
 
-			int YPos = 1;
+			int YPos = 11;
 
-			GUI.Label (new Rect (10, (YPos*25), 50, 25), "Name: ", style);
-			block.name = GUI.TextField (new Rect (55, (YPos++*25), 250, 25), block.name, 36);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Arrow keys: Move cursor up/down/left/right", style); 
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [,] and [.]: Move cursor closer/further", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [space]: Place block", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [[] and []] (brackets): Change block type", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [1]-[5]: Place blocks of different types", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Delete]: Remove block under cursor", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Home] and [End]: Place players", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [I]: Toggle info display", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [S]: Save (broken)", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Esc]/[Q]: Quit", style);
 
-			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Type: " + block.Type.ToString(), style);
-			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Trap Type: " + block.TrapType.ToString(), style);
+			if (block == null)
+				return;
+
+			YPos = 1;
+
+			GUI.Label (new Rect (10, (YPos * 25), 50, 25), "Name: ", style);
+			block.name = GUI.TextField (new Rect (55, (YPos++ * 25), 250, 25), block.name, 36);
+
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Type: " + block.Type.ToString (), style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Trap Type: " + block.TrapType.ToString (), style);
 
 			if (block.TrapType != Block.TrapBlockType.None) {
 				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Trigger time (ms): (??TODO??)", style);
 			}
 
-			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Teleport Type: " + block.TeleportType.ToString(), style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Teleport Type: " + block.TeleportType.ToString (), style);
 			if (block.TeleportType != Block.TeleportBlockType.None) {
-				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Distance: " + block.TeleportDistance.ToString(), style);
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Distance: " + block.TeleportDistance.ToString (), style);
 			}
 
-			GUI.Label (new Rect (10, (YPos++*25), 350, 25), "Collapse: " + ((block.CollapseAfterNSteps>-1 || block.CollapseAfterNSteps>-1)?"Yes":"No") , style);
-			if (block.CollapseAfterNSteps>-1 || block.CollapseAfterNSteps>-1) {
-				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Steps: " + (block.CollapseAfterNSteps>-1?block.CollapseAfterNSteps.ToString():"N/A"), style);
-				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Grabs: " + (block.CollapseAfterNGrabs>-1?block.CollapseAfterNGrabs.ToString():"N/A"), style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Collapse: " + ((block.CollapseAfterNSteps > -1 || block.CollapseAfterNSteps > -1) ? "Yes" : "No"), style);
+			if (block.CollapseAfterNSteps > -1 || block.CollapseAfterNSteps > -1) {
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Steps: " + (block.CollapseAfterNSteps > -1 ? block.CollapseAfterNSteps.ToString () : "N/A"), style);
+				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Grabs: " + (block.CollapseAfterNGrabs > -1 ? block.CollapseAfterNGrabs.ToString () : "N/A"), style);
 			}
 
-			GUI.Label (new Rect (10, (YPos*25), 50, 25), "Bomb: ", style);
-			GUI.Toggle (new Rect (55, (YPos++*25), 250, 25), block.IsBomb, (block.IsBomb?"Yes":"No"),style);
+			GUI.Label (new Rect (10, (YPos * 25), 50, 25), "Bomb: ", style);
+			GUI.Toggle (new Rect (55, (YPos++ * 25), 250, 25), block.IsBomb, (block.IsBomb ? "Yes" : "No"), style);
 			if (block.IsBomb) {
 				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Fuse time (ms): " + block.BombTimeMS, style);
 				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "  Radius: " + block.BombRadius, style);
 			}
+		} else if (ShowBlockInfo) {
+			//TODO Don't do this twice! LOL silly girl
+			GUIStyle style = new GUIStyle ();
+			style.normal.textColor = Color.black;
+
+			int YPos = 11;
+
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Arrow keys: Move cursor up/down/left/right", style); 
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [,] and [.]: Move cursor closer/further", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [space]: Place block", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [[] and []] (brackets): Change block type", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [1]-[5]: Place blocks of different types", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Delete]: Remove block under cursor", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Home] and [End]: Place players", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [I]: Toggle info display", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [S]: Save (broken)", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Esc]/[Q]: Quit", style);
 		}
 	}
 }
