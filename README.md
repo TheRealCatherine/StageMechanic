@@ -18,6 +18,8 @@ We will target both the amateur/casual player of Catherine, Robo5, and Pushmo lo
 
 This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017. So far we have focused on the Level Editor implementation and it is currently possible to easily place blocks in 3D space. Block properties (trap, player movement, bombs, etc) have been defined (though not yet implemented) and textures are in the works (but there are placeholders). Once the Level Editor as has reached a usable state, development focus will shift to the Play Mode while level designers create the default map set.
 
+[Development Builds](https://github.com/TheRealCatherine/StageMechanic/wiki/Downloads)
+
 ## Licensing
 
 This project is being developed as an Open Source project entirely by volunteers. The resulting application will be made freely available to users and all source code made free available to developers/artists/etc.
