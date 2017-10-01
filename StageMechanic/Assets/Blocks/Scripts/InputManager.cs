@@ -41,7 +41,9 @@ public class InputManager : MonoBehaviour {
 		float vert = Input.GetAxis ("Vertical");
 		float hori = Input.GetAxis ("Horizontal");
 
-		bool altDown = Input.GetKey (KeyCode.LeftAlt) || Input.GetKey (KeyCode.RightAlt);
+		bool altDown = Input.GetKey (KeyCode.LeftAlt) || Input.GetKey (KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
+		bool shiftDown = Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift);
+		bool ctrlDown = Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
 
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
@@ -135,8 +137,14 @@ public class InputManager : MonoBehaviour {
 		// TODO update ActiveObject based on cursor position using colliders
 		else if (Input.GetKeyDown (KeyCode.UpArrow) || vert > 0) {
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (90, 0, 0);
-				Cursor.transform.Rotate (90, 0, 0);
+				GetBlockManager ().ActiveFloor.transform.Rotate (90, 0, 0, Space.Self);
+				Cursor.transform.Rotate (90, 0, 0, Space.Self);
+				Input.ResetInputAxes ();
+			} else if(shiftDown) {
+				GameObject ao = GetBlockManager ().ActiveObject;
+				if (ao != null)
+					ao.transform.Translate (0, 1, 0);
+				Cursor.transform.position += new Vector3 (0, 1, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (0, 1, 0);
@@ -144,8 +152,14 @@ public class InputManager : MonoBehaviour {
 			}
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) || vert < 0) {
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (-90, 0, 0);
-				Cursor.transform.Rotate (90, 0, 0);
+				GetBlockManager ().ActiveFloor.transform.Rotate (-90, 0, 0, Space.Self);
+				Cursor.transform.Rotate (-90, 0, 0, Space.Self);
+				Input.ResetInputAxes ();
+			} else if(shiftDown) {
+				GameObject ao = GetBlockManager ().ActiveObject;
+				if (ao != null)
+					ao.transform.Translate (0, -1, 0);
+				Cursor.transform.position += new Vector3 (0, -1, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (0, -1, 0);
@@ -153,8 +167,14 @@ public class InputManager : MonoBehaviour {
 			}
 		} else if (Input.GetKeyDown (KeyCode.LeftArrow) || hori < 0) {
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (0, 90, 0);
-				Cursor.transform.Rotate (90, 0, 0);
+				GetBlockManager ().ActiveFloor.transform.Rotate (0, 90, 0, Space.Self);
+				Cursor.transform.Rotate (0, 90, 0, Space.Self);
+				Input.ResetInputAxes ();
+			} else if(shiftDown) {
+				GameObject ao = GetBlockManager ().ActiveObject;
+				if (ao != null)
+					ao.transform.Translate (-1, 0, 0);
+				Cursor.transform.position += new Vector3 (-1, 0, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (-1, 0, 0);
@@ -162,8 +182,14 @@ public class InputManager : MonoBehaviour {
 			}
 		} else if (Input.GetKeyDown (KeyCode.RightArrow) || hori > 0) {
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (0, -90, 0);
-				Cursor.transform.Rotate (90, 0, 0);
+				GetBlockManager ().ActiveFloor.transform.Rotate (0, -90, 0, Space.Self);
+				Cursor.transform.Rotate (0, -90, 0, Space.Self);
+				Input.ResetInputAxes ();
+			} else if(shiftDown) {
+				GameObject ao = GetBlockManager ().ActiveObject;
+				if (ao != null)
+					ao.transform.Translate (1, 0, 0);
+				Cursor.transform.position += new Vector3 (1, 0, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (1, 0, 0);
