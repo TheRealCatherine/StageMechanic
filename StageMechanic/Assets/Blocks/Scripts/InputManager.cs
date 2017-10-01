@@ -18,6 +18,10 @@ public class InputManager : MonoBehaviour {
 		return GetBlockManager ().ActiveFloor;
 	}
 
+	public Camera GetCamera() {
+		return (Camera)Camera.GetComponent (typeof(Camera));
+	}
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -140,11 +144,14 @@ public class InputManager : MonoBehaviour {
 				GetBlockManager ().ActiveFloor.transform.Rotate (90, 0, 0, Space.Self);
 				Cursor.transform.Rotate (90, 0, 0, Space.Self);
 				Input.ResetInputAxes ();
-			} else if(shiftDown) {
+			} else if (shiftDown) {
 				GameObject ao = GetBlockManager ().ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (0, 1, 0);
 				Cursor.transform.position += new Vector3 (0, 1, 0);
+				Input.ResetInputAxes ();
+			} else if (ctrlDown) {
+				GetCamera().offset += new Vector3 (0, 1, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (0, 1, 0);
@@ -161,6 +168,9 @@ public class InputManager : MonoBehaviour {
 					ao.transform.Translate (0, -1, 0);
 				Cursor.transform.position += new Vector3 (0, -1, 0);
 				Input.ResetInputAxes ();
+			} else if (ctrlDown) {
+				GetCamera().offset += new Vector3 (0, -1, 0);
+				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (0, -1, 0);
 				Input.ResetInputAxes ();
@@ -176,6 +186,9 @@ public class InputManager : MonoBehaviour {
 					ao.transform.Translate (-1, 0, 0);
 				Cursor.transform.position += new Vector3 (-1, 0, 0);
 				Input.ResetInputAxes ();
+			} else if (ctrlDown) {
+				GetCamera().offset += new Vector3 (-1, 0, 0);
+				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (-1, 0, 0);
 				Input.ResetInputAxes ();
@@ -190,6 +203,9 @@ public class InputManager : MonoBehaviour {
 				if (ao != null)
 					ao.transform.Translate (1, 0, 0);
 				Cursor.transform.position += new Vector3 (1, 0, 0);
+				Input.ResetInputAxes ();
+			} else if (ctrlDown) {
+				GetCamera().offset += new Vector3 (1, 0, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (1, 0, 0);

@@ -341,11 +341,13 @@ public class BlockManager : MonoBehaviour {
 					GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "  Radius: " + block.BombRadius, style);
 				}
 			}
-			YPos = 11;
+			YPos = 9;
 
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Arrow keys: Move cursor up/down/left/right", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Alt+Arrow keys: Rotate tower", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Alt+Arrow keys: Rotate tower (broken)", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Shift+Arrow keys: Move block", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Ctrl+Arrow keys: Move camera", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Mouse wheel: zoom in/out", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [,] and [.]: Move cursor closer/further", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [space]: Place block", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [[] and []] (brackets): Change block type", style);
