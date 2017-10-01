@@ -10,10 +10,6 @@ public class InputManager : MonoBehaviour {
 	public GameObject Cursor;
 	public GameObject Camera;
 
-	private bool _ctrlDown = false;
-	private bool _shiftDown = false;
-	private bool _altDown = false;
-
 	public BlockManager GetBlockManager() {
 		return (BlockManager)Stage.GetComponent (typeof(BlockManager));
 	}
@@ -40,11 +36,12 @@ public class InputManager : MonoBehaviour {
 	float rotationY = 0.0f;
 	float rotationX = 0.0f;
 
-	// Update is called once per frame
 	void Update () {
 
 		float vert = Input.GetAxis ("Vertical");
 		float hori = Input.GetAxis ("Horizontal");
+
+		bool altDown = Input.GetKey (KeyCode.LeftAlt) || Input.GetKey (KeyCode.RightAlt);
 
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
@@ -54,16 +51,6 @@ public class InputManager : MonoBehaviour {
 			rotationY += Input.GetAxis ("Mouse Y") * sensY * Time.deltaTime;
 			rotationY = Mathf.Clamp (rotationY, minY, maxY);
 			Camera.transform.localEulerAngles = new Vector3 (-rotationY, rotationX, 0);
-		}
-
-		// (sticky) Set/unset key modifiers
-		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
-			_shiftDown = !_shiftDown;
-		} else if (Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) {
-			_ctrlDown = !_ctrlDown;
-		}
-		else if (Input.GetKeyDown (KeyCode.LeftAlt) || Input.GetKeyDown (KeyCode.RightAlt)) {
-			_altDown = !_altDown;
 		}
 
 		// Buttons for creating blocks
@@ -147,32 +134,36 @@ public class InputManager : MonoBehaviour {
 		// Keyboard & XBox 360 Input
 		// TODO update ActiveObject based on cursor position using colliders
 		else if (Input.GetKeyDown (KeyCode.UpArrow) || vert > 0) {
-			if (_altDown) {
+			if (altDown) {
 				GetBlockManager ().ActiveFloor.transform.Rotate (90, 0, 0);
+				Cursor.transform.Rotate (90, 0, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (0, 1, 0);
 				Input.ResetInputAxes ();
 			}
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) || vert < 0) {
-			if (_altDown) {
+			if (altDown) {
 				GetBlockManager ().ActiveFloor.transform.Rotate (-90, 0, 0);
+				Cursor.transform.Rotate (90, 0, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (0, -1, 0);
 				Input.ResetInputAxes ();
 			}
 		} else if (Input.GetKeyDown (KeyCode.LeftArrow) || hori < 0) {
-			if (_altDown) {
+			if (altDown) {
 				GetBlockManager ().ActiveFloor.transform.Rotate (0, 90, 0);
+				Cursor.transform.Rotate (90, 0, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (-1, 0, 0);
 				Input.ResetInputAxes ();
 			}
 		} else if (Input.GetKeyDown (KeyCode.RightArrow) || hori > 0) {
-			if (_altDown) {
+			if (altDown) {
 				GetBlockManager ().ActiveFloor.transform.Rotate (0, -90, 0);
+				Cursor.transform.Rotate (90, 0, 0);
 				Input.ResetInputAxes ();
 			} else {
 				Cursor.transform.position += new Vector3 (1, 0, 0);

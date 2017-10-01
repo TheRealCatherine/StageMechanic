@@ -342,7 +342,8 @@ public class BlockManager : MonoBehaviour {
 			}
 			YPos = 11;
 
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Arrow keys: Move cursor up/down/left/right", style); 
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Arrow keys: Move cursor up/down/left/right", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Alt+Arrow kets: Rotate tower", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [,] and [.]: Move cursor closer/further", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [space]: Place block", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [[] and []] (brackets): Change block type", style);
