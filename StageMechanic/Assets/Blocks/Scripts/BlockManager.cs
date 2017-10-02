@@ -254,41 +254,32 @@ public class BlockManager : MonoBehaviour {
 
 	public string BlocksToJSON() {
 		Debug.Assert (ActiveFloor != null);
-		string output = "Platform {\n" +
-			"\tName: \"" + ActiveFloor.name + "\",\n" +
-			"\tBlocks {\n";
-		foreach( Transform transform in ActiveFloor.transform ) {
+		string output = "Platform {\n";
+		PlatformJSONDelegate platform = new PlatformJSONDelegate(ActiveFloor);
 
-			Block block = null;
-			CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-			Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+		CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+		Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-			try	{
-				block = (Block)transform.gameObject.GetComponent (typeof(Block));
-				MemoryStream ms = new MemoryStream();
-				DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(BlockJSONDelegate));
-				XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter (ms, Encoding.UTF8, true, true, "    ");
-				serializer.WriteObject (writer, new BlockJSONDelegate (block));
-				writer.Flush ();
-				output += Encoding.UTF8.GetString(ms.ToArray());
-			}
-			catch(System.InvalidCastException) {
-				block = null;
-			}
-			catch (System.Exception exception)
-			{
-				Debug.Log(exception.ToString());
-			}
-			finally
-			{
-				Thread.CurrentThread.CurrentCulture = currentCulture;
-			}
-
-			if (block == null)
-				continue;
+		try	{
+			MemoryStream ms = new MemoryStream();
+			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(PlatformJSONDelegate));
+			XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter (ms, Encoding.UTF8, true, true, "    ");
+			serializer.WriteObject (writer, platform);
+			writer.Flush ();
+			output += Encoding.UTF8.GetString(ms.ToArray());
 		}
-		output += "\t},\n" +
-			"},\n";
+		catch (System.Exception exception)
+		{
+			Debug.Log(exception.ToString());
+		}
+		finally
+		{
+			Thread.CurrentThread.CurrentCulture = currentCulture;
+		}
+
+
+		output += "\t},\n";
+		//Debug.Log (output);
 		return output;
 	}
 		

@@ -63,8 +63,8 @@ public class InputManager : MonoBehaviour {
 			Camera.transform.localEulerAngles = new Vector3 (-rotationY, rotationX, 0);
 		}
 
-		float rotationXOffset = Input.GetAxis ("RightStickH") * sensX * Time.deltaTime;
-		float rotationYOffset = Input.GetAxis ("RightStickV") * sensY * Time.deltaTime;
+		float rotationXOffset = Input.GetAxis ("RightStickH") * (sensX*2) * Time.deltaTime;
+		float rotationYOffset = Input.GetAxis ("RightStickV") * (sensY*2) * Time.deltaTime;
 		if (rotationXOffset >= 0.05 || rotationYOffset >= 0.05 || rotationXOffset <= -0.05 || rotationYOffset <= -0.05) {
 			rotationX += rotationXOffset;
 			rotationY += rotationYOffset;

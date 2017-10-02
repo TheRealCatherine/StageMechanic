@@ -541,6 +541,11 @@ public class Block : MonoBehaviour {
 		}
 	}
 
+
+	public BlockJSONDelegate GetJSONDelegate() {
+		return new BlockJSONDelegate (this);
+	}
+
 	// Use this for initialization
 	void Start () {
 		name = System.Guid.NewGuid ().ToString ();
