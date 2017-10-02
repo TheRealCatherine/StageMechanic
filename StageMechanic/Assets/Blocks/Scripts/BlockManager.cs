@@ -254,17 +254,19 @@ public class BlockManager : MonoBehaviour {
 
 	public string BlocksToJSON() {
 		Debug.Assert (ActiveFloor != null);
-		string output = "Platform {\n";
-		PlatformJSONDelegate platform = new PlatformJSONDelegate(ActiveFloor);
+		string output = "";
+		StageJSONDelegate stage = new StageJSONDelegate (this);
+		StageCollection collection = new StageCollection (stage);
+		//PlatformJSONDelegate platform = new PlatformJSONDelegate(ActiveFloor);
 
 		CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
 		Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
 		try	{
 			MemoryStream ms = new MemoryStream();
-			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(PlatformJSONDelegate));
+			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(StageCollection));
 			XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter (ms, Encoding.UTF8, true, true, "    ");
-			serializer.WriteObject (writer, platform);
+			serializer.WriteObject (writer, collection);
 			writer.Flush ();
 			output += Encoding.UTF8.GetString(ms.ToArray());
 		}
@@ -277,10 +279,11 @@ public class BlockManager : MonoBehaviour {
 			Thread.CurrentThread.CurrentCulture = currentCulture;
 		}
 
-
-		output += "\t},\n";
-		//Debug.Log (output);
 		return output;
+	}
+
+	public PlatformJSONDelegate GetPlatformJSONDelegate() {
+		return new PlatformJSONDelegate (ActiveFloor);
 	}
 		
 	void OnGUI(){

@@ -6,7 +6,8 @@ using System.Runtime.Serialization;
 [DataContract(Name="Platform")]
 public class PlatformJSONDelegate {
 
-	GameObject _platform;
+	//TODO make private
+	public GameObject _platform;
 
 	public PlatformJSONDelegate( GameObject platform ) {
 		_platform = platform;
@@ -38,46 +39,6 @@ public class PlatformJSONDelegate {
 			Debug.Assert (_platform != null);
 			_platform.transform.position = value;
 		}
-	}
-
-	[DataMember(Name="BlockPalette",Order=3)]
-	public string BlockPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="ItemPalette",Order=3)]
-	public string ItemPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="ActionPalette",Order=3)]
-	public string ActionPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="EnemyPalette",Order=3)]
-	public string EnemyPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="RulesPalette",Order=3)]
-	public string RulesPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
 	}
 
 	[DataMember(Name="Blocks",Order=5)]
