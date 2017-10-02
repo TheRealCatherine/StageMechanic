@@ -54,18 +54,6 @@ public class BlockJSONDelegate {
 		}
 	}
 
-	[DataMember(Name="GlobalPosition",Order=3)]
-	public Vector3 GlobalPosition {
-		get {
-			Debug.Assert (_block != null);
-			return _block.transform.position;
-		}
-		set {
-			Debug.Assert (_block != null);
-			_block.transform.position = value;
-		}
-	}
-
 	[DataMember(Name="RelativePosition",Order=4)]
 	public Vector3 RelativePosition {
 		get {

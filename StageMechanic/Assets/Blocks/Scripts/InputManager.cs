@@ -72,11 +72,11 @@ public class InputManager : MonoBehaviour {
 			Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
 		}
 
-		bool goFurther = Input.GetAxis ("LeftStickV") >= 1;
-		bool goCloser = Input.GetAxis ("LeftStickV") <= -1;
+		bool goFurther = Input.GetAxis ("LeftStickV") * 100  * Time.deltaTime >= 1;
+		bool goCloser = Input.GetAxis ("LeftStickV") * 100  * Time.deltaTime <= -1;
 
 		// Buttons for creating blocks
-		if (Input.GetKeyDown (KeyCode.Alpha1)|| Input.GetKeyDown (KeyCode.Joystick1Button3)) {
+		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button3)) {
 			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Basic);
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Ice);
@@ -174,6 +174,7 @@ public class InputManager : MonoBehaviour {
 			} else {
 				Cursor.transform.position += new Vector3 (0, 1, 0);
 			}
+			Input.ResetInputAxes ();
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) || vert < 0) {
 			if (period < joystickThrottleRate) {
 				period += Time.deltaTime;
@@ -193,6 +194,7 @@ public class InputManager : MonoBehaviour {
 			} else {
 				Cursor.transform.position += new Vector3 (0, -1, 0);
 			}
+			Input.ResetInputAxes ();
 		} else if (Input.GetKeyDown (KeyCode.LeftArrow) || hori < 0) {
 			if (period < joystickThrottleRate) {
 				period += Time.deltaTime;
@@ -212,6 +214,7 @@ public class InputManager : MonoBehaviour {
 			} else {
 				Cursor.transform.position += new Vector3 (-1, 0, 0);
 			}
+			Input.ResetInputAxes ();
 		} else if (Input.GetKeyDown (KeyCode.RightArrow) || hori > 0) {
 			if (period < joystickThrottleRate) {
 				period += Time.deltaTime;
@@ -231,20 +234,23 @@ public class InputManager : MonoBehaviour {
 			} else {
 				Cursor.transform.position += new Vector3 (1, 0, 0);
 			}
-		} else if (Input.GetKeyDown (KeyCode.Comma) || goFurther) {
+			Input.ResetInputAxes ();
+		} else if (goFurther) {
 			if (period < joystickThrottleRate) {
 				period += Time.deltaTime;
 				return;
 			}
 			period = 0.0f;
 			Cursor.transform.position += new Vector3 (0, 0, -1);
-		} else if (Input.GetKeyDown (KeyCode.Period) || goCloser) {
+			Input.ResetInputAxes ();
+		} else if (goCloser) {
 			if (period < joystickThrottleRate) {
 				period += Time.deltaTime;
 				return;
 			}
 			period = 0.0f;
 			Cursor.transform.position += new Vector3 (0, 0, 1);
+			Input.ResetInputAxes ();
 		}
 	}
 }
