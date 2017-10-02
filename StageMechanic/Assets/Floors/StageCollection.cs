@@ -67,6 +67,22 @@ public class StageCollection {
 		set { }
 	}
 
+	[DataMember(Name="PlayersPalette",Order=2)]
+	public string PlayersPalette {
+		get {
+			return "Cathy1-internal";
+		}
+		set { }
+	}
+
+	[DataMember(Name="PlatformPalette",Order=2)]
+	public string PlatformPalette {
+		get {
+			return "Cathy1-internal";
+		}
+		set { }
+	}
+
 	[DataMember(Name="Stages",Order=3)]
 	public List<StageJSONDelegate> Stages {
 		get {
