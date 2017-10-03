@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 
 public class Block : MonoBehaviour {
 
+	#region Enums
 	// Conenience enum for setting multiple properties for common types
 	public enum BlockType {
 		Custom = 0,
@@ -50,13 +51,17 @@ public class Block : MonoBehaviour {
 		PlatformToSide, 	//Move player from top of platform to an edge grab
 		SideToPlatform		//Move player from an edge grab to the top of a platform
 	}
+	#endregion //Enums
 
-	// Properties
+	//TODO: refactor into different classes
+	#region Properties
 
-	// Please note that modifying any block properties directly (rather than setting a common type
-	// via this one) will set Type to BlockType.Custom even if the properties you set directly
-	// match ane of the common types. So rather than testing if a block is an ice block it is
-	// usually better to check the Slide property.
+	/**
+	 * Please note that modifying any block properties directly (rather than setting a common type)
+	 * will set Type to BlockType.Custom even if the properties you set directly
+	 * match ane of the common types. So rather than testing if a block is an ice block it is
+	 * usually better to check the Slide property.
+	 */
 	private BlockType _type = BlockType.Custom;
 	public BlockType Type {
 		get {
@@ -322,23 +327,34 @@ public class Block : MonoBehaviour {
 			}
 		}
 	}
-		
-	internal string Name {
+
+	/**
+	 * Currently a synonym of GameObject.name
+	 */
+	public string Name {
 		get {
-			return this.name;
+			return name;
 		}
 		set {
-			this.name = value;
+			name = value;
+		}
+	}
+		
+	/**
+	 * Will be true if this is a customized block type
+	 * That is, any of its properties have been changed
+	 * manually, rather than by setting the BlockType
+	 */
+	public bool IsCustomType {
+		get {
+			return this.Type == BlockType.Custom;
 		}
 	}
 
-	//Returns true if this is a customized block type
-	public bool IsCustomType() {
-		return this.Type == BlockType.Custom;
-	}
-
-	// If this block should act as a trap block this property
-	// should be set to a value other than TrapBlockType.None
+	/**
+	 * If this block should act as a trap block this property
+	 * should be set to a value other than TrapBlockType.None
+	 */
 	private TrapBlockType _trapType = TrapBlockType.None;
 	public TrapBlockType TrapType {
 		get {
@@ -350,13 +366,19 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Returns true if this block is any type of trap block
-	public bool IsTrap() {
-		return this.TrapType != TrapBlockType.None;
+	/**
+	 * Will be true if this block is any type of trap block
+	 */
+	public bool IsTrap {
+		get {
+			return this.TrapType != TrapBlockType.None;
+		}
 	}
 
-	// If true, this block will be destoryed BombTimeMS milliseconds
-	// after TriggerBomb() is called.
+	/**
+	 * If true, this block will be destoryed BombTimeMS milliseconds
+	 * after TriggerBomb() is called.
+	 */
 	private bool _isBomb = false;
 	public bool IsBomb {
 		get {
@@ -369,8 +391,10 @@ public class Block : MonoBehaviour {
 	}
 
 
-	// Number of miliseconds after TriggerBomb() is called to wait
-	// before destorying the block.
+	/**
+	 * Number of miliseconds after TriggerBomb() is called to wait
+	 * before destorying the block.
+	 */
 	private int _bombTimeMS = 0;
 	public int BombTimeMS {
 		get {
@@ -382,9 +406,11 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// How large of an area should be affected by this blocks destruction
-	// via the TriggerBomb() method is called. Note that one standard
-	// block is 10x10x10 so to affect 3 normal blocks set this to 30.
+	/**
+	 * How large of an area should be affected by this blocks destruction
+	 * via the TriggerBomb() method is called. Note that one standard
+	 * block is 10x10x10 so to affect 3 normal blocks set this to 30.
+	 */
 	private int _bombRadius = 0;
 	public int BombRadius {
 		get {
@@ -396,10 +422,12 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Property describing the the type of movement action to the player
-	// this block exerts. For example spring blocks move the player up
-	// along the side, allowing grabbing. Ice blocks move the player
-	// along the platform to the next block, etc.
+	/**
+	 * Property describing the the type of movement action to the player
+	 * this block exerts. For example spring blocks move the player up
+	 * along the side, allowing grabbing. Ice blocks move the player
+	 * along the platform to the next block, etc.
+	 */
 	private TeleportBlockType _teleportType = TeleportBlockType.None;
 	public TeleportBlockType TeleportType {
 		get {
@@ -411,7 +439,9 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Describes how far away from this block the user should be moved
+	/**
+	 * Describes how far away from this block the user should be moved
+	 */
 	private Vector3 _teleportDistance;
 	public Vector3 TeleportDistance {
 		get {
@@ -423,14 +453,20 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Returns true if this block is any type of teleport block
-	public bool IsTeleport() {
-		return this.TeleportType != TeleportBlockType.None;
+	/**
+	 * Will be true if this block is any type of teleport block
+	 */
+	public bool IsTeleport {
+		get {
+			return this.TeleportType != TeleportBlockType.None;
+		}
 	}
 
-	// How many steps on top of the block cause it to destruct
-	// 0 means it collapses on instantiation (perhaps useful for beginning
-	// stage animation) Less than 0 means the block does not collapse.
+	/**
+	 * How many steps on top of the block cause it to destruct
+	 * 0 means it collapses on instantiation (perhaps useful for beginning
+	 * stage animation) Less than 0 means the block does not collapse.
+	 */
 	private int _collapseSteps = -1;
 	public int CollapseAfterNSteps {
 		get {
@@ -442,14 +478,20 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Return true if the block collapses after a certain number of steps
-	public bool IsCollapseOnStep() {
-		return _collapseSteps >= 0;
+	/**
+	 * Will be true if the block collapses after a certain number of steps
+	 */
+	public bool IsCollapseOnStep {
+		get {
+			return _collapseSteps >= 0;
+		}
 	}
 
-	// How many grabs on the edge of the block cause it to destruct
-	// 0 means it collapses on instantiation (perhaps useful for beginning
-	// stage animation) Less than 0 means the block does not collapse.
+	/**
+	 * How many grabs on the edge of the block cause it to destruct
+	 * 0 means it collapses on instantiation (perhaps useful for beginning
+	 * stage animation) Less than 0 means the block does not collapse.
+	 */
 	private int _collapseGrabs = -1;
 	public int CollapseAfterNGrabs {
 		get {
@@ -461,13 +503,19 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Return true if the block collapses after a certain number of edge grabs
-	public bool IsCollapseOnGrab() {
-		return _collapseGrabs >= 0;
+	/**
+	 * Will be true if the block collapses after a certain number of edge grabs
+	 */
+	public bool IsCollapseOnGrab {
+		get {
+			return _collapseGrabs >= 0;
+		}
 	}
 
-	// Used to make blocks heavier or lighter (faster/slower to move)
-	// 1 means normal movement speed, 2 takes twice as long, 0.5 takes half as long
+	/**
+	 * Used to make blocks heavier or lighter (faster/slower to move)
+	 * 1 means normal movement speed, 2 takes twice as long, 0.5 takes half as long
+	 */
 	private float _weightFactor = 1.0F;
 	public float WeightFactor {
 		get {
@@ -479,17 +527,27 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Returns true if the block is heavier than normal
-	public bool IsHeavy() {
-		return _weightFactor > 1.0F;
+	/**
+	 * Returns true if the block is heavier than normal
+	 */
+	public bool IsHeavy {
+		get {
+			return _weightFactor > 1.0F;
+		}
 	}
 
-	// Returns true if the block is lighter than normal
-	public bool IsLight() {
-		return _weightFactor < 1.0F;
+	/**
+	 * Returns true if the block is lighter than normal
+	 */
+	public bool IsLight {
+		get {
+			return _weightFactor < 1.0F;
+		}
 	}
 
-	// Set to true if the block cannot be moved by the player
+	/**
+	 * Set to true if the block cannot be moved by the player
+	 */
 	private bool _isMovableByPlayer = true;
 	public bool IsMovableByPlayer {
 		get {
@@ -501,7 +559,9 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// Set to true if this block cannot be moved by any means even gravity/enemies/etc
+	/**
+	 * Set to true if this block cannot be moved by any means even gravity/enemies/etc
+	 */
 	private bool _isFixedPosition = false;
 	public bool IsFixedPosition {
 		get {
@@ -513,9 +573,11 @@ public class Block : MonoBehaviour {
 		}
 	}
 
-	// How this block should react to gravity. 1.0 means it falls at the standard speed
-	// 2.0 means it falls twice as quickly.
-	// -1.0 falls upward at normal speed
+	/**
+	 * How this block should react to gravity. 1.0 means it falls at the standard speed
+	 * 2.0 means it falls twice as quickly.
+	 * -1.0 falls upward at normal speed
+	 */
 	private float _gravityFactor = 1.0F;
 	public float GravityFactor {
 		get {
@@ -527,6 +589,13 @@ public class Block : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * An Item associated with this Block, for example powerups
+	 * coins, as well as start/end markers. Note that setting
+	 * an item does not cause the block type to change to custom
+	 * and the block will take ownership of the item (ie the
+	 * item will be destoryed when the block is.
+	 */
 	private GameObject _item;
 	public GameObject Item {
 		get {
@@ -534,28 +603,44 @@ public class Block : MonoBehaviour {
 		}
 		set {
 			_item = value;
+			if (_item != null)
+				_item.transform.parent = transform;
 		}
 	}
+	#endregion //Properties
 
-
-	public BlockJSONDelegate GetJSONDelegate() {
-		return new BlockJSONDelegate (this);
+	/**
+	 * Create and return a new JSON delegate for this Block
+	 * This is because GameObjects cannot directly be used
+	 * [DataContract] classes. This is primarily used to 
+	 * serialize the Block information for saving level data
+	 */
+	public BlockJsonDelegate GetJsonDelegate() {
+		return new BlockJsonDelegate (this);
 	}
 
-	// Use this for initialization
+	/**
+	 * Called when Block objects are created.
+	 * Initializes the name property to a random GUID
+	 */
 	void Start () {
 		name = System.Guid.NewGuid ().ToString ();
 	}
 
-	// Called when this block is destroyed
+	/**
+	 * Called when this block is destroyed. Note that this
+	 * destorys any items or child blocks as well.
+	 */
 	void OnDestroy() {
 		//Destroy any items attached to this block
 		if(_item != null)
 			Destroy (_item);
 	}
 
-	// Update is called once per frame
+	/**
+	 * Called once per frame
+	 */
 	void Update () {
-		
+		//TODO bounds checking for gravity/edge mechanics.
 	}
 }

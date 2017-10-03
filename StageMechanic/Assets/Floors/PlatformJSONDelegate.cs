@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*  
+ * Copyright (C) Catherine. All rights reserved.  
+ * Licensed under the BSD 3-Clause License.
+ * See LICENSE file in the project root for full license information.
+ * See CONTRIBUTORS file in the project root for full list of contributors.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
@@ -42,20 +48,20 @@ public class PlatformJSONDelegate {
 	}
 
 	[DataMember(Name="Blocks",Order=5)]
-	public List<BlockJSONDelegate> Blocks {
+	public List<BlockJsonDelegate> Blocks {
 		get {
 			Debug.Assert (_platform != null);
-			List<BlockJSONDelegate> ret = new List<BlockJSONDelegate> ();
+			List<BlockJsonDelegate> ret = new List<BlockJsonDelegate> ();
 			foreach (Transform child in _platform.transform) {
 				Block block = child.gameObject.GetComponent (typeof(Block)) as Block;
 				if(block != null)
-					ret.Add (block.GetJSONDelegate ());
+					ret.Add (block.GetJsonDelegate ());
 			}
 			return ret;
 		}
 		set {
 			Debug.Assert (_platform != null);
-			foreach (BlockJSONDelegate del in value) {
+			foreach (BlockJsonDelegate del in value) {
 				del.Block.gameObject.transform.parent = _platform.transform;
 			}
 		}

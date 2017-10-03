@@ -255,7 +255,7 @@ public class BlockManager : MonoBehaviour {
 	public string BlocksToJSON() {
 		Debug.Assert (ActiveFloor != null);
 		string output = "";
-		StageJSONDelegate stage = new StageJSONDelegate (this);
+		StageJsonDelegate stage = new StageJsonDelegate (this);
 		StageCollection collection = new StageCollection (stage);
 		//PlatformJSONDelegate platform = new PlatformJSONDelegate(ActiveFloor);
 

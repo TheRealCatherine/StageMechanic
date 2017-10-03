@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*  
+ * Copyright (C) Catherine. All rights reserved.  
+ * Licensed under the BSD 3-Clause License.
+ * See LICENSE file in the project root for full license information.
+ * See CONTRIBUTORS file in the project root for full list of contributors.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
@@ -6,9 +12,9 @@ using System.Runtime.Serialization;
 [DataContract(Name="StageCollection")]
 public class StageCollection {
 
-	List<StageJSONDelegate> _stages = new List<StageJSONDelegate>();
+	List<StageJsonDelegate> _stages = new List<StageJsonDelegate>();
 
-	public StageCollection( StageJSONDelegate stage ) {
+	public StageCollection( StageJsonDelegate stage ) {
 		_stages.Add(stage);
 	}
 
@@ -84,7 +90,7 @@ public class StageCollection {
 	}
 
 	[DataMember(Name="Stages",Order=3)]
-	public List<StageJSONDelegate> Stages {
+	public List<StageJsonDelegate> Stages {
 		get {
 			return _stages;
 		}

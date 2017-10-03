@@ -1,11 +1,17 @@
-﻿using System.Collections;
+﻿/*  
+ * Copyright (C) Catherine. All rights reserved.  
+ * Licensed under the BSD 3-Clause License.
+ * See LICENSE file in the project root for full license information.
+ * See CONTRIBUTORS file in the project root for full list of contributors.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 using System;
 
 [DataContract(Name="Block")]
-public class BlockJSONDelegate {
+public class BlockJsonDelegate {
 
 	Block _block;
 	public Block Block {
@@ -17,11 +23,11 @@ public class BlockJSONDelegate {
 		}
 	}
 
-	public BlockJSONDelegate( Block block ) {
+	public BlockJsonDelegate( Block block ) {
 		_block = block;
 	}
 
-	public BlockJSONDelegate() {
+	public BlockJsonDelegate() {
 		_block = new Block ();
 	}
 

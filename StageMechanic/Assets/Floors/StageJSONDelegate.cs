@@ -1,18 +1,24 @@
-﻿using System.Collections;
+﻿/*  
+ * Copyright (C) Catherine. All rights reserved.  
+ * Licensed under the BSD 3-Clause License.
+ * See LICENSE file in the project root for full license information.
+ * See CONTRIBUTORS file in the project root for full list of contributors.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
 
 [DataContract(Name="Stage")]
-public class StageJSONDelegate {
+public class StageJsonDelegate {
 
 	BlockManager _manager;
 
-	public StageJSONDelegate( BlockManager manager ) {
+	public StageJsonDelegate( BlockManager manager ) {
 		_manager = manager;
 	}
 
-	public StageJSONDelegate() {
+	public StageJsonDelegate() {
 		_manager = null;
 	}
 
@@ -29,7 +35,7 @@ public class StageJSONDelegate {
 	}
 
 	[DataMember(Name="Exits",Order=2)]
-	public List<StageJSONDelegate> Exits {
+	public List<StageJsonDelegate> Exits {
 		get;
 		set;
 	}
