@@ -13,22 +13,22 @@ using System.Runtime.Serialization;
 public class StageCollection {
 
 	List<StageJsonDelegate> _stages = new List<StageJsonDelegate>();
+	static public BlockManager BlockManager;
 
 	public StageCollection( StageJsonDelegate stage ) {
 		_stages.Add(stage);
 	}
 
-	public StageCollection() {
+	public StageCollection( BlockManager manager ) {
+		BlockManager = manager;
 	}
 
 	[DataMember(Name="Name",Order=1)]
 	public string Name {
 		get {
-			Debug.Assert (_stages != null);
 			return "MyStages";
 		}
 		set {
-			Debug.Assert (_stages != null);
 			//TODO
 		}
 	}

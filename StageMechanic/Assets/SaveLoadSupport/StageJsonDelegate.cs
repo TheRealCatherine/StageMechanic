@@ -19,7 +19,7 @@ public class StageJsonDelegate {
 	}
 
 	public StageJsonDelegate() {
-		_manager = null;
+		_manager = StageCollection.BlockManager;
 	}
 
 	[DataMember(Name="Name",Order=1)]
@@ -29,6 +29,8 @@ public class StageJsonDelegate {
 			return _manager.name;
 		}
 		set {
+			if (_manager == null)
+				_manager = StageCollection.BlockManager;
 			Debug.Assert (_manager != null);
 			_manager.name = value;
 		}

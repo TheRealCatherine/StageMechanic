@@ -20,7 +20,7 @@ public class PlatformJsonDelegate {
 	}
 
 	public PlatformJsonDelegate() {
-		_platform = null;
+		_platform = GameObject.CreatePrimitive (PrimitiveType.Plane);
 	}
 
 	[DataMember(Name="Name",Order=1)]
@@ -30,6 +30,8 @@ public class PlatformJsonDelegate {
 			return _platform.name;
 		}
 		set {
+			if(_platform == null)
+				_platform = GameObject.CreatePrimitive (PrimitiveType.Plane);
 			Debug.Assert (_platform != null);
 			_platform.name = value;
 		}

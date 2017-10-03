@@ -14,6 +14,8 @@ using System.Text;
 using System.Xml;
 using System.Threading;
 using System.Globalization;
+using System;
+using System.Net;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -252,7 +254,7 @@ public class BlockManager : MonoBehaviour {
 		rend.material = material;
 	}
 
-	public string BlocksToJSON() {
+	public string BlocksToJson() {
 		Debug.Assert (ActiveFloor != null);
 		string output = "";
 		StageJsonDelegate stage = new StageJsonDelegate (this);
@@ -278,6 +280,21 @@ public class BlockManager : MonoBehaviour {
 		}
 
 		return output;
+	}
+
+	public void DestroyBlock( Block block ) {
+		Destroy (block);
+	}
+
+	public void BlocksFromJson( Uri path ) {
+		Debug.Log ("Loading from " + path.ToString ());
+		StageCollection deserializedCollection = new StageCollection(this);
+		WebClient webClient = new WebClient();
+		Stream fs = webClient.OpenRead(path);  
+		DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());  
+		deserializedCollection = ser.ReadObject(fs) as StageCollection;  
+		fs.Close();
+		Debug.Log ("Loaded " + deserializedCollection.Stages.Count + "stage(s)");
 	}
 
 	public PlatformJsonDelegate GetPlatformJsonDelegate() {

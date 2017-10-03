@@ -28,10 +28,9 @@ public class BlockJsonDelegate {
 	}
 
 	public BlockJsonDelegate() {
-		_block = new Block ();
 	}
 
-	[DataMember(Name="Name",Order=1)]
+	[DataMember(Name="Name",Order=3)]
 	public string Name {
 		get {
 			Debug.Assert (_block != null);
@@ -60,7 +59,7 @@ public class BlockJsonDelegate {
 		}
 	}
 
-	[DataMember(Name="RelativePosition",Order=4)]
+	[DataMember(Name="RelativePosition",Order=1)]
 	public Vector3 RelativePosition {
 		get {
 			Debug.Assert (_block != null);
@@ -70,5 +69,23 @@ public class BlockJsonDelegate {
 			Debug.Assert (_block != null);
 			_block.transform.localPosition = value;
 		}
+	}
+
+	[OnDeserializing()]
+	internal void OnDeserializingMethod(StreamingContext context)
+	{
+		StageCollection.BlockManager.Cursor.transform.position = new Vector3 (-255, -255, -255);
+		if (_block == null)
+			_block = (Block)StageCollection.BlockManager.CreateBlockAtCursor (StageCollection.BlockManager.Cursor).GetComponent (typeof(Block));
+	}
+
+	[OnDeserialized()]
+	internal void OnDeserialedMethod(StreamingContext context)
+	{
+		StageCollection.BlockManager.Cursor.transform.position = _block.transform.position;
+		_block.transform.position = new Vector3 (-255, -255, -255);
+		Block newBlock = (Block)StageCollection.BlockManager.CreateBlockAtCursor (StageCollection.BlockManager.Cursor,_block.Type).GetComponent (typeof(Block));
+		newBlock.Name = _block.Name;
+		StageCollection.BlockManager.DestroyBlock (_block);
 	}
 }

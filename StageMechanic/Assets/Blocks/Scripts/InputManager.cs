@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class InputManager : MonoBehaviour {
@@ -95,19 +96,32 @@ public class InputManager : MonoBehaviour {
 		}
 		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {
-//TODO WTF UNITY?!
-#if UNITY_EDITOR
+			//TODO WTF UNITY?!
+			#if UNITY_EDITOR
 			string path = UnityEditor.EditorUtility.SaveFilePanel (
 				              "Save level as JSON",
 				              "",
 				              "level.json",
 				              ".json");
 			if (path.Length != 0) {
-				string json = GetBlockManager ().BlocksToJSON ();
+				string json = GetBlockManager ().BlocksToJson ();
 				if (json.Length != 0)
 					System.IO.File.WriteAllText (path, json);
 			}
-#endif
+			#endif
+		}
+
+		else if (Input.GetKeyDown (KeyCode.L)) {
+			//TODO WTF UNITY?!
+			#if UNITY_EDITOR
+			string path = UnityEditor.EditorUtility.OpenFilePanel (
+				"Open Stage Collection",
+				"",
+				"json");
+			if (path.Length != 0) {
+				GetBlockManager ().BlocksFromJson (new Uri("file:///"+path));
+			}
+			#endif
 		}
 		// Toggle block info display
 			else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
