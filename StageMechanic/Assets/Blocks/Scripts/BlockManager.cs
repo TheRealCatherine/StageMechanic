@@ -257,8 +257,6 @@ public class BlockManager : MonoBehaviour {
 		string output = "";
 		StageJsonDelegate stage = new StageJsonDelegate (this);
 		StageCollection collection = new StageCollection (stage);
-		//PlatformJSONDelegate platform = new PlatformJSONDelegate(ActiveFloor);
-
 		CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
 		Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
@@ -282,8 +280,8 @@ public class BlockManager : MonoBehaviour {
 		return output;
 	}
 
-	public PlatformJSONDelegate GetPlatformJSONDelegate() {
-		return new PlatformJSONDelegate (ActiveFloor);
+	public PlatformJsonDelegate GetPlatformJsonDelegate() {
+		return new PlatformJsonDelegate (ActiveFloor);
 	}
 		
 	void OnGUI(){

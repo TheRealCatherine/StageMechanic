@@ -41,18 +41,18 @@ public class StageJsonDelegate {
 	}
 
 	[DataMember(Name="Platforms",Order=3)]
-	public List<PlatformJSONDelegate> Platforms {
+	public List<PlatformJsonDelegate> Platforms {
 		get {
 			Debug.Assert (_manager != null);
-			List<PlatformJSONDelegate> ret = new List<PlatformJSONDelegate> ();
+			List<PlatformJsonDelegate> ret = new List<PlatformJsonDelegate> ();
 			//TODO export all platforms
-			ret.Add (_manager.GetPlatformJSONDelegate());
+			ret.Add (_manager.GetPlatformJsonDelegate());
 			return ret;
 		}
 		set {
 			Debug.Assert (_manager != null);
 			//TODO create all platforms
-			foreach (PlatformJSONDelegate platform in value) {
+			foreach (PlatformJsonDelegate platform in value) {
 				_manager.ActiveFloor = platform._platform;
 			}
 		}

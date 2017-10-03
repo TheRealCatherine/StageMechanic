@@ -10,16 +10,16 @@ using UnityEngine;
 using System.Runtime.Serialization;
 
 [DataContract(Name="Platform")]
-public class PlatformJSONDelegate {
+public class PlatformJsonDelegate {
 
 	//TODO make private
 	public GameObject _platform;
 
-	public PlatformJSONDelegate( GameObject platform ) {
+	public PlatformJsonDelegate( GameObject platform ) {
 		_platform = platform;
 	}
 
-	public PlatformJSONDelegate() {
+	public PlatformJsonDelegate() {
 		_platform = null;
 	}
 
