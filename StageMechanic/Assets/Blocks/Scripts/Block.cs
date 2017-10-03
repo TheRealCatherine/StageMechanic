@@ -9,8 +9,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
 
-[System.Serializable]
-[DataContract(Name="Block")]
 public class Block : MonoBehaviour {
 
 	// Conenience enum for setting multiple properties for common types
@@ -59,7 +57,6 @@ public class Block : MonoBehaviour {
 	// via this one) will set Type to BlockType.Custom even if the properties you set directly
 	// match ane of the common types. So rather than testing if a block is an ice block it is
 	// usually better to check the Slide property.
-	[SerializeField]
 	private BlockType _type = BlockType.Custom;
 	public BlockType Type {
 		get {
@@ -325,8 +322,7 @@ public class Block : MonoBehaviour {
 			}
 		}
 	}
-
-	[SerializeField]
+		
 	internal string Name {
 		get {
 			return this.name;
