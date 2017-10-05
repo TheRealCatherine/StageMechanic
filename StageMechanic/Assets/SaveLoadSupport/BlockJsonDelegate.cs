@@ -23,6 +23,11 @@ public class BlockJsonDelegate {
 		}
 	}
 
+	string _name = null;
+	string _type = null;
+	Vector3 _pos = new Vector3(-255,-255,-255);
+
+
 	public BlockJsonDelegate( Block block ) {
 		_block = block;
 	}
@@ -37,8 +42,7 @@ public class BlockJsonDelegate {
 			return _block.Name;
 		}
 		set {
-			Debug.Assert (_block != null);
-			_block.Name = value;
+			_name = value;
 		}
 	}
 
@@ -49,13 +53,7 @@ public class BlockJsonDelegate {
 			return _block.Type.ToString ();
 		}
 		set {
-			try {
-				Block.BlockType type = (Block.BlockType)Enum.Parse (typeof(Block.BlockType), value);
-				if (Enum.IsDefined (typeof(Block.BlockType), type))
-					_block.Type = type;
-			} catch (ArgumentException e) {
-				Debug.Log (e.Message);
-			}
+			_type = value;
 		}
 	}
 
@@ -66,26 +64,28 @@ public class BlockJsonDelegate {
 			return _block.transform.localPosition;
 		}
 		set {
-			Debug.Assert (_block != null);
-			_block.transform.localPosition = value;
+			_pos = value;
 		}
-	}
-
-	[OnDeserializing()]
-	internal void OnDeserializingMethod(StreamingContext context)
-	{
-		StageCollection.BlockManager.Cursor.transform.position = new Vector3 (-255, -255, -255);
-		if (_block == null)
-			_block = StageCollection.BlockManager.CreateBlockAtCursor();
 	}
 
 	[OnDeserialized()]
 	internal void OnDeserialedMethod(StreamingContext context)
 	{
-		StageCollection.BlockManager.Cursor.transform.position = _block.transform.position;
-		_block.transform.position = new Vector3 (-255, -255, -255);
-		Block newBlock = StageCollection.BlockManager.CreateBlockAtCursor (_block.Type);
-		newBlock.Name = _block.Name;
-		StageCollection.BlockManager.DestroyBlock (_block);
+		Debug.Assert (_name != null);
+		Debug.Assert (_type != null);
+		Debug.Assert (_pos.x != -255); //TODO
+
+		Block.BlockType type = Block.BlockType.Basic;
+
+		try {
+			type = (Block.BlockType)Enum.Parse (typeof(Block.BlockType), _type);
+			Debug.Assert(Enum.IsDefined (typeof(Block.BlockType), type));
+		} catch (ArgumentException e) {
+			Debug.Log (e.Message);
+		}
+
+		Block newBlock = StageCollection.BlockManager.CreateBlock (_pos,type);
+		newBlock.Name = _name;
+
 	}
 }
