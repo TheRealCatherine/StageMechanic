@@ -84,15 +84,15 @@ public class InputManager : MonoBehaviour {
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button3)) {
-			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Basic);
+			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Basic);
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Ice);
+			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Ice);
 		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Heavy1);
+			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Heavy1);
 		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb1);
+			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Bomb1);
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			GetBlockManager ().CreateBlockAtCursor (Cursor, Block.BlockType.Bomb2);
+			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Trap1);
 		}
 		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {
@@ -139,15 +139,15 @@ public class InputManager : MonoBehaviour {
 			
 		// Block type cycling
 		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
-			GetBlockManager ().CreateBlockAtCursor (Cursor, GetBlockManager ().BlockCycleType);
+			GetBlockManager ().CreateBlockAtCursor ( GetBlockManager ().BlockCycleType);
 		} else if (Input.GetKeyDown (KeyCode.LeftBracket) || Input.GetKeyDown (KeyCode.Joystick1Button4)) {
 			Block.BlockType type = GetBlockManager ().PrevBlockType ();
 			if(GetBlockManager().ActiveObject != null)
-				GetBlockManager ().CreateBlockAtCursor (Cursor, type);
+				GetBlockManager ().CreateBlockAtCursor (type);
 		} else if (Input.GetKeyDown (KeyCode.RightBracket)  || Input.GetKeyDown (KeyCode.Joystick1Button5)) {
 			Block.BlockType type = GetBlockManager ().NextBlockType ();
 			if(GetBlockManager().ActiveObject != null)
-				GetBlockManager ().CreateBlockAtCursor (Cursor, type);
+				GetBlockManager ().CreateBlockAtCursor (type);
 		}
 
 		// Destorying/modifying blocks

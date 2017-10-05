@@ -16,6 +16,7 @@ using System.Threading;
 using System.Globalization;
 using System;
 using System.Net;
+using System.Linq;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -164,88 +165,119 @@ public class BlockManager : MonoBehaviour {
 		return list;
 	}
 
+
+
 	// Create a basic block at the current cursor position
-	public GameObject CreateBlockAtCursor( GameObject cursor, Block.BlockType type = Block.BlockType.Custom ) {
-		// If there is a block currently under the cursor destroy it.
-		if (ActiveObject != null)
-			Destroy (ActiveObject);
+	// TODO return Block
+	public Block CreateBlockAtCursor( Block.BlockType type = Block.BlockType.Basic ) {
+		Debug.Assert (Cursor != null);
+		return CreateBlock (Cursor.transform.position, type);
+	}
+
+	public Block CreateBlock( Vector3 pos, Block.BlockType type = Block.BlockType.Basic ) {
+		string oldName = null;
+		GameObject oldItem = null;
+
+		GameObject[] collidedGameObjects = 
+			Physics.OverlapSphere(pos, 0.1f)
+				.Except(new [] {GetComponent<Collider>()})
+				.Select(c=>c.gameObject)
+				.ToArray();
+
+		Debug.Log ("Collided with " + collidedGameObjects.Length + " objects");
+
+		foreach( GameObject obj in collidedGameObjects) {
+			Block bl = obj.GetComponent (typeof(Block)) as Block;
+			if (bl != null) {
+				oldName = bl.Name;
+				Debug.Log ("Collided with: " + bl.Name);
+				if (bl.Item != null) {
+					bl.Item.transform.parent = null;
+					oldItem = bl.Item;
+				}
+				if (bl.Type != type) {
+					//TODO make this not shitty hacky type styff
+					bl.Type = type;
+					Block tmp = CreateBlock (new Vector3 (-20, -20, -20), type);
+					bl.GetComponent<Renderer> ().material = tmp.GetComponent<Renderer> ().material;
+					bl.transform.localScale = tmp.transform.localScale;
+					Destroy (tmp);
+				}
+				return bl;
+			}
+		}
 
 		GameObject newBlock = null;
 
 		switch (type) {
 		case Block.BlockType.Basic:
-			newBlock = Instantiate (BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (BlockPrefab, pos, ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Ice:
-			newBlock = Instantiate (IceBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (IceBlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Heavy1:
-			newBlock = Instantiate (Heavy1BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Heavy1BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Heavy2:
-			newBlock = Instantiate (Heavy2BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Heavy2BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Bomb1:
-			newBlock = Instantiate (Bomb1BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Bomb1BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Bomb2:
-			newBlock = Instantiate (Bomb2BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Bomb2BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Immobile:
-			newBlock = Instantiate (ImmobleBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (ImmobleBlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Fixed:
-			newBlock = Instantiate (FixedBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (FixedBlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Spring:
-			newBlock = Instantiate (SpringBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (SpringBlockPrefab, pos, ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Crack1:
-			newBlock = Instantiate (Crack1BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Crack1BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Crack2:
-			newBlock = Instantiate (Crack2BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Crack2BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Trap1:
-			newBlock = Instantiate (Trap1BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Trap1BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Trap2:
-			newBlock = Instantiate (Trap2BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (Trap2BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Vortex:
-			newBlock = Instantiate (VortexBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (VortexBlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Monster:
-			newBlock = Instantiate (MonsterBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (MonsterBlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Teleport:
-			newBlock = Instantiate (TeleportBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (TeleportBlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Random:
-			newBlock = Instantiate (RandomBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (RandomBlockPrefab, pos, ActiveFloor.transform.rotation) as GameObject;
 			break;
 		case Block.BlockType.Goal:
-			newBlock = Instantiate (GoalBlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (GoalBlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		default:
 			//Create a new block at the cursor position and set it as the active game block
-			newBlock = Instantiate (BlockPrefab, cursor.transform.position, Cursor.transform.rotation) as GameObject;
+			newBlock = Instantiate (BlockPrefab, pos,  ActiveFloor.transform.rotation) as GameObject;
 			break;
 		}
 
 		Debug.Assert (newBlock != null);
-
-        //line giving an issue creating a block AROUND the cursor instead of in the world
+	
 		newBlock.transform.SetParent (ActiveFloor.transform, true);
 
-
-		ActiveObject = newBlock;
-
-		Block block = (Block)newBlock.GetComponent (typeof(Block));
+		Block block = newBlock.GetComponent (typeof(Block)) as Block;
 		Debug.Assert (block != null);
 		block.Type = type;
-
-		return newBlock;
+		return block;
 	}
 
 	// Sets the material for a block
