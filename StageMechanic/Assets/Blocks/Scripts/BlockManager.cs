@@ -434,7 +434,7 @@ public class BlockManager : MonoBehaviour {
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Delete]: Remove block under cursor", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Home] and [End]: Place players", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [I]: Toggle info display", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [S]: Save (broken)", style);
+			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [L]/[S]: Load/Save", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Esc]/[Q]: Quit", style);
 		}
 	}
