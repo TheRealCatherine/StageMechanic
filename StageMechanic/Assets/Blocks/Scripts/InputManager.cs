@@ -96,35 +96,14 @@ public class InputManager : MonoBehaviour {
 		}
 		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {
-			//TODO WTF UNITY?!
-			#if UNITY_EDITOR
-			string path = UnityEditor.EditorUtility.SaveFilePanel (
-				              "Save level as JSON",
-				              "",
-				              "level.json",
-				              ".json");
-			if (path.Length != 0) {
-				string json = GetBlockManager ().BlocksToJson ();
-				if (json.Length != 0)
-					System.IO.File.WriteAllText (path, json);
-			}
-			#endif
+			GetBlockManager ().SaveToJson ();
 		}
 
 		else if (Input.GetKeyDown (KeyCode.L)) {
-			//TODO WTF UNITY?!
-			#if UNITY_EDITOR
-			string path = UnityEditor.EditorUtility.OpenFilePanel (
-				"Open Stage Collection",
-				"",
-				"json");
-			if (path.Length != 0) {
-				GetBlockManager ().BlocksFromJson (new Uri("file:///"+path));
-			}
-			#endif
+			GetBlockManager ().LoadFromJson ();
 		}
 		// Toggle block info display
-			else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
+		else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
 			GetBlockManager ().ToggleBlockInfo ();
 		}
 		//Quit

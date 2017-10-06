@@ -17,6 +17,8 @@ using System.Globalization;
 using System;
 using System.Net;
 using System.Linq;
+using GracesGames;
+using System.Runtime.Serialization.Formatters.Binary;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -46,6 +48,8 @@ public class BlockManager : MonoBehaviour {
 	public GameObject FixedBlockPrefab;
 	public GameObject RandomBlockPrefab;
 	public GameObject GoalBlockPrefab;
+
+	public GameObject FileBrowserPrefab;
 
 
 
@@ -318,6 +322,20 @@ public class BlockManager : MonoBehaviour {
 		Destroy (block);
 	}
 
+	public void SaveToJson() {
+		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
+		fileBrowserObject.name = "FileBrowser";
+		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
+		fileBrowserScript.SaveFilePanel(this, "SaveFileUsingPath", "MyLevels", "json");
+	}
+
+	public void LoadFromJson() {
+		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
+		fileBrowserObject.name = "FileBrowser";
+		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
+		fileBrowserScript.OpenFilePanel(this, "LoadFileUsingPath", "json");
+	}
+
 	public void BlocksFromJson( Uri path ) {
 		Debug.Log ("Loading from " + path.ToString ());
 		StageCollection deserializedCollection = new StageCollection(this);
@@ -327,6 +345,26 @@ public class BlockManager : MonoBehaviour {
 		deserializedCollection = ser.ReadObject(fs) as StageCollection;  
 		fs.Close();
 		Debug.Log ("Loaded " + deserializedCollection.Stages.Count + "stage(s)");
+	}
+
+	// Saves a file with the textToSave using a path
+	private void SaveFileUsingPath(string path) {
+		if (path.Length != 0) {
+			string json = BlocksToJson ();
+			if (json.Length != 0)
+				System.IO.File.WriteAllText (path, json);
+		} else {
+			Debug.Log("Invalid path given");
+		}
+	}
+
+	// Loads a file using a path
+	private void LoadFileUsingPath(string path) {
+		if (path.Length != 0) {
+			BlocksFromJson (new Uri("file:///"+path));
+		} else {
+			Debug.Log("Invalid path given");
+		}
 	}
 
 	public PlatformJsonDelegate GetPlatformJsonDelegate() {
