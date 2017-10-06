@@ -78,13 +78,61 @@ Step 6: Check out the source code
 
 ## Resources
 
-If you are completely new to game development, graphic design, music production, etc. but are eager to contribute here are some resources to help you get the skills needed to contribute.
+Below are resources for those new to game design and devleopment as well as those simply new to this project.
 
 ### General
 
 * [CGCookie](https://cgcookie.com/) - $21/mo, professionally developed courses on 3D modeling and game development using Blender 3D and Unity - the two main technologies we are using. Highly recommended.
 
-### Development, coding, and level design
+### Character and story development
+
+Mythological, Historical, Linguistic, and Religious Source Material
+
+* [Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others](https://www.amazon.com/Myths-Mesopotamia-Creation-Gilgamesh-Classics/dp/019953836)
+* [Inanna, Queen of Heaven and Earth: Her Stories and Hymns from Sumer](https://www.amazon.com/Inanna-Queen-Heaven-Earth-Stories/dp/0060908548)
+* [Into the Great Below: A Devotional for Inanna and Ereshkigal](https://www.amazon.com/Into-Great-Below-Devotional-Ereshkigal/dp/0982579837)
+* [Queen of the Great Below: An Anthology in Honor of Ereshkigal](https://www.amazon.com/Queen-Great-Below-Anthology-Ereshkigal/dp/1453878963)
+* [The Egyptian Book of the Dead: The Book of Going Forth by Day: The Complete Papyrus of Ani](https://www.amazon.com/Egyptian-Book-Dead-Integrated-Full-Color/dp/1452144389)
+* [Leaves from the Garden of Eden](https://www.amazon.com/Leaves-Garden-Eden-Howard-Schwartz/dp/0199754381)
+* [The Legend of St. Catherine](https://www.amazon.com/Legend-Katherine-Alexandria-Classic-Reprint/dp/B008J2SQ3O)
+* [The Golden Legend](https://www.amazon.com/Golden-Legend-Readings-Saints/dp/0691154074)
+* [Sumerian Grammar](https://www.amazon.com/Sumerian-Grammar-Handbook-Oriental-Studies/dp/1589832523)
+* [Complete Babylonian](https://www.amazon.com/Complete-Babylonian-Yourself-Martin-Worthington/dp/0340983884)
+
+
+Catherine Resources
+
+* [Catherine Game Movie](https://www.youtube.com/watch?v=QX_ImJmCbSs)
+* [Catherine: The Novel](http://fftranslations.atspace.co.uk/catherine/)
+* [Catherine: The Mysterious Tale of Rapunzel](http://fftranslations.atspace.co.uk/rapunzel/index.html)
+* [Another Take on Catherine](https://www.youtube.com/watch?v=f8k8dG27pB8&t=77s)
+* [Catherine Game Reddit](http://reddit.com/r/catherinegame)
+* [Catherine Discord Chat](https://discord.gg/nG5rN8B)
+
+Robo5 Resources
+
+* [Launch Trailer](https://www.youtube.com/watch?v=2S96oOPK1Ck)
+
+Pushmo Resources
+
+* [Pushmo World Launch Trailer](https://www.youtube.com/watch?v=Vm7qYpklhNg)
+
+### Level design
+
+Catherine Resources
+
+* [Catherine walktrhough](https://www.youtube.com/watch?v=dGdVFn8KbBc&list=PLCF294B7A87DAB31C) this is from a new player rather than ideal solves
+* [Rapunzel walktrhough](https://www.youtube.com/watch?v=NLRzLdbnpLU&list=PL5775F9FDCBD08849) ideal or near-ideal solves for each stage
+
+Robo 5 Resources
+
+* [Chapter 1 walkthrough](https://www.youtube.com/watch?v=WNSG7Qq8NeI)
+
+Pushmo Resources
+
+* [Pushmo World walktrhough part 1](https://www.youtube.com/watch?v=oUEa2FHGAAw)
+
+### Development, coding
 
 * [Official Unity tutorials](https://unity3d.com/learn/tutorials) - Free tutorials developed by the makers of the game engine we are using.
 * [Brackeys](https://www.youtube.com/user/Brackeys) - Fast-paced tutorial videos on getting started with Unity
