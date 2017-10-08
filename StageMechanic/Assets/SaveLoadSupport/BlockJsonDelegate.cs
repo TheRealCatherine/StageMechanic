@@ -73,7 +73,6 @@ public class BlockJsonDelegate {
 	{
 		Debug.Assert (_name != null);
 		Debug.Assert (_type != null);
-		Debug.Assert (_pos.x != -255); //TODO
 
 		Block.BlockType type = Block.BlockType.Basic;
 
