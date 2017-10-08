@@ -15,7 +15,6 @@ using UnityEngine.UI;
 public class BlockInfoBoxController : MonoBehaviour {
 
     public BlockManager blockManager;
-    public InputManager inputManager;
 
     public Text blockPosition;
     public Text blockRotation;
@@ -34,6 +33,11 @@ public class BlockInfoBoxController : MonoBehaviour {
 
     internal string[] typeList;
     Block lastBlock = null;
+
+    public void ToggleVisibility()
+    {
+        gameObject.SetActive(!gameObject.activeInHierarchy);
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -112,6 +116,6 @@ public class BlockInfoBoxController : MonoBehaviour {
             collapseGrab.text = String.Empty;
             teleportType.text = String.Empty;
             teleportTo.text = String.Empty;
-}
+        }
     }
 }

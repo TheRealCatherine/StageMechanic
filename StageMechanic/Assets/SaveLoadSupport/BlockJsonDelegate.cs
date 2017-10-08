@@ -84,7 +84,8 @@ public class BlockJsonDelegate {
 			Debug.Log (e.Message);
 		}
 
-		Block newBlock = StageCollection.BlockManager.CreateBlock (_pos,type);
+        //TODO load/save rotation
+		Block newBlock = StageCollection.BlockManager.Cathy1BlockFactory().CreateBlock (_pos, new Quaternion(0,0,0,0), type);
 		newBlock.Name = _name;
 
 	}

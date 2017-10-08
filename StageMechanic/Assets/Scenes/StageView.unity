@@ -902,7 +902,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 573473180}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.8066749
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1469,6 +1469,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 426806220}
+  - component: {fileID: 426806223}
   - component: {fileID: 426806221}
   - component: {fileID: 426806222}
   m_Layer: 0
@@ -1511,6 +1512,40 @@ MonoBehaviour:
     type: 2}
   GoalLocationIndicator: {fileID: 100002, guid: bfabbd992ffd05c4c90256f7f208388f,
     type: 3}
+  FileBrowserPrefab: {fileID: 1760643962491650, guid: 4599b5ba3543545db92bb18160cea721,
+    type: 2}
+--- !u!114 &426806222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426806219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ce53ddc6d3b1445938ccc09c0d6fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stage: {fileID: 426806219}
+  Cursor: {fileID: 662790149}
+  Camera: {fileID: 223191232}
+  BlockInfoBox: {fileID: 647771339}
+  minX: -360
+  maxX: 360
+  minY: -45
+  maxY: 45
+  sensX: 100
+  sensY: 100
+--- !u!114 &426806223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 426806219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1801eb345644443bb62eda6a5a3098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   BlockPrefab: {fileID: 1853629512664166, guid: de3b07da1a39d5c4189ad37f17ed6fa9,
     type: 2}
   Trap1BlockPrefab: {fileID: 1387997212163396, guid: 0ebb7ca9fa1e0ed4ebe55085c01f90f3,
@@ -1547,29 +1582,6 @@ MonoBehaviour:
     type: 2}
   GoalBlockPrefab: {fileID: 1726037543320594, guid: 94d1b73ba876fd84cb1f675a68f29352,
     type: 2}
-  FileBrowserPrefab: {fileID: 1760643962491650, guid: 4599b5ba3543545db92bb18160cea721,
-    type: 2}
---- !u!114 &426806222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 426806219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ce53ddc6d3b1445938ccc09c0d6fe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stage: {fileID: 426806219}
-  Cursor: {fileID: 662790149}
-  Camera: {fileID: 223191232}
-  BlockInfoBoxController: {fileID: 647771339}
-  minX: -360
-  maxX: 360
-  minY: -45
-  maxY: 45
-  sensX: 100
-  sensY: 100
 --- !u!1 &441904129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,7 +2180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockManager: {fileID: 426806221}
-  inputManager: {fileID: 426806222}
   blockPosition: {fileID: 832116622}
   blockRotation: {fileID: 352706712}
   blockName: {fileID: 120946878}
@@ -4266,7 +4277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.5688438}
+  m_AnchoredPosition: {x: 0, y: 0.0000059604645}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1403919664

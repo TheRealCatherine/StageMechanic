@@ -16,8 +16,7 @@ public class InputManager : MonoBehaviour {
 	public GameObject Stage;
 	public GameObject Cursor;
 	public GameObject Camera;
-
-    public BlockInfoBoxController BlockInfoBoxController;
+    public BlockInfoBoxController BlockInfoBox;
 
 	public BlockManager GetBlockManager() {
 		return Stage.GetComponent<BlockManager>();
@@ -106,16 +105,15 @@ public class InputManager : MonoBehaviour {
 		}
 		// Toggle block info display
 		else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
-            BlockInfoBoxController.gameObject.SetActive(!BlockInfoBoxController.gameObject.activeInHierarchy);
+            BlockInfoBox.ToggleVisibility();
         }
 		//Quit
 		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
-#if UNITY_EDITOR
-			if (UnityEditor.EditorApplication.isPlaying)
+            #if UNITY_EDITOR
 				UnityEditor.EditorApplication.isPlaying = false;
-			else
-#endif
+            #else
 				Application.Quit ();
+            #endif
 		}
 			
 		// Block type cycling
