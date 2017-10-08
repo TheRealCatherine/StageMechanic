@@ -67,6 +67,24 @@ public class BlockManager : MonoBehaviour {
 		}
 	}
 
+    public Block ActiveBlock
+    {
+        get
+        {
+            CursorCollider col = Cursor.GetComponent(typeof(CursorCollider)) as CursorCollider;
+            Debug.Assert(col != null);
+            if (col.ObjectUnderCursor == null)
+                return null;
+            return col.ObjectUnderCursor.GetComponent<Block>();
+        }
+        set
+        {
+            CursorCollider col = Cursor.GetComponent(typeof(CursorCollider)) as CursorCollider;
+            Debug.Assert(col != null);
+            col.ObjectUnderCursor = value.gameObject;
+        }
+    }
+
 	// The cursor object
 	private GameObject _cursor;
 	public GameObject Cursor {
@@ -372,7 +390,7 @@ public class BlockManager : MonoBehaviour {
 	}
 		
 	void OnGUI(){
-		if (ShowBlockInfo) {
+		/*if (ShowBlockInfo) {
 
 			GUIStyle style = new GUIStyle ();
 			style.normal.textColor = Color.black;
@@ -436,6 +454,6 @@ public class BlockManager : MonoBehaviour {
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [I]: Toggle info display", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [L]/[S]: Load/Save", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Esc]/[Q]: Quit", style);
-		}
+		}*/
 	}
 }
