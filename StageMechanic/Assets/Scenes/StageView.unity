@@ -902,7 +902,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 573473180}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9983475
+  m_Size: 0.8066749
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1563,6 +1563,7 @@ MonoBehaviour:
   Stage: {fileID: 426806219}
   Cursor: {fileID: 662790149}
   Camera: {fileID: 223191232}
+  BlockInfoBoxController: {fileID: 647771339}
   minX: -360
   maxX: 360
   minY: -45
@@ -4265,7 +4266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.2212302}
+  m_AnchoredPosition: {x: 0, y: 2.5688438}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1403919664

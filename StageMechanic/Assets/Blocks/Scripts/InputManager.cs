@@ -17,6 +17,8 @@ public class InputManager : MonoBehaviour {
 	public GameObject Cursor;
 	public GameObject Camera;
 
+    public BlockInfoBoxController BlockInfoBoxController;
+
 	public BlockManager GetBlockManager() {
 		return (BlockManager)Stage.GetComponent (typeof(BlockManager));
 	}
@@ -104,8 +106,8 @@ public class InputManager : MonoBehaviour {
 		}
 		// Toggle block info display
 		else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
-			GetBlockManager ().ToggleBlockInfo ();
-		}
+            BlockInfoBoxController.gameObject.SetActive(!BlockInfoBoxController.gameObject.activeInHierarchy);
+        }
 		//Quit
 		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
 #if UNITY_EDITOR
