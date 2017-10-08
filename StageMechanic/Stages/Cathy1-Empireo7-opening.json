@@ -1,0 +1,901 @@
+{
+    "Name": "MyStages",
+    "ActionPalette": "Cathy1-internal",
+    "BlockPalette": "Cathy1-internal",
+    "EnemyPalette": "Cathy1-internal",
+    "ItemPalette": "Cathy1-internal",
+    "PlatformPalette": "Cathy1-internal",
+    "PlayersPalette": "Cathy1-internal",
+    "RulesPalette": "Cathy1-internal",
+    "Stages": [
+        {
+            "Name": "Stage",
+            "Exits": null,
+            "Platforms": [
+                {
+                    "Name": "Platform1",
+                    "GlobalPosition": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "Blocks": [
+                        {
+                            "Name": "a4e8e0ec-448d-4c86-954b-87133ef84d22",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 0.5,
+                                "z": 0
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "fa7a077c-abb2-4df2-b199-7ecbdebe6d34",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 0.5,
+                                "z": 0
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "ad14b1e3-9f39-4486-b770-c8ca7fb00d00",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 0.5,
+                                "z": 0
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "6e52e129-1aef-4278-969f-2997ed8814a3",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 0.5,
+                                "z": 0
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "03ec83b3-8629-467a-8597-cebf59fb1c10",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 0.5,
+                                "z": 0
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "45d296c1-528f-4999-a751-40167c289022",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 1.5,
+                                "z": 1
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "6628e2a3-4add-49c3-ae97-b07e1c68f21c",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 1.5,
+                                "z": 1
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "085e8328-2aba-499b-acc0-9c774119689a",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 1.5,
+                                "z": 1
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "00c61f16-435e-4b68-9986-d3d65c76bac9",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 1.5,
+                                "z": 1
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "28988b1a-0598-4b3f-9db4-a949bc02fc95",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 1.5,
+                                "z": 1
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "21955f22-e342-4d15-a7f9-f109103fb6fa",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 2.5,
+                                "z": 2
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "083d2a35-1fb2-4cc5-8bfe-3c8845f6c7db",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 2.5,
+                                "z": 2
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "467559d6-38bf-4cc8-bf79-41bb99266813",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 2.5,
+                                "z": 2
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "0f14ff53-5a8f-4c3e-9695-2f95bc5c302d",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 2.5,
+                                "z": 2
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "47b1a15d-0b0b-4966-8c01-83212e181fb3",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 2.5,
+                                "z": 2
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "5a102847-7322-4b56-867c-7094f429a027",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 3.5,
+                                "z": 3
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "85f0d982-056e-45d3-8c92-1e7b61105fdf",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 3.5,
+                                "z": 3
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "6e35e071-2467-4b8a-a017-8903c948ebc9",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 3.5,
+                                "z": 3
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "61bbf769-2c3d-4b54-9d17-36e50c37e96d",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 3.5,
+                                "z": 3
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "19a6524e-dd10-47fc-aaee-0159641a5c96",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 3.5,
+                                "z": 3
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "0fc7129c-a297-4a31-bb4e-a15bc9d023f6",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 4.5,
+                                "z": 4
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "1729d74d-34f8-4357-b8eb-fa8bea8ed3e8",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 4.5,
+                                "z": 4
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "0b90e884-8789-40fa-bda2-42e5530e2f95",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 4.5,
+                                "z": 4
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "464fea8a-bd79-4935-9ba5-270b60db4c93",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 4.5,
+                                "z": 4
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "cce3bd8b-6a60-4296-ad19-4b6dd3576946",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 4.5,
+                                "z": 4
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "53ae3941-fedf-472d-b38c-3a897fd50fce",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 5.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "69068835-e945-4e8a-8d5c-3aa98ed6fdf8",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 5.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "b956ae69-a3fa-43a6-a469-a010c8ec111c",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 5.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "ba831b7f-3baa-432c-a8e4-a3781f7ef8b0",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 5.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "c7d588eb-140d-4c3f-a30b-49f14d6df35c",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 5.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "93001196-7ebd-4226-a5f8-bbb2d42748da",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 6.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "50824b7e-aec9-40d2-80dd-e98b321b58b6",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 6.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "1d48f60a-fb00-47c3-9ccf-0802ce5b6e07",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 6.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "f98be6f3-3bec-4227-b0ca-dbb7732483fe",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 7.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "165f25e6-d752-4a37-81d0-e683effcebf7",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 7.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "38727908-47d7-4b61-829e-d0e0aa1883c1",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 7.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "6127d696-232e-4f15-9b59-f0752027c85c",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 7.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "edaadfcb-8180-4fc8-8dae-3a36f8a940a4",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 7.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "ed61625c-b3bf-4ae8-9455-ddd4d3c91a5c",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 6.5,
+                                "z": 5
+                            },
+                            "Type": "Immobile"
+                        },
+                        {
+                            "Name": "fbd63754-ab67-4fbb-9d30-8bbb68bed237",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 6.5,
+                                "z": 5
+                            },
+                            "Type": "Crack1"
+                        },
+                        {
+                            "Name": "c13273dd-9f69-4444-970c-6e0746798faa",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 5.5,
+                                "z": 4
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "b875129b-5f56-4920-b004-751289967774",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 5.5,
+                                "z": 4
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "33fe94b2-a51a-4b40-8981-23e7ee597e4f",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 4.5,
+                                "z": 3
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "b611bf0f-dfdf-4f59-a4a2-aa766efd92ce",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 3.5,
+                                "z": 2
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "313ce7d3-81ef-458f-9c9f-c1a3cde1ab1e",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 2.5,
+                                "z": 1
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "8eae3fa4-7b5f-4d1c-b701-8a406b4c9176",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 1.5,
+                                "z": 0
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "e652a516-924d-42d5-8340-a5b7c4ee0b65",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 4.5,
+                                "z": 3
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "1577c46c-876f-4718-85d2-c365fd76c6d2",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 3.5,
+                                "z": 2
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "766a37d9-cb62-45c7-9c08-110a52e6ab8f",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 2.5,
+                                "z": 1
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "21baa14f-8a2e-4fba-888a-7f72181b7c57",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 1.5,
+                                "z": 0
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "c1c91473-57b7-4be8-8569-4f6fb94337a9",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 8.5,
+                                "z": 5
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "39e18575-50c4-4576-b51e-1a9327547c99",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 8.5,
+                                "z": 5
+                            },
+                            "Type": "Trap1"
+                        },
+                        {
+                            "Name": "b1ec582f-1876-4515-888c-8ceb04305618",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 8.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "e69c94a8-2ba0-47e9-95bb-5b514c98a1a1",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 8.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "b095b20d-88aa-40d6-871d-774f187d3eb1",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 8.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "77b0bb7d-1285-4ddf-9190-5b17a37e943d",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 9.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "d043fcf9-9cb5-410b-bb48-f311e194f0da",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 9.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "28380610-07e8-46aa-a85b-5ebf5a079abd",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 9.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "d8547892-b952-40de-9785-3586b21102c5",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 9.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "255da111-f56c-4e0c-a723-f968f3c38e2b",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 9.5,
+                                "z": 6
+                            },
+                            "Type": "Heavy1"
+                        },
+                        {
+                            "Name": "f472df43-dd1a-474d-bbf0-5380ea2c6ee3",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 9.5,
+                                "z": 5
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "79cb255a-7800-4486-a1e9-cb8a86a41baa",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 9.5,
+                                "z": 5
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "0b7f71e3-9384-4d2b-96f3-2455f7b4bf2d",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 10.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "1bc15640-6786-41ff-94a8-3c62c77fb371",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 10.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "17dc7069-0d60-4218-bf78-b33f0d703210",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 10.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "3dfd21d3-a535-4eeb-8132-3f6675b7b5e5",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 10.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "7876ee8c-3253-4dcb-a7fe-103a83885c05",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 10.5,
+                                "z": 6
+                            },
+                            "Type": "Ice"
+                        },
+                        {
+                            "Name": "f317acda-8db7-42cc-9d00-f799fcb02d7a",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 11.5,
+                                "z": 6
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "8d827b27-766f-4e89-a104-907a8a95405e",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 11.5,
+                                "z": 6
+                            },
+                            "Type": "Vortex"
+                        },
+                        {
+                            "Name": "1118154e-c579-4e1b-806a-ef446b47e3d0",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 11.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "4b10f4b5-4372-4175-b957-ac9f94962ce1",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 11.5,
+                                "z": 6
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "cad29b4d-8c23-45fe-aecf-fbd123778feb",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 11.5,
+                                "z": 6
+                            },
+                            "Type": "Immobile"
+                        },
+                        {
+                            "Name": "afa97ded-50aa-4bba-a8af-cc94e413d25c",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 11.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "24560b44-1a81-4ebd-b9fe-a6e23ed8f9ec",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 11.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "ef04926c-eff9-4b76-a893-da861b89e470",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 12.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "a2c7a506-bc93-43e4-8f79-d07f183e6ef1",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 12.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "9b7313e6-c3c8-45ec-b223-8d5ada066238",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 12.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "48812a9f-1c2e-42fc-8526-2078e479959b",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 12.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "010d7577-1322-40e5-95cb-7911d02a88b0",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 12.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "230fcc31-d8ee-4fe0-96af-317e7407fc79",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 13.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "62c28714-ae9f-4bb9-9aeb-02f4f25c1ad9",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 13.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "20beafe8-975a-4b0b-b79f-325dc8e3ea29",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 13.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "c4dc274a-9682-4e9c-970f-5aab470ba538",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 13.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "c9388638-31bc-4068-ad46-c9c91abe7c6e",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 13.5,
+                                "z": 7
+                            },
+                            "Type": "Immobile"
+                        },
+                        {
+                            "Name": "42b2aa2b-a808-431f-b52b-a6fab49db914",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 14.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "06d2df30-60a3-4f71-928b-7b5f89d39655",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 14.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "889b8da8-631e-41a1-97ab-28d863325d53",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 14.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "a3514b0b-7a73-418b-8f48-802c9846c837",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 14.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "694da74d-0949-4494-961b-8259d4482b98",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 14.5,
+                                "z": 7
+                            },
+                            "Type": "Ice"
+                        },
+                        {
+                            "Name": "1d6119e3-35c6-41fd-ba6d-d93e64c4d28e",
+                            "RelativePosition": {
+                                "x": -4,
+                                "y": 15.5,
+                                "z": 7
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "1ce45fce-bb49-41df-b94f-f6d04155401c",
+                            "RelativePosition": {
+                                "x": -3,
+                                "y": 15.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "dfd02374-f863-4990-8212-e9eb3f27565f",
+                            "RelativePosition": {
+                                "x": -2,
+                                "y": 15.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "7b3b836d-d17f-417e-b123-92927528ca0d",
+                            "RelativePosition": {
+                                "x": -1,
+                                "y": 15.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "a4c9acf1-6c98-46bf-9829-ca558c25ad7c",
+                            "RelativePosition": {
+                                "x": 0,
+                                "y": 15.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "b6997cdc-1198-4083-8fb3-f08b23add761",
+                            "RelativePosition": {
+                                "x": 1,
+                                "y": 15.5,
+                                "z": 8
+                            },
+                            "Type": "Basic"
+                        },
+                        {
+                            "Name": "d3f65654-5f1e-43a7-aa65-d85a9a9fb188",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 15.5,
+                                "z": 7
+                            },
+                            "Type": "Random"
+                        },
+                        {
+                            "Name": "25968e57-32b5-4c6f-a6cb-8fff6f1bcc70",
+                            "RelativePosition": {
+                                "x": 2,
+                                "y": 11.5,
+                                "z": 7
+                            },
+                            "Type": "Basic"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

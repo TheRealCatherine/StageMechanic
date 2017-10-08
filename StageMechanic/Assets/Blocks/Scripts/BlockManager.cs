@@ -58,11 +58,11 @@ public class BlockManager : MonoBehaviour {
 	// The obect (block/item/etc) currently under the cursor
 	public GameObject ActiveObject {
 		get {
-			CursorCollider col = (CursorCollider)Cursor.GetComponent (typeof(CursorCollider));
+			CursorCollider col = Cursor.GetComponent<CursorCollider>();
 			return col.ObjectUnderCursor;
 		}
 		set {
-			CursorCollider col = (CursorCollider)Cursor.GetComponent (typeof(CursorCollider));
+			CursorCollider col = Cursor.GetComponent<CursorCollider>();
 			col.ObjectUnderCursor=value;
 		}
 	}
@@ -71,7 +71,7 @@ public class BlockManager : MonoBehaviour {
     {
         get
         {
-            CursorCollider col = Cursor.GetComponent(typeof(CursorCollider)) as CursorCollider;
+            CursorCollider col = Cursor.GetComponent<CursorCollider>();
             Debug.Assert(col != null);
             if (col.ObjectUnderCursor == null)
                 return null;
@@ -79,7 +79,7 @@ public class BlockManager : MonoBehaviour {
         }
         set
         {
-            CursorCollider col = Cursor.GetComponent(typeof(CursorCollider)) as CursorCollider;
+            CursorCollider col = Cursor.GetComponent<CursorCollider>();
             Debug.Assert(col != null);
             col.ObjectUnderCursor = value.gameObject;
         }
@@ -160,16 +160,9 @@ public class BlockManager : MonoBehaviour {
 	void Start() {
         // Create the cursor
 		ActiveFloor = Instantiate (BasicPlatformPrefab, new Vector3(0,0,0), new Quaternion(0,0,0,0)) as GameObject;
-		//ActiveFloor = GameObject.CreatePrimitive (PrimitiveType.Plane);
-		//ActiveFloor.transform.position = transform.position;
-		//ActiveFloor.transform.rotation = transform.rotation;
 		ActiveFloor.name = "Platform1";
 		ActiveFloor.transform.SetParent (transform, false);
-		//MeshCollider colider = ActiveFloor.GetComponent<MeshCollider> ();
-		//colider.isTrigger = false;
-
 		RotatableFloors.Add (ActiveFloor);
-
 		Cursor = CursorPrefab;
 		Cursor.transform.SetParent (transform, false);
 	}
@@ -296,7 +289,7 @@ public class BlockManager : MonoBehaviour {
 	
 		newBlock.transform.SetParent (ActiveFloor.transform, true);
 
-		Block block = newBlock.GetComponent (typeof(Block)) as Block;
+		Block block = newBlock.GetComponent<Block>();
 		Debug.Assert (block != null);
 		block.Type = type;
 		return block;
@@ -390,56 +383,8 @@ public class BlockManager : MonoBehaviour {
 	}
 		
 	void OnGUI(){
-		/*if (ShowBlockInfo) {
-
-			GUIStyle style = new GUIStyle ();
-			style.normal.textColor = Color.black;
-			int YPos = 1;
-
-			if (ActiveObject != null) {
-
-				Block block = null;
-				try {
-					block = (Block)ActiveObject.GetComponent (typeof(Block));
-				} catch (System.InvalidCastException) {
-					block = null;
-				}
-					
-				if (block == null)
-					return;
-
-
-
-				GUI.Label (new Rect (10, (YPos * 25), 50, 25), "Name: ", style);
-				block.name = GUI.TextField (new Rect (55, (YPos++ * 25), 250, 25), block.name, 36);
-
-				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Type: " + block.Type.ToString (), style);
-				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Trap Type: " + block.TrapType.ToString (), style);
-
-				if (block.TrapType != Block.TrapBlockType.None) {
-					GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Trigger time (ms): (??TODO??)", style);
-				}
-
-				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Teleport Type: " + block.TeleportType.ToString (), style);
-				if (block.TeleportType != Block.TeleportBlockType.None) {
-					GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Distance: " + block.TeleportDistance.ToString (), style);
-				}
-
-				GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "Collapse: " + ((block.CollapseAfterNSteps > -1 || block.CollapseAfterNSteps > -1) ? "Yes" : "No"), style);
-				if (block.CollapseAfterNSteps > -1 || block.CollapseAfterNSteps > -1) {
-					GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Steps: " + (block.CollapseAfterNSteps > -1 ? block.CollapseAfterNSteps.ToString () : "N/A"), style);
-					GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "    Grabs: " + (block.CollapseAfterNGrabs > -1 ? block.CollapseAfterNGrabs.ToString () : "N/A"), style);
-				}
-
-				GUI.Label (new Rect (10, (YPos * 25), 50, 25), "Bomb: ", style);
-				GUI.Toggle (new Rect (55, (YPos++ * 25), 250, 25), block.IsBomb, (block.IsBomb ? "Yes" : "No"), style);
-				if (block.IsBomb) {
-					GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Fuse time (ms): " + block.BombTimeMS, style);
-					GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "  Radius: " + block.BombRadius, style);
-				}
-			}
-			YPos = 9;
-
+		/*
+            //TODO put these on the screen using normal UI
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Arrow keys: Move cursor up/down/left/right", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Alt+Arrow keys: Rotate tower (broken)", style);
 			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Shift+Arrow keys: Move block", style);

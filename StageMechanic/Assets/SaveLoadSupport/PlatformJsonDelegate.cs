@@ -55,7 +55,7 @@ public class PlatformJsonDelegate {
 			Debug.Assert (_platform != null);
 			List<BlockJsonDelegate> ret = new List<BlockJsonDelegate> ();
 			foreach (Transform child in _platform.transform) {
-				Block block = child.gameObject.GetComponent (typeof(Block)) as Block;
+				Block block = child.gameObject.GetComponent<Block>();
 				if(block != null)
 					ret.Add (block.GetJsonDelegate ());
 			}

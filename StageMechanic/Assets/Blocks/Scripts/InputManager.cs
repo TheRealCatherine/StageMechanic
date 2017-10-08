@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour {
     public BlockInfoBoxController BlockInfoBoxController;
 
 	public BlockManager GetBlockManager() {
-		return (BlockManager)Stage.GetComponent (typeof(BlockManager));
+		return Stage.GetComponent<BlockManager>();
 	}
 
 	public GameObject GetActiveFloor() {
@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	public Camera GetCamera() {
-		return (Camera)Camera.GetComponent (typeof(Camera));
+		return Camera.GetComponent<Camera>();
 	}
 
 	// Use this for initialization
