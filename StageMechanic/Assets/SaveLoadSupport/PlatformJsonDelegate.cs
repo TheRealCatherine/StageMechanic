@@ -64,7 +64,9 @@ public class PlatformJsonDelegate {
 		set {
 			Debug.Assert (_platform != null);
 			foreach (BlockJsonDelegate del in value) {
-				del.Block.gameObject.transform.parent = _platform.transform;
+                //TODO do this in a Deserialzed method but #NotLikeThiiiiiissssss
+                if(del != null && del.Block != null && del.Block.gameObject != null)
+				    del.Block.gameObject.transform.parent = _platform.transform;
 			}
 		}
 	}
