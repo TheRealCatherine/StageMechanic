@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory {
+public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
+{
 
     public GameObject BlockPrefab;
     public GameObject Trap1BlockPrefab;
