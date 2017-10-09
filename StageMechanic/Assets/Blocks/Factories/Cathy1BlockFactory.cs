@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Cathy1BlockFactory : MonoBehaviour {
+public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory {
 
     public GameObject BlockPrefab;
     public GameObject Trap1BlockPrefab;
@@ -23,6 +24,46 @@ public class Cathy1BlockFactory : MonoBehaviour {
     public GameObject FixedBlockPrefab;
     public GameObject RandomBlockPrefab;
     public GameObject GoalBlockPrefab;
+
+
+
+    public int BlockTypeCount
+    {
+        get
+        {
+            return BlockTypeNames.Count();
+        }
+    }
+
+    public static readonly List<string> _blockTypeNames = new List<string>{
+        "Custom",
+        "Basic",			//Typical block
+		"Trap1",			//Spike Trap
+		"Trap2",			//??? Trap
+		"Spring",			//Teleport variation, moves character up along edge
+		"Monster",		    //Teleport variation, moves character down from edge
+		"Ice",			    //Teleport variation, moves charcter along top of block
+		"Vortex",			//Vortex trap
+		"Bomb1",			//Bomb with short timing
+		"Bomb2",			//Bomb with long timing
+		"Crack1",			//Can step on once
+		"Crack2",			//Can step on twice
+		"Teleport",		    //Moves character from one block to another
+		"Heavy1",			//Similar to Basic but slower to move
+		"Heavy2",			//Even slower to move than Heavy1
+		"Immobile",		    //Basic blocks that cannot normally be moved by the player
+		"Fixed",			//Basic blocks that are fixed in space, cannot be moved no matter what
+		"Random",			//Not a fixed type, one of a selectable subset
+		"Goal"			    //Level completion zone
+	};
+
+    public List<string> BlockTypeNames
+    {
+        get
+        {
+            return _blockTypeNames;
+        }
+    }
 
     public Block CreateBlock(Vector3 pos, Quaternion rotation, Block.BlockType type = Block.BlockType.Basic)
     {
@@ -129,5 +170,25 @@ public class Cathy1BlockFactory : MonoBehaviour {
         Debug.Assert(block != null);
         block.Type = type;
         return block;
+    }
+
+    public Block CreateBlock(Vector3 globalPosition, Quaternion globalRotation, int blockTypeIndex)
+    {
+        return CreateBlock(globalPosition, globalRotation, BlockTypeNames.ElementAtOrDefault(blockTypeIndex));
+    }
+
+    public Block CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string blockTypeName)
+    {
+        Block.BlockType type = Block.BlockType.Custom;
+        try
+        {
+            type = (Block.BlockType)Enum.Parse(typeof(Block.BlockType), blockTypeName);
+            Debug.Assert(Enum.IsDefined(typeof(Block.BlockType), type));
+        }
+        catch (ArgumentException e)
+        {
+            Debug.Log(e.Message);
+        }
+        return CreateBlock(globalPosition, globalRotation, type);
     }
 }

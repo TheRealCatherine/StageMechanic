@@ -74,18 +74,8 @@ public class BlockJsonDelegate {
 		Debug.Assert (_name != null);
 		Debug.Assert (_type != null);
 
-		Block.BlockType type = Block.BlockType.Basic;
-
-		try {
-			type = (Block.BlockType)Enum.Parse (typeof(Block.BlockType), _type);
-			Debug.Assert(Enum.IsDefined (typeof(Block.BlockType), type));
-		} catch (ArgumentException e) {
-			Debug.Log (e.Message);
-		}
-
         //TODO load/save rotation
-		Block newBlock = StageCollection.BlockManager.Cathy1BlockFactory().CreateBlock (_pos, new Quaternion(0,0,0,0), type);
+		Block newBlock = StageCollection.BlockManager.Cathy1BlockFactory().CreateBlock (_pos, new Quaternion(0,0,0,0), _type);
 		newBlock.Name = _name;
-
 	}
 }
