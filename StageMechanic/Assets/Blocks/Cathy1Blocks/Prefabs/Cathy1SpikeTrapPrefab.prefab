@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4251410458947622}
   - component: {fileID: 33520758670913054}
   - component: {fileID: 65198324140131608}
-  - component: {fileID: 136160716706883388}
   - component: {fileID: 23636392803407138}
   - component: {fileID: 54708961279671746}
   - component: {fileID: 114529137580890764}
+  - component: {fileID: 114489903348015676}
   m_Layer: 0
   m_Name: Cathy1SpikeTrapPrefab
   m_TagString: Untagged
@@ -109,8 +109,19 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.001, y: 1.001, z: 1.001}
-  m_Center: {x: 0, y: -1, z: 0}
+  m_Size: {x: 1.1, y: 1.2, z: 1.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114489903348015676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387997212163396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114529137580890764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,16 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897ca7cf84483714796ac2aa6687507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136160716706883388
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387997212163396}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  ArmedStateMaterial: {fileID: 2100000, guid: 1b7cd7403e5b020469a1af3a29bf96dc, type: 2}
+  TriggeredStateMaterial: {fileID: 0}
+  ActiveStateMaterial: {fileID: 0}
+  DisarmedStateMaterial: {fileID: 2100000, guid: 452f97267dfbcb54db194aac7bdcb1c4,
+    type: 2}
