@@ -112,8 +112,6 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
             case Cathy1Block.BlockType.Heavy1:
                 newBlock = Instantiate(Heavy1BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
-            case Cathy1Block.BlockType.Heavy2:
-                newBlock = Instantiate(Heavy2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Bomb1:
                 newBlock = Instantiate(Bomb1BlockPrefab, pos, rotation, parent.transform) as GameObject;
@@ -124,9 +122,6 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
             case Cathy1Block.BlockType.Immobile:
                 newBlock = Instantiate(ImmobleBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
-            case Cathy1Block.BlockType.Fixed:
-                newBlock = Instantiate(FixedBlockPrefab, pos, rotation, parent.transform) as GameObject;
-                break;
             case Cathy1Block.BlockType.Spring:
                 newBlock = Instantiate(SpringBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
@@ -136,11 +131,8 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
             case Cathy1Block.BlockType.Crack2:
                 newBlock = Instantiate(Crack2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
-            case Cathy1Block.BlockType.Trap1:
+            case Cathy1Block.BlockType.SpikeTrap:
                 newBlock = Instantiate(Trap1BlockPrefab, pos, rotation, parent.transform) as GameObject;
-                break;
-            case Cathy1Block.BlockType.Trap2:
-                newBlock = Instantiate(Trap2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Vortex:
                 newBlock = Instantiate(VortexBlockPrefab, pos, rotation, parent.transform) as GameObject;

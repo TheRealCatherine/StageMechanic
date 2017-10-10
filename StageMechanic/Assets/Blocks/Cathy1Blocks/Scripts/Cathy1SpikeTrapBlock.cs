@@ -10,7 +10,10 @@ using UnityEngine;
 /// </summary>
 public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 {
-    public sealed override BlockType Type { get; } = BlockType.Trap1;
+
+
+
+    public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
 
     /// <summary>
     /// Indicate to the Cathy1 game rules that this is a spike trap

@@ -12,8 +12,7 @@ public class Cathy1Block : AbstractBlock
     {
         Custom = 0,
         Basic,          //Typical block
-        Trap1,          //Spike Trap
-        Trap2,          //??? Trap
+        SpikeTrap,      //Spike Trap
         Spring,         //Teleport variation, moves character up along edge
         Monster,        //Teleport variation, moves character down from edge
         Ice,            //Teleport variation, moves charcter along top of block
@@ -24,9 +23,7 @@ public class Cathy1Block : AbstractBlock
         Crack2,         //Can step on twice
         Teleport,       //Moves character from one block to another
         Heavy1,         //Similar to Basic but slower to move
-        Heavy2,         //Even slower to move than Heavy1
         Immobile,       //Basic blocks that cannot normally be moved by the player
-        Fixed,          //Basic blocks that are fixed in space, cannot be moved no matter what
         Random,         //Not a fixed type, one of a selectable subset
         Goal            //Level completion zone
     }
