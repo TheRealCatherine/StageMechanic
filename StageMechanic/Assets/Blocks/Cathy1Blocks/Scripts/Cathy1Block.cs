@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Runtime.Serialization;
 using System;
 
-public class Cathy1Block : MonoBehaviour, IBlock
+public class Cathy1Block : AbstractBlock
 {
 
     // Conenience enum for setting multiple properties for common types
@@ -50,16 +50,6 @@ public class Cathy1Block : MonoBehaviour, IBlock
         SideToPlatform      //Move player from an edge grab to the top of a platform
     }
 
-    //TODO: refactor into different classes
-
-    public GameObject GameObject
-    {
-        get
-        {
-            return gameObject;
-        }
-    }
-
     /**
 	 * Please note that modifying any block properties directly (rather than setting a common type)
 	 * will set Type to BlockType.Custom even if the properties you set directly
@@ -88,10 +78,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Trap1:
                     _trapType = TrapBlockType.Spike;
@@ -102,10 +90,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Trap2:
                     _trapType = TrapBlockType.Custom;
@@ -116,10 +102,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Spring:
                     _trapType = TrapBlockType.None;
@@ -130,10 +114,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 5, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Monster:
                     _trapType = TrapBlockType.None;
@@ -144,10 +126,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 1, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Ice:
                     _trapType = TrapBlockType.None;
@@ -158,10 +138,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(1, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Vortex:
                     _trapType = TrapBlockType.Vortex;
@@ -172,10 +150,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Bomb1:
                     _trapType = TrapBlockType.None;
@@ -186,10 +162,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Bomb2:
                     _trapType = TrapBlockType.None;
@@ -200,10 +174,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Crack1:
                     _trapType = TrapBlockType.None;
@@ -214,10 +186,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = 1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Crack2:
                     _trapType = TrapBlockType.None;
@@ -228,10 +198,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = 2;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Teleport:
                     _trapType = TrapBlockType.None;
@@ -242,10 +210,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(1, 1, 1);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Heavy1:
                     _trapType = TrapBlockType.None;
@@ -256,10 +222,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 2.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 2.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Heavy2:
                     _trapType = TrapBlockType.None;
@@ -270,10 +234,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 4.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 4.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Immobile:
                     _trapType = TrapBlockType.None;
@@ -284,10 +246,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Fixed:
                     _trapType = TrapBlockType.None;
@@ -298,10 +258,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Goal:
                     _trapType = TrapBlockType.None;
@@ -312,10 +270,8 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
                 case BlockType.Custom:
                 default:
@@ -327,27 +283,10 @@ public class Cathy1Block : MonoBehaviour, IBlock
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
                     _collapseGrabs = -1;
-                    _weightFactor = 1.0F;
-                    _isMovableByPlayer = true;
-                    _isFixedPosition = false;
-                    _gravityFactor = 1.0F;
+                    WeightFactor = 1.0F;
+                    GravityFactor = 1.0F;
                     break;
             }
-        }
-    }
-
-    /**
-	 * Currently a synonym of GameObject.name
-	 */
-    public string Name
-    {
-        get
-        {
-            return name;
-        }
-        set
-        {
-            name = value;
         }
     }
 
@@ -558,31 +497,13 @@ public class Cathy1Block : MonoBehaviour, IBlock
     }
 
     /**
-	 * Used to make blocks heavier or lighter (faster/slower to move)
-	 * 1 means normal movement speed, 2 takes twice as long, 0.5 takes half as long
-	 */
-    private float _weightFactor = 1.0F;
-    public float WeightFactor
-    {
-        get
-        {
-            return _weightFactor;
-        }
-        set
-        {
-            _weightFactor = value;
-            this.Type = BlockType.Custom;
-        }
-    }
-
-    /**
 	 * Returns true if the block is heavier than normal
 	 */
     public bool IsHeavy
     {
         get
         {
-            return _weightFactor > 1.0F;
+            return WeightFactor > 1.0F;
         }
     }
 
@@ -593,62 +514,26 @@ public class Cathy1Block : MonoBehaviour, IBlock
     {
         get
         {
-            return _weightFactor < 1.0F;
+            return WeightFactor < 1.0F;
         }
     }
 
-    /**
-	 * Set to true if the block cannot be moved by the player
-	 */
-    private bool _isMovableByPlayer = true;
     public bool IsMovableByPlayer
     {
         get
         {
-            return _isMovableByPlayer;
+            return WeightFactor != 0;
         }
-        set
-        {
-            _isMovableByPlayer = value;
-            this.Type = BlockType.Custom;
-        }
-    }
+     }
 
-    /**
-	 * Set to true if this block cannot be moved by any means even gravity/enemies/etc
-	 */
-    private bool _isFixedPosition = false;
     public bool IsFixedPosition
     {
         get
         {
-            return _isFixedPosition;
-        }
-        set
-        {
-            _isFixedPosition = value;
-            this.Type = BlockType.Custom;
+            return GravityFactor == 0;
         }
     }
 
-    /**
-	 * How this block should react to gravity. 1.0 means it falls at the standard speed
-	 * 2.0 means it falls twice as quickly.
-	 * -1.0 falls upward at normal speed
-	 */
-    private float _gravityFactor = 1.0F;
-    public float GravityFactor
-    {
-        get
-        {
-            return _gravityFactor;
-        }
-        set
-        {
-            _gravityFactor = value;
-            this.Type = BlockType.Custom;
-        }
-    }
 
     /**
 	 * An Item associated with this Block, for example powerups
@@ -657,22 +542,23 @@ public class Cathy1Block : MonoBehaviour, IBlock
 	 * and the block will take ownership of the item (ie the
 	 * item will be destoryed when the block is.
 	 */
-    private GameObject _item;
     public GameObject Item
     {
         get
         {
-            return _item;
+            if(Items.Count>0)
+                return Items[0];
+            return null;
         }
         set
         {
-            _item = value;
-            if (_item != null)
-                _item.transform.parent = transform;
+            Items[0] = value;
+            if (Items[0] != null)
+                Items[0].transform.parent = transform;
         }
     }
 
-    public string TypeName
+    public override string TypeName
     {
         get
         {
@@ -685,114 +571,18 @@ public class Cathy1Block : MonoBehaviour, IBlock
             Type = type;
         }
     }
-
-    public bool IsFixedRotation
+  
+    /// <summary>
+    /// The complete list of properties associated with this block.
+    /// Includes bass-class properties.
+    /// </summary>
+    public override Dictionary<string,string> Properties
     {
         get
         {
-            return false;
-        }
-        set
-        {
-        }
-    }
-
-    List<GameObject> IBlock.Items {
-        get
-        {
-            List<GameObject> ret = new List<GameObject>();
-            ret.Add(Item);
-            return ret;
-        }
-        set
-        {
-            if(value.Count>0)
-                Item = value[0];
-        }
-    }
-
-    public Vector3 Position
-    {
-        get
-        {
-            return transform.position;
-        }
-
-        set
-        {
-            transform.position = value;
-        }
-    }
-
-    public Quaternion Rotation
-    {
-        get
-        {
-            return transform.rotation;
-        }
-        set
-        {
-            transform.rotation = value;
-        }
-    }
-
-    public GameObject Parent
-    {
-        get
-        {
-            return transform.parent.gameObject;
-        }
-
-        set
-        {
-            if (value == null)
-                transform.SetParent(null);
-            else
-                transform.SetParent(value.transform,true);
-        }
-    }
-
-    public List<GameObject> Children
-    {
-        get
-        {
-            List<GameObject> chillins = new List<GameObject>();
-            foreach(GameObject kiddo in transform)
-            {
-                Cathy1Block jennyFromTheBlock = kiddo.GetComponent<Cathy1Block>();
-                if(jennyFromTheBlock != null)
-                    chillins.Add(kiddo);
-            }
-            return chillins;
-        }
-        //TODO remove items not in list or clear list first
-        set
-        {
-            foreach(GameObject rugrat in value)
-            {
-                //Cathy1 blocks can currently only have Cathy1 blocks as children
-                //Items are also children technically, but should be accessd via Item or Items
-                Cathy1Block blockPartyLikeIts1999 = rugrat.GetComponent<Cathy1Block>();
-                if (blockPartyLikeIts1999 != null)
-                    blockPartyLikeIts1999.Parent = GameObject;
-            }
-        }
-    }
-
-    public Dictionary<string,string> Properties
-    {
-        get
-        {
-            Dictionary<string, string> ret = new Dictionary<string, string>();
-            ret.Add("Name", Name);
-            ret.Add("Parent", Parent.name);
-            ret.Add("Type", TypeName);
-            ret.Add("Postition", Position.ToString());
-            ret.Add("Rotation", Rotation.ToString());
-            ret.Add("IsFixedRotation", IsFixedRotation.ToString());
-            ret.Add("WeightFactor", WeightFactor.ToString());
-            ret.Add("GravityFactor", GravityFactor.ToString());
+            Dictionary<string, string> ret = base.Properties;
             ret.Add("TrapType", TrapType.ToString());
+            //TODO trap delay
             ret.Add("TrapDelay", "100");
             ret.Add("BombFuse", BombTimeMS.ToString());
             ret.Add("BombRadius", BombRadius.ToString());
@@ -804,47 +594,9 @@ public class Cathy1Block : MonoBehaviour, IBlock
         }
         set
         {
-            if (value.ContainsKey("Name"))
-                Name = value["Name"];
-            //TODO find parent in object tree
-            //if (value.ContainsKey("Parent"))
-            //    Parent = value["Parent"];
-            if (value.ContainsKey("Type"))
-                TypeName = value["Type"];
-            if (value.ContainsKey("Position"))
-                Position = Utility.StringToVector3(value["Position"]);
+            base.Properties = value;
+            //TODO
         }
-    }
-
-    /**
-	 * Create and return a new JSON delegate for this Block
-	 * This is because GameObjects cannot directly be used
-	 * [DataContract] classes. This is primarily used to 
-	 * serialize the Block information for saving level data
-	 */
-    public BlockJsonDelegate GetJsonDelegate()
-    {
-        return new BlockJsonDelegate(this);
-    }
-
-    /**
-	 * Called when Block objects are created.
-	 * Initializes the name property to a random GUID
-	 */
-    void Start()
-    {
-        name = System.Guid.NewGuid().ToString();
-    }
-
-    /**
-	 * Called when this block is destroyed. Note that this
-	 * destorys any items or child blocks as well.
-	 */
-    void OnDestroy()
-    {
-        //Destroy any items attached to this block
-        if (_item != null)
-            Destroy(_item);
     }
 
     /**
