@@ -31,13 +31,6 @@ public class Cathy1Block : AbstractBlock
         Goal            //Level completion zone
     }
 
-    public enum TrapBlockType
-    {
-        None = 0,
-        Custom,
-        Spike,
-        Vortex
-    }
 
     public enum TeleportBlockType
     {
@@ -70,10 +63,6 @@ public class Cathy1Block : AbstractBlock
             switch (_type)
             {
                 case BlockType.Basic:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -82,10 +71,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Trap1:
-                    _trapType = TrapBlockType.Spike;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -94,10 +79,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Trap2:
-                    _trapType = TrapBlockType.Custom;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -106,10 +87,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Spring:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.Side;
                     _teleportDistance = new Vector3(0, 5, 0);
                     _collapseSteps = -1;
@@ -118,10 +95,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Monster:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.SideNoGrab;
                     _teleportDistance = new Vector3(0, 1, 0);
                     _collapseSteps = -1;
@@ -130,10 +103,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Ice:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.Platform;
                     _teleportDistance = new Vector3(1, 0, 0);
                     _collapseSteps = -1;
@@ -142,10 +111,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Vortex:
-                    _trapType = TrapBlockType.Vortex;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -154,10 +119,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Bomb1:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = true;
-                    _bombTimeMS = 5000;
-                    _bombRadius = 3;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -166,10 +127,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Bomb2:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = true;
-                    _bombTimeMS = 3000;
-                    _bombRadius = 3;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -178,10 +135,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Crack1:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = 1;
@@ -190,10 +143,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Crack2:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = 2;
@@ -202,10 +151,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Teleport:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.Platform;
                     _teleportDistance = new Vector3(1, 1, 1);
                     _collapseSteps = -1;
@@ -214,10 +159,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Heavy1:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -226,10 +167,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Heavy2:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -238,10 +175,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Immobile:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -250,10 +183,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Fixed:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -262,10 +191,6 @@ public class Cathy1Block : AbstractBlock
                     GravityFactor = 1.0F;
                     break;
                 case BlockType.Goal:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -275,10 +200,6 @@ public class Cathy1Block : AbstractBlock
                     break;
                 case BlockType.Custom:
                 default:
-                    _trapType = TrapBlockType.None;
-                    _isBomb = false;
-                    _bombTimeMS = 0;
-                    _bombRadius = 0;
                     _teleportType = TeleportBlockType.None;
                     _teleportDistance = new Vector3(0, 0, 0);
                     _collapseSteps = -1;
@@ -303,32 +224,18 @@ public class Cathy1Block : AbstractBlock
         }
     }
 
-    /**
-	 * If this block should act as a trap block this property
-	 * should be set to a value other than TrapBlockType.None
-	 */
-    private TrapBlockType _trapType = TrapBlockType.None;
-    public TrapBlockType TrapType
-    {
-        get
-        {
-            return _trapType;
-        }
-        set
-        {
-            _trapType = value;
-            this.Type = BlockType.Custom;
-        }
-    }
-
-    /**
-	 * Will be true if this block is any type of trap block
-	 */
+    /// <summary>
+    /// Will be true if this block exibits properties of one of the Cathy1 style traps
+    /// Bomb, Spike, or Vortex
+    /// </summary>
     public bool IsTrap
     {
         get
         {
-            return this.TrapType != TrapBlockType.None;
+            Cathy1AbstractTrapBlock trapHouse = GetComponent<Cathy1AbstractTrapBlock>();
+            if (trapHouse != null)
+                return trapHouse.TrapType != Cathy1AbstractTrapBlock.TrapBlockType.None;
+            return false;
         }
     }
 
@@ -581,9 +488,6 @@ public class Cathy1Block : AbstractBlock
         get
         {
             Dictionary<string, string> ret = base.Properties;
-            ret.Add("TrapType", TrapType.ToString());
-            //TODO trap delay
-            ret.Add("TrapDelay", "100");
             ret.Add("BombFuse", BombTimeMS.ToString());
             ret.Add("BombRadius", BombRadius.ToString());
             ret.Add("TeleportType", TeleportType.ToString());
