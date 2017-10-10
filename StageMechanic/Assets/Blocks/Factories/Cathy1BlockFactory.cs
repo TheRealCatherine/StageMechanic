@@ -8,7 +8,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
 {
 
     public GameObject BlockPrefab;
-    public GameObject Trap1BlockPrefab;
+    public GameObject SpikeTrapPrefab;
     public GameObject Trap2BlockPrefab;
     public GameObject SpringBlockPrefab;
     public GameObject MonsterBlockPrefab;
@@ -90,13 +90,13 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
                 oldItem = bl.FirstItem;
                 if (oldItem != null)
                     oldItem.transform.parent = null;
-                
+
                 //TODO keep it the same block, just change properties/components
                 //or norify listeners (is this even a concern for Cath1 blocks?)
                 //or set all old properties
                 Destroy(obj);
             }
-           
+
         }
 
         GameObject newBlock = null;
@@ -132,7 +132,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
                 newBlock = Instantiate(Crack2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.SpikeTrap:
-                newBlock = Instantiate(Trap1BlockPrefab, pos, rotation, parent.transform) as GameObject;
+                newBlock = Instantiate(SpikeTrapPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Vortex:
                 newBlock = Instantiate(VortexBlockPrefab, pos, rotation, parent.transform) as GameObject;

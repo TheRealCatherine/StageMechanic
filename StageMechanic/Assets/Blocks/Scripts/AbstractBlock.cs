@@ -24,7 +24,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             name = value;
         }
     }
-    
+
     /// <summary>
     /// See <see cref="IBlock.TypeName"/>
     /// </summary>

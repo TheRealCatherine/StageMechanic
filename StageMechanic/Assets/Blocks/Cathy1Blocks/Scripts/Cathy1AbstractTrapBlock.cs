@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock {
+public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock
+{
 
     /// <summary>
     /// Used to indicate the type of trap
@@ -17,7 +18,7 @@ public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock {
     }
 
     public abstract TrapBlockType TrapType { get; }
- 
+
     /// <summary>
     /// All blocks in Cathy1-style start out armed by default.
     /// </summary>

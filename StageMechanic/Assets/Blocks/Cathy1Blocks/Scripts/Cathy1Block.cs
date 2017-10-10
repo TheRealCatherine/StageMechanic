@@ -86,7 +86,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _isBomb = value;
-          
+
         }
     }
 
@@ -124,7 +124,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _bombRadius = value;
-          
+
         }
     }
 
@@ -144,7 +144,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _teleportType = value;
-           
+
         }
     }
 
@@ -161,7 +161,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _teleportDistance = value;
-            
+
         }
     }
 
@@ -191,7 +191,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _collapseSteps = value;
-          
+
         }
     }
 
@@ -264,7 +264,7 @@ public class Cathy1Block : AbstractBlock
         {
             return WeightFactor != 0;
         }
-     }
+    }
 
     public bool IsFixedPosition
     {
@@ -286,13 +286,14 @@ public class Cathy1Block : AbstractBlock
     {
         get
         {
-            if(Items != null && Items.Count>0)
+            if (Items != null && Items.Count > 0)
                 return Items[0];
             return null;
         }
         set
         {
-            if (value == null && Items != null && Items.Count == 1) {
+            if (value == null && Items != null && Items.Count == 1)
+            {
                 Items = null;
                 return;
             }
@@ -315,17 +316,17 @@ public class Cathy1Block : AbstractBlock
         }
         set
         {
-        //TODO    Cathy1Block.BlockType type = (Cathy1Block.BlockType)Enum.Parse(typeof(Cathy1Block.BlockType), value);
-        //    Debug.Assert(Enum.IsDefined(typeof(Cathy1Block.BlockType), type));
-        //    Type = type;
+            //TODO    Cathy1Block.BlockType type = (Cathy1Block.BlockType)Enum.Parse(typeof(Cathy1Block.BlockType), value);
+            //    Debug.Assert(Enum.IsDefined(typeof(Cathy1Block.BlockType), type));
+            //    Type = type;
         }
     }
-  
+
     /// <summary>
     /// The complete list of properties associated with this block.
     /// Includes bass-class properties.
     /// </summary>
-    public override Dictionary<string,string> Properties
+    public override Dictionary<string, string> Properties
     {
         get
         {

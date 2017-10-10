@@ -8,10 +8,12 @@ using UnityEngine;
 /// a certain amount of time to move before the trap enters the IsTriggerd state before
 /// moving into the disarned state.
 /// </summary>
-public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
+public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 {
-
-
+    public Material ArmedStateMaterial;
+    public Material TriggeredStateMaterial;
+    public Material ActiveStateMaterial;
+    public Material DisarmedStateMaterial;
 
     public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
 
