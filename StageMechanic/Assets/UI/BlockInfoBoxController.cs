@@ -45,8 +45,8 @@ public class BlockInfoBoxController : MonoBehaviour {
             blockName.text = lastBlock.Name;
             blockType.text = lastBlock.TypeName;
             //TODO support item types once there is an Item class
-            if(lastBlock.Item != null)
-                itemType.text = lastBlock.Item.name;
+            if(lastBlock.FirstItem != null)
+                itemType.text = lastBlock.FirstItem.name;
            
         }
         else

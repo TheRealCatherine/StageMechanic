@@ -43,173 +43,9 @@ public class Cathy1Block : AbstractBlock
         SideToPlatform      //Move player from an edge grab to the top of a platform
     }
 
-    /**
-	 * Please note that modifying any block properties directly (rather than setting a common type)
-	 * will set Type to BlockType.Custom even if the properties you set directly
-	 * match ane of the common types. So rather than testing if a block is an ice block it is
-	 * usually better to check the Slide property.
-	 */
-    private BlockType _type = BlockType.Custom;
-    public BlockType Type
-    {
-        get
-        {
-            return _type;
-        }
-        set
-        {
-            _type = value;
-            Debug.Log("Setting block to type: " + _type.ToString());
-            switch (_type)
-            {
-                case BlockType.Basic:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Trap1:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Trap2:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Spring:
-                    _teleportType = TeleportBlockType.Side;
-                    _teleportDistance = new Vector3(0, 5, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Monster:
-                    _teleportType = TeleportBlockType.SideNoGrab;
-                    _teleportDistance = new Vector3(0, 1, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Ice:
-                    _teleportType = TeleportBlockType.Platform;
-                    _teleportDistance = new Vector3(1, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Vortex:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Bomb1:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Bomb2:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Crack1:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = 1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Crack2:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = 2;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Teleport:
-                    _teleportType = TeleportBlockType.Platform;
-                    _teleportDistance = new Vector3(1, 1, 1);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Heavy1:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 2.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Heavy2:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 4.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Immobile:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Fixed:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Goal:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-                case BlockType.Custom:
-                default:
-                    _teleportType = TeleportBlockType.None;
-                    _teleportDistance = new Vector3(0, 0, 0);
-                    _collapseSteps = -1;
-                    _collapseGrabs = -1;
-                    WeightFactor = 1.0F;
-                    GravityFactor = 1.0F;
-                    break;
-            }
-        }
-    }
+    //TODO move to Abstract
+    BlockType _type = BlockType.Custom;
+    public virtual BlockType Type { get { return _type; } }
 
     /**
 	 * Will be true if this is a customized block type
@@ -253,7 +89,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _isBomb = value;
-            this.Type = BlockType.Custom;
+          
         }
     }
 
@@ -272,7 +108,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _bombTimeMS = value;
-            this.Type = BlockType.Custom;
+
         }
     }
 
@@ -291,7 +127,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _bombRadius = value;
-            this.Type = BlockType.Custom;
+          
         }
     }
 
@@ -311,7 +147,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _teleportType = value;
-            this.Type = BlockType.Custom;
+           
         }
     }
 
@@ -328,7 +164,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _teleportDistance = value;
-            this.Type = BlockType.Custom;
+            
         }
     }
 
@@ -358,7 +194,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _collapseSteps = value;
-            this.Type = BlockType.Custom;
+          
         }
     }
 
@@ -388,7 +224,7 @@ public class Cathy1Block : AbstractBlock
         set
         {
             _collapseGrabs = value;
-            this.Type = BlockType.Custom;
+
         }
     }
 
@@ -449,17 +285,26 @@ public class Cathy1Block : AbstractBlock
 	 * and the block will take ownership of the item (ie the
 	 * item will be destoryed when the block is.
 	 */
-    public GameObject Item
+    public GameObject FirstItem
     {
         get
         {
-            if(Items.Count>0)
+            if(Items != null && Items.Count>0)
                 return Items[0];
             return null;
         }
         set
         {
-            Items[0] = value;
+            if (value == null && Items != null && Items.Count == 1) {
+                Items = null;
+                return;
+            }
+            if (Items == null)
+                Items = new List<GameObject>();
+            if (Items.Count < 1)
+                Items.Add(value);
+            else
+                Items[0] = value;
             if (Items[0] != null)
                 Items[0].transform.parent = transform;
         }
@@ -473,9 +318,9 @@ public class Cathy1Block : AbstractBlock
         }
         set
         {
-            Cathy1Block.BlockType type = (Cathy1Block.BlockType)Enum.Parse(typeof(Cathy1Block.BlockType), value);
-            Debug.Assert(Enum.IsDefined(typeof(Cathy1Block.BlockType), type));
-            Type = type;
+        //TODO    Cathy1Block.BlockType type = (Cathy1Block.BlockType)Enum.Parse(typeof(Cathy1Block.BlockType), value);
+        //    Debug.Assert(Enum.IsDefined(typeof(Cathy1Block.BlockType), type));
+        //    Type = type;
         }
     }
   

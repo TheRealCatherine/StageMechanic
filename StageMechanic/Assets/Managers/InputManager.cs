@@ -143,13 +143,13 @@ public class InputManager : MonoBehaviour {
 			if (GetBlockManager().ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
 				Cathy1Block block = GetBlockManager().ActiveObject.GetComponent<Cathy1Block>();
-				block.Item = Instantiate (GetBlockManager().StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
+				block.FirstItem = Instantiate (GetBlockManager().StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
 			}
 		} else if (Input.GetKeyDown (KeyCode.End)) {
 			if (GetBlockManager().ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
 				Cathy1Block block = GetBlockManager().ActiveObject.GetComponent<Cathy1Block>();
-				block.Item = Instantiate (GetBlockManager().GoalLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
+				block.FirstItem = Instantiate (GetBlockManager().GoalLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
 			}
 		}
 

@@ -21,7 +21,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
         set
         {
-            name = Name;
+            name = value;
         }
     }
     
@@ -83,8 +83,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
     }
 
-    //TODO change to Items
-    public virtual List<GameObject> Items { get; set; } = new List<GameObject>();
+    /// <summary>
+    /// List of items associated with this block. These will moved to be child elements of the block.
+    /// This property may be null, so check this when calling.
+    /// </summary>
+    public virtual List<GameObject> Items { get; set; }
 
     /// <summary>
     /// Uses GameObject.transform.parent internally. This method is
@@ -178,7 +181,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             //if (value.ContainsKey("Rotation"))
             //    Rotation = Utility.StringToQuaternion(value["Rotation"]);
             if (value.ContainsKey("IsFixedRotation"))
-                IsFixedRotation = Convert.ToBoolean(value["FixedRotation"]);
+                IsFixedRotation = Convert.ToBoolean(value["IsFixedRotation"]);
             if (value.ContainsKey("Weight"))
                 WeightFactor = (float)Convert.ToDouble(value["Weight"]);
             if (value.ContainsKey("Gravity"))

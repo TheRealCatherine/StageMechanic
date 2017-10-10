@@ -21,12 +21,11 @@ GameObject:
   - component: {fileID: 4251410458947622}
   - component: {fileID: 33520758670913054}
   - component: {fileID: 65198324140131608}
-  - component: {fileID: 136462694858123248}
   - component: {fileID: 23636392803407138}
   - component: {fileID: 54708961279671746}
-  - component: {fileID: 114821525010009180}
+  - component: {fileID: 114529137580890764}
   m_Layer: 0
-  m_Name: Trap1BlockPrefab
+  m_Name: Cathy1SpikeTrapPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +110,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114821525010009180
+--- !u!114 &114529137580890764
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -119,19 +118,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1387997212163396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f962aa4fb6329da4cb2bbe7a5a4d307e, type: 3}
+  m_Script: {fileID: 11500000, guid: 897ca7cf84483714796ac2aa6687507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136462694858123248
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387997212163396}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}

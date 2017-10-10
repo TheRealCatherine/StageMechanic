@@ -10,6 +10,8 @@ using UnityEngine;
 /// </summary>
 public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 {
+    public sealed override BlockType Type { get; } = BlockType.Trap1;
+
     /// <summary>
     /// Indicate to the Cathy1 game rules that this is a spike trap
     /// </summary>
@@ -78,9 +80,9 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
-    public virtual void Start()
+    public override void Awake()
     {
+        base.Awake();
         TriggerTime = 1000;
-
     }
 }

@@ -69,42 +69,34 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
     //TODO fix support for changing block types at a location
     public IBlock CreateBlock(Vector3 pos, Quaternion rotation, Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic, GameObject parent = null)
     {
-        string oldName = null;
-        List<GameObject> oldItems = new List<GameObject>();
+        string oldName = String.Empty;
+        GameObject oldItem = null;
 
         GameObject[] collidedGameObjects =
             Physics.OverlapSphere(pos, 0.1f)
-                .Except(new[] { GetComponent<Collider>() })
+                .Except(new[] { GetComponent<BoxCollider>() })
                 .Select(c => c.gameObject)
                 .ToArray();
 
+
         foreach (GameObject obj in collidedGameObjects)
         {
-           IBlock bl = obj.GetComponent<IBlock>();
+            Cathy1Block bl = obj.GetComponent<Cathy1Block>();
             if (bl != null)
             {
+                if (parent == null)
+                    parent = bl.Parent.gameObject;
                 oldName = bl.Name;
-                foreach(GameObject item in ((IBlock)bl).Items)
-                {
-                    if (item != null)
-                    {
-                        item.transform.parent = null;
-                        //TODO don't copy list
-                        oldItems.Add(item);
-                    }
-                }
-                if (bl.TypeName != type.ToString())
-                {
-                    //TODO make this not shitty hacky type styff
-                    bl.TypeName = type.ToString();
-                    Cathy1Block tmp = CreateBlock(new Vector3(-20, -20, -20), rotation, type) as Cathy1Block;
-                    bl.GameObject.GetComponent<Renderer>().material = tmp.GetComponent<Renderer>().material;
-                    bl.GameObject.transform.localScale = tmp.transform.localScale;
-                    Destroy(tmp.GameObject);
-                }
-                bl.Parent = parent;
-                return bl;
+                oldItem = bl.FirstItem;
+                if (oldItem != null)
+                    oldItem.transform.parent = null;
+                
+                //TODO keep it the same block, just change properties/components
+                //or norify listeners (is this even a concern for Cath1 blocks?)
+                //or set all old properties
+                Destroy(obj);
             }
+           
         }
 
         GameObject newBlock = null;
@@ -112,71 +104,72 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         switch (type)
         {
             case Cathy1Block.BlockType.Basic:
-                newBlock = Instantiate(BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Ice:
-                newBlock = Instantiate(IceBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(IceBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Heavy1:
-                newBlock = Instantiate(Heavy1BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Heavy1BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Heavy2:
-                newBlock = Instantiate(Heavy2BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Heavy2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Bomb1:
-                newBlock = Instantiate(Bomb1BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Bomb1BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Bomb2:
-                newBlock = Instantiate(Bomb2BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Bomb2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Immobile:
-                newBlock = Instantiate(ImmobleBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(ImmobleBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Fixed:
-                newBlock = Instantiate(FixedBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(FixedBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Spring:
-                newBlock = Instantiate(SpringBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(SpringBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Crack1:
-                newBlock = Instantiate(Crack1BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Crack1BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Crack2:
-                newBlock = Instantiate(Crack2BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Crack2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Trap1:
-                newBlock = Instantiate(Trap1BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Trap1BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Trap2:
-                newBlock = Instantiate(Trap2BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(Trap2BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Vortex:
-                newBlock = Instantiate(VortexBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(VortexBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Monster:
-                newBlock = Instantiate(MonsterBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(MonsterBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Teleport:
-                newBlock = Instantiate(TeleportBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(TeleportBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Random:
-                newBlock = Instantiate(RandomBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(RandomBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Goal:
-                newBlock = Instantiate(GoalBlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(GoalBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             default:
                 //Create a new block at the cursor position and set it as the active game block
-                newBlock = Instantiate(BlockPrefab, pos, rotation) as GameObject;
+                newBlock = Instantiate(BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
         }
 
         Debug.Assert(newBlock != null);
-
         Cathy1Block block = newBlock.GetComponent<Cathy1Block>();
         Debug.Assert(block != null);
-        block.Type = type;
         block.Parent = parent;
+        if (oldName != String.Empty)
+            block.Name = oldName;
+        block.FirstItem = oldItem;
         return block;
     }
 
