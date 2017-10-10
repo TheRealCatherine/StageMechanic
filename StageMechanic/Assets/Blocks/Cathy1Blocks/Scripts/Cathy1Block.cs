@@ -779,6 +779,43 @@ public class Cathy1Block : MonoBehaviour, IBlock
         }
     }
 
+    public Dictionary<string,string> Properties
+    {
+        get
+        {
+            Dictionary<string, string> ret = new Dictionary<string, string>();
+            ret.Add("Name", Name);
+            ret.Add("Parent", Parent.name);
+            ret.Add("Type", TypeName);
+            ret.Add("Postition", Position.ToString());
+            ret.Add("Rotation", Rotation.ToString());
+            ret.Add("IsFixedRotation", IsFixedRotation.ToString());
+            ret.Add("WeightFactor", WeightFactor.ToString());
+            ret.Add("GravityFactor", GravityFactor.ToString());
+            ret.Add("TrapType", TrapType.ToString());
+            ret.Add("TrapDelay", "100");
+            ret.Add("BombFuse", BombTimeMS.ToString());
+            ret.Add("BombRadius", BombRadius.ToString());
+            ret.Add("TeleportType", TeleportType.ToString());
+            ret.Add("TeleportDistance", TeleportDistance.ToString());
+            ret.Add("CollapseSteps", CollapseAfterNSteps.ToString());
+            ret.Add("CollapseGrabs", CollapseAfterNGrabs.ToString());
+            return ret;
+        }
+        set
+        {
+            if (value.ContainsKey("Name"))
+                Name = value["Name"];
+            //TODO find parent in object tree
+            //if (value.ContainsKey("Parent"))
+            //    Parent = value["Parent"];
+            if (value.ContainsKey("Type"))
+                TypeName = value["Type"];
+            if (value.ContainsKey("Position"))
+                Position = Utility.StringToVector3(value["Position"]);
+        }
+    }
+
     /**
 	 * Create and return a new JSON delegate for this Block
 	 * This is because GameObjects cannot directly be used

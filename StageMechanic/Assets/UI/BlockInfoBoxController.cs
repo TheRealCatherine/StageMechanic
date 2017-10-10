@@ -20,18 +20,8 @@ public class BlockInfoBoxController : MonoBehaviour {
     public Text blockRotation;
     public Text blockName;
     public Text blockType;
-    public Text trapType;
-    public Text trapTime;
-    public Text isBomb;
-    public Text bombTime;
-    public Text bombRadius;
-    public Text isCollapse;
-    public Text collapseStep;
-    public Text collapseGrab;
-    public Text teleportType;
-    public Text teleportTo;
+    public Text itemType;
 
-    internal string[] typeList;
     Cathy1Block lastBlock = null;
 
     public void ToggleVisibility()
@@ -41,81 +31,31 @@ public class BlockInfoBoxController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //TODO get from description annotations
-        typeList = Enum.GetNames(typeof(Cathy1Block.BlockType));
     }
 
     // Update is called once per frame
     void Update()
     {
-        // TODO make this event based instead
+        // TODO make this event based instead of updating every frame
         lastBlock = blockManager.ActiveBlock;
         if (lastBlock != null)
         {
-            blockPosition.text = lastBlock.transform.localPosition.ToString();
+            blockPosition.text = lastBlock.Position.ToString();
+            blockRotation.text = lastBlock.Rotation.ToString();
             blockName.text = lastBlock.Name;
-            blockType.text = typeList.ElementAt((int)lastBlock.Type);
-            if (lastBlock.IsTrap)
-            {
-                trapType.text = lastBlock.TrapType.ToString();
-                trapTime.text = "<?>";
-            }
-            else
-            {
-                trapType.text = "None";
-                trapTime.text = String.Empty;
-            }
-            if (lastBlock.IsBomb)
-            {
-                isBomb.text = "Yes";
-                bombTime.text = lastBlock.BombTimeMS.ToString();
-                bombRadius.text = lastBlock.BombRadius.ToString();
-            }
-            else
-            {
-                isBomb.text = "No";
-                bombTime.text = String.Empty;
-                bombRadius.text = String.Empty;
-            }
-            if(lastBlock.IsCollapseOnStep || lastBlock.IsCollapseOnGrab)
-            {
-                isCollapse.text = "Yes";
-                collapseStep.text = lastBlock.CollapseAfterNSteps.ToString();
-                collapseGrab.text = lastBlock.CollapseAfterNGrabs.ToString();
-            }
-            else
-            {
-                isCollapse.text = "No";
-                collapseStep.text = String.Empty;
-                collapseGrab.text = String.Empty;
-            }
-            if(lastBlock.IsTeleport)
-            {
-                teleportType.text = lastBlock.TeleportType.ToString();
-                teleportTo.text = lastBlock.TeleportDistance.ToString();
-            }
-            else
-            {
-                teleportType.text = "None";
-                teleportTo.text = String.Empty;
-            }
+            blockType.text = lastBlock.TypeName;
+            //TODO support item types once there is an Item class
+            if(lastBlock.Item != null)
+                itemType.text = lastBlock.Item.name;
+           
         }
         else
         {
-            blockPosition.text = blockManager.Cursor.transform.localPosition.ToString();
+           blockPosition.text = blockManager.Cursor.transform.localPosition.ToString();
             blockRotation.text = blockManager.Cursor.transform.localRotation.ToString();
             blockName.text = String.Empty;
             blockType.text = String.Empty;
-            trapType.text = String.Empty;
-            trapTime.text = String.Empty;
-            isBomb.text = String.Empty;
-            bombTime.text = String.Empty;
-            bombRadius.text = String.Empty;
-            isCollapse.text = String.Empty;
-            collapseStep.text = String.Empty;
-            collapseGrab.text = String.Empty;
-            teleportType.text = String.Empty;
-            teleportTo.text = String.Empty;
+            itemType.text = String.Empty;
         }
     }
 }

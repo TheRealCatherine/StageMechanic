@@ -78,32 +78,6 @@ public interface IBlock
     }
 
     /// <summary>
-    /// This property should be true if the player is able to move the block during
-    /// play mode via some direct means such as pushing or pulling. This property
-    /// is only about direct contact movement, not indirect means such as triggers.
-    /// If IsFixedPosition is true, the value of this property should be ignored.
-    /// If this property is true then WeightFactor should be taken into account to
-    /// determine how quickly this movement happens.
-    /// </summary>
-    bool IsMovableByPlayer
-    {
-        get;
-        set;
-    }
-
-    /// <summary>
-    /// This property should be true only if the block cannot be moved by any means,
-    /// direct or indirect - including gravity. If this property is true both
-    /// IsMovableByPlayer and GravityFactor should be ignored, as should any attempts to
-    /// set the Position property.
-    /// </summary>
-    bool IsFixedPosition
-    {
-        get;
-        set;
-    }
-
-    /// <summary>
     /// This should only be true if the block cannot be rotated by any means, even
     /// if everything around it is rotating. This is not expected to be a commonly
     /// used feature in any anticipated sitations, but implementors should take
@@ -116,7 +90,10 @@ public interface IBlock
     }
 
     /// <summary>
-    /// Multiplier determining how quickly or slowly
+    /// Multiplier determining how quickly or slowly the player can move the block.
+    /// A value of 0 should indicate the block is not movable by the player and a
+    /// negative value should either mean not movable by the player or may be used
+    /// to indicate reverse mechanics.
     /// </summary>
     float WeightFactor
     {
@@ -164,6 +141,12 @@ public interface IBlock
     /// different to different types of children.
     /// </summary>
     List<GameObject> Children
+    {
+        get;
+        set;
+    }
+
+    Dictionary<string,string> Properties
     {
         get;
         set;
