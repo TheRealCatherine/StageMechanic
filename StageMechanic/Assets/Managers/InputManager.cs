@@ -85,15 +85,15 @@ public class InputManager : MonoBehaviour {
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button3)) {
-			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Basic);
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock(Cursor.transform.position,Cursor.transform.rotation, "Basic", GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Ice);
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "Ice", GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Heavy1);
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "Trap1", GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Bomb1);
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "Bomb1", GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			GetBlockManager ().CreateBlockAtCursor (Block.BlockType.Trap1);
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "Heavy1", GetActiveFloor());
 		}
 		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {
@@ -120,11 +120,13 @@ public class InputManager : MonoBehaviour {
 		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
 			GetBlockManager ().CreateBlockAtCursor ( GetBlockManager ().BlockCycleType);
 		} else if (Input.GetKeyDown (KeyCode.LeftBracket) || Input.GetKeyDown (KeyCode.Joystick1Button4)) {
-			Block.BlockType type = GetBlockManager ().PrevBlockType ();
+            //TODO generic
+            Cathy1Block.BlockType type = GetBlockManager ().PrevBlockType ();
 			if(GetBlockManager().ActiveObject != null)
 				GetBlockManager ().CreateBlockAtCursor (type);
 		} else if (Input.GetKeyDown (KeyCode.RightBracket)  || Input.GetKeyDown (KeyCode.Joystick1Button5)) {
-			Block.BlockType type = GetBlockManager ().NextBlockType ();
+            //TODO generic
+            Cathy1Block.BlockType type = GetBlockManager ().NextBlockType ();
 			if(GetBlockManager().ActiveObject != null)
 				GetBlockManager ().CreateBlockAtCursor (type);
 		}
@@ -140,13 +142,13 @@ public class InputManager : MonoBehaviour {
 		else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button2)) {
 			if (GetBlockManager().ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
-				Block block = (Block)GetBlockManager().ActiveObject.GetComponent (typeof(Block));
+				Cathy1Block block = GetBlockManager().ActiveObject.GetComponent<Cathy1Block>();
 				block.Item = Instantiate (GetBlockManager().StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
 			}
 		} else if (Input.GetKeyDown (KeyCode.End)) {
 			if (GetBlockManager().ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
-				Block block = (Block)GetBlockManager().ActiveObject.GetComponent (typeof(Block));
+				Cathy1Block block = GetBlockManager().ActiveObject.GetComponent<Cathy1Block>();
 				block.Item = Instantiate (GetBlockManager().GoalLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
 			}
 		}

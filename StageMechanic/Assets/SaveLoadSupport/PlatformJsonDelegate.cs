@@ -55,7 +55,7 @@ public class PlatformJsonDelegate {
 			Debug.Assert (_platform != null);
 			List<BlockJsonDelegate> ret = new List<BlockJsonDelegate> ();
 			foreach (Transform child in _platform.transform) {
-				Block block = child.gameObject.GetComponent<Block>();
+				IBlock block = child.gameObject.GetComponent<IBlock>();
 				if(block != null)
 					ret.Add (block.GetJsonDelegate ());
 			}
@@ -65,8 +65,8 @@ public class PlatformJsonDelegate {
 			Debug.Assert (_platform != null);
 			foreach (BlockJsonDelegate del in value) {
                 //TODO do this in a Deserialzed method but #NotLikeThiiiiiissssss
-                if(del != null && del.Block != null && del.Block.gameObject != null)
-				    del.Block.gameObject.transform.parent = _platform.transform;
+                if(del != null && del.Block != null && del.Block.GameObject != null)
+				    del.Block.GameObject.transform.parent = _platform.transform;
 			}
 		}
 	}

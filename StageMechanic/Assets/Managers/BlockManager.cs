@@ -44,7 +44,8 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    public Block ActiveBlock
+    //TODO support other types via IBlock
+    public Cathy1Block ActiveBlock
     {
         get
         {
@@ -52,13 +53,13 @@ public class BlockManager : MonoBehaviour {
             Debug.Assert(col != null);
             if (col.ObjectUnderCursor == null)
                 return null;
-            return col.ObjectUnderCursor.GetComponent<Block>();
+            return col.ObjectUnderCursor.GetComponent<Cathy1Block>();
         }
         set
         {
             CursorCollider col = Cursor.GetComponent<CursorCollider>();
             Debug.Assert(col != null);
-            col.ObjectUnderCursor = value.gameObject;
+            col.ObjectUnderCursor = value.GameObject;
         }
     }
 
@@ -73,8 +74,8 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    private Block.BlockType _blockCycleType = Block.BlockType.Basic;
-    public Block.BlockType BlockCycleType {
+    private Cathy1Block.BlockType _blockCycleType = Cathy1Block.BlockType.Basic;
+    public Cathy1Block.BlockType BlockCycleType {
         get {
             return _blockCycleType;
         }
@@ -83,17 +84,17 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    public Block.BlockType NextBlockType() {
-        if (BlockCycleType >= Block.BlockType.Goal) {
-            BlockCycleType = Block.BlockType.Basic;
+    public Cathy1Block.BlockType NextBlockType() {
+        if (BlockCycleType >= Cathy1Block.BlockType.Goal) {
+            BlockCycleType = Cathy1Block.BlockType.Basic;
             return BlockCycleType;
         }
         return ++BlockCycleType;
     }
 
-    public Block.BlockType PrevBlockType() {
-        if (BlockCycleType <= Block.BlockType.Basic) {
-            BlockCycleType = Block.BlockType.Goal;
+    public Cathy1Block.BlockType PrevBlockType() {
+        if (BlockCycleType <= Cathy1Block.BlockType.Basic) {
+            BlockCycleType = Cathy1Block.BlockType.Goal;
             return BlockCycleType;
         }
         return --BlockCycleType;
@@ -158,21 +159,24 @@ public class BlockManager : MonoBehaviour {
     }
 
     // Create a basic block at the current cursor position
-    public Block CreateBlockAtCursor(Block.BlockType type = Block.BlockType.Basic) {
+
+    public IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {
         Debug.Assert(Cursor != null);
-        Block block = GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type);
-        block.transform.SetParent(ActiveFloor.transform, true);
+        Cathy1Block block = GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
         return block;
     }
 
-    public Cathy1BlockFactory Cathy1BlockFactory()
+    public Cathy1BlockFactory Cathy1BlockFactory
     {
-        return GetComponent<Cathy1BlockFactory>();
+        get
+        {
+            return GetComponent<Cathy1BlockFactory>();
+        }
     }
 
 	// Sets the material for a block
-	void SetMaterial( GameObject block, Material material ) {
-		Renderer rend = block.GetComponent<Renderer> ();
+	void SetMaterial( IBlock block, Material material ) {
+		Renderer rend = block.GameObject.GetComponent<Renderer> ();
 		rend.material = material;
 	}
 
@@ -204,8 +208,10 @@ public class BlockManager : MonoBehaviour {
 		return output;
 	}
 
-	public void DestroyBlock( Block block ) {
-		Destroy (block);
+	public void DestroyBlock( IBlock block ) {
+        Debug.Assert(block != null);
+        Debug.Assert(block.GameObject != null);
+		Destroy (block.GameObject);
 	}
 
 	public void SaveToJson() {

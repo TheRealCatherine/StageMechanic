@@ -14,6 +14,6 @@ public interface IBlockFactory  {
         get;
     }
 
-   Block CreateBlock(Vector3 globalPosition, Quaternion globalRotation, int blockTypeIndex);
-   Block CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string blockTypeName);
+   IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, int blockTypeIndex, GameObject parent = null);
+   IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string blockTypeName, GameObject parent = null);
 }

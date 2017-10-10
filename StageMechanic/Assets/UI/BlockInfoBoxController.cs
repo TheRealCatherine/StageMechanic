@@ -32,7 +32,7 @@ public class BlockInfoBoxController : MonoBehaviour {
     public Text teleportTo;
 
     internal string[] typeList;
-    Block lastBlock = null;
+    Cathy1Block lastBlock = null;
 
     public void ToggleVisibility()
     {
@@ -42,7 +42,7 @@ public class BlockInfoBoxController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //TODO get from description annotations
-        typeList = Enum.GetNames(typeof(Block.BlockType));
+        typeList = Enum.GetNames(typeof(Cathy1Block.BlockType));
     }
 
     // Update is called once per frame
