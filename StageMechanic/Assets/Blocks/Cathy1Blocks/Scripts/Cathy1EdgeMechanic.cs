@@ -28,14 +28,13 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         thisBlock.Position -= new Vector3(0, 0.25f, 0);
     }
 
-    void OnTriggerEnter(Collider other)
+    //TODO Make this work properly
+    void TestForSupport(Cathy1Block thisBlock, Cathy1Block otherBlock)
     {
-        Cathy1Block otherBlock = other.gameObject.GetComponent<Cathy1Block>();
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        if(otherBlock != null && thisBlock != null)
+        if (otherBlock != null && thisBlock != null)
         {
             //Check if this block is above the other one
-            if(Utility.AlmostEquals(otherBlock.Position.y,thisBlock.Position.y-1,0.0001))
+            if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y - 1, 0.01))
             {
                 IsFalling = false;
                 //Check if this block is at a diagnol
@@ -47,44 +46,62 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 
                 }
             }
-            else if(Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y + 1, 0.0001))
+        }
+    }
+
+    void TestForSupport(Cathy1Block thisBlock, Platform platform)
+    {
+        if (platform != null && thisBlock != null)
+        {
+            //Check if this block is above the other one
+            if (Utility.AlmostEquals(platform.gameObject.transform.position.y, thisBlock.Position.y - 0.5, 0.01))
             {
-                Cathy1EdgeMechanic EDGE = otherBlock.GetComponent<Cathy1EdgeMechanic>();
-                if(EDGE != null)
+                IsFalling = false;
+                //Check if this block is at a diagnol
+                if (platform.gameObject.transform.position.x != thisBlock.Position.x || platform.gameObject.transform.position.z != thisBlock.Position.z)
                 {
-                    EDGE.IsFalling = IsFalling;
+                    //We have an EDGE connection  
+                    //TODO check if there is a block underneath to see if this is
+                    //an EDGE only connection
+
                 }
             }
         }
+    }
+
+        void OnCollisionEnter(Collision collision)
+    {
+        Cathy1Block otherBlock = collision.collider.gameObject.GetComponent<Cathy1Block>();
+        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        Platform platform = collision.collider.gameObject.GetComponent<Platform>();
+        TestForSupport(thisBlock, otherBlock);
+        TestForSupport(thisBlock, platform);
     }
 
     void OnCollisionStay(Collision collisionInfo)
     {
         Cathy1Block otherBlock = collisionInfo.collider.gameObject.GetComponent<Cathy1Block>();
         Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        if (otherBlock != null && thisBlock != null)
-        {
-            //Check if this block is above the other one
-            if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y - 1, 0.0001))
-            {
-                IsFalling = false;
-                //Check if this block is at a diagnol
-                if (otherBlock.Position.x != thisBlock.Position.x || otherBlock.Position.z != thisBlock.Position.z)
-                {
-                    //We have an EDGE connection
-                    //TODO check if there is a block underneath to see if this is
-                    //an EDGE only connection
+        Platform platform = collisionInfo.collider.gameObject.GetComponent<Platform>();
+        TestForSupport(thisBlock, otherBlock);
+        TestForSupport(thisBlock, platform);
+    }
 
-                }
-            }
-            else if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y + 1, 0.0001))
-            {
-                Cathy1EdgeMechanic EDGE = otherBlock.GetComponent<Cathy1EdgeMechanic>();
-                if (EDGE != null)
-                {
-                    EDGE.IsFalling = IsFalling;
-                }
-            }
-        }
+    void OnTriggerEnter(Collider other)
+    {
+        Cathy1Block otherBlock = other.gameObject.GetComponent<Cathy1Block>();
+        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        Platform platform = other.gameObject.GetComponent<Platform>();
+        TestForSupport(thisBlock, otherBlock);
+        TestForSupport(thisBlock, platform);
+    }
+
+    void OnTriggerStay(Collider collisionInfo)
+    {
+        Cathy1Block otherBlock = collisionInfo.gameObject.GetComponent<Cathy1Block>();
+        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        Platform platform = collisionInfo.gameObject.GetComponent<Platform>();
+        TestForSupport(thisBlock, otherBlock);
+        TestForSupport(thisBlock, platform);
     }
 }
