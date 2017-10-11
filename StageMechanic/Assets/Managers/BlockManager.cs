@@ -32,6 +32,8 @@ public class BlockManager : MonoBehaviour {
 
     // Properties
 
+    public bool PlayMode { get; set; } = false;
+
     // The obect (block/item/etc) currently under the cursor
     public GameObject ActiveObject {
         get {

@@ -25,12 +25,20 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         if (thisBlock == null)
             return;
 
-        thisBlock.Position -= new Vector3(0, 0.25f, 0);
+        BlockManager bm = thisBlock.BlockManager;
+        Debug.Assert(bm != null);
+        if(bm.PlayMode)
+            thisBlock.Position -= new Vector3(0, 0.25f, 0);
     }
 
     //TODO Make this work properly
     void TestForSupport(Cathy1Block thisBlock, Cathy1Block otherBlock)
     {
+        BlockManager bm = thisBlock.BlockManager;
+        Debug.Assert(bm != null);
+        if (!bm.PlayMode)
+            return;
+
         if (otherBlock != null && thisBlock != null)
         {
             //Check if this block is above the other one
@@ -51,6 +59,12 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 
     void TestForSupport(Cathy1Block thisBlock, Platform platform)
     {
+        BlockManager bm = thisBlock.BlockManager;
+        Debug.Assert(bm != null);
+        if (!bm.PlayMode)
+            return;
+
+
         if (platform != null && thisBlock != null)
         {
             //Check if this block is above the other one

@@ -107,6 +107,10 @@ public class InputManager : MonoBehaviour {
 		else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
             BlockInfoBox.ToggleVisibility();
         }
+        else if(Input.GetKeyDown(KeyCode.P))
+        {
+            GetBlockManager().PlayMode = !GetBlockManager().PlayMode;
+        }
 		//Quit
 		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
             #if UNITY_EDITOR
