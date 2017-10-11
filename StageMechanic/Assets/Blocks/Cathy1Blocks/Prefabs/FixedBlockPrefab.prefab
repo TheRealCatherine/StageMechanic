@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23397386911338622}
   - component: {fileID: 54874856392429506}
   - component: {fileID: 114518429010908534}
+  - component: {fileID: 114975732723020554}
   m_Layer: 0
   m_Name: FixedBlockPrefab
   m_TagString: Untagged
@@ -119,5 +120,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f962aa4fb6329da4cb2bbe7a5a4d307e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114975732723020554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738747662548062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23496409851949068}
   - component: {fileID: 54546164414468408}
   - component: {fileID: 114147602755145440}
+  - component: {fileID: 114372760835372340}
   m_Layer: 0
   m_Name: GoalBlockPrefab
   m_TagString: Untagged
@@ -119,5 +120,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f962aa4fb6329da4cb2bbe7a5a4d307e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114372760835372340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726037543320594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

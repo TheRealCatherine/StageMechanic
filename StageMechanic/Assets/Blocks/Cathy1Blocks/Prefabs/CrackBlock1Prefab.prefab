@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23326589243171420}
   - component: {fileID: 54741149217602536}
   - component: {fileID: 114599604780374974}
+  - component: {fileID: 114420934488376300}
   m_Layer: 0
   m_Name: CrackBlock1Prefab
   m_TagString: Untagged
@@ -110,6 +111,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114420934488376300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079187110874380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114599604780374974
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23645920036734352}
   - component: {fileID: 54545074883206262}
   - component: {fileID: 114843511737854410}
+  - component: {fileID: 114506444003664872}
   m_Layer: 0
   m_Name: VortexBlockPrefab
   m_TagString: Untagged
@@ -110,6 +111,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114506444003664872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056341459242404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114843511737854410
 MonoBehaviour:
   m_ObjectHideFlags: 1

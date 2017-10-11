@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23462238200180826}
   - component: {fileID: 54793709640818006}
   - component: {fileID: 114941373140854612}
+  - component: {fileID: 114781419024675566}
   m_Layer: 0
   m_Name: TeleportBlockPrefab
   m_TagString: Untagged
@@ -110,6 +111,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114781419024675566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028546297549334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114941373140854612
 MonoBehaviour:
   m_ObjectHideFlags: 1
