@@ -16,7 +16,7 @@ We will target both the amateur/casual player of Catherine, Robo5, and Pushmo lo
 
 ## Current state
 
-This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017. So far we have focused on the Level Editor implementation and it is currently possible to easily place blocks in 3D space. Block properties (trap, player movement, bombs, etc) have been defined (though not yet implemented) and textures are in the works (but there are placeholders). Once the Level Editor as has reached a usable state, development focus will shift to the Play Mode while level designers create the default map set.
+This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017. So far we have focused on the Level Editor implementation and it is currently possible to easily place blocks in 3D space. Block properties (trap, player movement, bombs, etc) have been defined and partially implemented for Catherine1-style blocks and textures are in the works (but there are placeholders). Catherine1-style gravity and EDGEing currently work but are slightly buggy. Stage load/save support is in place though the exact layout of this file is still in flux. Once the Level Editor as has reached a usable state, development focus will shift to the Play Mode while level designers create the default map set.
 
 [Development Builds](https://github.com/TheRealCatherine/StageMechanic/wiki/Downloads)
 
