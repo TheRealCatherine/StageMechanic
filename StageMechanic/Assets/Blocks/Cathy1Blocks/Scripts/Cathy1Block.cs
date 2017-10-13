@@ -6,6 +6,10 @@ using System;
 
 public class Cathy1Block : AbstractBlock
 {
+    public Material Material1;
+    public Material Material2;
+    public Material Material3;
+    public Material Material4;
 
     /// <summary>
     /// Used internally by Cathy1 blocks and game rules to ensure correctness.
@@ -30,7 +34,7 @@ public class Cathy1Block : AbstractBlock
         Goal            //Level completion zone
     }
 
-
+    //TODO move to teleport subclass
     public enum TeleportBlockType
     {
         None = 0,
@@ -43,7 +47,7 @@ public class Cathy1Block : AbstractBlock
     }
 
     //TODO move to Abstract
-    BlockType _type = BlockType.Custom;
+    internal BlockType _type = BlockType.Custom;
     public virtual BlockType Type { get { return _type; } }
 
     public BlockManager BlockManager { get; set; } = null;
@@ -73,62 +77,6 @@ public class Cathy1Block : AbstractBlock
             if (trapHouse != null)
                 return trapHouse.TrapType != Cathy1AbstractTrapBlock.TrapBlockType.None;
             return false;
-        }
-    }
-
-    /**
-	 * If true, this block will be destoryed BombTimeMS milliseconds
-	 * after TriggerBomb() is called.
-	 */
-    private bool _isBomb = false;
-    public bool IsBomb
-    {
-        get
-        {
-            return _isBomb;
-        }
-        set
-        {
-            _isBomb = value;
-
-        }
-    }
-
-
-    /**
-	 * Number of miliseconds after TriggerBomb() is called to wait
-	 * before destorying the block.
-	 */
-    private int _bombTimeMS = 0;
-    public int BombTimeMS
-    {
-        get
-        {
-            return _bombTimeMS;
-        }
-        set
-        {
-            _bombTimeMS = value;
-
-        }
-    }
-
-    /**
-	 * How large of an area should be affected by this blocks destruction
-	 * via the TriggerBomb() method is called. Note that one standard
-	 * block is 10x10x10 so to affect 3 normal blocks set this to 30.
-	 */
-    private int _bombRadius = 0;
-    public int BombRadius
-    {
-        get
-        {
-            return _bombRadius;
-        }
-        set
-        {
-            _bombRadius = value;
-
         }
     }
 
@@ -335,8 +283,6 @@ public class Cathy1Block : AbstractBlock
         get
         {
             Dictionary<string, string> ret = base.Properties;
-            ret.Add("BombFuse", BombTimeMS.ToString());
-            ret.Add("BombRadius", BombRadius.ToString());
             ret.Add("TeleportType", TeleportType.ToString());
             ret.Add("TeleportDistance", TeleportDistance.ToString());
             ret.Add("CollapseSteps", CollapseAfterNSteps.ToString());
