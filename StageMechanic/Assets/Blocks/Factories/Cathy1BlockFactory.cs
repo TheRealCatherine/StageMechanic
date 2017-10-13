@@ -109,7 +109,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
             case Cathy1Block.BlockType.Ice:
                 newBlock = Instantiate(IceBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
-            case Cathy1Block.BlockType.Heavy1:
+            case Cathy1Block.BlockType.Heavy:
                 newBlock = Instantiate(Heavy1BlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
             case Cathy1Block.BlockType.Bomb1:
