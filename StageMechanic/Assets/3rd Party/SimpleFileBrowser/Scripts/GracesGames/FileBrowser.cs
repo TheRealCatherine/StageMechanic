@@ -323,8 +323,7 @@ namespace GracesGames {
 		// Returns whether the application is run on a Mac Operating System
 		private bool IsMacOsPlatform() {
 			return (Application.platform == RuntimePlatform.OSXEditor ||
-			        Application.platform == RuntimePlatform.OSXPlayer ||
-			        Application.platform == RuntimePlatform.OSXDashboardPlayer);
+			        Application.platform == RuntimePlatform.OSXPlayer);
 		}
 		
 		// Creates a directory button given a directory
