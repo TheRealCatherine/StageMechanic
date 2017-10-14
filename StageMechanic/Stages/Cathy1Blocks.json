@@ -16,16 +16,16 @@
                     "Name": "Platform1",
                     "GlobalPosition": {
                         "x": 0,
-                        "y": 0,
+                        "y": 0.5,
                         "z": 0
                     },
                     "Blocks": [
                         {
-                            "Name": "f9a1420e-ce57-40ef-96d4-84dddc78fb72",
-                            "Type": "Basic",
+                            "Name": "3fdd7405-b53e-4dc9-9527-c74256c742c0",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 0,
-                                "y": 0.5,
+                                "y": 1,
                                 "z": 0
                             },
                             "Rotation": {
@@ -41,31 +41,11 @@
                             }
                         },
                         {
-                            "Name": "406eda61-04a0-49b5-a44e-8e14b703c1a7",
-                            "Type": "Trap1",
-                            "Position": {
-                                "x": 1,
-                                "y": 0.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "e794c1f0-f31f-4aee-9daf-f8b2985d9c98",
-                            "Type": "Trap2",
+                            "Name": "561d3f59-9e6d-405b-a1ed-291319f45299",
+                            "Type": "Spike Trap",
                             "Position": {
                                 "x": 2,
-                                "y": 0.5,
+                                "y": 1,
                                 "z": 0
                             },
                             "Rotation": {
@@ -81,31 +61,11 @@
                             }
                         },
                         {
-                            "Name": "d84b7488-ace7-4a56-a901-554c87eec694",
-                            "Type": "Spring",
-                            "Position": {
-                                "x": 3,
-                                "y": 0.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "dc703345-1d3f-4932-8be4-2bf94846387b",
-                            "Type": "Monster",
+                            "Name": "efb92f47-ef36-48a6-a8bd-ae7b63b31210",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 4,
-                                "y": 0.5,
+                                "y": 1,
                                 "z": 0
                             },
                             "Rotation": {
@@ -121,11 +81,11 @@
                             }
                         },
                         {
-                            "Name": "e4e81eb3-a8e6-43cb-b401-210e4213cf29",
-                            "Type": "Ice",
+                            "Name": "398184e4-daa4-4f14-b49b-4f4469eb27b6",
+                            "Type": "Custom",
                             "Position": {
-                                "x": 5,
-                                "y": 0.5,
+                                "x": -1,
+                                "y": 2,
                                 "z": 0
                             },
                             "Rotation": {
@@ -141,91 +101,11 @@
                             }
                         },
                         {
-                            "Name": "0ac68755-d4e1-43f4-90f2-59f822752197",
-                            "Type": "Teleport",
-                            "Position": {
-                                "x": 5,
-                                "y": 1.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "2a382857-0e6a-4bb5-8b47-7ab505289140",
-                            "Type": "Crack2",
-                            "Position": {
-                                "x": 4,
-                                "y": 1.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "42ad6a36-2587-4781-8627-9dceff542e7b",
-                            "Type": "Crack1",
-                            "Position": {
-                                "x": 3,
-                                "y": 1.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "82bbd80e-9e0f-4307-be91-5c78c2580566",
-                            "Type": "Bomb2",
-                            "Position": {
-                                "x": 2,
-                                "y": 1.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "766332c4-7fb4-4bc9-aa0b-579979c145a2",
-                            "Type": "Bomb1",
+                            "Name": "7b9fe2e7-cbbc-4ec8-8360-9155a56c3a17",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 1,
-                                "y": 1.5,
+                                "y": 2,
                                 "z": 0
                             },
                             "Rotation": {
@@ -241,12 +121,72 @@
                             }
                         },
                         {
-                            "Name": "1f033b95-25ba-4572-8bf3-98a176fde683",
-                            "Type": "Vortex",
+                            "Name": "efff8c3f-257f-47f4-adb5-37ea0a7e8eef",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "aaf3bd0a-de41-4868-9b77-c64638e00d4c",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": 5,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "81ff77a5-37c3-4dab-a342-a104aee86b3a",
+                            "Type": "Large Bomb",
+                            "Position": {
+                                "x": -1,
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a4002100-d7d8-4d06-91af-573aec3d5e0d",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 0,
-                                "y": 1.5,
-                                "z": 0
+                                "y": 3,
+                                "z": 1
                             },
                             "Rotation": {
                                 "eulerAngles": {
@@ -261,32 +201,12 @@
                             }
                         },
                         {
-                            "Name": "badddbf5-4f5c-49fb-883e-19ac6a419599",
-                            "Type": "Heavy1",
-                            "Position": {
-                                "x": 0,
-                                "y": 2.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "1e668879-a0a3-4ce6-bc0c-484f5b984910",
-                            "Type": "Heavy2",
+                            "Name": "762a15c4-4ac1-4f66-8fe2-3066e4fbe1fd",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 1,
-                                "y": 2.5,
-                                "z": 0
+                                "y": 3,
+                                "z": 1
                             },
                             "Rotation": {
                                 "eulerAngles": {
@@ -301,12 +221,12 @@
                             }
                         },
                         {
-                            "Name": "2000a107-f07f-4c19-9c27-b16e3d975ec4",
-                            "Type": "Immobile",
+                            "Name": "95359908-9c37-441f-a45d-0130da406be3",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 2,
-                                "y": 2.5,
-                                "z": 0
+                                "y": 3,
+                                "z": 1
                             },
                             "Rotation": {
                                 "eulerAngles": {
@@ -321,12 +241,12 @@
                             }
                         },
                         {
-                            "Name": "2631cc12-52f1-45d9-8ff1-a8e71f2d4be7",
-                            "Type": "Fixed",
+                            "Name": "ac6abf05-de63-4da6-b9e2-d57b3d421dd3",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 3,
-                                "y": 2.5,
-                                "z": 0
+                                "y": 3,
+                                "z": 1
                             },
                             "Rotation": {
                                 "eulerAngles": {
@@ -341,32 +261,32 @@
                             }
                         },
                         {
-                            "Name": "da887194-b10d-49c6-89ae-e55a7243584e",
-                            "Type": "Goal",
-                            "Position": {
-                                "x": 5,
-                                "y": 2.5,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "1f3427f8-997a-4642-8917-b5b6c1787a55",
-                            "Type": "Random",
+                            "Name": "9669867e-10a5-43a1-8a03-a0b1431decdc",
+                            "Type": "Custom",
                             "Position": {
                                 "x": 4,
-                                "y": 2.5,
-                                "z": 0
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "472c1714-c6f4-4443-ba2b-907455115766",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 3,
+                                "z": 1
                             },
                             "Rotation": {
                                 "eulerAngles": {

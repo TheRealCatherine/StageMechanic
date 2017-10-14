@@ -27,7 +27,6 @@ public class Cathy1Block : AbstractBlock
         Bomb2,          //Bomb with long timing
         Crack1,         //Can step on once
         Crack2,         //Can step on twice
-        Teleport,       //Moves character from one block to another
         Heavy,          //Similar to Basic but slower to move
         Immobile,       //Basic blocks that cannot normally be moved by the player
         Random,         //Not a fixed type, one of a selectable subset
