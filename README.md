@@ -30,8 +30,8 @@ We are using the BSD 3-clause license. This allows maximum freedom while protect
 
 ### Tools/technologies used
 
-* Game Engine: Unity Personal 2017.1.1f1
-* Languages: C# (primarily) and Javascript
+* Game Engine: Unity Personal 2017.2.0f3
+* Languages: C# 6.0 for primary development, Lua for custom scripting
 * 3D Modeling: Blender 3D
 * 2D Painting: .PSD file format (Photoshop/Krita/gimp/CSP)
 * Audio/Music: TBD, one or more of: Audacity, Sony Acid Pro, Fruity Loops, Presonus Studio One
