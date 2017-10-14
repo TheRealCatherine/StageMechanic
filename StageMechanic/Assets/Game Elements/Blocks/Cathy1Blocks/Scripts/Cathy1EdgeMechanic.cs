@@ -42,7 +42,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         if (otherBlock != null && thisBlock != null)
         {
             //Check if this block is above the other one
-            if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y - 1, 0.01))
+            if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y - 1, 0.1))
             {
                 IsFalling = false;
                 //Check if this block is at a diagnol
@@ -83,7 +83,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         }
     }
 
-        void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         Cathy1Block otherBlock = collision.collider.gameObject.GetComponent<Cathy1Block>();
         Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
