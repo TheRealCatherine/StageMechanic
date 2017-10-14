@@ -38,25 +38,21 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
 
     public static readonly List<string> _blockTypeNames = new List<string>{
         "Custom",
-        "Basic",			//Typical block
-		"Trap1",			//Spike Trap
-		"Trap2",			//??? Trap
-		"Spring",			//Teleport variation, moves character up along edge
-		"Monster",		    //Teleport variation, moves character down from edge
-		"Ice",			    //Teleport variation, moves charcter along top of block
-		"Vortex",			//Vortex trap
-		"Bomb1",			//Bomb with short timing
-		"Bomb2",			//Bomb with long timing
-		"Crack1",			//Can step on once
-		"Crack2",			//Can step on twice
-		"Teleport",		    //Moves character from one block to another
-		"Heavy1",			//Similar to Basic but slower to move
-		"Heavy2",			//Even slower to move than Heavy1
-		"Immobile",		    //Basic blocks that cannot normally be moved by the player
-		"Fixed",			//Basic blocks that are fixed in space, cannot be moved no matter what
-		"Random",			//Not a fixed type, one of a selectable subset
-		"Goal"			    //Level completion zone
-	};
+        "Basic",
+        "Spike Trap",
+        "Spring",
+        "Monster",
+        "Ice",
+        "Vortex",
+        "Small Bomb",
+        "Large Bomb",
+        "Cracked (1 Step)",
+        "Cracked (2 Steps)",
+        "Heavy",
+        "Immobile",
+        "Mystery",
+        "Goal"
+    };
 
     public List<string> BlockTypeNames
     {
@@ -66,6 +62,83 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         }
     }
 
+    public static Cathy1Block.BlockType TypeForName(string name)
+    {
+        switch (name)
+        {
+
+            case "Basic":
+                return Cathy1Block.BlockType.Basic;
+            case "Spike Trap":
+                return Cathy1Block.BlockType.SpikeTrap;
+            case "Spring":
+                return Cathy1Block.BlockType.Spring;
+            case "Monster":
+                return Cathy1Block.BlockType.Monster;
+            case "Ice":
+                return Cathy1Block.BlockType.Ice;
+            case "Vortex":
+                return Cathy1Block.BlockType.Vortex;
+            case "Small Bomb":
+                return Cathy1Block.BlockType.Bomb1;
+            case "Large Bomb":
+                return Cathy1Block.BlockType.Bomb2;
+            case "Cracked (1 Step)":
+                return Cathy1Block.BlockType.Crack1;
+            case "Cracked (2 Steps)":
+                return Cathy1Block.BlockType.Crack2;
+            case "Heavy":
+                return Cathy1Block.BlockType.Heavy;
+            case "Immobile":
+                return Cathy1Block.BlockType.Immobile;
+            case "Mystery":
+                return Cathy1Block.BlockType.Random;
+            case "Goal":
+                return Cathy1Block.BlockType.Goal;
+            case "Custom":
+            default:
+                return Cathy1Block.BlockType.Custom;
+        }
+    }
+
+    public static string NameForType(Cathy1Block.BlockType type)
+    {
+        switch (type)
+        {
+
+            case Cathy1Block.BlockType.Basic:
+                return "Basic";
+            case Cathy1Block.BlockType.SpikeTrap:
+                return "Spike Trap";
+            case Cathy1Block.BlockType.Spring:
+                return "Spring";
+            case Cathy1Block.BlockType.Monster:
+                return "Monster";
+            case Cathy1Block.BlockType.Ice:
+                return "Ice";
+            case Cathy1Block.BlockType.Vortex:
+                return "Vortex";
+            case Cathy1Block.BlockType.Bomb1:
+                return "Small Bomb";
+            case Cathy1Block.BlockType.Bomb2:
+                return "Large Bomb";
+            case Cathy1Block.BlockType.Crack1:
+                return "Cracked (1 Step)";
+            case Cathy1Block.BlockType.Crack2:
+                return "Cracked (2 Steps)";
+            case Cathy1Block.BlockType.Heavy:
+                return "Heavy";
+            case Cathy1Block.BlockType.Immobile:
+                return "Immobile";
+            case Cathy1Block.BlockType.Random:
+                return "Mystery";
+            case Cathy1Block.BlockType.Goal:
+                return "Goal";
+            case Cathy1Block.BlockType.Custom:
+            default:
+                return "Custom";
+        }
+    }
     //TODO fix support for changing block types at a location
     public IBlock CreateBlock(Vector3 pos, Quaternion rotation, Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic, GameObject parent = null)
     {
@@ -139,9 +212,6 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
             case Cathy1Block.BlockType.Monster:
                 newBlock = Instantiate(MonsterBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
-            case Cathy1Block.BlockType.Teleport:
-                newBlock = Instantiate(TeleportBlockPrefab, pos, rotation, parent.transform) as GameObject;
-                break;
             case Cathy1Block.BlockType.Random:
                 newBlock = Instantiate(RandomBlockPrefab, pos, rotation, parent.transform) as GameObject;
                 break;
@@ -175,8 +245,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         Cathy1Block.BlockType type = Cathy1Block.BlockType.Custom;
         try
         {
-            type = (Cathy1Block.BlockType)Enum.Parse(typeof(Cathy1Block.BlockType), blockTypeName);
-            Debug.Assert(Enum.IsDefined(typeof(Cathy1Block.BlockType), type));
+            type = TypeForName(blockTypeName);
         }
         catch (ArgumentException e)
         {

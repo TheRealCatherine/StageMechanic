@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cathy1MysteryBlock : MonoBehaviour {
+public class Cathy1MysteryBlock : Cathy1Block
+{
 
 	// Use this for initialization
 	void Start () {

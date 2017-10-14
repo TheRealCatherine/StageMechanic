@@ -264,7 +264,7 @@ public class Cathy1Block : AbstractBlock
     {
         get
         {
-            return Type.ToString();
+            return Cathy1BlockFactory.NameForType(Type);
         }
         set
         {

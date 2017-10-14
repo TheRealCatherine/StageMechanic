@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 65198324140131608}
   - component: {fileID: 23636392803407138}
   - component: {fileID: 54708961279671746}
-  - component: {fileID: 114529137580890764}
   - component: {fileID: 114489903348015676}
+  - component: {fileID: 114529137580890764}
   m_Layer: 0
   m_Name: Cathy1SpikeTrapPrefab
   m_TagString: Untagged
@@ -54,6 +54,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -69,6 +70,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -109,7 +111,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.001, y: 1.001, z: 1.001}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114489903348015676
 MonoBehaviour:
@@ -133,6 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897ca7cf84483714796ac2aa6687507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Material1: {fileID: 0}
+  Material2: {fileID: 0}
+  Material3: {fileID: 0}
+  Material4: {fileID: 0}
   ArmedStateMaterial: {fileID: 2100000, guid: 1b7cd7403e5b020469a1af3a29bf96dc, type: 2}
   TriggeredStateMaterial: {fileID: 0}
   ActiveStateMaterial: {fileID: 0}

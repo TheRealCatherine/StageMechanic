@@ -44,6 +44,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
             //Check if this block is above the other one
             if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y - 1, 0.1))
             {
+                //TODO check for diagnol
                 IsFalling = false;
                 //Check if this block is at a diagnol
                 if (otherBlock.Position.x != thisBlock.Position.x || otherBlock.Position.z != thisBlock.Position.z)
@@ -68,7 +69,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         if (platform != null && thisBlock != null)
         {
             //Check if this block is above the other one
-            if (Utility.AlmostEquals(platform.gameObject.transform.position.y, thisBlock.Position.y - 0.5, 0.01))
+            if (Utility.AlmostEquals(platform.gameObject.transform.position.y, thisBlock.Position.y-0.5f, 0.1))
             {
                 IsFalling = false;
                 //Check if this block is at a diagnol

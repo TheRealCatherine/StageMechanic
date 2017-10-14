@@ -85,15 +85,15 @@ public class InputManager : MonoBehaviour {
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button3)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock(Cursor.transform.position,Cursor.transform.rotation, "Basic", GetActiveFloor());
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock(Cursor.transform.position,Cursor.transform.rotation, Cathy1Block.BlockType.Basic, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "Ice", GetActiveFloor());
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Crack2, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "SpikeTrap", GetActiveFloor());
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Heavy, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "Bomb1", GetActiveFloor());
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Ice, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, "Heavy", GetActiveFloor());
+			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Bomb1, GetActiveFloor());
 		}
 		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {

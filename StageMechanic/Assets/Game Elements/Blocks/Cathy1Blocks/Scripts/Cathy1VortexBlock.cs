@@ -2,15 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cathy1VortexBlock : MonoBehaviour {
+public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
+{
+    public override TrapBlockType TrapType
+    {
+        get
+        {
+            return TrapBlockType.Vortex;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    /// <summary>
+    /// Returns the capsule collider associated with the block
+    /// </summary>
+    public override sealed Collider PlayerTriggerCollider
+    {
+        get
+        {
+            return GetComponent<CapsuleCollider>();
+        }
+        set { }
+    }
+
+    /// <summary>
+    /// Returns the capsule collider associated with the block
+    /// </summary>
+    public override sealed Collider ItemTriggerCollider
+    {
+        get
+        {
+            return GetComponent<CapsuleCollider>();
+        }
+        set { }
+    }
+
+    /// <summary>
+    /// Returns the capsule collider associated with the block
+    /// </summary>
+    public override sealed Collider BlockTriggerCollider
+    {
+        get
+        {
+            return GetComponent<CapsuleCollider>();
+        }
+        set { }
+    }
 }
