@@ -124,6 +124,12 @@ public interface IBlock
         set;
     }
 
+    List<IEvent> Events
+    {
+        get;
+        set;
+    }
+
     /// <summary>
     /// The parent object in the scene of this block. This may be
     /// any type of GameObject and differnt game rules may react

@@ -89,6 +89,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     /// </summary>
     public virtual List<GameObject> Items { get; set; }
 
+    public virtual List<IEvent> Events { get; set; }
+
     /// <summary>
     /// Uses GameObject.transform.parent internally. This method is
     /// virtual because some blocks may want to report no parent

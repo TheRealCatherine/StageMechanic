@@ -110,6 +110,7 @@ public class InputManager : MonoBehaviour {
         else if(Input.GetKeyDown(KeyCode.P))
         {
             GetBlockManager().PlayMode = !GetBlockManager().PlayMode;
+            GetComponent<PlayerManager>().PlayMode = !(GetComponent<PlayerManager>().PlayMode);
         }
 		//Quit
 		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
@@ -142,8 +143,16 @@ public class InputManager : MonoBehaviour {
 				Destroy (GetBlockManager ().ActiveObject);
 		} 
 
-		// Buttons for setting items
-		else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button2)) {
+        else if(Input.GetKeyDown(KeyCode.B))
+        {
+            GetComponent<EventManager>().CreatePlayerStartLocation(0, Cursor.transform.position, Cursor.transform.rotation);
+        } else if (Input.GetKeyDown(KeyCode.O))
+        {
+            GetComponent<EventManager>().CreatePlayerStartLocation(1, Cursor.transform.position, Cursor.transform.rotation);
+        }
+
+        // Buttons for setting items
+        else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button2)) {
 			if (GetBlockManager().ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
 				Cathy1Block block = GetBlockManager().ActiveObject.GetComponent<Cathy1Block>();

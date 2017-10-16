@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Cathy1AbstractEvent : MonoBehaviour, IEvent
 {
+
     public enum EventType
     {
-        Custon,
-        Player1Start,
-        Player2Start,
+        Custom,
+        PlayerStart,
         Goal,
         Checkpoint,
         EnemySpawn
     }
 
-    internal EventType _type;
+    public virtual EventType Type { get; set; }
 
     public string Name
     {
@@ -29,23 +29,21 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
         }
     }
 
-    virtual public string TypeName
+    public virtual string TypeName
     {
         get
         {
-            switch (_type)
+            switch (Type)
             {
-                case EventType.Player1Start:
-                    return "Player 1 Start";
-                case EventType.Player2Start:
-                    return "Player 2 Start";
+                case EventType.PlayerStart:
+                    return "Player Start";
                 case EventType.Goal:
                     return "Goal";
                 case EventType.Checkpoint:
                     return "Checkpoint";
                 case EventType.EnemySpawn:
                     return "Enemy Spawn";
-                case EventType.Custon:
+                case EventType.Custom:
                 default:
                     return "Custom";
             }
@@ -54,24 +52,21 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
         {
             switch (value)
             {
-                case "Player 1 Start":
-                    _type = EventType.Player1Start;
-                    break;
-                case "Player 2 Start":
-                    _type = EventType.Player2Start;
+                case "Player Start":
+                    Type = EventType.PlayerStart;
                     break;
                 case "Goal":
-                    _type = EventType.Goal;
+                    Type = EventType.Goal;
                     break;
                 case "Checkpoint":
-                    _type = EventType.Checkpoint;
+                    Type = EventType.Checkpoint;
                     break;
                 case "Enemy Spawn":
-                    _type = EventType.EnemySpawn;
+                    Type = EventType.EnemySpawn;
                     break;
                 case "Custom":
                 default:
-                    _type = EventType.Custon;
+                    Type = EventType.Custom;
                     break;
             }
         }
