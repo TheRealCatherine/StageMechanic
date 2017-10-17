@@ -18,12 +18,16 @@ public class InputManager : MonoBehaviour {
 	public GameObject Camera;
     public BlockInfoBoxController BlockInfoBox;
 
-	public BlockManager GetBlockManager() {
-		return Stage.GetComponent<BlockManager>();
+	public BlockManager BlockManager
+    {
+        get
+        {
+            return GetComponent<BlockManager>();
+        }
 	}
 
 	public GameObject GetActiveFloor() {
-		return GetBlockManager ().ActiveFloor;
+		return BlockManager.ActiveFloor;
 	}
 
 	public Camera GetCamera() {
@@ -85,23 +89,23 @@ public class InputManager : MonoBehaviour {
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button3)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock(Cursor.transform.position,Cursor.transform.rotation, Cathy1Block.BlockType.Basic, GetActiveFloor());
+			BlockManager.Cathy1BlockFactory.CreateBlock(Cursor.transform.position,Cursor.transform.rotation, Cathy1Block.BlockType.Basic, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Crack2, GetActiveFloor());
+			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Crack2, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Heavy, GetActiveFloor());
+			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Heavy, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Ice, GetActiveFloor());
+			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Ice, GetActiveFloor());
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			GetBlockManager ().Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Bomb1, GetActiveFloor());
+			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Bomb1, GetActiveFloor());
 		}
 		// Save
 		else if (Input.GetKeyDown (KeyCode.S)) {
-			GetBlockManager ().SaveToJson ();
+			BlockManager.SaveToJson ();
 		}
 
 		else if (Input.GetKeyDown (KeyCode.L)) {
-			GetBlockManager ().LoadFromJson ();
+			BlockManager.LoadFromJson ();
 		}
 		// Toggle block info display
 		else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
@@ -109,8 +113,10 @@ public class InputManager : MonoBehaviour {
         }
         else if(Input.GetKeyDown(KeyCode.P))
         {
-            GetBlockManager().PlayMode = !GetBlockManager().PlayMode;
-            GetComponent<PlayerManager>().PlayMode = !(GetComponent<PlayerManager>().PlayMode);
+            bool pm = !BlockManager.PlayMode;
+            BlockManager.PlayMode = pm;
+            GetComponent<PlayerManager>().PlayMode = pm;
+            Cursor.SetActive(!pm);
         }
 		//Quit
 		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {
@@ -123,24 +129,27 @@ public class InputManager : MonoBehaviour {
 			
 		// Block type cycling
 		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
-			GetBlockManager ().CreateBlockAtCursor ( GetBlockManager ().BlockCycleType);
+            if (!BlockManager.PlayMode)
+                BlockManager.CreateBlockAtCursor(BlockManager.BlockCycleType);
+            else
+                PlayerManager.Player1Jump();
 		} else if (Input.GetKeyDown (KeyCode.LeftBracket) || Input.GetKeyDown (KeyCode.Joystick1Button4)) {
             //TODO generic
-            Cathy1Block.BlockType type = GetBlockManager ().PrevBlockType ();
-			if(GetBlockManager().ActiveObject != null)
-				GetBlockManager ().CreateBlockAtCursor (type);
+            Cathy1Block.BlockType type = BlockManager.PrevBlockType ();
+			if(BlockManager.ActiveObject != null)
+				BlockManager.CreateBlockAtCursor (type);
 		} else if (Input.GetKeyDown (KeyCode.RightBracket)  || Input.GetKeyDown (KeyCode.Joystick1Button5)) {
             //TODO generic
-            Cathy1Block.BlockType type = GetBlockManager ().NextBlockType ();
-			if(GetBlockManager().ActiveObject != null)
-				GetBlockManager ().CreateBlockAtCursor (type);
+            Cathy1Block.BlockType type = BlockManager.NextBlockType ();
+			if(BlockManager.ActiveObject != null)
+				BlockManager.CreateBlockAtCursor (type);
 		}
 
 		// Destorying/modifying blocks
 		else if (Input.GetKeyDown (KeyCode.Delete) || Input.GetKeyDown (KeyCode.Joystick1Button1)) {
-			if (GetBlockManager ().ActiveObject != null)
+			if (BlockManager.ActiveObject != null)
 				//TODO use a method of BlockManager to do this
-				Destroy (GetBlockManager ().ActiveObject);
+				Destroy (BlockManager.ActiveObject);
 		} 
 
         else if(Input.GetKeyDown(KeyCode.B))
@@ -153,16 +162,16 @@ public class InputManager : MonoBehaviour {
 
         // Buttons for setting items
         else if (Input.GetKeyDown (KeyCode.Home)  || Input.GetKeyDown(KeyCode.Joystick1Button2)) {
-			if (GetBlockManager().ActiveObject != null) {
+			if (BlockManager.ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
-				Cathy1Block block = GetBlockManager().ActiveObject.GetComponent<Cathy1Block>();
-				block.FirstItem = Instantiate (GetBlockManager().StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
+				Cathy1Block block = BlockManager.ActiveObject.GetComponent<Cathy1Block>();
+				block.FirstItem = Instantiate (BlockManager.StartLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
 			}
 		} else if (Input.GetKeyDown (KeyCode.End)) {
-			if (GetBlockManager().ActiveObject != null) {
+			if (BlockManager.ActiveObject != null) {
 				//TODO use a method of BlockManager to do this
-				Cathy1Block block = GetBlockManager().ActiveObject.GetComponent<Cathy1Block>();
-				block.FirstItem = Instantiate (GetBlockManager().GoalLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
+				Cathy1Block block = BlockManager.ActiveObject.GetComponent<Cathy1Block>();
+				block.FirstItem = Instantiate (BlockManager.GoalLocationIndicator, Cursor.transform.position + new Vector3 (0, 0.5F, 0), Quaternion.Euler (0, 180, 0)) as GameObject;
 			}
 		}
 
@@ -176,17 +185,20 @@ public class InputManager : MonoBehaviour {
 			}
 			period = 0.0f;
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (90, 0, 0, Space.Self);
+				BlockManager.ActiveFloor.transform.Rotate (90, 0, 0, Space.Self);
 				Cursor.transform.Rotate (90, 0, 0, Space.Self);
 			} else if (shiftDown) {
-				GameObject ao = GetBlockManager ().ActiveObject;
+				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (0, 1, 0);
 				Cursor.transform.position += new Vector3 (0, 1, 0);
 			} else if (ctrlDown) {
 				GetCamera().offset += new Vector3 (0, 1, 0);
 			} else {
-				Cursor.transform.position += new Vector3 (0, 1, 0);
+                if (BlockManager.PlayMode)
+                    PlayerManager.Player1MoveAway();
+                else
+				    Cursor.transform.position += new Vector3 (0, 1, 0);
 			}
 			Input.ResetInputAxes ();
 		} else if (Input.GetKeyDown (KeyCode.DownArrow) || vert < 0) {
@@ -196,17 +208,20 @@ public class InputManager : MonoBehaviour {
 			}
 			period = 0.0f;
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (-90, 0, 0, Space.Self);
+				BlockManager.ActiveFloor.transform.Rotate (-90, 0, 0, Space.Self);
 				Cursor.transform.Rotate (-90, 0, 0, Space.Self);
 			} else if(shiftDown) {
-				GameObject ao = GetBlockManager ().ActiveObject;
+				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (0, -1, 0);
 				Cursor.transform.position += new Vector3 (0, -1, 0);
 			} else if (ctrlDown) {
 				GetCamera().offset += new Vector3 (0, -1, 0);
 			} else {
-				Cursor.transform.position += new Vector3 (0, -1, 0);
+                if (BlockManager.PlayMode)
+                    PlayerManager.Player1MoveCloser();
+                else
+                    Cursor.transform.position += new Vector3 (0, -1, 0);
 			}
 			Input.ResetInputAxes ();
 		} else if (Input.GetKeyDown (KeyCode.LeftArrow) || hori < 0) {
@@ -216,17 +231,20 @@ public class InputManager : MonoBehaviour {
 			}
 			period = 0.0f;
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (0, 90, 0, Space.Self);
+				BlockManager.ActiveFloor.transform.Rotate (0, 90, 0, Space.Self);
 				Cursor.transform.Rotate (0, 90, 0, Space.Self);
 			} else if(shiftDown) {
-				GameObject ao = GetBlockManager ().ActiveObject;
+				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (-1, 0, 0);
 				Cursor.transform.position += new Vector3 (-1, 0, 0);
 			} else if (ctrlDown) {
 				GetCamera().offset += new Vector3 (-1, 0, 0);
 			} else {
-				Cursor.transform.position += new Vector3 (-1, 0, 0);
+                if (BlockManager.PlayMode)
+                    PlayerManager.Player1MoveLeft();
+                else
+                    Cursor.transform.position += new Vector3 (-1, 0, 0);
 			}
 			Input.ResetInputAxes ();
 		} else if (Input.GetKeyDown (KeyCode.RightArrow) || hori > 0) {
@@ -236,17 +254,20 @@ public class InputManager : MonoBehaviour {
 			}
 			period = 0.0f;
 			if (altDown) {
-				GetBlockManager ().ActiveFloor.transform.Rotate (0, -90, 0, Space.Self);
+				BlockManager.ActiveFloor.transform.Rotate (0, -90, 0, Space.Self);
 				Cursor.transform.Rotate (0, -90, 0, Space.Self);
 			} else if(shiftDown) {
-				GameObject ao = GetBlockManager ().ActiveObject;
+				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (1, 0, 0);
 				Cursor.transform.position += new Vector3 (1, 0, 0);
 			} else if (ctrlDown) {
 				GetCamera().offset += new Vector3 (1, 0, 0);
 			} else {
-				Cursor.transform.position += new Vector3 (1, 0, 0);
+                    if (BlockManager.PlayMode)
+                        PlayerManager.Player1MoveRight();
+                    else
+                        Cursor.transform.position += new Vector3 (1, 0, 0);
 			}
 			Input.ResetInputAxes ();
 		} else if (goFurther) {

@@ -32,7 +32,7 @@ public class Cathy1EventFactory : MonoBehaviour, IEventFactory {
             {
                 if (parent == null)
                     parent = bl;
-                globalPosition = bl.Position + new Vector3(0, 1, 0);
+                globalPosition = bl.Position + new Vector3(0, 0.5f, 0);
                 globalRotation = bl.Rotation;
             }
 

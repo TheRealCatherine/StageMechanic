@@ -1308,6 +1308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b3e36ef0abcee4aaf084f868f85189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player1Prefab: {fileID: 1215896293952690, guid: b1fc4e6ba2e2b2a49bfffa6d4ce43973,
+    type: 2}
 --- !u!114 &426806226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3528,6 +3530,10 @@ Prefab:
         type: 2}
       propertyPath: m_Size.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    public static List<IPlayerEventExtension> PlayerStartLocations { get; set; } = new List<IPlayerEventExtension>();
+    public GameObject Player1Prefab;
+
+    public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
+    public static List<Cathy1PlayerCharacter> Avatars { get; set; } = new List<Cathy1PlayerCharacter>();
 
     internal bool _playMode = false;
     public bool PlayMode
@@ -31,17 +34,18 @@ public class PlayerManager : MonoBehaviour {
     private void HidePlayers()
     {
         Debug.Log("Hiding");
-        foreach (IPlayerEventExtension player in PlayerStartLocations) {
-            Debug.Log(String.Format("Stopping Player {0}", player.PlayerNumber));
+        foreach (Cathy1PlayerCharacter player in Avatars) {
+            Destroy(player.gameObject);
         }
+        Avatars.Clear();
     }
 
     private void SpawnPlayers()
     {
         Debug.Log("Spawning");
-        foreach (IPlayerEventExtension player in PlayerStartLocations)
+        foreach (Cathy1PlayerStartLocation player in PlayerStartLocations)
         {
-            Debug.Log(String.Format("Starting Player {0}", player.PlayerNumber));
+            Avatars.Add(Instantiate(Player1Prefab, player.transform.position, player.transform.rotation, transform).GetComponent<Cathy1PlayerCharacter>());
         }
     }
 
@@ -55,4 +59,29 @@ public class PlayerManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public static void Player1Jump()
+    {
+        Avatars[0].Move(Vector3.up);
+    }
+
+    internal static void Player1MoveRight()
+    {
+        Avatars[0].Move(Vector3.right);
+    }
+
+    internal static void Player1MoveAway()
+    {
+        Avatars[0].Move(Vector3.forward);
+    }
+
+    internal static void Player1MoveLeft()
+    {
+        Avatars[0].Move(Vector3.left);
+    }
+
+    internal static void Player1MoveCloser()
+    {
+        Avatars[0].Move(Vector3.back);
+    }
 }
