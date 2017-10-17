@@ -9,6 +9,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     private GameObject _player;
     private Vector3 _nextMove;
+	bool _jump = false;
 
     public float speed = 6.0F;
     public float jumpSpeed = 8.0F;
@@ -31,14 +32,20 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             moveDirection = new Vector3(_nextMove.x*10, 0, _nextMove.z*10);
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
-            if (_nextMove.y>0)
+            if (_jump)
             {
                 moveDirection.y = jumpSpeed;
+                _jump = false;
             }
         }
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
-        _nextMove.Set(0, 0, 0);
+		_nextMove.Set (0, 0, 0);
+    }
+        
+    public void Jump(Vector3 direction)
+    {
+            _jump = true;
     }
 
     internal void Move(Vector3 direction)

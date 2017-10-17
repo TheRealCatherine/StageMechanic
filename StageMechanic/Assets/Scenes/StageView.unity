@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.16487625, g: 0.10864479, b: 0.22398311, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1207,9 +1207,9 @@ MonoBehaviour:
   CursorPrefab: {fileID: 662790149}
   BasicPlatformPrefab: {fileID: 1869418774853098, guid: fc746ea84d38ad84eacb39f489820fad,
     type: 2}
-  StartLocationIndicator: {fileID: 1000010763024152, guid: f80d861c4664f014cad0b030b62c4174,
-    type: 2}
-  GoalLocationIndicator: {fileID: 100002, guid: bfabbd992ffd05c4c90256f7f208388f,
+  StartLocationIndicator: {fileID: 100000, guid: 5d8504897ce36db4ea5e50f018657780,
+    type: 3}
+  GoalLocationIndicator: {fileID: 100000, guid: 82d0b33fd2ad44744aa557711150e99e,
     type: 3}
   FileBrowserPrefab: {fileID: 1760643962491650, guid: 4599b5ba3543545db92bb18160cea721,
     type: 2}
@@ -1247,9 +1247,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerStartPrefab: {fileID: 1104908862710906, guid: 0ded10ae904d4d84cb0432324d5b5471,
     type: 2}
-  PlayerGoalPrefab: {fileID: 1104908862710906, guid: 5de150c2c0c2bb34ba530692e136cf5c,
+  PlayerGoalPrefab: {fileID: 1104908862710906, guid: d26e576e5ab715444af38497792a9238,
     type: 2}
-  EnemySpawnPrefab: {fileID: 0}
+  EnemySpawnPrefab: {fileID: 1104908862710906, guid: 5de150c2c0c2bb34ba530692e136cf5c,
+    type: 2}
 --- !u!114 &426806224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,8 +1266,7 @@ MonoBehaviour:
     type: 2}
   SpikeTrapPrefab: {fileID: 1387997212163396, guid: 0ebb7ca9fa1e0ed4ebe55085c01f90f3,
     type: 2}
-  Trap2BlockPrefab: {fileID: 1080798637978176, guid: e79f17985ac7e8241a9697a858b1a4ef,
-    type: 2}
+  Trap2BlockPrefab: {fileID: 0}
   SpringBlockPrefab: {fileID: 1131577961013122, guid: 5df75f3fe45a30843a9d018f351e1d78,
     type: 2}
   MonsterBlockPrefab: {fileID: 1378607036211450, guid: 5c39f078d960f9340aa5814cb02982f3,
@@ -1279,20 +1279,17 @@ MonoBehaviour:
     type: 2}
   Bomb2BlockPrefab: {fileID: 1672769352407384, guid: 5b45b5022056d5b43b51e982697824cb,
     type: 2}
-  Crack1BlockPrefab: {fileID: 1079187110874380, guid: b105e26813e6d6a48b90ba224961cd91,
+  Crack1BlockPrefab: {fileID: 1130345185771716, guid: 5311a46bed88a78498fc8671dbf66ef6,
     type: 2}
-  Crack2BlockPrefab: {fileID: 1130345185771716, guid: 5311a46bed88a78498fc8671dbf66ef6,
+  Crack2BlockPrefab: {fileID: 1079187110874380, guid: b105e26813e6d6a48b90ba224961cd91,
     type: 2}
-  TeleportBlockPrefab: {fileID: 1028546297549334, guid: 228434db9d2f9f942952d8fa3f485b4f,
-    type: 2}
+  TeleportBlockPrefab: {fileID: 0}
   Heavy1BlockPrefab: {fileID: 1272273881823940, guid: 8b12980fc8f527a49b1b1d63ccb531d0,
     type: 2}
-  Heavy2BlockPrefab: {fileID: 1272273881823940, guid: 8b12980fc8f527a49b1b1d63ccb531d0,
-    type: 2}
+  Heavy2BlockPrefab: {fileID: 0}
   ImmobleBlockPrefab: {fileID: 1491157440651148, guid: cb7260b2cf91bbd4d89dd644aa61817a,
     type: 2}
-  FixedBlockPrefab: {fileID: 1738747662548062, guid: cd63148f5c04b274ab196375176ac791,
-    type: 2}
+  FixedBlockPrefab: {fileID: 0}
   RandomBlockPrefab: {fileID: 1678688784119742, guid: e810054446e84a148b5a7f71a8534c06,
     type: 2}
   GoalBlockPrefab: {fileID: 1726037543320594, guid: 94d1b73ba876fd84cb1f675a68f29352,
@@ -2132,7 +2129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077286a288ffede47b019a4ef44db160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: {fileID: 426806219}
+  Stage: {fileID: 0}
 --- !u!1 &822290155
 GameObject:
   m_ObjectHideFlags: 0

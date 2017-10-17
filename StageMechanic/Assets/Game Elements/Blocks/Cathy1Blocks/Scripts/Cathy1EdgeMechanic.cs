@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cathy1EdgeMechanic : MonoBehaviour {
 
-    public bool IsFalling { get; set; } = true;
+    public bool IsFalling { get; set; } = false;
 
 	// Use this for initialization
 	void Start () {
@@ -84,7 +84,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+   /* void OnCollisionEnter(Collision collision)
     {
         Cathy1Block otherBlock = collision.collider.gameObject.GetComponent<Cathy1Block>();
         Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
@@ -118,5 +118,5 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         Platform platform = collisionInfo.gameObject.GetComponent<Platform>();
         TestForSupport(thisBlock, otherBlock);
         TestForSupport(thisBlock, platform);
-    }
+    }*/
 }
