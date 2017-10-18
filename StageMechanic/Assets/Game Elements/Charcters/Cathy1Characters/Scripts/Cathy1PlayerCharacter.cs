@@ -9,6 +9,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     private GameObject _player;
     private Vector3 _nextMove;
+	private Vector3 _facingDirection = Vector3.back;
 
     public float speed = 10.0F;
     public float jumpSpeed = 8.0F;
@@ -43,13 +44,55 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     internal void Move(Vector3 direction)
     {
-        _nextMove = direction;
+		if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
+			_nextMove = direction;
+		else {
+			float degrees = 0f;
+			if (_facingDirection == Vector3.back) {
+				if (direction == Vector3.left)
+					degrees = 90f;
+				else if (direction == Vector3.right)
+					degrees = -90f;
+				else if (direction == Vector3.forward)
+					degrees = 180f;
+			}
+			else if (_facingDirection == Vector3.forward) {
+				if (direction == Vector3.left)
+					degrees = -90f;
+				else if (direction == Vector3.right)
+					degrees = 90f;
+				else if (direction == Vector3.back)
+					degrees = 180f;
+			}
+			else if (_facingDirection == Vector3.left) {
+				if (direction == Vector3.forward)
+					degrees = 90f;
+				else if (direction == Vector3.right)
+					degrees = -180f;
+				else if (direction == Vector3.back)
+					degrees = -90f;
+			}
+			else if (_facingDirection == Vector3.right) {
+				if (direction == Vector3.left)
+					degrees = 180f;
+				else if (direction == Vector3.back)
+					degrees = 90f;
+				else if (direction == Vector3.forward)
+					degrees = -90f;
+			}
+			_player.transform.RotateAround(transform.position, transform.up, degrees);
+			_facingDirection = direction;
+		}
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
        
-        // Rigidbody body = hit.collider.attachedRigidbody;
+		//GameObject other = hit.gameObject;
+		//if (other == null)
+//			return;
+
+
        // if (body == null || body.isKinematic)
        //     return;
 
