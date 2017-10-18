@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cathy1EdgeMechanic : MonoBehaviour {
 
-    public bool IsFalling { get; set; } = false;
+    public bool IsGrounded { get; set; } = false;
 
 	// Use this for initialization
 	void Start () {
@@ -13,12 +13,38 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+		if (thisBlock == null)
+			return;
+
+		BlockManager bm = thisBlock.BlockManager;
+		Debug.Assert(bm != null);
+		if (bm.PlayMode) {
+
+			IsGrounded = false;
+
+			Vector3 down = transform.TransformDirection (Vector3.down);
+
+			if (Physics.Raycast (transform.position, down, 0.5f) && (transform.position.y % 1) == 0) {
+				IsGrounded = true;
+			}
+
+			foreach (Collider col in Physics.OverlapBox(transform.position - new Vector3(0f,0.7f,0f),new Vector3(0.75f,0.01f,0.75f))) {
+				if (col.gameObject == gameObject)
+					continue;
+				if ((transform.position.y % 1) == 0) {
+					IsGrounded = true;
+					break;
+				}
+			}
+
+		}
         ApplyGravity();
 	}
 
     public void ApplyGravity()
     {
-        if (!IsFalling)
+        if (IsGrounded)
             return;
 
         Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
@@ -45,7 +71,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
             if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y - 1, 0.1))
             {
                 //TODO check for diagnol
-                IsFalling = false;
+               // IsFalling = false;
                 //Check if this block is at a diagnol
                 if (otherBlock.Position.x != thisBlock.Position.x || otherBlock.Position.z != thisBlock.Position.z)
                 {
@@ -71,7 +97,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
             //Check if this block is above the other one
             if (Utility.AlmostEquals(platform.gameObject.transform.position.y, thisBlock.Position.y-0.5f, 0.1))
             {
-                IsFalling = false;
+                //IsFalling = false;
                 //Check if this block is at a diagnol
                 if (platform.gameObject.transform.position.x != thisBlock.Position.x || platform.gameObject.transform.position.z != thisBlock.Position.z)
                 {
@@ -83,40 +109,4 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
             }
         }
     }
-
-   /* void OnCollisionEnter(Collision collision)
-    {
-        Cathy1Block otherBlock = collision.collider.gameObject.GetComponent<Cathy1Block>();
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        Platform platform = collision.collider.gameObject.GetComponent<Platform>();
-        TestForSupport(thisBlock, otherBlock);
-        TestForSupport(thisBlock, platform);
-    }
-
-    void OnCollisionStay(Collision collisionInfo)
-    {
-        Cathy1Block otherBlock = collisionInfo.collider.gameObject.GetComponent<Cathy1Block>();
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        Platform platform = collisionInfo.collider.gameObject.GetComponent<Platform>();
-        TestForSupport(thisBlock, otherBlock);
-        TestForSupport(thisBlock, platform);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Cathy1Block otherBlock = other.gameObject.GetComponent<Cathy1Block>();
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        Platform platform = other.gameObject.GetComponent<Platform>();
-        TestForSupport(thisBlock, otherBlock);
-        TestForSupport(thisBlock, platform);
-    }
-
-    void OnTriggerStay(Collider collisionInfo)
-    {
-        Cathy1Block otherBlock = collisionInfo.gameObject.GetComponent<Cathy1Block>();
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        Platform platform = collisionInfo.gameObject.GetComponent<Platform>();
-        TestForSupport(thisBlock, otherBlock);
-        TestForSupport(thisBlock, platform);
-    }*/
 }
