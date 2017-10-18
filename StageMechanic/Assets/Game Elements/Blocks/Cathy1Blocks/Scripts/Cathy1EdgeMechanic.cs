@@ -32,6 +32,11 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 			foreach (Collider col in Physics.OverlapBox(transform.position - new Vector3(0f,0.7f,0f),new Vector3(0.75f,0.01f,0.75f))) {
 				if (col.gameObject == gameObject)
 					continue;
+				Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
+				if (otherBlock == null)
+					continue;
+				if (!otherBlock.IsGrounded)
+					continue;
 				if ((transform.position.y % 1) == 0) {
 					IsGrounded = true;
 					break;
