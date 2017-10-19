@@ -15,7 +15,6 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
 
     public GameObject BlockPrefab;
     public GameObject SpikeTrapPrefab;
-    public GameObject Trap2BlockPrefab;
     public GameObject SpringBlockPrefab;
     public GameObject MonsterBlockPrefab;
     public GameObject IceBlockPrefab;
@@ -24,11 +23,8 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
     public GameObject Bomb2BlockPrefab;
     public GameObject Crack1BlockPrefab;
     public GameObject Crack2BlockPrefab;
-    public GameObject TeleportBlockPrefab;
     public GameObject Heavy1BlockPrefab;
-    public GameObject Heavy2BlockPrefab;
     public GameObject ImmobleBlockPrefab;
-    public GameObject FixedBlockPrefab;
     public GameObject RandomBlockPrefab;
     public GameObject GoalBlockPrefab;
 
