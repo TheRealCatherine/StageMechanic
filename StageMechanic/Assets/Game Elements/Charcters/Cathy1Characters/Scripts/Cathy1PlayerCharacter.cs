@@ -20,7 +20,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public float speed = 10.0F;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
-    private Vector3 moveDirection = Vector3.zero;
+    private Vector3 moveDirection;
 
     // Use this for initialization
     void Start () {
@@ -33,19 +33,47 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     void Update()
     {
         CharacterController controller = GetComponent<CharacterController>();
-		if (controller.isGrounded) {
-			moveDirection.Set (_nextMove.x * speed, 0, _nextMove.z * speed);
-			moveDirection = transform.TransformDirection (moveDirection);
-			moveDirection *= speed;
-			if (_nextMove.y > 0f) {
-				moveDirection.y = jumpSpeed;
+		Debug.Assert (controller != null);
+
+		if (_nextMove == Vector3.right) {
+			transform.position += new Vector3 (0.25f, 0, 0);
+			if ((transform.position.x % 1) == 0) {
+				_nextMove = Vector3.zero;
 			}
-		} else {
-			moveDirection.Set (0, moveDirection.y, 0);
+		} else if (_nextMove == Vector3.left) {
+			transform.position += new Vector3 (-0.25f, 0, 0);
+			if ((transform.position.x % 1) == 0) {
+				_nextMove = Vector3.zero;
+			}
+		} if (_nextMove == Vector3.forward) {
+			transform.position += new Vector3 (0, 0, 0.25f);
+			if ((transform.position.z % 1) == 0) {
+				_nextMove = Vector3.zero;
+			}
+		} if (_nextMove == Vector3.back) {
+			transform.position += new Vector3 (0, 0, 0.25f);
+			if ((transform.position.z % 1) == 0) {
+				_nextMove = Vector3.zero;
+			}
 		}
-        moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);
-		_nextMove.Set (0, 0, 0);
+
+
+		// Jumping stuff TODO made it not horrible
+		if (!controller.isGrounded || moveDirection.y > 0f || _nextMove.y > 0f) {
+			if (controller.isGrounded) {
+				moveDirection.Set (_nextMove.x * speed, 0, _nextMove.z * speed);
+				moveDirection = transform.TransformDirection (moveDirection);
+				moveDirection *= speed;
+				if (_nextMove.y > 0f) {
+					moveDirection.y = jumpSpeed;
+				}
+			} else {
+				moveDirection.Set (0, moveDirection.y, 0);
+			}
+			moveDirection.y -= gravity * Time.deltaTime;
+			controller.Move (moveDirection * Time.deltaTime);
+			_nextMove.Set (0, 0, 0);
+		}
     }
 
     internal void Move(Vector3 direction)
