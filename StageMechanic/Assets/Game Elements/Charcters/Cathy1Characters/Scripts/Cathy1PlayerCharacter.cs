@@ -51,7 +51,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 				_nextMove = Vector3.zero;
 			}
 		} if (_nextMove == Vector3.back) {
-			transform.position += new Vector3 (0, 0, 0.25f);
+			transform.position += new Vector3 (0, 0, -0.25f);
 			if ((transform.position.z % 1) == 0) {
 				_nextMove = Vector3.zero;
 			}
