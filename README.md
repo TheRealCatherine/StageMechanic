@@ -88,6 +88,12 @@ Below are resources for those new to game design and devleopment as well as thos
 
 Mythological, Historical, Linguistic, and Religious Source Material
 
+Websites:
+
+* [Ancient Mesopotamian Gods and Goddesses](http://oracc.museum.upenn.edu/amgg/)
+
+Books:
+
 * [Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others](https://www.amazon.com/Myths-Mesopotamia-Creation-Gilgamesh-Classics/dp/019953836)
 * [Inanna, Queen of Heaven and Earth: Her Stories and Hymns from Sumer](https://www.amazon.com/Inanna-Queen-Heaven-Earth-Stories/dp/0060908548)
 * [Into the Great Below: A Devotional for Inanna and Ereshkigal](https://www.amazon.com/Into-Great-Below-Devotional-Ereshkigal/dp/0982579837)
@@ -131,6 +137,14 @@ Robo 5 Resources
 Pushmo Resources
 
 * [Pushmo World walktrhough part 1](https://www.youtube.com/watch?v=oUEa2FHGAAw)
+
+### Asset design
+
+When using artwork from other sources it _MUST_ be either CC0, CC-BY, BSD, or other license that at most requires attribution. CC0 or other public domain licenses are strongly preferred. CC-SA, GPL, and other licenses that impose restrictions on commercial usage are not allowed in this project, however you may make a separate asset pack that is compatible with this project using assets with CC-SA, GPL, or other such licenses.
+
+* [Wikimedia commons](https://commons.wikimedia.org/wiki/Main_Page)
+* [Clipart today](http://www.clipartoday.com)
+* [Open Game Art](https://opengameart.org/textures/all?field_art_licenses_tid[0]=17981&field_art_licenses_tid[1]=2&field_art_licenses_tid[2]=10310&field_art_licenses_tid[3]=4)
 
 ### Development, coding
 
