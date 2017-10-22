@@ -160,8 +160,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		if (blockInQuestion == null)
 			return;
 		Debug.Log (blockInQuestion.Name);
-		blockInQuestion.Position += direction;
-		if(direction != _facingDirection)
+		bool moved = blockInQuestion.Move(direction);
+		if(moved && direction != _facingDirection)
 			_nextMove = direction;
 	}
 }

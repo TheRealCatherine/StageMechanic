@@ -166,4 +166,19 @@ public interface IBlock
     /// </summary>
     /// <returns></returns>
     BlockJsonDelegate GetJsonDelegate();
+
+	/// <summary>
+	/// Determines whether this instance can be moved the specified direction distance.
+	/// </summary>
+	/// <returns><c>true</c> if this instance can be moved the specified direction distance; otherwise, <c>false</c>.</returns>
+	/// <param name="direction">Direction.</param>
+	/// <param name="distance">Distance.</param>
+	bool CanBeMoved (Vector3 direction, int distance = 1);
+
+	/// <summary>
+	/// Move the specified direction and distance.
+	/// </summary>
+	/// <param name="direction">Direction.</param>
+	/// <param name="distance">Distance.</param>
+	bool Move (Vector3 direction, int distance = 1);
 }

@@ -217,6 +217,28 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         return new BlockJsonDelegate(this);
     }
 
+	public virtual bool CanBeMoved (Vector3 direction, int distance = 1)
+	{
+		if (WeightFactor == 0)
+			return false;
+
+		IBlock neighbor = BlockManager.GetBlockAt (Position + direction);
+		if(neighbor != null)
+			return neighbor.CanBeMoved (direction, distance);
+		return true;
+	}
+
+	public virtual bool Move(Vector3 direction, int distance = 1)
+	{
+		if(!CanBeMoved(direction,distance))
+			return false;
+		IBlock neighbor = BlockManager.GetBlockAt (Position + direction);
+		if (neighbor != null)
+			neighbor.Move (direction, distance);
+		Position += direction;
+		return true;
+	}
+
     /// <summary>
     /// Sets the name to a random GUID
     /// Called when this object is created in the scene. If overriding
