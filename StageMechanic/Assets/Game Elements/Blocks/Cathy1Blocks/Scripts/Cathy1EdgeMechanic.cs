@@ -120,4 +120,17 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
             }
         }
     }
+
+	public bool TestForSupportedBlock( int height )
+	{
+		foreach (Collider col in Physics.OverlapBox(transform.position + new Vector3(0f,0.7f*height,0f),new Vector3(0.75f,0.01f,0.75f))) {
+			if (col.gameObject == gameObject)
+				continue;
+			Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
+			if (otherBlock == null)
+				continue;
+			return true;
+		}
+		return false;
+	}
 }

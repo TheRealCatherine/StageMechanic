@@ -43,9 +43,16 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		//Debug.Assert (controller != null);
 
 		if (_nextMove != Vector3.zero) {
-			Vector3 dir = transform.TransformDirection (_nextMove);
-			if (Physics.Raycast (transform.position, dir, 0.5f)) {
-				_nextMove = Vector3.zero;
+			IBlock blockInWay = BlockManager.GetBlockAt (transform.position+_nextMove);
+
+			if (blockInWay != null && (transform.position.x % 1) == 0 && (transform.position.z % 1) == 0) {
+				IBlock oneBlockUp = BlockManager.GetBlockAt (transform.position + _nextMove + Vector3.up);
+				if (oneBlockUp == null) {
+					transform.position += (_nextMove + Vector3.up);
+					_nextMove = Vector3.zero;
+				} else {
+					_nextMove = Vector3.zero;
+				}
 			} else if (_nextMove == Vector3.right) {
 				transform.position += new Vector3 (0.25f, 0, 0);
 				if ((transform.position.x % 1) == 0) {

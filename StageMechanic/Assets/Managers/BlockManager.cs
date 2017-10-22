@@ -17,6 +17,7 @@ using System.Globalization;
 using System;
 using System.Net;
 using GracesGames;
+using System.Linq;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -264,24 +265,19 @@ public class BlockManager : MonoBehaviour {
 	public PlatformJsonDelegate GetPlatformJsonDelegate() {
 		return new PlatformJsonDelegate (ActiveFloor);
 	}
-		
-	void OnGUI(){
-		/*
-            //TODO put these on the screen using normal UI
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Arrow keys: Move cursor up/down/left/right", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Alt+Arrow keys: Rotate tower (broken)", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Shift+Arrow keys: Move block", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Ctrl+Arrow keys: Move camera", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   Mouse wheel: zoom in/out", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [,] and [.]: Move cursor closer/further", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [space]: Place block", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [[] and []] (brackets): Change block type", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [1]-[5]: Place blocks of different types", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Delete]: Remove block under cursor", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Home] and [End]: Place players", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [I]: Toggle info display", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [L]/[S]: Load/Save", style);
-			GUI.Label (new Rect (10, (YPos++ * 25), 350, 25), "   [Esc]/[Q]: Quit", style);
-		}*/
+
+	public static IBlock GetBlockAt( Vector3 position ) {
+		GameObject[] collidedGameObjects =
+			Physics.OverlapSphere (position, 0.1f)
+				//.Except (new[] { GetComponent<BoxCollider> () })
+				.Select (c => c.gameObject)
+				.ToArray ();
+
+		foreach (GameObject go in collidedGameObjects) {
+			IBlock block = go.GetComponent<IBlock> ();
+			if (block != null)
+				return block;
+		}
+		return null;
 	}
 }
