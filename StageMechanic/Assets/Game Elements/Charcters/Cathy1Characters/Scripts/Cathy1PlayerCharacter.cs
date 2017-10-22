@@ -18,7 +18,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 	private Vector3 _facingDirection = Vector3.back;
 
 	public bool IsGrounded { get; set; } = false;
-	public bool IsGrabbingEdge { get; set; } = false;
+	public bool IsSidled { get; set; } = false;
 	public bool IsGrabbingBlock { get; set; } = false;
 
     public float speed = 10.0F;
@@ -36,11 +36,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         // Update is called once per frame
     void Update()
     {
-		//if (_nextMove == Vector3.zero && moveDirection == Vector3.zero)
-		//	return;
 
-        //CharacterController controller = GetComponent<CharacterController>();
-		//Debug.Assert (controller != null);
 
 		if (_nextMove != Vector3.zero) {
 			IBlock blockInWay = BlockManager.GetBlockAt (transform.position+_nextMove);
@@ -77,6 +73,9 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
 		}
 
+		bool wasGrounded = IsGrounded;
+		bool wasSidled = IsSidled;
+		IsSidled = false;
 		IsGrounded = false;
 
 		Vector3 down = transform.TransformDirection (Vector3.down);
@@ -85,17 +84,22 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			IsGrounded = true;
 		}
 
-		//TODO grab edge
-		foreach (Collider col in Physics.OverlapBox(transform.position - new Vector3(0f,0.7f,0f),new Vector3(0.15f,0.01f,0.15f))) {
-			if (col.gameObject == gameObject)
-				continue;
-			Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
-			if (otherBlock == null)
-				continue;
-			if (!otherBlock.IsGrounded)
-				continue;
-			if ((transform.position.y % 1) == 0) {
-				IsGrounded = true;
+		if (!IsGrounded) {
+			//TODO grab edge
+			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.1f, 0.1f, 0.75f)));
+			crossColiders.AddRange (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
+
+			foreach (Collider col in crossColiders) {
+				if (col.gameObject == gameObject)
+					continue;
+				Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
+				if (otherBlock == null)
+					continue;
+				if (!otherBlock.IsGrounded)
+					continue;
+				if (!wasSidled)
+					TurnAround ();
+				IsSidled = true;
 				break;
 			}
 		}
@@ -105,10 +109,52 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
 	public void ApplyGravity()
 	{
-		if (IsGrounded)
+		if (IsGrounded || IsSidled)
 			return;
 		
 		transform.position -= new Vector3(0, 0.25f, 0);
+	}
+
+	public void Face(Vector3 direction) {
+		float degrees = 0f;
+		if (_facingDirection == Vector3.back) {
+			if (direction == Vector3.left)
+				degrees = 90f;
+			else if (direction == Vector3.right)
+				degrees = -90f;
+			else if (direction == Vector3.forward)
+				degrees = 180f;
+		}
+		else if (_facingDirection == Vector3.forward) {
+			if (direction == Vector3.left)
+				degrees = -90f;
+			else if (direction == Vector3.right)
+				degrees = 90f;
+			else if (direction == Vector3.back)
+				degrees = 180f;
+		}
+		else if (_facingDirection == Vector3.left) {
+			if (direction == Vector3.forward)
+				degrees = 90f;
+			else if (direction == Vector3.right)
+				degrees = -180f;
+			else if (direction == Vector3.back)
+				degrees = -90f;
+		}
+		else if (_facingDirection == Vector3.right) {
+			if (direction == Vector3.left)
+				degrees = 180f;
+			else if (direction == Vector3.back)
+				degrees = 90f;
+			else if (direction == Vector3.forward)
+				degrees = -90f;
+		}
+		_player.transform.RotateAround(transform.position, transform.up, degrees);
+		_facingDirection = direction;
+	}
+
+	public void TurnAround() {
+		Face(-_facingDirection);
 	}
 
     public void Move(Vector3 direction)
@@ -116,41 +162,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			_nextMove = direction;
 		else {
-			float degrees = 0f;
-			if (_facingDirection == Vector3.back) {
-				if (direction == Vector3.left)
-					degrees = 90f;
-				else if (direction == Vector3.right)
-					degrees = -90f;
-				else if (direction == Vector3.forward)
-					degrees = 180f;
-			}
-			else if (_facingDirection == Vector3.forward) {
-				if (direction == Vector3.left)
-					degrees = -90f;
-				else if (direction == Vector3.right)
-					degrees = 90f;
-				else if (direction == Vector3.back)
-					degrees = 180f;
-			}
-			else if (_facingDirection == Vector3.left) {
-				if (direction == Vector3.forward)
-					degrees = 90f;
-				else if (direction == Vector3.right)
-					degrees = -180f;
-				else if (direction == Vector3.back)
-					degrees = -90f;
-			}
-			else if (_facingDirection == Vector3.right) {
-				if (direction == Vector3.left)
-					degrees = 180f;
-				else if (direction == Vector3.back)
-					degrees = 90f;
-				else if (direction == Vector3.forward)
-					degrees = -90f;
-			}
-			_player.transform.RotateAround(transform.position, transform.up, degrees);
-			_facingDirection = direction;
+			Face (direction);
 		}
     }
 

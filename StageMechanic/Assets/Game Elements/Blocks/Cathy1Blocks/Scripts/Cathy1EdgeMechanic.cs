@@ -35,6 +35,9 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 				IsGrounded = true;
 			}
 
+			List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position - new Vector3(0f,0.5f,0f),new Vector3(0.1f,0.1f,0.75f)));
+			crossColiders.AddRange(Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
+
 			foreach (Collider col in Physics.OverlapBox(transform.position - new Vector3(0f,0.7f,0f),new Vector3(0.75f,0.01f,0.75f))) {
 				if (col.gameObject == gameObject)
 					continue;
@@ -66,59 +69,6 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
         Debug.Assert(bm != null);
         if(bm.PlayMode)
             thisBlock.Position -= new Vector3(0, 0.25f, 0);
-    }
-
-    //TODO Make this work properly
-    void TestForSupport(Cathy1Block thisBlock, Cathy1Block otherBlock)
-    {
-        BlockManager bm = thisBlock.BlockManager;
-        Debug.Assert(bm != null);
-        if (!bm.PlayMode)
-            return;
-
-        if (otherBlock != null && thisBlock != null)
-        {
-            //Check if this block is above the other one
-            if (Utility.AlmostEquals(otherBlock.Position.y, thisBlock.Position.y - 1, 0.1))
-            {
-                //TODO check for diagnol
-               // IsFalling = false;
-                //Check if this block is at a diagnol
-                if (otherBlock.Position.x != thisBlock.Position.x || otherBlock.Position.z != thisBlock.Position.z)
-                {
-                    //We have an EDGE connection  
-                    //TODO check if there is a block underneath to see if this is
-                    //an EDGE only connection
-
-                }
-            }
-        }
-    }
-
-    void TestForSupport(Cathy1Block thisBlock, Platform platform)
-    {
-        BlockManager bm = thisBlock.BlockManager;
-        Debug.Assert(bm != null);
-        if (!bm.PlayMode)
-            return;
-
-
-        if (platform != null && thisBlock != null)
-        {
-            //Check if this block is above the other one
-            if (Utility.AlmostEquals(platform.gameObject.transform.position.y, thisBlock.Position.y-0.5f, 0.1))
-            {
-                //IsFalling = false;
-                //Check if this block is at a diagnol
-                if (platform.gameObject.transform.position.x != thisBlock.Position.x || platform.gameObject.transform.position.z != thisBlock.Position.z)
-                {
-                    //We have an EDGE connection  
-                    //TODO check if there is a block underneath to see if this is
-                    //an EDGE only connection
-
-                }
-            }
-        }
     }
 
 	public bool TestForSupportedBlock( int height )
