@@ -38,7 +38,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 			List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position - new Vector3(0f,0.5f,0f),new Vector3(0.1f,0.1f,0.75f)));
 			crossColiders.AddRange(Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
 
-			foreach (Collider col in Physics.OverlapBox(transform.position - new Vector3(0f,0.7f,0f),new Vector3(0.75f,0.01f,0.75f))) {
+			foreach (Collider col in crossColiders) {
 				if (col.gameObject == gameObject)
 					continue;
 				Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
