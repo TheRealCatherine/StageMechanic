@@ -8,23 +8,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cathy1EdgeMechanic : MonoBehaviour {
+public class Cathy1EdgeMechanic : MonoBehaviour
+{
 
-    public bool IsGrounded { get; set; } = false;
+	public bool IsGrounded { get; set; } = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+	void Update ()
+	{
+		Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block> ();
 		if (thisBlock == null)
 			return;
 
 		BlockManager bm = thisBlock.BlockManager;
-		Debug.Assert(bm != null);
+		Debug.Assert (bm != null);
 		if (bm.PlayMode) {
 
 			IsGrounded = false;
@@ -35,8 +31,8 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 				IsGrounded = true;
 			}
 
-			List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position - new Vector3(0f,0.5f,0f),new Vector3(0.1f,0.1f,0.75f)));
-			crossColiders.AddRange(Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
+			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.1f, 0.1f, 0.75f)));
+			crossColiders.AddRange (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
 
 			foreach (Collider col in crossColiders) {
 				if (col.gameObject == gameObject)
@@ -53,25 +49,25 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 			}
 
 		}
-        ApplyGravity();
+		ApplyGravity ();
 	}
 
-    public void ApplyGravity()
-    {
-        if (IsGrounded)
-            return;
+	public void ApplyGravity ()
+	{
+		if (IsGrounded)
+			return;
 
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        if (thisBlock == null)
-            return;
+		Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block> ();
+		if (thisBlock == null)
+			return;
 
-        BlockManager bm = thisBlock.BlockManager;
-        Debug.Assert(bm != null);
-        if(bm.PlayMode)
-            thisBlock.Position -= new Vector3(0, 0.25f, 0);
-    }
+		BlockManager bm = thisBlock.BlockManager;
+		Debug.Assert (bm != null);
+		if (bm.PlayMode)
+			thisBlock.Position -= new Vector3 (0, 0.25f, 0);
+	}
 
-	public bool TestForSupportedBlock( int height )
+	public bool TestForSupportedBlock (int height)
 	{
 		foreach (Collider col in Physics.OverlapBox(transform.position + new Vector3(0f,0.7f*height,0f),new Vector3(0.75f,0.01f,0.75f))) {
 			if (col.gameObject == gameObject)
