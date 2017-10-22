@@ -18,6 +18,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 	private Vector3 _facingDirection = Vector3.back;
 
 	public bool IsGrounded { get; set; } = false;
+	public bool IsGrabbingEdge { get; set; } = false;
+	public bool IsGrabbingBlock { get; set; } = false;
 
     public float speed = 10.0F;
     public float jumpSpeed = 8.0F;
@@ -40,30 +42,33 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         //CharacterController controller = GetComponent<CharacterController>();
 		//Debug.Assert (controller != null);
 
-		//TODO test if block in way
+		if (_nextMove != Vector3.zero) {
+			Vector3 dir = transform.TransformDirection (_nextMove);
+			if (Physics.Raycast (transform.position, dir, 0.5f)) {
+				_nextMove = Vector3.zero;
+			} else if (_nextMove == Vector3.right) {
+				transform.position += new Vector3 (0.25f, 0, 0);
+				if ((transform.position.x % 1) == 0) {
+					_nextMove = Vector3.zero;
+				}
+			} else if (_nextMove == Vector3.left) {
+				transform.position += new Vector3 (-0.25f, 0, 0);
+				if ((transform.position.x % 1) == 0) {
+					_nextMove = Vector3.zero;
+				}
+			} else if (_nextMove == Vector3.forward) {
+				transform.position += new Vector3 (0, 0, 0.25f);
+				if ((transform.position.z % 1) == 0) {
+					_nextMove = Vector3.zero;
+				}
+			} else if (_nextMove == Vector3.back) {
+				transform.position += new Vector3 (0, 0, -0.25f);
+				if ((transform.position.z % 1) == 0) {
+					_nextMove = Vector3.zero;
+				}
+			}
 
-		if (_nextMove == Vector3.right) {
-			transform.position += new Vector3 (0.25f, 0, 0);
-			if ((transform.position.x % 1) == 0) {
-				_nextMove = Vector3.zero;
-			}
-		} else if (_nextMove == Vector3.left) {
-			transform.position += new Vector3 (-0.25f, 0, 0);
-			if ((transform.position.x % 1) == 0) {
-				_nextMove = Vector3.zero;
-			}
-		} else if (_nextMove == Vector3.forward) {
-			transform.position += new Vector3 (0, 0, 0.25f);
-			if ((transform.position.z % 1) == 0) {
-				_nextMove = Vector3.zero;
-			}
-		} else if (_nextMove == Vector3.back) {
-			transform.position += new Vector3 (0, 0, -0.25f);
-			if ((transform.position.z % 1) == 0) {
-				_nextMove = Vector3.zero;
-			}
 		}
-
 
 		IsGrounded = false;
 
