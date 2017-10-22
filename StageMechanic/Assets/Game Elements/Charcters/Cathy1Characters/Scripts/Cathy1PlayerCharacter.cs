@@ -159,7 +159,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     public void Move(Vector3 direction)
     {
-		if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
+		if (IsSidled || _facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			_nextMove = direction;
 		else {
 			Face (direction);
