@@ -1,0 +1,4348 @@
+{
+    "Name": "MyStages",
+    "ActionPalette": "Cathy1-internal",
+    "BlockPalette": "Cathy1-internal",
+    "EnemyPalette": "Cathy1-internal",
+    "ItemPalette": "Cathy1-internal",
+    "PlatformPalette": "Cathy1-internal",
+    "PlayersPalette": "Cathy1-internal",
+    "RulesPalette": "Cathy1-internal",
+    "Stages": [
+        {
+            "Name": "Stage",
+            "Exits": null,
+            "Platforms": [
+                {
+                    "Name": "Platform1",
+                    "GlobalPosition": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "Blocks": [
+                        {
+                            "Name": "3705d721-4623-43f3-acdb-fe65642d2d3c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a2cdb1d4-5448-41e5-85a8-d70448ff59a7",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "df03c0cf-b78b-473d-92ce-dc641d4f6955",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "0f235b29-ce6c-4763-a3bf-573388b110ad",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "fc2d8843-ab8b-4bf3-a872-837c27bb6177",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 2,
+                                "z": 1
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c0c2c96a-e459-463b-8376-45829bea1bbd",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 2,
+                                "z": 1
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "acc9d8d6-dd7d-4bb7-9129-f06b6e4e49f9",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 2,
+                                "z": 1
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2ceb6878-240e-4851-a421-63620cbc28f9",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 0,
+                                "y": 2,
+                                "z": 1
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ff65be6a-61aa-4edf-83f2-de9596cb8a46",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 0,
+                                "y": 3,
+                                "z": 2
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "8cf2b622-bfea-4ef4-9f78-01fb8017051c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 3,
+                                "z": 2
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "213ac391-9b31-4df8-a6fd-c26e9866b25b",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 3,
+                                "z": 2
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e13d2c14-9c39-4699-917f-ca021f1ade38",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 3,
+                                "z": 2
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e75e00f9-090b-4db7-b489-fa409128e1a0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 4,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "31bf47fa-2e73-47c5-ab85-cb796d234eb0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 4,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5cababfd-52fe-4cf5-9b31-793ff7c105c7",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 4,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "61d9f974-0800-4491-b6d5-23ead4241497",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 0,
+                                "y": 4,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "db68f5a8-606d-4348-89c5-54473f536bc6",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 5,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "bf633026-4957-4593-a92e-e0c6d7704b01",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 5,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "b5c695f9-ba6f-4a06-9e04-bd5085a20eea",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 5,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "90db7c10-447e-4f29-811e-f21c78235b3a",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 5,
+                                "z": 4
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d866d655-2f2b-415a-9589-46e14d1cb827",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 6,
+                                "z": 4
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "71a2c7c3-a38b-4e58-8881-22c8ecf051cf",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 6,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "02827542-9888-4fec-b880-0bccbf6426a8",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 6,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ff7edb34-dac3-445b-acc9-f214ffc0e061",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 6,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "231b2a11-58f5-4268-937d-bb5bc1d2db51",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 7,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "7dff15c1-8855-4211-b1b5-5b35e2f10d57",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 7,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "fff05b17-de89-468c-a46f-c4a934bf5c33",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 7,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "acfc30cf-330b-4e1e-91bf-a514856a705c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 8,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "eb9ebbe4-9259-493e-8d52-7b5b76681a7a",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 8,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ca2c6dfb-fe7d-4141-b224-fb6c0da5785f",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 8,
+                                "z": 3
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "7af6765b-ff25-4de0-82c7-909970e2b48d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 7,
+                                "z": 4
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e8aa9b6b-7af9-446e-9a2b-df81b5578705",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 8,
+                                "z": 4
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "816f9c7f-3199-4532-b0fa-2110ae7079f8",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 8,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "9639c3dc-abd7-44c3-ab80-e9f2f8dbb780",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 9,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ed3074f5-ea57-4d30-8fc7-4e2d75cf406a",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 9,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d0df3152-2947-4cbd-a1dc-67b2550287b3",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2c2f9415-7df6-469a-943b-ac9b6871c22b",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "97f67686-5de2-435a-ab39-f581ab25c542",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a3947d0a-b9f7-41cb-a443-3f2599ebc652",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 10,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "39ba33b4-3330-46bf-853b-b459a4f546e9",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 10,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c35e2287-2aea-44b6-9bd2-619a17418a1b",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 10,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "077007f2-bdc0-454d-92b1-75e8e35416ee",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 10,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "45a7621b-3cea-4347-a43b-d3cd91b39ac8",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 10,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "866da36e-d7e0-4dbe-9a47-fae718349cfb",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 10,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "8a3a7361-e045-4f17-aa5c-85fcf791ad34",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 11,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "83cad902-1093-447c-b724-354f5dd905a0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 11,
+                                "z": 5
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3365e187-0a76-44d4-8933-ec007052d28f",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 11,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "04c08450-581f-4bc5-824b-d3fbd281bde1",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 11,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "4386ea43-4dfa-4a01-984c-0beac3bbaba0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 11,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "21a9637a-69fd-45ec-8891-53aed059c0b2",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 11,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c9a978d4-304f-4369-9847-2843cb87d43c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 12,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2079bf13-30ce-4d38-aee2-c1ae8951bbc0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 12,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ccb62055-4b03-4abb-afd1-b7a127fbd097",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 12,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c311d692-7261-45c2-b73b-8a3f0b28361d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 12,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "96d4d790-3633-4d94-9b66-a4ecee35c3ae",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 12,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "6ad4d857-509f-4e87-b2e9-24f12e0a0b62",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 12,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "f1c60e1c-48de-4626-a7e1-fa7f23988439",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 13,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "59d42ba1-cdad-4911-8aa4-dee509ce24ce",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 13,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "4cff6570-0c12-4046-83db-bb98acbf6ab0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 13,
+                                "z": 6
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ef427625-5ac7-462a-b397-cc40b802e956",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 13,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "91f30130-eb95-4679-ad71-c7bda49d7826",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 13,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "6de1e038-8dd6-4a12-95a9-dc337647054f",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 13,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "b45a8f42-fe2a-4c37-906b-440c0ef1280b",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 14,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "679b5060-e131-4746-90b7-1cdc4d79121f",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 14,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "931b3f1b-b815-4119-9290-0affb5210b6e",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 14,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "40716a1d-1ed5-4536-8d21-955a73fa14c1",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 14,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a7e242a9-c183-4fa6-932b-3ac6b966e35e",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 14,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2ce57e4d-5bc3-431a-9ae0-02e6f499e243",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 14,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "fd69a36f-be12-4d43-82ea-afb86f06a112",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 15,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d4e50638-a93c-4121-aa24-6f5cfbfc8fc2",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 15,
+                                "z": 7
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "928a8608-1f9f-4be6-b204-d7ef2ea02115",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 15,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "83d5d0da-b256-4af8-a8fd-4f6d0a1fac85",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 15,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "895f76a1-f8de-4e9e-94e0-89a5fe23d88d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 15,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "64d5683b-80d6-4dd2-b2bf-3a67c4ec9109",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 15,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "66802976-831a-4c43-8fda-1e7e587f8e08",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 16,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "4acf8cbe-d255-4e87-8296-82b9496ae85a",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 16,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d9a31800-9d75-4c95-9f43-886494290b60",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 16,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "042cf989-4d5c-4394-b7b8-65815593a185",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 16,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "751f41a4-2091-4957-b46f-050f53907538",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 16,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "6ea6934d-dee1-426f-97cc-d30745de1c80",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 16,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ec68d765-109d-42f5-962f-80ae80844342",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 17,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "16d75f12-334a-4a55-aa89-c800e512aa54",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 17,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "7dc5204e-2a5e-46d4-97bb-0bb2330e61b5",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 17,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e3e1493d-bb89-46e1-af7f-35650c3e0878",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 17,
+                                "z": 8
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c0b885b1-1ab7-4c5e-9d16-2a8914b1446e",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 17,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "0623ddd8-5068-49c8-a7cf-e9eb953bd5e2",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 17,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "9b0592d8-46ce-43ad-a49f-ef2a7a3d8c14",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 17,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "24b49b41-0122-4124-ae0a-e1ebef7c8f43",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 18,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "6d12eade-41fd-47b9-a7dd-5f22ef9fbe39",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 18,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "b2c718d6-61c0-419a-bf20-83e2a7ae69da",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 18,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c14056be-89c7-48bd-a739-2bfaa9a2d76d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 18,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5f402103-5fd6-4725-b256-237fdf6752cb",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 18,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3accb6c2-cd23-468b-a5f3-c14476b10b9f",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 18,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "109e72fc-b9e2-48e6-9fb8-9afe72cef0d5",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 19,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "9190cec8-ecd5-46f5-9296-bef44b03e0b1",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 19,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e03a14a2-8fdb-4417-9ed1-7cfb58865b5a",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 19,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "11343afb-11b3-41a8-892e-405577243558",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 19,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "99a41ef0-9aa0-47fa-8d42-06c3604d3243",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 19,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "14c0266c-46e1-4695-96fa-e763c03b8c3c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 19,
+                                "z": 9
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "60e65b80-4086-41e0-9223-352a98d52dad",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 20,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "22dc8e06-0e16-4bbc-9d5d-246201ce4e08",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 20,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "94bed365-d404-4b65-81c3-7de62564a3d9",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 20,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e0ee1428-0559-42c7-b676-51b182e9551f",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 20,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "41c9dfb2-dbe6-42ba-b905-2aa2696d49cb",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 20,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e84ba252-d037-4b01-bb35-24f19ab26679",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 20,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3cde9331-5a09-40f8-b23a-82fbb51a7892",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 21,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "9664a0e3-e103-4cab-adcf-3d90c9080377",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 21,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ddba1b7d-e2d5-426c-88f1-b58e7827b6fd",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 21,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d62b036d-a0e5-47d2-be5e-b550aad922e2",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 21,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "f8264d91-5f43-4cfb-9eed-84c3feffceff",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 21,
+                                "z": 10
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d583bfc7-0ddb-4956-a4fd-80175943dca4",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 21,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5310f6a4-5e6f-476c-9816-fd4efe711f2d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 21,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "73b538c1-7480-4802-bbf4-9204c99d80d1",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 22,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "58015162-6da1-4efd-953d-d6edf223ea2d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 22,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2fe8f07d-6adc-4dbf-b5f0-44c67a494539",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 22,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5aa3d4aa-0977-471c-a6d5-1b33f4848eb1",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 22,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "b71e272d-805c-4715-93f4-b16d6efa9434",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 22,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d46e8674-9032-46f9-9c55-ca2d2177e985",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 22,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "df9fbbbf-8b60-4347-af92-0b68edc09822",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 22,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2f3efa22-4b7b-493f-8352-e1902e82a2dc",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 23,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ac14477a-65d9-42b3-991b-f2c492cef75c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 23,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e998a488-a543-48ca-bdab-1e07d15e468c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 23,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "4f2c97c2-45fe-4e90-917f-cf8566675435",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 23,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "7db104d6-be8c-4bcf-874d-4eecd2ebf59d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 23,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "15afba05-4f17-4b8e-9e2c-06071d2382cf",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 23,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a77dd5b0-19a2-45be-a32e-4e3f66beeb05",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 0,
+                                "y": 23,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "fed501de-595d-42f4-9375-bcbcac9d51b5",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 24,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "aa28d5ae-6244-4c61-beb0-b0d09f3871f3",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 24,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5504fc75-3da0-42a1-9cac-7134dddc0dcd",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 24,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "95211e81-3ebc-4dea-ab9e-0ff381b2c408",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 24,
+                                "z": 11
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "8002d683-5edd-4d62-8fb6-d7b855eb4a89",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 24,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "7c07b78c-23a3-4fe8-895e-a7824e17c7e9",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 24,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "920288f3-41cf-4445-9e27-d5e61b3f934a",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 25,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5a693340-14d6-43de-8092-819cd72d00ba",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 25,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "af341d16-62e7-4791-9126-472e529a972e",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 25,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "721fc3e6-cf6f-49e5-85cf-5392a75c4a1d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 25,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "aeb8ea70-0ac2-4f40-858d-3625035bdc21",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 25,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "7a264e18-7f02-425f-a075-135f52fd9428",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 25,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "bce7b2bb-f1c2-4ca7-93e6-b4fb264fff19",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 26,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "dbec4d44-e457-44d6-9b62-7929e57718ef",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 26,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "570709c0-8400-4435-aa52-7dede945e926",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 26,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3e55239a-ff57-4b7d-8e2a-9597327481a6",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 26,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "42ec1c10-b508-48c7-90ba-82008749725a",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 26,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "8fc56158-57d6-4b6a-ba58-3a91ba5354e1",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 26,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d8f52d35-2839-41c5-a8eb-45968191fd50",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 26,
+                                "z": 12
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "ab4d93b2-98c6-48de-87dc-3780b20f3c2c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 27,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "12d9fe7e-cfcf-45cd-9a81-b5991baec9f6",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 27,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3e0a4523-b2a3-4ea1-ab0a-2764b52802cb",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 27,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3c8e8f49-9fbd-432d-9566-4d7fdbac3d6c",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 27,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "58a64d6c-3b74-4a0b-b39e-0099bd9276f0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 27,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e8d27d7f-b54e-4156-89bb-0f39cbfbea95",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 27,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a677cb56-5bac-48fc-a620-36589807cf9e",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 27,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2cdc7b63-6e7f-420b-8d45-bdcded395e9e",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "79c029a6-cacd-4d17-8bf2-26aabb187d98",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "694a0d4c-6d57-4993-9c2a-5971ecb0f728",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "951060ec-3766-41c0-9cd2-730b43821f75",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "1fe577a6-cf23-4e03-91fc-567ebe3ca195",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c3688302-8829-480c-927d-439271b2ecb0",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "58f0ecb7-8a52-4f54-813c-6596e26b8050",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "fcf96003-1a58-4a96-a89e-26280443c1e8",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 7,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e3fca0fb-241b-4f71-873f-39a7f1b80b54",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 6,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d2dc7f88-03bf-4f29-9ba0-904743c23d14",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 5,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "49ceb098-60ae-414c-9ca3-e280781140ca",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 3,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "94b28dc6-16bb-4da1-9bdc-723516d4e18d",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "0d2abc27-0a0d-476d-b757-20db85354b68",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "f291bfe5-7f41-4fd3-897d-1148a0ba56d6",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 1,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3acd4bca-9188-4acc-8f4b-9a7a18fcafa9",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 0,
+                                "y": 28,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5834e819-ef2b-4007-ac21-6150b370fdb1",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": -1,
+                                "y": 29,
+                                "z": 13
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "cbd328b8-caf9-4411-9e11-57518497f6b1",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 30,
+                                "z": 14
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "cb789380-0b13-471f-a0b9-0b669d1aae04",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 30,
+                                "z": 14
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "aa94a9dc-c65a-414c-a96b-0b1617e421a8",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 30,
+                                "z": 14
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a787197f-4d62-487b-a58a-cec97ba99ff3",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 30,
+                                "z": 14
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "778c7931-26bc-4752-bd81-9b735ec5352f",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 5,
+                                "y": 30,
+                                "z": 14
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "bd79138b-d4b8-4f9d-94b8-29cc9e8f3b1f",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 6,
+                                "y": 30,
+                                "z": 14
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c7069244-55b0-49e5-9472-ae54ba22c131",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 7,
+                                "y": 30,
+                                "z": 14
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "b4afedf4-2aee-47b9-9032-de8a5611b042",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 7,
+                                "y": 31,
+                                "z": 15
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "9e53a19e-cba7-458d-a695-d42b66d64a72",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 6,
+                                "y": 31,
+                                "z": 15
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "70d1ed8a-8526-4740-a0b6-0f7949f3e471",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 5,
+                                "y": 31,
+                                "z": 15
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c7450484-53bf-4f5c-927e-0a05b0bef57a",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 31,
+                                "z": 15
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "dce11d63-1784-4380-82c9-7aaf45d402c1",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 31,
+                                "z": 15
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "cdd6ba2d-c575-4974-8bc9-8a4c06ff9adb",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 31,
+                                "z": 15
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "06e54dba-2d39-414d-8a5f-760ce70e6200",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 31,
+                                "z": 15
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "008e410a-272b-48dd-8947-7804b97c9c3d",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 32,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "00852b43-2faa-4399-bcca-88bb501ad17a",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 32,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "0d2ca1a7-23c8-4dcc-8b75-5bdc490d6f88",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 32,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "4db7f4e2-7c4b-44b8-8259-42197e975a04",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 32,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "57e06da5-b417-4747-acb5-965def6b60c6",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 5,
+                                "y": 32,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "c5c64c05-95d9-4882-8114-3a65d48d9fbc",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 6,
+                                "y": 32,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "d022f938-a270-48ef-a6aa-eee14ac31d7d",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 7,
+                                "y": 32,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "70f6445d-0c71-4080-9dcb-64bf584be088",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 7,
+                                "y": 33,
+                                "z": 16
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "36b9b61d-ce65-4fc1-a884-d79f01c82949",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 6,
+                                "y": 33,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "6e62c92b-4bdb-45ae-98bf-8b93aa26eb18",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 5,
+                                "y": 33,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2b27f9dc-e96e-4025-a261-4bacf9a46f59",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 33,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "088e9854-f7d3-40f5-9575-e830ae4386fa",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 33,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "6a28b4eb-8c8e-4178-9115-e3233a1010bc",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 33,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "96476457-7a85-4725-bad5-35fbcdd9adc6",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 33,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "9ba21979-0b14-4cae-a7e2-51bf41457ee4",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 7,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "63c283a7-73ba-40b0-acde-636ce61f1d89",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 6,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "e73870eb-1ee4-4457-97de-e294d56c68e8",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 5,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "130050d0-b37d-43b4-a806-0fbfdb588f00",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "6a86f15d-161e-4441-836d-6aea4421609a",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "265f1a4f-0d58-4c05-aa64-d4d6a1875393",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3873c8c2-37ea-41ca-9a70-e82bfa929193",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "b43fcf0a-e8c0-4a86-9144-6fd710aa6cc9",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 34,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "23d88443-623f-472a-92a6-a5c2b2804fd2",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 35,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "9110a39e-b892-4108-83ae-84de7927e50e",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 36,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "2889d342-1b17-4744-a347-b0325bbc118b",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 37,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "fa0a4786-95f0-45fd-b413-aa79c04ca5ba",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 35,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "91fc716f-106e-4996-b999-b857782cb070",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 35,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3f711641-1c71-4b80-b22b-ccd0f4fbe477",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 36,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "269fa458-161a-4193-9448-9c8bcb3e79fd",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 35,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "96ada6ca-6286-4de1-a9ab-7d0065bf0cf0",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 5,
+                                "y": 35,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "a4510904-88c5-4796-97df-023b80ac51b7",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 6,
+                                "y": 35,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "3257dd3b-b4b8-4549-aeaf-ac4443a72fdf",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 36,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "5ce5dc12-3b39-44a0-b7e9-1251b2e791aa",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 2,
+                                "y": 37,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        },
+                        {
+                            "Name": "f04618ac-1c52-4632-a139-a91c82a915de",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 0,
+                                "y": 38,
+                                "z": 17
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
