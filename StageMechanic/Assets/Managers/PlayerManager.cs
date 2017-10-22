@@ -71,23 +71,35 @@ public class PlayerManager : MonoBehaviour {
         Avatars[0].Move(Vector3.up);
     }
 
-    internal static void Player1MoveRight()
+	internal static void Player1MoveRight(bool pushpull)
     {
-        Avatars[0].Move(Vector3.right);
+		if (pushpull)
+			Avatars [0].PushPull (Vector3.right);
+		else
+			Avatars[0].Move(Vector3.right);
     }
 
-    internal static void Player1MoveAway()
+	internal static void Player1MoveAway(bool pushpull)
     {
-        Avatars[0].Move(Vector3.forward);
+		if (pushpull)
+			Avatars [0].PushPull (Vector3.forward);
+		else
+	        Avatars[0].Move(Vector3.forward);
     }
 
-    internal static void Player1MoveLeft()
+	internal static void Player1MoveLeft(bool pushpull)
     {
-        Avatars[0].Move(Vector3.left);
+		if (pushpull)
+			Avatars [0].PushPull (Vector3.left);
+		else
+	        Avatars[0].Move(Vector3.left);
     }
 
-    internal static void Player1MoveCloser()
+	internal static void Player1MoveCloser(bool pushpull)
     {
-        Avatars[0].Move(Vector3.back);
+		if (pushpull)
+			Avatars [0].PushPull (Vector3.back);
+		else
+	        Avatars[0].Move(Vector3.back);
     }
 }

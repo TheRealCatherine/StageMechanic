@@ -187,7 +187,7 @@ public class InputManager : MonoBehaviour {
 			if (altDown) {
 				BlockManager.ActiveFloor.transform.Rotate (90, 0, 0, Space.Self);
 				Cursor.transform.Rotate (90, 0, 0, Space.Self);
-			} else if (shiftDown) {
+			} else if (shiftDown && !BlockManager.PlayMode) {
 				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (0, 1, 0);
@@ -196,7 +196,7 @@ public class InputManager : MonoBehaviour {
 				GetCamera().offset += new Vector3 (0, 1, 0);
 			} else {
                 if (BlockManager.PlayMode)
-                    PlayerManager.Player1MoveAway();
+					PlayerManager.Player1MoveAway(shiftDown);
                 else
 				    Cursor.transform.position += new Vector3 (0, 1, 0);
 			}
@@ -210,7 +210,7 @@ public class InputManager : MonoBehaviour {
 			if (altDown) {
 				BlockManager.ActiveFloor.transform.Rotate (-90, 0, 0, Space.Self);
 				Cursor.transform.Rotate (-90, 0, 0, Space.Self);
-			} else if(shiftDown) {
+			} else if(shiftDown && !BlockManager.PlayMode) {
 				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (0, -1, 0);
@@ -219,7 +219,7 @@ public class InputManager : MonoBehaviour {
 				GetCamera().offset += new Vector3 (0, -1, 0);
 			} else {
                 if (BlockManager.PlayMode)
-                    PlayerManager.Player1MoveCloser();
+					PlayerManager.Player1MoveCloser(shiftDown);
                 else
                     Cursor.transform.position += new Vector3 (0, -1, 0);
 			}
@@ -233,7 +233,7 @@ public class InputManager : MonoBehaviour {
 			if (altDown) {
 				BlockManager.ActiveFloor.transform.Rotate (0, 90, 0, Space.Self);
 				Cursor.transform.Rotate (0, 90, 0, Space.Self);
-			} else if(shiftDown) {
+			} else if(shiftDown && !BlockManager.PlayMode) {
 				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (-1, 0, 0);
@@ -242,7 +242,7 @@ public class InputManager : MonoBehaviour {
 				GetCamera().offset += new Vector3 (-1, 0, 0);
 			} else {
                 if (BlockManager.PlayMode)
-                    PlayerManager.Player1MoveLeft();
+					PlayerManager.Player1MoveLeft(shiftDown);
                 else
                     Cursor.transform.position += new Vector3 (-1, 0, 0);
 			}
@@ -256,7 +256,7 @@ public class InputManager : MonoBehaviour {
 			if (altDown) {
 				BlockManager.ActiveFloor.transform.Rotate (0, -90, 0, Space.Self);
 				Cursor.transform.Rotate (0, -90, 0, Space.Self);
-			} else if(shiftDown) {
+			} else if(shiftDown && !BlockManager.PlayMode) {
 				GameObject ao = BlockManager.ActiveObject;
 				if (ao != null)
 					ao.transform.Translate (1, 0, 0);
@@ -265,7 +265,7 @@ public class InputManager : MonoBehaviour {
 				GetCamera().offset += new Vector3 (1, 0, 0);
 			} else {
                     if (BlockManager.PlayMode)
-                        PlayerManager.Player1MoveRight();
+					PlayerManager.Player1MoveRight(shiftDown);
                     else
                         Cursor.transform.position += new Vector3 (1, 0, 0);
 			}

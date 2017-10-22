@@ -101,31 +101,6 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		}
 
 		ApplyGravity ();
-
-		//if ((transform.localPosition.x % 1)==0) && ((transform.position.z % 1)==0))
-		//	_nextMove = down;
-		
-
-		//if (!Physics.Raycast (transform.position, Vector3.down, 0.8f))
-		//	_nextMove = Vector3.down;
-
-
-		// Jumping stuff TODO made it not horrible (do we want/need it?)
-		/*if (!_isGrounded || !controller.isGrounded || moveDirection.y > 0f || _nextMove.y > 0f) {
-			if (controller.isGrounded) {
-				moveDirection.Set (_nextMove.x * speed, 0, _nextMove.z * speed);
-				moveDirection = transform.TransformDirection (moveDirection);
-				moveDirection *= speed;
-				if (_nextMove.y > 0f) {
-					moveDirection.y = jumpSpeed;
-				}
-			} else {
-				moveDirection.Set (0, moveDirection.y, 0);
-			}
-			moveDirection.y -= gravity * Time.deltaTime;
-			controller.Move (moveDirection * Time.deltaTime);
-			_nextMove.Set (0, 0, 0);
-		}*/
     }
 
 	public void ApplyGravity()
@@ -136,7 +111,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		transform.position -= new Vector3(0, 0.25f, 0);
 	}
 
-    internal void Move(Vector3 direction)
+    public void Move(Vector3 direction)
     {
 		if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			_nextMove = direction;
@@ -179,21 +154,14 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		}
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-       
-		//GameObject other = hit.gameObject;
-		//if (other == null)
-//			return;
-
-
-       // if (body == null || body.isKinematic)
-       //     return;
-
-        //if (hit.moveDirection.y < -0.3F)
-        //    return;
-
-//        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
- //       body.velocity = pushDir * pushPower;
-    }
+	public void PushPull(Vector3 direction)
+	{
+		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+_facingDirection);
+		if (blockInQuestion == null)
+			return;
+		Debug.Log (blockInQuestion.Name);
+		blockInQuestion.Position += direction;
+		if(direction != _facingDirection)
+			_nextMove = direction;
+	}
 }
