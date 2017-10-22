@@ -51,7 +51,7 @@ public class PlayerManager : MonoBehaviour {
         Debug.Log("Spawning");
         foreach (Cathy1PlayerStartLocation player in PlayerStartLocations)
         {
-            Avatars.Add(Instantiate(Player1Prefab, player.transform.position, player.transform.rotation, transform).GetComponent<Cathy1PlayerCharacter>());
+			Avatars.Add(Instantiate(Player1Prefab, player.transform.position+new Vector3(0f,1f,0f), player.transform.rotation, transform).GetComponent<Cathy1PlayerCharacter>());
         }
     }
 

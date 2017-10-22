@@ -31,7 +31,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour {
 
 			Vector3 down = transform.TransformDirection (Vector3.down);
 
-			if (Physics.Raycast (transform.position, down, 0.5f) && (transform.position.y % 1) == 0) {
+			if (Physics.Raycast (transform.position, down, 1f) && (transform.position.y % 1) == 0) {
 				IsGrounded = true;
 			}
 

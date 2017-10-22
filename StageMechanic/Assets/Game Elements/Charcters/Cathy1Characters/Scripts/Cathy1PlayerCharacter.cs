@@ -17,6 +17,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     private Vector3 _nextMove;
 	private Vector3 _facingDirection = Vector3.back;
 
+	public bool IsGrounded { get; set; } = false;
+
     public float speed = 10.0F;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
@@ -24,7 +26,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _player=Instantiate(Player1Prefab, transform.position, transform.rotation, gameObject.transform);
+		_player=Instantiate(Player1Prefab, transform.position-new Vector3(0f,0.3f,0f), transform.rotation, gameObject.transform);
         _player.transform.RotateAround(transform.position, transform.up, 180f);
         _player.GetComponent<Animator>().runtimeAnimatorController = GetComponent<Animator>().runtimeAnimatorController;
     }
@@ -32,8 +34,13 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         // Update is called once per frame
     void Update()
     {
-        CharacterController controller = GetComponent<CharacterController>();
-		Debug.Assert (controller != null);
+		//if (_nextMove == Vector3.zero && moveDirection == Vector3.zero)
+		//	return;
+
+        //CharacterController controller = GetComponent<CharacterController>();
+		//Debug.Assert (controller != null);
+
+		//TODO test if block in way
 
 		if (_nextMove == Vector3.right) {
 			transform.position += new Vector3 (0.25f, 0, 0);
@@ -45,12 +52,12 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			if ((transform.position.x % 1) == 0) {
 				_nextMove = Vector3.zero;
 			}
-		} if (_nextMove == Vector3.forward) {
+		} else if (_nextMove == Vector3.forward) {
 			transform.position += new Vector3 (0, 0, 0.25f);
 			if ((transform.position.z % 1) == 0) {
 				_nextMove = Vector3.zero;
 			}
-		} if (_nextMove == Vector3.back) {
+		} else if (_nextMove == Vector3.back) {
 			transform.position += new Vector3 (0, 0, -0.25f);
 			if ((transform.position.z % 1) == 0) {
 				_nextMove = Vector3.zero;
@@ -58,8 +65,41 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		}
 
 
-		// Jumping stuff TODO made it not horrible
-		if (!controller.isGrounded || moveDirection.y > 0f || _nextMove.y > 0f) {
+		IsGrounded = false;
+
+		Vector3 down = transform.TransformDirection (Vector3.down);
+
+		if (Physics.Raycast (transform.position, down, 0.5f) && (transform.position.y % 1) == 0) {
+			IsGrounded = true;
+		}
+
+		//TODO grab edge
+		foreach (Collider col in Physics.OverlapBox(transform.position - new Vector3(0f,0.7f,0f),new Vector3(0.15f,0.01f,0.15f))) {
+			if (col.gameObject == gameObject)
+				continue;
+			Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
+			if (otherBlock == null)
+				continue;
+			if (!otherBlock.IsGrounded)
+				continue;
+			if ((transform.position.y % 1) == 0) {
+				IsGrounded = true;
+				break;
+			}
+		}
+
+		ApplyGravity ();
+
+		//if ((transform.localPosition.x % 1)==0) && ((transform.position.z % 1)==0))
+		//	_nextMove = down;
+		
+
+		//if (!Physics.Raycast (transform.position, Vector3.down, 0.8f))
+		//	_nextMove = Vector3.down;
+
+
+		// Jumping stuff TODO made it not horrible (do we want/need it?)
+		/*if (!_isGrounded || !controller.isGrounded || moveDirection.y > 0f || _nextMove.y > 0f) {
 			if (controller.isGrounded) {
 				moveDirection.Set (_nextMove.x * speed, 0, _nextMove.z * speed);
 				moveDirection = transform.TransformDirection (moveDirection);
@@ -73,8 +113,16 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			moveDirection.y -= gravity * Time.deltaTime;
 			controller.Move (moveDirection * Time.deltaTime);
 			_nextMove.Set (0, 0, 0);
-		}
+		}*/
     }
+
+	public void ApplyGravity()
+	{
+		if (IsGrounded)
+			return;
+		
+		transform.position -= new Vector3(0, 0.25f, 0);
+	}
 
     internal void Move(Vector3 direction)
     {
