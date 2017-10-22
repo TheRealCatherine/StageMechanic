@@ -126,6 +126,21 @@ public class InputManager : MonoBehaviour {
 				Application.Quit ();
             #endif
 		}
+
+		//Manually move the platform
+		else if(Input.GetKeyDown(KeyCode.Tab)) {
+			Vector3 blockDirection = Vector3.down;
+			Vector3 platformDirection = Vector3.up;
+			if (shiftDown) {
+				blockDirection = Vector3.up;
+				platformDirection = Vector3.down;
+			}
+			foreach (Transform child in BlockManager.ActiveFloor.gameObject.transform) {
+				if(child.GetComponent<IBlock>()!=null)
+					child.position += blockDirection;
+			}
+			BlockManager.ActiveFloor.transform.position += platformDirection;
+		}
 			
 		// Block type cycling
 		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {

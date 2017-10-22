@@ -41,7 +41,6 @@ public class FloorIsLava : Platform
         Debug.Assert(bm != null);
         if (bm.PlayMode)
             Destroy(collision.gameObject);
-
     }
 
     void OnTriggerEnter(Collider collision)

@@ -55,7 +55,11 @@ public class StageJsonDelegate {
 			Debug.Assert (_manager != null);
 			//TODO create all platforms
 			foreach (PlatformJsonDelegate platform in value) {
-				_manager.ActiveFloor = platform._platform;
+				foreach (Transform child in platform._platform.transform) {
+					child.parent = _manager.ActiveFloor.transform;
+				}
+				GameObject.Destroy (platform._platform);
+				//TODO _manager.ActiveFloor = platform._platform;
 			}
 		}
 	}
