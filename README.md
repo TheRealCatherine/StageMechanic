@@ -26,12 +26,16 @@ This project is being developed as an Open Source project entirely by volunteers
 
 We are using the BSD 3-clause license. This allows maximum freedom while protecting contributors. Essentially anyone is allowed to do whatever they want to with anything published as part of this project. However it is worth noting that portions of the project are being developed using Unity Personal and this may add certain restrictions on those wishing to profit commercially from certain parts of the project. If you are wanting to use a portion or all of this project in a commercial application or bundle please consult with proper legal authorities regarding mixing the BSD license with the Unity Personal license.
 
-## For Developers/Artists/Musicians
+Additionally note that items under the StageMechanic/Assets/3rdParty folder may be under other licenses such as the Unity Store license, check the LICENSES-EXCEPTIONS file for specifics.
+
+## Contribting
+
+This project is being developed entirely by volunteers and is managed by an industry veteran in her spare time. If there is anything you would like to work on please join our Discord chat and let us know. Pretty much no matter what it is we can find a way to fit it in. Our project manager often says "do what you want, when you want, for as long as you want" and applies this not only to life but to project management.
 
 ### Tools/technologies used
 
 * Game Engine: Unity Personal 2017.2.0f3
-* Languages: C# 6.0 for primary development, Lua for custom scripting
+* Languages: C# 6.0 for primary development, Lua (via MoonSharp) for custom scripting
 * 3D Modeling: Blender 3D
 * 2D Painting: .PSD file format (Photoshop/Krita/gimp/CSP)
 * Audio/Music: TBD, one or more of: Audacity, Sony Acid Pro, Fruity Loops, Presonus Studio One
@@ -78,7 +82,7 @@ Step 6: Check out the source code
 
 ## Resources
 
-Below are resources for those new to game design and devleopment as well as those simply new to this project.
+Below are resources for those new to game design and devleopment as well as those simply new to this project. If you would like to contribute but have never written a line or code or even heard of Blender thats OK! Join our Discord chat and let us know what sparks your interest and we will help you find appropriate resources to get you up to speed enough to contribute the thing you want to do.
 
 ### General
 
@@ -86,13 +90,13 @@ Below are resources for those new to game design and devleopment as well as thos
 
 ### Character and story development
 
-Mythological, Historical, Linguistic, and Religious Source Material
+#### Mythological, Historical, Linguistic, and Religious Source Material
 
-Websites:
+##### Websites:
 
 * [Ancient Mesopotamian Gods and Goddesses](http://oracc.museum.upenn.edu/amgg/)
 
-Books:
+##### Books:
 
 * [Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others](https://www.amazon.com/Myths-Mesopotamia-Creation-Gilgamesh-Classics/dp/019953836)
 * [Inanna, Queen of Heaven and Earth: Her Stories and Hymns from Sumer](https://www.amazon.com/Inanna-Queen-Heaven-Earth-Stories/dp/0060908548)
@@ -106,7 +110,7 @@ Books:
 * [Complete Babylonian](https://www.amazon.com/Complete-Babylonian-Yourself-Martin-Worthington/dp/0340983884)
 
 
-Catherine Resources
+#### Catherine Resources
 
 * [Catherine Game Movie](https://www.youtube.com/watch?v=QX_ImJmCbSs)
 * [Catherine: The Novel](http://fftranslations.atspace.co.uk/catherine/)
@@ -115,26 +119,26 @@ Catherine Resources
 * [Catherine Game Reddit](http://reddit.com/r/catherinegame)
 * [Catherine Discord Chat](https://discord.gg/nG5rN8B)
 
-Robo5 Resources
+#### Robo5 Resources
 
 * [Launch Trailer](https://www.youtube.com/watch?v=2S96oOPK1Ck)
 
-Pushmo Resources
+##### Pushmo Resources
 
 * [Pushmo World Launch Trailer](https://www.youtube.com/watch?v=Vm7qYpklhNg)
 
 ### Level design
 
-Catherine Resources
+#### Catherine Resources
 
 * [Catherine walktrhough](https://www.youtube.com/watch?v=dGdVFn8KbBc&list=PLCF294B7A87DAB31C) this is from a new player rather than ideal solves
 * [Rapunzel walktrhough](https://www.youtube.com/watch?v=NLRzLdbnpLU&list=PL5775F9FDCBD08849) ideal or near-ideal solves for each stage
 
-Robo 5 Resources
+#### Robo 5 Resources
 
 * [Chapter 1 walkthrough](https://www.youtube.com/watch?v=WNSG7Qq8NeI)
 
-Pushmo Resources
+#### Pushmo Resources
 
 * [Pushmo World walktrhough part 1](https://www.youtube.com/watch?v=oUEa2FHGAAw)
 
