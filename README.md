@@ -4,7 +4,7 @@
 
 We are creating an application that allows one to practice portions of games such as Catherine, Robo5, and Pushmo outside of their respective games. Initial implementation will allow the user to test different solves for correctness but will not implement pressure elements such as time limits, score, move limits, etc. We are explicitly NOT designing a game (even though some game elements may be included). This is a tool for practicing a game outside of the game.
 
-Another aspect of this project will be a stage designer allowing the user to create the sections of stages they wish to practice.
+An important aspect of this project will is a stage designer allowing the user to create the sections of stages they wish to practice.
 
 We will likely (TBD) have some degree of backstory/mythology associated with this project as well, though it is not intended to be story-based game (or any kind of game for that matter).
 
@@ -16,7 +16,25 @@ We will target both the amateur/casual player of Catherine, Robo5, and Pushmo lo
 
 ## Current state
 
-This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017. So far we have focused on the Level Editor implementation and it is currently possible to easily place blocks in 3D space. Block properties (trap, player movement, bombs, etc) have been defined and partially implemented for Catherine1-style blocks and textures are in the works (but there are placeholders). Catherine1-style gravity and EDGEing currently work but are slightly buggy. Stage load/save support is in place though the exact layout of this file is still in flux. Once the Level Editor as has reached a usable state, development focus will shift to the Play Mode while level designers create the default map set.
+This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017.
+
+### What works:
+* Easily and quickly create levels using our custom-made level editor mode. (level editor)
+* Placing all Catherine 1-style blocks anywhere in 3d space (level editor)
+* Catherine-1 style gravity and EDGE mechanics (play mode)
+* Grid-based player movement and block climbing (play mode)
+* Pushing/pulling blocks and rows of blocks (play mode)
+* Immobile block mechanic (play mode)
+* Windows, OS X, and Linux builds
+* Keyboard input
+* XBox 360 controller input (Windows, edit mode)
+* Editing and playing through levels based on Catherine 1 levels: 1 and 2-1 (play mode)
+
+### Currently in progress
+* Sidling (hanging onto block edges) (play mode)
+* Player movement animantion (play mode)
+* Special block functions (ie bombs, cracked blocks, etc)
+* XBox 360 controller input (Windows, play mode)
 
 [Development Builds](https://github.com/TheRealCatherine/StageMechanic/wiki/Downloads)
 
@@ -149,6 +167,7 @@ When using artwork from other sources it _MUST_ be either CC0, CC-BY, BSD, or ot
 * [Wikimedia commons](https://commons.wikimedia.org/wiki/Main_Page)
 * [Clipart today](http://www.clipartoday.com)
 * [Open Game Art](https://opengameart.org/textures/all?field_art_licenses_tid[0]=17981&field_art_licenses_tid[1]=2&field_art_licenses_tid[2]=10310&field_art_licenses_tid[3]=4)
+* [Unity Asset Store](https://www.assetstore.unity3d.com/en/)
 
 ### Development, coding
 
