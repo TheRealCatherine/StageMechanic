@@ -179,14 +179,11 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
 		Vector3 down = transform.TransformDirection (Vector3.down);
 
-		if (Physics.Raycast (transform.position, down, 0.5f) && (transform.position.y % 1) == 0) {
+		if ((!wasSidled || IsGrabbingBlock) && Physics.Raycast (transform.position, down, 0.5f) && (transform.position.y % 1) == 0) {
 			IsGrounded = true;
 		}
 
 		if (!IsGrounded && !HasLetGo) {
-			if (IsGrabbingBlock) {
-				transform.position += Vector3.down;
-			}
 			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.1f, 0.1f, 0.5f)));
 			crossColiders.AddRange (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.5f, 0.1f, 0.1f)));
 
@@ -200,17 +197,25 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 					continue;
 				if (otherBlock.TestForSupportedBlock (1))
 					continue;
-				if (!wasSidled)
+				if (!wasSidled && !IsGrabbingBlock)
 					TurnAround ();
-				IsSidled = true;
-				_player.transform.localPosition = new Vector3(_facingDirection.x*0.4f,0f,_facingDirection.z*0.4f);
-				break;
+				if (!IsGrabbingBlock) {
+					IsSidled = true;
+					_player.transform.localPosition = new Vector3 (_facingDirection.x * 0.4f, 0f, _facingDirection.z * 0.4f);
+					break;
+				} else {
+					IsSidled = false;
+					break;
+				}
 			}
 		}
-		IsGrabbingBlock = false;
+		if(!IsSidled)
+			_player.transform.localPosition = new Vector3(0f,-HEIGHT_ADJUST,0f);
 		ApplyGravity ();
-		if((transform.position.y % 1) == 0)
+		if ((transform.position.y % 1) == 0) {
 			HasLetGo = false;
+			IsGrabbingBlock = false;
+		}
     }
 
 	public void ApplyGravity()
