@@ -13,6 +13,9 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 
 	public bool IsGrounded { get; set; } = false;
 
+	public bool inspectorGrounded = false;
+	public Vector3 dodododo;
+
 	void Update ()
 	{
 		Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block> ();
@@ -24,15 +27,18 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 		if (bm.PlayMode) {
 
 			IsGrounded = false;
+			inspectorGrounded = false;
+			dodododo = Vector3.zero;
 
 			Vector3 down = transform.TransformDirection (Vector3.down);
 
 			if (Physics.Raycast (transform.position, down, 1f) && (transform.position.y % 1) == 0) {
 				IsGrounded = true;
+				inspectorGrounded = true;
 			}
 
-			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.1f, 0.1f, 0.75f)));
-			crossColiders.AddRange (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
+			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.75f, 0f), new Vector3 (0.1f, 0.1f, 0.75f)));
+			crossColiders.AddRange (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.75f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
 
 			foreach (Collider col in crossColiders) {
 				if (col.gameObject == gameObject)
@@ -43,6 +49,8 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 				if (!otherBlock.IsGrounded)
 					continue;
 				if ((transform.position.y % 1) == 0) {
+					inspectorGrounded = false;
+					dodododo = otherBlock.transform.position;
 					IsGrounded = true;
 					break;
 				}
