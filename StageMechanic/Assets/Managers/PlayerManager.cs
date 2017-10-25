@@ -102,4 +102,10 @@ public class PlayerManager : MonoBehaviour {
 		else
 	        Avatars[0].Move(Vector3.back);
     }
+
+	internal static void Player1MoveNull(bool pushpull)
+	{
+		if (pushpull)
+			Avatars [0].PushPull (Vector3.zero);
+	}
 }
