@@ -137,6 +137,14 @@ public class BlockManager : MonoBehaviour {
         this.ShowBlockInfo = !this.ShowBlockInfo;
     }
 
+    //TODO make this whole class static
+    public static BlockManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Called when the BlockManager is intantiated, when the Level Editor is loaded
     void Start() {
         // Create the cursor

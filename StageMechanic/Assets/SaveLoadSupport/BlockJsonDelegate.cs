@@ -18,7 +18,7 @@ using System;
 [DataContract(Name="Block")]
 public class BlockJsonDelegate {
 
-	IBlock _block;
+	internal IBlock _block;
 	public IBlock Block {
 		get {
 			return _block;
@@ -28,10 +28,10 @@ public class BlockJsonDelegate {
 		}
 	}
 
-	string _name = null;
-	string _type = null;
-	Vector3 _pos;
-    Quaternion _rot;
+	internal string _name = null;
+	internal string _type = null;
+	internal Vector3 _pos;
+    internal Quaternion _rot;
 
 
 	public BlockJsonDelegate( IBlock block ) {
@@ -108,7 +108,7 @@ public class BlockJsonDelegate {
     /// </summary>
     /// <param name="context"></param>
 	[OnDeserialized()]
-	internal void OnDeserialedMethod(StreamingContext context)
+	virtual internal void OnDeserialedMethod(StreamingContext context)
 	{
 		Debug.Assert (_name != null);
 		Debug.Assert (_type != null);

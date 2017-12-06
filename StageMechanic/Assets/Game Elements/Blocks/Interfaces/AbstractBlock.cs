@@ -212,7 +212,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     /// </summary>
     public float GravityFactor { get; set; } = 1.0f;
 
-    public BlockJsonDelegate GetJsonDelegate()
+    virtual public BlockJsonDelegate GetJsonDelegate()
     {
         return new BlockJsonDelegate(this);
     }

@@ -9,16 +9,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GridWalkBehavior))]
 public class Cathy1PlayerCharacter : MonoBehaviour {
 
     public GameObject Player1Prefab;
+    public RuntimeAnimatorController Player1AnimationController;
+    public Avatar Player1Avatar;
 
     private GameObject _player;
-    private Vector3 _nextMove;
+   /* private Vector3 _nextMove;
 	private Vector3 _lastSidleMove;
-	private Vector3 _lastSidleRequest;
+	private Vector3 _lastSidleRequest;*/
 	private Vector3 _facingDirection = Vector3.back;
-
+    /*
 	public bool IsGrounded { get; set; } = false;
 	public bool IsSidled { get; set; } = false;
 	public bool HasLetGo { get; set; } = false;
@@ -26,21 +29,27 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     public float speed = 10.0F;
     public float jumpSpeed = 8.0F;
-    public float gravity = 20.0F;
+    public float gravity = 20.0F;*/
 
-	private const float HEIGHT_ADJUST = 0.5f;
-
-    private Vector3 moveDirection;
+	private const float HEIGHT_ADJUST = 1.0f;
+    /*
+    private Vector3 moveDirection;*/
 
     // Use this for initialization
     void Start () {
 		_player=Instantiate(Player1Prefab, transform.position-new Vector3(0f,HEIGHT_ADJUST,0f), transform.rotation, gameObject.transform);
         _player.transform.RotateAround(transform.position, transform.up, 180f);
-        _player.GetComponent<Animator>().runtimeAnimatorController = GetComponent<Animator>().runtimeAnimatorController;
+        _player.GetComponent<Animator>().runtimeAnimatorController = Player1AnimationController;
+        _player.GetComponent<Animator>().avatar = Player1Avatar;
+
+        GridWalkBehavior walker = GetComponent<GridWalkBehavior>();
+        walker.Character = _player;
+        GridClimbBehavior climber = GetComponent<GridClimbBehavior>();
+        climber.Character = _player;
     }
 
         // Update is called once per frame
-    void Update()
+   /* void Update()
     {
 		if (_nextMove != Vector3.zero) {
 			if (IsSidled && (transform.position.x % 1) == 0 && (transform.position.z % 1) == 0) {
@@ -184,8 +193,11 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		}
 
 		if (!IsGrounded && !HasLetGo) {
-			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.1f, 0.1f, 0.5f)));
-			crossColiders.AddRange (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.5f, 0.1f, 0.1f)));
+			List<Collider> crossColiders;
+			if(_facingDirection == Vector3.forward || _facingDirection == Vector3.back)
+			 	crossColiders = new List<Collider> (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.1f, 0.1f, 0.5f)));
+			else
+				crossColiders = new List<Collider> (Physics.OverlapBox (transform.position + new Vector3 (0f, 0.5f, 0f), new Vector3 (0.5f, 0.1f, 0.1f)));
 
 			foreach (Collider col in crossColiders) {
 				if (col.gameObject == gameObject)
@@ -195,10 +207,11 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 					continue;
 				if (!otherBlock.IsGrounded)
 					continue;
-				if (otherBlock.TestForSupportedBlock (1))
-					continue;
-				if (!wasSidled && !IsGrabbingBlock)
+				//if (otherBlock.TestForSupportedBlock (1))
+				//	continue;
+				if (!wasSidled && !IsGrabbingBlock) {
 					TurnAround ();
+				}
 				if (!IsGrabbingBlock) {
 					IsSidled = true;
 					_player.transform.localPosition = new Vector3 (_facingDirection.x * 0.4f, 0f, _facingDirection.z * 0.4f);
@@ -216,17 +229,17 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			HasLetGo = false;
 			IsGrabbingBlock = false;
 		}
-    }
+    }*/
 
 	public void ApplyGravity()
 	{
-		if (IsGrounded || IsSidled)
+		/*if (IsGrounded || IsSidled)
 			return;
 		
-		transform.position -= new Vector3(0, 0.25f, 0);
+		transform.position -= new Vector3(0, 0.25f, 0);*/
 	}
 
-	protected void MoveNextDirection() {
+	/*protected void MoveNextDirection() {
 
 		if (_nextMove == Vector3.right) {
 			transform.position += new Vector3 (0.25f, 0, 0);
@@ -249,7 +262,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 				_nextMove = Vector3.zero;
 			}
 		}
-	}
+	}*/
 
 	public void Face(Vector3 direction) {
 		float degrees = 0f;
@@ -287,7 +300,6 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		}
 		_player.transform.RotateAround(transform.position, transform.up, degrees);
 		_facingDirection = direction;
-		_nextMove = Vector3.zero;
 	}
 
 	public void TurnAround() {
@@ -328,16 +340,39 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     public void Move(Vector3 direction)
     {
-		if (IsSidled || _facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
+        if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
+        {
+            IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
+            if (blockInWay != null)
+            {
+                Debug.Log("Block: " + blockInWay.Name);
+                IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
+                if (oneBlockUp == null)
+                {
+                    GridClimbBehavior climber = GetComponent<GridClimbBehavior>();
+                    climber.Climb(direction);
+                }
+            }
+            else
+            {
+                GridWalkBehavior walker = GetComponent<GridWalkBehavior>();
+                walker.Move(direction);
+            }
+        }
+        else
+        {
+            Face(direction);
+        }
+        /*if (IsSidled || _facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			_nextMove = direction;
 		else {
 			Face (direction);
-		}
+		}*/
     }
 
 	public void PushPull(Vector3 direction)
 	{
-		if (IsSidled) {
+		/*if (IsSidled) {
 			IsSidled = false;
 			IsGrounded = false;
 			HasLetGo = true;
@@ -351,7 +386,10 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		IsGrabbingBlock = true;
 		Debug.Log ("Grabbing block: " + blockInQuestion.Name);
 		bool moved = blockInQuestion.Move(direction);
+		IsGrounded = false;
+		IsSidled = false;
 		if(moved && direction != _facingDirection)
 			_nextMove = direction;
+	*/	
 	}
 }

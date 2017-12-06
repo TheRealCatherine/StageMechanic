@@ -107,6 +107,11 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         }
     }
 
+    public override BlockJsonDelegate GetJsonDelegate()
+    {
+        return new Cathy1BombBlockJsonDelegate(this);
+    }
+
     /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
