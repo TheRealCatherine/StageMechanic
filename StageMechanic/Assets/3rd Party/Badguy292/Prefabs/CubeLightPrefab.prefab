@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4274776554996926}
   - component: {fileID: 65664613676373532}
   - component: {fileID: 114298654629261974}
-  - component: {fileID: 114705951476903474}
+  - component: {fileID: 114142585317947712}
   m_Layer: 0
   m_Name: CubeLightPrefab
   m_TagString: Untagged
@@ -126,6 +126,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114142585317947712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332188267363060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76cbf522f461e0442a1424cdc065c067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Material1: {fileID: 0}
+  Material2: {fileID: 0}
+  Material3: {fileID: 0}
+  Material4: {fileID: 0}
+  ArmedStateMaterial: {fileID: 0}
+  TriggeredStateMaterial: {fileID: 0}
+  ActiveStateMaterial: {fileID: 0}
+  DisarmedStateMaterial: {fileID: 0}
+  Size: 0
 --- !u!114 &114298654629261974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,18 +157,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114705951476903474
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1332188267363060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 427a075e7761189419a4c850627e66a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Material1: {fileID: 0}
-  Material2: {fileID: 0}
-  Material3: {fileID: 0}
-  Material4: {fileID: 0}
+  inspectorGrounded: 0
+  dodododo: {x: 0, y: 0, z: 0}

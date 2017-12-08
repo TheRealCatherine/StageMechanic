@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4554715953814916}
   - component: {fileID: 65191320346485030}
   - component: {fileID: 114023924567337458}
-  - component: {fileID: 114036042318952726}
+  - component: {fileID: 114162532506374936}
   m_Layer: 0
   m_Name: CubeDarkPrefab
   m_TagString: Untagged
@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114036042318952726
+  inspectorGrounded: 0
+  dodododo: {x: 0, y: 0, z: 0}
+--- !u!114 &114162532506374936
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -145,10 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371649129706228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e8dfaadaa42ff842bb6e71064a55dd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 76cbf522f461e0442a1424cdc065c067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  ArmedStateMaterial: {fileID: 0}
+  TriggeredStateMaterial: {fileID: 0}
+  ActiveStateMaterial: {fileID: 0}
+  DisarmedStateMaterial: {fileID: 0}
+  Size: 1
