@@ -52,7 +52,7 @@ public class Cathy1Block : AbstractBlock
     }
 
     //TODO move to Abstract
-    internal BlockType _type = BlockType.Custom;
+    internal BlockType _type = BlockType.Basic;
     public virtual BlockType Type { get { return _type; } }
 
     public BlockManager BlockManager { get; set; } = null;

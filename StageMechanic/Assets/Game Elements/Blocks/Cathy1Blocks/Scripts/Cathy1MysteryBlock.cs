@@ -10,9 +10,10 @@ using UnityEngine;
 
 public class Cathy1MysteryBlock : Cathy1Block
 {
+    public sealed override BlockType Type { get; } = BlockType.Random;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

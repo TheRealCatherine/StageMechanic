@@ -135,7 +135,8 @@ public class BlockJsonDelegate {
     /// causes more overhead as its position/type/etc change.
     /// </summary>
     /// <param name="context"></param>
-	virtual internal void OnDeserialedMethod(StreamingContext context)
+    [OnDeserialized()]
+    internal void OnDeserialedMethod(StreamingContext context)
 	{
 		Debug.Assert (_name != null);
 		Debug.Assert (_type != null);
@@ -143,6 +144,6 @@ public class BlockJsonDelegate {
         //TODO support different block factories
 		IBlock newBlock = StageCollection.BlockManager.Cathy1BlockFactory.CreateBlock (_pos, _rot, _type, StageCollection.BlockManager.ActiveFloor);
 		newBlock.Name = _name;
-        newBlock.Properties = _properties;
+        //newBlock.Properties = _properties;
 	}
 }

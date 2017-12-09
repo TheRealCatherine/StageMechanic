@@ -10,6 +10,9 @@ using UnityEngine;
 
 public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
 {
+
+    public sealed override BlockType Type { get; } = BlockType.Vortex;
+
     public override TrapBlockType TrapType
     {
         get

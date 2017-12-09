@@ -10,9 +10,10 @@ using UnityEngine;
 
 public class Cathy1MonsterBlock : Cathy1Block
 {
+    public sealed override BlockType Type { get; } = BlockType.Monster;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

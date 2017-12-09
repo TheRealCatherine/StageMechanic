@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4630910688187570}
   - component: {fileID: 65742405031589052}
   - component: {fileID: 114639485300454270}
-  - component: {fileID: 114613500907694916}
+  - component: {fileID: 114219995227092140}
   m_Layer: 0
   m_Name: CubeDangerPrefab
   m_TagString: Untagged
@@ -126,7 +126,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114613500907694916
+--- !u!114 &114219995227092140
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1320435986589154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f962aa4fb6329da4cb2bbe7a5a4d307e, type: 3}
+  m_Script: {fileID: 11500000, guid: 45013174449f0b841a26d49677404812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Material1: {fileID: 0}
@@ -152,3 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspectorGrounded: 0
+  dodododo: {x: 0, y: 0, z: 0}

@@ -11,8 +11,10 @@ using UnityEngine;
 public class Cathy1GoalBlock : Cathy1Block
 {
 
-	// Use this for initialization
-	void Start () {
+    public sealed override BlockType Type { get; } = BlockType.Goal;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

@@ -12,13 +12,13 @@ public class Cathy1CrackedBlock : Cathy1Block {
 
     public int StepsRemaining = 2;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public sealed override BlockType Type
+    {
+        get
+        {
+            if (StepsRemaining == 1)
+                return Cathy1Block.BlockType.Crack1;
+            return Cathy1Block.BlockType.Crack2;
+        }
+    }
 }

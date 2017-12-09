@@ -10,9 +10,9 @@ using UnityEngine;
 
 public class Cathy1SpringBlock : Cathy1Block
 {
-
-	// Use this for initialization
-	void Start () {
+    public sealed override BlockType Type { get; } = BlockType.Spring;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
