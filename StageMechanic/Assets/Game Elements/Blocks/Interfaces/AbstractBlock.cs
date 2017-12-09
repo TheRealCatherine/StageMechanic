@@ -169,8 +169,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             ret.Add("Parent", Parent.name);
             ret.Add("Type", TypeName);
             ret.Add("Postition", Position.ToString());
-            ret.Add("Rotation", Rotation.ToString());*/
-            if(IsFixedRotation)
+            */
+            if(Rotation != Quaternion.identity)
+                ret.Add("Rotation", Rotation.ToString());
+            if (IsFixedRotation)
                 ret.Add("IsFixedRotation", IsFixedRotation.ToString());
             if(WeightFactor != 1.0f)
                 ret.Add("Weight", WeightFactor.ToString());
@@ -191,8 +193,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 Position = Utility.StringToVector3(value["Position"]);
             //TODO Quaternion
             //if (value.ContainsKey("Rotation"))
-            //    Rotation = Utility.StringToQuaternion(value["Rotation"]);
-            if (value.ContainsKey("IsFixedRotation"))*/
+            //    Rotation = Utility.StringToQuaternion(value["Rotation"]);*/
+            if (value.ContainsKey("IsFixedRotation"))
                 IsFixedRotation = Convert.ToBoolean(value["IsFixedRotation"]);
             if (value.ContainsKey("Weight"))
                 WeightFactor = (float)Convert.ToDouble(value["Weight"]);

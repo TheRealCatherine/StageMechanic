@@ -26,68 +26,25 @@ public class StageCollection {
 	[DataMember(Name="Name",Order=1)]
 	public string Name {
 		get {
-			return "MyStages";
+			return "Stage Collection";
 		}
 		set {
 			//TODO
 		}
 	}
 
-	[DataMember(Name="BlockPalette",Order=2)]
-	public string BlockPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="ItemPalette",Order=2)]
-	public string ItemPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="ActionPalette",Order=2)]
-	public string ActionPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="EnemyPalette",Order=2)]
-	public string EnemyPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="RulesPalette",Order=2)]
-	public string RulesPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="PlayersPalette",Order=2)]
-	public string PlayersPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
-
-	[DataMember(Name="PlatformPalette",Order=2)]
-	public string PlatformPalette {
-		get {
-			return "Cathy1-internal";
-		}
-		set { }
-	}
+    [DataMember(Name="Version", Order =2)]
+    public string Version
+    {
+        get
+        {
+            return "1.0 Cathy1";
+        }
+        set
+        {
+            //TODO
+        }
+    }
 
 	[DataMember(Name="Stages",Order=3)]
 	public List<StageJsonDelegate> Stages {

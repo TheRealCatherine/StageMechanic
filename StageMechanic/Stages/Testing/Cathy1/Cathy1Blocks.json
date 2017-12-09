@@ -1,16 +1,9 @@
 {
-    "Name": "MyStages",
-    "ActionPalette": "Cathy1-internal",
-    "BlockPalette": "Cathy1-internal",
-    "EnemyPalette": "Cathy1-internal",
-    "ItemPalette": "Cathy1-internal",
-    "PlatformPalette": "Cathy1-internal",
-    "PlayersPalette": "Cathy1-internal",
-    "RulesPalette": "Cathy1-internal",
+    "Name": "Stage Collection",
+    "Version": "1.0 Cathy1",
     "Stages": [
         {
             "Name": "Stage",
-            "Exits": null,
             "Platforms": [
                 {
                     "Name": "Platform1",
@@ -21,7 +14,7 @@
                     },
                     "Blocks": [
                         {
-                            "Name": "0c906300-e91e-40ca-9043-1cc44714849a",
+                            "Name": "ba4eb4b7-41b4-4c75-815d-acf1334eaf8d",
                             "Palette": "Cathy1 Internal",
                             "Type": "Basic",
                             "Position": {
@@ -29,21 +22,10 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "74b83954-2326-4630-a27c-e15cd8f59807",
+                            "Name": "b7cb81cc-0107-4477-b7b4-00d5d62bc669",
                             "Palette": "Cathy1 Internal",
                             "Type": "Spike Trap",
                             "Position": {
@@ -51,21 +33,10 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "f63de4ed-3d07-4d59-a5cd-fcb5a878ba86",
+                            "Name": "03172c0c-74d2-4a34-bad9-a53c541d14af",
                             "Palette": "Cathy1 Internal",
                             "Type": "Spring",
                             "Position": {
@@ -73,21 +44,10 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "c9fa2b10-6e8c-4f89-81d5-009b23b4934d",
+                            "Name": "774cdbf2-9e05-40fb-8d12-fbf969a87a82",
                             "Palette": "Cathy1 Internal",
                             "Type": "Monster",
                             "Position": {
@@ -95,21 +55,10 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "db406916-88dc-4c9c-b71d-651afbb581aa",
+                            "Name": "f9a9ff82-7dec-4cdf-90a0-ffa87facb482",
                             "Palette": "Cathy1 Internal",
                             "Type": "Ice",
                             "Position": {
@@ -117,21 +66,10 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "6983cc84-0592-4cd5-bf73-cf141119f7c1",
+                            "Name": "a3b0a482-ef68-47e0-a038-75136dc0dfe7",
                             "Palette": "Cathy1 Internal",
                             "Type": "Vortex",
                             "Position": {
@@ -139,21 +77,10 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "ec8309f1-9a51-4c06-afd0-4674e4166daa",
+                            "Name": "1a885875-1314-4fd9-8887-7b90c8177fef",
                             "Palette": "Cathy1 Internal",
                             "Type": "Small Bomb",
                             "Position": {
@@ -161,21 +88,10 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "4978fb59-f376-4e55-8e41-5737df6ab18c",
+                            "Name": "bb047866-8746-40c3-a07f-61aa9df023d3",
                             "Palette": "Cathy1 Internal",
                             "Type": "Large Bomb",
                             "Position": {
@@ -183,21 +99,10 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "2ea963a1-bedb-4ffa-89ac-c0a4ef6aae28",
+                            "Name": "cb060238-829c-44a4-ac4b-0cc20b91ad85",
                             "Palette": "Cathy1 Internal",
                             "Type": "Cracked (1 Step)",
                             "Position": {
@@ -205,21 +110,10 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "2fc91780-34be-4525-9b16-bc9dc000fd33",
+                            "Name": "f3954d97-f414-4e3d-b2e0-179c2b75bc87",
                             "Palette": "Cathy1 Internal",
                             "Type": "Cracked (2 Steps)",
                             "Position": {
@@ -227,38 +121,16 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "d70c78c8-57a4-4a65-bbfc-3045fa806041",
+                            "Name": "584c69ef-e4c3-4092-8c40-f8aa2bc86bb7",
                             "Palette": "Cathy1 Internal",
                             "Type": "Heavy",
                             "Position": {
                                 "x": 0,
                                 "y": 3,
                                 "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
                             },
                             "Properties": [
                                 {
@@ -268,24 +140,13 @@
                             ]
                         },
                         {
-                            "Name": "e473d7fe-631c-43cf-b7f3-c54a5cd7912f",
+                            "Name": "0697404f-4da9-4d1a-8b3b-9cd738da1a85",
                             "Palette": "Cathy1 Internal",
                             "Type": "Immobile",
                             "Position": {
                                 "x": 1,
                                 "y": 3,
                                 "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
                             },
                             "Properties": [
                                 {
@@ -295,7 +156,7 @@
                             ]
                         },
                         {
-                            "Name": "63af1b1f-ca97-43b9-9441-5609d6292c9e",
+                            "Name": "d4ee9d28-5277-4b48-8843-810102a19bce",
                             "Palette": "Cathy1 Internal",
                             "Type": "Mystery",
                             "Position": {
@@ -303,38 +164,16 @@
                                 "y": 3,
                                 "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            },
                             "Properties": [ ]
                         },
                         {
-                            "Name": "2d12cd57-8ec2-4405-a6f1-63c74d040e2e",
+                            "Name": "f85bf26e-a624-4ed5-a92e-0a27ed073603",
                             "Palette": "Cathy1 Internal",
                             "Type": "Goal",
                             "Position": {
                                 "x": 3,
                                 "y": 3,
                                 "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
-                                },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
                             },
                             "Properties": [ ]
                         }

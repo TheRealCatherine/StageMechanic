@@ -31,7 +31,6 @@ public class BlockJsonDelegate {
 	internal string _name = null;
 	internal string _type = null;
 	internal Vector3 _pos;
-    internal Quaternion _rot;
     internal Dictionary<string, string> _properties;
 
     public BlockJsonDelegate( IBlock block ) {
@@ -97,23 +96,6 @@ public class BlockJsonDelegate {
 		}
 	}
 
-    /// <summary>
-    /// See <see cref="IBlock.Rotation"/> for information about this property
-    /// </summary>
-    [DataMember(Name="Rotation",Order = 40)]
-    public Quaternion Rotation
-    {
-        get
-        {
-            Debug.Assert(_block != null);
-            return _block.Rotation;
-        }
-        set
-        {
-            _rot = value;
-        }
-    }
-
     [DataMember(Name="Properties",Order = 100)]
     public Dictionary<string, string> Properties
     {
@@ -141,9 +123,13 @@ public class BlockJsonDelegate {
 		Debug.Assert (_name != null);
 		Debug.Assert (_type != null);
 
+        //if (_properties.ContainsKey("Rotation"))
+        //Quaternion rotation = Utility.StringToQuaternion(value["Rotation"]);
+        //else
+        Quaternion rotation = Quaternion.identity;
         //TODO support different block factories
-		IBlock newBlock = StageCollection.BlockManager.Cathy1BlockFactory.CreateBlock (_pos, _rot, _type, StageCollection.BlockManager.ActiveFloor);
+        IBlock newBlock = StageCollection.BlockManager.Cathy1BlockFactory.CreateBlock (_pos, rotation, _type, StageCollection.BlockManager.ActiveFloor);
 		newBlock.Name = _name;
-        //newBlock.Properties = _properties;
+        newBlock.Properties = _properties;
 	}
 }

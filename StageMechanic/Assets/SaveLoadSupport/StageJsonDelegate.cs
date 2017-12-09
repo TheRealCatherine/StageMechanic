@@ -36,12 +36,6 @@ public class StageJsonDelegate {
 		}
 	}
 
-	[DataMember(Name="Exits",Order=2)]
-	public List<StageJsonDelegate> Exits {
-		get;
-		set;
-	}
-
 	[DataMember(Name="Platforms",Order=3)]
 	public List<PlatformJsonDelegate> Platforms {
 		get {
