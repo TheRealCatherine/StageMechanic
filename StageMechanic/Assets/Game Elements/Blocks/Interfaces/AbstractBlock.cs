@@ -164,11 +164,12 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         get
         {
             Dictionary<string, string> ret = new Dictionary<string, string>();
-            ret.Add("Name", Name);
+            //TODO do we want to include these basic things in properties?
+            /*ret.Add("Name", Name);
             ret.Add("Parent", Parent.name);
             ret.Add("Type", TypeName);
             ret.Add("Postition", Position.ToString());
-            ret.Add("Rotation", Rotation.ToString());
+            ret.Add("Rotation", Rotation.ToString());*/
             ret.Add("IsFixedRotation", IsFixedRotation.ToString());
             ret.Add("Weight", WeightFactor.ToString());
             ret.Add("Gravity", GravityFactor.ToString());
@@ -176,7 +177,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         set
         {
-            if (value.ContainsKey("Name"))
+            /*if (value.ContainsKey("Name"))
                 Name = value["Name"];
             //TODO find parent in object tree
             //if (value.ContainsKey("Parent"))
@@ -188,7 +189,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             //TODO Quaternion
             //if (value.ContainsKey("Rotation"))
             //    Rotation = Utility.StringToQuaternion(value["Rotation"]);
-            if (value.ContainsKey("IsFixedRotation"))
+            if (value.ContainsKey("IsFixedRotation"))*/
                 IsFixedRotation = Convert.ToBoolean(value["IsFixedRotation"]);
             if (value.ContainsKey("Weight"))
                 WeightFactor = (float)Convert.ToDouble(value["Weight"]);

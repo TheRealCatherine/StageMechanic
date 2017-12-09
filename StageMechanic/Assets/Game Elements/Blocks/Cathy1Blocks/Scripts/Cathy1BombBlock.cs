@@ -96,14 +96,24 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     {
         get
         {
-            //TODO
-            return base.Properties;
+            Dictionary<string, string> ret = base.Properties;
+            if (Size == BombSize.Large)
+                ret.Add("Bomb Radius", "Large");
+            else
+                ret.Add("Bomb Radius", "Small");
+            return ret;
         }
 
         set
         {
-            //TODO
             base.Properties = value;
+            if (value.ContainsKey("Bomb Radius"))
+            {
+                if (value["Bomb Radius"] == "Large")
+                    Size = BombSize.Large;
+                else
+                    Size = BombSize.Small;
+            }
         }
     }
 

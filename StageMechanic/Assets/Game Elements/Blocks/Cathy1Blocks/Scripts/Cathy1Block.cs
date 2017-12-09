@@ -326,10 +326,7 @@ public class Cathy1Block : AbstractBlock
         get
         {
             Dictionary<string, string> ret = base.Properties;
-            ret.Add("TeleportType", TeleportType.ToString());
-            ret.Add("TeleportDistance", TeleportDistance.ToString());
-            ret.Add("CollapseSteps", CollapseAfterNSteps.ToString());
-            ret.Add("CollapseGrabs", CollapseAfterNGrabs.ToString());
+            //TODO (do we add anything here?)
             return ret;
         }
         set
