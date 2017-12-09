@@ -170,9 +170,12 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             ret.Add("Type", TypeName);
             ret.Add("Postition", Position.ToString());
             ret.Add("Rotation", Rotation.ToString());*/
-            ret.Add("IsFixedRotation", IsFixedRotation.ToString());
-            ret.Add("Weight", WeightFactor.ToString());
-            ret.Add("Gravity", GravityFactor.ToString());
+            if(IsFixedRotation)
+                ret.Add("IsFixedRotation", IsFixedRotation.ToString());
+            if(WeightFactor != 1.0f)
+                ret.Add("Weight", WeightFactor.ToString());
+            if(GravityFactor != 1.0f)
+                ret.Add("Gravity", GravityFactor.ToString());
             return ret;
         }
         set

@@ -90,34 +90,6 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     }
 
     /// <summary>
-    /// Add the spike trap specific properties.
-    /// </summary>
-    public override Dictionary<string, string> Properties
-    {
-        get
-        {
-            Dictionary<string, string> ret = base.Properties;
-            if (Size == BombSize.Large)
-                ret.Add("Bomb Radius", "Large");
-            else
-                ret.Add("Bomb Radius", "Small");
-            return ret;
-        }
-
-        set
-        {
-            base.Properties = value;
-            if (value.ContainsKey("Bomb Radius"))
-            {
-                if (value["Bomb Radius"] == "Large")
-                    Size = BombSize.Large;
-                else
-                    Size = BombSize.Small;
-            }
-        }
-    }
-
-    /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
     public override void Awake()
