@@ -16,12 +16,13 @@
                     "Name": "Platform1",
                     "GlobalPosition": {
                         "x": 0,
-                        "y": 0.5,
+                        "y": 0,
                         "z": 0
                     },
                     "Blocks": [
                         {
-                            "Name": "0611532c-5659-4e6d-8a08-2d44f2b12d36",
+                            "Name": "6efbb148-9053-4708-b8fd-83beb64ad7c8",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Custom",
                             "Position": {
                                 "x": 0,
@@ -38,11 +39,62 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "6efbb148-9053-4708-b8fd-83beb64ad7c8"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(0.0, 1.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "65f55767-fc90-476c-adf1-f0c2457f76e6",
-                            "Type": "Custom",
+                            "Name": "f64c1ea9-bace-42e3-868e-c8b4e0da620c",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Spike Trap",
                             "Position": {
                                 "x": 1,
                                 "y": 1,
@@ -58,10 +110,61 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "f64c1ea9-bace-42e3-868e-c8b4e0da620c"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Spike Trap"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(1.0, 1.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "96672ccd-91cd-41e3-b8b8-b6677da8f581",
+                            "Name": "02e58265-685f-4ba7-a170-a44ec6e783c6",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Custom",
                             "Position": {
                                 "x": 2,
@@ -78,10 +181,61 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "02e58265-685f-4ba7-a170-a44ec6e783c6"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(2.0, 1.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "0455a626-caf6-4dbc-9dec-67ccd5b56f8a",
+                            "Name": "251aa4e5-229c-4b2d-9d57-b98bb7b89056",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Custom",
                             "Position": {
                                 "x": 3,
@@ -98,10 +252,132 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "251aa4e5-229c-4b2d-9d57-b98bb7b89056"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(3.0, 1.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "1619d906-829d-406c-8af7-1702fe84a022",
+                            "Name": "40c0f9df-003d-4985-95ce-8c2b19009655",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "40c0f9df-003d-4985-95ce-8c2b19009655"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(4.0, 1.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "ed826a8b-438f-455f-9640-d278e5d09190",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Custom",
                             "Position": {
                                 "x": 0,
@@ -118,11 +394,62 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "ed826a8b-438f-455f-9640-d278e5d09190"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(0.0, 2.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "4b1118d7-96ad-4be8-9f75-89f31d7820d0",
-                            "Type": "Custom",
+                            "Name": "759b502d-ce6e-42c4-b09f-f0dce021459a",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
                             "Position": {
                                 "x": 1,
                                 "y": 2,
@@ -138,32 +465,134 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
-                        },
-                        {
-                            "Name": "9934c98f-8186-4405-a322-fb9e2f34d45a",
-                            "Type": "Custom",
-                            "Position": {
-                                "x": 2,
-                                "y": 2,
-                                "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "759b502d-ce6e-42c4-b09f-f0dce021459a"
                                 },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Small Bomb"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(1.0, 2.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "1438046f-5e77-45dd-9f4c-b4adf8c7af0c",
+                            "Name": "00688d90-7182-4a59-80a6-1d97ac560311",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Large Bomb",
                             "Position": {
+                                "x": 2,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "00688d90-7182-4a59-80a6-1d97ac560311"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Large Bomb"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(2.0, 2.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "46506ae6-6afe-4ced-81ac-839095afc9eb",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Custom",
+                            "Position": {
                                 "x": 3,
                                 "y": 2,
                                 "z": 0
@@ -178,11 +607,133 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "46506ae6-6afe-4ced-81ac-839095afc9eb"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(3.0, 2.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "62c89427-eae0-4ca6-84a9-5696924a68e4",
+                            "Name": "7258f454-c567-4953-ad5f-76907cff5961",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Custom",
+                            "Position": {
+                                "x": 4,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Rotation": {
+                                "eulerAngles": {
+                                    "x": -0,
+                                    "y": 0,
+                                    "z": 0
+                                },
+                                "w": 1,
+                                "x": -0,
+                                "y": -0,
+                                "z": -0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "7258f454-c567-4953-ad5f-76907cff5961"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(4.0, 2.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "aeb067e6-195c-43a6-9e5e-d92c9b65b602",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
                             "Position": {
                                 "x": 0,
                                 "y": 3,
@@ -198,11 +749,62 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "aeb067e6-195c-43a6-9e5e-d92c9b65b602"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Heavy"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(0.0, 3.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "2"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "df9f3420-adcb-4de1-a494-c1f6affb3dff",
-                            "Type": "Custom",
+                            "Name": "c5833b9b-3d53-480c-bf65-863c33fbdf4b",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
                             "Position": {
                                 "x": 1,
                                 "y": 3,
@@ -218,10 +820,61 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "c5833b9b-3d53-480c-bf65-863c33fbdf4b"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Immobile"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(1.0, 3.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "ff011cf3-cfca-4c15-8faa-25e6ff42032a",
+                            "Name": "5c623974-9e0c-4004-b2ba-f7dfa508440f",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Custom",
                             "Position": {
                                 "x": 2,
@@ -238,10 +891,61 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "5c623974-9e0c-4004-b2ba-f7dfa508440f"
+                                },
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
+                                },
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(2.0, 3.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         },
                         {
-                            "Name": "d3a51301-8138-48e7-9fb1-e9f57e7eda30",
+                            "Name": "b690ca5c-e35d-4d5b-a699-a61a10f15b97",
+                            "Palette": "Cathy1 Internal",
                             "Type": "Custom",
                             "Position": {
                                 "x": 3,
@@ -258,47 +962,57 @@
                                 "x": -0,
                                 "y": -0,
                                 "z": -0
-                            }
-                        },
-                        {
-                            "Name": "48849679-8972-4049-b945-6ee375b1223a",
-                            "Type": "Custom",
-                            "Position": {
-                                "x": 0,
-                                "y": 4,
-                                "z": 0
                             },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
+                            "Properties": [
+                                {
+                                    "Key": "Name",
+                                    "Value": "b690ca5c-e35d-4d5b-a699-a61a10f15b97"
                                 },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
-                        },
-                        {
-                            "Name": "c01b08b9-4b9b-49f2-8858-c2183732125c",
-                            "Type": "Custom",
-                            "Position": {
-                                "x": 1,
-                                "y": 4,
-                                "z": 0
-                            },
-                            "Rotation": {
-                                "eulerAngles": {
-                                    "x": -0,
-                                    "y": 0,
-                                    "z": 0
+                                {
+                                    "Key": "Parent",
+                                    "Value": "Platform1"
                                 },
-                                "w": 1,
-                                "x": -0,
-                                "y": -0,
-                                "z": -0
-                            }
+                                {
+                                    "Key": "Type",
+                                    "Value": "Custom"
+                                },
+                                {
+                                    "Key": "Postition",
+                                    "Value": "(3.0, 3.0, 0.0)"
+                                },
+                                {
+                                    "Key": "Rotation",
+                                    "Value": "(0.0, 0.0, 0.0, 1.0)"
+                                },
+                                {
+                                    "Key": "IsFixedRotation",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Weight",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "Gravity",
+                                    "Value": "1"
+                                },
+                                {
+                                    "Key": "TeleportType",
+                                    "Value": "None"
+                                },
+                                {
+                                    "Key": "TeleportDistance",
+                                    "Value": "(0.0, 0.0, 0.0)"
+                                },
+                                {
+                                    "Key": "CollapseSteps",
+                                    "Value": "-1"
+                                },
+                                {
+                                    "Key": "CollapseGrabs",
+                                    "Value": "-1"
+                                }
+                            ]
                         }
                     ]
                 }

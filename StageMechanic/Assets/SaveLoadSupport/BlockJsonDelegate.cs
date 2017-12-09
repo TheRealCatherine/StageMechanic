@@ -32,9 +32,9 @@ public class BlockJsonDelegate {
 	internal string _type = null;
 	internal Vector3 _pos;
     internal Quaternion _rot;
+    internal Dictionary<string, string> _properties;
 
-
-	public BlockJsonDelegate( IBlock block ) {
+    public BlockJsonDelegate( IBlock block ) {
 		_block = block;
 	}
 
@@ -44,7 +44,7 @@ public class BlockJsonDelegate {
     /// <summary>
     /// See <see cref="IBlock.Name"/> for information about this property
     /// </summary>
-	[DataMember(Name="Name",Order=1)]
+	[DataMember(Name="Name",Order = 10)]
 	public string Name {
 		get {
 			Debug.Assert (_block != null);
@@ -55,10 +55,24 @@ public class BlockJsonDelegate {
 		}
 	}
 
+    //TODO
+    [DataMember(Name = "Palette", Order = 20)]
+    public string Palette
+    {
+        get
+        {
+            return "Cathy1 Internal";
+        }
+        set
+        {
+
+        }
+    }
+
     /// <summary>
     /// See <see cref="IBlock.TypeName"/> for information about this property
     /// </summary>
-	[DataMember(Name="Type",Order=2)]
+	[DataMember(Name="Type",Order = 30)]
 	public string Type {
 		get {
 			Debug.Assert (_block != null);
@@ -72,7 +86,7 @@ public class BlockJsonDelegate {
     /// <summary>
     /// See <see cref="IBlock.Position"/> for information about this property
     /// </summary>
-    [DataMember(Name="Position",Order=3)]
+    [DataMember(Name="Position",Order = 40)]
 	public Vector3 Position {
 		get {
 			Debug.Assert (_block != null);
@@ -86,7 +100,7 @@ public class BlockJsonDelegate {
     /// <summary>
     /// See <see cref="IBlock.Rotation"/> for information about this property
     /// </summary>
-    [DataMember(Name="Rotation",Order =3)]
+    [DataMember(Name="Rotation",Order = 40)]
     public Quaternion Rotation
     {
         get
@@ -100,6 +114,20 @@ public class BlockJsonDelegate {
         }
     }
 
+    [DataMember(Name="Properties",Order = 100)]
+    public Dictionary<string, string> Properties
+    {
+        get
+        {
+            Debug.Assert(_block != null);
+            return _block.Properties;
+        }
+        set
+        {
+            _properties = value;
+        }
+    }
+
     /// <summary>
     /// While loading from JSON the different properties are stored in temporary
     /// variables and then this method is called automatically on completion and
@@ -107,7 +135,6 @@ public class BlockJsonDelegate {
     /// causes more overhead as its position/type/etc change.
     /// </summary>
     /// <param name="context"></param>
-	[OnDeserialized()]
 	virtual internal void OnDeserialedMethod(StreamingContext context)
 	{
 		Debug.Assert (_name != null);
@@ -116,5 +143,6 @@ public class BlockJsonDelegate {
         //TODO support different block factories
 		IBlock newBlock = StageCollection.BlockManager.Cathy1BlockFactory.CreateBlock (_pos, _rot, _type, StageCollection.BlockManager.ActiveFloor);
 		newBlock.Name = _name;
+        newBlock.Properties = _properties;
 	}
 }
