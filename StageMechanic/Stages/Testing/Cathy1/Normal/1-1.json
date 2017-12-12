@@ -6,8 +6,8 @@
             "Name": "Stage",
             "Platforms": [
                 {
-                    "Name": "Platform1",
-                    "GlobalPosition": {
+                    "Name": "Platform",
+                    "Position": {
                         "x": 0,
                         "y": 0,
                         "z": 0
@@ -2901,7 +2901,9 @@
                             },
                             "Properties": [ ]
                         }
-                    ]
+                    ],
+                    "Items": null,
+                    "Events": null
                 }
             ]
         }

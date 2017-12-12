@@ -149,7 +149,7 @@ public class BlockManager : MonoBehaviour {
     void Start() {
         // Create the cursor
         ActiveFloor = Instantiate(BasicPlatformPrefab, new Vector3(0, 0f, 0), new Quaternion(0, 0, 0, 0)) as GameObject;
-        ActiveFloor.name = "Platform1";
+        ActiveFloor.name = "Platform";
         ActiveFloor.transform.SetParent(transform, false);
         RotatableFloors.Add(ActiveFloor);
         Cursor = CursorPrefab;

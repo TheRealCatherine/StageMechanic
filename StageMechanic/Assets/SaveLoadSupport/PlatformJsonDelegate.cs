@@ -37,7 +37,7 @@ public class PlatformJsonDelegate {
 		}
 	}
 
-	[DataMember(Name="GlobalPosition",Order=2)]
+	[DataMember(Name="Position",Order=2)]
 	public Vector3 GlobalPosition {
 		get {
 			Debug.Assert (_platform != null);
@@ -49,7 +49,7 @@ public class PlatformJsonDelegate {
 		}
 	}
 
-	[DataMember(Name="Blocks",Order=5)]
+	[DataMember(Name="Blocks",Order=10)]
 	public List<BlockJsonDelegate> Blocks {
 		get {
 			Debug.Assert (_platform != null);
@@ -70,5 +70,31 @@ public class PlatformJsonDelegate {
 			}
 		}
 	}
+
+    [DataMember(Name = "Items", Order = 20)]
+    public List<EventJsonDelegate> Items
+    {
+        get
+        {
+            return null;
+        }
+        set
+        {
+
+        }
+    }
+
+    [DataMember(Name = "Events", Order = 30)]
+    public List<EventJsonDelegate> Events
+    {
+        get
+        {
+            return null;
+        }
+        set
+        {
+
+        }
+    }
 
 }

@@ -7,14 +7,14 @@
             "Platforms": [
                 {
                     "Name": "Platform1",
-                    "GlobalPosition": {
+                    "Position": {
                         "x": 0,
                         "y": 0,
                         "z": 0
                     },
                     "Blocks": [
                         {
-                            "Name": "ba4eb4b7-41b4-4c75-815d-acf1334eaf8d",
+                            "Name": "24af5b83-25f8-4b72-8866-7a519f01a0e9",
                             "Palette": "Cathy1 Internal",
                             "Type": "Basic",
                             "Position": {
@@ -25,7 +25,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "b7cb81cc-0107-4477-b7b4-00d5d62bc669",
+                            "Name": "9e8525bd-cb9d-42d0-8fca-25c15575f35c",
                             "Palette": "Cathy1 Internal",
                             "Type": "Spike Trap",
                             "Position": {
@@ -36,7 +36,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "03172c0c-74d2-4a34-bad9-a53c541d14af",
+                            "Name": "a9050a30-0d99-4b2f-8bb3-409df4fb6b7e",
                             "Palette": "Cathy1 Internal",
                             "Type": "Spring",
                             "Position": {
@@ -47,7 +47,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "774cdbf2-9e05-40fb-8d12-fbf969a87a82",
+                            "Name": "81bb3ba3-4932-43f3-99c8-5bae278883fc",
                             "Palette": "Cathy1 Internal",
                             "Type": "Monster",
                             "Position": {
@@ -58,7 +58,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "f9a9ff82-7dec-4cdf-90a0-ffa87facb482",
+                            "Name": "1f38e528-7870-40ce-a8e1-ef4313dcaf2b",
                             "Palette": "Cathy1 Internal",
                             "Type": "Ice",
                             "Position": {
@@ -69,7 +69,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "a3b0a482-ef68-47e0-a038-75136dc0dfe7",
+                            "Name": "9620575c-0571-4ce0-ab13-0901c727a260",
                             "Palette": "Cathy1 Internal",
                             "Type": "Vortex",
                             "Position": {
@@ -80,7 +80,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "1a885875-1314-4fd9-8887-7b90c8177fef",
+                            "Name": "fc41229a-7d46-461b-bd27-91af1ec26191",
                             "Palette": "Cathy1 Internal",
                             "Type": "Small Bomb",
                             "Position": {
@@ -91,7 +91,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "bb047866-8746-40c3-a07f-61aa9df023d3",
+                            "Name": "a257fbb7-d4bf-47e9-af1e-7392b26cdda8",
                             "Palette": "Cathy1 Internal",
                             "Type": "Large Bomb",
                             "Position": {
@@ -102,7 +102,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "cb060238-829c-44a4-ac4b-0cc20b91ad85",
+                            "Name": "4cc600d1-81fd-4355-b3bf-1a8ff2f3c89a",
                             "Palette": "Cathy1 Internal",
                             "Type": "Cracked (1 Step)",
                             "Position": {
@@ -113,7 +113,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "f3954d97-f414-4e3d-b2e0-179c2b75bc87",
+                            "Name": "087155b4-20a1-493d-bb7c-38a78991a7b4",
                             "Palette": "Cathy1 Internal",
                             "Type": "Cracked (2 Steps)",
                             "Position": {
@@ -124,7 +124,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "584c69ef-e4c3-4092-8c40-f8aa2bc86bb7",
+                            "Name": "005caf71-d57a-4d86-a247-65c20ef040bd",
                             "Palette": "Cathy1 Internal",
                             "Type": "Heavy",
                             "Position": {
@@ -140,7 +140,7 @@
                             ]
                         },
                         {
-                            "Name": "0697404f-4da9-4d1a-8b3b-9cd738da1a85",
+                            "Name": "1d3a73c5-5f31-4fb8-b960-13adbc3df1d8",
                             "Palette": "Cathy1 Internal",
                             "Type": "Immobile",
                             "Position": {
@@ -156,7 +156,7 @@
                             ]
                         },
                         {
-                            "Name": "d4ee9d28-5277-4b48-8843-810102a19bce",
+                            "Name": "b5134b30-9b3b-4f40-aaa8-da1d258289d6",
                             "Palette": "Cathy1 Internal",
                             "Type": "Mystery",
                             "Position": {
@@ -167,7 +167,7 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "f85bf26e-a624-4ed5-a92e-0a27ed073603",
+                            "Name": "338ba066-eeb0-4aae-9c91-e42b23475ef4",
                             "Palette": "Cathy1 Internal",
                             "Type": "Goal",
                             "Position": {
@@ -177,7 +177,9 @@
                             },
                             "Properties": [ ]
                         }
-                    ]
+                    ],
+                    "Items": null,
+                    "Events": null
                 }
             ]
         }
