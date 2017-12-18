@@ -101,7 +101,7 @@ public class InputManager : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
 			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Ice, GetActiveFloor ());
 		} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Spring, GetActiveFloor ());
+			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Bomb1, GetActiveFloor ());
 		}else if (Input.GetKeyDown (KeyCode.Alpha8)) {
 			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Random, GetActiveFloor ());
 		}else if (Input.GetKeyDown (KeyCode.Alpha9)) {
