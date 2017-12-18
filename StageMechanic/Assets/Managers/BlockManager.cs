@@ -169,6 +169,17 @@ public class BlockManager : MonoBehaviour {
         return list;
     }
 
+    public int BlockCount()
+    {
+        int blocks = 0;
+        foreach (Transform child in ActiveFloor.transform)
+        {
+            if (child.gameObject.GetComponent<IBlock>() != null)
+                ++blocks;
+        }
+        return blocks;
+    }
+
     // Create a basic block at the current cursor position
 
     public IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {

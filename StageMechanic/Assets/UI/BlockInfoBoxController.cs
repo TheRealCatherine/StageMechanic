@@ -21,6 +21,7 @@ public class BlockInfoBoxController : MonoBehaviour {
     public Text blockName;
     public Text blockType;
     public Text itemType;
+    public Text blockCount;
 
     Cathy1Block lastBlock = null;
 
@@ -57,5 +58,7 @@ public class BlockInfoBoxController : MonoBehaviour {
             blockType.text = String.Empty;
             itemType.text = String.Empty;
         }
+
+        blockCount.text = blockManager.BlockCount().ToString();
     }
 }
