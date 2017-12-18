@@ -16,9 +16,9 @@ We will target both the amateur/casual player of Catherine, Robo5, and Pushmo lo
 
 ## Current state
 
-This project is just getting started! Our official project start date is September 12th, "National Video Game Day" 2017.
+This project is just recently getting started! Our official project start date is September 12th, "National Video Game Day" 2017.
 
-[Screenshots here!](https://github.com/TheRealCatherine/StageMechanic/wiki/Screenshots)
+[Screenshots](https://github.com/TheRealCatherine/StageMechanic/wiki/Screenshots) [Videos](https://www.youtube.com/channel/UCO7dcRrjPb5eCst-9uAXXPg/videos)
 
 ### What works:
 * Easily and quickly create levels using our custom-made level editor mode. (level editor)
