@@ -117,6 +117,12 @@ public class InputManager : MonoBehaviour {
 			BlockManager.LoadFromJson ();
 		}
 
+        // Clear all blocks
+        else if(Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
+        {
+            BlockManager.Clear();
+        }
+
 		// Toggle info display
 		else if (Input.GetKeyDown (KeyCode.I)) {
 			BlockInfoBox.ToggleVisibility ();

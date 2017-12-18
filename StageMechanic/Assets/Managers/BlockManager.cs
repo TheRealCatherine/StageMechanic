@@ -180,6 +180,12 @@ public class BlockManager : MonoBehaviour {
         return blocks;
     }
 
+    public void Clear()
+    {
+        foreach (Transform child in ActiveFloor.transform)
+            Destroy(child.gameObject);
+    }
+
     // Create a basic block at the current cursor position
 
     public IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {
@@ -251,6 +257,7 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	public void BlocksFromJson( Uri path ) {
+        Clear();
 		Debug.Log ("Loading from " + path.ToString ());
 		StageCollection deserializedCollection = new StageCollection(this);
 		WebClient webClient = new WebClient();
