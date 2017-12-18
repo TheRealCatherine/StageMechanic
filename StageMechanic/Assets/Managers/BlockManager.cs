@@ -186,6 +186,16 @@ public class BlockManager : MonoBehaviour {
             Destroy(child.gameObject);
     }
 
+    public void RandomizeGravity()
+    {
+        foreach (Transform child in ActiveFloor.transform)
+        {
+            IBlock block = child.gameObject.GetComponent<IBlock>();
+            if (block != null)
+                block.GravityFactor = UnityEngine.Random.value;
+        }
+    }
+
     // Create a basic block at the current cursor position
 
     public IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {

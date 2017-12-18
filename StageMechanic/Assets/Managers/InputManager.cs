@@ -123,6 +123,11 @@ public class InputManager : MonoBehaviour {
             BlockManager.Clear();
         }
 
+        else if(Input.GetKeyDown(KeyCode.G) && altDown)
+        {
+            BlockManager.RandomizeGravity();
+        }
+
 		// Toggle info display
 		else if (Input.GetKeyDown (KeyCode.I)) {
 			BlockInfoBox.ToggleVisibility ();
