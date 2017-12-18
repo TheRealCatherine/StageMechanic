@@ -72,7 +72,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 		BlockManager bm = thisBlock.BlockManager;
 		Debug.Assert (bm != null);
 		if (bm.PlayMode)
-			thisBlock.Position -= new Vector3 (0, 0.25f, 0);
+			thisBlock.Position -= new Vector3 (0, 0.25f*thisBlock.GravityFactor, 0);
 	}
 
 	public bool TestForSupportedBlock (int height)
