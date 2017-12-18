@@ -37,8 +37,8 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 				inspectorGrounded = true;
 			}
 
-			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.1f, 0.1f, 0.75f)));
-			crossColiders.AddRange (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.5f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
+			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.75f, 0f), new Vector3 (0.1f, 0.1f, 0.75f)));
+			crossColiders.AddRange (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.75f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
 
 			foreach (Collider col in crossColiders) {
 				if (col.gameObject == gameObject)
