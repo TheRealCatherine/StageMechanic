@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour {
 	public GameObject Cursor;
 	public GameObject Camera;
     public BlockInfoBoxController BlockInfoBox;
+    public GameObject ButtonMappingBox;
 
 	public BlockManager BlockManager
     {
@@ -115,10 +116,21 @@ public class InputManager : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.L)) {
 			BlockManager.LoadFromJson ();
 		}
-		// Toggle block info display
-		else if (Input.GetKeyDown (KeyCode.I) || Input.GetKeyDown (KeyCode.Joystick1Button6)) {
+
+		// Toggle info display
+		else if (Input.GetKeyDown (KeyCode.I)) {
 			BlockInfoBox.ToggleVisibility ();
-		} else if (Input.GetKeyDown (KeyCode.P)) {
+		} else if (Input.GetKeyDown(KeyCode.F1)) {
+        //TODO ToggleVisibility
+        ButtonMappingBox.SetActive(!ButtonMappingBox.activeInHierarchy);
+        } else if (Input.GetKeyDown(KeyCode.Joystick1Button6)) {
+            BlockInfoBox.ToggleVisibility();
+            //TODO ToggleVisibility
+            ButtonMappingBox.SetActive(!ButtonMappingBox.activeInHierarchy);
+        }
+
+        //Play mode
+        else if (Input.GetKeyDown (KeyCode.P)) {
 			bool pm = !BlockManager.PlayMode;
 			BlockManager.PlayMode = pm;
 			GetComponent<PlayerManager> ().PlayMode = pm;
