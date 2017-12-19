@@ -54,7 +54,7 @@ This project is being developed entirely by volunteers and is managed by an indu
 
 ### Tools/technologies used
 
-* Game Engine: Unity Personal 2017.2.0f3
+* Game Engine: Unity Personal 2017.3.0f3
 * Languages: C# 6.0 for primary development, Lua (via MoonSharp) for custom scripting
 * 3D Modeling: Blender 3D
 * 2D Painting: .PSD file format (Photoshop/Krita/gimp/CSP)
