@@ -29,8 +29,8 @@ public class BlockInfoBoxController : MonoBehaviour {
 
     Cathy1Block lastBlock = null;
 
-    public float updateInterval = 0.5F;
-
+    //FPS couter stuff
+    public float updateInterval = 1.5F;
     private float accum = 0;
     private int frames = 0;
     private float timeleft;
@@ -77,14 +77,10 @@ public class BlockInfoBoxController : MonoBehaviour {
         timeleft -= Time.deltaTime;
         accum += Time.timeScale / Time.deltaTime;
         ++frames;
-
-        // Interval ended - update GUI text and start new interval
         if (timeleft <= 0.0)
         {
-            // display two fractional digits (f2 format)
             float fps = accum / frames;
-            string format = System.String.Format("{0:F2} FPS", fps);
-            fpsCount.text = format;
+            fpsCount.text = System.String.Format("{0:F2} FPS", fps);
             timeleft = updateInterval;
             accum = 0.0F;
             frames = 0;

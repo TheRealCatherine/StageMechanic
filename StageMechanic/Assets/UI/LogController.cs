@@ -11,8 +11,11 @@ public static class LogController
 
     static public void Log(string message)
     {
-        Debug.Log(message);
-        LastMessage = message;
+        if (LastMessage != message)
+        {
+            Debug.Log(message);
+            LastMessage = message;
+        }
         LastMessageTime = DateTime.Now.ToString("HH:mm:ss");
     }
 }
