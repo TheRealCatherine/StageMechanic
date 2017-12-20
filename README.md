@@ -137,7 +137,6 @@ Below are resources for those new to game design and devleopment as well as thos
 * [Catherine: The Mysterious Tale of Rapunzel](http://fftranslations.atspace.co.uk/rapunzel/index.html)
 * [Another Take on Catherine](https://www.youtube.com/watch?v=f8k8dG27pB8&t=77s)
 * [Catherine Game Reddit](http://reddit.com/r/catherinegame)
-* [Catherine Discord Chat](https://discord.gg/nG5rN8B)
 
 #### Robo5 Resources
 
