@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 65286048763870208}
   - component: {fileID: 114281130150146252}
   - component: {fileID: 114939667840552826}
-  - component: {fileID: 114957952132841492}
   m_Layer: 0
   m_Name: Cathy1Player1Prefab
   m_TagString: Untagged
@@ -80,16 +79,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4d9b9580505e344ea682ab8e9f3ddb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114957952132841492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1215896293952690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b87e9ae98b65c40a885c03edbdfa84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

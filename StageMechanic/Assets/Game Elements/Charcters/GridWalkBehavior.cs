@@ -11,6 +11,18 @@ public class GridWalkBehavior : MonoBehaviour
 
     public float Granularity { get; set; } = 1.0f;
 
+    public float ClimbSpeed { get; set; } = 0.05f;
+
+    public enum State
+    {
+        None = 0,
+        Aproach,
+        Climb,
+        Center
+    }
+
+    public State CurrentMoveState { get; set; } = State.None;
+
     public GameObject Character { get; set; }
 
     public bool IsWalking { get; set; } = false;
@@ -45,6 +57,11 @@ public class GridWalkBehavior : MonoBehaviour
     {
         if(offset != Vector3.zero)
             CurrentLocation += offset;
+    }
+
+    public void Teleport(Vector3 location)
+    {
+        CurrentLocation = location;
     }
 
     /// <summary>
@@ -87,15 +104,68 @@ public class GridWalkBehavior : MonoBehaviour
         Move(new Vector3(0f, 0f, Granularity));
     }
 
+    /// <summary>
+    /// Apply the movement offset taking into account ClimbSpeed
+    /// </summary>
+    /// <param name="offset"></param>
+    public void Climb(Vector3 offset)
+    {
+        //if (CurrentMoveState == State.None)
+        //{
+            DesiredLocation = CurrentLocation + offset;
+            //CurrentMoveState = State.Climb;
+       // }
+    }
+
+    public void ClimbUp()
+    {
+        Climb(new Vector3(0f, Granularity, 0f));
+    }
+
+    public void ClimbDown()
+    {
+        Climb(new Vector3(0f, -Granularity, 0f));
+    }
+
+    public void ClimbLeft()
+    {
+        Climb(new Vector3(-Granularity, 0f, 0f));
+    }
+
+    public void ClimbRight()
+    {
+        Climb(new Vector3(Granularity, 0f, 0f));
+    }
+
+    public void ClimbForward()
+    {
+        Climb(new Vector3(0f, 0f, -Granularity));
+    }
+
+    public void ClimbBack()
+    {
+        Climb(new Vector3(0f, 0f, Granularity));
+    }
+
+    internal IEnumerator MoveToLocation()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.01f);
+            Teleport(DesiredLocation);
+        }
+    }
+
     private void Start()
     {
         DesiredLocation = CurrentLocation;
+        StartCoroutine(MoveToLocation());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(IsWalking && DesiredLocation != CurrentLocation)
+      /*  if(IsWalking && DesiredLocation != CurrentLocation)
         {
             Character.GetComponent<Animator>().SetBool("walking", true);
             Vector3 offset = DesiredLocation - CurrentLocation;
@@ -106,6 +176,6 @@ public class GridWalkBehavior : MonoBehaviour
         {
             IsWalking = false;
             Character.GetComponent<Animator>().SetBool("walking", false);
-        }
+        }*/
     }
 }

@@ -44,8 +44,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
         GridWalkBehavior walker = GetComponent<GridWalkBehavior>();
         walker.Character = _player;
-        GridClimbBehavior climber = GetComponent<GridClimbBehavior>();
-        climber.Character = _player;
+        //GridClimbBehavior climber = GetComponent<GridClimbBehavior>();
+        //climber.Character = _player;
     }
 
         // Update is called once per frame
@@ -349,14 +349,26 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                 IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
                 if (oneBlockUp == null)
                 {
-                    GridClimbBehavior climber = GetComponent<GridClimbBehavior>();
-                    climber.Climb(direction);
+                    GridWalkBehavior climber = GetComponent<GridWalkBehavior>();
+                    climber.Climb(direction + Vector3.up);
                 }
             }
             else
             {
-                GridWalkBehavior walker = GetComponent<GridWalkBehavior>();
-                walker.Move(direction);
+                IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
+                if (nextFloor != null) {
+                    GridWalkBehavior walker = GetComponent<GridWalkBehavior>();
+                    walker.Move(direction);
+                }
+                else
+                {
+                    IBlock stepDown = BlockManager.GetBlockAt(transform.position + direction + Vector3.down + Vector3.down);
+                    if(stepDown != null)
+                    {
+                        GridWalkBehavior climber = GetComponent<GridWalkBehavior>();
+                        climber.Climb(direction + Vector3.down);
+                    }
+                }
             }
         }
         else
