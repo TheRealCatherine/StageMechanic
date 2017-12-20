@@ -23,10 +23,17 @@ public class BlockInfoBoxController : MonoBehaviour {
     public Text itemType;
 
     public Text blockCount;
+    public Text fpsCount;
     public Text logTime;
     public Text logMessage;
 
     Cathy1Block lastBlock = null;
+
+    public float updateInterval = 0.5F;
+
+    private float accum = 0;
+    private int frames = 0;
+    private float timeleft;
 
     public void ToggleVisibility()
     {
@@ -35,6 +42,7 @@ public class BlockInfoBoxController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        timeleft = updateInterval;
     }
 
     // Update is called once per frame
@@ -65,5 +73,21 @@ public class BlockInfoBoxController : MonoBehaviour {
         blockCount.text = blockManager.BlockCount().ToString();
         logTime.text = LogController.LastMessageTime;
         logMessage.text = LogController.LastMessage;
+
+        timeleft -= Time.deltaTime;
+        accum += Time.timeScale / Time.deltaTime;
+        ++frames;
+
+        // Interval ended - update GUI text and start new interval
+        if (timeleft <= 0.0)
+        {
+            // display two fractional digits (f2 format)
+            float fps = accum / frames;
+            string format = System.String.Format("{0:F2} FPS", fps);
+            fpsCount.text = format;
+            timeleft = updateInterval;
+            accum = 0.0F;
+            frames = 0;
+        }
     }
 }

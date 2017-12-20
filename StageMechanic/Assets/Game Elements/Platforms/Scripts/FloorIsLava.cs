@@ -30,7 +30,7 @@ public class FloorIsLava : Platform
         Debug.Assert(Stage != null);
         BlockManager bm = Stage.GetComponent<BlockManager>();
         Debug.Assert(bm != null);
-        if (bm.PlayMode)
+        if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
 
@@ -39,7 +39,7 @@ public class FloorIsLava : Platform
         Debug.Assert(Stage != null);
         BlockManager bm = Stage.GetComponent<BlockManager>();
         Debug.Assert(bm != null);
-        if (bm.PlayMode)
+        if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
 
@@ -48,7 +48,7 @@ public class FloorIsLava : Platform
         Debug.Assert(Stage != null);
         BlockManager bm = Stage.GetComponent<BlockManager>();
         Debug.Assert(bm != null);
-        if (bm.PlayMode)
+        if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
 
@@ -57,7 +57,7 @@ public class FloorIsLava : Platform
         Debug.Assert(Stage != null);
         BlockManager bm = Stage.GetComponent<BlockManager>();
         Debug.Assert(bm != null);
-        if (bm.PlayMode)
+        if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
 }

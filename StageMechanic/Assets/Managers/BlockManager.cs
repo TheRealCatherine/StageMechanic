@@ -32,7 +32,17 @@ public class BlockManager : MonoBehaviour {
 
     // Properties
 
-    public bool PlayMode { get; set; } = false;
+    public static bool PlayMode { get; set; } = false;
+
+    public void TogglePlayMode()
+    {
+        bool pm = !BlockManager.PlayMode;
+        BlockManager.PlayMode = pm;
+        GetComponent<PlayerManager>().PlayMode = pm;
+        Cursor.SetActive(!pm);
+        if (pm)
+            LogController.Log("Start!");
+    }
 
     // The obect (block/item/etc) currently under the cursor
     public GameObject ActiveObject {
@@ -51,19 +61,24 @@ public class BlockManager : MonoBehaviour {
     {
         get
         {
-        if (PlayMode)
-        {
-            //TODO this is bad, very bad.
-            return (GetBlockAt(PlayerManager.Player1Location() + Vector3.down)?.GameObject?.GetComponent<Cathy1Block>());
-        }
-        else
-        {
-            CursorCollider col = Cursor.GetComponent<CursorCollider>();
-            Debug.Assert(col != null);
-            if (col.ObjectUnderCursor == null)
-                return null;
-            return col.ObjectUnderCursor.GetComponent<Cathy1Block>();
-        }
+            if (PlayMode)
+            {
+                //TODO this is bad, very bad.
+                Cathy1Block block = GetBlockAt(PlayerManager.Player1Location() + Vector3.down)?.GameObject?.GetComponent<Cathy1Block>();
+                if (block != null && block.Type == Cathy1Block.BlockType.Goal)
+                {
+                    LogController.Log("CONGRATULATION");
+                }
+                return block;
+            }
+            else
+            {
+                CursorCollider col = Cursor.GetComponent<CursorCollider>();
+                Debug.Assert(col != null);
+                if (col.ObjectUnderCursor == null)
+                    return null;
+                return col.ObjectUnderCursor.GetComponent<Cathy1Block>();
+            }
         }
         set
         {
@@ -213,6 +228,7 @@ public class BlockManager : MonoBehaviour {
     public IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {
         Debug.Assert(Cursor != null);
         Cathy1Block block = GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+        ActiveBlock = block;
         AutoSave();
         return block;
     }

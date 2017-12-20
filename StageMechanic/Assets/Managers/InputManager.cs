@@ -153,10 +153,7 @@ public class InputManager : MonoBehaviour {
 
         //Play mode
         else if (Input.GetKeyDown (KeyCode.P)) {
-			bool pm = !BlockManager.PlayMode;
-			BlockManager.PlayMode = pm;
-			GetComponent<PlayerManager> ().PlayMode = pm;
-			Cursor.SetActive (!pm);
+            BlockManager.TogglePlayMode();
 		}
 		//Quit
 		else if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown (KeyCode.Q)) {

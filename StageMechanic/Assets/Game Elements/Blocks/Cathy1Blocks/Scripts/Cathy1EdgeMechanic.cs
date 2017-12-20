@@ -24,7 +24,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 
 		BlockManager bm = thisBlock.BlockManager;
 		Debug.Assert (bm != null);
-		if (bm.PlayMode) {
+		if (BlockManager.PlayMode) {
 
 			IsGrounded = false;
 			inspectorGrounded = false;
@@ -71,7 +71,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 
 		BlockManager bm = thisBlock.BlockManager;
 		Debug.Assert (bm != null);
-		if (bm.PlayMode)
+		if (BlockManager.PlayMode)
 			thisBlock.Position -= new Vector3 (0, 0.25f*thisBlock.GravityFactor, 0);
 	}
 
