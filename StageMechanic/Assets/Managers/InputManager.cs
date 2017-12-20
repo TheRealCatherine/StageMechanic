@@ -90,25 +90,25 @@ public class InputManager : MonoBehaviour {
 
 		// Buttons for creating blocks
 		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button3)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Basic, GetActiveFloor ());
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Basic);
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Immobile, GetActiveFloor ());
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Immobile);
 		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Crack2, GetActiveFloor ());
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Crack2);
 		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Heavy, GetActiveFloor ());
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Heavy);
 		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.SpikeTrap, GetActiveFloor ());
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.SpikeTrap);
 		} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Ice, GetActiveFloor ());
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Ice);
 		} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Bomb1, GetActiveFloor ());
-		}else if (Input.GetKeyDown (KeyCode.Alpha8)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Random, GetActiveFloor ());
-		}else if (Input.GetKeyDown (KeyCode.Alpha9)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Monster, GetActiveFloor ());
-		}else if (Input.GetKeyDown (KeyCode.Alpha0)) {
-			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Vortex, GetActiveFloor ());
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Bomb1);
+		} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Random);
+		} else if (Input.GetKeyDown (KeyCode.Alpha9)) {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Monster);
+		} else if (Input.GetKeyDown (KeyCode.Alpha0)) {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Vortex);
 		}
 
 		// Save/Load

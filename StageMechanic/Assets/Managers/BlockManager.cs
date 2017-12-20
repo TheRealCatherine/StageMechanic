@@ -195,6 +195,7 @@ public class BlockManager : MonoBehaviour {
             if (block != null)
                 block.GravityFactor = UnityEngine.Random.value;
         }
+        AutoSave();
     }
 
     // Create a basic block at the current cursor position
@@ -202,6 +203,7 @@ public class BlockManager : MonoBehaviour {
     public IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {
         Debug.Assert(Cursor != null);
         Cathy1Block block = GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+        AutoSave();
         return block;
     }
 
@@ -251,6 +253,7 @@ public class BlockManager : MonoBehaviour {
         Debug.Assert(block != null);
         Debug.Assert(block.GameObject != null);
 		Destroy (block.GameObject);
+        AutoSave();
 	}
 
 	public void SaveToJson() {
@@ -266,6 +269,16 @@ public class BlockManager : MonoBehaviour {
             SaveToJson();
         else
             SaveFileUsingPath(LastAccessedFileName);
+    }
+
+    public void AutoSave()
+    {
+
+        if (!PlayMode && LastAccessedFileName.Length != 0)
+        {
+            SaveFileUsingPath( LastAccessedFileName.Replace(".json","_autosave.json") );
+            Debug.Log("autosaved");
+        }
     }
 
 	public void LoadFromJson() {
@@ -294,7 +307,10 @@ public class BlockManager : MonoBehaviour {
             //TODO this probably can throw an exception?
 			if (json.Length != 0)
 				System.IO.File.WriteAllText (path, json);
-            LastAccessedFileName = path;
+            if (!path.Contains("_autosave.")) {
+                LastAccessedFileName = path;
+                File.Delete(path.Replace(".json", "_autosave.json"));
+            }
 		} else {
 			Debug.Log("Invalid path given");
 		}
@@ -305,7 +321,10 @@ public class BlockManager : MonoBehaviour {
         //TODO ensure file is valid
         if (path.Length != 0) {
 			BlocksFromJson (new Uri("file:///"+path));
-            LastAccessedFileName = path;
+            if (path.Contains("_autosave"))
+                LastAccessedFileName = string.Empty;
+            else
+                LastAccessedFileName = path;
 		} else {
 			Debug.Log("Invalid path given");
 		}
