@@ -36,7 +36,7 @@ public class BlockManager : MonoBehaviour {
 
     // The obect (block/item/etc) currently under the cursor
     public GameObject ActiveObject {
-        get {
+        get {     
             CursorCollider col = Cursor.GetComponent<CursorCollider>();
             return col.ObjectUnderCursor;
         }
@@ -51,11 +51,19 @@ public class BlockManager : MonoBehaviour {
     {
         get
         {
+        if (PlayMode)
+        {
+            //TODO this is bad, very bad.
+            return (GetBlockAt(PlayerManager.Player1Location() + Vector3.down)?.GameObject?.GetComponent<Cathy1Block>());
+        }
+        else
+        {
             CursorCollider col = Cursor.GetComponent<CursorCollider>();
             Debug.Assert(col != null);
             if (col.ObjectUnderCursor == null)
                 return null;
             return col.ObjectUnderCursor.GetComponent<Cathy1Block>();
+        }
         }
         set
         {

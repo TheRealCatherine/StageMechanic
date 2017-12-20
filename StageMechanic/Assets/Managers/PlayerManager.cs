@@ -66,6 +66,15 @@ public class PlayerManager : MonoBehaviour {
 		
 	}
 
+    public static Vector3 Player1Location()
+    {
+        if(Avatars.Count>0 && Avatars[0] != null)
+        {
+            return Avatars[0].transform.position;
+        }
+        return new Vector3(-1, -1, -1);
+    }
+
     public static void Player1Jump()
     {
         Avatars[0].Move(Vector3.up);
