@@ -202,9 +202,7 @@ public class InputManager : MonoBehaviour {
 
 		// Destorying/modifying blocks
 		else if (Input.GetKeyDown (KeyCode.Delete) || Input.GetKeyDown (KeyCode.Joystick1Button1)) {
-			if (BlockManager.ActiveObject != null)
-				//TODO use a method of BlockManager to do this
-				Destroy (BlockManager.ActiveObject);
+            BlockManager.DestroyActiveObject();
 		} else if (Input.GetKeyDown (KeyCode.B)) {
 			GetComponent<EventManager> ().CreatePlayerStartLocation (0, Cursor.transform.position, Cursor.transform.rotation);
 		} else if (Input.GetKeyDown (KeyCode.O)) {

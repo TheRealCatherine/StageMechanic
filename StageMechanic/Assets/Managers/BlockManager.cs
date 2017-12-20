@@ -256,6 +256,15 @@ public class BlockManager : MonoBehaviour {
         AutoSave();
 	}
 
+    public void DestroyActiveObject()
+    {
+        if (ActiveObject != null)
+        {
+            Destroy(ActiveObject);
+            AutoSave();
+        }
+    }
+
 	public void SaveToJson() {
 		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
 		fileBrowserObject.name = "FileBrowser";
@@ -276,8 +285,8 @@ public class BlockManager : MonoBehaviour {
 
         if (!PlayMode && LastAccessedFileName.Length != 0)
         {
-            SaveFileUsingPath( LastAccessedFileName.Replace(".json","_autosave.json") );
-            Debug.Log("autosaved");
+            SaveFileUsingPath(LastAccessedFileName.Replace(".json", "_autosave.json"));
+            Debug.Log("[" + DateTime.Now + "]: autosaved");
         }
     }
 
