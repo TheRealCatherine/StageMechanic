@@ -110,23 +110,27 @@ public class InputManager : MonoBehaviour {
 		}else if (Input.GetKeyDown (KeyCode.Alpha0)) {
 			BlockManager.Cathy1BlockFactory.CreateBlock (Cursor.transform.position, Cursor.transform.rotation, Cathy1Block.BlockType.Vortex, GetActiveFloor ());
 		}
-		// Save
+
+		// Save/Load
 		else if (Input.GetKeyDown (KeyCode.S)) {
-			BlockManager.SaveToJson ();
+            if (altDown)
+                BlockManager.SaveToJson();
+            else
+                BlockManager.QuickSave();
 		} else if (Input.GetKeyDown (KeyCode.L)) {
 			BlockManager.LoadFromJson ();
 		}
+
+        // Reload current level
+        else if (Input.GetKeyDown(KeyCode.F5))
+        {
+            BlockManager.ReloadCurrentLevel();
+        }
 
         // Clear all blocks
         else if(Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
         {
             BlockManager.Clear();
-        }
-
-        // Reload current level
-        else if(Input.GetKeyDown(KeyCode.F5))
-        {
-            BlockManager.ReloadCurrentLevel();
         }
 
         // Randomize gravity

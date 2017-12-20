@@ -5,19 +5,18 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 
-using System.Collections;
+using GracesGames;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Xml;
 using System.Threading;
-using System.Globalization;
-using System;
-using System.Net;
-using GracesGames;
-using System.Linq;
+using System.Xml;
+using UnityEngine;
 
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
@@ -87,7 +86,7 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    public string LastLoadedFileName;
+    public string LastAccessedFileName;
 
     public Cathy1Block.BlockType NextBlockType() {
         if (BlockCycleType >= Cathy1Block.BlockType.Goal) {
@@ -261,6 +260,14 @@ public class BlockManager : MonoBehaviour {
 		fileBrowserScript.SaveFilePanel(this, "SaveFileUsingPath", "MyLevels", "json");
 	}
 
+    public void QuickSave()
+    {
+        if (LastAccessedFileName.Length == 0)
+            SaveToJson();
+        else
+            SaveFileUsingPath(LastAccessedFileName);
+    }
+
 	public void LoadFromJson() {
 		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
 		fileBrowserObject.name = "FileBrowser";
@@ -287,6 +294,7 @@ public class BlockManager : MonoBehaviour {
             //TODO this probably can throw an exception?
 			if (json.Length != 0)
 				System.IO.File.WriteAllText (path, json);
+            LastAccessedFileName = path;
 		} else {
 			Debug.Log("Invalid path given");
 		}
@@ -297,7 +305,7 @@ public class BlockManager : MonoBehaviour {
         //TODO ensure file is valid
         if (path.Length != 0) {
 			BlocksFromJson (new Uri("file:///"+path));
-            LastLoadedFileName = path;
+            LastAccessedFileName = path;
 		} else {
 			Debug.Log("Invalid path given");
 		}
@@ -305,7 +313,7 @@ public class BlockManager : MonoBehaviour {
 
     public void ReloadCurrentLevel()
     {
-        LoadFileUsingPath(LastLoadedFileName);
+        LoadFileUsingPath(LastAccessedFileName);
     }
 
 	public PlatformJsonDelegate GetPlatformJsonDelegate() {
