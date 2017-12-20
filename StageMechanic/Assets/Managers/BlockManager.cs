@@ -87,6 +87,8 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
+    public string LastLoadedFileName;
+
     public Cathy1Block.BlockType NextBlockType() {
         if (BlockCycleType >= Cathy1Block.BlockType.Goal) {
             BlockCycleType = Cathy1Block.BlockType.Basic;
@@ -282,6 +284,7 @@ public class BlockManager : MonoBehaviour {
 	private void SaveFileUsingPath(string path) {
 		if (path.Length != 0) {
 			string json = BlocksToJson ();
+            //TODO this probably can throw an exception?
 			if (json.Length != 0)
 				System.IO.File.WriteAllText (path, json);
 		} else {
@@ -291,12 +294,19 @@ public class BlockManager : MonoBehaviour {
 
 	// Loads a file using a path
 	private void LoadFileUsingPath(string path) {
-		if (path.Length != 0) {
+        //TODO ensure file is valid
+        if (path.Length != 0) {
 			BlocksFromJson (new Uri("file:///"+path));
+            LastLoadedFileName = path;
 		} else {
 			Debug.Log("Invalid path given");
 		}
 	}
+
+    public void ReloadCurrentLevel()
+    {
+        LoadFileUsingPath(LastLoadedFileName);
+    }
 
 	public PlatformJsonDelegate GetPlatformJsonDelegate() {
 		return new PlatformJsonDelegate (ActiveFloor);

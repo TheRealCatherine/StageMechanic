@@ -123,6 +123,13 @@ public class InputManager : MonoBehaviour {
             BlockManager.Clear();
         }
 
+        // Reload current level
+        else if(Input.GetKeyDown(KeyCode.F5))
+        {
+            BlockManager.ReloadCurrentLevel();
+        }
+
+        // Randomize gravity
         else if(Input.GetKeyDown(KeyCode.G) && altDown)
         {
             BlockManager.RandomizeGravity();
