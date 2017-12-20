@@ -185,6 +185,7 @@ public class BlockManager : MonoBehaviour {
     {
         foreach (Transform child in ActiveFloor.transform)
             Destroy(child.gameObject);
+        LogController.Log("Stage Data Cleared");
     }
 
     public void RandomizeGravity()
@@ -239,7 +240,7 @@ public class BlockManager : MonoBehaviour {
 		}
 		catch (System.Exception exception)
 		{
-			Debug.Log(exception.ToString());
+            LogController.Log(exception.ToString());
 		}
 		finally
 		{
@@ -286,7 +287,7 @@ public class BlockManager : MonoBehaviour {
         if (!PlayMode && LastAccessedFileName.Length != 0)
         {
             SaveFileUsingPath(LastAccessedFileName.Replace(".json", "_autosave.json"));
-            Debug.Log("[" + DateTime.Now + "]: autosaved");
+            LogController.Log("Autosaved");
         }
     }
 
@@ -299,14 +300,14 @@ public class BlockManager : MonoBehaviour {
 
 	public void BlocksFromJson( Uri path ) {
         Clear();
-		Debug.Log ("Loading from " + path.ToString ());
+		LogController.Log ("Loading from " + path.ToString ());
 		StageCollection deserializedCollection = new StageCollection(this);
 		WebClient webClient = new WebClient();
 		Stream fs = webClient.OpenRead(path);  
 		DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());  
 		deserializedCollection = ser.ReadObject(fs) as StageCollection;  
 		fs.Close();
-		Debug.Log ("Loaded " + deserializedCollection.Stages.Count + "stage(s)");
+        LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
 	}
 
 	// Saves a file with the textToSave using a path
@@ -319,9 +320,10 @@ public class BlockManager : MonoBehaviour {
             if (!path.Contains("_autosave.")) {
                 LastAccessedFileName = path;
                 File.Delete(path.Replace(".json", "_autosave.json"));
+                LogController.Log("Saved & Autosave");
             }
 		} else {
-			Debug.Log("Invalid path given");
+            LogController.Log("Invalid path");
 		}
 	}
 
@@ -331,11 +333,14 @@ public class BlockManager : MonoBehaviour {
         if (path.Length != 0) {
 			BlocksFromJson (new Uri("file:///"+path));
             if (path.Contains("_autosave"))
+            {
                 LastAccessedFileName = string.Empty;
+                LogController.Log("AUTOSAVE OFF");
+            }
             else
                 LastAccessedFileName = path;
 		} else {
-			Debug.Log("Invalid path given");
+            LogController.Log("Invalid path");
 		}
 	}
 

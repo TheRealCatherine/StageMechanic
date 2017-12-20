@@ -21,7 +21,10 @@ public class BlockInfoBoxController : MonoBehaviour {
     public Text blockName;
     public Text blockType;
     public Text itemType;
+
     public Text blockCount;
+    public Text logTime;
+    public Text logMessage;
 
     Cathy1Block lastBlock = null;
 
@@ -52,7 +55,7 @@ public class BlockInfoBoxController : MonoBehaviour {
         }
         else
         {
-           blockPosition.text = blockManager.Cursor.transform.localPosition.ToString();
+            blockPosition.text = blockManager.Cursor.transform.localPosition.ToString();
             blockRotation.text = blockManager.Cursor.transform.localRotation.ToString();
             blockName.text = String.Empty;
             blockType.text = String.Empty;
@@ -60,5 +63,7 @@ public class BlockInfoBoxController : MonoBehaviour {
         }
 
         blockCount.text = blockManager.BlockCount().ToString();
+        logTime.text = LogController.LastMessageTime;
+        logMessage.text = LogController.LastMessage;
     }
 }
