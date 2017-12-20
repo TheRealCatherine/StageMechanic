@@ -193,6 +193,7 @@ public class BlockManager : MonoBehaviour {
     {
         foreach (Transform child in ActiveFloor.transform)
             Destroy(child.gameObject);
+        PlayerManager.Clear();
         LogController.Log("Stage Data Cleared");
     }
 

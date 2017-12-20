@@ -37,6 +37,11 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    public static void Clear()
+    {
+        PlayerStartLocations.Clear();
+    }
+
     private void HidePlayers()
     {
         Debug.Log("Hiding");

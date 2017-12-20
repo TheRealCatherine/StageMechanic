@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(GridWalkBehavior))]
 public class Cathy1PlayerCharacter : MonoBehaviour {
 
     public GameObject Player1Prefab;
@@ -19,23 +18,135 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public IBlock CurrentBlock;
 
     private GameObject _player;
-   /* private Vector3 _nextMove;
-	private Vector3 _lastSidleMove;
-	private Vector3 _lastSidleRequest;*/
 	private Vector3 _facingDirection = Vector3.back;
-    /*
-	public bool IsGrounded { get; set; } = false;
-	public bool IsSidled { get; set; } = false;
-	public bool HasLetGo { get; set; } = false;
-	public bool IsGrabbingBlock { get; set; } = false;
-
-    public float speed = 10.0F;
-    public float jumpSpeed = 8.0F;
-    public float gravity = 20.0F;*/
 
 	private const float HEIGHT_ADJUST = 1.0f;
-    /*
-    private Vector3 moveDirection;*/
+    public float WalkSpeed { get; set; } = 0.05f;
+    public float Granularity { get; set; } = 1.0f;
+    public float ClimbSpeed { get; set; } = 0.05f;
+    public enum State
+    {
+        None = 0,
+        Aproach,
+        Climb,
+        Center
+    }
+    public State CurrentMoveState { get; set; } = State.None;
+    public GameObject Character { get; set; }
+    public bool IsWalking { get; set; } = false;
+
+    public Vector3 CurrentLocation
+    {
+        get
+        {
+            return transform.localPosition;
+        }
+        set
+        {
+            transform.localPosition = value;
+        }
+    }
+
+    public Vector3 DesiredLocation { get; set; }
+
+    public void ForceMove(Vector3 offset)
+    {
+        if (offset != Vector3.zero)
+            CurrentLocation += offset;
+    }
+
+    public void Teleport(Vector3 location)
+    {
+        CurrentLocation = location;
+    }
+
+    public void Walk(Vector3 offset)
+    {
+        DesiredLocation = CurrentLocation + offset;
+        IsWalking = true;
+    }
+
+    public void MoveUp()
+    {
+        Walk(new Vector3(0f, Granularity, 0f));
+    }
+
+    public void MoveDown()
+    {
+        Walk(new Vector3(0f, -Granularity, 0f));
+    }
+
+    public void MoveLeft()
+    {
+        Walk(new Vector3(-Granularity, 0f, 0f));
+    }
+
+    public void MoveRight()
+    {
+        Walk(new Vector3(Granularity, 0f, 0f));
+    }
+
+    public void MoveForward()
+    {
+        Walk(new Vector3(0f, 0f, -Granularity));
+    }
+
+    public void MoveBack()
+    {
+        Walk(new Vector3(0f, 0f, Granularity));
+    }
+
+    /// <summary>
+    /// Apply the movement offset taking into account ClimbSpeed
+    /// </summary>
+    /// <param name="offset"></param>
+    public void Climb(Vector3 offset)
+    {
+        //if (CurrentMoveState == State.None)
+        //{
+        DesiredLocation = CurrentLocation + offset;
+        //CurrentMoveState = State.Climb;
+        // }
+    }
+
+    public void ClimbUp()
+    {
+        Climb(new Vector3(0f, Granularity, 0f));
+    }
+
+    public void ClimbDown()
+    {
+        Climb(new Vector3(0f, -Granularity, 0f));
+    }
+
+    public void ClimbLeft()
+    {
+        Climb(new Vector3(-Granularity, 0f, 0f));
+    }
+
+    public void ClimbRight()
+    {
+        Climb(new Vector3(Granularity, 0f, 0f));
+    }
+
+    public void ClimbForward()
+    {
+        Climb(new Vector3(0f, 0f, -Granularity));
+    }
+
+    public void ClimbBack()
+    {
+        Climb(new Vector3(0f, 0f, Granularity));
+    }
+
+    internal IEnumerator MoveToLocation()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.01f);
+            Teleport(DesiredLocation);
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -44,10 +155,16 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         _player.GetComponent<Animator>().runtimeAnimatorController = Player1AnimationController;
         _player.GetComponent<Animator>().avatar = Player1Avatar;
 
-        GridWalkBehavior walker = GetComponent<GridWalkBehavior>();
-        walker.Character = _player;
-        //GridClimbBehavior climber = GetComponent<GridClimbBehavior>();
-        //climber.Character = _player;
+        DesiredLocation = CurrentLocation;
+        StartCoroutine(MoveToLocation());
+    }
+
+    private void Update()
+    {
+        if(BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
+        {
+            MoveDown();
+        }
     }
 
     // Update is called once per frame
@@ -347,28 +464,24 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
             if (blockInWay != null)
             {
-                Debug.Log("Block: " + blockInWay.Name);
                 IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
                 if (oneBlockUp == null)
                 {
-                    GridWalkBehavior climber = GetComponent<GridWalkBehavior>();
-                    climber.Climb(direction + Vector3.up);
+                    Climb(direction + Vector3.up);
                 }
             }
             else
             {
                 IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
                 if (nextFloor != null) {
-                    GridWalkBehavior walker = GetComponent<GridWalkBehavior>();
-                    walker.Move(direction);
+                   Walk(direction);
                 }
                 else
                 {
                     IBlock stepDown = BlockManager.GetBlockAt(transform.position + direction + Vector3.down + Vector3.down);
-                    if(stepDown != null)
+                   // if(stepDown != null)
                     {
-                        GridWalkBehavior climber = GetComponent<GridWalkBehavior>();
-                        climber.Climb(direction + Vector3.down);
+                        Climb(direction + Vector3.down);
                     }
                 }
             }
