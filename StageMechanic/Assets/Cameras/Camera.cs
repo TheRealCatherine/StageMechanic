@@ -14,6 +14,7 @@ public class Camera : MonoBehaviour
     public GameObject Cursor;
 
     public Vector3 offset;
+    public bool LazyScroll = false;
 
     // Use this for initialization
     void Start()
@@ -29,11 +30,28 @@ public class Camera : MonoBehaviour
             Vector3 player1pos = PlayerManager.Player1Location();
             if(player1pos != new Vector3(-255,-255,-255))
             {
-                transform.position = new Vector3(0f, player1pos.y + 3f,player1pos.z -7f);
+                if(LazyScroll && (transform.position.y > player1pos.y +4f || transform.position.y < player1pos.y))
+                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f),0.2f));
+                else
+                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f), 0.2f));
             }
         }
         else {
     		transform.position = new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, transform.position.z);
+        }
+    }
+
+    IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
+    {
+        float journey = 0f;
+        while (journey <= duration)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / duration);
+
+            transform.position = Vector3.Lerp(origin, target, percent);
+
+            yield return null;
         }
     }
 }
