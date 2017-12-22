@@ -241,9 +241,24 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		IBlock neighbor = BlockManager.GetBlockAt (Position + direction);
 		if (neighbor != null)
 			neighbor.Move (direction, distance);
-		Position += direction;
+        StartCoroutine(AnimateMove(Position, Position + direction, 0.15f));
+		//Position += direction;
 		return true;
 	}
+
+    IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
+    {
+        float journey = 0f;
+        while (journey <= duration)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / duration);
+
+            transform.position = Vector3.Lerp(origin, target, percent);
+
+            yield return null;
+        }
+    }
 
     /// <summary>
     /// Sets the name to a random GUID
