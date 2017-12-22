@@ -23,6 +23,7 @@ public class BlockInfoBoxController : MonoBehaviour {
     public Text itemType;
 
     public Text blockCount;
+    public Text player1State;
     public Text fpsCount;
     public Text logTime;
     public Text logMessage;
@@ -73,6 +74,9 @@ public class BlockInfoBoxController : MonoBehaviour {
         blockCount.text = blockManager.BlockCount().ToString();
         logTime.text = LogController.LastMessageTime;
         logMessage.text = LogController.LastMessage;
+
+        player1State.text = PlayerManager.Player1State();
+
 
         timeleft -= Time.deltaTime;
         accum += Time.timeScale / Time.deltaTime;

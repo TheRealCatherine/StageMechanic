@@ -26,12 +26,16 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public float ClimbSpeed { get; set; } = 0.05f;
     public enum State
     {
-        None = 0,
+        Idle = 0,
+        Walk,
         Aproach,
         Climb,
-        Center
+        Center,
+        Sidle,
+        SidleMove,
+        Fall
     }
-    public State CurrentMoveState { get; set; } = State.None;
+    public State CurrentMoveState { get; set; } = State.Idle;
     public GameObject Character { get; set; }
     public bool IsWalking { get; set; } = false;
 
@@ -47,8 +51,6 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         }
     }
 
-    public Vector3 DesiredLocation { get; set; }
-
     public void ForceMove(Vector3 offset)
     {
         if (offset != Vector3.zero)
@@ -57,94 +59,90 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     public void Teleport(Vector3 location)
     {
-        CurrentLocation = location;
+        if(CurrentLocation != location)
+            CurrentLocation = location;
     }
 
-    public void Walk(Vector3 offset)
+    public IEnumerator WalkTo(Vector3 location)
     {
-        DesiredLocation = CurrentLocation + offset;
-        IsWalking = true;
+        CurrentMoveState = State.Walk;
+        _player.GetComponent<Animator>().SetBool("walking", true);
+        yield return new WaitForEndOfFrame();
+        Teleport(location);
+        yield return new WaitForEndOfFrame();
+        _player.GetComponent<Animator>().SetBool("walking", false);
+        CurrentMoveState = State.Idle;
+        yield return null;
     }
 
-    public void MoveUp()
+    public void Walk(Vector3 direction)
     {
-        Walk(new Vector3(0f, Granularity, 0f));
+        StartCoroutine(WalkTo(CurrentLocation + direction));
     }
 
-    public void MoveDown()
+    public IEnumerator ClimbTo(Vector3 location)
     {
-        Walk(new Vector3(0f, -Granularity, 0f));
+        CurrentMoveState = State.Aproach;
+        _player.GetComponent<Animator>().SetBool("walking", true);
+        yield return new WaitForEndOfFrame();
+        _player.GetComponent<Animator>().SetBool("walking", false);
+        CurrentMoveState = State.Climb;
+        yield return new WaitForEndOfFrame();
+        _player.GetComponent<Animator>().SetBool("climbing", true);
+        yield return new WaitForEndOfFrame();
+        _player.GetComponent<Animator>().SetBool("climbing", false);
+        yield return new WaitForEndOfFrame();
+        _player.GetComponent<Animator>().SetBool("walking", true);
+        CurrentMoveState = State.Center;
+        _player.GetComponent<Animator>().SetBool("walking", false);
+        Teleport(location);
+        yield return new WaitForEndOfFrame();
+        CurrentMoveState = State.Idle;
+        yield return null;
     }
 
-    public void MoveLeft()
+    public void Climb(Vector3 direction)
     {
-        Walk(new Vector3(-Granularity, 0f, 0f));
+        StartCoroutine(ClimbTo(CurrentLocation + direction));
     }
 
-    public void MoveRight()
+
+    public IEnumerator SidleTo(Vector3 location)
     {
-        Walk(new Vector3(Granularity, 0f, 0f));
+        if (CurrentMoveState == State.Idle)
+        {
+            CurrentMoveState = State.Aproach;
+            yield return new WaitForEndOfFrame();
+            CurrentMoveState = State.Climb;
+            yield return new WaitForEndOfFrame();
+            Teleport(location + Vector3.down);
+            yield return new WaitForEndOfFrame();
+            CurrentMoveState = State.Sidle;
+            yield return null;
+        }
+        else
+        {
+            CurrentMoveState = State.SidleMove;
+            yield return new WaitForEndOfFrame();
+            Teleport(location);
+            yield return new WaitForEndOfFrame();
+            CurrentMoveState = State.Sidle;
+            yield return null;
+        }
     }
 
-    public void MoveForward()
+    public void Sidle(Vector3 direction)
     {
-        Walk(new Vector3(0f, 0f, -Granularity));
-    }
-
-    public void MoveBack()
-    {
-        Walk(new Vector3(0f, 0f, Granularity));
-    }
-
-    /// <summary>
-    /// Apply the movement offset taking into account ClimbSpeed
-    /// </summary>
-    /// <param name="offset"></param>
-    public void Climb(Vector3 offset)
-    {
-        //if (CurrentMoveState == State.None)
-        //{
-        DesiredLocation = CurrentLocation + offset;
-        //CurrentMoveState = State.Climb;
-        // }
-    }
-
-    public void ClimbUp()
-    {
-        Climb(new Vector3(0f, Granularity, 0f));
-    }
-
-    public void ClimbDown()
-    {
-        Climb(new Vector3(0f, -Granularity, 0f));
-    }
-
-    public void ClimbLeft()
-    {
-        Climb(new Vector3(-Granularity, 0f, 0f));
-    }
-
-    public void ClimbRight()
-    {
-        Climb(new Vector3(Granularity, 0f, 0f));
-    }
-
-    public void ClimbForward()
-    {
-        Climb(new Vector3(0f, 0f, -Granularity));
-    }
-
-    public void ClimbBack()
-    {
-        Climb(new Vector3(0f, 0f, Granularity));
+        StartCoroutine(SidleTo(CurrentLocation + direction));
     }
 
     internal IEnumerator MoveToLocation()
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.01f);
-            Teleport(DesiredLocation);
+            //Teleport(DesiredLocation);
+            //yield return new WaitForSeconds(0.05f);
+            //ApplyGravity();
         }
     }
 
@@ -155,24 +153,26 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         _player.GetComponent<Animator>().runtimeAnimatorController = Player1AnimationController;
         _player.GetComponent<Animator>().avatar = Player1Avatar;
 
-        DesiredLocation = CurrentLocation;
-        StartCoroutine(MoveToLocation());
+        //StartCoroutine(MoveToLocation());
     }
 
     private void Update()
     {
-        if(BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
-        {
-            MoveDown();
-        }
+       // ApplyGravity();
     }
 
   
 
     public void ApplyGravity()
 	{
-		
-	}
+      /*  if (CurrentMoveState == State.Idle)
+        {
+            if (BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
+            {
+                QueueMove(Vector3.down);
+            }
+        }*/
+    }
 
 	public void Face(Vector3 direction) {
 		float degrees = 0f;
@@ -222,7 +222,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		else if (direction == Vector3.left)
 			TurnLeft ();
 		else if (direction == Vector3.zero)
-			Debug.Log ("Daddy! Quit skipping my turn!");
+			LogController.Log ("Daddy! Quit skipping my turn!");
 		//TODO other turns?
 	}
 
@@ -248,44 +248,109 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			Face (Vector3.back);
 	}
 
-    public void Move(Vector3 direction)
+    public void QueueMove(Vector3 direction)
     {
-        if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
+        if (CurrentMoveState == State.Idle)
         {
-            IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
-            if (blockInWay != null)
+            if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
             {
-                IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
-                if (oneBlockUp == null)
+                IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
+                if (blockInWay != null)
                 {
-                    Climb(direction + Vector3.up);
+                    IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
+                    if (oneBlockUp == null)
+                    {
+                        Climb(direction + Vector3.up);
+                    }
+                }
+                else
+                {
+                    IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
+                    if (nextFloor != null)
+                    {
+                        Walk(direction);
+                    }
+                    else
+                    {
+                        IBlock stepDown = BlockManager.GetBlockAt(transform.position + direction + Vector3.down + Vector3.down);
+                        if (stepDown != null)
+                        {
+                            Climb(direction + Vector3.down);
+                        }
+                        else
+                        {
+                            if (direction == _facingDirection)
+                                TurnAround();
+                            Sidle(direction);
+                        }
+                    }
                 }
             }
             else
             {
-                IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
-                if (nextFloor != null) {
-                   Walk(direction);
+                Face(direction);
+            }
+        }
+        else if(CurrentMoveState == State.Sidle)
+        {
+            IBlock attemptedGrab = null;
+            if(direction == Vector3.right || direction == Vector3.left)
+            {
+                Vector3 originalDirection = direction;
+                if (_facingDirection == Vector3.forward) { }
+                else if (_facingDirection == Vector3.back)
+                {
+                    if (direction == Vector3.left)
+                        direction = Vector3.right;
+                    else
+                        direction = Vector3.left;
+                }
+                else if(_facingDirection == Vector3.right)
+                {
+                    if (direction == Vector3.left)
+                        direction = Vector3.forward;
+                    else
+                        direction = Vector3.back;
+                }
+                else if(_facingDirection == Vector3.left)
+                {
+                    if (direction == Vector3.left)
+                        direction = Vector3.back;
+                    else
+                        direction = Vector3.forward;
+                }
+
+                attemptedGrab = BlockManager.GetBlockAt(transform.position + direction);
+                if (attemptedGrab == null)
+                {
+                    attemptedGrab = BlockManager.GetBlockAt(transform.position + direction + _facingDirection);
+                    if (attemptedGrab != null)
+                    {
+                        Sidle(direction);
+                    }
+                    else
+                    {
+                        Sidle(_facingDirection + direction);
+                        if (originalDirection == Vector3.left)
+                            TurnRight();
+                        else
+                            TurnLeft();
+                    }
                 }
                 else
                 {
-                    IBlock stepDown = BlockManager.GetBlockAt(transform.position + direction + Vector3.down + Vector3.down);
-                   // if(stepDown != null)
-                    {
-                        Climb(direction + Vector3.down);
-                    }
+                    Turn(originalDirection);
+                }
+            }
+            else if(direction == Vector3.forward)
+            {
+                attemptedGrab = BlockManager.GetBlockAt(transform.position + Vector3.up + _facingDirection);
+                if(attemptedGrab == null)
+                {
+                    Climb(_facingDirection + Vector3.up);
                 }
             }
         }
-        else
-        {
-            Face(direction);
-        }
-        /*if (IsSidled || _facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
-			_nextMove = direction;
-		else {
-			Face (direction);
-		}*/
     }
 
 	public void PushPull(Vector3 direction)
@@ -296,6 +361,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+_facingDirection);
 		if (blockInQuestion == null)
 			return;
+        //TODO make this one movement
 		bool moved = blockInQuestion.Move(direction);
         if (moved)
         {

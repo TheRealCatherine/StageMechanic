@@ -81,9 +81,18 @@ public class PlayerManager : MonoBehaviour {
         return new Vector3(-255, -255, -255);
     }
 
+    public static string Player1State()
+    {
+        if (Avatars.Count > 0 && Avatars[0] != null)
+        {
+            return Avatars[0].CurrentMoveState.ToString();
+        }
+        return "Hiding";
+    }
+
     public static void Player1Jump()
     {
-        Avatars[0].Move(Vector3.up);
+        Avatars[0].QueueMove(Vector3.up);
     }
 
 	internal static void Player1MoveRight(bool pushpull)
@@ -91,7 +100,7 @@ public class PlayerManager : MonoBehaviour {
 		if (pushpull)
 			Avatars [0].PushPull (Vector3.right);
 		else
-			Avatars[0].Move(Vector3.right);
+			Avatars[0].QueueMove(Vector3.right);
     }
 
 	internal static void Player1MoveAway(bool pushpull)
@@ -99,7 +108,7 @@ public class PlayerManager : MonoBehaviour {
 		if (pushpull)
 			Avatars [0].PushPull (Vector3.forward);
 		else
-	        Avatars[0].Move(Vector3.forward);
+	        Avatars[0].QueueMove(Vector3.forward);
     }
 
 	internal static void Player1MoveLeft(bool pushpull)
@@ -107,7 +116,7 @@ public class PlayerManager : MonoBehaviour {
 		if (pushpull)
 			Avatars [0].PushPull (Vector3.left);
 		else
-	        Avatars[0].Move(Vector3.left);
+	        Avatars[0].QueueMove(Vector3.left);
     }
 
 	internal static void Player1MoveCloser(bool pushpull)
@@ -115,7 +124,7 @@ public class PlayerManager : MonoBehaviour {
 		if (pushpull)
 			Avatars [0].PushPull (Vector3.back);
 		else
-	        Avatars[0].Move(Vector3.back);
+	        Avatars[0].QueueMove(Vector3.back);
     }
 
 	internal static void Player1MoveNull(bool pushpull)
