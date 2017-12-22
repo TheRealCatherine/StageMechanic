@@ -37,7 +37,10 @@ public class Camera : MonoBehaviour
             }
         }
         else {
-    		transform.position = new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, transform.position.z);
+            if(LazyScroll && (transform.position.y > Cursor.transform.position.y + 4f || transform.position.y < Cursor.transform.position.y))
+                StartCoroutine(AnimateMove(transform.position, new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, transform.position.z), 0.2f));
+            else
+                StartCoroutine(AnimateMove(transform.position, new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, transform.position.z), 0.2f));
         }
     }
 
