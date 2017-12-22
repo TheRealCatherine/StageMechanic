@@ -21,7 +21,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 	private Vector3 _facingDirection = Vector3.back;
 
 	private const float HEIGHT_ADJUST = 0.5f;
-    public float WalkSpeed { get; set; } = 0.05f;
+    public float WalkTime { get; set; } = 0.15f;
     public float Granularity { get; set; } = 1.0f;
     public float ClimbSpeed { get; set; } = 0.05f;
     public enum State
@@ -35,7 +35,27 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         SidleMove,
         Fall
     }
-    public State CurrentMoveState { get; set; } = State.Idle;
+    private State _currentState = State.Idle;
+    public State CurrentMoveState
+    {
+        get
+        {
+            return _currentState;
+        }
+        set
+        {
+            _currentState = value;
+            if(value == State.Sidle || value == State.SidleMove || value == State.Fall)
+            {
+                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f) + new Vector3(_facingDirection.x / 3f, 0.1f, _facingDirection.z / 3f);
+            }
+            else
+            {
+                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f);
+            }
+        }
+    }
+
     public GameObject Character { get; set; }
     public bool IsWalking { get; set; } = false;
 
@@ -68,7 +88,19 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         CurrentMoveState = State.Walk;
         _player.GetComponent<Animator>().SetBool("walking", true);
         yield return new WaitForEndOfFrame();
-        Teleport(location);
+
+        float journey = 0f;
+        Vector3 origin = CurrentLocation;
+        while (journey <= WalkTime)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / WalkTime);
+
+            Teleport(Vector3.Lerp(origin, location, percent));
+
+            yield return null;
+        }
+
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("walking", false);
         CurrentMoveState = State.Idle;
@@ -84,7 +116,20 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     {
         CurrentMoveState = State.Aproach;
         _player.GetComponent<Animator>().SetBool("walking", true);
-        yield return new WaitForEndOfFrame();
+        float journey = 0f;
+        Vector3 origin = CurrentLocation;
+        Vector3 offset = (location-CurrentLocation);
+        Vector3 firstPart = origin+ new Vector3(offset.x / 4, 0f, offset.z / 4);
+        float firstPartTime = WalkTime * 0.25f;
+        while (journey <= firstPartTime)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / firstPartTime);
+
+            Teleport(Vector3.Lerp(origin, firstPart, percent));
+
+            yield return null;
+        }
         _player.GetComponent<Animator>().SetBool("walking", false);
         CurrentMoveState = State.Climb;
         yield return new WaitForEndOfFrame();
@@ -93,9 +138,19 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         _player.GetComponent<Animator>().SetBool("climbing", false);
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("walking", true);
-        CurrentMoveState = State.Center;
+        journey = 0f;
+        origin = CurrentLocation;
+        float secondPartTime = WalkTime * 0.75f;
+        while (journey <= secondPartTime)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / secondPartTime);
+
+            Teleport(Vector3.Lerp(origin, location, percent));
+
+            yield return null;
+        }
         _player.GetComponent<Animator>().SetBool("walking", false);
-        Teleport(location);
         yield return new WaitForEndOfFrame();
         CurrentMoveState = State.Idle;
         yield return null;
@@ -124,7 +179,17 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         {
             CurrentMoveState = State.SidleMove;
             yield return new WaitForEndOfFrame();
-            Teleport(location);
+            float journey = 0f;
+            Vector3 origin = CurrentLocation;
+            while (journey <= WalkTime)
+            {
+                journey = journey + Time.deltaTime;
+                float percent = Mathf.Clamp01(journey / WalkTime);
+
+                Teleport(Vector3.Lerp(origin, location, percent));
+
+                yield return null;
+            }
             yield return new WaitForEndOfFrame();
             CurrentMoveState = State.Sidle;
             yield return null;
