@@ -365,10 +365,17 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 		bool moved = blockInQuestion.Move(direction);
         if (moved)
         {
-            IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
-            if (nextFloor != null || direction != _facingDirection)
+            if (_facingDirection != direction)
             {
-                Walk(direction);
+                IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
+                if (nextFloor != null)
+                {
+                    Walk(direction);
+                }
+                else
+                {
+                    Sidle(direction);
+                }
             }
         }
 	}
