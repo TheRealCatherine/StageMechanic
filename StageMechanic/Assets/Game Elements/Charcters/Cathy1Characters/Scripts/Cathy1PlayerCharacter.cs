@@ -152,26 +152,27 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         _player.transform.RotateAround(transform.position, transform.up, 180f);
         _player.GetComponent<Animator>().runtimeAnimatorController = Player1AnimationController;
         _player.GetComponent<Animator>().avatar = Player1Avatar;
-
-        //StartCoroutine(MoveToLocation());
     }
 
     private void Update()
     {
-       // ApplyGravity();
+       ApplyGravity();
     }
 
   
 
     public void ApplyGravity()
 	{
-      /*  if (CurrentMoveState == State.Idle)
+        if (CurrentMoveState == State.Idle || CurrentMoveState == State.Fall)
         {
             if (BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
             {
-                QueueMove(Vector3.down);
+                CurrentMoveState = State.Fall;
+                Teleport(CurrentLocation + Vector3.down);
             }
-        }*/
+            else
+                CurrentMoveState = State.Idle;
+        }
     }
 
 	public void Face(Vector3 direction) {
@@ -349,6 +350,10 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                 {
                     Climb(_facingDirection + Vector3.up);
                 }
+            }
+            else if(direction == Vector3.back)
+            {
+                CurrentMoveState = State.Fall;
             }
         }
     }
