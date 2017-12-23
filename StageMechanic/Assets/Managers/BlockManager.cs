@@ -6,6 +6,7 @@
  */
 
 using GracesGames;
+using GracesGames.SimpleFileBrowser.Scripts;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -295,7 +296,8 @@ public class BlockManager : MonoBehaviour {
 		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
 		fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-		fileBrowserScript.SaveFilePanel(this, "SaveFileUsingPath", "MyLevels", "json");
+        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape);
+        fileBrowserScript.SaveFilePanel(this, "SaveFileUsingPath", "MyLevels", "json");
 	}
 
     public void QuickSave()
@@ -318,9 +320,12 @@ public class BlockManager : MonoBehaviour {
 
 	public void LoadFromJson() {
 		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
-		fileBrowserObject.name = "FileBrowser";
+
+        fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-		fileBrowserScript.OpenFilePanel(this, "LoadFileUsingPath", "json");
+        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape);
+
+        fileBrowserScript.OpenFilePanel(this, "LoadFileUsingPath", "json");
 	}
 
 	public void BlocksFromJson( Uri path ) {

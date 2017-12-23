@@ -1,34 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 
-[Serializable]
-public class FiniteStack<T> : LinkedList<T> {
+namespace GracesGames.Common.Scripts {
 
-	private const int Size = 10;
+	[Serializable]
+	public class FiniteStack<T> : LinkedList<T> {
 
-	public T Peek() {
-		return Last.Value;
-	}
+		private const int Size = 10;
 
-	public T Pop() {
-		LinkedListNode<T> node = Last;
+		public T Peek() {
+			return Last.Value;
+		}
 
-		if (node != null) {
-			RemoveLast();
-			return node.Value;
-		} else {
+		public T Pop() {
+			LinkedListNode<T> node = Last;
+
+			if (node != null) {
+				RemoveLast();
+				return node.Value;
+			}
 			return default(T);
 		}
-	}
 
-	public void Push(T value) {
-		LinkedListNode<T> node = new LinkedListNode<T>(value);
+		public void Push(T value) {
+			LinkedListNode<T> node = new LinkedListNode<T>(value);
 
-		AddLast(node);
+			AddLast(node);
 
-		if (Count > Size) {
-			RemoveFirst();
+			if (Count > Size) {
+				RemoveFirst();
+			}
 		}
 	}
-
 }

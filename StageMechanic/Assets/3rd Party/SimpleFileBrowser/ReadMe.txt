@@ -11,7 +11,7 @@ Features:
 - Enforce and filter on file extension 
 - Search for files in each directory 
 - Support for multiple drives 
-- Tested on Windows and Mac
+- Tested on Windows, Mac, Linux and Android
 
 Online documentation:
 
