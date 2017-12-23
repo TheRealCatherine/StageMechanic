@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 224482201015806794}
   - component: {fileID: 114829547427754652}
   m_Layer: 5
-  m_Name: FileBrowserLandscapeUI
+  m_Name: FileBrowserUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0945a33227a647fa9848fa8aecc3ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserInterfaceScale: 1
+  UserInterfaceScale: 0.603
   DirectoryButtonPrefab: {fileID: 1781446219088990, guid: c50a28e362f5046f1b365259e51af4c5,
     type: 2}
   FileButtonPrefab: {fileID: 1781446219088990, guid: c8143dc148b024025a875a3c83a9d60f,

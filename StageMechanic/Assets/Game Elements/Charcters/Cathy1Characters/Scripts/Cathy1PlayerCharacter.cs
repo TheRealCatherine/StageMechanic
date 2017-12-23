@@ -141,7 +141,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("climbing", false);
-        GetComponent<AudioSource>().PlayOneShot(LandSound);
+        
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("walking", true);
         journey = 0f;
@@ -156,6 +156,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
             yield return null;
         }
+        GetComponent<AudioSource>().PlayOneShot(LandSound);
         _player.GetComponent<Animator>().SetBool("walking", false);
         yield return new WaitForEndOfFrame();
         CurrentMoveState = State.Idle;

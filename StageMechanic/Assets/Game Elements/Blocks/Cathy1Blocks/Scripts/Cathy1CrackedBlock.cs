@@ -11,6 +11,8 @@ using UnityEngine;
 public class Cathy1CrackedBlock : Cathy1Block {
 
     public int StepsRemaining = 2;
+    public AudioClip Crack;
+    public AudioClip Collapse;
 
     private enum State
     {
@@ -35,22 +37,29 @@ public class Cathy1CrackedBlock : Cathy1Block {
     private IEnumerator HandleStep()
     {
         CurrentState = State.PlayerEnter;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.35f);
         --StepsRemaining;
-        Debug.Log(StepsRemaining);
         CurrentState = State.PlayerStand;
 
         Renderer rend = GetComponent<Renderer>();
         if(StepsRemaining > 2)
         {
+            
+            GetComponent<AudioSource>().PlayOneShot(Crack);
+            yield return new WaitForSeconds(0.35f);
             rend.material = Material2;
         }
         else if(StepsRemaining == 1)
         {
+            
+            GetComponent<AudioSource>().PlayOneShot(Crack);
+            yield return new WaitForSeconds(0.35f);
             rend.material = Material1;
         }
         else
         {
+            GetComponent<AudioSource>().PlayOneShot(Collapse);
+            yield return new WaitForSeconds(0.35f);
             Destroy(gameObject);
         }
             
