@@ -12,6 +12,16 @@ public class Cathy1CrackedBlock : Cathy1Block {
 
     public int StepsRemaining = 2;
 
+    private enum State
+    {
+        NoPlayer = 0,
+        PlayerEnter,
+        PlayerStand,
+        PlayerLeave
+    }
+
+    private State CurrentState = State.NoPlayer;
+
     public sealed override BlockType Type
     {
         get
@@ -20,5 +30,58 @@ public class Cathy1CrackedBlock : Cathy1Block {
                 return Cathy1Block.BlockType.Crack1;
             return Cathy1Block.BlockType.Crack2;
         }
+    }
+
+    private IEnumerator HandleStep()
+    {
+        CurrentState = State.PlayerEnter;
+        yield return new WaitForSeconds(1f);
+        --StepsRemaining;
+        Debug.Log(StepsRemaining);
+        CurrentState = State.PlayerStand;
+
+        Renderer rend = GetComponent<Renderer>();
+        if(StepsRemaining > 2)
+        {
+            rend.material = Material2;
+        }
+        else if(StepsRemaining == 1)
+        {
+            rend.material = Material1;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+            
+    }
+
+    private void Update()
+    {
+        List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position + new Vector3(0f, 0.75f, 0f), new Vector3(0.1f, 0.1f, 0.75f)));
+        foreach (Collider col in crossColiders)
+        {
+            if (col.gameObject == gameObject)
+                continue;
+            Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic>();
+            if (otherBlock != null)
+                continue;
+            Cathy1PlayerCharacter player = col.gameObject.GetComponent<Cathy1PlayerCharacter>();
+            if (player != null)
+            {
+                if (CurrentState == State.PlayerStand)
+                    continue;
+                else if (CurrentState == State.NoPlayer)
+                    StartCoroutine(HandleStep());
+
+            }
+            else
+            {
+               CurrentState = State.NoPlayer;
+            }
+            
+        }
+        if(crossColiders.Count == 0)
+            CurrentState = State.NoPlayer;
     }
 }

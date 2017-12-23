@@ -15,6 +15,10 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public RuntimeAnimatorController Player1AnimationController;
     public Avatar Player1Avatar;
 
+    public AudioClip WalkSound;
+    public AudioClip JumpSound;
+    public AudioClip LandSound;
+
     public IBlock CurrentBlock;
 
     private GameObject _player;
@@ -88,19 +92,18 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         CurrentMoveState = State.Walk;
         _player.GetComponent<Animator>().SetBool("walking", true);
         yield return new WaitForEndOfFrame();
-
+        GetComponent<AudioSource>().PlayOneShot(WalkSound);
         float journey = 0f;
         Vector3 origin = CurrentLocation;
         while (journey <= WalkTime)
         {
             journey = journey + Time.deltaTime;
             float percent = Mathf.Clamp01(journey / WalkTime);
-
             Teleport(Vector3.Lerp(origin, location, percent));
 
             yield return null;
         }
-
+        
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("walking", false);
         CurrentMoveState = State.Idle;
@@ -116,6 +119,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     {
         CurrentMoveState = State.Aproach;
         _player.GetComponent<Animator>().SetBool("walking", true);
+        GetComponent<AudioSource>().PlayOneShot(JumpSound);
         float journey = 0f;
         Vector3 origin = CurrentLocation;
         Vector3 offset = (location-CurrentLocation);
@@ -134,8 +138,10 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         CurrentMoveState = State.Climb;
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("climbing", true);
+        
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("climbing", false);
+        GetComponent<AudioSource>().PlayOneShot(LandSound);
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("walking", true);
         journey = 0f;
