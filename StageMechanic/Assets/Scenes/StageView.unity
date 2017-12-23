@@ -547,8 +547,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1509108676}
   m_HandleRect: {fileID: 1509108675}
   m_Direction: 2
-  m_Value: 0.99999845
-  m_Size: 0.901935
+  m_Value: 0
+  m_Size: 0.9035048
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -876,6 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cursor: {fileID: 662790149}
   offset: {x: 0, y: 0, z: 0}
+  LazyScroll: 0
 --- !u!82 &223191239
 AudioSource:
   m_ObjectHideFlags: 0
@@ -885,7 +886,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 09912427b8f3f4b4986b85c9bc0b6c80, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 82f434e8f5d57394b8df144e87684c4b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1106,7 +1107,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 573473180}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2944,7 +2945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000083923114}
+  m_AnchoredPosition: {x: 0, y: 77.19629}
   m_SizeDelta: {x: 0, y: 800}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &671241515
@@ -5789,7 +5790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000059552505, y: -0.000007080941}
+  m_AnchoredPosition: {x: -0.000059552505, y: 0.000063088526}
   m_SizeDelta: {x: 0, y: 215}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1403919664
