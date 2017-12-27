@@ -15,6 +15,24 @@ public class Camera : MonoBehaviour
 
     public Vector3 offset;
     public bool LazyScroll = false;
+    private float _cursorZoom = 0f;
+    private float _playerZoom = 0f;
+    public float zoom
+    {
+        get
+        {
+            if (BlockManager.PlayMode)
+                return _playerZoom;
+            return _cursorZoom;
+        }
+        set
+        {
+            if (BlockManager.PlayMode)
+                _playerZoom = value;
+            else
+                _cursorZoom = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -31,16 +49,16 @@ public class Camera : MonoBehaviour
             if(player1pos != new Vector3(-255,-255,-255))
             {
                 if(LazyScroll && (transform.position.y > player1pos.y +4f || transform.position.y < player1pos.y))
-                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f),0.2f));
+                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f + zoom),0.2f));
                 else
-                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f), 0.2f));
+                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f));
             }
         }
         else {
             if(LazyScroll && (transform.position.y > Cursor.transform.position.y + 4f || transform.position.y < Cursor.transform.position.y))
-                StartCoroutine(AnimateMove(transform.position, new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, transform.position.z), 0.2f));
+                StartCoroutine(AnimateMove(transform.position, new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, Cursor.transform.position.z - 7f + zoom), 0.2f));
             else
-                StartCoroutine(AnimateMove(transform.position, new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, transform.position.z), 0.2f));
+                StartCoroutine(AnimateMove(transform.position, new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, Cursor.transform.position.z -7f + zoom), 0.2f));
         }
     }
 

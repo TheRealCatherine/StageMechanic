@@ -66,10 +66,11 @@ public class InputManager : MonoBehaviour {
 		bool ctrlDown = Input.GetKey (KeyCode.LeftControl) || Input.GetKey (KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
 
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
-		if(scroll >= 0.005f || scroll <= -0.005f)
-			Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
+        if (scroll >= 0.005f || scroll <= -0.005f)
+            Camera.GetComponent<Camera>().zoom += scroll * scrollSpeed;
+            //Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
 
-		if (Input.GetMouseButton (1)) {
+        if (Input.GetMouseButton (1)) {
 			rotationX += Input.GetAxis ("Mouse X") * sensX * Time.deltaTime;
 			rotationY += Input.GetAxis ("Mouse Y") * sensY * Time.deltaTime;
 			rotationY = Mathf.Clamp (rotationY, minY, maxY);
