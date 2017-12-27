@@ -2,17 +2,15 @@
 
 ## Scope of project
 
-We are creating an application that allows one to practice portions of games such as Catherine, Robo5, and Pushmo outside of their respective games. Initial implementation will allow the user to test different solves for correctness but will not implement pressure elements such as time limits, score, move limits, etc. We are explicitly NOT designing a game (even though some game elements may be included). This is a tool for practicing a game outside of the game.
+We are creating a game engine that allows one to create block-pushing games similar to Catherine, Robo5, and Pushmo. Additionally this project allows for practive of portions of games such as Catherine, Robo5, and Pushmo outside of their respective games. 
 
-An important aspect of this project will is a stage designer allowing the user to create the sections of stages they wish to practice.
-
-We will likely (TBD) have some degree of backstory/mythology associated with this project as well, though it is not intended to be story-based game (or any kind of game for that matter).
-
-We may include some original music to build/practice by as well. (TBD)
+We are explicitly NOT designing a game (even though some game elements may be included) with the project, but games may be based on this project. This is a tool for creating games and for practicing a game outside of the game.
 
 ## Target audences
 
-We will target both the amateur/casual player of Catherine, Robo5, and Pushmo looking for a more convenient way to practice individual parts of the game as well as professional/aspiring competitive and speedrun players looking to test times/results of different solves without the overhead associated with a full game.
+We aim to be a solid foundation on which to build block-pushing games, both OpenSource and commercial in nature.
+
+We also target both the amateur/casual player of Catherine, Robo5, and Pushmo looking for a more convenient way to practice individual parts of the game as well as professional/aspiring competitive and speedrun players looking to test times/results of different solves without the overhead associated with a full game.
 
 ## Current state
 
@@ -46,11 +44,11 @@ This project is just recently getting started! Our official project start date i
 
 ## Licensing
 
-This project is being developed as an Open Source project entirely by volunteers. The resulting application will be made freely available to users and all source code made free available to developers/artists/etc.
+This project is being developed as an Open Source project entirely by volunteers. The resulting application is made freely available to users and all source code made free available to developers/artists/etc.
 
 We are using the BSD 3-clause license. This allows maximum freedom while protecting contributors. Essentially anyone is allowed to do whatever they want to with anything published as part of this project. However it is worth noting that portions of the project are being developed using Unity Personal and this may add certain restrictions on those wishing to profit commercially from certain parts of the project. If you are wanting to use a portion or all of this project in a commercial application or bundle please consult with proper legal authorities regarding mixing the BSD license with the Unity Personal license.
 
-Additionally note that items under the StageMechanic/Assets/3rdParty folder may be under other licenses such as the Unity Store license, check the LICENSES-EXCEPTIONS file for specifics.
+Additionally note that items under the StageMechanic/Assets/3rdParty folder and under Music and SoundEffects may be under other licenses such as the Unity Store license, check the LICENSES-EXCEPTIONS file for specifics.
 
 ## Contribting
 
@@ -62,11 +60,10 @@ This project is being developed entirely by volunteers and is managed by an indu
 * Languages: C# 6.0 for primary development, Lua (via MoonSharp) for custom scripting
 * 3D Modeling: Blender 3D
 * 2D Painting: .PSD file format (Photoshop/Krita/gimp/CSP)
-* Audio/Music: TBD, one or more of: Audacity, Sony Acid Pro, Fruity Loops, Presonus Studio One
 
 ### Getting started
 
-Step 0: Play the video game [Catherine](http://catherine.wikia.com/wiki/Catherine_Wiki), published by Atlus, at least enough to get the basic mechanics down. Optionally play Robo5 and pushmo as well.
+Step 0: Play the video game [Catherine](http://catherine.wikia.com/wiki/Catherine_Wiki), published by Atlus, at least enough to get the basic mechanics down. Optionally play Robo5 and Pushmo as well.
 
 Step 1: (Optional) Read [The Rapunzel Novel](http://fftranslations.atspace.co.uk/rapunzel/)
 
