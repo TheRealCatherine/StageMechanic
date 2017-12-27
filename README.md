@@ -18,7 +18,9 @@ We will target both the amateur/casual player of Catherine, Robo5, and Pushmo lo
 
 This project is just recently getting started! Our official project start date is September 12th, "National Video Game Day" 2017.
 
-[Screenshots](https://github.com/TheRealCatherine/StageMechanic/wiki/Screenshots) [Videos](https://www.youtube.com/channel/UCO7dcRrjPb5eCst-9uAXXPg/videos)
+* [Screenshots](https://github.com/TheRealCatherine/StageMechanic/wiki/Screenshots) 
+
+* [Videos](https://www.youtube.com/channel/UCO7dcRrjPb5eCst-9uAXXPg/videos)
 
 ### What works:
 * Easily and quickly create levels using our custom-made level editor mode. (level editor)
@@ -29,11 +31,13 @@ This project is just recently getting started! Our official project start date i
 * Immobile block mechanic (play mode)
 * Windows, OS X, and Linux builds
 * Keyboard input
+* Save/load support
 * XBox 360 controller input (Windows, edit mode)
-* Editing and playing through levels based on Catherine 1 levels: 1 and 2-1 (play mode)
+* Editing all Catherine and Rapunzel game levels
+* Playing through levels that don't require most special blocks
+* Sidling (hanging onto block edges) (play mode)
 
 ### Currently in progress
-* Sidling (hanging onto block edges) (play mode)
 * Player movement animantion (play mode)
 * Special block functions (ie bombs, cracked blocks, etc)
 * XBox 360 controller input (Windows, play mode)
