@@ -222,16 +222,29 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 
-		// Cursor/stage movement cotrol
-		// Keyboard & XBox 360 Input
-		// TODO update ActiveObject based on cursor position using colliders
-		else if (Input.GetKeyDown (KeyCode.UpArrow) || vert > 0) {
+        else if(Input.GetKeyDown(KeyCode.PageUp) && !BlockManager.PlayMode)
+        {
+            Cursor.transform.position += new Vector3(0, 10, 0);
+        } else if (Input.GetKeyDown(KeyCode.PageDown) && !BlockManager.PlayMode)
+        {
+            Cursor.transform.position += new Vector3(0, -10, 0);
+        } else if(Input.GetKeyDown(KeyCode.F2))
+        {
+            Camera.GetComponent<Camera>().ResetZoom();
+            if(BlockManager.PlayMode)
+                Cursor.transform.position = Vector3.zero;
+        }
+
+        // Cursor/stage movement cotrol
+        // Keyboard & XBox 360 Input
+        // TODO update ActiveObject based on cursor position using colliders
+        else if (Input.GetKeyDown (KeyCode.UpArrow) || vert > 0) {
 			if (period < joystickThrottleRate) {
 				period += Time.deltaTime;
 				return;
 			}
 			period = 0.0f;
-			if (altDown) {
+			if (altDown && !BlockManager.PlayMode) {
 				BlockManager.ActiveFloor.transform.Rotate (90, 0, 0, Space.Self);
 				Cursor.transform.Rotate (90, 0, 0, Space.Self);
 			} else if (shiftDown && !BlockManager.PlayMode) {
@@ -239,7 +252,7 @@ public class InputManager : MonoBehaviour {
 				if (ao != null)
 					ao.transform.Translate (0, 1, 0);
 				Cursor.transform.position += new Vector3 (0, 1, 0);
-			} else if (ctrlDown) {
+			} else if (ctrlDown && !BlockManager.PlayMode) {
 				GetCamera ().offset += new Vector3 (0, 1, 0);
 			} else {
 				if (BlockManager.PlayMode)
@@ -254,7 +267,7 @@ public class InputManager : MonoBehaviour {
 				return;
 			}
 			period = 0.0f;
-			if (altDown) {
+			if (altDown && !BlockManager.PlayMode) {
 				BlockManager.ActiveFloor.transform.Rotate (-90, 0, 0, Space.Self);
 				Cursor.transform.Rotate (-90, 0, 0, Space.Self);
 			} else if (shiftDown && !BlockManager.PlayMode) {
@@ -262,7 +275,7 @@ public class InputManager : MonoBehaviour {
 				if (ao != null)
 					ao.transform.Translate (0, -1, 0);
 				Cursor.transform.position += new Vector3 (0, -1, 0);
-			} else if (ctrlDown) {
+			} else if (ctrlDown && !BlockManager.PlayMode) {
 				GetCamera ().offset += new Vector3 (0, -1, 0);
 			} else {
 				if (BlockManager.PlayMode)
@@ -277,7 +290,7 @@ public class InputManager : MonoBehaviour {
 				return;
 			}
 			period = 0.0f;
-			if (altDown) {
+			if (altDown && !BlockManager.PlayMode) {
 				BlockManager.ActiveFloor.transform.Rotate (0, 90, 0, Space.Self);
 				Cursor.transform.Rotate (0, 90, 0, Space.Self);
 			} else if (shiftDown && !BlockManager.PlayMode) {
@@ -285,7 +298,7 @@ public class InputManager : MonoBehaviour {
 				if (ao != null)
 					ao.transform.Translate (-1, 0, 0);
 				Cursor.transform.position += new Vector3 (-1, 0, 0);
-			} else if (ctrlDown) {
+			} else if (ctrlDown && !BlockManager.PlayMode) {
 				GetCamera ().offset += new Vector3 (-1, 0, 0);
 			} else {
 				if (BlockManager.PlayMode)
@@ -300,7 +313,7 @@ public class InputManager : MonoBehaviour {
 				return;
 			}
 			period = 0.0f;
-			if (altDown) {
+			if (altDown && !BlockManager.PlayMode) {
 				BlockManager.ActiveFloor.transform.Rotate (0, -90, 0, Space.Self);
 				Cursor.transform.Rotate (0, -90, 0, Space.Self);
 			} else if (shiftDown && !BlockManager.PlayMode) {
@@ -308,7 +321,7 @@ public class InputManager : MonoBehaviour {
 				if (ao != null)
 					ao.transform.Translate (1, 0, 0);
 				Cursor.transform.position += new Vector3 (1, 0, 0);
-			} else if (ctrlDown) {
+			} else if (ctrlDown && !BlockManager.PlayMode) {
 				GetCamera ().offset += new Vector3 (1, 0, 0);
 			} else {
 				if (BlockManager.PlayMode)

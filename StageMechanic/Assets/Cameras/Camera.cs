@@ -34,6 +34,11 @@ public class Camera : MonoBehaviour
         }
     }
 
+    public void ResetZoom()
+    {
+        zoom = 0;
+    }
+
     // Use this for initialization
     void Start()
     {
