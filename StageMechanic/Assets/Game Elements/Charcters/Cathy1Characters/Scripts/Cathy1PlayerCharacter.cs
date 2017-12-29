@@ -321,6 +321,20 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			Face (Vector3.back);
 	}
 
+    public static Vector3 ReverseDirection( Vector3 direction )
+    {
+        if (direction == Vector3.left)
+            return Vector3.right;
+        else if (direction == Vector3.right)
+            return Vector3.left;
+        else if (direction == Vector3.forward)
+            return Vector3.back;
+        else if (direction == Vector3.back)
+            return Vector3.forward;
+        else
+            return Vector3.zero;
+    }
+
     public void QueueMove(Vector3 direction)
     {
         if (CurrentMoveState == State.Idle)
@@ -331,7 +345,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                 if (blockInWay != null)
                 {
                     IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
-                    if (oneBlockUp == null)
+                    IBlock blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up);
+                    if (oneBlockUp == null && blockAbove == null)
                     {
                         Climb(direction + Vector3.up);
                     }
@@ -434,6 +449,18 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 	{
 		if (direction == Vector3.zero)
 			return;
+        
+        if (CurrentMoveState == State.Sidle)
+        {
+            if (BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
+                return;
+            CurrentMoveState = State.Fall;
+        }
+            
+
+        if (direction != _facingDirection && direction != ReverseDirection(_facingDirection))
+            return;
+
         //TODO no sideways movement
 		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+_facingDirection);
 		if (blockInQuestion == null)
