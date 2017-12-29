@@ -35,6 +35,12 @@ public class Cathy1GoalBlock : Cathy1Block
 
     }
 
+    private void Start()
+    {
+        //Make block immobile
+        WeightFactor = 0f;
+    }
+
     private void Update()
     {
         List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position + new Vector3(0f, 0.75f, 0f), new Vector3(0.1f, 0.1f, 0.75f)));
