@@ -184,8 +184,6 @@ public class InputManager : MonoBehaviour {
 		else if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Joystick1Button0)) {
 			if (!BlockManager.PlayMode)
 				BlockManager.CreateBlockAtCursor (BlockManager.BlockCycleType);
-			else
-				PlayerManager.Player1Jump ();
 		} else if (Input.GetKeyDown (KeyCode.LeftBracket) || Input.GetKeyDown (KeyCode.Joystick1Button4)) {
 			//TODO generic
 			Cathy1Block.BlockType type = BlockManager.PrevBlockType ();
