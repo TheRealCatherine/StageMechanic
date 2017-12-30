@@ -11,8 +11,6 @@ using UnityEngine;
 public class FloorIsLava : Platform
 {
 
-    public GameObject Stage;
-
     // Use this for initialization
     void Start()
     {
@@ -27,36 +25,24 @@ public class FloorIsLava : Platform
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Assert(Stage != null);
-        BlockManager bm = Stage.GetComponent<BlockManager>();
-        Debug.Assert(bm != null);
         if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
 
     void OnCollisionStay(Collision collision)
     {
-        Debug.Assert(Stage != null);
-        BlockManager bm = Stage.GetComponent<BlockManager>();
-        Debug.Assert(bm != null);
         if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Assert(Stage != null);
-        BlockManager bm = Stage.GetComponent<BlockManager>();
-        Debug.Assert(bm != null);
         if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
 
     void OnTriggerStay(Collider collision)
     {
-        Debug.Assert(Stage != null);
-        BlockManager bm = Stage.GetComponent<BlockManager>();
-        Debug.Assert(bm != null);
         if (BlockManager.PlayMode)
             Destroy(collision.gameObject);
     }
