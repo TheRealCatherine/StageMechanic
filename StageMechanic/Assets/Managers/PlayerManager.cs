@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour {
     public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
     public static List<Cathy1PlayerCharacter> Avatars { get; set; } = new List<Cathy1PlayerCharacter>();
 
-    internal bool _playMode = false;
+    internal static bool _playMode = false;
     public bool PlayMode
     {
         get

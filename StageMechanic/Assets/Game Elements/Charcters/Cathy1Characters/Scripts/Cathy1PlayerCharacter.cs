@@ -229,6 +229,12 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     private void Update()
     {
        ApplyGravity();
+        //TODO have lava floor do this
+        if (transform.position.y < -50f)
+        {
+            BlockManager.Instance.TogglePlayMode();
+            BlockManager.Instance.TogglePlayMode();
+        }
     }
 
   

@@ -64,8 +64,8 @@ public class BlockInfoBoxController : MonoBehaviour {
         }
         else
         {
-            blockPosition.text = blockManager.Cursor.transform.localPosition.ToString();
-            blockRotation.text = blockManager.Cursor.transform.localRotation.ToString();
+            blockPosition.text = BlockManager.Cursor.transform.localPosition.ToString();
+            blockRotation.text = BlockManager.Cursor.transform.localRotation.ToString();
             blockName.text = String.Empty;
             blockType.text = String.Empty;
             itemType.text = String.Empty;

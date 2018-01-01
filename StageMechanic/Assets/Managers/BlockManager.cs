@@ -33,7 +33,7 @@ public class BlockManager : MonoBehaviour {
 
     // Properties
 
-    public static bool PlayMode { get; set; } = false;
+    public static bool PlayMode { get; protected set; } = false;
 
     public void TogglePlayMode()
     {
@@ -91,8 +91,8 @@ public class BlockManager : MonoBehaviour {
     }
 
     // The cursor object
-    private GameObject _cursor;
-    public GameObject Cursor {
+    private static GameObject _cursor;
+    public static GameObject Cursor {
         get {
             return _cursor;
         }
