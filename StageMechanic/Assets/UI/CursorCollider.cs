@@ -22,7 +22,8 @@ public class CursorCollider : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
-		_objectUnderCursor = other.gameObject;
+        if(other.gameObject.GetComponent<IBlock>() != null)
+    		_objectUnderCursor = other.gameObject;
 	}
 
 	void OnTriggerExit(Collider other)

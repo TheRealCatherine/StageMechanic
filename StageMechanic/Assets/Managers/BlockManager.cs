@@ -74,11 +74,12 @@ public class BlockManager : MonoBehaviour {
             }
             else
             {
-                CursorCollider col = Cursor.GetComponent<CursorCollider>();
+                return GetBlockAt(Cursor.transform.position)?.GameObject?.GetComponent<Cathy1Block>();
+/*                CursorCollider col = Cursor.GetComponent<CursorCollider>();
                 Debug.Assert(col != null);
                 if (col.ObjectUnderCursor == null)
                     return null;
-                return col.ObjectUnderCursor.GetComponent<Cathy1Block>();
+                return col.ObjectUnderCursor.GetComponent<Cathy1Block>();*/
             }
         }
         set
@@ -209,6 +210,8 @@ public class BlockManager : MonoBehaviour {
     {
         foreach (Transform child in ActiveFloor.transform)
             Destroy(child.gameObject);
+        ActiveFloor.transform.position = Vector3.zero;
+        
         PlayerManager.Clear();
         LogController.Log("Stage Data Cleared");
     }
