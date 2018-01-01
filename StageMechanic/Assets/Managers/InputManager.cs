@@ -179,9 +179,9 @@ public class InputManager : MonoBehaviour {
 			}
 			foreach (Transform child in BlockManager.ActiveFloor.gameObject.transform) {
 				if (child.GetComponent<IBlock> () != null)
-					child.position += blockDirection;
+					child.localPosition += blockDirection;
 			}
-			BlockManager.ActiveFloor.transform.position += platformDirection;
+			BlockManager.ActiveFloor.transform.localPosition += platformDirection;
 		}
 			
 		// Block type cycling
