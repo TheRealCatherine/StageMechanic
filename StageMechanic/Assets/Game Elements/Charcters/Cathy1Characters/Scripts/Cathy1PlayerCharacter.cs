@@ -51,7 +51,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             _currentState = value;
             if(value == State.Sidle || value == State.SidleMove || value == State.Fall)
             {
-                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f) + new Vector3(_facingDirection.x / 3f, 0.1f, _facingDirection.z / 3f);
+                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f) + new Vector3(_facingDirection.x / 3f, 0.2f, _facingDirection.z / 3f);
             }
             else
             {
@@ -420,15 +420,19 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                     attemptedGrab = BlockManager.GetBlockAt(transform.position + direction + _facingDirection);
                     if (attemptedGrab != null)
                     {
-                        Sidle(direction);
+                        if(BlockManager.GetBlockAt(transform.position + direction + Vector3.up) == null)
+                            Sidle(direction);
                     }
                     else
                     {
-                        Sidle(_facingDirection + direction);
-                        if (originalDirection == Vector3.left)
-                            TurnRight();
-                        else
-                            TurnLeft();
+                        if (BlockManager.GetBlockAt(transform.position + direction +_facingDirection + Vector3.up) == null)
+                        {
+                            Sidle(_facingDirection + direction);
+                            if (originalDirection == Vector3.left)
+                                TurnRight();
+                            else
+                                TurnLeft();
+                        }
                     }
                 }
                 else
