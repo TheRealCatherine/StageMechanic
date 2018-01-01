@@ -114,6 +114,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
             yield break;
 
         ApplyGravity();
+        thisBlock.transform.rotation = Quaternion.identity;
 
         if ((thisBlock.Position.y % 1) != 0)
         {
@@ -124,20 +125,21 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         if(!SetStateBySupport() && CurrentState != State.Falling)
         {
             CurrentState = State.Hovering;
+            thisBlock.transform.Rotate(0f, 0f, .3f);
+            yield return new WaitForSeconds(0.1f);
+            thisBlock.transform.Rotate(0f, 0f, -.6f);
+            yield return new WaitForSeconds(0.1f);
+            thisBlock.transform.Rotate(0f, 0f, .6f);
+            yield return new WaitForSeconds(0.1f);
+            thisBlock.transform.Rotate(0f, 0f, -.3f);
+            yield return new WaitForSeconds(0.1f);
+            thisBlock.transform.rotation = Quaternion.identity;
+            yield return new WaitForSeconds(0.6f);
         }
 
         if(CurrentState == State.Hovering)
         {
-            thisBlock.transform.Rotate(0f, 0f, .1f);
-            yield return new WaitForSeconds(0.1f);
-            thisBlock.transform.Rotate(0f, 0f, -.2f);
-            yield return new WaitForSeconds(0.1f);
-            thisBlock.transform.Rotate(0f, 0f, .2f);
-            yield return new WaitForSeconds(0.1f);
-            thisBlock.transform.Rotate(0f, 0f, -.1f);
-            yield return new WaitForSeconds(0.1f);
-
-
+            thisBlock.transform.rotation = Quaternion.identity;
             if (!SetStateBySupport())
                 CurrentState = State.Falling;
         }
