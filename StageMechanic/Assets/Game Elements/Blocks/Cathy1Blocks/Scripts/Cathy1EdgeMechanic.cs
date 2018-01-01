@@ -16,64 +16,153 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 	public bool inspectorGrounded = false;
 	public Vector3 dodododo;
 
-	void Update ()
+    public enum State
+    {
+        Grounded,
+        Edged,
+        Hovering,
+        Falling
+    }
+
+
+    public State CurrentState = State.Grounded;
+    public float FallTime = 0.25f;
+
+    private State OtherBlockState( IBlock block )
+    {
+        Cathy1EdgeMechanic otherBlock = block.GameObject.GetComponent<Cathy1EdgeMechanic>();
+        Debug.Assert(otherBlock != null);
+        return otherBlock.CurrentState;
+    }
+
+    private bool SetStateBySupport()
+    {
+        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        Debug.Assert(thisBlock != null);
+
+        IBlock down = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down);
+        if (down != null)
+        {
+            State obs = OtherBlockState(down);
+            if (obs != State.Hovering && obs != State.Falling)
+            {
+                CurrentState = State.Grounded;
+                return true;
+            }
+        }
+
+        IBlock back = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.back);
+        if (back != null)
+        {
+            State obs = OtherBlockState(back);
+            if (obs != State.Hovering && obs != State.Falling)
+            {
+                CurrentState = State.Edged;
+                return true;
+            }
+        }
+
+        IBlock left = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.left);
+        if (left != null)
+        {
+            State obs = OtherBlockState(left);
+            if (obs != State.Hovering && obs != State.Falling)
+            {
+                CurrentState = State.Edged;
+                return true;
+            }
+        }
+
+        IBlock right = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.right);
+        if (right != null)
+        {
+            State obs = OtherBlockState(right);
+            if (obs != State.Hovering && obs != State.Falling)
+            {
+                CurrentState = State.Edged;
+                return true;
+            }
+        }
+
+        IBlock front = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.forward);
+        if (front != null)
+        {
+            State obs = OtherBlockState(front);
+            if (obs != State.Hovering && obs != State.Falling)
+            {
+                CurrentState = State.Edged;
+                return true;
+            }
+        }
+
+        if (BlockManager.ActiveFloor.transform.position.y == (thisBlock.Position + Vector3.down).y)
+        {
+            if (CurrentState != State.Falling && CurrentState != State.Hovering)
+            {
+                CurrentState = State.Grounded;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public IEnumerator UpdateState()
+    {
+        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        if (thisBlock == null)
+            yield break;
+
+        ApplyGravity();
+
+        if ((thisBlock.Position.y % 1) != 0)
+        {
+            CurrentState = State.Falling;
+            yield break;
+        }
+
+        if(!SetStateBySupport() && CurrentState != State.Falling)
+        {
+            CurrentState = State.Hovering;
+        }
+
+        if(CurrentState == State.Hovering)
+        {
+            thisBlock.transform.Rotate(0f, 0f, .1f);
+            yield return new WaitForSeconds(0.1f);
+            thisBlock.transform.Rotate(0f, 0f, -.2f);
+            yield return new WaitForSeconds(0.1f);
+            thisBlock.transform.Rotate(0f, 0f, .2f);
+            yield return new WaitForSeconds(0.1f);
+            thisBlock.transform.Rotate(0f, 0f, -.1f);
+            yield return new WaitForSeconds(0.1f);
+
+
+            if (!SetStateBySupport())
+                CurrentState = State.Falling;
+        }
+    }
+
+    void Update ()
 	{
-		Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block> ();
-		if (thisBlock == null)
-			return;
-
-		BlockManager bm = thisBlock.BlockManager;
-		Debug.Assert (bm != null);
-		if (BlockManager.PlayMode) {
-
-			IsGrounded = false;
-			inspectorGrounded = false;
-			dodododo = Vector3.zero;
-
-			Vector3 down = transform.TransformDirection (Vector3.down);
-
-			if (Physics.Raycast (transform.position, down, 1f) && (transform.position.y % 1) == 0) {
-				IsGrounded = true;
-				inspectorGrounded = true;
-			}
-
-			List<Collider> crossColiders = new List<Collider> (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.75f, 0f), new Vector3 (0.1f, 0.1f, 0.75f)));
-			crossColiders.AddRange (Physics.OverlapBox (transform.position - new Vector3 (0f, 0.75f, 0f), new Vector3 (0.75f, 0.1f, 0.1f)));
-
-			foreach (Collider col in crossColiders) {
-				if (col.gameObject == gameObject)
-					continue;
-				Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
-				if (otherBlock == null)
-					continue;
-				if (!otherBlock.IsGrounded)
-					continue;
-				if ((transform.position.y % 1) == 0) {
-					inspectorGrounded = false;
-					dodododo = otherBlock.transform.position;
-					IsGrounded = true;
-					break;
-				}
-			}
-
-		}
-		ApplyGravity ();
+        if(BlockManager.PlayMode)
+            StartCoroutine(UpdateState());
+            
 	}
 
 	public void ApplyGravity ()
 	{
-		if (IsGrounded)
-			return;
+        if (CurrentState != State.Falling)
+            return;
 
-		Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block> ();
-		if (thisBlock == null)
-			return;
+        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        if (thisBlock == null)
+            return;
 
-		BlockManager bm = thisBlock.BlockManager;
-		Debug.Assert (bm != null);
-		if (BlockManager.PlayMode)
-			thisBlock.Position -= new Vector3 (0, 0.25f*thisBlock.GravityFactor, 0);
-	}
+        if (BlockManager.PlayMode)
+            thisBlock.Position -= new Vector3(0, 0.25f * thisBlock.GravityFactor, 0);
+
+    }
 
 	public bool TestForSupportedBlock (int height)
 	{

@@ -50,7 +50,7 @@ public class StageJsonDelegate {
 			//TODO create all platforms
 			foreach (PlatformJsonDelegate platform in value) {
 				foreach (Transform child in platform._platform.transform) {
-					child.parent = _manager.ActiveFloor.transform;
+					child.parent = BlockManager.ActiveFloor.transform;
 				}
 				GameObject.Destroy (platform._platform);
 				//TODO _manager.ActiveFloor = platform._platform;

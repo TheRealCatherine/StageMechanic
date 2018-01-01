@@ -128,7 +128,7 @@ public class BlockJsonDelegate {
         //else
         Quaternion rotation = Quaternion.identity;
         //TODO support different block factories
-        IBlock newBlock = StageCollection.BlockManager.Cathy1BlockFactory.CreateBlock (_pos, rotation, _type, StageCollection.BlockManager.ActiveFloor);
+        IBlock newBlock = StageCollection.BlockManager.Cathy1BlockFactory.CreateBlock (_pos, rotation, _type, BlockManager.ActiveFloor);
 		newBlock.Name = _name;
         newBlock.Properties = _properties;
 	}

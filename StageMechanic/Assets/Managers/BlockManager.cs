@@ -138,8 +138,8 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    private GameObject _activeFloor;
-    public GameObject ActiveFloor {
+    private static GameObject _activeFloor;
+    public static GameObject ActiveFloor {
         get {
             return _activeFloor;
         }
