@@ -461,6 +461,14 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         if (direction != _facingDirection && direction != ReverseDirection(_facingDirection))
             return;
 
+        //Don't allow pull if there is a block in your way
+        if(direction == ReverseDirection(_facingDirection))
+        {
+            IBlock blockInWay = BlockManager.GetBlockAt(transform.position + ReverseDirection(_facingDirection));
+            if (blockInWay != null)
+                return;
+        }
+
         //TODO no sideways movement
 		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+_facingDirection);
 		if (blockInQuestion == null)
