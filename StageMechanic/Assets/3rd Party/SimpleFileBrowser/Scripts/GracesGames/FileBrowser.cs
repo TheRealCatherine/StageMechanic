@@ -80,6 +80,8 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 		// String file extension to filter results and save new files
 		private string _fileExtension;
 
+        public static bool IsOpen = false;
+
 		// ----- METHODS -----
 
 		// Method used to setup the FileBrowser
@@ -376,7 +378,8 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 
 		// Generic file browser panel to remove duplicate code
 		private void FilePanel(MonoBehaviour callerScript, string callbackMethod, string fileExtension) {
-			// Set values
+            // Set values
+            IsOpen = true;
 			_fileExtension = fileExtension;
 			_callerScript = callerScript;
 			_callbackMethod = callbackMethod;
@@ -386,6 +389,7 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 
 		// Destroy this file browser (the UI and the GameObject)
 		private static void Destroy() {
+            IsOpen = false;
 			Destroy(GameObject.Find("FileBrowserUI"));
 			Destroy(GameObject.Find("FileBrowser"));
 		}

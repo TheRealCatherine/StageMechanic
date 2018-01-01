@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 using System;
+using GracesGames.SimpleFileBrowser.Scripts;
 
 [System.Serializable]
 public class InputManager : MonoBehaviour {
@@ -57,6 +58,9 @@ public class InputManager : MonoBehaviour {
 	const float joystickThrottleRate = 0.1f;
 
 	void Update () {
+
+        if (FileBrowser.IsOpen)
+            return;
 
 		float vert = Input.GetAxis ("Vertical");
 		float hori = Input.GetAxis ("Horizontal");
