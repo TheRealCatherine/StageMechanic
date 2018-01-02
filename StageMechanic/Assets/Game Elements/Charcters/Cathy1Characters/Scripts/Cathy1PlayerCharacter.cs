@@ -500,6 +500,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                 }
                 else
                 {
+                    CurrentMoveState = State.Idle;
                     Sidle(direction);
                 }
             }
