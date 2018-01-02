@@ -291,6 +291,12 @@ public class InputManager : MonoBehaviour {
             MusicManager.VolumeUp();
         }
 
+        //Skybox controlls
+        else if(Input.GetKeyDown(KeyCode.F3))
+        {
+            SkyboxManager.NextSkybox();
+        }
+
         //Fast cursor movement
         else if (Input.GetKeyDown(KeyCode.PageUp) && !BlockManager.PlayMode)
         {
