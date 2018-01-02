@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: a2a2f1f47c0236d4d9e0c71d8b75f632, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: fb74d5400d68ebc4cacf4042b2d00396, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.49002856, g: 0.5737968, b: 0.6913597, a: 1}
+  m_IndirectSpecularColor: {r: 0.0054113683, g: 0.0054113683, b: 0.0054113683, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -787,6 +787,7 @@ GameObject:
   - component: {fileID: 223191238}
   - component: {fileID: 223191239}
   - component: {fileID: 223191240}
+  - component: {fileID: 223191241}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1006,6 +1007,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f8ef79f4ce2b908438735d073ecd499a, type: 3}
   - {fileID: 8300000, guid: 8bd3e89dec7edaa43a1ac9dfc0adfc5e, type: 3}
   - {fileID: 8300000, guid: 9b7d0127afc2c15429aabc320dbcdd9c, type: 3}
+--- !u!114 &223191241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 223191232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e49fc355afe044aa39dada96257656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skyboxes:
+  - {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
+  - {fileID: 2100000, guid: 0bd996dbb0fa53b4192eedda93d9af6a, type: 2}
+  - {fileID: 2100000, guid: 2aa772275218bc741a19cf302e615a3c, type: 2}
+  - {fileID: 2100000, guid: d64681fa0b491064090d4021eb9929e3, type: 2}
+  - {fileID: 2100000, guid: a2a2f1f47c0236d4d9e0c71d8b75f632, type: 2}
+  - {fileID: 2100000, guid: 3037a9c4ce6b7dd4fa6687d7bd6e9ec5, type: 2}
+  - {fileID: 2100000, guid: a2031bed2e3bbec4c831cb06448b6381, type: 2}
+  - {fileID: 2100000, guid: fb74d5400d68ebc4cacf4042b2d00396, type: 2}
 --- !u!1 &229913026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1177,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 573473180}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99998885
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2994,7 +3015,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 199.00134}
+  m_AnchoredPosition: {x: 0, y: 199.00137}
   m_SizeDelta: {x: 0, y: 800}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &671241515
@@ -5838,7 +5859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000059552505, y: -0.0000067368073}
+  m_AnchoredPosition: {x: -0.000059552505, y: -0.00000023690512}
   m_SizeDelta: {x: 0, y: 215}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1403919664
