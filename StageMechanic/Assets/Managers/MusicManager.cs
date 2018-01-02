@@ -12,6 +12,7 @@ public class MusicManager : MonoBehaviour {
 	void Start () {
         Player = GetComponent<AudioSource>();
         Instance = this;
+        Player.volume = PlayerPrefs.GetFloat("MusicVolume", 1.0f);
         if (PlayerPrefs.HasKey("MusicTrackIndex"))
             PlayTrack(PlayerPrefs.GetInt("MusicTrackIndex"));
         else
@@ -22,28 +23,32 @@ public class MusicManager : MonoBehaviour {
     {
         Debug.Assert(Player != null);
         Player.volume += 0.1f;
+        PlayerPrefs.SetFloat("MusicVolume", Player.volume);
+        LogController.Log("Volume: " + (int)(Player.volume * 100f)+"%");
     }
 
     public static void VolumeDown()
     {
         Debug.Assert(Player != null);
         Player.volume -= 0.1f;
+        PlayerPrefs.SetFloat("MusicVolume", Player.volume);
+        LogController.Log("Volume: " + (int)(Player.volume * 100f)+"%");
     }
 
     public static void Pause()
     {
        Player.Pause();
        PlayerPrefs.SetInt("MusicPaused", 1);
-        Debug.Log("Music Paused");
+       LogController.Log("Music Paused");
     }
 
     public static void UnPause()
     {
         Player.Play();
         PlayerPrefs.SetInt("MusicPaused", 0);
-        Debug.Log("Playing " + Instance.Clips[CurrentIndex].name);
+        LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
     }
-    
+
     public static void TogglePause()
     {
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 1)
@@ -59,7 +64,7 @@ public class MusicManager : MonoBehaviour {
         Player.clip = Instance.Clips[CurrentIndex] as AudioClip;
         Player.Play();
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
-        Debug.Log("Playing " + Instance.Clips[CurrentIndex].name);
+        LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 0)
             Player.Play();
     }
@@ -76,7 +81,7 @@ public class MusicManager : MonoBehaviour {
         CurrentIndex = number;
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
         Player.clip = Instance.Clips[CurrentIndex];
-        Debug.Log("Playing " + Instance.Clips[CurrentIndex].name);
+        LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused",0) == 0)
             Player.Play();
 
@@ -95,7 +100,7 @@ public class MusicManager : MonoBehaviour {
             CurrentIndex = 0;
         }
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
-        Debug.Log("Playing " + Instance.Clips[CurrentIndex].name);
+        LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 0)
             Player.Play();
     }
@@ -113,7 +118,7 @@ public class MusicManager : MonoBehaviour {
             CurrentIndex = Instance.Clips.Length-1;
         }
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
-        Debug.Log("Playing " + Instance.Clips[CurrentIndex].name);
+        LogController.Log("Playing " + (CurrentIndex+1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 0)
             Player.Play();
     }

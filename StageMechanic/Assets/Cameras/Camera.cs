@@ -53,10 +53,16 @@ public class Camera : MonoBehaviour
             Vector3 player1pos = PlayerManager.Player1Location();
             if(player1pos != new Vector3(-255,-255,-255))
             {
+                float xPos = 0f;
+                if (player1pos.x > 6f)
+                    xPos = 8f;
+                else if (player1pos.x < -6f)
+                    xPos = -8f;
+
                 if(LazyScroll && (transform.position.y > player1pos.y +4f || transform.position.y < player1pos.y))
-                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f + zoom),0.2f));
+                    StartCoroutine(AnimateMove(transform.position, new Vector3(xPos, player1pos.y + 3f, player1pos.z - 7f + zoom),0.2f));
                 else
-                    StartCoroutine(AnimateMove(transform.position, new Vector3(0f, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f));
+                    StartCoroutine(AnimateMove(transform.position, new Vector3(xPos, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f));
             }
         }
         else {
