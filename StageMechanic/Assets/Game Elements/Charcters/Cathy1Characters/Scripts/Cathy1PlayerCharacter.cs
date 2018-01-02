@@ -247,6 +247,10 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             {
                 CurrentMoveState = State.Fall;
                 Teleport(CurrentLocation + Vector3.down);
+                if (BlockManager.GetBlockAt(transform.position + _facingDirection) != null && BlockManager.GetBlockAt(transform.position + _facingDirection + Vector3.up) == null)
+                {
+                    CurrentMoveState = State.Sidle;
+                }
             }
             else
                 CurrentMoveState = State.Idle;
