@@ -47,7 +47,10 @@ public class BlockManager : MonoBehaviour {
 
     // The obect (block/item/etc) currently under the cursor
     public GameObject ActiveObject {
-        get {     
+        get {
+            GameObject block = GetBlockAt(Cursor.transform.position)?.GameObject;
+            if (block != null)
+                return block;
             CursorCollider col = Cursor.GetComponent<CursorCollider>();
             return col.ObjectUnderCursor;
         }

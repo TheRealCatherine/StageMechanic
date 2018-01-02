@@ -107,7 +107,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 24499f18d99f0c245bd3da4f51e65ede, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 73e23d1408368ca4d9edfeaff07e162d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -207,3 +207,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectorGrounded: 0
   dodododo: {x: 0, y: 0, z: 0}
+  CurrentState: 0
+  FallTime: 0.25
