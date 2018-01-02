@@ -302,7 +302,7 @@ public class BlockManager : MonoBehaviour {
 		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
 		fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape);
+        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastSaveDir"));
         fileBrowserScript.SaveFilePanel(this, "SaveFileUsingPath", "MyLevels", "json");
 	}
 
@@ -329,7 +329,7 @@ public class BlockManager : MonoBehaviour {
 
         fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape);
+        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape,PlayerPrefs.GetString("LastLoadDir"));
 
         fileBrowserScript.OpenFilePanel(this, "LoadFileUsingPath", "json");
 	}
@@ -349,7 +349,10 @@ public class BlockManager : MonoBehaviour {
 	// Saves a file with the textToSave using a path
 	private void SaveFileUsingPath(string path) {
 		if (path.Length != 0) {
-			string json = BlocksToJson ();
+            Uri location = new Uri("file:///" + path);
+            string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
+            PlayerPrefs.SetString("LastSaveDir", directory);
+            string json = BlocksToJson ();
             //TODO this probably can throw an exception?
 			if (json.Length != 0)
 				System.IO.File.WriteAllText (path, json);
@@ -367,7 +370,10 @@ public class BlockManager : MonoBehaviour {
 	private void LoadFileUsingPath(string path) {
         //TODO ensure file is valid
         if (path.Length != 0) {
-			BlocksFromJson (new Uri("file:///"+path));
+            Uri location = new Uri("file:///" + path);
+            string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
+            PlayerPrefs.SetString("LastLoadDir", directory);
+            BlocksFromJson(location);
             if (path.Contains("_autosave"))
             {
                 LastAccessedFileName = string.Empty;

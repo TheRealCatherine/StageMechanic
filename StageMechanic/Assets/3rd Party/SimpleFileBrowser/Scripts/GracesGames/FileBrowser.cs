@@ -85,7 +85,7 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 		// ----- METHODS -----
 
 		// Method used to setup the FileBrowser
-		public void SetupFileBrowser(ViewMode newViewMode) {
+		public void SetupFileBrowser(ViewMode newViewMode,string startingPath = "") {
 			// Set the view mode (landscape or portrait)
 			ViewMode = newViewMode;
 
@@ -102,17 +102,23 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 			} else {
 				Debug.LogError("Make sure there is a canvas GameObject present in the Hierarcy (Create UI/Canvas)");
 			}
-			SetupPath();
+            if (startingPath.Length != 0 && Directory.Exists(startingPath))
+                _currentPath = startingPath;
+            else
+                SetupPath();
 		}
 
 		// Sets the current path (Android or other devices)
 		private void SetupPath() {
-			if (IsAndroidPlatform()) {
-				SetupAndroidVariables();
-				_currentPath = _rootAndroidPath;
-			} else {
-				_currentPath = Directory.GetCurrentDirectory();
-			}
+            if (IsAndroidPlatform())
+            {
+                SetupAndroidVariables();
+                _currentPath = _rootAndroidPath;
+            }
+            else
+            {
+                _currentPath = Directory.GetCurrentDirectory();
+            }
 		}
 
 		// Set up Android external storage root directory, else default to Directory.GetCurrentDirectory()
