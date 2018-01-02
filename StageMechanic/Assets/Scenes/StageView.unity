@@ -24,21 +24,21 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2aa772275218bc741a19cf302e615a3c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
+  m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16487625, g: 0.10864479, b: 0.22398311, a: 1}
+  m_IndirectSpecularColor: {r: 0.50577414, g: 0.15072268, b: 0.0963731, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ LightmapSettings:
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 9
     m_Resolution: 2
@@ -547,8 +547,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1509108676}
   m_HandleRect: {fileID: 1509108675}
   m_Direction: 2
-  m_Value: 0.000000777994
-  m_Size: 0.90193486
+  m_Value: 0.60577196
+  m_Size: 0.7512483
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -786,6 +786,7 @@ GameObject:
   - component: {fileID: 223191233}
   - component: {fileID: 223191238}
   - component: {fileID: 223191239}
+  - component: {fileID: 223191240}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -823,7 +824,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -886,7 +887,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d93a4c6a812648448bdd0a53e001be6b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a0940478c41f12e42b6663ccaf97555a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -957,6 +958,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &223191240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 223191232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244c4ce0908c3db43ae2030a44728e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clips:
+  - {fileID: 8300000, guid: a0940478c41f12e42b6663ccaf97555a, type: 3}
+  - {fileID: 8300000, guid: f95600e571d7ae84c8726ce37f7282ed, type: 3}
+  - {fileID: 8300000, guid: 8caef478c5727524ca81458ea8e14224, type: 3}
+  - {fileID: 8300000, guid: 3679939965a69fb4f80cd0fe926d8427, type: 3}
+  - {fileID: 8300000, guid: 44b8207c470dd4247b44f0fb8d599035, type: 3}
+  - {fileID: 8300000, guid: 337992f00e0fdb7458a0d1ed61d196fc, type: 3}
+  - {fileID: 8300000, guid: e6051ed81d4a53f469fd361659496113, type: 3}
+  - {fileID: 8300000, guid: b948f11b59b72664e8f3d4179b52ef4e, type: 3}
+  - {fileID: 8300000, guid: e778491a6a1913746936d54f13b092f6, type: 3}
+  - {fileID: 8300000, guid: 27a3ecb089c11ca4781836c38e8f793d, type: 3}
+  - {fileID: 8300000, guid: 3c3897647db468b4687d3c3f09f08c31, type: 3}
+  - {fileID: 8300000, guid: 8ec870dd6ada5fe48a9fd9d58d4adb0f, type: 3}
+  - {fileID: 8300000, guid: 64b96d53cfa76ce4b91ee8c6e2277e6d, type: 3}
+  - {fileID: 8300000, guid: d93a4c6a812648448bdd0a53e001be6b, type: 3}
+  - {fileID: 8300000, guid: dcb924906cd304145aaa7eeeeba986f2, type: 3}
+  - {fileID: 8300000, guid: 82f434e8f5d57394b8df144e87684c4b, type: 3}
+  - {fileID: 8300000, guid: 189bf0f47e09edf4bb0b9532899aa7fd, type: 3}
+  - {fileID: 8300000, guid: a0259e8d07324e64baa8619a5d5f3370, type: 3}
+  - {fileID: 8300000, guid: aacbeed38e372124eb98f24bbee56817, type: 3}
+  - {fileID: 8300000, guid: 604cc861b31eae94c832e42868af2c78, type: 3}
+  - {fileID: 8300000, guid: a2cd0ec77a473b64c91d27c24063c63d, type: 3}
+  - {fileID: 8300000, guid: a338428564d392745947da535747ad73, type: 3}
+  - {fileID: 8300000, guid: cc0171652e74ddd4fb51d469f0226e0a, type: 3}
+  - {fileID: 8300000, guid: 09912427b8f3f4b4986b85c9bc0b6c80, type: 3}
+  - {fileID: 8300000, guid: 7ddf91c4dc29f8949b9f9eb04f076f28, type: 3}
+  - {fileID: 8300000, guid: a1dcad290695c874087d7965b09133c2, type: 3}
+  - {fileID: 8300000, guid: ba2501ab59ee5cd42a36c25a9de77968, type: 3}
+  - {fileID: 8300000, guid: 521dd5f113658f44089772546deefe8b, type: 3}
+  - {fileID: 8300000, guid: 236f306a65922e2449ae83ff985aca1e, type: 3}
+  - {fileID: 8300000, guid: b2c88b34038081a42b4c9987aeeb2151, type: 3}
+  - {fileID: 8300000, guid: 2e285de4065edee4589a2f9f1a312e3f, type: 3}
+  - {fileID: 8300000, guid: 4c424c6ee7b4fb94faf19df974f7e722, type: 3}
+  - {fileID: 8300000, guid: 7b04197dad13284479615a204bd52d32, type: 3}
+  - {fileID: 8300000, guid: f8ef79f4ce2b908438735d073ecd499a, type: 3}
+  - {fileID: 8300000, guid: 8bd3e89dec7edaa43a1ac9dfc0adfc5e, type: 3}
+  - {fileID: 8300000, guid: 9b7d0127afc2c15429aabc320dbcdd9c, type: 3}
 --- !u!1 &229913026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,8 +1155,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 573473181}
   m_HandleRect: {fileID: 573473180}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5789,7 +5838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000059552505, y: -0.000025054867}
+  m_AnchoredPosition: {x: -0.000059552505, y: 0.000006582064}
   m_SizeDelta: {x: 0, y: 215}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1403919664
