@@ -59,7 +59,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         else
         {
             GetComponent<AudioSource>().PlayOneShot(Collapse);
-            yield return new WaitForSeconds(0.35f);
+            yield return new WaitForSeconds(0.55f);
             Destroy(gameObject);
         }
             
@@ -67,30 +67,19 @@ public class Cathy1CrackedBlock : Cathy1Block {
 
     private void Update()
     {
-        List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position + new Vector3(0f, 0.75f, 0f), new Vector3(0.1f, 0.1f, 0.75f)));
-        foreach (Collider col in crossColiders)
-        {
-            if (col.gameObject == gameObject)
-                continue;
-            Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic>();
-            if (otherBlock != null)
-                continue;
-            Cathy1PlayerCharacter player = col.gameObject.GetComponent<Cathy1PlayerCharacter>();
-            if (player != null)
-            {
-                if (CurrentState == State.PlayerStand)
-                    continue;
-                else if (CurrentState == State.NoPlayer)
-                    StartCoroutine(HandleStep());
-
-            }
-            else
-            {
-               CurrentState = State.NoPlayer;
-            }
-            
-        }
-        if(crossColiders.Count == 0)
+        if (!BlockManager.PlayMode)
+            return;
+        Vector3 player = PlayerManager.Player1Location();
+        if (player != transform.position + Vector3.up) {
+            if (CurrentState != State.NoPlayer)
+                CurrentState = State.PlayerLeave;
             CurrentState = State.NoPlayer;
+            return;
+        }
+
+        if (CurrentState == State.PlayerStand)
+            return;
+        else if (CurrentState == State.NoPlayer)
+            StartCoroutine(HandleStep());
     }
 }
