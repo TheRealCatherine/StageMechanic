@@ -21,39 +21,26 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
         }
     }
 
-    /// <summary>
-    /// Returns the capsule collider associated with the block
-    /// </summary>
-    public override sealed Collider PlayerTriggerCollider
+    bool hasPlayer()
     {
-        get
-        {
-            return GetComponent<CapsuleCollider>();
-        }
-        set { }
+        Vector3 player = PlayerManager.Player1Location();
+        return (player == transform.position + Vector3.up && (PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Idle || PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Walk || PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Center));
     }
 
-    /// <summary>
-    /// Returns the capsule collider associated with the block
-    /// </summary>
-    public override sealed Collider ItemTriggerCollider
+    private void Update()
     {
-        get
+        if (!BlockManager.PlayMode)
+            return;
+        if (hasPlayer())
         {
-            return GetComponent<CapsuleCollider>();
+            GetComponent<AudioSource>()?.Play();
+            PlayerManager.PlayersReset();
         }
-        set { }
-    }
+        IBlock onTop = BlockManager.GetBlockAt(transform.position + Vector3.up);
+        if (onTop != null) {
+            GetComponent<AudioSource>()?.Play();
+            Destroy(onTop.GameObject);
+        }
 
-    /// <summary>
-    /// Returns the capsule collider associated with the block
-    /// </summary>
-    public override sealed Collider BlockTriggerCollider
-    {
-        get
-        {
-            return GetComponent<CapsuleCollider>();
-        }
-        set { }
     }
 }

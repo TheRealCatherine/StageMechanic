@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour {
 
     public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
     public static List<Cathy1PlayerCharacter> Avatars { get; set; } = new List<Cathy1PlayerCharacter>();
+    private static PlayerManager Instance;
 
     internal static bool _playMode = false;
     public bool PlayMode
@@ -42,7 +43,13 @@ public class PlayerManager : MonoBehaviour {
         PlayerStartLocations.Clear();
     }
 
-    private void HidePlayers()
+    public static void PlayersReset()
+    {
+        HidePlayers();
+        SpawnPlayers();
+    }
+
+    private static void HidePlayers()
     {
         Debug.Log("Hiding");
         foreach (Cathy1PlayerCharacter player in Avatars) {
@@ -51,19 +58,19 @@ public class PlayerManager : MonoBehaviour {
         Avatars.Clear();
     }
 
-    private void SpawnPlayers()
+    private static void SpawnPlayers()
     {
         Debug.Log("Spawning");
         foreach (Cathy1PlayerStartLocation player in PlayerStartLocations)
         {
-			Avatars.Add(Instantiate(Player1Prefab, player.transform.position+new Vector3(0f,0.5f,0f), player.transform.rotation, transform).GetComponent<Cathy1PlayerCharacter>());
+			Avatars.Add(Instantiate(Instance.Player1Prefab, player.transform.position+new Vector3(0f,0.5f,0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
         }
     }
 
 
     // Use this for initialization
     void Start () {
-		
+        Instance = this;
 	}
 	
 	// Update is called once per frame

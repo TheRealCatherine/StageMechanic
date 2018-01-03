@@ -54,42 +54,6 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     }
 
     /// <summary>
-    /// Returns the capsule collider associated with the block
-    /// </summary>
-    public override sealed Collider PlayerTriggerCollider
-    {
-        get
-        {
-            return GetComponent<CapsuleCollider>();
-        }
-        set { }
-    }
-
-    /// <summary>
-    /// Items cannot trigger spike traps in Cathy1 style
-    /// </summary>
-    public override sealed Collider ItemTriggerCollider
-    {
-        get
-        {
-            return null;
-        }
-        set { }
-    }
-
-    /// <summary>
-    /// Blocks cannot trigget spike traps in Cathy1 style
-    /// </summary>
-    public override sealed Collider BlockTriggerCollider
-    {
-        get
-        {
-            return null;
-        }
-        set { }
-    }
-
-    /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
     public override void Awake()

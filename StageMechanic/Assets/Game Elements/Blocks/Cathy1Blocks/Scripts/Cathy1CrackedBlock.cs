@@ -70,7 +70,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         if (!BlockManager.PlayMode)
             return;
         Vector3 player = PlayerManager.Player1Location();
-        if (player != transform.position + Vector3.up || PlayerManager.Player1State() != Cathy1PlayerCharacter.State.Idle) {
+        if (player != transform.position + Vector3.up || (PlayerManager.Player1State() != Cathy1PlayerCharacter.State.Idle || PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Walk || PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Center)) {
             if (CurrentState != State.NoPlayer)
                 CurrentState = State.PlayerLeave;
             CurrentState = State.NoPlayer;

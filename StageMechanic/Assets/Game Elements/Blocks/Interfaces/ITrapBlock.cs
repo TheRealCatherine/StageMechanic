@@ -124,28 +124,4 @@ public interface ITrapBlock
     /// the same amount of damage.
     /// </summary>
     bool GradientDamage { get; set; }
-
-    /// <summary>
-    /// Defines the area in which a player may trigger this trap, for example does it only trigger when
-    /// the player on top of the block or does touching it anywhere set it off?
-    /// </summary>
-    Collider PlayerTriggerCollider { get; set; }
-
-    /// <summary>
-    /// Defines the area in which a player may trigger this trap, for example does it only trigger when
-    /// the player on top of the block or does touching it anywhere set it off?
-    /// </summary>
-    Collider EnemyTriggerCollider { get; set; }
-
-    /// <summary>
-    /// Defines the area in which a player may trigger this trap, for example does it only trigger when
-    /// the player on top of the block or does touching it anywhere set it off?
-    /// </summary>
-    Collider ItemTriggerCollider { get; set; }
-
-    /// <summary>
-    /// Defines the area in which a player may trigger this trap, for example does it only trigger when
-    /// the player on top of the block or does touching it anywhere set it off?
-    /// </summary>
-    Collider BlockTriggerCollider { get; set; }
 }

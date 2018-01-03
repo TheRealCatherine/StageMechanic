@@ -189,37 +189,4 @@ public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock
         }
         set { }
     }
-
-    /// <summary>
-    /// Defines the area in which a player may trigger this trap, for example does it only trigger when
-    /// the player on top of the block or does touching it anywhere set it off?
-    /// </summary>
-    public abstract Collider PlayerTriggerCollider { get; set; }
-
-    /// <summary>
-    /// Enemy and player triggers are always the same in Cathy1 style blocks
-    /// </summary>
-    public Collider EnemyTriggerCollider
-    {
-        get
-        {
-            return PlayerTriggerCollider;
-        }
-        set
-        {
-            PlayerTriggerCollider = value;
-        }
-    }
-
-    /// <summary>
-    /// Defines the area in which a player may trigger this trap, for example does it only trigger when
-    /// the player on top of the block or does touching it anywhere set it off?
-    /// </summary>
-    public abstract Collider ItemTriggerCollider { get; set; }
-
-    /// <summary>
-    /// Defines the area in which a player may trigger this trap, for example does it only trigger when
-    /// the player on top of the block or does touching it anywhere set it off?
-    /// </summary>
-    public abstract Collider BlockTriggerCollider { get; set; }
 }

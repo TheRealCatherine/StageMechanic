@@ -33,61 +33,7 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
             return TrapBlockType.Spike;
         }
     }
-
-    /// <summary>
-    /// Returns the capsule collider associated with the block
-    /// </summary>
-    public override sealed Collider PlayerTriggerCollider
-    {
-        get
-        {
-            return GetComponent<CapsuleCollider>();
-        }
-        set { }
-    }
-
-    /// <summary>
-    /// Items cannot trigger spike traps in Cathy1 style
-    /// </summary>
-    public override sealed Collider ItemTriggerCollider
-    {
-        get
-        {
-            return null;
-        }
-        set { }
-    }
-
-    /// <summary>
-    /// Blocks cannot trigget spike traps in Cathy1 style
-    /// </summary>
-    public override sealed Collider BlockTriggerCollider
-    {
-        get
-        {
-            return null;
-        }
-        set { }
-    }
-
-    /// <summary>
-    /// Add the spike trap specific properties.
-    /// </summary>
-    public override Dictionary<string, string> Properties
-    {
-        get
-        {
-            //TODO
-            return base.Properties;
-        }
-
-        set
-        {
-            //TODO
-            base.Properties = value;
-        }
-    }
-
+    
     /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
