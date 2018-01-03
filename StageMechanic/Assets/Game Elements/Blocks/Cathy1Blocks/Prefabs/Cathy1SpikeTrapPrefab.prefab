@@ -108,6 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspectorGrounded: 0
+  dodododo: {x: 0, y: 0, z: 0}
+  CurrentState: 0
+  FallTime: 0.25
 --- !u!114 &114529137580890764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,7 +128,8 @@ MonoBehaviour:
   Material3: {fileID: 0}
   Material4: {fileID: 0}
   ArmedStateMaterial: {fileID: 2100000, guid: 1b7cd7403e5b020469a1af3a29bf96dc, type: 2}
-  TriggeredStateMaterial: {fileID: 0}
+  TriggeredStateMaterial: {fileID: 2100000, guid: 476c8b7430d61ab4a80a7fa5c7a8acd4,
+    type: 2}
   ActiveStateMaterial: {fileID: 0}
   DisarmedStateMaterial: {fileID: 2100000, guid: 452f97267dfbcb54db194aac7bdcb1c4,
     type: 2}
