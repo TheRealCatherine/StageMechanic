@@ -87,6 +87,29 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             CurrentLocation = location;
     }
 
+    public IEnumerator SlideTo(Vector3 location)
+    {
+        CurrentMoveState = State.Walk;
+        float journey = 0f;
+        Vector3 origin = CurrentLocation;
+        while (journey <= WalkTime)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / WalkTime);
+            Teleport(Vector3.Lerp(origin, location, percent));
+
+            yield return null;
+        }
+        CurrentMoveState = State.Idle;
+        yield return null;
+    }
+
+    public void SlideForward()
+    {
+        if(BlockManager.GetBlockAt(transform.position + _facingDirection) == null)
+            StartCoroutine(SlideTo(transform.position + _facingDirection));
+    }
+
     public IEnumerator WalkTo(Vector3 location)
     {
         CurrentMoveState = State.Walk;

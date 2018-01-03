@@ -12,13 +12,24 @@ public class Cathy1IceBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Ice;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    bool hasPlayer()
+    {
+        Vector3 player = PlayerManager.Player1Location();
+        return (player == transform.position + Vector3.up && PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Walk);
+    }
+
+    private void Update()
+    {
+        if (!BlockManager.PlayMode)
+            return;
+        if (hasPlayer())
+        {
+            PlayerManager.Player1SlideForward();
+        }
+        IBlock onTop = BlockManager.GetBlockAt(transform.position + Vector3.up);
+        if (onTop != null)
+        {
+        }
+
+    }
 }

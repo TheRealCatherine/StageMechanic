@@ -116,6 +116,11 @@ public class PlayerManager : MonoBehaviour {
         Avatars[0].Boingy(location);
     }
 
+    public static void Player1SlideForward()
+    {
+        Avatars[0].SlideForward();
+    }
+
 	internal static void Player1MoveRight(bool pushpull)
     {
 		if (pushpull)
