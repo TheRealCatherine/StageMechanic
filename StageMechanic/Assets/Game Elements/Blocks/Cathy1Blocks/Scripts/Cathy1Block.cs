@@ -86,115 +86,6 @@ public class Cathy1Block : AbstractBlock
     }
 
     /**
-	 * Property describing the the type of movement action to the player
-	 * this block exerts. For example spring blocks move the player up
-	 * along the side, allowing grabbing. Ice blocks move the player
-	 * along the platform to the next block, etc.
-	 */
-    private TeleportBlockType _teleportType = TeleportBlockType.None;
-    public TeleportBlockType TeleportType
-    {
-        get
-        {
-            return _teleportType;
-        }
-        set
-        {
-            _teleportType = value;
-
-        }
-    }
-
-    /**
-	 * Describes how far away from this block the user should be moved
-	 */
-    private Vector3 _teleportDistance;
-    public Vector3 TeleportDistance
-    {
-        get
-        {
-            return _teleportDistance;
-        }
-        set
-        {
-            _teleportDistance = value;
-
-        }
-    }
-
-    /**
-	 * Will be true if this block is any type of teleport block
-	 */
-    public bool IsTeleport
-    {
-        get
-        {
-            return this.TeleportType != TeleportBlockType.None;
-        }
-    }
-
-    /**
-	 * How many steps on top of the block cause it to destruct
-	 * 0 means it collapses on instantiation (perhaps useful for beginning
-	 * stage animation) Less than 0 means the block does not collapse.
-	 */
-    private int _collapseSteps = -1;
-    public int CollapseAfterNSteps
-    {
-        get
-        {
-            return _collapseSteps;
-        }
-        set
-        {
-            _collapseSteps = value;
-
-        }
-    }
-
-    /**
-	 * Will be true if the block collapses after a certain number of steps
-	 */
-    public bool IsCollapseOnStep
-    {
-        get
-        {
-            return _collapseSteps >= 0;
-        }
-    }
-
-    /**
-	 * How many grabs on the edge of the block cause it to destruct
-	 * 0 means it collapses on instantiation (perhaps useful for beginning
-	 * stage animation) Less than 0 means the block does not collapse.
-	 */
-    private int _collapseGrabs = -1;
-    public int CollapseAfterNGrabs
-    {
-        get
-        {
-            return _collapseGrabs;
-        }
-        set
-        {
-            _collapseGrabs = value;
-
-        }
-    }
-
-
-    /**
-	 * Will be true if the block collapses after a certain number of edge grabs
-	 */
-    public bool IsCollapseOnGrab
-    {
-        get
-        {
-            return _collapseGrabs >= 0;
-        }
-    }
-
-    /**
 	 * Returns true if the block is heavier than normal
 	 */
     public bool IsHeavy
@@ -334,14 +225,6 @@ public class Cathy1Block : AbstractBlock
             base.Properties = value;
             //TODO
         }
-    }
-
-    /**
-	 * Called once per frame
-	 */
-    void Update()
-    {
-        //TODO bounds checking for gravity/edge mechanics.
     }
 }
 
