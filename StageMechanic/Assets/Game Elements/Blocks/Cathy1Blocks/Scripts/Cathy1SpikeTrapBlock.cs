@@ -33,7 +33,18 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
             return TrapBlockType.Spike;
         }
     }
-    
+
+    private enum State
+    {
+        NoPlayer = 0,
+        PlayerEnter,
+        PlayerStand,
+        PlayerLeave,
+        Disarmed
+    }
+
+    private State CurrentState = State.NoPlayer;
+
     /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
@@ -41,5 +52,38 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     {
         base.Awake();
         TriggerTime = 1000;
+    }
+
+    bool hasPlayer()
+    {
+        Vector3 player = PlayerManager.Player1Location();
+        return (player == transform.position + Vector3.up && (PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Idle || PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Walk || PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Center));
+    }
+
+    private IEnumerator HandleStep()
+    {
+        CurrentState = State.PlayerEnter;
+        GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(0.55f);
+        if (hasPlayer())
+        {
+            CurrentState = State.PlayerStand;
+            PlayerManager.PlayersReset();
+        }
+        Renderer rend = GetComponent<Renderer>();
+        rend.material = DisarmedStateMaterial;
+        CurrentState = State.Disarmed;
+    }
+
+    private void Update()
+    {
+        if (!BlockManager.PlayMode)
+            return;
+        if (CurrentState == State.Disarmed)
+            return;
+        if (!hasPlayer())
+            return;
+        StartCoroutine(HandleStep());
+
     }
 }
