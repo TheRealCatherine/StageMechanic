@@ -11,13 +11,33 @@ using UnityEngine;
 public class Cathy1SpringBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Spring;
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Vector3 Distance = new Vector3(0f,5f,0f);
+    public float Delay = 0.55f;
+
+    IEnumerator DoBoigy()
+    {
+        if (!hasPlayer())
+            yield break;
+        yield return new WaitForSeconds(Delay);
+        if (!hasPlayer())
+            yield break;
+        PlayerManager.Player1BoingyTo(transform.position + Vector3.up + Distance);
+    }
+
+    bool hasPlayer()
+    {
+        Vector3 player = PlayerManager.Player1Location();
+        return (player == transform.position + Vector3.up);
+    }
+
+    private void Update()
+    {
+        if (!BlockManager.PlayMode)
+            return;
+        if (!hasPlayer())
+            return;
+        StartCoroutine(DoBoigy());
+        
+    }
+
 }

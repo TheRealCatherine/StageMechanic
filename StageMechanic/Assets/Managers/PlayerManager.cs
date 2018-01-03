@@ -95,6 +95,11 @@ public class PlayerManager : MonoBehaviour {
         Avatars[0].QueueMove(Vector3.up);
     }
 
+    public static void Player1BoingyTo( Vector3 location )
+    {
+        Avatars[0].Boingy(location);
+    }
+
 	internal static void Player1MoveRight(bool pushpull)
     {
 		if (pushpull)

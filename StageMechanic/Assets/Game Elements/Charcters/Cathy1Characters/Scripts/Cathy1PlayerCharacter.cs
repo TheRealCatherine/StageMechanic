@@ -208,6 +208,31 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         StartCoroutine(SidleTo(CurrentLocation + direction));
     }
 
+    private IEnumerator BoingyTo(Vector3 location)
+    {
+        CurrentMoveState = State.Idle;
+        yield return new WaitForEndOfFrame();
+        float journey = 0f;
+        Vector3 origin = CurrentLocation;
+        while (journey <= WalkTime)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / WalkTime);
+
+            Teleport(Vector3.Lerp(origin, location, percent));
+
+            yield return null;
+        }
+        yield return new WaitForEndOfFrame();
+        CurrentMoveState = State.Fall;
+        yield return null;
+    }
+
+    public void Boingy(Vector3 location)
+    {
+        StartCoroutine(BoingyTo(location));
+    }
+
     internal IEnumerator MoveToLocation()
     {
         while (true)
