@@ -75,7 +75,7 @@ public class BlockInfoBoxController : MonoBehaviour {
         logTime.text = LogController.LastMessageTime;
         logMessage.text = LogController.LastMessage;
 
-        player1State.text = PlayerManager.Player1State();
+        player1State.text = PlayerManager.Player1StateName();
 
 
         timeleft -= Time.deltaTime;

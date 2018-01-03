@@ -280,6 +280,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             else
                 CurrentMoveState = State.Idle;
         }
+        if (CurrentMoveState == State.Sidle && BlockManager.GetBlockAt(transform.position + _facingDirection) == null)
+            CurrentMoveState = State.Fall;
     }
 
 	public void Face(Vector3 direction) {

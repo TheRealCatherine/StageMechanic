@@ -81,13 +81,22 @@ public class PlayerManager : MonoBehaviour {
         return new Vector3(-255, -255, -255);
     }
 
-    public static string Player1State()
+    public static string Player1StateName()
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
         {
             return Avatars[0].CurrentMoveState.ToString();
         }
         return "Hiding";
+    }
+
+    public static Cathy1PlayerCharacter.State Player1State()
+    {
+        if (Avatars.Count > 0 && Avatars[0] != null)
+        {
+            return Avatars[0].CurrentMoveState;
+        }
+        return Cathy1PlayerCharacter.State.Idle;
     }
 
     public static void Player1Jump()

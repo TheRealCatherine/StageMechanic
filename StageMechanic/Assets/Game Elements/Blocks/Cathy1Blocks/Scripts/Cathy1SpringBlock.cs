@@ -27,7 +27,7 @@ public class Cathy1SpringBlock : Cathy1Block
     bool hasPlayer()
     {
         Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up);
+        return (player == transform.position + Vector3.up && PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Idle);
     }
 
     private void Update()
