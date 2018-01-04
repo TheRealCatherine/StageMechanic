@@ -280,8 +280,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         //TODO have lava floor do this
         if (transform.position.y < -50f)
         {
-            BlockManager.Instance.TogglePlayMode();
-            BlockManager.Instance.TogglePlayMode();
+            PlayerManager.PlayersReset();
         }
     }
 

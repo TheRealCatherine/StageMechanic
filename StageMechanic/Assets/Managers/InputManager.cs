@@ -32,8 +32,8 @@ public class InputManager : MonoBehaviour {
 		return BlockManager.ActiveFloor;
 	}
 
-	public Camera GetCamera() {
-		return Camera.GetComponent<Camera>();
+	public CameraController GetCamera() {
+		return Camera.GetComponent<CameraController>();
 	}
 
 	// Use this for initialization
@@ -71,7 +71,7 @@ public class InputManager : MonoBehaviour {
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll >= 0.005f || scroll <= -0.005f)
-            Camera.GetComponent<Camera>().zoom += scroll * scrollSpeed;
+            Camera.GetComponent<CameraController>().zoom += scroll * scrollSpeed;
         //Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
 
         if (Input.GetMouseButton(1)) {
@@ -92,6 +92,11 @@ public class InputManager : MonoBehaviour {
 
         bool goFurther = Input.GetAxis("LeftStickV") * 100 * Time.deltaTime >= 1;
         bool goCloser = Input.GetAxis("LeftStickV") * 100 * Time.deltaTime <= -1;
+
+        if (Input.GetKeyDown(KeyCode.Comma) && !BlockManager.PlayMode)
+            goFurther = true;
+        else if (Input.GetKeyDown(KeyCode.Period) && !BlockManager.PlayMode)
+            goCloser = true;
 
         // Buttons for creating blocks
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button3))
@@ -310,7 +315,7 @@ public class InputManager : MonoBehaviour {
         //Cursor/Camera reset
         else if (Input.GetKeyDown(KeyCode.F2))
         {
-            Camera.GetComponent<Camera>().ResetZoom();
+            Camera.GetComponent<CameraController>().ResetZoom();
             if (!BlockManager.PlayMode)
                 Cursor.transform.position = Vector3.zero;
         }

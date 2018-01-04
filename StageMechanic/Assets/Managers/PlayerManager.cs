@@ -40,13 +40,22 @@ public class PlayerManager : MonoBehaviour {
 
     public static void Clear()
     {
+        HidePlayers();
         PlayerStartLocations.Clear();
     }
 
     public static void PlayersReset()
     {
         HidePlayers();
+        Vector3 player = PlayerStartLocations[0].transform.position;
+        Quaternion playerRot = PlayerStartLocations[0].transform.rotation;
+        if (BlockManager.Instance.TryReloadCurrentLevel())
+        {
+            Clear();
+            Instance.GetComponent<EventManager>().CreatePlayerStartLocation(0, player, playerRot);
+        }
         SpawnPlayers();
+        LogController.Log("YOU DIED");
     }
 
     private static void HidePlayers()

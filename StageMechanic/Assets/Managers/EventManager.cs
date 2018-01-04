@@ -14,6 +14,15 @@ public class EventManager : MonoBehaviour {
     {
         Cathy1PlayerStartLocation ev = GetComponent<Cathy1EventFactory>().CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
         ev.PlayerNumber = playerNumber;
-        PlayerManager.PlayerStartLocations.Add(ev);
+        if(PlayerManager.PlayerStartLocations.Count > playerNumber)
+            PlayerManager.PlayerStartLocations[playerNumber] = ev;
+        else
+        {
+            for(int x = PlayerManager.PlayerStartLocations.Count;x<=playerNumber;++x)
+            {
+                PlayerManager.PlayerStartLocations.Add(null);
+            }
+            PlayerManager.PlayerStartLocations[playerNumber] = ev;
+        }
     }
 }

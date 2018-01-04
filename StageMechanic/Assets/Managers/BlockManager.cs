@@ -391,6 +391,16 @@ public class BlockManager : MonoBehaviour {
         LoadFileUsingPath(LastAccessedFileName);
     }
 
+    public bool TryReloadCurrentLevel()
+    {
+        if(LastAccessedFileName.Length != 0)
+        {
+            ReloadCurrentLevel();
+            return true;
+        }
+        return false;
+    }
+
 	public PlatformJsonDelegate GetPlatformJsonDelegate() {
 		return new PlatformJsonDelegate (ActiveFloor);
 	}
