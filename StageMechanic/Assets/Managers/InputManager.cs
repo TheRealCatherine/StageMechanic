@@ -140,6 +140,11 @@ public class InputManager : MonoBehaviour {
             BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Vortex);
         }
 
+        else if(Input.GetKey(KeyCode.U))
+        {
+            BlockManager.ToggleUndoOn();
+        }
+
         // Save/Load
         else if (Input.GetKeyDown(KeyCode.S))
         {
@@ -254,6 +259,11 @@ public class InputManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.O))
         {
             GetComponent<EventManager>().CreatePlayerStartLocation(1, Cursor.transform.position, Cursor.transform.rotation);
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)
+        {
+            BlockManager.Undo();
         }
 
         // Buttons for setting items

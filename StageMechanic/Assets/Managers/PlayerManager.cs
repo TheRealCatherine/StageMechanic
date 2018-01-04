@@ -58,6 +58,22 @@ public class PlayerManager : MonoBehaviour {
         LogController.Log("YOU DIED");
     }
 
+    private static Vector3 _oldPlayerStartPos;
+    private static Quaternion _oldPlayerStartRot;
+    public static void OnUndoStart()
+    {
+        _oldPlayerStartPos = PlayerStartLocations[0].transform.position;
+        _oldPlayerStartRot = PlayerStartLocations[0].transform.rotation;
+        HidePlayers();
+        PlayerStartLocations.Clear();
+    }
+
+    public static void OnUndoFinish()
+    {
+        Instance.GetComponent<EventManager>().CreatePlayerStartLocation(0,_oldPlayerStartPos, _oldPlayerStartRot);
+        SpawnPlayers();
+    }
+
     private static void HidePlayers()
     {
         Debug.Log("Hiding");
@@ -97,6 +113,18 @@ public class PlayerManager : MonoBehaviour {
         return new Vector3(-255, -255, -255);
     }
 
+    public static Vector3 Player1FacingDirection()
+    {
+        Debug.Assert(Avatars.Count > 0 && Avatars[0] != null);
+        return Avatars[0].FacingDirection;
+    }
+
+    public static void SetPlayer1FacingDirection(Vector3 direction)
+    {
+        Debug.Assert(Avatars.Count > 0 && Avatars[0] != null);
+        Avatars[0].FacingDirection = direction;
+    }
+
     public static string Player1StateName()
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
@@ -113,6 +141,18 @@ public class PlayerManager : MonoBehaviour {
             return Avatars[0].CurrentMoveState;
         }
         return Cathy1PlayerCharacter.State.Idle;
+    }
+
+    public static void SetPlayer1State(Cathy1PlayerCharacter.State state)
+    {
+        if (Avatars.Count > 0 && Avatars[0] != null)
+            Avatars[0].CurrentMoveState = state;
+    }
+
+    public static void SetPlayer1Location(Vector3 location)
+    {
+        if (Avatars.Count > 0 && Avatars[0] != null)
+            Avatars[0].Teleport(location);
     }
 
     public static void Player1Jump()

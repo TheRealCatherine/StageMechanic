@@ -12,6 +12,7 @@ public class EventManager : MonoBehaviour {
 
     public void CreatePlayerStartLocation(int playerNumber, Vector3 pos, Quaternion rotation)
     {
+        Debug.Log(playerNumber + ": " + pos.ToString());
         Cathy1PlayerStartLocation ev = GetComponent<Cathy1EventFactory>().CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
         ev.PlayerNumber = playerNumber;
         if(PlayerManager.PlayerStartLocations.Count > playerNumber)

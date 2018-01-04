@@ -31,6 +31,9 @@ public class BlockManager : MonoBehaviour {
 
     public GameObject FileBrowserPrefab;
 
+    public int MaxUndoLevels = 6;
+    public bool UndoEnabled = false;
+
     // Properties
 
     public static bool PlayMode { get; protected set; } = false;
@@ -43,6 +46,15 @@ public class BlockManager : MonoBehaviour {
         Cursor.SetActive(!pm);
         if (pm)
             LogController.Log("Start!");
+    }
+
+    public static void ToggleUndoOn()
+    {
+        Instance.UndoEnabled = !Instance.UndoEnabled;
+        if (Instance.UndoEnabled)
+            LogController.Log(Instance.MaxUndoLevels + " Undos On");
+        else
+            LogController.Log("Undo off");
     }
 
     // The obect (block/item/etc) currently under the cursor
@@ -152,19 +164,58 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    private bool _showBlockInfo = true;
-    public bool ShowBlockInfo {
-        get {
-            return _showBlockInfo;
+    //also need platform position and player facing
+    private static List<string> _undos = new List<string>();
+    private static List<Vector3> _undoPlayerPos = new List<Vector3>();
+    private static List<Vector3> _undoPlayerFacing = new List<Vector3>();
+    private static List<Cathy1PlayerCharacter.State> _undoPlayerState = new List<Cathy1PlayerCharacter.State>();
+    private static List<float> _undoPlatformPosition = new List<float>();
+
+    public static void RecordUndo()
+    {
+        if (!Instance.UndoEnabled)
+            return;
+        Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
+        if (_undos.Count > Instance.MaxUndoLevels)
+        {
+            _undos.RemoveAt(0);
+            _undoPlayerPos.RemoveAt(0);
+            _undoPlayerFacing.RemoveAt(0);
+            _undoPlayerState.RemoveAt(0);
+            _undoPlatformPosition.RemoveAt(0);
         }
-        set {
-            _showBlockInfo = value;
+        _undos.Add(Instance.BlocksToJson());
+        _undoPlayerPos.Add(PlayerManager.Player1Location());
+        _undoPlayerFacing.Add(PlayerManager.Player1FacingDirection());
+        _undoPlayerState.Add(PlayerManager.Player1State());
+        _undoPlatformPosition.Add(ActiveFloor.transform.position.y);
+    }
+
+    public static void Undo()
+    {
+        if (!Instance.UndoEnabled)
+            return;
+        Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
+        if (_undos.Count > 0)
+        {
+            //TODO fix start position
+            //PlayerManager.OnUndoStart();
+            Instance.ClearForUndo();
+            ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
+            Instance.BlocksFromJson(_undos[_undos.Count-1]);
+            //PlayerManager.OnUndoFinish();
+            PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
+            PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
+            PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
+            _undos.RemoveAt(_undos.Count - 1);
+            _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
+            _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
+            _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
+            _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
+            LogController.Log("Undo");
         }
     }
 
-    public void ToggleBlockInfo() {
-        this.ShowBlockInfo = !this.ShowBlockInfo;
-    }
 
     //TODO make this whole class static
     public static BlockManager Instance { get; private set; }
@@ -216,6 +267,13 @@ public class BlockManager : MonoBehaviour {
         ActiveFloor.transform.position = Vector3.zero;
         
         PlayerManager.Clear();
+        LogController.Log("Stage Data Cleared");
+    }
+
+    public void ClearForUndo()
+    {
+        foreach (Transform child in ActiveFloor.transform)
+            Destroy(child.gameObject);
         LogController.Log("Stage Data Cleared");
     }
 
@@ -345,6 +403,20 @@ public class BlockManager : MonoBehaviour {
 		fs.Close();
         LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
 	}
+
+    public void BlocksFromJson( string json )
+    {
+        //note: this one doesn't clear like the other one... maybe fix this
+        MemoryStream stream = new MemoryStream();
+        StreamWriter writer = new StreamWriter(stream);
+        writer.Write(json);
+        writer.Flush();
+        stream.Position = 0;
+        StageCollection deserializedCollection = new StageCollection(this);
+        DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());
+        deserializedCollection = ser.ReadObject(stream) as StageCollection;
+        stream.Close();
+    }
 
 	// Saves a file with the textToSave using a path
 	private void SaveFileUsingPath(string path) {

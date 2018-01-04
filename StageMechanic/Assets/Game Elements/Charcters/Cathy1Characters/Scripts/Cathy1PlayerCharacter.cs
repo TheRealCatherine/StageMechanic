@@ -22,8 +22,18 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public IBlock CurrentBlock;
 
     private GameObject _player;
-	private Vector3 _facingDirection = Vector3.back;
-
+    private Vector3 _facingDirection = Vector3.back;
+    public Vector3 FacingDirection
+    {
+        get
+        {
+            return _facingDirection;
+        }
+        set
+        {
+            Face(value);
+        }
+    }
 	private const float HEIGHT_ADJUST = 0.5f;
     public float WalkTime { get; set; } = 0.15f;
     public float Granularity { get; set; } = 1.0f;
@@ -51,7 +61,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             _currentState = value;
             if(value == State.Sidle || value == State.SidleMove || value == State.Fall)
             {
-                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f) + new Vector3(_facingDirection.x / 3f, 0.2f, _facingDirection.z / 3f);
+                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f) + new Vector3(FacingDirection.x / 3f, 0.2f, FacingDirection.z / 3f);
             }
             else
             {
@@ -106,8 +116,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     public void SlideForward()
     {
-        if(BlockManager.GetBlockAt(transform.position + _facingDirection) == null)
-            StartCoroutine(SlideTo(transform.position + _facingDirection));
+        if(BlockManager.GetBlockAt(transform.position + FacingDirection) == null)
+            StartCoroutine(SlideTo(transform.position + FacingDirection));
     }
 
     public IEnumerator WalkTo(Vector3 location)
@@ -294,7 +304,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             {
                 CurrentMoveState = State.Fall;
                 Teleport(CurrentLocation + Vector3.down);
-                if (BlockManager.GetBlockAt(transform.position + _facingDirection) != null && BlockManager.GetBlockAt(transform.position + _facingDirection + Vector3.up) == null)
+                if (BlockManager.GetBlockAt(transform.position + FacingDirection) != null && BlockManager.GetBlockAt(transform.position + FacingDirection + Vector3.up) == null)
                 {
                     CurrentMoveState = State.Sidle;
                 }
@@ -302,13 +312,13 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             else
                 CurrentMoveState = State.Idle;
         }
-        if (CurrentMoveState == State.Sidle && BlockManager.GetBlockAt(transform.position + _facingDirection) == null)
+        if (CurrentMoveState == State.Sidle && BlockManager.GetBlockAt(transform.position + FacingDirection) == null)
             CurrentMoveState = State.Fall;
     }
 
 	public void Face(Vector3 direction) {
 		float degrees = 0f;
-		if (_facingDirection == Vector3.back) {
+		if (FacingDirection == Vector3.back) {
 			if (direction == Vector3.left)
 				degrees = 90f;
 			else if (direction == Vector3.right)
@@ -316,7 +326,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			else if (direction == Vector3.forward)
 				degrees = 180f;
 		}
-		else if (_facingDirection == Vector3.forward) {
+		else if (FacingDirection == Vector3.forward) {
 			if (direction == Vector3.left)
 				degrees = -90f;
 			else if (direction == Vector3.right)
@@ -324,7 +334,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			else if (direction == Vector3.back)
 				degrees = 180f;
 		}
-		else if (_facingDirection == Vector3.left) {
+		else if (FacingDirection == Vector3.left) {
 			if (direction == Vector3.forward)
 				degrees = 90f;
 			else if (direction == Vector3.right)
@@ -332,7 +342,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 			else if (direction == Vector3.back)
 				degrees = -90f;
 		}
-		else if (_facingDirection == Vector3.right) {
+		else if (FacingDirection == Vector3.right) {
 			if (direction == Vector3.left)
 				degrees = 180f;
 			else if (direction == Vector3.back)
@@ -345,7 +355,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 	}
 
 	public void TurnAround() {
-		Face(-_facingDirection);
+		Face(-FacingDirection);
 	}
 
 	public void Turn( Vector3 direction ) {
@@ -359,22 +369,22 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 	}
 
 	public void TurnRight() {
-		if (_facingDirection == Vector3.forward)
+		if (FacingDirection == Vector3.forward)
 			Face (Vector3.right);
-		else if (_facingDirection == Vector3.right)
+		else if (FacingDirection == Vector3.right)
 			Face (Vector3.back);
-		else if (_facingDirection == Vector3.left)
+		else if (FacingDirection == Vector3.left)
 			Face (Vector3.forward);
 		else
 			Face (Vector3.left);
 	}
 
 	public void TurnLeft() {
-		if (_facingDirection == Vector3.forward)
+		if (FacingDirection == Vector3.forward)
 			Face (Vector3.left);
-		else if (_facingDirection == Vector3.right)
+		else if (FacingDirection == Vector3.right)
 			Face (Vector3.forward);
-		else if (_facingDirection == Vector3.back)
+		else if (FacingDirection == Vector3.back)
 			Face (Vector3.right);
 		else
 			Face (Vector3.back);
@@ -398,7 +408,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     {
         if (CurrentMoveState == State.Idle)
         {
-            if (_facingDirection == direction || direction == Vector3.up || direction == Vector3.down)
+            if (FacingDirection == direction || direction == Vector3.up || direction == Vector3.down)
             {
                 IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
                 if (blockInWay != null)
@@ -426,7 +436,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                         }
                         else
                         {
-                            if (direction == _facingDirection)
+                            if (direction == FacingDirection)
                                 TurnAround();
                             Sidle(direction);
                         }
@@ -444,22 +454,22 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             if(direction == Vector3.right || direction == Vector3.left)
             {
                 Vector3 originalDirection = direction;
-                if (_facingDirection == Vector3.forward) { }
-                else if (_facingDirection == Vector3.back)
+                if (FacingDirection == Vector3.forward) { }
+                else if (FacingDirection == Vector3.back)
                 {
                     if (direction == Vector3.left)
                         direction = Vector3.right;
                     else
                         direction = Vector3.left;
                 }
-                else if(_facingDirection == Vector3.right)
+                else if(FacingDirection == Vector3.right)
                 {
                     if (direction == Vector3.left)
                         direction = Vector3.forward;
                     else
                         direction = Vector3.back;
                 }
-                else if(_facingDirection == Vector3.left)
+                else if(FacingDirection == Vector3.left)
                 {
                     if (direction == Vector3.left)
                         direction = Vector3.back;
@@ -470,7 +480,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                 attemptedGrab = BlockManager.GetBlockAt(transform.position + direction);
                 if (attemptedGrab == null)
                 {
-                    attemptedGrab = BlockManager.GetBlockAt(transform.position + direction + _facingDirection);
+                    attemptedGrab = BlockManager.GetBlockAt(transform.position + direction + FacingDirection);
                     if (attemptedGrab != null)
                     {
                         if(BlockManager.GetBlockAt(transform.position + direction + Vector3.up) == null)
@@ -478,9 +488,9 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                     }
                     else
                     {
-                        if (BlockManager.GetBlockAt(transform.position + direction +_facingDirection + Vector3.up) == null)
+                        if (BlockManager.GetBlockAt(transform.position + direction +FacingDirection + Vector3.up) == null)
                         {
-                            Sidle(_facingDirection + direction);
+                            Sidle(FacingDirection + direction);
                             if (originalDirection == Vector3.left)
                                 TurnRight();
                             else
@@ -495,10 +505,10 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             }
             else if(direction == Vector3.forward)
             {
-                attemptedGrab = BlockManager.GetBlockAt(transform.position + Vector3.up + _facingDirection);
+                attemptedGrab = BlockManager.GetBlockAt(transform.position + Vector3.up + FacingDirection);
                 if(attemptedGrab == null)
                 {
-                    Climb(_facingDirection + Vector3.up);
+                    Climb(FacingDirection + Vector3.up);
                 }
             }
             else if(direction == Vector3.back)
@@ -521,26 +531,27 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         }
             
 
-        if (direction != _facingDirection && direction != ReverseDirection(_facingDirection))
+        if (direction != FacingDirection && direction != ReverseDirection(FacingDirection))
             return;
 
         //Don't allow pull if there is a block in your way
-        if(direction == ReverseDirection(_facingDirection))
+        if(direction == ReverseDirection(FacingDirection))
         {
-            IBlock blockInWay = BlockManager.GetBlockAt(transform.position + ReverseDirection(_facingDirection));
+            IBlock blockInWay = BlockManager.GetBlockAt(transform.position + ReverseDirection(FacingDirection));
             if (blockInWay != null)
                 return;
         }
 
         //TODO no sideways movement
-		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+_facingDirection);
+		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+FacingDirection);
 		if (blockInQuestion == null)
 			return;
+        BlockManager.RecordUndo();
         //TODO make this one movement
-		bool moved = blockInQuestion.Move(direction);
+        bool moved = blockInQuestion.Move(direction);
         if (moved)
         {
-            if (_facingDirection != direction)
+            if (FacingDirection != direction)
             {
                 IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
                 if (nextFloor != null)
