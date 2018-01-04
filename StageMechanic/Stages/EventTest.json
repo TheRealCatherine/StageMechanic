@@ -1,0 +1,95 @@
+{
+    "Name": "Stage Collection",
+    "Version": "1.0 Cathy1",
+    "Stages": [
+        {
+            "Name": "Stage",
+            "Platforms": [
+                {
+                    "Name": "Platform",
+                    "Position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "Blocks": [
+                        {
+                            "Name": "f8be2436-94ea-4ca9-bf7a-c91a76c729b8",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "7466b88b-26e5-4415-a1fd-d52adfd7eeb2",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "a2a0d046-5113-4117-abc0-adbb1c71bada",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "37a4aef2-9e92-4161-82a3-2a2c0166412d",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "0848127f-55ff-4442-8c41-ac3ca738d860",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        }
+                    ],
+                    "Items": null,
+                    "Events": [
+                        {
+                            "Name": "1efff618-3af5-4b53-8af8-2194309477de",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": 0,
+                                "y": 1.5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "PlayerNumber",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

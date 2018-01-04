@@ -10,11 +10,14 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour {
 
+    public static List<IEvent> EventList = new List<IEvent>();
+
     public void CreatePlayerStartLocation(int playerNumber, Vector3 pos, Quaternion rotation)
     {
         Debug.Log(playerNumber + ": " + pos.ToString());
         Cathy1PlayerStartLocation ev = GetComponent<Cathy1EventFactory>().CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
         ev.PlayerNumber = playerNumber;
+        EventList.Add(ev);
         if(PlayerManager.PlayerStartLocations.Count > playerNumber)
             PlayerManager.PlayerStartLocations[playerNumber] = ev;
         else

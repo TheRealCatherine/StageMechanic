@@ -78,6 +78,39 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
         }
     }
 
+    public Vector3 Position
+    {
+        get
+        {
+            return transform.position;
+        }
+        set
+        {
+            transform.position = value;
+        }
+    }
+
+    public virtual Dictionary<string, string> Properties
+    {
+        get
+        {
+            //Dictionary<string, string> ret = base.Properties;
+            Dictionary<string, string> ret = new Dictionary<string, string>();
+            return ret;
+        }
+        set
+        {
+        
+            //base.Properties = value;
+            //TODO
+        }
+    }
+
+    virtual public EventJsonDelegate GetJsonDelegate()
+    {
+        return new EventJsonDelegate(this);
+    }
+
     /// <summary>
     /// Sets the name to a random GUID
     /// Called when this object is created in the scene. If overriding

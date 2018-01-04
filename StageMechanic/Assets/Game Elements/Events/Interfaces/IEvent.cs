@@ -41,4 +41,18 @@ public interface IEvent {
         get;
         set;
     }
+
+    Vector3 Position
+    {
+        get;
+        set;
+    }
+
+    Dictionary<string, string> Properties
+    {
+        get;
+        set;
+    }
+
+    EventJsonDelegate GetJsonDelegate();
 }

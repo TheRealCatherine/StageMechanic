@@ -6,7 +6,7 @@
             "Name": "Stage",
             "Platforms": [
                 {
-                    "Name": "Platform1",
+                    "Name": "Platform",
                     "Position": {
                         "x": 0,
                         "y": 0,
@@ -2964,11 +2964,33 @@
                                 "y": 45,
                                 "z": 24
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
-                    "Events": null
+                    "Events": [
+                        {
+                            "Name": "045b9649-0006-4899-b142-380a39492cdf",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": 0,
+                                "y": 8.5,
+                                "z": 7
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "PlayerNumber",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

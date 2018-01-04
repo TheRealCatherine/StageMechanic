@@ -9,67 +9,81 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
 
-[DataContract(Name="Platform")]
-public class PlatformJsonDelegate {
+[DataContract(Name = "Platform")]
+public class PlatformJsonDelegate
+{
 
-	//TODO make private
-	public GameObject _platform;
+    //TODO make private
+    public GameObject _platform;
 
-	public PlatformJsonDelegate( GameObject platform ) {
-		_platform = platform;
-	}
+    public PlatformJsonDelegate(GameObject platform)
+    {
+        _platform = platform;
+    }
 
-	public PlatformJsonDelegate() {
-		_platform = GameObject.CreatePrimitive (PrimitiveType.Plane);
-	}
+    public PlatformJsonDelegate()
+    {
+        _platform = GameObject.CreatePrimitive(PrimitiveType.Plane);
+    }
 
-	[DataMember(Name="Name",Order=1)]
-	public string Name {
-		get {
-			Debug.Assert (_platform != null);
-			return _platform.name;
-		}
-		set {
-			if(_platform == null)
-				_platform = GameObject.CreatePrimitive (PrimitiveType.Plane);
-			Debug.Assert (_platform != null);
-			_platform.name = value;
-		}
-	}
+    [DataMember(Name = "Name", Order = 1)]
+    public string Name
+    {
+        get
+        {
+            Debug.Assert(_platform != null);
+            return _platform.name;
+        }
+        set
+        {
+            if (_platform == null)
+                _platform = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            Debug.Assert(_platform != null);
+            _platform.name = value;
+        }
+    }
 
-	[DataMember(Name="Position",Order=2)]
-	public Vector3 GlobalPosition {
-		get {
-			Debug.Assert (_platform != null);
-			return _platform.transform.position;
-		}
-		set {
-			Debug.Assert (_platform != null);
-			_platform.transform.position = value;
-		}
-	}
+    [DataMember(Name = "Position", Order = 2)]
+    public Vector3 GlobalPosition
+    {
+        get
+        {
+            Debug.Assert(_platform != null);
+            return _platform.transform.position;
+        }
+        set
+        {
+            Debug.Assert(_platform != null);
+            _platform.transform.position = value;
+        }
+    }
 
-	[DataMember(Name="Blocks",Order=10)]
-	public List<BlockJsonDelegate> Blocks {
-		get {
-			Debug.Assert (_platform != null);
-			List<BlockJsonDelegate> ret = new List<BlockJsonDelegate> ();
-			foreach (Transform child in _platform.transform) {
-				IBlock block = child.gameObject.GetComponent<IBlock>();
-				if(block != null)
-					ret.Add (block.GetJsonDelegate ());
-			}
-			return ret;
-		}
-		set {
-			Debug.Assert (_platform != null);
-			foreach (BlockJsonDelegate del in value) {
+    [DataMember(Name = "Blocks", Order = 10)]
+    public List<BlockJsonDelegate> Blocks
+    {
+        get
+        {
+            Debug.Assert(_platform != null);
+            List<BlockJsonDelegate> ret = new List<BlockJsonDelegate>();
+            foreach (Transform child in _platform.transform)
+            {
+                IBlock block = child.gameObject.GetComponent<IBlock>();
+                if (block != null)
+                    ret.Add(block.GetJsonDelegate());
+            }
+            return ret;
+        }
+        set
+        {
+            Debug.Assert(_platform != null);
+            foreach (BlockJsonDelegate del in value)
+            {
                 //TODO do this in a Deserialzed method but #NotLikeThiiiiiissssss
-                if(del != null && del.Block != null && del.Block.GameObject != null)
-				    del.Block.GameObject.transform.parent = _platform.transform;
-			}
-		}
-	}
+                if (del != null && del.Block != null && del.Block.GameObject != null)
+                    del.Block.GameObject.transform.parent = _platform.transform;
+            }
+        }
+    }
 
     [DataMember(Name = "Items", Order = 20)]
     public List<EventJsonDelegate> Items
@@ -89,12 +103,25 @@ public class PlatformJsonDelegate {
     {
         get
         {
-            return null;
+            Debug.Assert(_platform != null);
+            List<EventJsonDelegate> ret = new List<EventJsonDelegate>();
+            foreach (IEvent ev in EventManager.EventList)
+            {
+                if (ev != null)
+                    ret.Add(ev.GetJsonDelegate());
+            }
+            return ret;
         }
         set
         {
-
+            Debug.Assert(_platform != null);
+//            foreach (EventJsonDelegate del in value)
+ //           {
+                //TODO do this in a Deserialzed method but #NotLikeThiiiiiissssss
+                //                if (del != null && del.Event != null)
+                //del.Block.GameObject.transform.parent = _platform.transform;
+  //          }
         }
-    }
 
+    }
 }
