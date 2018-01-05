@@ -22,25 +22,29 @@ This project is just recently getting started! Our official project start date i
 
 ### What works:
 * Easily and quickly create levels using our custom-made level editor mode. (level editor)
-* Placing all Catherine 1-style blocks anywhere in 3d space (level editor)
 * Catherine-1 style gravity and EDGE mechanics (play mode)
-* Grid-based player movement and block climbing (play mode)
+* Grid-based player movement, block climbing, and sidling (play mode)
+* Optional UNDO up to 6 moves - even after death (play mode)
 * Pushing/pulling blocks and rows of blocks (play mode)
 * Immobile block mechanic (play mode)
+* Cracked block mechanic (play mode)
+* Trap block mechanic (play mode)
+* Vortex block mechanic (play mode)
+* Spring block mechanic (play mode)
+* Goal block mechanic (play mode)
 * Windows, OS X, and Linux builds
 * Keyboard input
 * Save/load support
 * XBox 360 controller input (Windows, edit mode)
-* Editing all Catherine and Rapunzel game levels
-* Playing through levels that don't require most special blocks
-* Sidling (hanging onto block edges) (play mode)
+
 
 ### Currently in progress
 * Player movement animantion (play mode)
-* Special block functions (ie bombs, cracked blocks, etc)
-* XBox 360 controller input (Windows, play mode)
+* Remaining special blocks (ie bombs, mystery, etc)
+* Items
+* Speed run statistics
 
-[Development Builds](https://github.com/TheRealCatherine/StageMechanic/wiki/Downloads)
+[Development Builds](https://www.reddit.com/r/StageMechanic/comments/7o0kbi/latest_build_win64/)
 
 ## Licensing
 
@@ -48,11 +52,11 @@ This project is being developed as an Open Source project entirely by volunteers
 
 We are using the BSD 3-clause license. This allows maximum freedom while protecting contributors. Essentially anyone is allowed to do whatever they want to with anything published as part of this project. However it is worth noting that portions of the project are being developed using Unity Personal and this may add certain restrictions on those wishing to profit commercially from certain parts of the project. If you are wanting to use a portion or all of this project in a commercial application or bundle please consult with proper legal authorities regarding mixing the BSD license with the Unity Personal license.
 
-Additionally note that items under the StageMechanic/Assets/3rdParty folder and under Music and SoundEffects may be under other licenses such as the Unity Store license, check the LICENSES-EXCEPTIONS file for specifics.
+Additionally note that items under the StageMechanic/Assets/3rdParty folder may be under other licenses such as the Unity Store license, check the LICENSES-EXCEPTIONS file and individual file names for specifics.
 
 ## Contribting
 
-This project is being developed entirely by volunteers and is managed by an industry veteran in her spare time. If there is anything you would like to work on please join our Discord chat and let us know. Pretty much no matter what it is we can find a way to fit it in. Our project manager often says "do what you want, when you want, for as long as you want" and applies this not only to life but to project management.
+This project is being developed entirely by volunteers and is managed by a software industry veteran in her spare time. If there is anything you would like to work on please join our Discord chat and let us know. Pretty much no matter what it is we can find a way to fit it in. Our project manager often says "do what you want, when you want, for as long as you want" and applies this not only to life but to project management.
 
 ### Tools/technologies used
 
