@@ -31,7 +31,10 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         }
         set
         {
-            Face(value);
+            if (_player == null)
+                StartCoroutine(UpdateFacingDirectionLater(value));
+            else
+                Face(value);
         }
     }
 	private const float HEIGHT_ADJUST = 0.5f;
@@ -58,16 +61,37 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         }
         set
         {
-            _currentState = value;
-            if(value == State.Sidle || value == State.SidleMove || value == State.Fall)
+            if (_player == null)
             {
-                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f) + new Vector3(FacingDirection.x / 3f, 0.2f, FacingDirection.z / 3f);
+                StartCoroutine(UpdateStateLater(value));
             }
             else
             {
-                _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f);
+                _currentState = value;
+                if (value == State.Sidle || value == State.SidleMove || value == State.Fall)
+                {
+                    _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f) + new Vector3(FacingDirection.x / 3f, 0.2f, FacingDirection.z / 3f);
+                }
+                else
+                {
+                    _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f);
+                }
             }
         }
+    }
+
+    public IEnumerator UpdateStateLater(State state)
+    {
+        while (_player == null)
+            yield return new WaitForEndOfFrame();
+        CurrentMoveState = state;
+    }
+
+    public IEnumerator UpdateFacingDirectionLater(Vector3 direction)
+    {
+        while (_player == null)
+            yield return new WaitForEndOfFrame();
+        FacingDirection = direction;
     }
 
     public GameObject Character { get; set; }
