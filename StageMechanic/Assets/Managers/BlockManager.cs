@@ -32,7 +32,7 @@ public class BlockManager : MonoBehaviour {
     public GameObject FileBrowserPrefab;
 
     public int MaxUndoLevels = 6;
-    public bool UndoEnabled = false;
+    public bool UndoEnabled = true;
 
     // Properties
 
@@ -192,8 +192,8 @@ public class BlockManager : MonoBehaviour {
 
     public static void RecordUndo()
     {
-//        if (!Instance.UndoEnabled)
-//            return;
+        if (!Instance.UndoEnabled)
+            return;
         Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
         if (_undos.Count > Instance.MaxUndoLevels)
         {
@@ -212,8 +212,8 @@ public class BlockManager : MonoBehaviour {
 
     public static void Undo()
     {
-        //if (!Instance.UndoEnabled)
-         //   return;
+        if (!Instance.UndoEnabled)
+            return;
         Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
         if (_undos.Count > 0)
         {
