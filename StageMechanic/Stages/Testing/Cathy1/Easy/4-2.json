@@ -3713,11 +3713,33 @@
                                 "y": 47,
                                 "z": 14
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
-                    "Events": null
+                    "Events": [
+                        {
+                            "Name": "5eb5e097-78b9-488d-a334-ac4452e85dcb",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": -3,
+                                "y": 7.5,
+                                "z": 1
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "PlayerNumber",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
