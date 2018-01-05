@@ -268,7 +268,24 @@
                         }
                     ],
                     "Items": null,
-                    "Events": null
+                    "Events": [
+                        {
+                            "Name": "f6d3e698-1431-48a1-b37d-1686f2409a7a",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": 0,
+                                "y": 1.5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "PlayerNumber",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
