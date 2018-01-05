@@ -100,10 +100,10 @@ public class EventJsonDelegate {
         //else
         Quaternion rotation = Quaternion.identity;
         //TODO support different block factories
-        IEvent newEvent = PlayerManager.Instance.GetComponent<EventManager>().GetComponent<Cathy1EventFactory>().CreateEvent(_pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart);
-        newEvent.Name = _name;
-        newEvent.Properties = _properties;
+        //IEvent newEvent = PlayerManager.Instance.GetComponent<EventManager>().GetComponent<Cathy1EventFactory>().CreateEvent(_pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart);
+        //newEvent.Name = _name;
+        //newEvent.Properties = _properties;
 
-        PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(0, newEvent.Position, rotation);
+        PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(0, _pos, rotation);
     }
 }

@@ -45,7 +45,10 @@ public class BlockManager : MonoBehaviour {
         GetComponent<PlayerManager>().PlayMode = pm;
         Cursor.SetActive(!pm);
         if (pm)
+        {
             LogController.Log("Start!");
+            RecordStartState();
+        }
     }
 
     public static void ToggleUndoOn()
@@ -164,17 +167,33 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    //also need platform position and player facing
+    private static string _startState;
+    private static string _lastCheckpointState;
     private static List<string> _undos = new List<string>();
     private static List<Vector3> _undoPlayerPos = new List<Vector3>();
     private static List<Vector3> _undoPlayerFacing = new List<Vector3>();
     private static List<Cathy1PlayerCharacter.State> _undoPlayerState = new List<Cathy1PlayerCharacter.State>();
     private static List<float> _undoPlatformPosition = new List<float>();
 
+    public static void RecordStartState()
+    {
+        _startState = Instance.BlocksToJson();
+        //RecordUndo();
+    }
+
+    public static void ReloadStartState()
+    {
+        if (_startState.Length != 0)
+        {
+            Instance.Clear();
+            Instance.BlocksFromJson(_startState);
+        }
+    }
+
     public static void RecordUndo()
     {
-        if (!Instance.UndoEnabled)
-            return;
+//        if (!Instance.UndoEnabled)
+//            return;
         Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
         if (_undos.Count > Instance.MaxUndoLevels)
         {
@@ -193,8 +212,8 @@ public class BlockManager : MonoBehaviour {
 
     public static void Undo()
     {
-        if (!Instance.UndoEnabled)
-            return;
+        //if (!Instance.UndoEnabled)
+         //   return;
         Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
         if (_undos.Count > 0)
         {
@@ -204,9 +223,10 @@ public class BlockManager : MonoBehaviour {
             ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
             Instance.BlocksFromJson(_undos[_undos.Count-1]);
             //PlayerManager.OnUndoFinish();
-            PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
             PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
             PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
+            PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
+            
             _undos.RemoveAt(_undos.Count - 1);
             _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
             _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
@@ -267,6 +287,7 @@ public class BlockManager : MonoBehaviour {
         ActiveFloor.transform.position = Vector3.zero;
         
         PlayerManager.Clear();
+        EventManager.Clear();
         LogController.Log("Stage Data Cleared");
     }
 
@@ -274,7 +295,7 @@ public class BlockManager : MonoBehaviour {
     {
         foreach (Transform child in ActiveFloor.transform)
             Destroy(child.gameObject);
-        LogController.Log("Stage Data Cleared");
+        EventManager.Clear();
     }
 
     public void RandomizeGravity()

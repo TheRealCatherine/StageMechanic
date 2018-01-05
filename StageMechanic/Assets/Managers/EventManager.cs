@@ -10,14 +10,27 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour {
 
-    public static List<IEvent> EventList = new List<IEvent>();
+    public static List<Cathy1AbstractEvent> EventList = new List<Cathy1AbstractEvent>();
+    private static EventManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void CreatePlayerStartLocation(int playerNumber, Vector3 pos, Quaternion rotation)
     {
         Debug.Log(playerNumber + ": " + pos.ToString());
         Cathy1PlayerStartLocation ev = GetComponent<Cathy1EventFactory>().CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
         ev.PlayerNumber = playerNumber;
-        EventList.Add(ev);
+        ev.transform.parent = gameObject.transform;
+        if (EventList.Count == 0)
+            EventList.Add(ev);
+        else
+        {
+            Destroy(EventList[0]);
+            EventList[0] = ev;
+        }
         if(PlayerManager.PlayerStartLocations.Count > playerNumber)
             PlayerManager.PlayerStartLocations[playerNumber] = ev;
         else
@@ -28,5 +41,12 @@ public class EventManager : MonoBehaviour {
             }
             PlayerManager.PlayerStartLocations[playerNumber] = ev;
         }
+    }
+
+    public static void Clear()
+    {
+        foreach (Cathy1AbstractEvent ev in EventList)
+            Destroy(ev.gameObject);
+        EventList.Clear();
     }
 }

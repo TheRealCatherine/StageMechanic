@@ -47,30 +47,18 @@ public class PlayerManager : MonoBehaviour {
     public static void PlayersReset()
     {
         HidePlayers();
-        Vector3 player = PlayerStartLocations[0].transform.position;
-        Quaternion playerRot = PlayerStartLocations[0].transform.rotation;
-        if (BlockManager.Instance.TryReloadCurrentLevel())
-        {
-            Clear();
-            Instance.GetComponent<EventManager>().CreatePlayerStartLocation(0, player, playerRot);
-        }
+        BlockManager.ReloadStartState();
         SpawnPlayers();
         LogController.Log("YOU DIED");
     }
 
-    private static Vector3 _oldPlayerStartPos;
-    private static Quaternion _oldPlayerStartRot;
     public static void OnUndoStart()
     {
-        _oldPlayerStartPos = PlayerStartLocations[0].transform.position;
-        _oldPlayerStartRot = PlayerStartLocations[0].transform.rotation;
         HidePlayers();
-        PlayerStartLocations.Clear();
     }
 
     public static void OnUndoFinish()
     {
-        Instance.GetComponent<EventManager>().CreatePlayerStartLocation(0,_oldPlayerStartPos, _oldPlayerStartRot);
         SpawnPlayers();
     }
 
@@ -88,7 +76,10 @@ public class PlayerManager : MonoBehaviour {
         Debug.Log("Spawning");
         foreach (Cathy1PlayerStartLocation player in PlayerStartLocations)
         {
-			Avatars.Add(Instantiate(Instance.Player1Prefab, player.transform.position+new Vector3(0f,0.5f,0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+            if (Avatars.Count == 0)
+                Avatars.Add(Instantiate(Instance.Player1Prefab, player.transform.position + new Vector3(0f, 0.5f, 0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+            else
+                Avatars[0] = Instantiate(Instance.Player1Prefab, player.transform.position + new Vector3(0f, 0.5f, 0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
         }
     }
 
