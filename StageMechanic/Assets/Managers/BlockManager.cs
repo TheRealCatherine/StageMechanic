@@ -28,6 +28,8 @@ public class BlockManager : MonoBehaviour {
     public GameObject StartLocationIndicator;
     public GameObject GoalLocationIndicator;
     public GameObject FileBrowserPrefab;
+    public GameObject ButtonMappingBox;
+
 
     public int MaxUndoLevels = 6;
     public bool UndoEnabled = true;
@@ -61,17 +63,25 @@ public class BlockManager : MonoBehaviour {
     /// of the blocks to facilitate player death and test-playing while creating (restore on exiting
     /// PlayMode)
     /// </summary>
-    /// TODO: Combine this with the PlayMode property and move it to GameManager class
+    /// TODO Combine this with the PlayMode property and move it to GameManager class
+    /// TODO change the way the button mapping box behaves
     public void TogglePlayMode()
     {
         PlayMode = !PlayMode;
-        GetComponent<PlayerManager>().PlayMode = PlayMode;
-        Cursor.SetActive(!PlayMode);
         if (PlayMode)
         {
             LogController.Log("Start!");
+            ButtonMappingBox?.SetActive(false);
             RecordStartState();
         }
+        else
+        {
+            //Reset blocks to their pre-PlayMode state
+            if (_startState != null && _startState.Length != 0)
+                ReloadStartState();
+        }
+        GetComponent<PlayerManager>().PlayMode = PlayMode;
+        Cursor.SetActive(!PlayMode);
     }
 
     /// <summary>
@@ -247,7 +257,7 @@ public class BlockManager : MonoBehaviour {
 
     public static void ReloadStartState()
     {
-        if (_startState.Length != 0)
+        if (_startState != null && _startState.Length != 0)
         {
             Instance.Clear();
             Instance.BlocksFromJson(_startState);
