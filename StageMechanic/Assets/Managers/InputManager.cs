@@ -148,13 +148,20 @@ public class InputManager : MonoBehaviour {
         // Save/Load
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            if (altDown)
-                BlockManager.SaveToJson();
-            else
-                BlockManager.QuickSave();
+            if (!BlockManager.PlayMode)
+            {
+                if (altDown)
+                    BlockManager.SaveToJson();
+                else
+                    BlockManager.QuickSave();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.L))
         {
+            if (BlockManager.PlayMode)
+            {
+                BlockManager.TogglePlayMode();
+            }
             BlockManager.LoadFromJson();
         }
 

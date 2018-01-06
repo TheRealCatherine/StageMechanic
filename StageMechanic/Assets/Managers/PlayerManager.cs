@@ -44,11 +44,39 @@ public class PlayerManager : MonoBehaviour {
         PlayerStartLocations.Clear();
     }
 
+
+    public static void Player1PlayDieSound()
+    {
+        if (Avatars.Count > 0 && Avatars[0] != null)
+            Avatars[0].PlayDieSound();
+    }
+
+    public static void Player1PlayGameOverSound()
+    {
+        if (Avatars.Count > 0 && Avatars[0] != null)
+            Avatars[0].PlayGameOverSound();
+    }
+
+    public static void Player1PlayThudSound()
+    {
+        if (Avatars.Count > 0 && Avatars[0] != null)
+            Avatars[0].PlayThudSound();
+    }
+
     public static void PlayersReset()
     {
         HidePlayers();
         BlockManager.ReloadStartState();
         SpawnPlayers();
+        LogController.Log("YOU DIED");
+    }
+
+    public static void PlayersThudReset()
+    {
+        HidePlayers();
+        BlockManager.ReloadStartState();
+        SpawnPlayers();
+        Player1PlayThudSound();
         LogController.Log("YOU DIED");
     }
 

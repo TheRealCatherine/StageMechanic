@@ -79,6 +79,7 @@ public class BlockManager : MonoBehaviour {
             //Reset blocks to their pre-PlayMode state
             if (_startState != null && _startState.Length != 0)
                 ReloadStartState();
+            PlayerManager.Player1PlayGameOverSound();
         }
         GetComponent<PlayerManager>().PlayMode = PlayMode;
         Cursor.SetActive(!PlayMode);

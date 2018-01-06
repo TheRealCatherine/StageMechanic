@@ -69,6 +69,7 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         {
             CurrentState = State.PlayerStand;
             PlayerManager.PlayersReset();
+            PlayerManager.Player1PlayDieSound();
         }
         Renderer rend = GetComponent<Renderer>();
         rend.material = DisarmedStateMaterial;

@@ -19,6 +19,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public AudioClip JumpSound;
     public AudioClip LandSound;
     public AudioClip DieSound;
+    public AudioClip ThudSound;
     public AudioClip GameOverSound;
 
     public IBlock CurrentBlock;
@@ -94,6 +95,21 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         while (_player == null)
             yield return new WaitForEndOfFrame();
         FacingDirection = direction;
+    }
+
+    public void PlayDieSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(DieSound);
+    }
+
+    public void PlayGameOverSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(GameOverSound);
+    }
+
+    public void PlayThudSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(ThudSound);
     }
 
     public GameObject Character { get; set; }
@@ -316,7 +332,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         //TODO have lava floor do this
         if (transform.position.y < -50f)
         {
-            PlayerManager.PlayersReset();
+            PlayerManager.PlayersThudReset();
         }
     }
 
