@@ -234,6 +234,21 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		return true;
 	}
 
+    public virtual float MoveWeight( Vector3 direction, int distance = 1)
+    {
+        if (!CanBeMoved(direction, distance))
+            return 0;
+        IBlock neighbor = BlockManager.GetBlockAt(Position + direction);
+        float weight = WeightFactor;
+        if(neighbor != null)
+        {
+            if (!neighbor.CanBeMoved(direction, distance))
+                return 0;
+            weight = Math.Max(weight, neighbor.WeightFactor);
+        }
+        return weight;
+    }
+
 	public virtual bool Move(Vector3 direction, int distance = 1)
 	{
 		if(!CanBeMoved(direction,distance))
@@ -241,7 +256,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		IBlock neighbor = BlockManager.GetBlockAt (Position + direction);
 		if (neighbor != null)
 			neighbor.Move (direction, distance);
-        StartCoroutine(AnimateMove(Position, Position + direction, 0.15f));
+        StartCoroutine(AnimateMove(Position, Position + direction, 0.2f*MoveWeight(direction,distance)));
 		//Position += direction;
 		return true;
 	}

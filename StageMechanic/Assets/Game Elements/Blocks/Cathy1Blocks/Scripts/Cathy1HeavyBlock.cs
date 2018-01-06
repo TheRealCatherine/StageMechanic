@@ -12,6 +12,6 @@ public class Cathy1HeavyBlock : Cathy1Block {
 
 	// Use this for initialization
 	void Start () {
-		WeightFactor = 2.0f;
+		WeightFactor = 2.5f;
 	}
 }
