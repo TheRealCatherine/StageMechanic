@@ -23,34 +23,65 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour {
 
     // Unity Inspector variables
-
     public GameObject CursorPrefab;
     public GameObject BasicPlatformPrefab;
     public GameObject StartLocationIndicator;
     public GameObject GoalLocationIndicator;
-
     public GameObject FileBrowserPrefab;
 
     public int MaxUndoLevels = 6;
     public bool UndoEnabled = true;
 
-    // Properties
+    /// <summary>
+    /// There should only ever be one BlockManager in the scene - it manages all blocks for all platforms and loaded stages. As such it
+    /// can be used statically via this property when accessing methods that are not already marked static.
+    /// </summary>
+    /// TODO Singleton flamewar
+    public static BlockManager Instance { get; private set; }
 
+    /// <summary>
+    /// Used for auto-saving and saving while creating stages as
+    /// well as reloading a level from a file.
+    /// </summary>
+    public string LastAccessedFileName;
+
+    /// <summary>
+    /// Used by many classes to determine current game state, eventually this will be moved into
+    /// a seperate GameManager class or something but for now this is pretty much THE way to
+    /// determine if the application is currently in PlayMode or EditMode. Note that this property
+    /// is read-pnly. Use BlockManager.TogglePlayMode() to change the application state to/from
+    /// PlayMode and EditMode. This too will change in an upcoming revision.
+    /// </summary>
+    /// TODO: Move this out to a separate GameManager class
     public static bool PlayMode { get; protected set; } = false;
 
+    /// <summary>
+    /// Toggles the application between PlayMode and EditMode. This will show/hide the cursor,
+    /// inform PlayerManager of the new mode, and if entering play mode record the starting state
+    /// of the blocks to facilitate player death and test-playing while creating (restore on exiting
+    /// PlayMode)
+    /// </summary>
+    /// TODO: Combine this with the PlayMode property and move it to GameManager class
     public void TogglePlayMode()
     {
-        bool pm = !BlockManager.PlayMode;
-        BlockManager.PlayMode = pm;
-        GetComponent<PlayerManager>().PlayMode = pm;
-        Cursor.SetActive(!pm);
-        if (pm)
+        PlayMode = !PlayMode;
+        GetComponent<PlayerManager>().PlayMode = PlayMode;
+        Cursor.SetActive(!PlayMode);
+        if (PlayMode)
         {
             LogController.Log("Start!");
             RecordStartState();
         }
     }
 
+    /// <summary>
+    /// When turned on, BlockManager will record BlockManager.MaxUndoLevels worth of states.
+    /// Note that currently this is the same as creating a save file but storing it in memory
+    /// rather than to disk, as such it can cause a performance impact on some systems. We
+    /// will need to address this in a future revision.
+    /// </summary>
+    /// TODO: Consider moving this to being just a property and perhaps relocating UNDO related
+    /// code to another class
     public static void ToggleUndoOn()
     {
         Instance.UndoEnabled = !Instance.UndoEnabled;
@@ -60,7 +91,12 @@ public class BlockManager : MonoBehaviour {
             LogController.Log("Undo off");
     }
 
-    // The obect (block/item/etc) currently under the cursor
+    /// <summary>
+    /// This is a hacky method from early on in the implementation. In theory it should return
+    /// the GameObject of whatever is under the cursor. In actuality it usually only does this
+    /// correctly if its a block.
+    /// </summary>
+    /// TODO: Get rid of this old CursorColler garbage
     public GameObject ActiveObject {
         get {
             GameObject block = GetBlockAt(Cursor.transform.position)?.GameObject;
@@ -75,7 +111,17 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    //TODO support other types via IBlock
+    /// <summary>
+    /// When in EditMode, returns the block, if any, that is currently under the cursor,
+    /// or null if the cursor is not on a block.
+    /// 
+    /// When in PlayMode, returns the block underneath Player 1
+    /// </summary>
+    /// TODO Support IBlock interface
+    /// TODO Get rid this Goal Block hack and move it to GoalBlock
+    /// TODO Get rid of old CursorCollider stuff
+    /// TODO Get sidled-on block when player is sidling
+    /// TODO Query PlayerManager for active block when in PlayMode
     public Cathy1Block ActiveBlock
     {
         get
@@ -93,11 +139,6 @@ public class BlockManager : MonoBehaviour {
             else
             {
                 return GetBlockAt(Cursor.transform.position)?.GameObject?.GetComponent<Cathy1Block>();
-/*                CursorCollider col = Cursor.GetComponent<CursorCollider>();
-                Debug.Assert(col != null);
-                if (col.ObjectUnderCursor == null)
-                    return null;
-                return col.ObjectUnderCursor.GetComponent<Cathy1Block>();*/
             }
         }
         set
@@ -108,7 +149,10 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    // The cursor object
+    /// <summary>
+    /// The Cursor used in Edit Mode.
+    /// </summary>
+    /// TODO Right now this gets moved from the top level scene, do we want this behavior?
     private static GameObject _cursor;
     public static GameObject Cursor {
         get {
@@ -119,6 +163,10 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Used for cycling the default block type while in EditMode. This will be moved to
+    /// Cathy1BlockFactory or similar class later.
+    /// </summary>
     private Cathy1Block.BlockType _blockCycleType = Cathy1Block.BlockType.Basic;
     public Cathy1Block.BlockType BlockCycleType {
         get {
@@ -129,8 +177,10 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    public string LastAccessedFileName;
-
+    /// <summary>
+    /// Used for cycling the default block type while in EditMode. This will be moved to
+    /// Cathy1BlockFactory or similar class later.
+    /// </summary>
     public Cathy1Block.BlockType NextBlockType() {
         if (BlockCycleType >= Cathy1Block.BlockType.Goal) {
             BlockCycleType = Cathy1Block.BlockType.Basic;
@@ -139,6 +189,10 @@ public class BlockManager : MonoBehaviour {
         return ++BlockCycleType;
     }
 
+    /// <summary>
+    /// Used for cycling the default block type while in EditMode. This will be moved to
+    /// Cathy1BlockFactory or similar class later.
+    /// </summary>
     public Cathy1Block.BlockType PrevBlockType() {
         if (BlockCycleType <= Cathy1Block.BlockType.Basic) {
             BlockCycleType = Cathy1Block.BlockType.Goal;
@@ -147,6 +201,11 @@ public class BlockManager : MonoBehaviour {
         return --BlockCycleType;
     }
 
+    /// <summary>
+    /// Used to support Cathy-2 style rotatable floors and other multi-platform implementations
+    /// This is to be implemented in the future
+    /// Right now it only contains the BlockManager.ActiveFloor
+    /// </summary>
     private List<GameObject> _rotatableFloors = new List<GameObject>();
     public List<GameObject> RotatableFloors {
         get {
@@ -157,6 +216,11 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Currently this will always be the platform on which the stage rests. When BlockManager.RotatableFloors
+    /// is implemented later this will be set to the platform currently selected by the cursor or occupied by
+    /// the player.
+    /// </summary>
     private static GameObject _activeFloor;
     public static GameObject ActiveFloor {
         get {
@@ -166,6 +230,7 @@ public class BlockManager : MonoBehaviour {
             _activeFloor = value;
         }
     }
+
 
     private static string _startState;
     private static string _lastCheckpointState;
@@ -177,8 +242,7 @@ public class BlockManager : MonoBehaviour {
 
     public static void RecordStartState()
     {
-        _startState = Instance.BlocksToJson();
-        //RecordUndo();
+        _startState = Instance.BlocksToCondensedJson();
     }
 
     public static void ReloadStartState()
@@ -203,7 +267,7 @@ public class BlockManager : MonoBehaviour {
             _undoPlayerState.RemoveAt(0);
             _undoPlatformPosition.RemoveAt(0);
         }
-        _undos.Add(Instance.BlocksToJson());
+        _undos.Add(Instance.BlocksToPrettyJson());
         _undoPlayerPos.Add(PlayerManager.Player1Location());
         _undoPlayerFacing.Add(PlayerManager.Player1FacingDirection());
         _undoPlayerState.Add(PlayerManager.Player1State());
@@ -217,12 +281,9 @@ public class BlockManager : MonoBehaviour {
         Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
         if (_undos.Count > 0)
         {
-            //TODO fix start position
-            //PlayerManager.OnUndoStart();
             Instance.ClearForUndo();
             ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
             Instance.BlocksFromJson(_undos[_undos.Count-1]);
-            //PlayerManager.OnUndoFinish();
             PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
             PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
             PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
@@ -236,9 +297,6 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-
-    //TODO make this whole class static
-    public static BlockManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -319,6 +377,10 @@ public class BlockManager : MonoBehaviour {
         return block;
     }
 
+    /// <summary>
+    /// Returns a Cathy1BlockFactory that can be used to create Cathy1-style blocks
+    /// </summary>
+    /// TODO create the factory, don't be the factory.
     public Cathy1BlockFactory Cathy1BlockFactory
     {
         get
@@ -327,13 +389,18 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-	// Sets the material for a block
-	void SetMaterial( IBlock block, Material material ) {
+	/// <summary>
+    /// Sets the material on a block.
+    /// </summary>
+    /// <param name="block"></param>
+    /// <param name="material"></param>
+    /// TODO: Move this to AbstractBlock?
+	public static void SetMaterial( IBlock block, Material material ) {
 		Renderer rend = block.GameObject.GetComponent<Renderer> ();
 		rend.material = material;
 	}
 
-	public string BlocksToJson() {
+	public string BlocksToPrettyJson() {
 		Debug.Assert (ActiveFloor != null);
 		string output = "";
 		StageJsonDelegate stage = new StageJsonDelegate (this);
@@ -361,7 +428,37 @@ public class BlockManager : MonoBehaviour {
 		return output;
 	}
 
-	public void DestroyBlock( IBlock block ) {
+    public string BlocksToCondensedJson()
+    {
+        Debug.Assert(ActiveFloor != null);
+        string output = "";
+        StageJsonDelegate stage = new StageJsonDelegate(this);
+        StageCollection collection = new StageCollection(stage);
+        CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+        try
+        {
+            MemoryStream ms = new MemoryStream();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StageCollection));
+            XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter(ms, Encoding.UTF8, true, false);
+            serializer.WriteObject(writer, collection);
+            writer.Flush();
+            output += Encoding.UTF8.GetString(ms.ToArray());
+        }
+        catch (System.Exception exception)
+        {
+            LogController.Log(exception.ToString());
+        }
+        finally
+        {
+            Thread.CurrentThread.CurrentCulture = currentCulture;
+        }
+
+        return output;
+    }
+
+    public void DestroyBlock( IBlock block ) {
         Debug.Assert(block != null);
         Debug.Assert(block.GameObject != null);
 		Destroy (block.GameObject);
@@ -445,7 +542,7 @@ public class BlockManager : MonoBehaviour {
             Uri location = new Uri("file:///" + path);
             string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
             PlayerPrefs.SetString("LastSaveDir", directory);
-            string json = BlocksToJson ();
+            string json = BlocksToPrettyJson ();
             //TODO this probably can throw an exception?
 			if (json.Length != 0)
 				System.IO.File.WriteAllText (path, json);
