@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: fb74d5400d68ebc4cacf4042b2d00396, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 50199f2ae12c631498aab8b60b56adf7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0054113683, g: 0.0054113683, b: 0.0054113683, a: 1}
+  m_IndirectSpecularColor: {r: 0.6735129, g: 0.6237059, b: 0.5370833, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1005,6 +1005,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a2a2f1f47c0236d4d9e0c71d8b75f632, type: 2}
   - {fileID: 2100000, guid: 3037a9c4ce6b7dd4fa6687d7bd6e9ec5, type: 2}
   - {fileID: 2100000, guid: a2031bed2e3bbec4c831cb06448b6381, type: 2}
+  - {fileID: 2100000, guid: 92623bd214ad1284587d21dd941b7709, type: 2}
+  - {fileID: 2100000, guid: 50199f2ae12c631498aab8b60b56adf7, type: 2}
   - {fileID: 2100000, guid: fb74d5400d68ebc4cacf4042b2d00396, type: 2}
 --- !u!1 &229913026
 GameObject:
@@ -1785,6 +1787,8 @@ MonoBehaviour:
     type: 3}
   FileBrowserPrefab: {fileID: 1760643962491650, guid: 4599b5ba3543545db92bb18160cea721,
     type: 2}
+  MaxUndoLevels: 6
+  UndoEnabled: 1
   LastAccessedFileName: 
 --- !u!114 &426806222
 MonoBehaviour:
@@ -5838,7 +5842,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000059552505, y: 0.000076287375}
+  m_AnchoredPosition: {x: -0.000059552505, y: 0.000010413847}
   m_SizeDelta: {x: 0, y: 215}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1403919664
