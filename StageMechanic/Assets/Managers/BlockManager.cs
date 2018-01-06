@@ -351,8 +351,11 @@ public class BlockManager : MonoBehaviour {
     public void Clear()
     {
         foreach (Transform child in ActiveFloor.transform)
-            Destroy(child.gameObject);
-        ActiveFloor.transform.position = Vector3.zero;
+        {
+            if(!child.GetComponent<Platform>())
+                Destroy(child.gameObject);
+        }
+        ActiveFloor.transform.position = new Vector3(0, 0f, 3f);
         
         PlayerManager.Clear();
         EventManager.Clear();
@@ -362,7 +365,8 @@ public class BlockManager : MonoBehaviour {
     public void ClearForUndo()
     {
         foreach (Transform child in ActiveFloor.transform)
-            Destroy(child.gameObject);
+            if (!child.GetComponent<Platform>())
+                Destroy(child.gameObject);
         EventManager.Clear();
     }
 

@@ -18,6 +18,8 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public AudioClip WalkSound;
     public AudioClip JumpSound;
     public AudioClip LandSound;
+    public AudioClip DieSound;
+    public AudioClip GameOverSound;
 
     public IBlock CurrentBlock;
 
