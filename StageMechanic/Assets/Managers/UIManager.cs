@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GracesGames.SimpleFileBrowser.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class UIManager : MonoBehaviour {
     public SinglePlayerDeathDialog SinglePlayerDeathDialog;
     public GameObject ButtonMappingDialog;
 
+    //TODO Singleton flame war
     public static UIManager Instance;
     public static bool IsSinglePlayerDeathDialogOpen {
         get {
@@ -16,6 +18,13 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public static bool IsAnyInputDialogOpen
+    {
+        get
+        {
+            return IsSinglePlayerDeathDialogOpen || FileBrowser.IsOpen;
+        }
+    }
 
     private void Start()
     {

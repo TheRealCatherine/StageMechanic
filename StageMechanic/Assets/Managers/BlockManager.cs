@@ -31,7 +31,7 @@ public class BlockManager : MonoBehaviour {
     public GameObject ButtonMappingBox;
 
 
-    public int MaxUndoLevels = 6;
+    public int MaxUndoLevels = 20;
     public bool UndoEnabled = true;
 
     /// <summary>
@@ -285,6 +285,8 @@ public class BlockManager : MonoBehaviour {
         _undoPlatformPosition.Add(ActiveFloor.transform.position.y);
     }
 
+    public static int AvailableUndoCount { get { if (!Instance.UndoEnabled) return 0; return _undos.Count; } }
+
     public static void Undo()
     {
         if (!Instance.UndoEnabled)
@@ -294,11 +296,11 @@ public class BlockManager : MonoBehaviour {
         {
             Instance.ClearForUndo();
             ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
-            Instance.BlocksFromJson(_undos[_undos.Count-1]);
+            Instance.BlocksFromJson(_undos[_undos.Count - 1]);
             PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
             PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
             PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
-            
+
             _undos.RemoveAt(_undos.Count - 1);
             _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
             _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
@@ -306,6 +308,8 @@ public class BlockManager : MonoBehaviour {
             _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
             LogController.Log("Undo");
         }
+        else
+            LogController.Log("No undos left");
     }
 
 

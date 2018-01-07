@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour {
 
     void Update() {
 
-        if (FileBrowser.IsOpen)
+        if (UIManager.IsAnyInputDialogOpen)
             return;
 
         float vert = Input.GetAxis("Vertical");
