@@ -10,12 +10,6 @@ using UnityEngine;
 
 public class Cathy1EdgeMechanic : MonoBehaviour
 {
-
-	public bool IsGrounded { get; set; } = false;
-
-	public bool inspectorGrounded = false;
-	public Vector3 dodododo;
-
     public enum State
     {
         Grounded,
@@ -28,7 +22,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
     public State CurrentState = State.Grounded;
     public float FallTime = 0.25f;
 
-    private State OtherBlockState( IBlock block )
+    private static State CurrentEdgeState( IBlock block )
     {
         Cathy1EdgeMechanic otherBlock = block.GameObject.GetComponent<Cathy1EdgeMechanic>();
         Debug.Assert(otherBlock != null);
@@ -43,7 +37,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         IBlock down = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down);
         if (down != null)
         {
-            State obs = OtherBlockState(down);
+            State obs = CurrentEdgeState(down);
             if (obs != State.Hovering && obs != State.Falling)
             {
                 CurrentState = State.Grounded;
@@ -54,7 +48,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         IBlock back = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.back);
         if (back != null)
         {
-            State obs = OtherBlockState(back);
+            State obs = CurrentEdgeState(back);
             if (obs != State.Hovering && obs != State.Falling)
             {
                 CurrentState = State.Edged;
@@ -65,7 +59,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         IBlock left = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.left);
         if (left != null)
         {
-            State obs = OtherBlockState(left);
+            State obs = CurrentEdgeState(left);
             if (obs != State.Hovering && obs != State.Falling)
             {
                 CurrentState = State.Edged;
@@ -76,7 +70,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         IBlock right = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.right);
         if (right != null)
         {
-            State obs = OtherBlockState(right);
+            State obs = CurrentEdgeState(right);
             if (obs != State.Hovering && obs != State.Falling)
             {
                 CurrentState = State.Edged;
@@ -87,7 +81,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         IBlock front = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down + Vector3.forward);
         if (front != null)
         {
-            State obs = OtherBlockState(front);
+            State obs = CurrentEdgeState(front);
             if (obs != State.Hovering && obs != State.Falling)
             {
                 CurrentState = State.Edged;
