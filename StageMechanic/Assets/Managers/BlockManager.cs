@@ -251,6 +251,15 @@ public class BlockManager : MonoBehaviour {
     private static List<Cathy1PlayerCharacter.State> _undoPlayerState = new List<Cathy1PlayerCharacter.State>();
     private static List<float> _undoPlatformPosition = new List<float>();
 
+    public static void ClearUndoStates()
+    {
+        _undos.Clear();
+        _undoPlayerPos.Clear();
+        _undoPlayerFacing.Clear();
+        _undoPlayerState.Clear();
+        _undoPlatformPosition.Clear();
+    }
+
     public static void RecordStartState()
     {
         _startState = Instance.BlocksToCondensedJson();
@@ -531,6 +540,7 @@ public class BlockManager : MonoBehaviour {
 
 	public void BlocksFromJson( Uri path ) {
         Clear();
+        ClearUndoStates();
 		LogController.Log ("Loading from " + path.ToString ());
 		StageCollection deserializedCollection = new StageCollection(this);
 		WebClient webClient = new WebClient();
@@ -539,6 +549,11 @@ public class BlockManager : MonoBehaviour {
 		deserializedCollection = ser.ReadObject(fs) as StageCollection;  
 		fs.Close();
         LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
+        if(PlayerPrefs.GetInt("AutoPlayOnLoad",0) == 1)
+        {
+            if (!PlayMode)
+                TogglePlayMode();
+        }
 	}
 
     public void BlocksFromJson( string json )
