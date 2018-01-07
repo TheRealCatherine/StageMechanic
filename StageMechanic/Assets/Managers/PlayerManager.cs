@@ -38,6 +38,13 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    public static Cathy1PlayerCharacter Player1()
+    {
+        if (Avatars.Count > 0)
+            return Avatars[0];
+        return null;
+    }
+
     public static void Clear()
     {
         HidePlayers();
@@ -74,8 +81,8 @@ public class PlayerManager : MonoBehaviour {
     public static void PlayersThudReset()
     {
         HidePlayers();
-        BlockManager.ReloadStartState();
-        SpawnPlayers();
+        //BlockManager.ReloadStartState();
+        //SpawnPlayers();
         Player1PlayThudSound();
         LogController.Log("YOU DIED");
     }
@@ -90,7 +97,7 @@ public class PlayerManager : MonoBehaviour {
         SpawnPlayers();
     }
 
-    private static void HidePlayers()
+    public static void HidePlayers()
     {
         Debug.Log("Hiding");
         foreach (Cathy1PlayerCharacter player in Avatars) {
@@ -99,7 +106,7 @@ public class PlayerManager : MonoBehaviour {
         Avatars.Clear();
     }
 
-    private static void SpawnPlayers()
+    public static void SpawnPlayers()
     {
         Debug.Log("Spawning");
         foreach (Cathy1PlayerStartLocation player in PlayerStartLocations)

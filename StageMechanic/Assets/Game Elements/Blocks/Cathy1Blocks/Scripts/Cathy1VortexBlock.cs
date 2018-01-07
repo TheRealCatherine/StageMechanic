@@ -34,8 +34,7 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
         if (hasPlayer())
         {
             GetComponent<AudioSource>()?.Play();
-            PlayerManager.PlayersReset();
-            PlayerManager.Player1PlayDieSound();
+            PlayerManager.Player1().TakeDamage(float.PositiveInfinity);
         }
         IBlock onTop = BlockManager.GetBlockAt(transform.position + Vector3.up);
         if (onTop != null) {

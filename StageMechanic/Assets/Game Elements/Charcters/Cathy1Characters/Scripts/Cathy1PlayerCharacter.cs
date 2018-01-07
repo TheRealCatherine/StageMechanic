@@ -328,15 +328,26 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 
     private void Update()
     {
-       ApplyGravity();
         //TODO have lava floor do this
         if (transform.position.y < -50f)
         {
-            PlayerManager.PlayersThudReset();
+            if (!UIManager.IsSinglePlayerDeathDialogOpen)
+            {
+                UIManager.ShowSinglePlayerDeathDialog(ThudSound);
+            }
         }
+        else
+            ApplyGravity();        
     }
 
-  
+    public void TakeDamage(float unused )
+    {
+
+        if (!UIManager.IsSinglePlayerDeathDialogOpen)
+        {
+            UIManager.ShowSinglePlayerDeathDialog(DieSound);
+        }
+    }
 
     public void ApplyGravity()
 	{
