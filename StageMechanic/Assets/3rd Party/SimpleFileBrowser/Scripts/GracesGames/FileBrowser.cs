@@ -360,8 +360,10 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 		// Also requires a default file and a file extension
 		public void SaveFilePanel(MonoBehaviour callerScript, string callbackMethod, string defaultName,
 			string fileExtension) {
-			// Make sure the file extension is not null, else set it to "" (no extension for the file to save)
-			if (fileExtension == null) {
+            IsOpen = true;
+
+            // Make sure the file extension is not null, else set it to "" (no extension for the file to save)
+            if (fileExtension == null) {
 				fileExtension = "";
 			}
 			_mode = FileBrowserMode.Save;
@@ -373,8 +375,10 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 		// Requires a caller script and a method for the callback result 
 		// Also a file extension used to filter the loadable files
 		public void OpenFilePanel(MonoBehaviour callerScript, string callbackMethod, string fileExtension) {
-			// Make sure the file extension is not invalid, else set it to * (no filter for load)
-			if (String.IsNullOrEmpty(fileExtension)) {
+            IsOpen = true;
+
+            // Make sure the file extension is not invalid, else set it to * (no filter for load)
+            if (String.IsNullOrEmpty(fileExtension)) {
 				fileExtension = "*";
 			}
 			_mode = FileBrowserMode.Load;
@@ -385,7 +389,6 @@ namespace GracesGames.SimpleFileBrowser.Scripts {
 		// Generic file browser panel to remove duplicate code
 		private void FilePanel(MonoBehaviour callerScript, string callbackMethod, string fileExtension) {
             // Set values
-            IsOpen = true;
 			_fileExtension = fileExtension;
 			_callerScript = callerScript;
 			_callbackMethod = callbackMethod;
