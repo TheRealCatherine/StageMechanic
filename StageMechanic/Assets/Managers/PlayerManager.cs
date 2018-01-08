@@ -233,4 +233,21 @@ public class PlayerManager : MonoBehaviour {
 		if (pushpull)
 			Avatars [0].PushPull (Vector3.zero);
 	}
+
+    public static float Player1ApplyInput(List<string> inputs, Dictionary<string,string> parameters = null)
+    {
+        if (Avatars == null || Avatars.Count == 0)
+            return 0f;
+        return Avatars[0].ApplyInput(inputs, parameters);
+    }
+
+    public static Dictionary<string,string[]> Player1InputOptions
+    {
+        get
+        {
+            if (Avatars == null || Avatars.Count == 0)
+                return null;
+            return Avatars[0]?.Inputs;
+        }
+    }
 }

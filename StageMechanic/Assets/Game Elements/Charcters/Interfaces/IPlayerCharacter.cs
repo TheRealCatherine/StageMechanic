@@ -8,15 +8,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IPlayerCharacter : MonoBehaviour {
+public interface IPlayerCharacter {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    GameObject GameObject { get; }
+
+    string Name { get; set; }
+
+    Vector3 Position { get; set; }
+
+    Vector3 FacingDirection { get; set; }
+
+    List<string> StateNames { get; }
+
+    int CurrentStateIndex { get; set; }
+
+    Dictionary<string, string> Properties { get; set; }
+
+    Dictionary<string, string[]> SuggestedInputs { get; }
+
+    Dictionary<string, string[]> Inputs { get; set; }
+
+    Dictionary<string, string> InputParameters(string inputName);
+
+    float ApplyInput(List<string> inputNames, Dictionary<string, string> parameters = null);
+
+    bool ApplyGravity(float factor=1f, float acceleration=0f);
+
+    bool Face(Vector3 direction);
+
+    bool Turn(Vector3 direction);
+
+    bool TurnAround();
+
+    bool TurnLeft();
+
+    bool TurnRight();
+
+    
 }

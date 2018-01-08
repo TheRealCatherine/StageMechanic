@@ -140,7 +140,7 @@ public class InputManager : MonoBehaviour {
             BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Vortex);
         }
 
-        else if(Input.GetKey(KeyCode.U))
+        else if (Input.GetKey(KeyCode.U))
         {
             BlockManager.ToggleUndoOn();
         }
@@ -268,7 +268,7 @@ public class InputManager : MonoBehaviour {
             GetComponent<EventManager>().CreatePlayerStartLocation(1, Cursor.transform.position, Cursor.transform.rotation);
         }
 
-        else if(Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)
+        else if (Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)
         {
             BlockManager.Undo();
         }
@@ -314,7 +314,7 @@ public class InputManager : MonoBehaviour {
         }
 
         //Skybox controlls
-        else if(Input.GetKeyDown(KeyCode.F3))
+        else if (Input.GetKeyDown(KeyCode.F3))
         {
             SkyboxManager.NextSkybox();
         }
@@ -337,11 +337,64 @@ public class InputManager : MonoBehaviour {
                 Cursor.transform.position = Vector3.zero;
         }
 
+        else if (BlockManager.PlayMode)
+        {
+            if (period < joystickThrottleRate)
+            {
+                period += Time.deltaTime;
+                return;
+            }
+
+            List<string> axees = new List<string>();
+            if (vert > 0f)
+                axees.Add("7th axis +");
+            else if (vert < 0f)
+                axees.Add("7th axis -");
+            if (hori > 0f)
+                axees.Add("6th axis +");
+            else if (hori < 0f)
+                axees.Add("6th axis -");
+
+            Dictionary<string, string[]> possible = PlayerManager.Player1InputOptions;
+            if (possible != null)
+            {
+                List<string> inputs = new List<string>();
+                foreach (KeyValuePair<string, string[]> item in possible)
+                {
+                    foreach (string key in item.Value)
+                    {
+                        if (key.Contains("axis"))
+                        {
+                            if (axees.Contains(key))
+                            {
+                                inputs.Add(item.Key);
+                                Debug.Log(item.Key + " " + key);
+                            }
+                        }
+                        else if (Input.GetKey(key) && !inputs.Contains(item.Key))
+                        {
+                            inputs.Add(item.Key);
+                            Debug.Log(item.Key + " " + key);
+                        }
+                    }
+                }
+                if (inputs.Count > 0)
+                {
+                    float time = PlayerManager.Player1ApplyInput(inputs);
+                    period = joystickThrottleRate - time;
+                }
+            }
+        }
+
         // Cursor/stage movement cotrol
         // Keyboard & XBox 360 Input
         // TODO update ActiveObject based on cursor position using colliders
         else if (Input.GetKeyDown(KeyCode.UpArrow) || vert > 0)
         {
+            List<string> player1Inputs = new List<string>();
+            if (shiftDown)
+                player1Inputs.Add("Grab");
+
             if (period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
@@ -366,9 +419,7 @@ public class InputManager : MonoBehaviour {
             }
             else
             {
-                if (BlockManager.PlayMode)
-                    PlayerManager.Player1MoveAway(shiftDown);
-                else
+                if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(0, 1, 0);
             }
             Input.ResetInputAxes();
@@ -399,9 +450,7 @@ public class InputManager : MonoBehaviour {
             }
             else
             {
-                if (BlockManager.PlayMode)
-                    PlayerManager.Player1MoveCloser(shiftDown);
-                else
+                if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(0, -1, 0);
             }
             Input.ResetInputAxes();
@@ -432,9 +481,7 @@ public class InputManager : MonoBehaviour {
             }
             else
             {
-                if (BlockManager.PlayMode)
-                    PlayerManager.Player1MoveLeft(shiftDown);
-                else
+                if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(-1, 0, 0);
             }
             Input.ResetInputAxes();
@@ -465,9 +512,7 @@ public class InputManager : MonoBehaviour {
             }
             else
             {
-                if (BlockManager.PlayMode)
-                    PlayerManager.Player1MoveRight(shiftDown);
-                else
+                if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(1, 0, 0);
             }
             Input.ResetInputAxes();

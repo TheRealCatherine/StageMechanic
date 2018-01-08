@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cathy1PlayerCharacter : MonoBehaviour {
+public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
     public GameObject Player1Prefab;
     public RuntimeAnimatorController Player1AnimationController;
@@ -25,8 +25,13 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
     public IBlock CurrentBlock;
 
     private GameObject _player;
-    private Vector3 _facingDirection = Vector3.back;
-    public Vector3 FacingDirection
+
+    private const float HEIGHT_ADJUST = 0.5f;
+    public float WalkTime { get; set; } = 0.15f;
+    public float Granularity { get; set; } = 1.0f;
+    public float ClimbSpeed { get; set; } = 0.05f;
+
+    public override Vector3 FacingDirection
     {
         get
         {
@@ -40,10 +45,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                 Face(value);
         }
     }
-	private const float HEIGHT_ADJUST = 0.5f;
-    public float WalkTime { get; set; } = 0.15f;
-    public float Granularity { get; set; } = 1.0f;
-    public float ClimbSpeed { get; set; } = 0.05f;
+
     public enum State
     {
         Idle = 0,
@@ -124,6 +126,33 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         set
         {
             transform.localPosition = value;
+        }
+    }
+
+    public override List<string> StateNames
+    {
+        get
+        {
+            List <string> states = new List<string>();
+            foreach (State state in Enum.GetValues(typeof(State)))
+                states.Add(state.ToString());
+            return states;
+        }
+    }
+
+    public override int CurrentStateIndex
+    {
+        get
+        {
+            return StateNames.IndexOf(CurrentMoveState.ToString());
+        }
+        set
+        {
+            Debug.Assert(StateNames.Count > value);
+            string stateName = StateNames[value];
+            //TODO check this
+            State state = (State)Enum.Parse(typeof(State), stateName);
+            CurrentMoveState = state;
         }
     }
 
@@ -255,6 +284,7 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             Teleport(location + Vector3.down);
             yield return new WaitForEndOfFrame();
             CurrentMoveState = State.Sidle;
+            yield return new WaitForSeconds(0.1f);
             yield return null;
         }
         else
@@ -349,27 +379,37 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
         }
     }
 
-    public void ApplyGravity()
+    public override bool ApplyGravity(float factor = 1f, float acceleration = 0f)
 	{
         if (CurrentMoveState == State.Idle || CurrentMoveState == State.Fall)
         {
             if (BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
             {
                 CurrentMoveState = State.Fall;
-                Teleport(CurrentLocation + Vector3.down);
+                base.ApplyGravity(factor, acceleration);
                 if (BlockManager.GetBlockAt(transform.position + FacingDirection) != null && BlockManager.GetBlockAt(transform.position + FacingDirection + Vector3.up) == null)
                 {
                     CurrentMoveState = State.Sidle;
                 }
+                return true;
             }
             else
+            {
                 CurrentMoveState = State.Idle;
+                return false;
+            }
         }
         if (CurrentMoveState == State.Sidle && BlockManager.GetBlockAt(transform.position + FacingDirection) == null)
+        {
             CurrentMoveState = State.Fall;
+            return false;
+        }
+        return false;
     }
 
-	public void Face(Vector3 direction) {
+	public override bool Face(Vector3 direction) {
+        if (FacingDirection == direction)
+            return false;
 		float degrees = 0f;
 		if (FacingDirection == Vector3.back) {
 			if (direction == Vector3.left)
@@ -404,43 +444,12 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
 				degrees = -90f;
 		}
 		_player.transform.RotateAround(transform.position, transform.up, degrees);
-		_facingDirection = direction;
+		base.FacingDirection = direction;
+        return true;
 	}
 
-	public void TurnAround() {
-		Face(-FacingDirection);
-	}
-
-	public void Turn( Vector3 direction ) {
-		if (direction == Vector3.right)
-			TurnRight ();
-		else if (direction == Vector3.left)
-			TurnLeft ();
-		else if (direction == Vector3.zero)
-			LogController.Log ("Daddy! Quit skipping my turn!");
-		//TODO other turns?
-	}
-
-	public void TurnRight() {
-		if (FacingDirection == Vector3.forward)
-			Face (Vector3.right);
-		else if (FacingDirection == Vector3.right)
-			Face (Vector3.back);
-		else if (FacingDirection == Vector3.left)
-			Face (Vector3.forward);
-		else
-			Face (Vector3.left);
-	}
-
-	public void TurnLeft() {
-		if (FacingDirection == Vector3.forward)
-			Face (Vector3.left);
-		else if (FacingDirection == Vector3.right)
-			Face (Vector3.forward);
-		else if (FacingDirection == Vector3.back)
-			Face (Vector3.right);
-		else
-			Face (Vector3.back);
+	public override bool TurnAround() {
+		return Face(-FacingDirection);
 	}
 
     public static Vector3 ReverseDirection( Vector3 direction )
@@ -457,8 +466,13 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
             return Vector3.zero;
     }
 
-    public void QueueMove(Vector3 direction)
+    public float QueueMove(Vector3 direction, bool pushpull = false)
     {
+        float expectedTime = 0f;
+        if(pushpull)
+        {
+            return PushPull(direction);
+        }
         if (CurrentMoveState == State.Idle)
         {
             if (FacingDirection == direction || direction == Vector3.up || direction == Vector3.down)
@@ -495,10 +509,12 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                         }
                     }
                 }
+                expectedTime = 0.2f;
             }
             else
             {
                 Face(direction);
+                expectedTime = 0.1f;
             }
         }
         else if(CurrentMoveState == State.Sidle)
@@ -550,10 +566,12 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                                 TurnLeft();
                         }
                     }
+                    expectedTime = 0.2f;
                 }
                 else
                 {
                     Turn(originalDirection);
+                    expectedTime = 0.1f;
                 }
             }
             else if(direction == Vector3.forward)
@@ -562,43 +580,46 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                 if(attemptedGrab == null)
                 {
                     Climb(FacingDirection + Vector3.up);
+                    expectedTime = 0.2f;
                 }
             }
             else if(direction == Vector3.back)
             {
                 CurrentMoveState = State.Fall;
+                expectedTime = 0.1f;
             }
         }
+        return expectedTime;
     }
 
-	public void PushPull(Vector3 direction)
+	public float PushPull(Vector3 direction)
 	{
 		if (direction == Vector3.zero)
-			return;
+			return 0f;
         
         if (CurrentMoveState == State.Sidle)
         {
             if (BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
-                return;
+                return 0f;
             CurrentMoveState = State.Fall;
         }
             
 
         if (direction != FacingDirection && direction != ReverseDirection(FacingDirection))
-            return;
+            return 0f;
 
         //Don't allow pull if there is a block in your way
         if(direction == ReverseDirection(FacingDirection))
         {
             IBlock blockInWay = BlockManager.GetBlockAt(transform.position + ReverseDirection(FacingDirection));
             if (blockInWay != null)
-                return;
+                return 0f;
         }
 
         //TODO no sideways movement
 		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+FacingDirection);
 		if (blockInQuestion == null)
-			return;
+			return 0f;
         BlockManager.RecordUndo();
         //TODO make this one movement
         bool moved = blockInQuestion.Move(direction);
@@ -617,6 +638,41 @@ public class Cathy1PlayerCharacter : MonoBehaviour {
                     Sidle(direction);
                 }
             }
+            return 0.2f;
         }
+        return 0f;
 	}
+
+    public override float ApplyInput(List<string> inputNames, Dictionary<string, string> parameters = null)
+    {
+        if (CurrentMoveState != State.Idle && CurrentMoveState != State.Sidle)
+            return 0f;
+        if (Position.y % 1 != 0)
+            return 0f;
+
+        float expectedTime = 0f;
+        bool pushpull = false;
+        if (inputNames.Contains("Grab"))
+        {
+            pushpull = true;
+        }
+        if (inputNames.Contains("Up"))
+        {
+            return QueueMove(Vector3.forward, pushpull);
+        }
+        else if (inputNames.Contains("Down"))
+        {
+            return QueueMove(Vector3.back, pushpull);
+        }
+        else if (inputNames.Contains("Left"))
+        {
+            return QueueMove(Vector3.left, pushpull);
+        }
+        else if (inputNames.Contains("Right"))
+        {
+            return QueueMove(Vector3.right, pushpull);
+        }
+
+        return expectedTime;
+    }
 }
