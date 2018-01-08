@@ -509,12 +509,12 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
                         }
                     }
                 }
-                expectedTime = 0.2f;
+                expectedTime = 0.35f;
             }
             else
             {
                 Face(direction);
-                expectedTime = 0.1f;
+                expectedTime = 0.2f;
             }
         }
         else if(CurrentMoveState == State.Sidle)
@@ -566,12 +566,12 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
                                 TurnLeft();
                         }
                     }
-                    expectedTime = 0.2f;
+                    expectedTime = 0.35f;
                 }
                 else
                 {
                     Turn(originalDirection);
-                    expectedTime = 0.1f;
+                    expectedTime = 0.2f;
                 }
             }
             else if(direction == Vector3.forward)
@@ -580,7 +580,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
                 if(attemptedGrab == null)
                 {
                     Climb(FacingDirection + Vector3.up);
-                    expectedTime = 0.2f;
+                    expectedTime = 0.35f;
                 }
             }
             else if(direction == Vector3.back)
@@ -638,7 +638,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
                     Sidle(direction);
                 }
             }
-            return 0.2f;
+            return 0.35f;
         }
         return 0f;
 	}
