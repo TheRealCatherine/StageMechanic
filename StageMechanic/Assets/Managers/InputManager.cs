@@ -354,6 +354,14 @@ public class InputManager : MonoBehaviour {
                 axees.Add("6th axis +");
             else if (hori < 0f)
                 axees.Add("6th axis -");
+            if (Input.GetAxis("LeftStickV") > 0)
+                axees.Add("Y axis -");
+            else if (Input.GetAxis("LeftStickV") < 0)
+                axees.Add("Y axis +");
+            if (Input.GetAxis("LeftStickH") > 0)
+                axees.Add("X axis +");
+            else if (Input.GetAxis("LeftStickH") < 0)
+                axees.Add("X axis -");
 
             Dictionary<string, string[]> possible = PlayerManager.Player1InputOptions;
             if (possible != null)
