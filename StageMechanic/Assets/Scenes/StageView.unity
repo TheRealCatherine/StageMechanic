@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 573473180}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999434
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1163,6 +1163,7 @@ MonoBehaviour:
     type: 2}
   AddItemButton: {fileID: 1651704129065830, guid: f7c0ef19ab49d944e930872b3d80092b,
     type: 2}
+  CurrentState: 0
 --- !u!1 &289728677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3272,8 +3273,8 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: joystick 1 X axis
+  m_VerticalAxis: joystick 1 Y axis
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
@@ -5317,7 +5318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00007347874, y: 0.000039247887}
+  m_AnchoredPosition: {x: -0.00007347874, y: -0.000006783236}
   m_SizeDelta: {x: 0, y: 215}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1403919664

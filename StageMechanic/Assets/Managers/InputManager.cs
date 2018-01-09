@@ -62,8 +62,8 @@ public class InputManager : MonoBehaviour {
         if (UIManager.IsAnyInputDialogOpen)
             return;
 
-        float vert = Input.GetAxis("Vertical");
-        float hori = Input.GetAxis("Horizontal");
+        float vert = Input.GetAxis("joystick 1 7th axis");
+        float hori = Input.GetAxis("joystick 1 6th axis");
 
         bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
         bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || (BlockManager.PlayMode && Input.GetKey(KeyCode.JoystickButton0));
@@ -81,8 +81,8 @@ public class InputManager : MonoBehaviour {
             Camera.transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
         }
 
-        float rotationXOffset = Input.GetAxis("RightStickH") * (sensX * 2) * Time.deltaTime;
-        float rotationYOffset = Input.GetAxis("RightStickV") * (sensY * 2) * Time.deltaTime;
+        float rotationXOffset = Input.GetAxis("joystick 1 4th axis") * (sensX * 2) * Time.deltaTime;
+        float rotationYOffset = Input.GetAxis("joystick 1 5th axis") * (sensY * 2) * Time.deltaTime;
         if (rotationXOffset >= 0.05 || rotationYOffset >= 0.05 || rotationXOffset <= -0.05 || rotationYOffset <= -0.05) {
             rotationX += rotationXOffset;
             rotationY += rotationYOffset;
@@ -90,8 +90,8 @@ public class InputManager : MonoBehaviour {
             //Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
         }
 
-        bool goFurther = Input.GetAxis("LeftStickV") * 100 * Time.deltaTime >= 1;
-        bool goCloser = Input.GetAxis("LeftStickV") * 100 * Time.deltaTime <= -1;
+        bool goFurther = Input.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
+        bool goCloser = Input.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
 
         if (Input.GetKeyDown(KeyCode.Comma) && !BlockManager.PlayMode)
             goFurther = true;
@@ -354,13 +354,13 @@ public class InputManager : MonoBehaviour {
                 axees.Add("joystick 1 6th axis +");
             else if (hori < 0f)
                 axees.Add("joystick 1 6th axis -");
-            if (Input.GetAxis("LeftStickV") > 0)
+            if (Input.GetAxis("joystick 1 Y axis") > 0)
                 axees.Add("joystick 1 Y axis -");
-            else if (Input.GetAxis("LeftStickV") < 0)
+            else if (Input.GetAxis("joystick 1 Y axis") < 0)
                 axees.Add("joystick 1 Y axis +");
-            if (Input.GetAxis("LeftStickH") > 0)
+            if (Input.GetAxis("joystick 1 X axis") > 0)
                 axees.Add("joystick 1 X axis +");
-            else if (Input.GetAxis("LeftStickH") < 0)
+            else if (Input.GetAxis("joystick 1 X axis") < 0)
                 axees.Add("joystick 1 X axis -");
 
             Dictionary<string, string[]> possible = PlayerManager.Player1InputOptions;
@@ -527,7 +527,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (goFurther)
         {
-            if (Input.GetAxis("LeftStickV") > 0 &&  period < joystickThrottleRate)
+            if (Input.GetAxis("joystick 1 Y axis") > 0 &&  period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
@@ -538,7 +538,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (goCloser)
         {
-            if (Input.GetAxis("LeftStickV") < 0 && period < joystickThrottleRate)
+            if (Input.GetAxis("joystick 1 Y axis") < 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;

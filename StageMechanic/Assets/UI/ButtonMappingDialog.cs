@@ -103,39 +103,27 @@ public class ButtonMappingDialog : MonoBehaviour
         Refresh();
     }
 
-    private void Update()
+    public void TryRegisterJoystick()
     {
-        if (CurrentState != State.WaitingForKey)
-            return;
-
-        //Arrow keys
-        if (Input.GetKey(KeyCode.UpArrow))
-            RegisterKey("up");
-        else if (Input.GetKey(KeyCode.DownArrow))
-            RegisterKey("down");
-        else if (Input.GetKey(KeyCode.LeftArrow))
-            RegisterKey("left");
-        else if (Input.GetKey(KeyCode.RightArrow))
-            RegisterKey("right");
 
         //Joystick 1 D-Pad
-        else if (Input.GetAxis("Horizontal") > 0f)
+        if (Input.GetAxis("joystick 1 6th axis") > 0f)
             RegisterKey("joystick 1 6th axis +");
-        else if (Input.GetAxis("Horizontal") < 0f)
-            RegisterKey("joystick 1 6th axis -");
-        else if (Input.GetAxis("Vertical") > 0f)
-            RegisterKey("joystick 1 7th axis +");
-        else if (Input.GetAxis("Vertical") < 0f)
-            RegisterKey("joystick 1 7th axis -");
+        else if (Input.GetAxis("joystick 1 6th axis") < 0f)
+            RegisterKey("joyustick 1 6th axis -");
+        else if (Input.GetAxis("joystick 1 7th axis") > 0f)
+            RegisterKey("joyustick 1 6th axis +");
+        else if (Input.GetAxis("joystick 1 7th axis") < 0f)
+            RegisterKey("joyustick 1 7th axis -");
 
         //Joystick 1 Left Stick
-        else if (Input.GetAxis("LeftStickV") < 0)
+        else if (Input.GetAxis("joystick 1 Y axis") < 0)
             RegisterKey("joystick 1 Y axis +");
-        else if (Input.GetAxis("LeftStickV") > 0)
+        else if (Input.GetAxis("joystick 1 Y axis") > 0)
             RegisterKey("joystick 1 Y axis -");
-        else if (Input.GetAxis("LeftStickH") < 0)
+        else if (Input.GetAxis("joystick 1 X axis") < 0)
             RegisterKey("joystick 1 X axis -");
-        else if (Input.GetAxis("LeftStickH") > 0)
+        else if (Input.GetAxis("joystick 1 X axis") > 0)
             RegisterKey("joystick 1 X axis +");
 
 
@@ -181,15 +169,114 @@ public class ButtonMappingDialog : MonoBehaviour
         else if (Input.GetKey(KeyCode.Joystick1Button19))
             RegisterKey("joystick 1 button 19");
 
+        //Joystick 2
+
+        //Joystick 2 D-Pad
+        if (Input.GetAxis("joystick 2 6th axis") > 0f)
+            RegisterKey("joystick 2 6th axis +");
+        else if (Input.GetAxis("joystick 2 6th axis") < 0f)
+            RegisterKey("joyustick 2 6th axis -");
+        else if (Input.GetAxis("joystick 2 7th axis") > 0f)
+            RegisterKey("joyustick 2 6th axis +");
+        else if (Input.GetAxis("joystick 2 7th axis") < 0f)
+            RegisterKey("joyustick 2 7th axis -");
+
+        //Joystick 2 Left Stick
+        else if (Input.GetAxis("joystick 2 Y axis") < 0)
+            RegisterKey("joystick 2 Y axis +");
+        else if (Input.GetAxis("joystick 2 Y axis") > 0)
+            RegisterKey("joystick 2 Y axis -");
+        else if (Input.GetAxis("joystick 2 X axis") < 0)
+            RegisterKey("joystick 2 X axis -");
+        else if (Input.GetAxis("joystick 2 X axis") > 0)
+            RegisterKey("joystick 2 X axis +");
+
+        //Joystick 2 Buttons
+        else if (Input.GetKey(KeyCode.Joystick2Button0))
+            RegisterKey("joystick 2 button 0");
+        else if (Input.GetKey(KeyCode.Joystick2Button1))
+            RegisterKey("joystick 2 button 1");
+        else if (Input.GetKey(KeyCode.Joystick2Button2))
+            RegisterKey("joystick 2 button 2");
+        else if (Input.GetKey(KeyCode.Joystick2Button3))
+            RegisterKey("joystick 2 button 3");
+        else if (Input.GetKey(KeyCode.Joystick2Button4))
+            RegisterKey("joystick 2 button 4");
+        else if (Input.GetKey(KeyCode.Joystick2Button5))
+            RegisterKey("joystick 2 button 5");
+        else if (Input.GetKey(KeyCode.Joystick2Button6))
+            RegisterKey("joystick 2 button 6");
+        else if (Input.GetKey(KeyCode.Joystick2Button7))
+            RegisterKey("joystick 2 button 7");
+        else if (Input.GetKey(KeyCode.Joystick2Button8))
+            RegisterKey("joystick 2 button 8");
+        else if (Input.GetKey(KeyCode.Joystick2Button9))
+            RegisterKey("joystick 2 button 9");
+        else if (Input.GetKey(KeyCode.Joystick2Button10))
+            RegisterKey("joystick 2 button 10");
+        else if (Input.GetKey(KeyCode.Joystick2Button11))
+            RegisterKey("joystick 2 button 11");
+        else if (Input.GetKey(KeyCode.Joystick2Button12))
+            RegisterKey("joystick 2 button 12");
+        else if (Input.GetKey(KeyCode.Joystick2Button13))
+            RegisterKey("joystick 2 button 13");
+        else if (Input.GetKey(KeyCode.Joystick2Button14))
+            RegisterKey("joystick 2 button 14");
+        else if (Input.GetKey(KeyCode.Joystick2Button15))
+            RegisterKey("joystick 2 button 15");
+        else if (Input.GetKey(KeyCode.Joystick2Button16))
+            RegisterKey("joystick 2 button 16");
+        else if (Input.GetKey(KeyCode.Joystick2Button17))
+            RegisterKey("joystick 2 button 17");
+        else if (Input.GetKey(KeyCode.Joystick2Button18))
+            RegisterKey("joystick 2 button 18");
+        else if (Input.GetKey(KeyCode.Joystick2Button19))
+            RegisterKey("joystick 2 button 19");
+
+        //Joystick 3 Left Stick
+        else if (Input.GetAxis("joystick 3 Y axis") < 0)
+            RegisterKey("joystick 3 Y axis +");
+        else if (Input.GetAxis("joystick 3 Y axis") > 0)
+            RegisterKey("joystick 3 Y axis -");
+        else if (Input.GetAxis("joystick 3 X axis") < 0)
+            RegisterKey("joystick 3 X axis -");
+        else if (Input.GetAxis("joystick 3 X axis") > 0)
+            RegisterKey("joystick 3 X axis +");
+
+        //Joystick 4 Left Stick
+        else if (Input.GetAxis("joystick 4 Y axis") < 0)
+            RegisterKey("joystick 4 Y axis +");
+        else if (Input.GetAxis("joystick 4 Y axis") > 0)
+            RegisterKey("joystick 4 Y axis -");
+        else if (Input.GetAxis("joystick 4 X axis") < 0)
+            RegisterKey("joystick 4 X axis -");
+        else if (Input.GetAxis("joystick 4 X axis") > 0)
+            RegisterKey("joystick 4 X axis +");
+    }
+
+    void OnGUI()
+    {
+        Event e = Event.current;
+        if (e.isKey)
+            Debug.Log("Detected key code: " + e.keyCode);
+    }
+
+    private void Update()
+    {
+        if (CurrentState != State.WaitingForKey)
+            return;
+
+        TryRegisterJoystick();
+
         //Modifiers
-        else if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
             RegisterKey("left shift");
         else if (Input.GetKey(KeyCode.RightShift))
             RegisterKey("right shift");
         else if (Input.GetKey(KeyCode.LeftControl))
-            RegisterKey("left control");
+            RegisterKey("left ctrl");
         else if (Input.GetKey(KeyCode.RightControl))
-            RegisterKey("right control");
+            RegisterKey("right ctrl");
         else if (Input.GetKey(KeyCode.LeftAlt))
             RegisterKey("left alt");
         else if (Input.GetKey(KeyCode.RightAlt))
@@ -216,6 +303,26 @@ public class ButtonMappingDialog : MonoBehaviour
             RegisterKey("9");
         else if (Input.GetKey(KeyCode.Alpha0))
             RegisterKey("0");
+        else if (Input.GetKey(KeyCode.Keypad1))
+            RegisterKey("[1]");
+        else if (Input.GetKey(KeyCode.Keypad2))
+            RegisterKey("[2]");
+        else if (Input.GetKey(KeyCode.Keypad3))
+            RegisterKey("[3]");
+        else if (Input.GetKey(KeyCode.Keypad4))
+            RegisterKey("[4]");
+        else if (Input.GetKey(KeyCode.Keypad5))
+            RegisterKey("[5]");
+        else if (Input.GetKey(KeyCode.Keypad6))
+            RegisterKey("[6]");
+        else if (Input.GetKey(KeyCode.Keypad7))
+            RegisterKey("[7]");
+        else if (Input.GetKey(KeyCode.Keypad8))
+            RegisterKey("[8]");
+        else if (Input.GetKey(KeyCode.Keypad9))
+            RegisterKey("[9]");
+        else if (Input.GetKey(KeyCode.Keypad0))
+            RegisterKey("[0]");
 
         else if (Input.inputString != null && Input.inputString.Length > 0)
             RegisterKey(Input.inputString.ToLower());
