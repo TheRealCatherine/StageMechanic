@@ -245,9 +245,22 @@ public class PlayerManager : MonoBehaviour {
             List<string> newList = new List<string>();
             foreach(string key in bindings.Value)
             {
-                if ((action == null || action == bindings.Key)  && key != keyName)
+                if ((action != null || action != bindings.Key)  && key != keyName)
                     newList.Add(key);
             }
+            newBindings[bindings.Key] = newList.ToArray();
+        }
+        keybindings[playerNumber] = newBindings;
+    }
+
+    public static void AddKeyBinding(int playerNumber, string action, string keyName)
+    {
+        Dictionary<string, string[]> newBindings = new Dictionary<string, string[]>(keybindings[playerNumber]);
+        foreach (KeyValuePair<string, string[]> bindings in keybindings[playerNumber])
+        {
+            List<string> newList = new List<string>(bindings.Value);
+            if(bindings.Key == action || action == null)
+                newList.Add(keyName);
             newBindings[bindings.Key] = newList.ToArray();
         }
         keybindings[playerNumber] = newBindings;

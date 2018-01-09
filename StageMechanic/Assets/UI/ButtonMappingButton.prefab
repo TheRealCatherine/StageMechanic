@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222201306416253436}
   - component: {fileID: 114891148710789128}
   - component: {fileID: 114575754446653726}
+  - component: {fileID: 114513956540718564}
   m_Layer: 5
   m_Name: ButtonMappingButton
   m_TagString: Untagged
@@ -46,6 +47,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114513956540718564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1483218876337866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31655050c4aadf42b3cd83ef58a56e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActionName: 
+  Value: 
 --- !u!114 &114575754446653726
 MonoBehaviour:
   m_ObjectHideFlags: 1

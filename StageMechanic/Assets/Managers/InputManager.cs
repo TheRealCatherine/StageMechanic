@@ -403,7 +403,7 @@ public class InputManager : MonoBehaviour {
             if (shiftDown)
                 player1Inputs.Add("Grab");
 
-            if (period < joystickThrottleRate)
+            if (vert > 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
@@ -434,7 +434,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || vert < 0)
         {
-            if (period < joystickThrottleRate)
+            if (vert < 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
@@ -465,7 +465,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || hori < 0)
         {
-            if (period < joystickThrottleRate)
+            if (hori < 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
@@ -496,7 +496,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || hori > 0)
         {
-            if (period < joystickThrottleRate)
+            if (hori > 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;

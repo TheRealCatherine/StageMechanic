@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour {
     {
         get
         {
-            return IsSinglePlayerDeathDialogOpen || FileBrowser.IsOpen;
+            return IsSinglePlayerDeathDialogOpen || FileBrowser.IsOpen || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
         }
     }
 
