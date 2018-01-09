@@ -51,17 +51,6 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
         }
     }
 
-    public virtual Dictionary<string, string[]> Inputs
-    {
-        get
-        {
-            return SuggestedInputs;
-        }
-        set
-        {
-        }
-    }
-
     public GameObject GameObject
     {
         get

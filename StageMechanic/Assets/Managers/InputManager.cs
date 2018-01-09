@@ -547,9 +547,5 @@ public class InputManager : MonoBehaviour {
             Cursor.transform.position += new Vector3(0, 0, 1);
             Input.ResetInputAxes();
         }
-        else if (BlockManager.PlayMode && (shiftDown))
-        {
-            PlayerManager.Player1MoveNull(true);
-        }
 	}
 }

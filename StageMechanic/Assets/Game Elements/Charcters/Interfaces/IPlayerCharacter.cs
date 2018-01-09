@@ -26,8 +26,6 @@ public interface IPlayerCharacter {
 
     Dictionary<string, string[]> SuggestedInputs { get; }
 
-    Dictionary<string, string[]> Inputs { get; set; }
-
     Dictionary<string, string> InputParameters(string inputName);
 
     float ApplyInput(List<string> inputNames, Dictionary<string, string> parameters = null);

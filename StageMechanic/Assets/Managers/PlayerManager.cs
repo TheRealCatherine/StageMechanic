@@ -115,6 +115,7 @@ public class PlayerManager : MonoBehaviour {
                 Avatars.Add(Instantiate(Instance.Player1Prefab, player.transform.position + new Vector3(0f, 0.5f, 0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
             else
                 Avatars[0] = Instantiate(Instance.Player1Prefab, player.transform.position + new Vector3(0f, 0.5f, 0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+            LoadKeybindings(0);
         }
     }
 
@@ -181,11 +182,6 @@ public class PlayerManager : MonoBehaviour {
             Avatars[0].Teleport(location);
     }
 
-    public static void Player1Jump()
-    {
-        Avatars[0].QueueMove(Vector3.up);
-    }
-
     public static void Player1BoingyTo( Vector3 location )
     {
         Avatars[0].Boingy(location);
@@ -196,49 +192,37 @@ public class PlayerManager : MonoBehaviour {
         Avatars[0].SlideForward();
     }
 
-	internal static void Player1MoveRight(bool pushpull)
-    {
-		if (pushpull)
-			Avatars [0].PushPull (Vector3.right);
-		else
-			Avatars[0].QueueMove(Vector3.right);
-    }
-
-	internal static void Player1MoveAway(bool pushpull)
-    {
-		if (pushpull)
-			Avatars [0].PushPull (Vector3.forward);
-		else
-	        Avatars[0].QueueMove(Vector3.forward);
-    }
-
-	internal static void Player1MoveLeft(bool pushpull)
-    {
-		if (pushpull)
-			Avatars [0].PushPull (Vector3.left);
-		else
-	        Avatars[0].QueueMove(Vector3.left);
-    }
-
-	internal static void Player1MoveCloser(bool pushpull)
-    {
-		if (pushpull)
-			Avatars [0].PushPull (Vector3.back);
-		else
-	        Avatars[0].QueueMove(Vector3.back);
-    }
-
-	internal static void Player1MoveNull(bool pushpull)
-	{
-		if (pushpull)
-			Avatars [0].PushPull (Vector3.zero);
-	}
-
     public static float Player1ApplyInput(List<string> inputs, Dictionary<string,string> parameters = null)
     {
         if (Avatars == null || Avatars.Count == 0)
             return 0f;
         return Avatars[0].ApplyInput(inputs, parameters);
+    }
+
+    private static List<Dictionary<string, string[]>> keybindings = new List<Dictionary<string, string[]>>();
+
+    private static void LoadKeybindings( int playerNumber )
+    {
+        Debug.Assert(playerNumber >= 0);
+        Debug.Assert(Avatars != null);
+        Debug.Assert(Avatars.Count > playerNumber);
+        Debug.Assert(Avatars[playerNumber] != null);
+        Debug.Assert(keybindings != null);
+
+        Dictionary<string, string[]> actual = new Dictionary<string, string[]>();
+
+        Dictionary<string, string[]> suggested = Avatars[playerNumber].SuggestedInputs;
+        foreach(KeyValuePair<string,string[]> item in suggested) {
+            if (PlayerPrefs.HasKey("Player" + playerNumber + "_Input_" + item.Key))
+                actual.Add(item.Key, PlayerPrefs.GetString("Player" + playerNumber + "_Input_" + item.Key).Split(','));
+            else
+                actual.Add(item.Key, item.Value);
+        }
+
+        while (keybindings.Count <= playerNumber)
+            keybindings.Add(null);
+
+        keybindings[playerNumber] = actual;
     }
 
     public static Dictionary<string,string[]> Player1InputOptions
@@ -247,7 +231,9 @@ public class PlayerManager : MonoBehaviour {
         {
             if (Avatars == null || Avatars.Count == 0)
                 return null;
-            return Avatars[0]?.Inputs;
+            Debug.Assert(keybindings != null);
+            Debug.Assert(keybindings.Count >= 1);
+            return keybindings[0];
         }
     }
 }
