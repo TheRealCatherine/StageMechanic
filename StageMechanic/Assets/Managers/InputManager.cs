@@ -347,21 +347,21 @@ public class InputManager : MonoBehaviour {
 
             List<string> axees = new List<string>();
             if (vert > 0f)
-                axees.Add("7th axis +");
+                axees.Add("joystick 1 7th axis +");
             else if (vert < 0f)
-                axees.Add("7th axis -");
+                axees.Add("joystick 1 7th axis -");
             if (hori > 0f)
-                axees.Add("6th axis +");
+                axees.Add("joystick 1 6th axis +");
             else if (hori < 0f)
-                axees.Add("6th axis -");
+                axees.Add("joystick 1 6th axis -");
             if (Input.GetAxis("LeftStickV") > 0)
-                axees.Add("Y axis -");
+                axees.Add("joystick 1 Y axis -");
             else if (Input.GetAxis("LeftStickV") < 0)
-                axees.Add("Y axis +");
+                axees.Add("joystick 1 Y axis +");
             if (Input.GetAxis("LeftStickH") > 0)
-                axees.Add("X axis +");
+                axees.Add("joystick 1 X axis +");
             else if (Input.GetAxis("LeftStickH") < 0)
-                axees.Add("X axis -");
+                axees.Add("joystick 1 X axis -");
 
             Dictionary<string, string[]> possible = PlayerManager.Player1InputOptions;
             if (possible != null)
@@ -527,7 +527,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (goFurther)
         {
-            if (period < joystickThrottleRate)
+            if (Input.GetAxis("LeftStickV") > 0 &&  period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
@@ -538,7 +538,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (goCloser)
         {
-            if (period < joystickThrottleRate)
+            if (Input.GetAxis("LeftStickV") < 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;

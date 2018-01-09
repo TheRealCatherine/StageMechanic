@@ -75,6 +75,7 @@ public class PlayerManager : MonoBehaviour {
         HidePlayers();
         BlockManager.ReloadStartState();
         SpawnPlayers();
+        UIManager.RefreshButtonMappingDialog();
         LogController.Log("YOU DIED");
     }
 
