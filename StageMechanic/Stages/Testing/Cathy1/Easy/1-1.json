@@ -10,7 +10,7 @@
                     "Position": {
                         "x": 0,
                         "y": 0,
-                        "z": 0
+                        "z": 3
                     },
                     "Blocks": [
                         {
@@ -1829,39 +1829,6 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "6dfd1413-5348-403a-9ea1-e4b9cbb77526",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 2,
-                                "y": 32,
-                                "z": 19
-                            },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "37b05e6b-439f-46b4-bdd9-aa20891021d1",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 1,
-                                "y": 32,
-                                "z": 19
-                            },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "46da7899-21b9-4a17-8da4-0ca22b9ebaac",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 0,
-                                "y": 32,
-                                "z": 19
-                            },
-                            "Properties": [ ]
-                        },
-                        {
                             "Name": "1c4dd826-f2c9-4f4f-a0ad-2c280865232c",
                             "Palette": "Cathy1 Internal",
                             "Type": "Basic",
@@ -1906,39 +1873,6 @@
                             "Properties": [ ]
                         },
                         {
-                            "Name": "173645ee-5ccb-400a-b935-27d62606ecdf",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 0,
-                                "y": 33,
-                                "z": 19
-                            },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "b068f103-31c1-490c-853b-9b87eca0d754",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 1,
-                                "y": 33,
-                                "z": 19
-                            },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "40a93df1-d45a-4028-a236-de7a2198fbc4",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 2,
-                                "y": 33,
-                                "z": 19
-                            },
-                            "Properties": [ ]
-                        },
-                        {
                             "Name": "f21f9971-6927-4cf0-8e86-e3f9ce567575",
                             "Palette": "Cathy1 Internal",
                             "Type": "Basic",
@@ -1977,39 +1911,6 @@
                             "Type": "Basic",
                             "Position": {
                                 "x": 3,
-                                "y": 34,
-                                "z": 20
-                            },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "97bade63-90de-4ff0-88fe-2d03ad303cf9",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 1,
-                                "y": 34,
-                                "z": 20
-                            },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "b5f028b0-a07d-496c-9516-b34a52bbffc5",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 2,
-                                "y": 34,
-                                "z": 20
-                            },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "a8319750-dbc1-463e-94db-59b39da1fc9e",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 0,
                                 "y": 34,
                                 "z": 20
                             },
@@ -2970,12 +2871,151 @@
                                     "Value": "0"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "5be4356f-d1f3-47fa-a56a-6401c42f3aae",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 32,
+                                "z": 18
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "37b05e6b-439f-46b4-bdd9-aa20891021d1",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 32,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "46da7899-21b9-4a17-8da4-0ca22b9ebaac",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 32,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "173645ee-5ccb-400a-b935-27d62606ecdf",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 33,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "b068f103-31c1-490c-853b-9b87eca0d754",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 33,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "40a93df1-d45a-4028-a236-de7a2198fbc4",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 33,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "f70e9bca-7144-47fc-b5f3-f5032867714d",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 34,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "a6fbbf30-fdec-4466-8a82-5f3fc9c416f9",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 34,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "6ba0023e-88e7-4cb8-a66d-c1158bab7673",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 34,
+                                "z": 19
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight",
+                                    "Value": "0"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "045b9649-0006-4899-b142-380a39492cdf",
+                            "Name": "d4106f66-b6be-40ed-a1ba-f514426ed175",
                             "Palette": "Cathy1 Internal",
                             "Type": "Player Start",
                             "Position": {
