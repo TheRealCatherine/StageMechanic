@@ -514,7 +514,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
             else
             {
                 Face(direction);
-                expectedTime = 0.2f;
+                expectedTime = 0.25f;
             }
         }
         else if(CurrentMoveState == State.Sidle)

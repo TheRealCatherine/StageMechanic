@@ -98,6 +98,8 @@ public class InputManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Period) && !BlockManager.PlayMode)
             goCloser = true;
 
+       
+
         // Buttons for creating blocks
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
@@ -363,33 +365,36 @@ public class InputManager : MonoBehaviour {
             else if (Input.GetAxis("joystick 1 X axis") < 0)
                 axees.Add("joystick 1 X axis -");
 
-            Dictionary<string, string[]> possible = PlayerManager.Player1InputOptions;
-            if (possible != null)
+            for (int playerNumber = 0; playerNumber < PlayerManager.PlayerCount(); ++playerNumber)
             {
-                List<string> inputs = new List<string>();
-                foreach (KeyValuePair<string, string[]> item in possible)
+                Dictionary<string, string[]> possible = PlayerManager.PlayerInputOptions(playerNumber);
+                if (possible != null)
                 {
-                    foreach (string key in item.Value)
+                    List<string> inputs = new List<string>();
+                    foreach (KeyValuePair<string, string[]> item in possible)
                     {
-                        if (key.Contains("axis"))
+                        foreach (string key in item.Value)
                         {
-                            if (axees.Contains(key))
+                            if (key.Contains("axis"))
+                            {
+                                if (axees.Contains(key))
+                                {
+                                    inputs.Add(item.Key);
+                                    Debug.Log(item.Key + " " + key);
+                                }
+                            }
+                            else if (Input.GetKey(key) && !inputs.Contains(item.Key))
                             {
                                 inputs.Add(item.Key);
                                 Debug.Log(item.Key + " " + key);
                             }
                         }
-                        else if (Input.GetKey(key) && !inputs.Contains(item.Key))
-                        {
-                            inputs.Add(item.Key);
-                            Debug.Log(item.Key + " " + key);
-                        }
                     }
-                }
-                if (inputs.Count > 0)
-                {
-                    float time = PlayerManager.Player1ApplyInput(inputs);
-                    period = joystickThrottleRate - time;
+                    if (inputs.Count > 0)
+                    {
+                        float time = PlayerManager.PlayerApplyInput(playerNumber, inputs);
+                        period = joystickThrottleRate - time;
+                    }
                 }
             }
         }

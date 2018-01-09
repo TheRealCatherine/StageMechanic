@@ -20,17 +20,24 @@ public class EventManager : MonoBehaviour {
 
     public void CreatePlayerStartLocation(int playerNumber, Vector3 pos, Quaternion rotation)
     {
-        Debug.Log(playerNumber + ": " + pos.ToString());
+        Debug.Log("Assigning " + playerNumber + " start position: " + pos.ToString());
         Cathy1PlayerStartLocation ev = GetComponent<Cathy1EventFactory>().CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
         ev.PlayerNumber = playerNumber;
         ev.transform.parent = gameObject.transform;
-        if (EventList.Count == 0)
-            EventList.Add(ev);
+        if(EventList.Count > playerNumber)
+        {
+            Destroy(EventList[playerNumber]);
+            EventList[playerNumber] = ev;
+        }
         else
         {
-            Destroy(EventList[0]);
-            EventList[0] = ev;
+            for (int x = EventList.Count; x <= playerNumber; ++x)
+            {
+                EventList.Add(null);
+            }
+            EventList[playerNumber] = ev;
         }
+
         if(PlayerManager.PlayerStartLocations.Count > playerNumber)
             PlayerManager.PlayerStartLocations[playerNumber] = ev;
         else

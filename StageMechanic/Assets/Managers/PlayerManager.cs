@@ -12,6 +12,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
     public GameObject Player1Prefab;
+    public GameObject Player2Prefab;
 
     public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
     public static List<Cathy1PlayerCharacter> Avatars { get; set; } = new List<Cathy1PlayerCharacter>();
@@ -36,6 +37,13 @@ public class PlayerManager : MonoBehaviour {
                 HidePlayers();
             }
         }
+    }
+
+    public static int PlayerCount()
+    {
+        if (Avatars != null && Avatars.Count > 0)
+            return Avatars.Count;
+        return PlayerStartLocations.Count;
     }
 
     public static Cathy1PlayerCharacter Player1()
@@ -109,14 +117,26 @@ public class PlayerManager : MonoBehaviour {
 
     public static void SpawnPlayers()
     {
-        Debug.Log("Spawning");
-        foreach (Cathy1PlayerStartLocation player in PlayerStartLocations)
+        Debug.Assert(PlayerStartLocations != null);
+        if (PlayerStartLocations.Count == 0)
+            return;
+        if (PlayerStartLocations.Count > 0)
         {
             if (Avatars.Count == 0)
-                Avatars.Add(Instantiate(Instance.Player1Prefab, player.transform.position + new Vector3(0f, 0.5f, 0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+                Avatars.Add(Instantiate(Instance.Player1Prefab, PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
             else
-                Avatars[0] = Instantiate(Instance.Player1Prefab, player.transform.position + new Vector3(0f, 0.5f, 0f), player.transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+                Avatars[0] = Instantiate(Instance.Player1Prefab, PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+            Debug.Log("Spawning player 1 at " + PlayerStartLocations[0].transform.position);
             LoadKeybindings(0);
+        }
+        if (PlayerStartLocations.Count > 1)
+        {
+            if (Avatars.Count == 1)
+                Avatars.Add(Instantiate(Instance.Player2Prefab, PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+            else
+                Avatars[1] = Instantiate(Instance.Player2Prefab, PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+            Debug.Log("Spawning player 2 at " + PlayerStartLocations[1].transform.position);
+            LoadKeybindings(1);
         }
     }
 
@@ -200,6 +220,21 @@ public class PlayerManager : MonoBehaviour {
         return Avatars[0].ApplyInput(inputs, parameters);
     }
 
+    public static float Player2ApplyInput(List<string> inputs, Dictionary<string, string> parameters = null)
+    {
+        if (Avatars == null || Avatars.Count < 2)
+            return 0f;
+        return Avatars[1].ApplyInput(inputs, parameters);
+    }
+
+    public static float PlayerApplyInput(int playerNumber, List<string> inputs, Dictionary<string, string> parameters = null)
+    {
+        if (playerNumber == 0)
+            return Player1ApplyInput(inputs, parameters);
+        else
+            return Player2ApplyInput(inputs, parameters);
+    }
+
     private static List<Dictionary<string, string[]>> keybindings = new List<Dictionary<string, string[]>>();
 
     private static void LoadKeybindings( int playerNumber )
@@ -236,6 +271,25 @@ public class PlayerManager : MonoBehaviour {
             Debug.Assert(keybindings.Count >= 1);
             return keybindings[0];
         }
+    }
+
+    public static Dictionary<string, string[]> Player2InputOptions
+    {
+        get
+        {
+            if (Avatars == null || Avatars.Count == 0)
+                return null;
+            Debug.Assert(keybindings != null);
+            Debug.Assert(keybindings.Count >= 2);
+            return keybindings[1];
+        }
+    }
+
+    public static Dictionary<string,string[]> PlayerInputOptions(int playerNumber)
+    {
+        if (playerNumber == 0)
+            return Player1InputOptions;
+        else return Player2InputOptions;
     }
 
     public static void RemoveKeyBinding(int playerNumber, string action = null, string keyName = null)

@@ -104,6 +104,9 @@ public class EventJsonDelegate {
         //newEvent.Name = _name;
         //newEvent.Properties = _properties;
 
-        PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(0, _pos, rotation);
+        int playerNumber = 0;
+        if (_properties.ContainsKey("PlayerNumber"))
+            playerNumber = int.Parse(_properties["PlayerNumber"]);
+        PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(playerNumber, _pos, rotation);
     }
 }
