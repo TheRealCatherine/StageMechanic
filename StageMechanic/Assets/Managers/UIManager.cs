@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour {
 
     public BlockInfoBoxController BlockInfoBox;
     public SinglePlayerDeathDialog SinglePlayerDeathDialog;
-    public GameObject ButtonMappingDialog;
+    public ButtonMappingDialog ButtonMappingDialog;
 
     //TODO Singleton flame war
     public static UIManager Instance;
@@ -34,5 +34,10 @@ public class UIManager : MonoBehaviour {
     public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)
     {
         Instance.SinglePlayerDeathDialog.Show(deathRattle);
+    }
+
+    public static void RefreshButtonMappingDialog()
+    {
+        Instance.ButtonMappingDialog.Refresh();
     }
 }

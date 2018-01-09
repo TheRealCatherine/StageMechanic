@@ -81,6 +81,7 @@ public class BlockManager : MonoBehaviour {
                 ReloadStartState();
             PlayerManager.Player1PlayGameOverSound();
         }
+        UIManager.RefreshButtonMappingDialog();
         GetComponent<PlayerManager>().PlayMode = PlayMode;
         Cursor.SetActive(!PlayMode);
     }

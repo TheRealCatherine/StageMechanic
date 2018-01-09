@@ -214,7 +214,7 @@ public class PlayerManager : MonoBehaviour {
         Dictionary<string, string[]> suggested = Avatars[playerNumber].SuggestedInputs;
         foreach(KeyValuePair<string,string[]> item in suggested) {
             if (PlayerPrefs.HasKey("Player" + playerNumber + "_Input_" + item.Key))
-                actual.Add(item.Key, PlayerPrefs.GetString("Player" + playerNumber + "_Input_" + item.Key).Split(','));
+                actual.Add(item.Key, PlayerPrefs.GetString("Input_Mapping_Player" + playerNumber + "_" + item.Key).Split(','));
             else
                 actual.Add(item.Key, item.Value);
         }
@@ -235,5 +235,21 @@ public class PlayerManager : MonoBehaviour {
             Debug.Assert(keybindings.Count >= 1);
             return keybindings[0];
         }
+    }
+
+    public static void RemoveKeyBinding(int playerNumber, string action = null, string keyName = null)
+    {
+        Dictionary<string, string[]> newBindings = new Dictionary<string,string[]>(keybindings[playerNumber]);
+        foreach (KeyValuePair<string, string[]> bindings in keybindings[playerNumber])
+        {
+            List<string> newList = new List<string>();
+            foreach(string key in bindings.Value)
+            {
+                if ((action == null || action == bindings.Key)  && key != keyName)
+                    newList.Add(key);
+            }
+            newBindings[bindings.Key] = newList.ToArray();
+        }
+        keybindings[playerNumber] = newBindings;
     }
 }
