@@ -248,7 +248,7 @@ public class BlockManager : MonoBehaviour {
     private static List<string> _undos = new List<string>();
     private static List<Vector3> _undoPlayerPos = new List<Vector3>();
     private static List<Vector3> _undoPlayerFacing = new List<Vector3>();
-    private static List<Cathy1PlayerCharacter.State> _undoPlayerState = new List<Cathy1PlayerCharacter.State>();
+    private static List<int> _undoPlayerState = new List<int>();
     private static List<float> _undoPlatformPosition = new List<float>();
 
     public static void ClearUndoStates()

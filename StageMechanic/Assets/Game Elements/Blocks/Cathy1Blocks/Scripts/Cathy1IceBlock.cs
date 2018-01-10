@@ -15,7 +15,7 @@ public class Cathy1IceBlock : Cathy1Block
     bool hasPlayer()
     {
         Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up && PlayerManager.Player1State() == Cathy1PlayerCharacter.State.Walk);
+        return (player == transform.position + Vector3.up && PlayerManager.Player1StateName() == "Walk");
     }
 
     private void Update()

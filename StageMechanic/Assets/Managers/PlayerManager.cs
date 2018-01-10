@@ -156,19 +156,19 @@ public class PlayerManager : MonoBehaviour {
         return "Hiding";
     }
 
-    public static Cathy1PlayerCharacter.State Player1State()
+    public static int Player1State()
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
         {
-            return (Avatars[0] as Cathy1PlayerCharacter).CurrentMoveState;
+            return Avatars[0].CurrentStateIndex;
         }
-        return Cathy1PlayerCharacter.State.Idle;
+        return 0;
     }
 
-    public static void SetPlayer1State(Cathy1PlayerCharacter.State state)
+    public static void SetPlayer1State(int state)
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
-            (Avatars[0] as Cathy1PlayerCharacter).CurrentMoveState = state;
+            Avatars[0].CurrentStateIndex = state;
     }
 
     public static void SetPlayer1Location(Vector3 location)
