@@ -24,7 +24,7 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
     bool hasPlayer()
     {
         Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up && (player != transform.position + Vector3.up || (PlayerManager.Player1StateName() != "Idle" || PlayerManager.Player1StateName() != "Walk" || PlayerManager.Player1StateName() != "Center")));
+        return (player == transform.position + Vector3.up && (player != transform.position + Vector3.up || (PlayerManager.PlayerStateName() != "Idle" || PlayerManager.PlayerStateName() != "Walk" || PlayerManager.PlayerStateName() != "Center")));
     }
 
     private void Update()

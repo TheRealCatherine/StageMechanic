@@ -290,7 +290,7 @@ public class BlockManager : MonoBehaviour {
         _undos.Add(Instance.BlocksToPrettyJson());
         _undoPlayerPos.Add(PlayerManager.Player1Location());
         _undoPlayerFacing.Add(PlayerManager.Player1FacingDirection());
-        _undoPlayerState.Add(PlayerManager.Player1State());
+        _undoPlayerState.Add(PlayerManager.PlayerState());
         _undoPlatformPosition.Add(ActiveFloor.transform.position.y);
     }
 

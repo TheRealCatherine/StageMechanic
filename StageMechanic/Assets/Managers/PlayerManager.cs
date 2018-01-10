@@ -147,20 +147,20 @@ public class PlayerManager : MonoBehaviour {
         Avatars[0].FacingDirection = direction;
     }
 
-    public static string Player1StateName()
+    public static string PlayerStateName( int playerNumber = 0 )
     {
-        if (Avatars.Count > 0 && Avatars[0] != null)
+        if (Avatars.Count > playerNumber && Avatars[playerNumber] != null)
         {
-            return Avatars[0].StateNames[Avatars[0].CurrentStateIndex];
+            return Avatars[playerNumber].StateNames[Avatars[playerNumber].CurrentStateIndex];
         }
         return "Hiding";
     }
 
-    public static int Player1State()
+    public static int PlayerState( int playerNumber = 0 )
     {
-        if (Avatars.Count > 0 && Avatars[0] != null)
+        if (Avatars.Count > playerNumber && Avatars[playerNumber] != null)
         {
-            return Avatars[0].CurrentStateIndex;
+            return Avatars[playerNumber].CurrentStateIndex;
         }
         return 0;
     }
