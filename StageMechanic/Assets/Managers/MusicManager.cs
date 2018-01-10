@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour {
 	void Start () {
         Player = GetComponent<AudioSource>();
         Instance = this;
-        Player.volume = PlayerPrefs.GetFloat("MusicVolume", 1.0f);
+        Player.volume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
         if (PlayerPrefs.HasKey("MusicTrackIndex"))
             PlayTrack(PlayerPrefs.GetInt("MusicTrackIndex"));
         else

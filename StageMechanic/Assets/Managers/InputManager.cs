@@ -208,13 +208,9 @@ public class InputManager : MonoBehaviour {
             BlockManager.TogglePlayMode();
         }
         //Quit
-        else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-				Application.Quit ();
-#endif
+            UIManager.ShowMainMenu();
         }
 
         //Manually move the platform

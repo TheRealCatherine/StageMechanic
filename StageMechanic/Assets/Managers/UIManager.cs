@@ -45,5 +45,6 @@ public class UIManager : MonoBehaviour {
     public static void ShowMainMenu()
     {
         Instance.MainMenu.enabled = true;
+        Instance.MainMenu.gameObject.SetActive(true);
     }
 }

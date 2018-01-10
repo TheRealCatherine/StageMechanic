@@ -10,6 +10,13 @@ public class MainMenu : MonoBehaviour {
     public Button QuitButton;
     public Toggle AutoPlay;
 
+    public Button PlayPauseButton;
+    public Button NextTrackButton;
+    public Button PrevTrackButton;
+    public Button VolumeUpButton;
+    public Button VolumeDownButton;
+    public Button CycleBackgroundButton;
+
     public AudioClip StartupSound;
 
 	void Start () {
@@ -17,14 +24,31 @@ public class MainMenu : MonoBehaviour {
         CreateButton.onClick.AddListener(OnCreateClicked);
         QuitButton.onClick.AddListener(OnQuitClicked);
         AutoPlay.onValueChanged.AddListener(OnAutoPlayChecked);
+
+        PlayPauseButton.onClick.AddListener(onPlayPauseButtonClicked);
+        NextTrackButton.onClick.AddListener(onNextTrackButtonClicked);
+        PrevTrackButton.onClick.AddListener(onPrevTrackButtonClicked);
+        VolumeUpButton.onClick.AddListener(onVolumeUpButtonClicked);
+        VolumeDownButton.onClick.AddListener(onVolumeDownButtonClicked);
+        CycleBackgroundButton.onClick.AddListener(onCycleBackgroundButtonClicked);
     }
 
     private void OnEnable()
     {
-        PlayerManager.HidePlayers();
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
         if (StartupSound != null)
             GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
+    }
+
+    private void Update()
+    {
+        if (gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape))
+            OnEscPressed();
+    }
+
+    void OnEscPressed()
+    {
+        gameObject.SetActive(false);
     }
 
     void OnAutoPlayChecked(bool value)
@@ -58,4 +82,24 @@ public class MainMenu : MonoBehaviour {
 				Application.Quit ();
 #endif
     }
+
+    public void onPlayPauseButtonClicked() {
+        MusicManager.TogglePause();
+    }
+    public void onNextTrackButtonClicked() {
+        MusicManager.PlayNextTrack();
+    }
+    public void onPrevTrackButtonClicked() {
+        MusicManager.PlayPreviousTrack();
+    }
+    public void onVolumeUpButtonClicked() {
+        MusicManager.VolumeUp();
+    }
+    public void onVolumeDownButtonClicked() {
+        MusicManager.VolumeDown();
+    }
+    public void onCycleBackgroundButtonClicked() {
+        SkyboxManager.NextSkybox();
+    }
+
 }

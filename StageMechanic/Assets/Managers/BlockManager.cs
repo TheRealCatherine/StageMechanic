@@ -71,7 +71,7 @@ public class BlockManager : MonoBehaviour {
         if (PlayMode)
         {
             LogController.Log("Start!");
-            ButtonMappingBox?.SetActive(false);
+            UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
             RecordStartState();
         }
         else
@@ -79,6 +79,7 @@ public class BlockManager : MonoBehaviour {
             //Reset blocks to their pre-PlayMode state
             if (_startState != null && _startState.Length != 0)
                 ReloadStartState();
+            UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
         }
         UIManager.RefreshButtonMappingDialog();
         GetComponent<PlayerManager>().PlayMode = PlayMode;
