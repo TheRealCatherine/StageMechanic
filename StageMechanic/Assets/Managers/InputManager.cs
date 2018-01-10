@@ -269,6 +269,11 @@ public class InputManager : MonoBehaviour {
         {
             GetComponent<EventManager>().CreatePlayerStartLocation(1, Cursor.transform.position, Cursor.transform.rotation);
         }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            GetComponent<EventManager>().CreatePlayerStartLocation(2, Cursor.transform.position, Cursor.transform.rotation);
+        }
+
 
         else if (Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)
         {

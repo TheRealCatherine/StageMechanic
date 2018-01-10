@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour {
 
     public GameObject Player1Prefab;
     public GameObject Player2Prefab;
+    public GameObject Player3Prefab;
 
     public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
     public static List<Cathy1PlayerCharacter> Avatars { get; set; } = new List<Cathy1PlayerCharacter>();
@@ -138,6 +139,15 @@ public class PlayerManager : MonoBehaviour {
             Debug.Log("Spawning player 2 at " + PlayerStartLocations[1].transform.position);
             LoadKeybindings(1);
         }
+        if (PlayerStartLocations.Count > 2)
+        {
+            if (Avatars.Count == 2)
+                Avatars.Add(Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+            else
+                Avatars[1] = Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+            Debug.Log("Spawning player32 at " + PlayerStartLocations[2].transform.position);
+            LoadKeybindings(2);
+        }
     }
 
 
@@ -227,12 +237,21 @@ public class PlayerManager : MonoBehaviour {
         return Avatars[1].ApplyInput(inputs, parameters);
     }
 
+    public static float Player3ApplyInput(List<string> inputs, Dictionary<string, string> parameters = null)
+    {
+        if (Avatars == null || Avatars.Count < 3)
+            return 0f;
+        return Avatars[2].ApplyInput(inputs, parameters);
+    }
+
     public static float PlayerApplyInput(int playerNumber, List<string> inputs, Dictionary<string, string> parameters = null)
     {
         if (playerNumber == 0)
             return Player1ApplyInput(inputs, parameters);
-        else
+        else if (playerNumber == 1)
             return Player2ApplyInput(inputs, parameters);
+        else
+            return Player3ApplyInput(inputs, parameters);
     }
 
     private static List<Dictionary<string, string[]>> keybindings = new List<Dictionary<string, string[]>>();
@@ -285,11 +304,26 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    public static Dictionary<string, string[]> Player3InputOptions
+    {
+        get
+        {
+            if (Avatars == null || Avatars.Count == 0)
+                return null;
+            Debug.Assert(keybindings != null);
+            Debug.Assert(keybindings.Count >= 3);
+            return keybindings[2];
+        }
+    }
+
     public static Dictionary<string,string[]> PlayerInputOptions(int playerNumber)
     {
         if (playerNumber == 0)
             return Player1InputOptions;
-        else return Player2InputOptions;
+        else if (playerNumber == 1)
+            return Player2InputOptions;
+        else
+            return Player3InputOptions;
     }
 
     public static void RemoveKeyBinding(int playerNumber, string action = null, string keyName = null)
