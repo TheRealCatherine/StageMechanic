@@ -68,7 +68,7 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         if (hasPlayer())
         {
             CurrentState = State.PlayerStand;
-            PlayerManager.Player1().TakeDamage(float.PositiveInfinity);
+            PlayerManager.Player(0).TakeDamage(float.PositiveInfinity);
         }
         Renderer rend = GetComponent<Renderer>();
         rend.material = DisarmedStateMaterial;

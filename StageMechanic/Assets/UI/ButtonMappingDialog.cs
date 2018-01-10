@@ -50,7 +50,7 @@ public class ButtonMappingDialog : MonoBehaviour
 
     public void Populate()
     {
-        Dictionary<string, string[]> list = PlayerManager.Player1InputOptions;
+        Dictionary<string, string[]> list = PlayerManager.PlayerInputOptions(0);
         if (list == null)
             return;
         foreach (KeyValuePair<string, string[]> item in list)

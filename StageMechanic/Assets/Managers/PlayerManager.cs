@@ -47,10 +47,11 @@ public class PlayerManager : MonoBehaviour {
         return PlayerStartLocations.Count;
     }
 
-    public static Cathy1PlayerCharacter Player1()
+    public static Cathy1PlayerCharacter Player(int playerNumber = 0)
     {
-        if (Avatars.Count > 0)
-            return Avatars[0];
+        Debug.Assert(Avatars != null);
+        if (Avatars.Count > playerNumber)
+            return Avatars[playerNumber];
         return null;
     }
 
@@ -223,35 +224,11 @@ public class PlayerManager : MonoBehaviour {
         Avatars[0].SlideForward();
     }
 
-    public static float Player1ApplyInput(List<string> inputs, Dictionary<string,string> parameters = null)
-    {
-        if (Avatars == null || Avatars.Count == 0)
-            return 0f;
-        return Avatars[0].ApplyInput(inputs, parameters);
-    }
-
-    public static float Player2ApplyInput(List<string> inputs, Dictionary<string, string> parameters = null)
-    {
-        if (Avatars == null || Avatars.Count < 2)
-            return 0f;
-        return Avatars[1].ApplyInput(inputs, parameters);
-    }
-
-    public static float Player3ApplyInput(List<string> inputs, Dictionary<string, string> parameters = null)
-    {
-        if (Avatars == null || Avatars.Count < 3)
-            return 0f;
-        return Avatars[2].ApplyInput(inputs, parameters);
-    }
-
     public static float PlayerApplyInput(int playerNumber, List<string> inputs, Dictionary<string, string> parameters = null)
     {
-        if (playerNumber == 0)
-            return Player1ApplyInput(inputs, parameters);
-        else if (playerNumber == 1)
-            return Player2ApplyInput(inputs, parameters);
-        else
-            return Player3ApplyInput(inputs, parameters);
+        if (Avatars == null || Avatars.Count < playerNumber)
+            return 0f;
+        return Avatars[playerNumber].ApplyInput(inputs, parameters);
     }
 
     private static List<Dictionary<string, string[]>> keybindings = new List<Dictionary<string, string[]>>();
@@ -280,50 +257,13 @@ public class PlayerManager : MonoBehaviour {
         keybindings[playerNumber] = actual;
     }
 
-    public static Dictionary<string,string[]> Player1InputOptions
-    {
-        get
-        {
-            if (Avatars == null || Avatars.Count == 0)
-                return null;
-            Debug.Assert(keybindings != null);
-            Debug.Assert(keybindings.Count >= 1);
-            return keybindings[0];
-        }
-    }
-
-    public static Dictionary<string, string[]> Player2InputOptions
-    {
-        get
-        {
-            if (Avatars == null || Avatars.Count == 0)
-                return null;
-            Debug.Assert(keybindings != null);
-            Debug.Assert(keybindings.Count >= 2);
-            return keybindings[1];
-        }
-    }
-
-    public static Dictionary<string, string[]> Player3InputOptions
-    {
-        get
-        {
-            if (Avatars == null || Avatars.Count == 0)
-                return null;
-            Debug.Assert(keybindings != null);
-            Debug.Assert(keybindings.Count >= 3);
-            return keybindings[2];
-        }
-    }
-
     public static Dictionary<string,string[]> PlayerInputOptions(int playerNumber)
     {
-        if (playerNumber == 0)
-            return Player1InputOptions;
-        else if (playerNumber == 1)
-            return Player2InputOptions;
-        else
-            return Player3InputOptions;
+        if (Avatars == null || Avatars.Count == 0)
+            return null;
+        Debug.Assert(keybindings != null);
+        Debug.Assert(keybindings.Count > playerNumber);
+        return keybindings[playerNumber];
     }
 
     public static void RemoveKeyBinding(int playerNumber, string action = null, string keyName = null)
