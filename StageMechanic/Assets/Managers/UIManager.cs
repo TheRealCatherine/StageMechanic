@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
     public BlockInfoBoxController BlockInfoBox;
     public SinglePlayerDeathDialog SinglePlayerDeathDialog;
     public ButtonMappingDialog ButtonMappingDialog;
+    public MainMenu MainMenu;
 
     //TODO Singleton flame war
     public static UIManager Instance;
@@ -22,7 +23,7 @@ public class UIManager : MonoBehaviour {
     {
         get
         {
-            return IsSinglePlayerDeathDialogOpen || FileBrowser.IsOpen || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
+            return IsSinglePlayerDeathDialogOpen || FileBrowser.IsOpen || Instance.MainMenu.isActiveAndEnabled || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
         }
     }
 
@@ -39,5 +40,10 @@ public class UIManager : MonoBehaviour {
     public static void RefreshButtonMappingDialog()
     {
         Instance.ButtonMappingDialog.Refresh();
+    }
+
+    public static void ShowMainMenu()
+    {
+        Instance.MainMenu.enabled = true;
     }
 }
