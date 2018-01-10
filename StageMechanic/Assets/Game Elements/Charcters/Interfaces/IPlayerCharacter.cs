@@ -42,5 +42,5 @@ public interface IPlayerCharacter {
 
     bool TurnRight();
 
-    
+    bool TakeDamage(float amount = float.PositiveInfinity, string type = null);
 }

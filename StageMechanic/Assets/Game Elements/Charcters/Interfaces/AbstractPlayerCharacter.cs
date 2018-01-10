@@ -138,4 +138,13 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
         else
             return Face(Vector3.back);
     }
+
+    public virtual bool TakeDamage(float amount = float.PositiveInfinity, string type = null)
+    {
+        if (!UIManager.IsSinglePlayerDeathDialogOpen)
+        {
+            UIManager.ShowSinglePlayerDeathDialog();
+        }
+        return true;
+    }
 }

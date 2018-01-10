@@ -370,13 +370,14 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
             ApplyGravity();        
     }
 
-    public void TakeDamage(float unused )
+    public bool TakeDamage(float unused, string alsoNotUsed )
     {
 
         if (!UIManager.IsSinglePlayerDeathDialogOpen)
         {
             UIManager.ShowSinglePlayerDeathDialog(DieSound);
         }
+        return true;
     }
 
     public override bool ApplyGravity(float factor = 1f, float acceleration = 0f)

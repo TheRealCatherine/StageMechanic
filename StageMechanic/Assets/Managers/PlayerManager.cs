@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour {
     public GameObject Player3Prefab;
 
     public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
-    public static List<Cathy1PlayerCharacter> Avatars { get; set; } = new List<Cathy1PlayerCharacter>();
+    public static List<IPlayerCharacter> Avatars { get; set; } = new List<IPlayerCharacter>();
     internal static PlayerManager Instance;
 
     internal static bool _playMode = false;
@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour {
         return PlayerStartLocations.Count;
     }
 
-    public static Cathy1PlayerCharacter Player(int playerNumber = 0)
+    public static IPlayerCharacter Player(int playerNumber = 0)
     {
         Debug.Assert(Avatars != null);
         if (Avatars.Count > playerNumber)
@@ -59,43 +59,6 @@ public class PlayerManager : MonoBehaviour {
     {
         HidePlayers();
         PlayerStartLocations.Clear();
-    }
-
-
-    public static void Player1PlayDieSound()
-    {
-        if (Avatars.Count > 0 && Avatars[0] != null)
-            Avatars[0].PlayDieSound();
-    }
-
-    public static void Player1PlayGameOverSound()
-    {
-        if (Avatars.Count > 0 && Avatars[0] != null)
-            Avatars[0].PlayGameOverSound();
-    }
-
-    public static void Player1PlayThudSound()
-    {
-        if (Avatars.Count > 0 && Avatars[0] != null)
-            Avatars[0].PlayThudSound();
-    }
-
-    public static void PlayersReset()
-    {
-        HidePlayers();
-        BlockManager.ReloadStartState();
-        SpawnPlayers();
-        UIManager.RefreshButtonMappingDialog();
-        LogController.Log("YOU DIED");
-    }
-
-    public static void PlayersThudReset()
-    {
-        HidePlayers();
-        //BlockManager.ReloadStartState();
-        //SpawnPlayers();
-        Player1PlayThudSound();
-        LogController.Log("YOU DIED");
     }
 
     public static void OnUndoStart()
@@ -111,8 +74,8 @@ public class PlayerManager : MonoBehaviour {
     public static void HidePlayers()
     {
         Debug.Log("Hiding");
-        foreach (Cathy1PlayerCharacter player in Avatars) {
-            Destroy(player.gameObject);
+        foreach (IPlayerCharacter player in Avatars) {
+            Destroy(player.GameObject);
         }
         Avatars.Clear();
     }
@@ -166,7 +129,7 @@ public class PlayerManager : MonoBehaviour {
     {
         if(Avatars.Count>0 && Avatars[0] != null)
         {
-            return Avatars[0].transform.position;
+            return Avatars[0].GameObject.transform.position;
         }
         //TODO not do it this way
         return new Vector3(-255, -255, -255);
@@ -188,7 +151,7 @@ public class PlayerManager : MonoBehaviour {
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
         {
-            return Avatars[0].CurrentMoveState.ToString();
+            return Avatars[0].StateNames[Avatars[0].CurrentStateIndex];
         }
         return "Hiding";
     }
@@ -197,7 +160,7 @@ public class PlayerManager : MonoBehaviour {
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
         {
-            return Avatars[0].CurrentMoveState;
+            return (Avatars[0] as Cathy1PlayerCharacter).CurrentMoveState;
         }
         return Cathy1PlayerCharacter.State.Idle;
     }
@@ -205,23 +168,23 @@ public class PlayerManager : MonoBehaviour {
     public static void SetPlayer1State(Cathy1PlayerCharacter.State state)
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
-            Avatars[0].CurrentMoveState = state;
+            (Avatars[0] as Cathy1PlayerCharacter).CurrentMoveState = state;
     }
 
     public static void SetPlayer1Location(Vector3 location)
     {
         if (Avatars.Count > 0 && Avatars[0] != null)
-            Avatars[0].Teleport(location);
+            Avatars[0].Position = location;
     }
 
     public static void Player1BoingyTo( Vector3 location )
     {
-        Avatars[0].Boingy(location);
+        (Avatars[0] as Cathy1PlayerCharacter).Boingy(location);
     }
 
     public static void Player1SlideForward()
     {
-        Avatars[0].SlideForward();
+        (Avatars[0] as Cathy1PlayerCharacter).SlideForward();
     }
 
     public static float PlayerApplyInput(int playerNumber, List<string> inputs, Dictionary<string, string> parameters = null)
