@@ -8,6 +8,7 @@
 using GracesGames;
 using GracesGames.SimpleFileBrowser.Scripts;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -341,8 +342,24 @@ public class BlockManager : MonoBehaviour {
 
     // Called once every frame
     void Update() {
-
+        //SortChildren(this.gameObject);
     }
+    
+
+    public static void SortChildren(GameObject gameObject)
+    {
+        Transform[] children = gameObject.GetComponentsInChildren<Transform>(true);
+
+         var sorted = from child in children
+                                orderby child.localPosition.y ascending
+                                where child != gameObject.transform
+                                select child;
+        for (int i = 0; i < children.Count(); i++)
+        {
+            children.ElementAt(i).SetSiblingIndex(i);
+        }
+    }
+
 
     // Retrieve a List of all child game objects from a given parent
     static List<GameObject> GetChildren(GameObject obj) {
@@ -555,7 +572,8 @@ public class BlockManager : MonoBehaviour {
             if (!PlayMode)
                 TogglePlayMode();
         }
-	}
+        SortChildren(this.gameObject);
+    }
 
     public void BlocksFromJson( string json )
     {
@@ -632,7 +650,7 @@ public class BlockManager : MonoBehaviour {
 
 	public static IBlock GetBlockAt( Vector3 position ) {
 		GameObject[] collidedGameObjects =
-			Physics.OverlapSphere (position, 0.000000000001f)
+			Physics.OverlapSphere (position, 0.1f)
 				//.Except (new[] { GetComponent<BoxCollider> () })
 				.Select (c => c.gameObject)
 				.ToArray ();
@@ -643,15 +661,5 @@ public class BlockManager : MonoBehaviour {
 				return block;
 		}
 		return null;
-        /*foreach(Transform obj in ActiveFloor.transform)
-        {
-            if (obj.position == position)
-            {
-                IBlock ret = obj.GetComponent<IBlock>();
-                if (ret != null)
-                    return ret;
-            }
-        }
-        return null;*/
 	}
 }
