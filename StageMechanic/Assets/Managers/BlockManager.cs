@@ -632,7 +632,7 @@ public class BlockManager : MonoBehaviour {
 
 	public static IBlock GetBlockAt( Vector3 position ) {
 		GameObject[] collidedGameObjects =
-			Physics.OverlapSphere (position, 0.1f)
+			Physics.OverlapSphere (position, 0.000000000001f)
 				//.Except (new[] { GetComponent<BoxCollider> () })
 				.Select (c => c.gameObject)
 				.ToArray ();
@@ -643,5 +643,15 @@ public class BlockManager : MonoBehaviour {
 				return block;
 		}
 		return null;
+        /*foreach(Transform obj in ActiveFloor.transform)
+        {
+            if (obj.position == position)
+            {
+                IBlock ret = obj.GetComponent<IBlock>();
+                if (ret != null)
+                    return ret;
+            }
+        }
+        return null;*/
 	}
 }
