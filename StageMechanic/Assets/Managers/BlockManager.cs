@@ -344,7 +344,6 @@ public class BlockManager : MonoBehaviour {
     void Update() {
         //SortChildren(this.gameObject);
     }
-    
 
     public static void SortChildren(GameObject gameObject)
     {
@@ -354,9 +353,10 @@ public class BlockManager : MonoBehaviour {
                                 orderby child.localPosition.y ascending
                                 where child != gameObject.transform
                                 select child;
-        for (int i = 0; i < children.Count(); i++)
+        for (int i = 0; i < sorted.Count(); i++)
         {
-            children.ElementAt(i).SetSiblingIndex(i);
+            if(sorted.ElementAt(i).GetSiblingIndex() != i)
+                sorted.ElementAt(i).SetSiblingIndex(i);
         }
     }
 
