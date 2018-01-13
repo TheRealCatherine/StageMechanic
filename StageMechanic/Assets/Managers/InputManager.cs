@@ -91,8 +91,8 @@ public class InputManager : MonoBehaviour {
             //Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
         }
 
-        bool goFurther = Input.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
-        bool goCloser = Input.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
+        bool goFurther = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
+        bool goCloser = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
 
         if (Input.GetKeyDown(KeyCode.Comma) && !BlockManager.PlayMode)
             goFurther = true;
@@ -233,19 +233,19 @@ public class InputManager : MonoBehaviour {
         }
 
         // Block type cycling
-        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0) || CnInputManager.GetButtonDown("Grab"))
         {
             if (!BlockManager.PlayMode)
                 BlockManager.CreateBlockAtCursor(BlockManager.BlockCycleType);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetKeyDown(KeyCode.Joystick1Button4))
+        else if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetKeyDown(KeyCode.Joystick1Button4) || CnInputManager.GetButtonDown("Previous"))
         {
             //TODO generic
             Cathy1Block.BlockType type = BlockManager.PrevBlockType();
             if (BlockManager.ActiveObject != null)
                 BlockManager.CreateBlockAtCursor(type);
         }
-        else if (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+        else if (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.Joystick1Button5) || CnInputManager.GetButtonDown("Next"))
         {
             //TODO generic
             Cathy1Block.BlockType type = BlockManager.NextBlockType();
@@ -254,7 +254,7 @@ public class InputManager : MonoBehaviour {
         }
 
         // Destorying/modifying blocks
-        else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button1))
+        else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button1) || CnInputManager.GetButtonDown("Delete"))
         {
             BlockManager.DestroyActiveObject();
         }
@@ -437,7 +437,6 @@ public class InputManager : MonoBehaviour {
                 if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(0, 1, 0);
             }
-            Input.ResetInputAxes();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || vert < 0)
         {
@@ -468,7 +467,6 @@ public class InputManager : MonoBehaviour {
                 if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(0, -1, 0);
             }
-            Input.ResetInputAxes();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || hori < 0)
         {
@@ -499,7 +497,6 @@ public class InputManager : MonoBehaviour {
                 if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(-1, 0, 0);
             }
-            Input.ResetInputAxes();
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || hori > 0)
         {
@@ -530,29 +527,26 @@ public class InputManager : MonoBehaviour {
                 if (!BlockManager.PlayMode)
                     Cursor.transform.position += new Vector3(1, 0, 0);
             }
-            Input.ResetInputAxes();
         }
         else if (goFurther)
         {
-            if (Input.GetAxis("joystick 1 Y axis") > 0 &&  period < joystickThrottleRate)
+            if (CnInputManager.GetAxis("joystick 1 Y axis") > 0 &&  period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
             }
             period = 0.0f;
             Cursor.transform.position += new Vector3(0, 0, -1);
-            Input.ResetInputAxes();
         }
         else if (goCloser)
         {
-            if (Input.GetAxis("joystick 1 Y axis") < 0 && period < joystickThrottleRate)
+            if (CnInputManager.GetAxis("joystick 1 Y axis") < 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
             }
             period = 0.0f;
             Cursor.transform.position += new Vector3(0, 0, 1);
-            Input.ResetInputAxes();
         }
 	}
 }
