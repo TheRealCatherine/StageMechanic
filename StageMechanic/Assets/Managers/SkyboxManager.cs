@@ -16,12 +16,31 @@ public class SkyboxManager : MonoBehaviour {
 
     public static void SetSkybox(int index = 0)
     {
-        Debug.Assert(Instance.Skyboxes.Length > index);
+        Debug.Assert(Instance.Skyboxes.Length >= index);
         if (index >= Instance.Skyboxes.Length)
             index = 0;
         RenderSettings.skybox = Instance.Skyboxes[index];
         PlayerPrefs.SetInt("SkyboxIndex", index);
-        DynamicGI.UpdateEnvironment();
+        if(Instance.Skyboxes[index].GetTag("ChromaKey",false,"Nothing") != "Nothing" || Instance.Skyboxes[index].name.Contains("Chroma"))
+        {
+            Camera cam = Instance?.GetComponent<Camera>();
+            Debug.Assert(cam != null);
+            //cam.clearFlags = CameraClearFlags.Skybox;
+            //if (Instance.Skyboxes[index].name.Contains("Blue"))
+            //    cam.backgroundColor = new Color(0, 71, 187);
+            //else
+            cam.backgroundColor = Color.green;
+            cam.clearFlags = CameraClearFlags.SolidColor;
+        }
+        else
+        {
+            Camera cam = Instance?.GetComponent<Camera>();
+            Debug.Assert(cam != null);
+            cam.clearFlags = CameraClearFlags.Skybox;
+            cam.backgroundColor = Color.black;
+            DynamicGI.UpdateEnvironment();
+
+        }
         LogController.Log("Set Background " + index);
     }
 
