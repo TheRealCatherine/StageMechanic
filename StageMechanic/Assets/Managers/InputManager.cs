@@ -385,7 +385,7 @@ public class InputManager : MonoBehaviour {
                                     Debug.Log(item.Key + " " + key);
                                 }
                             }
-                            else if (Input.GetKey(key) && !inputs.Contains(item.Key))
+                            else if (((CnInputManager.ButtonExists(key) && CnInputManager.GetButton(key)) || (!CnInputManager.ButtonExists(key) && (Input.GetKey(key)))) && !inputs.Contains(item.Key))
                             {
                                 inputs.Add(item.Key);
                                 Debug.Log(item.Key + " " + key);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using CnControls;
 
 public class ButtonMappingDialog : MonoBehaviour
 {
@@ -107,23 +108,23 @@ public class ButtonMappingDialog : MonoBehaviour
     {
 
         //Joystick 1 D-Pad
-        if (Input.GetAxis("joystick 1 6th axis") > 0f)
+        if (CnInputManager.GetAxis("joystick 1 6th axis") > 0f)
             RegisterKey("joystick 1 6th axis +");
-        else if (Input.GetAxis("joystick 1 6th axis") < 0f)
+        else if (CnInputManager.GetAxis("joystick 1 6th axis") < 0f)
             RegisterKey("joyustick 1 6th axis -");
-        else if (Input.GetAxis("joystick 1 7th axis") > 0f)
+        else if (CnInputManager.GetAxis("joystick 1 7th axis") > 0f)
             RegisterKey("joyustick 1 6th axis +");
-        else if (Input.GetAxis("joystick 1 7th axis") < 0f)
+        else if (CnInputManager.GetAxis("joystick 1 7th axis") < 0f)
             RegisterKey("joyustick 1 7th axis -");
 
         //Joystick 1 Left Stick
-        else if (Input.GetAxis("joystick 1 Y axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 1 Y axis") < 0)
             RegisterKey("joystick 1 Y axis +");
-        else if (Input.GetAxis("joystick 1 Y axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 1 Y axis") > 0)
             RegisterKey("joystick 1 Y axis -");
-        else if (Input.GetAxis("joystick 1 X axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 1 X axis") < 0)
             RegisterKey("joystick 1 X axis -");
-        else if (Input.GetAxis("joystick 1 X axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 1 X axis") > 0)
             RegisterKey("joystick 1 X axis +");
 
 
@@ -169,26 +170,29 @@ public class ButtonMappingDialog : MonoBehaviour
         else if (Input.GetKey(KeyCode.Joystick1Button19))
             RegisterKey("joystick 1 button 19");
 
+        else if (CnInputManager.GetButton("Grab"))
+            RegisterKey("Grab");
+
         //Joystick 2
 
         //Joystick 2 D-Pad
-        if (Input.GetAxis("joystick 2 6th axis") > 0f)
+        if (CnInputManager.GetAxis("joystick 2 6th axis") > 0f)
             RegisterKey("joystick 2 6th axis +");
-        else if (Input.GetAxis("joystick 2 6th axis") < 0f)
+        else if (CnInputManager.GetAxis("joystick 2 6th axis") < 0f)
             RegisterKey("joyustick 2 6th axis -");
-        else if (Input.GetAxis("joystick 2 7th axis") > 0f)
+        else if (CnInputManager.GetAxis("joystick 2 7th axis") > 0f)
             RegisterKey("joyustick 2 6th axis +");
-        else if (Input.GetAxis("joystick 2 7th axis") < 0f)
+        else if (CnInputManager.GetAxis("joystick 2 7th axis") < 0f)
             RegisterKey("joyustick 2 7th axis -");
 
         //Joystick 2 Left Stick
-        else if (Input.GetAxis("joystick 2 Y axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 2 Y axis") < 0)
             RegisterKey("joystick 2 Y axis +");
-        else if (Input.GetAxis("joystick 2 Y axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 2 Y axis") > 0)
             RegisterKey("joystick 2 Y axis -");
-        else if (Input.GetAxis("joystick 2 X axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 2 X axis") < 0)
             RegisterKey("joystick 2 X axis -");
-        else if (Input.GetAxis("joystick 2 X axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 2 X axis") > 0)
             RegisterKey("joystick 2 X axis +");
 
         //Joystick 2 Buttons
@@ -234,23 +238,23 @@ public class ButtonMappingDialog : MonoBehaviour
             RegisterKey("joystick 2 button 19");
 
         //Joystick 3 Left Stick
-        else if (Input.GetAxis("joystick 3 Y axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 3 Y axis") < 0)
             RegisterKey("joystick 3 Y axis +");
-        else if (Input.GetAxis("joystick 3 Y axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 3 Y axis") > 0)
             RegisterKey("joystick 3 Y axis -");
-        else if (Input.GetAxis("joystick 3 X axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 3 X axis") < 0)
             RegisterKey("joystick 3 X axis -");
-        else if (Input.GetAxis("joystick 3 X axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 3 X axis") > 0)
             RegisterKey("joystick 3 X axis +");
 
         //Joystick 4 Left Stick
-        else if (Input.GetAxis("joystick 4 Y axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 4 Y axis") < 0)
             RegisterKey("joystick 4 Y axis +");
-        else if (Input.GetAxis("joystick 4 Y axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 4 Y axis") > 0)
             RegisterKey("joystick 4 Y axis -");
-        else if (Input.GetAxis("joystick 4 X axis") < 0)
+        else if (CnInputManager.GetAxis("joystick 4 X axis") < 0)
             RegisterKey("joystick 4 X axis -");
-        else if (Input.GetAxis("joystick 4 X axis") > 0)
+        else if (CnInputManager.GetAxis("joystick 4 X axis") > 0)
             RegisterKey("joystick 4 X axis +");
     }
 
