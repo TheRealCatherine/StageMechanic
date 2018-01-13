@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using UnityEngine;
 using System;
 using GracesGames.SimpleFileBrowser.Scripts;
+using CnControls;
 
 [System.Serializable]
 public class InputManager : MonoBehaviour {
@@ -62,8 +63,8 @@ public class InputManager : MonoBehaviour {
         if (UIManager.IsAnyInputDialogOpen)
             return;
 
-        float vert = Input.GetAxis("joystick 1 7th axis");
-        float hori = Input.GetAxis("joystick 1 6th axis");
+        float vert = CnInputManager.GetAxis("joystick 1 7th axis");
+        float hori = CnInputManager.GetAxis("joystick 1 6th axis");
 
         bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
         bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || (BlockManager.PlayMode && Input.GetKey(KeyCode.JoystickButton0));
