@@ -43,6 +43,8 @@ This project is just recently getting started! Our official project start date i
 * Remaining special blocks (ie bombs, mystery, etc)
 * Items
 * Speed run statistics
+* Andoid support
+* Improved block physics
 
 [Development Builds](https://www.reddit.com/r/StageMechanic/comments/7o0kbi/latest_build_win64/)
 
@@ -60,7 +62,7 @@ This project is being developed entirely by volunteers and is managed by a softw
 
 ### Tools/technologies used
 
-* Game Engine: Unity Personal 2017.3.0f3
+* Game Engine: Unity Personal 2018.1beta
 * Languages: C# 6.0 for primary development, Lua (via MoonSharp) for custom scripting
 * 3D Modeling: Blender 3D
 * 2D Painting: .PSD file format (Photoshop/Krita/gimp/CSP)
