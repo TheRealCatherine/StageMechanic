@@ -45,6 +45,8 @@ This project is just recently getting started! Our official project start date i
 * Speed run statistics
 * Andoid support
 * Improved block physics
+* Local mutiplayer (up to 3 players)
+* User-defined input mapping
 
 [Development Builds](https://www.reddit.com/r/StageMechanic/comments/7o0kbi/latest_build_win64/)
 
