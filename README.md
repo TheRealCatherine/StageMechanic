@@ -16,6 +16,8 @@ We also target both the amateur/casual player of Catherine, Robo5, and Pushmo lo
 
 This project is just recently getting started! Our official project start date is September 12th, "National Video Game Day" 2017.
 
+* [Development Builds](https://www.reddit.com/r/StageMechanic/comments/7o0kbi/latest_build_win64/)
+
 * [Screenshots](https://github.com/TheRealCatherine/StageMechanic/wiki/Screenshots) 
 
 * [Videos](https://www.youtube.com/channel/UCO7dcRrjPb5eCst-9uAXXPg/videos)
@@ -41,14 +43,11 @@ This project is just recently getting started! Our official project start date i
 ### Currently in progress
 * Player movement animantion (play mode)
 * Remaining special blocks (ie bombs, mystery, etc)
-* Items
+* Items, coins, etc.
 * Speed run statistics
-* Andoid support
 * Improved block physics
 * Local mutiplayer (up to 3 players)
 * User-defined input mapping
-
-[Development Builds](https://www.reddit.com/r/StageMechanic/comments/7o0kbi/latest_build_win64/)
 
 ## Licensing
 
