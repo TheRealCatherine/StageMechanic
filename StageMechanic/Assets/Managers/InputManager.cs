@@ -143,7 +143,7 @@ public class InputManager : MonoBehaviour {
             BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Vortex);
         }
 
-        else if (Input.GetKey(KeyCode.U))
+        else if (Input.GetKeyDown(KeyCode.U))
         {
             BlockManager.ToggleUndoOn();
         }
@@ -204,7 +204,7 @@ public class InputManager : MonoBehaviour {
         }
 
         //Play mode
-        else if (Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.P) || CnInputManager.GetButtonDown("Play"))
         {
             BlockManager.TogglePlayMode();
         }
@@ -258,7 +258,7 @@ public class InputManager : MonoBehaviour {
         {
             BlockManager.DestroyActiveObject();
         }
-        else if (Input.GetKeyDown(KeyCode.B))
+        else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition"))
         {
             GetComponent<EventManager>().CreatePlayerStartLocation(0, Cursor.transform.position, Cursor.transform.rotation);
         }
@@ -377,18 +377,25 @@ public class InputManager : MonoBehaviour {
                     {
                         foreach (string key in item.Value)
                         {
-                            if (key.Contains("axis"))
+                            try
                             {
-                                if (axees.Contains(key))
+                                if (key.Contains("axis"))
+                                {
+                                    if (axees.Contains(key))
+                                    {
+                                        inputs.Add(item.Key);
+                                        Debug.Log(item.Key + " " + key);
+                                    }
+                                }
+                                else if (((CnInputManager.ButtonExists(key) && CnInputManager.GetButton(key)) || (!CnInputManager.ButtonExists(key) && (Input.GetKey(key)))) && !inputs.Contains(item.Key))
                                 {
                                     inputs.Add(item.Key);
                                     Debug.Log(item.Key + " " + key);
                                 }
                             }
-                            else if (((CnInputManager.ButtonExists(key) && CnInputManager.GetButton(key)) || (!CnInputManager.ButtonExists(key) && (Input.GetKey(key)))) && !inputs.Contains(item.Key))
+                            catch(ArgumentException)
                             {
-                                inputs.Add(item.Key);
-                                Debug.Log(item.Key + " " + key);
+                                continue;
                             }
                         }
                     }
