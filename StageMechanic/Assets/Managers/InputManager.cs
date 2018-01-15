@@ -242,6 +242,76 @@ public class InputManager : MonoBehaviour {
         return false;
     }
 
+    bool TryPlayerInput()
+    {
+        if (period < joystickThrottleRate)
+        {
+            period += Time.deltaTime;
+            return false;
+        }
+
+        List<string> axees = new List<string>();
+        if (CnInputManager.GetAxis("joystick 1 7th axis") > 0f)
+            axees.Add("joystick 1 7th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 7th axis") < 0f)
+            axees.Add("joystick 1 7th axis -");
+        if (CnInputManager.GetAxis("joystick 1 6th axis") > 0f)
+            axees.Add("joystick 1 6th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 6th axis") < 0f)
+            axees.Add("joystick 1 6th axis -");
+        if (CnInputManager.GetAxis("joystick 1 Y axis") > 0)
+            axees.Add("joystick 1 Y axis -");
+        else if (CnInputManager.GetAxis("joystick 1 Y axis") < 0)
+            axees.Add("joystick 1 Y axis +");
+        if (CnInputManager.GetAxis("joystick 1 X axis") > 0)
+            axees.Add("joystick 1 X axis +");
+        else if (CnInputManager.GetAxis("joystick 1 X axis") < 0)
+            axees.Add("joystick 1 X axis -");
+
+        bool usedAtLeastOne = false;
+        for (int playerNumber = 0; playerNumber < PlayerManager.PlayerCount(); ++playerNumber)
+        {
+            Dictionary<string, string[]> possible = PlayerManager.PlayerInputOptions(playerNumber);
+            if (possible != null)
+            {
+                List<string> inputs = new List<string>();
+                foreach (KeyValuePair<string, string[]> item in possible)
+                {
+                    foreach (string key in item.Value)
+                    {
+                        try
+                        {
+                            if (key.Contains("axis"))
+                            {
+                                if (axees.Contains(key))
+                                {
+                                    inputs.Add(item.Key);
+                                    Debug.Log(item.Key + " " + key);
+                                }
+                            }
+                            else if (((CnInputManager.ButtonExists(key) && CnInputManager.GetButton(key)) || (!CnInputManager.ButtonExists(key) && (Input.GetKey(key)))) && !inputs.Contains(item.Key))
+                            {
+                                inputs.Add(item.Key);
+                                Debug.Log(item.Key + " " + key);
+                            }
+                        }
+                        catch (ArgumentException)
+                        {
+                            continue;
+                        }
+                    }
+                }
+                if (inputs.Count > 0)
+                {
+                    float time = PlayerManager.PlayerApplyInput(playerNumber, inputs);
+                    period = joystickThrottleRate - time;
+                    usedAtLeastOne = true;
+                }
+            }
+        }
+        return usedAtLeastOne;
+    }
+
     void Update() {
 
         if (UIManager.IsAnyInputDialogOpen)
@@ -286,7 +356,9 @@ public class InputManager : MonoBehaviour {
         //Play Mode
         if (BlockManager.PlayMode)
         {
-            if (Input.GetKeyDown(KeyCode.U))
+            if (TryPlayerInput())
+                return;
+            else if (Input.GetKeyDown(KeyCode.U))
             {
                 BlockManager.ToggleUndoOn();
                 return;
@@ -411,72 +483,7 @@ public class InputManager : MonoBehaviour {
                 Cursor.transform.position = Vector3.zero;
         }
 
-        else if (BlockManager.PlayMode)
-        {
-            if (period < joystickThrottleRate)
-            {
-                period += Time.deltaTime;
-                return;
-            }
-
-            List<string> axees = new List<string>();
-            if (vert > 0f)
-                axees.Add("joystick 1 7th axis +");
-            else if (vert < 0f)
-                axees.Add("joystick 1 7th axis -");
-            if (hori > 0f)
-                axees.Add("joystick 1 6th axis +");
-            else if (hori < 0f)
-                axees.Add("joystick 1 6th axis -");
-            if (Input.GetAxis("joystick 1 Y axis") > 0)
-                axees.Add("joystick 1 Y axis -");
-            else if (Input.GetAxis("joystick 1 Y axis") < 0)
-                axees.Add("joystick 1 Y axis +");
-            if (Input.GetAxis("joystick 1 X axis") > 0)
-                axees.Add("joystick 1 X axis +");
-            else if (Input.GetAxis("joystick 1 X axis") < 0)
-                axees.Add("joystick 1 X axis -");
-
-            for (int playerNumber = 0; playerNumber < PlayerManager.PlayerCount(); ++playerNumber)
-            {
-                Dictionary<string, string[]> possible = PlayerManager.PlayerInputOptions(playerNumber);
-                if (possible != null)
-                {
-                    List<string> inputs = new List<string>();
-                    foreach (KeyValuePair<string, string[]> item in possible)
-                    {
-                        foreach (string key in item.Value)
-                        {
-                            try
-                            {
-                                if (key.Contains("axis"))
-                                {
-                                    if (axees.Contains(key))
-                                    {
-                                        inputs.Add(item.Key);
-                                        Debug.Log(item.Key + " " + key);
-                                    }
-                                }
-                                else if (((CnInputManager.ButtonExists(key) && CnInputManager.GetButton(key)) || (!CnInputManager.ButtonExists(key) && (Input.GetKey(key)))) && !inputs.Contains(item.Key))
-                                {
-                                    inputs.Add(item.Key);
-                                    Debug.Log(item.Key + " " + key);
-                                }
-                            }
-                            catch (ArgumentException)
-                            {
-                                continue;
-                            }
-                        }
-                    }
-                    if (inputs.Count > 0)
-                    {
-                        float time = PlayerManager.PlayerApplyInput(playerNumber, inputs);
-                        period = joystickThrottleRate - time;
-                    }
-                }
-            }
-        }
+        
 
         // Cursor/stage movement cotrol
         // Keyboard & XBox 360 Input
