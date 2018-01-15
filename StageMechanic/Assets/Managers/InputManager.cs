@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
     public GameObject Cursor;
     public CameraController Camera;
 
-    internal const float scrollSpeed = 2.0f;
+    internal const float scrollSpeed = 8.0f;
 
     public float minX = -360.0f;
     public float maxX = 360.0f;
@@ -598,6 +598,7 @@ public class InputManager : MonoBehaviour
             Camera.zoom += scroll * scrollSpeed;
         //Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
 
+#if (UNITY_ANDROID == false)
         if (Input.GetMouseButton(1))
         {
             rotationX += Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
@@ -615,7 +616,7 @@ public class InputManager : MonoBehaviour
             rotationY = Mathf.Clamp(rotationY, minY, maxY);
             //Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
         }
-
+#endif
 
         //Play Mode
         if (BlockManager.PlayMode)
