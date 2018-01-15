@@ -24,18 +24,18 @@ public class Cathy1Block : AbstractBlock
     {
         Custom = 0,
         Basic,          //Typical block
+        Immobile,       //Basic blocks that cannot normally be moved by the player
+        Crack2,         //Can step on twice
+        Crack1,         //Can step on once
+        Heavy,          //Similar to Basic but slower to move
         SpikeTrap,      //Spike Trap
-        Spring,         //Teleport variation, moves character up along edge
-        Monster,        //Teleport variation, moves character down from edge
         Ice,            //Teleport variation, moves charcter along top of block
-        Vortex,         //Vortex trap
         Bomb1,          //Bomb with short timing
         Bomb2,          //Bomb with long timing
-        Crack1,         //Can step on once
-        Crack2,         //Can step on twice
-        Heavy,          //Similar to Basic but slower to move
-        Immobile,       //Basic blocks that cannot normally be moved by the player
+        Spring,         //Teleport variation, moves character up along edge
         Random,         //Not a fixed type, one of a selectable subset
+        Monster,        //Teleport variation, moves character down from edge
+        Vortex,         //Vortex trap
         Goal            //Level completion zone
     }
 

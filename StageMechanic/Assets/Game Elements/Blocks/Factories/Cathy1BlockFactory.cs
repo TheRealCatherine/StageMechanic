@@ -55,18 +55,18 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
     public static readonly List<string> _blockTypeNames = new List<string>{
         "Custom",
         "Basic",
+        "Immobile",
+        "Cracked (2 Steps)",
+        "Cracked (1 Step)",
+        "Heavy",
         "Spike Trap",
-        "Spring",
-        "Monster",
         "Ice",
-        "Vortex",
         "Small Bomb",
         "Large Bomb",
-        "Cracked (1 Step)",
-        "Cracked (2 Steps)",
-        "Heavy",
-        "Immobile",
+        "Spring",
         "Mystery",
+        "Monster",
+        "Vortex",
         "Goal"
     };
 
