@@ -32,6 +32,216 @@ public class InputManager : MonoBehaviour {
 	float period = 0.0f;
 	const float joystickThrottleRate = 0.1f;
 
+    /// <summary>
+    /// Check to see if any current user input matches block creation commands for edit mode
+    /// </summary>
+    /// <returns>true if user input was consumed</returns>
+    /// TODO: don't hardcode block types or buttons
+    bool TryCreateBlockAtCursor()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button3))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Basic);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Immobile);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Crack2);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Heavy);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.SpikeTrap);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Ice);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Bomb1);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Random);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Monster);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Vortex);
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Check if any current user input is related to stage operations like loading, saving, or clearing
+    /// </summary>
+    /// <returns>true if the event was consumed</returns>
+    /// TODO: don't hardcode commands or the keys
+    bool TryLevelOperationCommands()
+    {
+        bool ctrlDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
+
+        // Save
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (!BlockManager.PlayMode)
+            {
+                if (ctrlDown)
+                    BlockManager.Instance.SaveToJson();
+                else
+                    BlockManager.Instance.QuickSave();
+
+                return true;
+            }
+            //TODO: save play-in-progress level state
+        }
+
+        // Load
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (BlockManager.PlayMode)
+            {
+                BlockManager.Instance.TogglePlayMode();
+            }
+            BlockManager.Instance.LoadFromJson();
+            return true;
+        }
+
+        // Reload current level
+        else if (Input.GetKeyDown(KeyCode.F5))
+        {
+            BlockManager.Instance.ReloadCurrentLevel();
+            return true;
+        }
+
+        // Clear all blocks
+        else if (Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
+        {
+            BlockManager.Instance.Clear();
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Check if current user input should open/close/etc a UI dialog
+    /// </summary>
+    /// <returns>true if the event was consumed</returns>
+    /// TODO: don't hardcode commands or keys
+    bool TryUICommands()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            UIManager.ToggleBlockInfoDialog();
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.F1))
+        {
+            UIManager.ToggleButtonMappingDialog();
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Joystick1Button6))
+        {
+            UIManager.ToggleBlockInfoDialog();
+            UIManager.ToggleButtonMappingDialog();
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //TODO toggle
+            UIManager.ShowMainMenu();
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Check if user input matches commands for creating/destroying/etc individual blocks
+    /// </summary>
+    /// <returns>true if the event was consumed</returns>
+    /// TODO: don't hardcode commands or buttons
+    bool TryBlockCommands()
+    {
+        bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
+
+        // Block type cycling
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0) || CnInputManager.GetButtonDown("Grab"))
+        {
+            if (!BlockManager.PlayMode)
+            {
+                BlockManager.CreateBlockAtCursor(BlockManager.Instance.BlockCycleType);
+                return true;
+            }
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetKeyDown(KeyCode.Joystick1Button4) || CnInputManager.GetButtonDown("Previous"))
+        {
+            //TODO generic
+            Cathy1Block.BlockType type = BlockManager.Instance.PrevBlockType();
+            if (BlockManager.Instance.ActiveObject != null)
+                BlockManager.CreateBlockAtCursor(type);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.Joystick1Button5) || CnInputManager.GetButtonDown("Next"))
+        {
+            //TODO generic
+            Cathy1Block.BlockType type = BlockManager.Instance.NextBlockType();
+            if (BlockManager.Instance.ActiveObject != null)
+                BlockManager.CreateBlockAtCursor(type);
+            return true;
+        }
+
+        // Randomize gravity
+        else if (Input.GetKeyDown(KeyCode.G) && altDown)
+        {
+            BlockManager.Instance.RandomizeGravity();
+            return true;
+        }
+
+        // Destorying/modifying blocks
+        else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button1) || CnInputManager.GetButtonDown("Delete"))
+        {
+            BlockManager.Instance.DestroyActiveObject();
+        }
+        else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition"))
+        {
+            GetComponent<EventManager>().CreatePlayerStartLocation(0, Cursor.transform.position, Cursor.transform.rotation);
+        }
+        else if (Input.GetKeyDown(KeyCode.O))
+        {
+            GetComponent<EventManager>().CreatePlayerStartLocation(1, Cursor.transform.position, Cursor.transform.rotation);
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            GetComponent<EventManager>().CreatePlayerStartLocation(2, Cursor.transform.position, Cursor.transform.rotation);
+        }
+
+
+        return false;
+    }
+
     void Update() {
 
         if (UIManager.IsAnyInputDialogOpen)
@@ -73,107 +283,40 @@ public class InputManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Period) && !BlockManager.PlayMode)
             goCloser = true;
 
-       
-
-        // Buttons for creating blocks
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button3))
+        //Play Mode
+        if (BlockManager.PlayMode)
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Basic);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Immobile);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Crack2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Heavy);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.SpikeTrap);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Ice);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Bomb1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Random);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Monster);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Vortex);
-        }
-
-        else if (Input.GetKeyDown(KeyCode.U))
-        {
-            BlockManager.ToggleUndoOn();
-        }
-
-        // Save/Load
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (!BlockManager.PlayMode)
+            if (Input.GetKeyDown(KeyCode.U))
             {
-                if (altDown)
-                    BlockManager.Instance.SaveToJson();
-                else
-                    BlockManager.Instance.QuickSave();
+                BlockManager.ToggleUndoOn();
+                return;
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (BlockManager.PlayMode)
+            else if (Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)
             {
-                BlockManager.Instance.TogglePlayMode();
+                BlockManager.Undo();
+                return;
             }
-            BlockManager.Instance.LoadFromJson();
+
         }
 
-        // Reload current level
-        else if (Input.GetKeyDown(KeyCode.F5))
+        //Edit Mode
+        else
         {
-            BlockManager.Instance.ReloadCurrentLevel();
+            if (TryCreateBlockAtCursor())
+                return;
+            else if (TryBlockCommands())
+                return;
+
+            
         }
 
-        // Clear all blocks
-        else if (Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
-        {
-            BlockManager.Instance.Clear();
-        }
+        if (TryLevelOperationCommands())
+            return;
+        else if (TryUICommands())
+            return;
 
-        // Randomize gravity
-        else if (Input.GetKeyDown(KeyCode.G) && altDown)
-        {
-            BlockManager.Instance.RandomizeGravity();
-        }
 
-        // Toggle info display
-        else if (Input.GetKeyDown(KeyCode.I))
-        {
-            UIManager.ToggleBlockInfoDialog();
-        }
-        else if (Input.GetKeyDown(KeyCode.F1))
-        {
-            UIManager.ToggleButtonMappingDialog();
-        }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button6))
-        {
-            UIManager.ToggleBlockInfoDialog();
-            UIManager.ToggleButtonMappingDialog();
-        }
+
 
         //Play mode
         else if (Input.GetKeyDown(KeyCode.P) || CnInputManager.GetButtonDown("Play"))
@@ -181,10 +324,7 @@ public class InputManager : MonoBehaviour {
             BlockManager.Instance.TogglePlayMode();
         }
         //Quit
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            UIManager.ShowMainMenu();
-        }
+        
 
         //Manually move the platform
         else if (Input.GetKeyDown(KeyCode.Tab))
@@ -204,50 +344,6 @@ public class InputManager : MonoBehaviour {
             BlockManager.ActiveFloor.transform.localPosition += platformDirection;
         }
 
-        // Block type cycling
-        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0) || CnInputManager.GetButtonDown("Grab"))
-        {
-            if (!BlockManager.PlayMode)
-                BlockManager.CreateBlockAtCursor(BlockManager.Instance.BlockCycleType);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetKeyDown(KeyCode.Joystick1Button4) || CnInputManager.GetButtonDown("Previous"))
-        {
-            //TODO generic
-            Cathy1Block.BlockType type = BlockManager.Instance.PrevBlockType();
-            if (BlockManager.Instance.ActiveObject != null)
-                BlockManager.CreateBlockAtCursor(type);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.Joystick1Button5) || CnInputManager.GetButtonDown("Next"))
-        {
-            //TODO generic
-            Cathy1Block.BlockType type = BlockManager.Instance.NextBlockType();
-            if (BlockManager.Instance.ActiveObject != null)
-                BlockManager.CreateBlockAtCursor(type);
-        }
-
-        // Destorying/modifying blocks
-        else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button1) || CnInputManager.GetButtonDown("Delete"))
-        {
-            BlockManager.Instance.DestroyActiveObject();
-        }
-        else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition"))
-        {
-            GetComponent<EventManager>().CreatePlayerStartLocation(0, Cursor.transform.position, Cursor.transform.rotation);
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            GetComponent<EventManager>().CreatePlayerStartLocation(1, Cursor.transform.position, Cursor.transform.rotation);
-        }
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            GetComponent<EventManager>().CreatePlayerStartLocation(2, Cursor.transform.position, Cursor.transform.rotation);
-        }
-
-
-        else if (Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)
-        {
-            BlockManager.Undo();
-        }
 
         // Buttons for setting items
         else if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.Joystick1Button2))
@@ -285,7 +381,9 @@ public class InputManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Minus))
         {
             MusicManager.VolumeDown();
-        } else if (Input.GetKeyDown(KeyCode.Equals)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.Equals))
+        {
             MusicManager.VolumeUp();
         }
 
@@ -365,7 +463,7 @@ public class InputManager : MonoBehaviour {
                                     Debug.Log(item.Key + " " + key);
                                 }
                             }
-                            catch(ArgumentException)
+                            catch (ArgumentException)
                             {
                                 continue;
                             }
@@ -509,7 +607,7 @@ public class InputManager : MonoBehaviour {
         }
         else if (goFurther)
         {
-            if (CnInputManager.GetAxis("joystick 1 Y axis") > 0 &&  period < joystickThrottleRate)
+            if (CnInputManager.GetAxis("joystick 1 Y axis") > 0 && period < joystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return;
