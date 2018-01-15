@@ -2276,9 +2276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ce53ddc6d3b1445938ccc09c0d6fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: {fileID: 426806219}
   Cursor: {fileID: 662790149}
-  Camera: {fileID: 223191232}
+  Camera: {fileID: 223191238}
   BlockInfoBox: {fileID: 647771339}
   ButtonMappingBox: {fileID: 288891125}
   minX: -360
@@ -3659,17 +3658,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1122947884805304, guid: 2a02ee7551522bc469ad3aba9f1d8d0e,
     type: 2}
   m_PrefabInternal: {fileID: 1820230822}
---- !u!114 &662790155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 662790149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c9b3e8bb377fce4aa3eb9400ba590d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &667272406
 GameObject:
   m_ObjectHideFlags: 0

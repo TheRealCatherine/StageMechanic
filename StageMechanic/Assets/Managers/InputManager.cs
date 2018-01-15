@@ -4,42 +4,16 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UnityEngine;
 using System;
-using GracesGames.SimpleFileBrowser.Scripts;
 using CnControls;
 
 [System.Serializable]
 public class InputManager : MonoBehaviour {
 
-	public GameObject Stage;
 	public GameObject Cursor;
-	public GameObject Camera;
-    public BlockInfoBoxController BlockInfoBox;
-    public GameObject ButtonMappingBox;
-
-	public BlockManager BlockManager
-    {
-        get
-        {
-            return GetComponent<BlockManager>();
-        }
-	}
-
-	public GameObject GetActiveFloor() {
-		return BlockManager.ActiveFloor;
-	}
-
-	public CameraController GetCamera() {
-		return Camera.GetComponent<CameraController>();
-	}
-
-	// Use this for initialization
-	void Start () {
-	}
+	public CameraController Camera;
 
 	internal const float scrollSpeed = 2.0f;
 
@@ -72,7 +46,7 @@ public class InputManager : MonoBehaviour {
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll >= 0.005f || scroll <= -0.005f)
-            Camera.GetComponent<CameraController>().zoom += scroll * scrollSpeed;
+            Camera.zoom += scroll * scrollSpeed;
         //Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
 
         if (Input.GetMouseButton(1)) {
@@ -154,59 +128,57 @@ public class InputManager : MonoBehaviour {
             if (!BlockManager.PlayMode)
             {
                 if (altDown)
-                    BlockManager.SaveToJson();
+                    BlockManager.Instance.SaveToJson();
                 else
-                    BlockManager.QuickSave();
+                    BlockManager.Instance.QuickSave();
             }
         }
         else if (Input.GetKeyDown(KeyCode.L))
         {
             if (BlockManager.PlayMode)
             {
-                BlockManager.TogglePlayMode();
+                BlockManager.Instance.TogglePlayMode();
             }
-            BlockManager.LoadFromJson();
+            BlockManager.Instance.LoadFromJson();
         }
 
         // Reload current level
         else if (Input.GetKeyDown(KeyCode.F5))
         {
-            BlockManager.ReloadCurrentLevel();
+            BlockManager.Instance.ReloadCurrentLevel();
         }
 
         // Clear all blocks
         else if (Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
         {
-            BlockManager.Clear();
+            BlockManager.Instance.Clear();
         }
 
         // Randomize gravity
         else if (Input.GetKeyDown(KeyCode.G) && altDown)
         {
-            BlockManager.RandomizeGravity();
+            BlockManager.Instance.RandomizeGravity();
         }
 
         // Toggle info display
         else if (Input.GetKeyDown(KeyCode.I))
         {
-            BlockInfoBox.ToggleVisibility();
+            UIManager.ToggleBlockInfoDialog();
         }
         else if (Input.GetKeyDown(KeyCode.F1))
         {
-            //TODO ToggleVisibility
-            ButtonMappingBox.SetActive(!ButtonMappingBox.activeInHierarchy);
+            UIManager.ToggleButtonMappingDialog();
         }
         else if (Input.GetKeyDown(KeyCode.Joystick1Button6))
         {
-            BlockInfoBox.ToggleVisibility();
-            //TODO ToggleVisibility
-            ButtonMappingBox.SetActive(!ButtonMappingBox.activeInHierarchy);
+            UIManager.ToggleBlockInfoDialog();
+            UIManager.ToggleButtonMappingDialog();
         }
 
         //Play mode
         else if (Input.GetKeyDown(KeyCode.P) || CnInputManager.GetButtonDown("Play"))
         {
-            BlockManager.TogglePlayMode();
+            BlockManager.Instance.TogglePlayMode();
         }
         //Quit
         else if (Input.GetKeyDown(KeyCode.Escape))
@@ -236,27 +208,27 @@ public class InputManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0) || CnInputManager.GetButtonDown("Grab"))
         {
             if (!BlockManager.PlayMode)
-                BlockManager.CreateBlockAtCursor(BlockManager.BlockCycleType);
+                BlockManager.CreateBlockAtCursor(BlockManager.Instance.BlockCycleType);
         }
         else if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetKeyDown(KeyCode.Joystick1Button4) || CnInputManager.GetButtonDown("Previous"))
         {
             //TODO generic
-            Cathy1Block.BlockType type = BlockManager.PrevBlockType();
-            if (BlockManager.ActiveObject != null)
+            Cathy1Block.BlockType type = BlockManager.Instance.PrevBlockType();
+            if (BlockManager.Instance.ActiveObject != null)
                 BlockManager.CreateBlockAtCursor(type);
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.Joystick1Button5) || CnInputManager.GetButtonDown("Next"))
         {
             //TODO generic
-            Cathy1Block.BlockType type = BlockManager.NextBlockType();
-            if (BlockManager.ActiveObject != null)
+            Cathy1Block.BlockType type = BlockManager.Instance.NextBlockType();
+            if (BlockManager.Instance.ActiveObject != null)
                 BlockManager.CreateBlockAtCursor(type);
         }
 
         // Destorying/modifying blocks
         else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button1) || CnInputManager.GetButtonDown("Delete"))
         {
-            BlockManager.DestroyActiveObject();
+            BlockManager.Instance.DestroyActiveObject();
         }
         else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition"))
         {
@@ -280,20 +252,20 @@ public class InputManager : MonoBehaviour {
         // Buttons for setting items
         else if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
-            if (BlockManager.ActiveObject != null)
+            if (BlockManager.Instance.ActiveObject != null)
             {
                 //TODO use a method of BlockManager to do this
-                Cathy1Block block = BlockManager.ActiveObject.GetComponent<Cathy1Block>();
-                block.FirstItem = Instantiate(BlockManager.StartLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
+                block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
             }
         }
         else if (Input.GetKeyDown(KeyCode.End))
         {
-            if (BlockManager.ActiveObject != null)
+            if (BlockManager.Instance.ActiveObject != null)
             {
                 //TODO use a method of BlockManager to do this
-                Cathy1Block block = BlockManager.ActiveObject.GetComponent<Cathy1Block>();
-                block.FirstItem = Instantiate(BlockManager.GoalLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
+                block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
             }
         }
 
@@ -336,7 +308,7 @@ public class InputManager : MonoBehaviour {
         //Cursor/Camera reset
         else if (Input.GetKeyDown(KeyCode.F2))
         {
-            Camera.GetComponent<CameraController>().ResetZoom();
+            Camera.ResetZoom();
             if (!BlockManager.PlayMode)
                 Cursor.transform.position = Vector3.zero;
         }
@@ -430,14 +402,14 @@ public class InputManager : MonoBehaviour {
             }
             else if (shiftDown && !BlockManager.PlayMode)
             {
-                GameObject ao = BlockManager.ActiveObject;
+                GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(0, 1, 0);
                 Cursor.transform.position += new Vector3(0, 1, 0);
             }
             else if (ctrlDown && !BlockManager.PlayMode)
             {
-                GetCamera().offset += new Vector3(0, 1, 0);
+                Camera.offset += new Vector3(0, 1, 0);
             }
             else
             {
@@ -460,14 +432,14 @@ public class InputManager : MonoBehaviour {
             }
             else if (shiftDown && !BlockManager.PlayMode)
             {
-                GameObject ao = BlockManager.ActiveObject;
+                GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(0, -1, 0);
                 Cursor.transform.position += new Vector3(0, -1, 0);
             }
             else if (ctrlDown && !BlockManager.PlayMode)
             {
-                GetCamera().offset += new Vector3(0, -1, 0);
+                Camera.offset += new Vector3(0, -1, 0);
             }
             else
             {
@@ -490,14 +462,14 @@ public class InputManager : MonoBehaviour {
             }
             else if (shiftDown && !BlockManager.PlayMode)
             {
-                GameObject ao = BlockManager.ActiveObject;
+                GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(-1, 0, 0);
                 Cursor.transform.position += new Vector3(-1, 0, 0);
             }
             else if (ctrlDown && !BlockManager.PlayMode)
             {
-                GetCamera().offset += new Vector3(-1, 0, 0);
+                Camera.offset += new Vector3(-1, 0, 0);
             }
             else
             {
@@ -520,14 +492,14 @@ public class InputManager : MonoBehaviour {
             }
             else if (shiftDown && !BlockManager.PlayMode)
             {
-                GameObject ao = BlockManager.ActiveObject;
+                GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(1, 0, 0);
                 Cursor.transform.position += new Vector3(1, 0, 0);
             }
             else if (ctrlDown && !BlockManager.PlayMode)
             {
-                GetCamera().offset += new Vector3(1, 0, 0);
+                Camera.offset += new Vector3(1, 0, 0);
             }
             else
             {

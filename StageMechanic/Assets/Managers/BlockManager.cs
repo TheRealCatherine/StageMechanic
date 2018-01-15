@@ -405,22 +405,22 @@ public class BlockManager : MonoBehaviour {
 
     // Create a basic block at the current cursor position
 
-    public IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {
+    public static IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {
+        Debug.Assert(Instance != null);
         Debug.Assert(Cursor != null);
-        Cathy1Block block = GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
-        ActiveBlock = block;
-        AutoSave();
+        Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+        Instance.AutoSave();
         return block;
     }
 
-    public IBlock CreateBlockAtCursor(string palette, string type)
+    public static IBlock CreateBlockAtCursor(string palette, string type)
     {
+        Debug.Assert(Instance != null);
         Debug.Assert(Cursor != null);
         if (palette == "Cathy1 Internal")
         {
-            Cathy1Block block = GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
-            ActiveBlock = block;
-            AutoSave();
+            Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+            Instance.AutoSave();
             return block;
         }
         return null;

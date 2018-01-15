@@ -31,6 +31,6 @@ public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
     {
         Cathy1BlockFactory factory = BlockManager.Instance.Cathy1BlockFactory;
         Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-        BlockManager.Instance.CreateBlockAtCursor("Cathy1 Internal", clickedButton.GetComponentInChildren<Text>().text);
+        BlockManager.CreateBlockAtCursor("Cathy1 Internal", clickedButton.GetComponentInChildren<Text>().text);
     }
 }

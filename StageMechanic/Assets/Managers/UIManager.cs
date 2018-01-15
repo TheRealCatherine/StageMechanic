@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour {
     {
         get
         {
+            Debug.Assert(Instance != null);
             return IsSinglePlayerDeathDialogOpen || FileBrowser.IsOpen || Instance.MainMenu.isActiveAndEnabled || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
         }
     }
@@ -55,17 +56,32 @@ public class UIManager : MonoBehaviour {
 
     public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)
     {
+        Debug.Assert(Instance != null);
         Instance.SinglePlayerDeathDialog.Show(deathRattle);
     }
 
     public static void RefreshButtonMappingDialog()
     {
+        Debug.Assert(Instance != null);
         Instance.ButtonMappingDialog.Refresh();
     }
 
     public static void ShowMainMenu()
     {
+        Debug.Assert(Instance != null);
         Instance.MainMenu.enabled = true;
         Instance.MainMenu.gameObject.SetActive(true);
+    }
+
+    public static void ToggleBlockInfoDialog()
+    {
+        Debug.Assert(Instance != null);
+        Instance.BlockInfoBox.ToggleVisibility();
+    }
+
+    public static void ToggleButtonMappingDialog()
+    {
+        Debug.Assert(Instance != null);
+        Instance.ButtonMappingDialog.gameObject.SetActive(!Instance.ButtonMappingDialog.gameObject.activeInHierarchy);
     }
 }
