@@ -109,18 +109,12 @@ public class BlockManager : MonoBehaviour {
     /// the GameObject of whatever is under the cursor. In actuality it usually only does this
     /// correctly if its a block.
     /// </summary>
-    /// TODO: Get rid of this old CursorColler garbage
+    /// TODO: Move cursor when set
     public GameObject ActiveObject {
         get {
-            GameObject block = GetBlockAt(Cursor.transform.position)?.GameObject;
-            if (block != null)
-                return block;
-            CursorCollider col = Cursor.GetComponent<CursorCollider>();
-            return col.ObjectUnderCursor;
+            return GetBlockAt(Cursor.transform.position)?.GameObject;
         }
         set {
-            CursorCollider col = Cursor.GetComponent<CursorCollider>();
-            col.ObjectUnderCursor = value;
         }
     }
 
@@ -132,7 +126,6 @@ public class BlockManager : MonoBehaviour {
     /// </summary>
     /// TODO Support IBlock interface
     /// TODO Get rid this Goal Block hack and move it to GoalBlock
-    /// TODO Get rid of old CursorCollider stuff
     /// TODO Get sidled-on block when player is sidling
     /// TODO Query PlayerManager for active block when in PlayMode
     public Cathy1Block ActiveBlock
@@ -156,9 +149,6 @@ public class BlockManager : MonoBehaviour {
         }
         set
         {
-            CursorCollider col = Cursor.GetComponent<CursorCollider>();
-            Debug.Assert(col != null);
-            col.ObjectUnderCursor = value.GameObject;
         }
     }
 
