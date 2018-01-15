@@ -1624,6 +1624,7 @@ MonoBehaviour:
     type: 2}
   AddItemButton: {fileID: 1651704129065830, guid: f7c0ef19ab49d944e930872b3d80092b,
     type: 2}
+  Gamepad1Name: {fileID: 1716636812}
   CurrentState: 0
 --- !u!1 &289728677
 GameObject:
@@ -4297,6 +4298,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867697527645220, guid: c427779a6e20be64b9e1c67f2362b6e2, type: 2}
+      propertyPath: m_Name
+      value: ConnectedGamepad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c427779a6e20be64b9e1c67f2362b6e2, type: 2}
@@ -9442,6 +9447,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22409286, guid: 81acfa4b78dfa47499a6c2fd6e521ebd,
     type: 2}
   m_PrefabInternal: {fileID: 1713290620}
+--- !u!114 &1716636812 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114587050438942066, guid: c427779a6e20be64b9e1c67f2362b6e2,
+    type: 2}
+  m_PrefabInternal: {fileID: 742820224}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1748486363
 GameObject:
   m_ObjectHideFlags: 0

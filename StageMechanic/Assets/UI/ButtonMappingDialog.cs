@@ -11,6 +11,7 @@ public class ButtonMappingDialog : MonoBehaviour
     public GameObject ButtonMappingText;
     public GameObject ButtonMappingButton;
     public GameObject AddItemButton;
+    public Text Gamepad1Name;
 
     private List<GameObject> addedItems = new List<GameObject>();
     public enum State
@@ -49,11 +50,18 @@ public class ButtonMappingDialog : MonoBehaviour
         Populate();
     }
 
-    public void Populate()
+    public void Populate(int playerNumber = 0)
     {
-        Dictionary<string, string[]> list = PlayerManager.PlayerInputOptions(0);
+        Debug.Assert(Gamepad1Name != null);
+        string[] gamepads = Input.GetJoystickNames();
+        if (gamepads.Length > playerNumber)
+            Gamepad1Name.text = gamepads[playerNumber];
+
+
+        Dictionary<string, string[]> list = PlayerManager.PlayerInputOptions(playerNumber);
         if (list == null)
             return;
+
         foreach (KeyValuePair<string, string[]> item in list)
         {
             Text text = Instantiate(ButtonMappingText, MainLayout.transform).GetComponent<Text>();
@@ -107,8 +115,19 @@ public class ButtonMappingDialog : MonoBehaviour
     public void TryRegisterJoystick()
     {
 
-        //Joystick 1 D-Pad
-        if (CnInputManager.GetAxis("joystick 1 6th axis") > 0f)
+        if (CnInputManager.GetAxis("joystick 1 3rd axis") > 0f)
+            RegisterKey("joystick 1 3rd axis +");
+        else if (CnInputManager.GetAxis("joystick 1 3rd axis") < 0f)
+            RegisterKey("joyustick 1 3rd axis -");
+        else if (CnInputManager.GetAxis("joystick 1 4th axis") > 0f)
+            RegisterKey("joystick 1 4th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 4th axis") < 0f)
+            RegisterKey("joyustick 1 4th axis -");
+        else if (CnInputManager.GetAxis("joystick 1 5th axis") > 0f)
+            RegisterKey("joystick 1 5th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 5th axis") < 0f)
+            RegisterKey("joyustick 1 5th axis -");
+        else if (CnInputManager.GetAxis("joystick 1 6th axis") > 0f)
             RegisterKey("joystick 1 6th axis +");
         else if (CnInputManager.GetAxis("joystick 1 6th axis") < 0f)
             RegisterKey("joyustick 1 6th axis -");
@@ -116,8 +135,11 @@ public class ButtonMappingDialog : MonoBehaviour
             RegisterKey("joyustick 1 6th axis +");
         else if (CnInputManager.GetAxis("joystick 1 7th axis") < 0f)
             RegisterKey("joyustick 1 7th axis -");
+        else if (CnInputManager.GetAxis("joystick 1 8th axis") > 0f)
+            RegisterKey("joyustick 1 8th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 8th axis") < 0f)
+            RegisterKey("joyustick 1 8th axis -");
 
-        //Joystick 1 Left Stick
         else if (CnInputManager.GetAxis("joystick 1 Y axis") < 0)
             RegisterKey("joystick 1 Y axis +");
         else if (CnInputManager.GetAxis("joystick 1 Y axis") > 0)

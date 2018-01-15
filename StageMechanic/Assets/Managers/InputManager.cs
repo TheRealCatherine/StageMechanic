@@ -33,6 +33,27 @@ public class InputManager : MonoBehaviour
     float period = 0.0f;
     const float joystickThrottleRate = 0.1f;
 
+    enum GamepadType
+    {
+        None,
+        Unknown,
+        XBox360,
+        PS4
+    }
+
+    static GamepadType GetGamepadType(int playerNumber)
+    {
+        string[] gamepadNames = Input.GetJoystickNames();
+        if (gamepadNames.Length <= playerNumber)
+            return GamepadType.None;
+        if (gamepadNames[playerNumber].Contains("360"))
+            return GamepadType.XBox360;
+        else if (gamepadNames[playerNumber] == "Wireless Controller")
+            return GamepadType.PS4;
+        return GamepadType.None;
+        
+    }
+
     /// <summary>
     /// Check to see if any current user input matches block creation commands for edit mode
     /// </summary>
@@ -40,7 +61,9 @@ public class InputManager : MonoBehaviour
     /// TODO: don't hardcode block types or buttons
     bool TryCreateBlockAtCursor()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Joystick1Button3))
+        if((GetGamepadType(0) == GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button3))
+            || (GetGamepadType(0) == GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button1))
+            || Input.GetKeyDown(KeyCode.Alpha1))
         {
             BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Basic);
             return true;
@@ -146,7 +169,7 @@ public class InputManager : MonoBehaviour
         //"Be like me. Prepare to fall. --Amy Macdonald"
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
-            bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || (BlockManager.PlayMode && Input.GetKey(KeyCode.JoystickButton0));
+            bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
             Vector3 blockDirection = Vector3.down;
             Vector3 platformDirection = Vector3.up;
             if (shiftDown)
@@ -184,7 +207,8 @@ public class InputManager : MonoBehaviour
             UIManager.ToggleButtonMappingDialog();
             return true;
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button6))
+        else if ((GetGamepadType(0)==GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button6))
+            || (GetGamepadType(0)==GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button8)))
         {
             UIManager.ToggleBlockInfoDialog();
             UIManager.ToggleButtonMappingDialog();
@@ -209,7 +233,10 @@ public class InputManager : MonoBehaviour
         bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
 
         // Block type cycling
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0) || CnInputManager.GetButtonDown("Grab"))
+        if (Input.GetKeyDown(KeyCode.Space)
+            || CnInputManager.GetButtonDown("Grab") 
+            || (GetGamepadType(0)==GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button0))
+            || (GetGamepadType(0)==GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button3)))
         {
             if (!BlockManager.PlayMode)
             {
@@ -218,7 +245,10 @@ public class InputManager : MonoBehaviour
             }
 
         }
-        else if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetKeyDown(KeyCode.Joystick1Button4) || CnInputManager.GetButtonDown("Previous"))
+        else if (Input.GetKeyDown(KeyCode.LeftBracket)
+            || CnInputManager.GetButtonDown("Previous") 
+            || (GetGamepadType(0)==GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button4))
+            || (GetGamepadType(0)==GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button4)))
         {
             //TODO generic
             Cathy1Block.BlockType type = BlockManager.Instance.PrevBlockType();
@@ -226,7 +256,10 @@ public class InputManager : MonoBehaviour
                 BlockManager.CreateBlockAtCursor(type);
             return true;
         }
-        else if (Input.GetKeyDown(KeyCode.RightBracket) || Input.GetKeyDown(KeyCode.Joystick1Button5) || CnInputManager.GetButtonDown("Next"))
+        else if (Input.GetKeyDown(KeyCode.RightBracket) 
+            || CnInputManager.GetButtonDown("Next")
+            || (GetGamepadType(0) == GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button5))
+            || (GetGamepadType(0) == GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button5)))
         {
             //TODO generic
             Cathy1Block.BlockType type = BlockManager.Instance.NextBlockType();
@@ -243,7 +276,10 @@ public class InputManager : MonoBehaviour
         }
 
         // Destorying/modifying blocks
-        else if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Joystick1Button1) || CnInputManager.GetButtonDown("Delete"))
+        else if (Input.GetKeyDown(KeyCode.Delete) 
+            || CnInputManager.GetButtonDown("Delete")
+            || (GetGamepadType(0) == GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button1))
+            || (GetGamepadType(0) == GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button2)))
         {
             BlockManager.Instance.DestroyActiveObject();
         }
@@ -261,7 +297,7 @@ public class InputManager : MonoBehaviour
         }
 
         // Buttons for setting items
-        else if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.Joystick1Button2))
+        else if (Input.GetKeyDown(KeyCode.Home))
         {
             if (BlockManager.Instance.ActiveObject != null)
             {
@@ -293,22 +329,46 @@ public class InputManager : MonoBehaviour
         }
 
         List<string> axees = new List<string>();
-        if (CnInputManager.GetAxis("joystick 1 7th axis") > 0f)
-            axees.Add("joystick 1 7th axis +");
-        else if (CnInputManager.GetAxis("joystick 1 7th axis") < 0f)
-            axees.Add("joystick 1 7th axis -");
-        if (CnInputManager.GetAxis("joystick 1 6th axis") > 0f)
-            axees.Add("joystick 1 6th axis +");
-        else if (CnInputManager.GetAxis("joystick 1 6th axis") < 0f)
-            axees.Add("joystick 1 6th axis -");
-        if (CnInputManager.GetAxis("joystick 1 Y axis") > 0)
-            axees.Add("joystick 1 Y axis -");
-        else if (CnInputManager.GetAxis("joystick 1 Y axis") < 0)
-            axees.Add("joystick 1 Y axis +");
         if (CnInputManager.GetAxis("joystick 1 X axis") > 0)
             axees.Add("joystick 1 X axis +");
         else if (CnInputManager.GetAxis("joystick 1 X axis") < 0)
             axees.Add("joystick 1 X axis -");
+
+        if (CnInputManager.GetAxis("joystick 1 Y axis") > 0)
+            axees.Add("joystick 1 Y axis -");
+        else if (CnInputManager.GetAxis("joystick 1 Y axis") < 0)
+            axees.Add("joystick 1 Y axis +");
+
+
+        if (CnInputManager.GetAxis("joystick 1 3rd axis") > 0f)
+            axees.Add("joystick 1 3rd axis +");
+        else if (CnInputManager.GetAxis("joystick 1 3rd axis") < 0f)
+            axees.Add("joystick 1 3rd axis -");
+
+        if (CnInputManager.GetAxis("joystick 1 4th axis") > 0f)
+            axees.Add("joystick 1 4th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 4th axis") < 0f)
+            axees.Add("joystick 1 4th axis -");
+
+        if (CnInputManager.GetAxis("joystick 1 5th axis") > 0f)
+            axees.Add("joystick 1 5th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 5th axis") < 0f)
+            axees.Add("joystick 1 5th axis -");
+
+        if (CnInputManager.GetAxis("joystick 1 6th axis") > 0f)
+            axees.Add("joystick 1 6th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 6th axis") < 0f)
+            axees.Add("joystick 1 6th axis -");
+
+        if (CnInputManager.GetAxis("joystick 1 7th axis") > 0f)
+            axees.Add("joystick 1 7th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 7th axis") < 0f)
+            axees.Add("joystick 1 7th axis -");
+
+        if (CnInputManager.GetAxis("joystick 1 8th axis") > 0f)
+            axees.Add("joystick 1 8th axis +");
+        else if (CnInputManager.GetAxis("joystick 1 8th axis") < 0f)
+            axees.Add("joystick 1 8th axis -");
 
         bool usedAtLeastOne = false;
         for (int playerNumber = 0; playerNumber < PlayerManager.PlayerCount(); ++playerNumber)
@@ -395,15 +455,35 @@ public class InputManager : MonoBehaviour
 
     bool TryCursorMovement()
     {
-        float vert = CnInputManager.GetAxis("joystick 1 7th axis");
-        float hori = CnInputManager.GetAxis("joystick 1 6th axis");
+        float vert = 0.0f;
+        float hori = 0.0f;
+        bool goFurther = false;
+        bool goCloser = false;
+        bool gamepadInput = false;
+
+        if (GetGamepadType(0) == GamepadType.XBox360)
+        {
+            vert = CnInputManager.GetAxis("joystick 1 7th axis");
+            hori = CnInputManager.GetAxis("joystick 1 6th axis");
+            goFurther = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
+            goCloser = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
+            if (goCloser || goFurther || vert != 0.0f || hori != 0.0f)
+                gamepadInput = true;
+        }
+        else if (GetGamepadType(0) == GamepadType.PS4)
+        {
+            vert = CnInputManager.GetAxis("joystick 1 8th axis");
+            hori = CnInputManager.GetAxis("joystick 1 7th axis");
+            goFurther = Input.GetKeyDown(KeyCode.Joystick1Button7);
+            goCloser = Input.GetKeyDown(KeyCode.Joystick1Button6);
+            if (goCloser || goFurther || vert != 0.0f || hori != 0.0f)
+                gamepadInput = true;
+        }
 
         bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
-        bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || (BlockManager.PlayMode && Input.GetKey(KeyCode.JoystickButton0));
+        bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         bool ctrlDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
 
-        bool goFurther = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
-        bool goCloser = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
 
         if (Input.GetKeyDown(KeyCode.Comma))
             goFurther = true;
@@ -595,6 +675,8 @@ public class InputManager : MonoBehaviour
             Camera.zoom += scroll * scrollSpeed;
             return true;
         }
+
+
         //Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
 
 #if (UNITY_ANDROID == false)
@@ -607,8 +689,22 @@ public class InputManager : MonoBehaviour
             return true;
         }
 
-        float rotationXOffset = Input.GetAxis("joystick 1 4th axis") * (sensX * 2) * Time.deltaTime;
-        float rotationYOffset = Input.GetAxis("joystick 1 5th axis") * (sensY * 2) * Time.deltaTime;
+        float rotationXOffset = 0.0f;
+        float rotationYOffset = 0.0f;
+        string[] gamepadNames = Input.GetJoystickNames();
+        if(gamepadNames.Length>0)
+        {
+            if(gamepadNames[0].Contains("360"))
+            {
+                rotationXOffset = Input.GetAxis("joystick 1 4th axis") * (sensX * 2) * Time.deltaTime;
+                rotationYOffset = Input.GetAxis("joystick 1 5th axis") * (sensY * 2) * Time.deltaTime;
+            }
+            else if(gamepadNames[0].Contains("Wireless Controller"))
+            {
+                //rotationXOffset = Input.GetAxis("joystick 1 3rd axis") * (sensX * 2) * Time.deltaTime;
+                //rotationYOffset = Input.GetAxis("joystick 1 6th axis") * (sensY * 2) * Time.deltaTime;
+            }
+        }
         if (rotationXOffset >= 0.05 || rotationYOffset >= 0.05 || rotationXOffset <= -0.05 || rotationYOffset <= -0.05)
         {
             rotationX += rotationXOffset;
