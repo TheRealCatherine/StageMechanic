@@ -10,27 +10,28 @@ using System;
 using CnControls;
 
 [System.Serializable]
-public class InputManager : MonoBehaviour {
+public class InputManager : MonoBehaviour
+{
 
-	public GameObject Cursor;
-	public CameraController Camera;
+    public GameObject Cursor;
+    public CameraController Camera;
 
-	internal const float scrollSpeed = 2.0f;
+    internal const float scrollSpeed = 2.0f;
 
-	public float minX = -360.0f;
-	public float maxX = 360.0f;
+    public float minX = -360.0f;
+    public float maxX = 360.0f;
 
-	public float minY = -45.0f;
-	public float maxY = 45.0f;
+    public float minY = -45.0f;
+    public float maxY = 45.0f;
 
-	public float sensX = 100.0f;
-	public float sensY = 100.0f;
+    public float sensX = 100.0f;
+    public float sensY = 100.0f;
 
-	float rotationY = 0.0f;
-	float rotationX = 0.0f;
+    float rotationY = 0.0f;
+    float rotationX = 0.0f;
 
-	float period = 0.0f;
-	const float joystickThrottleRate = 0.1f;
+    float period = 0.0f;
+    const float joystickThrottleRate = 0.1f;
 
     /// <summary>
     /// Check to see if any current user input matches block creation commands for edit mode
@@ -141,6 +142,27 @@ public class InputManager : MonoBehaviour {
             return true;
         }
 
+        //Manually move the platform
+        //"Be like me. Prepare to fall. --Amy Macdonald"
+        else if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || (BlockManager.PlayMode && Input.GetKey(KeyCode.JoystickButton0));
+            Vector3 blockDirection = Vector3.down;
+            Vector3 platformDirection = Vector3.up;
+            if (shiftDown)
+            {
+                blockDirection = Vector3.up;
+                platformDirection = Vector3.down;
+            }
+            foreach (Transform child in BlockManager.ActiveFloor.gameObject.transform)
+            {
+                if (child.GetComponent<IBlock>() != null)
+                    child.localPosition += blockDirection;
+            }
+            BlockManager.ActiveFloor.transform.localPosition += platformDirection;
+            return true;
+        }
+
         return false;
     }
 
@@ -151,7 +173,7 @@ public class InputManager : MonoBehaviour {
     /// TODO: don't hardcode commands or keys
     bool TryUICommands()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.I))
         {
             UIManager.ToggleBlockInfoDialog();
@@ -194,7 +216,7 @@ public class InputManager : MonoBehaviour {
                 BlockManager.CreateBlockAtCursor(BlockManager.Instance.BlockCycleType);
                 return true;
             }
-            
+
         }
         else if (Input.GetKeyDown(KeyCode.LeftBracket) || Input.GetKeyDown(KeyCode.Joystick1Button4) || CnInputManager.GetButtonDown("Previous"))
         {
@@ -238,7 +260,27 @@ public class InputManager : MonoBehaviour {
             GetComponent<EventManager>().CreatePlayerStartLocation(2, Cursor.transform.position, Cursor.transform.rotation);
         }
 
-
+        // Buttons for setting items
+        else if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.Joystick1Button2))
+        {
+            if (BlockManager.Instance.ActiveObject != null)
+            {
+                //TODO use a method of BlockManager to do this
+                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
+                block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+                return true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.End))
+        {
+            if (BlockManager.Instance.ActiveObject != null)
+            {
+                //TODO use a method of BlockManager to do this
+                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
+                block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -312,11 +354,47 @@ public class InputManager : MonoBehaviour {
         return usedAtLeastOne;
     }
 
-    void Update() {
+    bool TryAtmosphereCommands()
+    {
+        //Music controlls
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            MusicManager.TogglePause();
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.F10))
+        {
+            MusicManager.PlayPreviousTrack();
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.F12))
+        {
+            MusicManager.PlayNextTrack();
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            MusicManager.VolumeDown();
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Equals))
+        {
+            MusicManager.VolumeUp();
+            return true;
+        }
 
-        if (UIManager.IsAnyInputDialogOpen)
-            return;
+        //Skybox controlls
+        else if (Input.GetKeyDown(KeyCode.F3))
+        {
+            SkyboxManager.NextSkybox();
+            return true;
+        }
 
+        return false;
+    }
+
+    bool TryCursorMovement()
+    {
         float vert = CnInputManager.GetAxis("joystick 1 7th axis");
         float hori = CnInputManager.GetAxis("joystick 1 6th axis");
 
@@ -324,12 +402,204 @@ public class InputManager : MonoBehaviour {
         bool shiftDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || (BlockManager.PlayMode && Input.GetKey(KeyCode.JoystickButton0));
         bool ctrlDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
 
+        bool goFurther = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
+        bool goCloser = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
+
+        if (Input.GetKeyDown(KeyCode.Comma))
+            goFurther = true;
+        else if (Input.GetKeyDown(KeyCode.Period))
+            goCloser = true;
+
+        //Fast cursor movement
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            Cursor.transform.position += new Vector3(0, 10, 0);
+            return true;
+        }
+        else if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            Cursor.transform.position += new Vector3(0, -10, 0);
+            return true;
+        }
+
+        //Cursor/Camera reset
+        else if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Camera.ResetZoom();
+            Cursor.transform.position = Vector3.zero;
+            return true;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || vert > 0)
+        {
+
+            if (vert > 0 && period < joystickThrottleRate)
+            {
+                period += Time.deltaTime;
+                return false;
+            }
+            period = 0.0f;
+            if (altDown)
+            {
+                BlockManager.ActiveFloor.transform.Rotate(90, 0, 0, Space.Self);
+                Cursor.transform.Rotate(90, 0, 0, Space.Self);
+                return true;
+            }
+            else if (shiftDown)
+            {
+                GameObject ao = BlockManager.Instance.ActiveObject;
+                if (ao != null)
+                    ao.transform.Translate(0, 1, 0);
+                Cursor.transform.position += new Vector3(0, 1, 0);
+                return true;
+            }
+            else if (ctrlDown)
+            {
+                Camera.offset += new Vector3(0, 1, 0);
+                return true;
+            }
+            else
+            {
+                Cursor.transform.position += new Vector3(0, 1, 0);
+                return true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || vert < 0)
+        {
+            if (vert < 0 && period < joystickThrottleRate)
+            {
+                period += Time.deltaTime;
+                return false;
+            }
+            period = 0.0f;
+            if (altDown)
+            {
+                BlockManager.ActiveFloor.transform.Rotate(-90, 0, 0, Space.Self);
+                Cursor.transform.Rotate(-90, 0, 0, Space.Self);
+                return true;
+            }
+            else if (shiftDown)
+            {
+                GameObject ao = BlockManager.Instance.ActiveObject;
+                if (ao != null)
+                    ao.transform.Translate(0, -1, 0);
+                Cursor.transform.position += new Vector3(0, -1, 0);
+                return true;
+            }
+            else if (ctrlDown)
+            {
+                Camera.offset += new Vector3(0, -1, 0);
+            }
+            else
+            {
+                Cursor.transform.position += new Vector3(0, -1, 0);
+                return true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || hori < 0)
+        {
+            if (hori < 0 && period < joystickThrottleRate)
+            {
+                period += Time.deltaTime;
+                return false;
+            }
+            period = 0.0f;
+            if (altDown)
+            {
+                BlockManager.ActiveFloor.transform.Rotate(0, 90, 0, Space.Self);
+                Cursor.transform.Rotate(0, 90, 0, Space.Self);
+                return true;
+            }
+            else if (shiftDown)
+            {
+                GameObject ao = BlockManager.Instance.ActiveObject;
+                if (ao != null)
+                    ao.transform.Translate(-1, 0, 0);
+                Cursor.transform.position += new Vector3(-1, 0, 0);
+                return true;
+            }
+            else if (ctrlDown)
+            {
+                Camera.offset += new Vector3(-1, 0, 0);
+                return true;
+            }
+            else
+            {
+                Cursor.transform.position += new Vector3(-1, 0, 0);
+                return true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || hori > 0)
+        {
+            if (hori > 0 && period < joystickThrottleRate)
+            {
+                period += Time.deltaTime;
+                return false;
+            }
+            period = 0.0f;
+            if (altDown && !BlockManager.PlayMode)
+            {
+                BlockManager.ActiveFloor.transform.Rotate(0, -90, 0, Space.Self);
+                Cursor.transform.Rotate(0, -90, 0, Space.Self);
+                return true;
+            }
+            else if (shiftDown)
+            {
+                GameObject ao = BlockManager.Instance.ActiveObject;
+                if (ao != null)
+                    ao.transform.Translate(1, 0, 0);
+                Cursor.transform.position += new Vector3(1, 0, 0);
+                return true;
+            }
+            else if (ctrlDown)
+            {
+                Camera.offset += new Vector3(1, 0, 0);
+                return true;
+            }
+            else
+            {
+                Cursor.transform.position += new Vector3(1, 0, 0);
+                return true;
+            }
+        }
+        else if (goFurther)
+        {
+            if (CnInputManager.GetAxis("joystick 1 Y axis") > 0 && period < joystickThrottleRate)
+            {
+                period += Time.deltaTime;
+                return false;
+            }
+            period = 0.0f;
+            Cursor.transform.position += new Vector3(0, 0, -1);
+            return true;
+        }
+        else if (goCloser)
+        {
+            if (CnInputManager.GetAxis("joystick 1 Y axis") < 0 && period < joystickThrottleRate)
+            {
+                period += Time.deltaTime;
+                return false;
+            }
+            period = 0.0f;
+            Cursor.transform.position += new Vector3(0, 0, 1);
+            return true;
+        }
+        return false;
+    }
+
+    void Update()
+    {
+
+        if (UIManager.IsAnyInputDialogOpen)
+            return;
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll >= 0.005f || scroll <= -0.005f)
             Camera.zoom += scroll * scrollSpeed;
         //Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
 
-        if (Input.GetMouseButton(1)) {
+        if (Input.GetMouseButton(1))
+        {
             rotationX += Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
             rotationY += Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
             rotationY = Mathf.Clamp(rotationY, minY, maxY);
@@ -338,20 +608,14 @@ public class InputManager : MonoBehaviour {
 
         float rotationXOffset = Input.GetAxis("joystick 1 4th axis") * (sensX * 2) * Time.deltaTime;
         float rotationYOffset = Input.GetAxis("joystick 1 5th axis") * (sensY * 2) * Time.deltaTime;
-        if (rotationXOffset >= 0.05 || rotationYOffset >= 0.05 || rotationXOffset <= -0.05 || rotationYOffset <= -0.05) {
+        if (rotationXOffset >= 0.05 || rotationYOffset >= 0.05 || rotationXOffset <= -0.05 || rotationYOffset <= -0.05)
+        {
             rotationX += rotationXOffset;
             rotationY += rotationYOffset;
             rotationY = Mathf.Clamp(rotationY, minY, maxY);
             //Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
         }
 
-        bool goFurther = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
-        bool goCloser = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
-
-        if (Input.GetKeyDown(KeyCode.Comma) && !BlockManager.PlayMode)
-            goFurther = true;
-        else if (Input.GetKeyDown(KeyCode.Period) && !BlockManager.PlayMode)
-            goCloser = true;
 
         //Play Mode
         if (BlockManager.PlayMode)
@@ -368,269 +632,29 @@ public class InputManager : MonoBehaviour {
                 BlockManager.Undo();
                 return;
             }
-
         }
 
         //Edit Mode
         else
         {
-            if (TryCreateBlockAtCursor())
+            if (TryCursorMovement())
+                return;
+            else if (TryCreateBlockAtCursor())
                 return;
             else if (TryBlockCommands())
                 return;
-
-            
         }
 
-        if (TryLevelOperationCommands())
-            return;
-        else if (TryUICommands())
-            return;
-
-
-
-
-        //Play mode
-        else if (Input.GetKeyDown(KeyCode.P) || CnInputManager.GetButtonDown("Play"))
+        // Misc
+        if (Input.GetKeyDown(KeyCode.P) || CnInputManager.GetButtonDown("Play"))
         {
             BlockManager.Instance.TogglePlayMode();
         }
-        //Quit
-        
-
-        //Manually move the platform
-        else if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Vector3 blockDirection = Vector3.down;
-            Vector3 platformDirection = Vector3.up;
-            if (shiftDown)
-            {
-                blockDirection = Vector3.up;
-                platformDirection = Vector3.down;
-            }
-            foreach (Transform child in BlockManager.ActiveFloor.gameObject.transform)
-            {
-                if (child.GetComponent<IBlock>() != null)
-                    child.localPosition += blockDirection;
-            }
-            BlockManager.ActiveFloor.transform.localPosition += platformDirection;
-        }
-
-
-        // Buttons for setting items
-        else if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.Joystick1Button2))
-        {
-            if (BlockManager.Instance.ActiveObject != null)
-            {
-                //TODO use a method of BlockManager to do this
-                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
-                block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.End))
-        {
-            if (BlockManager.Instance.ActiveObject != null)
-            {
-                //TODO use a method of BlockManager to do this
-                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
-                block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
-            }
-        }
-
-        //Music controlls
-        else if (Input.GetKeyDown(KeyCode.F11))
-        {
-            MusicManager.TogglePause();
-        }
-        else if (Input.GetKeyDown(KeyCode.F10))
-        {
-            MusicManager.PlayPreviousTrack();
-        }
-        else if (Input.GetKeyDown(KeyCode.F12))
-        {
-            MusicManager.PlayNextTrack();
-        }
-        else if (Input.GetKeyDown(KeyCode.Minus))
-        {
-            MusicManager.VolumeDown();
-        }
-        else if (Input.GetKeyDown(KeyCode.Equals))
-        {
-            MusicManager.VolumeUp();
-        }
-
-        //Skybox controlls
-        else if (Input.GetKeyDown(KeyCode.F3))
-        {
-            SkyboxManager.NextSkybox();
-        }
-
-        //Fast cursor movement
-        else if (Input.GetKeyDown(KeyCode.PageUp) && !BlockManager.PlayMode)
-        {
-            Cursor.transform.position += new Vector3(0, 10, 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.PageDown) && !BlockManager.PlayMode)
-        {
-            Cursor.transform.position += new Vector3(0, -10, 0);
-        }
-
-        //Cursor/Camera reset
-        else if (Input.GetKeyDown(KeyCode.F2))
-        {
-            Camera.ResetZoom();
-            if (!BlockManager.PlayMode)
-                Cursor.transform.position = Vector3.zero;
-        }
-
-        
-
-        // Cursor/stage movement cotrol
-        // Keyboard & XBox 360 Input
-        // TODO update ActiveObject based on cursor position using colliders
-        else if (Input.GetKeyDown(KeyCode.UpArrow) || vert > 0)
-        {
-            List<string> player1Inputs = new List<string>();
-            if (shiftDown)
-                player1Inputs.Add("Grab");
-
-            if (vert > 0 && period < joystickThrottleRate)
-            {
-                period += Time.deltaTime;
-                return;
-            }
-            period = 0.0f;
-            if (altDown && !BlockManager.PlayMode)
-            {
-                BlockManager.ActiveFloor.transform.Rotate(90, 0, 0, Space.Self);
-                Cursor.transform.Rotate(90, 0, 0, Space.Self);
-            }
-            else if (shiftDown && !BlockManager.PlayMode)
-            {
-                GameObject ao = BlockManager.Instance.ActiveObject;
-                if (ao != null)
-                    ao.transform.Translate(0, 1, 0);
-                Cursor.transform.position += new Vector3(0, 1, 0);
-            }
-            else if (ctrlDown && !BlockManager.PlayMode)
-            {
-                Camera.offset += new Vector3(0, 1, 0);
-            }
-            else
-            {
-                if (!BlockManager.PlayMode)
-                    Cursor.transform.position += new Vector3(0, 1, 0);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || vert < 0)
-        {
-            if (vert < 0 && period < joystickThrottleRate)
-            {
-                period += Time.deltaTime;
-                return;
-            }
-            period = 0.0f;
-            if (altDown && !BlockManager.PlayMode)
-            {
-                BlockManager.ActiveFloor.transform.Rotate(-90, 0, 0, Space.Self);
-                Cursor.transform.Rotate(-90, 0, 0, Space.Self);
-            }
-            else if (shiftDown && !BlockManager.PlayMode)
-            {
-                GameObject ao = BlockManager.Instance.ActiveObject;
-                if (ao != null)
-                    ao.transform.Translate(0, -1, 0);
-                Cursor.transform.position += new Vector3(0, -1, 0);
-            }
-            else if (ctrlDown && !BlockManager.PlayMode)
-            {
-                Camera.offset += new Vector3(0, -1, 0);
-            }
-            else
-            {
-                if (!BlockManager.PlayMode)
-                    Cursor.transform.position += new Vector3(0, -1, 0);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || hori < 0)
-        {
-            if (hori < 0 && period < joystickThrottleRate)
-            {
-                period += Time.deltaTime;
-                return;
-            }
-            period = 0.0f;
-            if (altDown && !BlockManager.PlayMode)
-            {
-                BlockManager.ActiveFloor.transform.Rotate(0, 90, 0, Space.Self);
-                Cursor.transform.Rotate(0, 90, 0, Space.Self);
-            }
-            else if (shiftDown && !BlockManager.PlayMode)
-            {
-                GameObject ao = BlockManager.Instance.ActiveObject;
-                if (ao != null)
-                    ao.transform.Translate(-1, 0, 0);
-                Cursor.transform.position += new Vector3(-1, 0, 0);
-            }
-            else if (ctrlDown && !BlockManager.PlayMode)
-            {
-                Camera.offset += new Vector3(-1, 0, 0);
-            }
-            else
-            {
-                if (!BlockManager.PlayMode)
-                    Cursor.transform.position += new Vector3(-1, 0, 0);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) || hori > 0)
-        {
-            if (hori > 0 && period < joystickThrottleRate)
-            {
-                period += Time.deltaTime;
-                return;
-            }
-            period = 0.0f;
-            if (altDown && !BlockManager.PlayMode)
-            {
-                BlockManager.ActiveFloor.transform.Rotate(0, -90, 0, Space.Self);
-                Cursor.transform.Rotate(0, -90, 0, Space.Self);
-            }
-            else if (shiftDown && !BlockManager.PlayMode)
-            {
-                GameObject ao = BlockManager.Instance.ActiveObject;
-                if (ao != null)
-                    ao.transform.Translate(1, 0, 0);
-                Cursor.transform.position += new Vector3(1, 0, 0);
-            }
-            else if (ctrlDown && !BlockManager.PlayMode)
-            {
-                Camera.offset += new Vector3(1, 0, 0);
-            }
-            else
-            {
-                if (!BlockManager.PlayMode)
-                    Cursor.transform.position += new Vector3(1, 0, 0);
-            }
-        }
-        else if (goFurther)
-        {
-            if (CnInputManager.GetAxis("joystick 1 Y axis") > 0 && period < joystickThrottleRate)
-            {
-                period += Time.deltaTime;
-                return;
-            }
-            period = 0.0f;
-            Cursor.transform.position += new Vector3(0, 0, -1);
-        }
-        else if (goCloser)
-        {
-            if (CnInputManager.GetAxis("joystick 1 Y axis") < 0 && period < joystickThrottleRate)
-            {
-                period += Time.deltaTime;
-                return;
-            }
-            period = 0.0f;
-            Cursor.transform.position += new Vector3(0, 0, 1);
-        }
-	}
+        else if (TryAtmosphereCommands())
+            return;
+        else if (TryLevelOperationCommands())
+            return;
+        else if (TryUICommands())
+            return;
+    }
 }
