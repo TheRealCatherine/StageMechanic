@@ -614,7 +614,7 @@ public class InputManager : MonoBehaviour
             rotationX += rotationXOffset;
             rotationY += rotationYOffset;
             rotationY = Mathf.Clamp(rotationY, minY, maxY);
-            //Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
+            Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
         }
 #endif
 

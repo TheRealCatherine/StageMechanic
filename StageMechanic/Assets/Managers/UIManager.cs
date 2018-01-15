@@ -44,14 +44,16 @@ public class UIManager : MonoBehaviour {
 
     private void Update()
     {
-        /* for Android
+        // for Android
+#if UNITY_ANDROID
         SetStartPosButton.gameObject.SetActive(!BlockManager.PlayMode);
         NextBlockTypButton.gameObject.SetActive(!BlockManager.PlayMode);
         PrevBlockTypeButton.gameObject.SetActive(!BlockManager.PlayMode);
         DeleteBlockButton.gameObject.SetActive(!BlockManager.PlayMode);
-        FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);*/
-
+        FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);
+#else
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
+#endif
     }
 
     public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)

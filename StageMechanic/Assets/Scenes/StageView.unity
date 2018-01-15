@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16487625, g: 0.10864479, b: 0.22398311, a: 1}
+  m_IndirectSpecularColor: {r: 0.16492113, g: 0.10802414, b: 0.22309715, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2278,8 +2278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cursor: {fileID: 662790149}
   Camera: {fileID: 223191238}
-  BlockInfoBox: {fileID: 647771339}
-  ButtonMappingBox: {fileID: 288891125}
   minX: -360
   maxX: 360
   minY: -45
