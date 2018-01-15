@@ -3,6 +3,7 @@ using GracesGames.SimpleFileBrowser.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class UIManager : MonoBehaviour {
     public SinglePlayerDeathDialog SinglePlayerDeathDialog;
     public ButtonMappingDialog ButtonMappingDialog;
     public MainMenu MainMenu;
+    public ScrollRect BlockTypesList;
 
     public SimpleButton SetStartPosButton;
     public SimpleButton NextBlockTypButton;
@@ -47,6 +49,8 @@ public class UIManager : MonoBehaviour {
         PrevBlockTypeButton.gameObject.SetActive(!BlockManager.PlayMode);
         DeleteBlockButton.gameObject.SetActive(!BlockManager.PlayMode);
         FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);*/
+
+        BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
     }
 
     public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)

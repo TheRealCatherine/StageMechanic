@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 
 public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
 {
@@ -28,7 +29,20 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
     public GameObject RandomBlockPrefab;
     public GameObject GoalBlockPrefab;
 
-
+    public Sprite BasicIcon;
+    public Sprite TrapIcon;
+    public Sprite SpringIcon;
+    public Sprite MonsterIcon;
+    public Sprite IceIcon;
+    public Sprite VortexIcon;
+    public Sprite Bomb1Icon;
+    public Sprite Bomb2Icon;
+    public Sprite Crack1Icon;
+    public Sprite Crack2Icon;
+    public Sprite HeavyIcon;
+    public Sprite ImmobileIcon;
+    public Sprite MysterIcon;
+    public Sprite GoalIcon;
 
     public int BlockTypeCount
     {
@@ -61,6 +75,43 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         get
         {
             return _blockTypeNames;
+        }
+    }
+
+    public Sprite IconForType(string name)
+    {
+        switch(name)
+        {
+            case "Basic":
+                return BasicIcon;
+            case "Spike Trap":
+                return TrapIcon;
+            case "Spring":
+                return SpringIcon;
+            case "Monster":
+                return MonsterIcon;
+            case "Ice":
+                return IceIcon;
+            case "Vortex":
+                return VortexIcon;
+            case "Small Bomb":
+                return Bomb1Icon;
+            case "Large Bomb":
+                return Bomb2Icon;
+            case "Cracked (1 Step)":
+                return Crack1Icon;
+            case "Cracked (2 Steps)":
+                return Crack2Icon;
+            case "Heavy":
+                return HeavyIcon;
+            case "Immobile":
+                return ImmobileIcon;
+            case "Mystery":
+                return MysterIcon;
+            case "Goal":
+                return GoalIcon;
+            default:
+                return null;
         }
     }
 

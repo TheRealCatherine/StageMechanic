@@ -423,6 +423,19 @@ public class BlockManager : MonoBehaviour {
         return block;
     }
 
+    public IBlock CreateBlockAtCursor(string palette, string type)
+    {
+        Debug.Assert(Cursor != null);
+        if (palette == "Cathy1 Internal")
+        {
+            Cathy1Block block = GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+            ActiveBlock = block;
+            AutoSave();
+            return block;
+        }
+        return null;
+    }
+
     /// <summary>
     /// Returns a Cathy1BlockFactory that can be used to create Cathy1-style blocks
     /// </summary>
