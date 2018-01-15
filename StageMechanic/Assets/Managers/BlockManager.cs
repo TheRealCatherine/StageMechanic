@@ -29,10 +29,8 @@ public class BlockManager : MonoBehaviour {
     public GameObject StartLocationIndicator;
     public GameObject GoalLocationIndicator;
     public GameObject FileBrowserPrefab;
-    public GameObject ButtonMappingBox;
 
-
-    public int MaxUndoLevels = 20;
+    public int MaxUndoLevels = 99;
     public bool UndoEnabled = true;
 
     /// <summary>

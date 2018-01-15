@@ -587,15 +587,14 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
-    void Update()
+    bool TryCameraCommands()
     {
-
-        if (UIManager.IsAnyInputDialogOpen)
-            return;
-
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll >= 0.005f || scroll <= -0.005f)
+        {
             Camera.zoom += scroll * scrollSpeed;
+            return true;
+        }
         //Camera.transform.Translate(0, 0, scroll * scrollSpeed, Space.World);
 
 #if (UNITY_ANDROID == false)
@@ -605,6 +604,7 @@ public class InputManager : MonoBehaviour
             rotationY += Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
             rotationY = Mathf.Clamp(rotationY, minY, maxY);
             Camera.transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+            return true;
         }
 
         float rotationXOffset = Input.GetAxis("joystick 1 4th axis") * (sensX * 2) * Time.deltaTime;
@@ -614,9 +614,17 @@ public class InputManager : MonoBehaviour
             rotationX += rotationXOffset;
             rotationY += rotationYOffset;
             rotationY = Mathf.Clamp(rotationY, minY, maxY);
-            Camera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0);
+            Camera.transform.localEulerAngles = new Vector3(rotationY, rotationX, 0);
+            return true;
         }
 #endif
+        return false;
+    }
+
+    void Update()
+    {
+        if (UIManager.IsAnyInputDialogOpen)
+            return;
 
         //Play Mode
         if (BlockManager.PlayMode)
@@ -650,12 +658,15 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) || CnInputManager.GetButtonDown("Play"))
         {
             BlockManager.Instance.TogglePlayMode();
+            return;
         }
         else if (TryAtmosphereCommands())
             return;
         else if (TryLevelOperationCommands())
             return;
         else if (TryUICommands())
+            return;
+        else if (TryCameraCommands())
             return;
     }
 }
