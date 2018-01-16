@@ -93,6 +93,7 @@ public class Cathy1MonsterBlock : Cathy1Block
         int direction = randomNumberGenerator.Next(7);
         switch(direction)
         {
+            //case 0 do nothing
             case 1:
                 if (BlockManager.GetBlockAt(Position + Vector3.up) == null && WouldHaveSupport(Position+Vector3.up))
                     Position += Vector3.up;
