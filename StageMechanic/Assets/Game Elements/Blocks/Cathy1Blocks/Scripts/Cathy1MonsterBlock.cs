@@ -11,7 +11,8 @@ using UnityEngine;
 public class Cathy1MonsterBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Monster;
-    public float MoveProbability = 0.0005f;
+    private const float DEFAULT_MOVE_PROBABILITY = 0.005f;
+    public float MoveProbability = DEFAULT_MOVE_PROBABILITY;
     private System.Random randomNumberGenerator = new System.Random();
 
 
@@ -137,5 +138,32 @@ public class Cathy1MonsterBlock : Cathy1Block
                 StartCoroutine(MoveBlock());
         }
 
+    }
+
+    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
+            ret.Add("Move Probability", new KeyValuePair<string, string>("float", DEFAULT_MOVE_PROBABILITY.ToString()));
+            return ret;
+        }
+    }
+
+    public override Dictionary<string, string> Properties
+    {
+        get
+        {
+            Dictionary<string, string> ret = base.Properties;
+            if (MoveProbability != DEFAULT_MOVE_PROBABILITY)
+                ret.Add("Move Probability", MoveProbability.ToString());
+            return ret;
+        }
+        set
+        {
+            base.Properties = value;
+            if (value.ContainsKey("Move Probability"))
+                MoveProbability = float.Parse(value["Move Probability"]);
+        }
     }
 }

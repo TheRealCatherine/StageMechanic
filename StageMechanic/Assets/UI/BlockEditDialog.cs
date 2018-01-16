@@ -18,6 +18,7 @@ public class BlockEditDialog : MonoBehaviour {
     public Button OKButton;
     public Button ApplyButton;
     public Button CancelButton;
+    public Button ApplyToTypeButton;
 
     public Text ListLabelPrefab;
     public InputField ListStringFieldPrefab;
@@ -30,6 +31,7 @@ public class BlockEditDialog : MonoBehaviour {
         CancelButton.onClick.AddListener(Hide);
         ApplyButton.onClick.AddListener(Apply);
         OKButton.onClick.AddListener(Accept);
+        ApplyToTypeButton.onClick.AddListener(ApplyToType);
     }
 
     public void Show(IBlock block = null)
@@ -60,7 +62,7 @@ public class BlockEditDialog : MonoBehaviour {
     {
         if (CurrentBlock == null)
             return;
-        if (!string.IsNullOrEmpty(NameField.text) && !string.IsNullOrWhiteSpace(NameField.text))
+        if (!string.IsNullOrWhiteSpace(NameField.text))
             CurrentBlock.Name = NameField.text;
         Vector3 position = Vector3.zero;
         position.x = float.Parse(PosXField.text);
@@ -85,6 +87,41 @@ public class BlockEditDialog : MonoBehaviour {
         }
         if (properties.Count > 0)
             CurrentBlock.Properties = properties;
+    }
+
+    public void ApplyToType()
+    {
+        if (CurrentBlock == null)
+            return;
+        if (!string.IsNullOrWhiteSpace(NameField.text))
+            CurrentBlock.Name = NameField.text;
+        Vector3 position = Vector3.zero;
+        position.x = float.Parse(PosXField.text);
+        position.y = float.Parse(PosYField.text);
+        position.z = float.Parse(PosZField.text);
+        CurrentBlock.Position = position;
+        BlockManager.Cursor.transform.position = position;
+
+        Dictionary<string, string> properties = new Dictionary<string, string>();
+        foreach (GameObject obj in addedFields)
+        {
+            SinglePropertyWithDefault holder = obj.GetComponent<SinglePropertyWithDefault>();
+            if (holder != null)
+            {
+                InputField field = holder.GetComponent<InputField>();
+                if (field != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(field.text))
+                        properties.Add(holder.PropertyName, field.text);
+                }
+            }
+        }
+        if (properties.Count > 0)
+        {
+            List<IBlock> blocks = BlockManager.GetBlocksOfType(CurrentBlock.TypeName);
+            foreach(IBlock block in blocks)
+                block.Properties = properties;
+        }
     }
 
     public void Accept()

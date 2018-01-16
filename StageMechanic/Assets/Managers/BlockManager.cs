@@ -686,4 +686,16 @@ public class BlockManager : MonoBehaviour {
         }
         return ret;
     }
+
+    public static List<IBlock> GetBlocksOfType(string type = null)
+    {
+        List<IBlock> ret = new List<IBlock>();
+        foreach (Transform child in ActiveFloor.transform)
+        {
+            IBlock block = child.gameObject.GetComponent<IBlock>();
+            if (block != null && (type == null || block.TypeName == type))
+                ret.Add(block);
+        }
+        return ret;
+    }
 }
