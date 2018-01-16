@@ -31,7 +31,7 @@ public class InputManager : MonoBehaviour
     float rotationX = 0.0f;
 
     float period = 0.0f;
-    const float joystickThrottleRate = 0.1f;
+    public const float JoystickThrottleRate = 0.1f;
 
     enum GamepadType
     {
@@ -330,7 +330,7 @@ public class InputManager : MonoBehaviour
 
     bool TryPlayerInput()
     {
-        if (period < joystickThrottleRate)
+        if (period < JoystickThrottleRate)
         {
             period += Time.deltaTime;
             return false;
@@ -414,7 +414,7 @@ public class InputManager : MonoBehaviour
                 if (inputs.Count > 0)
                 {
                     float time = PlayerManager.PlayerApplyInput(playerNumber, inputs);
-                    period = joystickThrottleRate - time;
+                    period = JoystickThrottleRate - time;
                     usedAtLeastOne = true;
                 }
             }
@@ -521,7 +521,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.UpArrow) || vert > 0)
         {
 
-            if (vert > 0 && period < joystickThrottleRate)
+            if (vert > 0 && period < JoystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return false;
@@ -554,7 +554,7 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || vert < 0)
         {
-            if (vert < 0 && period < joystickThrottleRate)
+            if (vert < 0 && period < JoystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return false;
@@ -586,7 +586,7 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || hori < 0)
         {
-            if (hori < 0 && period < joystickThrottleRate)
+            if (hori < 0 && period < JoystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return false;
@@ -619,7 +619,7 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || hori > 0)
         {
-            if (hori > 0 && period < joystickThrottleRate)
+            if (hori > 0 && period < JoystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return false;
@@ -652,7 +652,7 @@ public class InputManager : MonoBehaviour
         }
         else if (goFurther)
         {
-            if (CnInputManager.GetAxis("joystick 1 Y axis") > 0 && period < joystickThrottleRate)
+            if (CnInputManager.GetAxis("joystick 1 Y axis") > 0 && period < JoystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return false;
@@ -663,7 +663,7 @@ public class InputManager : MonoBehaviour
         }
         else if (goCloser)
         {
-            if (CnInputManager.GetAxis("joystick 1 Y axis") < 0 && period < joystickThrottleRate)
+            if (CnInputManager.GetAxis("joystick 1 Y axis") < 0 && period < JoystickThrottleRate)
             {
                 period += Time.deltaTime;
                 return false;

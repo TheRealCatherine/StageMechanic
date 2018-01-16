@@ -23,6 +23,7 @@ public class BlockEditDialog : MonoBehaviour {
     public InputField ListStringFieldPrefab;
 
     private List<GameObject> addedFields = new List<GameObject>();
+    private float period;
 
     void Start()
     {
@@ -131,7 +132,34 @@ public class BlockEditDialog : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
+
     void Update () {
-	}
+        period += Time.deltaTime;
+        bool next = (CnInputManager.GetAxis("joystick 1 X axis") > 0f && period > InputManager.JoystickThrottleRate);
+        bool prev = (CnInputManager.GetAxis("joystick 1 X axis") < 0f && period > InputManager.JoystickThrottleRate);
+        if (next)
+        {
+            List<string> types = BlockManager.Instance.Cathy1BlockFactory.BlockTypeNames;
+            int index = types.IndexOf(CurrentBlock.TypeName);
+            if (++index >= types.Count)
+                index = 0;
+            IBlock newBlock = BlockManager.CreateBlockAt(CurrentBlock.Position,"Cathy1 Internal", types[index]);
+            Clear();
+            CurrentBlock = newBlock;
+            Refresh();
+            period = 0f;
+        }
+        else if (prev)
+        {
+            List<string> types = BlockManager.Instance.Cathy1BlockFactory.BlockTypeNames;
+            int index = types.IndexOf(CurrentBlock.TypeName);
+            if (--index <= 0 )
+                index = types.Count-1;
+            IBlock newBlock = BlockManager.CreateBlockAt(CurrentBlock.Position, "Cathy1 Internal", types[index]);
+            Clear();
+            CurrentBlock = newBlock;
+            Refresh();
+            period = 0f;
+        }
+    }
 }

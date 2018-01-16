@@ -90,6 +90,7 @@ public class UIManager : MonoBehaviour {
 
     public static void ShowBlockEditDialog(IBlock block = null)
     {
+        Instance.BlockInfoBox.gameObject.SetActive(false);
         Instance.BlockEditDialog.Show(block);
     }
 }
