@@ -413,11 +413,16 @@ public class BlockManager : MonoBehaviour {
 
     public static IBlock CreateBlockAtCursor(string palette, string type)
     {
+        return CreateBlockAt(Cursor.transform.position, palette, type);
+    }
+
+    public static IBlock CreateBlockAt(Vector3 position, string palette, string type)
+    {
         Debug.Assert(Instance != null);
         Debug.Assert(Cursor != null);
         if (palette == "Cathy1 Internal")
         {
-            Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+            Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
             Instance.AutoSave();
             return block;
         }
@@ -649,7 +654,7 @@ public class BlockManager : MonoBehaviour {
 		return new PlatformJsonDelegate (ActiveFloor);
 	}
 
-	public static IBlock GetBlockAt( Vector3 position ) {
+	public static IBlock GetBlockAt( Vector3 position) {
 		GameObject[] collidedGameObjects =
 			Physics.OverlapSphere (position, 0.1f)
 				//.Except (new[] { GetComponent<BoxCollider> () })
@@ -663,4 +668,22 @@ public class BlockManager : MonoBehaviour {
 		}
 		return null;
 	}
+
+    public static List<IBlock> GetBlocskAt(Vector3 position, float radius = 0.1f)
+    {
+        GameObject[] collidedGameObjects =
+            Physics.OverlapSphere(position, radius)
+                //.Except (new[] { GetComponent<BoxCollider> () })
+                .Select(c => c.gameObject)
+                .ToArray();
+
+        List<IBlock> ret = new List<IBlock>();
+        foreach (GameObject go in collidedGameObjects)
+        {
+            IBlock block = go.GetComponent<IBlock>();
+            if (block != null)
+                ret.Add(block);
+        }
+        return ret;
+    }
 }

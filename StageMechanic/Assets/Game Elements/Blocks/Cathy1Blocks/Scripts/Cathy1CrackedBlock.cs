@@ -53,7 +53,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         {
             
             GetComponent<AudioSource>().PlayOneShot(Crack);
-            yield return new WaitForSeconds(0.35f);
+            yield return new WaitForSeconds(0.75f);
             rend.material = Material1;
         }
         else

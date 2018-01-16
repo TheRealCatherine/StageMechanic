@@ -216,10 +216,6 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
                 oldItem = bl.FirstItem;
                 if (oldItem != null)
                     oldItem.transform.parent = null;
-
-                //TODO keep it the same block, just change properties/components
-                //or norify listeners (is this even a concern for Cath1 blocks?)
-                //or set all old properties
                 Destroy(obj);
             }
 
