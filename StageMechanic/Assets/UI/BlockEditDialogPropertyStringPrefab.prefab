@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222313353551761780}
   - component: {fileID: 114349723066545324}
   - component: {fileID: 114076571590972192}
+  - component: {fileID: 114086519636934602}
   m_Layer: 5
   m_Name: BlockEditDialogPropertyStringPrefab
   m_TagString: Untagged
@@ -126,6 +127,20 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+--- !u!114 &114086519636934602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850637094961154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101ba8f7e5d699b4185d384a2e3bbbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PropertyName: 
+  PropertyDefaultValue: 
+  PropertyType: 
 --- !u!114 &114168428377909788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,10 +162,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -180,10 +195,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 2
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0

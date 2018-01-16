@@ -42,7 +42,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         CurrentState = State.PlayerStand;
 
         Renderer rend = GetComponent<Renderer>();
-        if(StepsRemaining > 2)
+        if(StepsRemaining >= 2)
         {
             
             GetComponent<AudioSource>().PlayOneShot(Crack);
@@ -81,5 +81,31 @@ public class Cathy1CrackedBlock : Cathy1Block {
             return;
         else if (CurrentState == State.NoPlayer)
             StartCoroutine(HandleStep());
+    }
+
+    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
+            ret.Add("Steps Remaining", new KeyValuePair<string, string>("int", (Type == BlockType.Crack1?1:2).ToString()));
+            return ret;
+        }
+    }
+
+    public override Dictionary<string, string> Properties
+    {
+        get
+        {
+            Dictionary<string, string> ret = base.Properties;
+            if (!((Type == BlockType.Crack1 && StepsRemaining == 1) || (Type == BlockType.Crack2 && StepsRemaining == 2)))
+                ret.Add("Steps Remaining", StepsRemaining.ToString());
+            return ret;
+        }
+        set
+        {
+            if (value.ContainsKey("Steps Remaining"))
+                StepsRemaining = int.Parse(value["Steps Remaining"]);
+        }
     }
 }

@@ -46,6 +46,7 @@ public class BlockEditDialog : MonoBehaviour {
         {
             Destroy(obj);
         }
+        addedFields.Clear();
     }
 
     public void Hide()
@@ -66,6 +67,23 @@ public class BlockEditDialog : MonoBehaviour {
         position.z = float.Parse(PosZField.text);
         CurrentBlock.Position = position;
         BlockManager.Cursor.transform.position = position;
+
+        Dictionary<string, string> properties = new Dictionary<string, string>();
+        foreach (GameObject obj in addedFields)
+        {
+            SinglePropertyWithDefault holder = obj.GetComponent<SinglePropertyWithDefault>();
+            if (holder != null)
+            {
+                InputField field = holder.GetComponent<InputField>();
+                if(field != null)
+                {
+                    if(!string.IsNullOrWhiteSpace(field.text))
+                        properties.Add(holder.PropertyName, field.text);
+                }
+            }
+        }
+        if (properties.Count > 0)
+            CurrentBlock.Properties = properties;
     }
 
     public void Accept()
@@ -90,11 +108,24 @@ public class BlockEditDialog : MonoBehaviour {
             foreach(KeyValuePair<string,KeyValuePair<string,string>> property in CurrentBlock.DefaultProperties)
             {
                 Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text ;
-                label.text = property.Key;
                 addedFields.Add(label.gameObject);
+                label.text = property.Key;
+
                 InputField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform) as InputField;
-                stringField.placeholder.GetComponent<Text>().text = property.Value.Value;
                 addedFields.Add(stringField.gameObject);
+                stringField.placeholder.GetComponent<Text>().text = property.Value.Value;
+                SinglePropertyWithDefault holder = stringField.GetComponent<SinglePropertyWithDefault>();
+                Debug.Assert(holder != null);
+                holder.PropertyName = property.Key;
+                holder.PropertyType = property.Value.Key;
+                holder.PropertyDefaultValue = property.Value.Value;
+
+                foreach (KeyValuePair<string, string> setProperty in CurrentBlock.Properties)
+                {
+                    if (setProperty.Key == property.Key)
+                        stringField.text = setProperty.Value;
+                }
+
             }
 
         }

@@ -165,9 +165,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         {
             Dictionary<string, KeyValuePair<string, string>> ret = new Dictionary<string, KeyValuePair<string, string>>();
             ret.Add("Rotation", new KeyValuePair<string, string>("Quaternion", Quaternion.identity.ToString()));
-            ret.Add("IsFixedRotation", new KeyValuePair<string, string>("bool", "false"));
-            ret.Add("Weight", new KeyValuePair<string, string>("float", "1.0"));
-            ret.Add("Gravity", new KeyValuePair<string, string>("float", "1.0"));
+            ret.Add("Fixed Rotation", new KeyValuePair<string, string>("bool", "false"));
+            ret.Add("Weight Factor", new KeyValuePair<string, string>("float", "1.0"));
+            ret.Add("Gravity Factor", new KeyValuePair<string, string>("float", "1.0"));
             return ret;
         }
     }
