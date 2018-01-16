@@ -11,14 +11,42 @@ using UnityEngine;
 public class Cathy1MysteryBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Random;
+    public readonly string[] PossibleTypes = {
+        "Basic",
+        "Immobile",
+        "Cracked (2 Steps)",
+        "Cracked (1 Step)",
+        "Heavy",
+        "Spike Trap",
+        "Ice",
+        "Small Bomb",
+        "Large Bomb",
+        "Spring",
+        "Mystery",
+        "Monster",
+        "Vortex"};
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    bool hasPlayer()
+    {
+        Vector3 player = PlayerManager.Player1Location();
+        return (player == transform.position + Vector3.up && (PlayerManager.PlayerStateName() == "Idle" || PlayerManager.PlayerStateName() == "Walk" || PlayerManager.PlayerStateName() == "Center"));
+    }
+
+    private void Update()
+    {
+        if (!BlockManager.PlayMode)
+            return;
+        if (!hasPlayer())
+            return;
+        StartCoroutine(HandleStep());
+    }
+
+    private IEnumerator HandleStep()
+    {
+        GetComponent<AudioSource>()?.Play();
+        yield return new WaitForSeconds(0.05f);
+        System.Random rnd = new System.Random();
+        int index = rnd.Next(PossibleTypes.Length);
+        BlockManager.CreateBlockAt(Position, "Cathy1 Internal", PossibleTypes[index]);
+    }
 }
