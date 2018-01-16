@@ -156,7 +156,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
             return;
 
         if (BlockManager.PlayMode)
-            thisBlock.Position -= new Vector3(0, 0.25f * thisBlock.GravityFactor, 0);
+            thisBlock.Position -= Utility.Round(new Vector3(0, 0.25f * thisBlock.GravityFactor, 0),2);
 
     }
 
