@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
     public ButtonMappingDialog ButtonMappingDialog;
     public MainMenu MainMenu;
     public ScrollRect BlockTypesList;
+    public BlockEditDialog BlockEditDialog;
 
     public SimpleButton SetStartPosButton;
     public SimpleButton NextBlockTypButton;
@@ -33,7 +34,7 @@ public class UIManager : MonoBehaviour {
         get
         {
             Debug.Assert(Instance != null);
-            return IsSinglePlayerDeathDialogOpen || FileBrowser.IsOpen || Instance.MainMenu.isActiveAndEnabled || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
+            return IsSinglePlayerDeathDialogOpen || Instance.BlockEditDialog.isActiveAndEnabled || FileBrowser.IsOpen || Instance.MainMenu.isActiveAndEnabled || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
         }
     }
 
@@ -85,5 +86,10 @@ public class UIManager : MonoBehaviour {
     {
         Debug.Assert(Instance != null);
         Instance.ButtonMappingDialog.gameObject.SetActive(!Instance.ButtonMappingDialog.gameObject.activeInHierarchy);
+    }
+
+    public static void ShowBlockEditDialog(IBlock block = null)
+    {
+        Instance.BlockEditDialog.Show(block);
     }
 }

@@ -152,6 +152,19 @@ public interface IBlock
         set;
     }
 
+    Dictionary<string, KeyValuePair<string,string>> DefaultProperties
+    {
+        get;
+    }
+
+    /// <summary>
+    /// Returns the set of non-default block-specific
+    /// properties. This can be any arbitrary set of
+    /// strings. Blocks do not have to include properties
+    /// that are set to defaults in this property, to get
+    /// a list of all recognized properties on a block use
+    /// the DefaultProperties.
+    /// </summary>
     Dictionary<string,string> Properties
     {
         get;

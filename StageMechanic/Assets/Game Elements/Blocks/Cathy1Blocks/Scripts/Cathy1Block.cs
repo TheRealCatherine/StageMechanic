@@ -209,7 +209,20 @@ public class Cathy1Block : AbstractBlock
     }
 
     /// <summary>
-    /// The complete list of properties associated with this block.
+    /// The recognized properties for this block, includes base class properties
+    /// </summary>
+    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
+            //TODO material number
+            return ret;
+        }
+    }
+
+    /// <summary>
+    /// The list of properties associated with this block.
     /// Includes bass-class properties.
     /// </summary>
     public override Dictionary<string, string> Properties
@@ -217,7 +230,7 @@ public class Cathy1Block : AbstractBlock
         get
         {
             Dictionary<string, string> ret = base.Properties;
-            //TODO (do we add anything here?)
+            //TODO the material number
             return ret;
         }
         set

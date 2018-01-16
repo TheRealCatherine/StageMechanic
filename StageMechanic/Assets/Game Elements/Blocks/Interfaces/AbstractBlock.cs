@@ -159,47 +159,43 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
     }
 
+    public virtual Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = new Dictionary<string, KeyValuePair<string, string>>();
+            ret.Add("Rotation", new KeyValuePair<string, string>("Quaternion", Quaternion.identity.ToString()));
+            ret.Add("IsFixedRotation", new KeyValuePair<string, string>("bool", "false"));
+            ret.Add("Weight", new KeyValuePair<string, string>("float", "1.0"));
+            ret.Add("Gravity", new KeyValuePair<string, string>("float", "1.0"));
+            return ret;
+        }
+    }
+
     public virtual Dictionary<string, string> Properties
     {
         get
         {
             Dictionary<string, string> ret = new Dictionary<string, string>();
-            //TODO do we want to include these basic things in properties?
-            /*ret.Add("Name", Name);
-            ret.Add("Parent", Parent.name);
-            ret.Add("Type", TypeName);
-            ret.Add("Postition", Position.ToString());
-            */
             if(Rotation != Quaternion.identity)
                 ret.Add("Rotation", Rotation.ToString());
             if (IsFixedRotation)
-                ret.Add("IsFixedRotation", IsFixedRotation.ToString());
+                ret.Add("Fixed Rotation", IsFixedRotation.ToString());
             if(WeightFactor != 1.0f)
-                ret.Add("Weight", WeightFactor.ToString());
+                ret.Add("Weight Factor", WeightFactor.ToString());
             if(GravityFactor != 1.0f)
-                ret.Add("Gravity", GravityFactor.ToString());
+                ret.Add("Gravity Factor", GravityFactor.ToString());
             return ret;
         }
         set
         {
-            /*if (value.ContainsKey("Name"))
-                Name = value["Name"];
-            //TODO find parent in object tree
-            //if (value.ContainsKey("Parent"))
-            //    Parent = value["Parent"];
-            if (value.ContainsKey("Type"))
-                TypeName = value["Type"];
-            if (value.ContainsKey("Position"))
-                Position = Utility.StringToVector3(value["Position"]);
-            //TODO Quaternion
-            //if (value.ContainsKey("Rotation"))
             //    Rotation = Utility.StringToQuaternion(value["Rotation"]);*/
-            if (value.ContainsKey("IsFixedRotation"))
-                IsFixedRotation = Convert.ToBoolean(value["IsFixedRotation"]);
-            if (value.ContainsKey("Weight"))
-                WeightFactor = (float)Convert.ToDouble(value["Weight"]);
-            if (value.ContainsKey("Gravity"))
-                GravityFactor = (float)Convert.ToDouble(value["Gravity"]);
+            if (value.ContainsKey("Fixed Rotation"))
+                IsFixedRotation = Convert.ToBoolean(value["Fixed Rotation"]);
+            if (value.ContainsKey("Weight Factor"))
+                WeightFactor = (float)Convert.ToDouble(value["Weight Factor"]);
+            if (value.ContainsKey("Gravity Factor"))
+                GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
         }
     }
 

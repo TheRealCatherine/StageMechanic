@@ -245,6 +245,14 @@ public class InputManager : MonoBehaviour
             }
 
         }
+        else if (Input.GetKeyDown(KeyCode.Return))
+        {
+            IBlock block = BlockManager.Instance.ActiveBlock;
+            if(block != null)
+            {
+                UIManager.ShowBlockEditDialog(block);
+            }
+        }
         else if (Input.GetKeyDown(KeyCode.LeftBracket)
             || CnInputManager.GetButtonDown("Previous") 
             || (GetGamepadType(0)==GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button4))

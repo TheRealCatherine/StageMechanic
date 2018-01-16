@@ -12,6 +12,8 @@ public class Cathy1GoalBlock : Cathy1Block
 {
 
     public AudioClip Applause;
+    public string NextStageFilename;
+    public string NextStageStartPos;
 
     private enum State
     {
@@ -68,5 +70,36 @@ public class Cathy1GoalBlock : Cathy1Block
         }
         if (crossColiders.Count == 0)
             CurrentState = State.NoPlayer;
+    }
+
+    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
+            ret.Add("Next Stage Filename", new KeyValuePair<string, string>("string", ""));
+            ret.Add("Next Stage Start Block Override", new KeyValuePair<string, string>("string", ""));
+            return ret;
+        }
+    }
+
+    public override Dictionary<string, string> Properties
+    {
+        get
+        {
+            Dictionary<string, string> ret = base.Properties;
+            if (!string.IsNullOrEmpty(NextStageFilename) && !string.IsNullOrWhiteSpace(NextStageFilename))
+                ret.Add("Next Stage Filename", NextStageFilename);
+            if (!string.IsNullOrEmpty(NextStageStartPos) && !string.IsNullOrWhiteSpace(NextStageStartPos))
+                ret.Add("Next Stage Start Block Override", NextStageStartPos);
+            return ret;
+        }
+        set
+        {
+            if (value.ContainsKey("Next Stage Filename"))
+                NextStageFilename = value["Next Stage Filename"];
+            if (value.ContainsKey("Next Stage Start Block Override"))
+                NextStageStartPos = value["Next Stage Start Block Override"];
+        }
     }
 }
