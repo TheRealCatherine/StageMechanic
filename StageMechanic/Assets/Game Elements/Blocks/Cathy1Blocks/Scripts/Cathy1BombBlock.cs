@@ -18,6 +18,11 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     public AudioClip FuseSound;
     public AudioClip ExplosionSound;
 
+    private const float SmallBombFuseTime = 1.5f;
+    private const float LargeBombFuseTime = 1.5f;
+    private const int SmallBombRadius = 1;
+    private const int LargeBombRadius = 3;
+
     public enum BombSize
     {
         Small,
@@ -73,7 +78,11 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     public override void Awake()
     {
         base.Awake();
-        TriggerTime = 1000;
+        TriggerTime = 1.5f;
+        if (Type == BlockType.Bomb1)
+            DamageRadius = new Vector3(SmallBombRadius, SmallBombRadius, SmallBombRadius);
+        else
+            DamageRadius = new Vector3(LargeBombRadius, LargeBombRadius, LargeBombRadius);
     }
 
     bool hasPlayer()
@@ -86,7 +95,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     {
         CurrentState = State.PlayerEnter;
         GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(TriggerTime);
         GetComponent<AudioSource>()?.PlayOneShot(ExplosionSound);
         if (hasPlayer())
         {
@@ -94,7 +103,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
             PlayerManager.Player(0).TakeDamage(float.PositiveInfinity);
 
         }
-        List<IBlock> localBlocks = BlockManager.GetBlocskAt(Position, Size==BombSize.Small?1f:3f);
+        List<IBlock> localBlocks = BlockManager.GetBlocskAt(Position, DamageRadius.x);
         foreach(IBlock block in localBlocks)
         {
             BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
@@ -112,5 +121,44 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         if (CurrentState == State.Disarmed)
             return;
         StartCoroutine(HandleStep());
+    }
+
+    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (ms)", new KeyValuePair<string, string>("float", (Type==BlockType.Bomb1?SmallBombFuseTime:LargeBombFuseTime).ToString()));
+            ret.Add("Damage Radius", new KeyValuePair<string, string>("int", (Type == BlockType.Bomb1 ? SmallBombRadius : LargeBombRadius).ToString()));
+            return ret;
+        }
+    }
+
+    public override Dictionary<string, string> Properties
+    {
+        get
+        {
+            Dictionary<string, string> ret = base.Properties;
+            if (TriggerTime != SmallBombFuseTime && Type==BlockType.Bomb1)
+                ret.Add("Trigger Time (ms)", TriggerTime.ToString());
+            if (TriggerTime != LargeBombFuseTime && Type == BlockType.Bomb2)
+                ret.Add("Trigger Time (ms)", TriggerTime.ToString());
+            if (Type == BlockType.Bomb1 && DamageRadius != new Vector3(SmallBombRadius, SmallBombRadius, SmallBombRadius))
+                ret.Add("Damage Radius", DamageRadius.x.ToString());
+            if (Type == BlockType.Bomb2 && DamageRadius != new Vector3(SmallBombRadius, LargeBombRadius, LargeBombRadius))
+                ret.Add("Damage Radius", DamageRadius.x.ToString());
+            return ret;
+        }
+        set
+        {
+            base.Properties = value;
+            if (value.ContainsKey("Trigger Time (ms)"))
+                TriggerTime = float.Parse(value["Trigger Time (ms)"]);
+            if (value.ContainsKey("Damage Radius"))
+            {
+                int radius = int.Parse(value["Damage Radius"]);
+                DamageRadius = new Vector3(radius, radius, radius);
+            }
+        }
     }
 }

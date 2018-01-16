@@ -32,11 +32,11 @@ public interface ITrapBlock
     bool IsTriggered { get; set; }
 
     /// <summary>
-    /// The amount of time in milliseconds after a collider has been triggered to wait before
+    /// The amount of time in seconds after a collider has been triggered to wait before
     /// moving into the IsTriggered state. This gives the player a chance to move away from
     /// the block before taking damage.
     /// </summary>
-    int TriggerTime { get; set; }
+    float TriggerTime { get; set; }
 
     /// <summary>
     /// How long the block should continue dealing damage once entering the IsTriggered state.

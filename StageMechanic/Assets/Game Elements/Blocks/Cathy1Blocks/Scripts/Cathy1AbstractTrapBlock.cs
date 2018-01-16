@@ -58,7 +58,7 @@ public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock
     /// <summary>
     /// Bombs and spike traps have a trigger time but vortexes have 0
     /// </summary>
-    public int TriggerTime { get; set; } = 0;
+    public virtual float TriggerTime { get; set; } = 0;
 
     /// <summary>
     /// In Cathy1-style all traps deal infity damage to players and enemies
@@ -189,4 +189,6 @@ public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock
         }
         set { }
     }
+
+
 }

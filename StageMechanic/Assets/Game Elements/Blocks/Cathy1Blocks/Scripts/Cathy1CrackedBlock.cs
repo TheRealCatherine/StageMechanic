@@ -104,6 +104,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         }
         set
         {
+            base.Properties = value;
             if (value.ContainsKey("Steps Remaining"))
                 StepsRemaining = int.Parse(value["Steps Remaining"]);
         }

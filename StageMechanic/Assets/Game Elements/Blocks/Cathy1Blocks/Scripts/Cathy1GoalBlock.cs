@@ -96,6 +96,7 @@ public class Cathy1GoalBlock : Cathy1Block
         }
         set
         {
+            base.Properties = value;
             if (value.ContainsKey("Next Stage Filename"))
                 NextStageFilename = value["Next Stage Filename"];
             if (value.ContainsKey("Next Stage Start Block Override"))
