@@ -128,7 +128,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         get
         {
             Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (ms)", new KeyValuePair<string, string>("float", (Type==BlockType.Bomb1?SmallBombFuseTime:LargeBombFuseTime).ToString()));
+            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", (Type==BlockType.Bomb1?SmallBombFuseTime:LargeBombFuseTime).ToString()));
             ret.Add("Damage Radius", new KeyValuePair<string, string>("int", (Type == BlockType.Bomb1 ? SmallBombRadius : LargeBombRadius).ToString()));
             return ret;
         }
@@ -140,9 +140,9 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         {
             Dictionary<string, string> ret = base.Properties;
             if (TriggerTime != SmallBombFuseTime && Type==BlockType.Bomb1)
-                ret.Add("Trigger Time (ms)", TriggerTime.ToString());
+                ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
             if (TriggerTime != LargeBombFuseTime && Type == BlockType.Bomb2)
-                ret.Add("Trigger Time (ms)", TriggerTime.ToString());
+                ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
             if (Type == BlockType.Bomb1 && DamageRadius != new Vector3(SmallBombRadius, SmallBombRadius, SmallBombRadius))
                 ret.Add("Damage Radius", DamageRadius.x.ToString());
             if (Type == BlockType.Bomb2 && DamageRadius != new Vector3(SmallBombRadius, LargeBombRadius, LargeBombRadius))
@@ -152,8 +152,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         set
         {
             base.Properties = value;
-            if (value.ContainsKey("Trigger Time (ms)"))
-                TriggerTime = float.Parse(value["Trigger Time (ms)"]);
+            if (value.ContainsKey("Trigger Time (seconds)"))
+                TriggerTime = float.Parse(value["Trigger Time (seconds)"]);
             if (value.ContainsKey("Damage Radius"))
             {
                 int radius = int.Parse(value["Damage Radius"]);

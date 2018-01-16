@@ -23,6 +23,8 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 
     public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
 
+    private const float DEFAULT_TRIGGER_TIME = 0.6f; 
+
     /// <summary>
     /// Indicate to the Cathy1 game rules that this is a spike trap
     /// </summary>
@@ -51,7 +53,7 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     public override void Awake()
     {
         base.Awake();
-        TriggerTime = 1000;
+        TriggerTime = DEFAULT_TRIGGER_TIME;
     }
 
     bool hasPlayer()
@@ -63,8 +65,8 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     private IEnumerator HandleStep()
     {
         CurrentState = State.PlayerEnter;
+        yield return new WaitForSeconds(TriggerTime);
         GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(0.55f);
         if (hasPlayer())
         {
             CurrentState = State.PlayerStand;
@@ -84,6 +86,32 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         if (!hasPlayer())
             return;
         StartCoroutine(HandleStep());
+    }
 
+    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", DEFAULT_TRIGGER_TIME.ToString()));
+            return ret;
+        }
+    }
+
+    public override Dictionary<string, string> Properties
+    {
+        get
+        {
+            Dictionary<string, string> ret = base.Properties;
+            if (TriggerTime != DEFAULT_TRIGGER_TIME)
+                ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
+            return ret;
+        }
+        set
+        {
+            base.Properties = value;
+            if (value.ContainsKey("Trigger Time (seconds)"))
+                TriggerTime = float.Parse(value["Trigger Time (seconds)"]);
+        }
     }
 }
