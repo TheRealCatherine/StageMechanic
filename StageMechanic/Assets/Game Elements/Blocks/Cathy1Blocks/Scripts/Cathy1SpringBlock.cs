@@ -11,8 +11,11 @@ using UnityEngine;
 public class Cathy1SpringBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Spring;
-    public Vector3 Distance = new Vector3(0f,5f,0f);
-    public float Delay = 0.55f;
+    private const float DEFAULT_DELAY = 0.55f;
+    private const float DEFAULT_DISTANCE = 5f;
+    public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);
+    public float Delay = DEFAULT_DELAY;
+
 
     IEnumerator DoBoigy()
     {
@@ -40,4 +43,38 @@ public class Cathy1SpringBlock : Cathy1Block
         
     }
 
+    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    {
+        get
+        {
+            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", DEFAULT_DELAY.ToString()));
+            ret.Add("Distance", new KeyValuePair<string, string>("float", DEFAULT_DISTANCE.ToString()));
+            return ret;
+        }
+    }
+
+    public override Dictionary<string, string> Properties
+    {
+        get
+        {
+            Dictionary<string, string> ret = base.Properties;
+            if (Delay != DEFAULT_DELAY)
+                ret.Add("Trigger Time (seconds)", Delay.ToString());
+            if (Distance.y != DEFAULT_DISTANCE)
+                ret.Add("Distance", Distance.y.ToString());
+            return ret;
+        }
+        set
+        {
+            base.Properties = value;
+            if (value.ContainsKey("Trigger Time (seconds)"))
+                Delay = float.Parse(value["Trigger Time (seconds)"]);
+            if (value.ContainsKey("Distance"))
+            {
+                float distance = float.Parse(value["Distance"]);
+                Distance = new Vector3(0, distance, 0);
+            }
+        }
+    }
 }
