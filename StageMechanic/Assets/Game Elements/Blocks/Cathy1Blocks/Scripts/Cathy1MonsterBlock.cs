@@ -13,7 +13,7 @@ public class Cathy1MonsterBlock : Cathy1Block
     public sealed override BlockType Type { get; } = BlockType.Monster;
     private const float DEFAULT_MOVE_PROBABILITY = 0.005f;
     public float MoveProbability = DEFAULT_MOVE_PROBABILITY;
-    private System.Random randomNumberGenerator = new System.Random();
+    private static readonly System.Random randomNumberGenerator = new System.Random(new System.DateTime().Millisecond);
 
 
     private enum State

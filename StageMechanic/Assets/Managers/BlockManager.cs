@@ -392,11 +392,13 @@ public class BlockManager : MonoBehaviour {
 
     public void RandomizeGravity()
     {
+        System.Random randomNumberGenerator = new System.Random(new System.DateTime().Millisecond);
+
         foreach (Transform child in ActiveFloor.transform)
         {
             IBlock block = child.gameObject.GetComponent<IBlock>();
             if (block != null)
-                block.GravityFactor = UnityEngine.Random.value;
+                block.GravityFactor = randomNumberGenerator.Next(-100,100)/100f;
         }
         AutoSave();
     }

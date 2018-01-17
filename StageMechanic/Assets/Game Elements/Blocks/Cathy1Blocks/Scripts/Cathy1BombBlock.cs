@@ -106,7 +106,9 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         List<IBlock> localBlocks = BlockManager.GetBlocskAt(Position, DamageRadius.x);
         foreach(IBlock block in localBlocks)
         {
-            BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
+            //any immobile block will not be affected
+            if(block.WeightFactor!=0f)
+                BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
         }
         CurrentState = State.Disarmed;
         Destroy(GameObject);

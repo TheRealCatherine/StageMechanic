@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(IBlock))]
 public class Cathy1EdgeMechanic : MonoBehaviour
 {
     public enum State
@@ -31,7 +32,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 
     private bool SetStateBySupport()
     {
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        IBlock thisBlock = gameObject.GetComponent<IBlock>();
         Debug.Assert(thisBlock != null);
 
         IBlock down = BlockManager.GetBlockAt(thisBlock.Position + Vector3.down);
@@ -103,12 +104,10 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 
     public IEnumerator UpdateState()
     {
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
-        if (thisBlock == null)
-            yield break;
+       IBlock thisBlock = gameObject.GetComponent<Cathy1Block>();
 
         ApplyGravity();
-        thisBlock.transform.rotation = Quaternion.identity;
+        thisBlock.Rotation = Quaternion.identity;
 
         if ((thisBlock.Position.y % 1) != 0)
         {
@@ -119,21 +118,21 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         if(!SetStateBySupport() && CurrentState != State.Falling)
         {
             CurrentState = State.Hovering;
-            thisBlock.transform.Rotate(0f, 0f, .3f);
+            thisBlock.GameObject.transform.Rotate(0f, 0f, .3f);
             yield return new WaitForSeconds(0.1f);
-            thisBlock.transform.Rotate(0f, 0f, -.6f);
+            thisBlock.GameObject.transform.Rotate(0f, 0f, -.6f);
             yield return new WaitForSeconds(0.1f);
-            thisBlock.transform.Rotate(0f, 0f, .6f);
+            thisBlock.GameObject.transform.Rotate(0f, 0f, .6f);
             yield return new WaitForSeconds(0.1f);
-            thisBlock.transform.Rotate(0f, 0f, -.3f);
+            thisBlock.GameObject.transform.Rotate(0f, 0f, -.3f);
             yield return new WaitForSeconds(0.1f);
-            thisBlock.transform.rotation = Quaternion.identity;
+            thisBlock.GameObject.transform.rotation = Quaternion.identity;
             yield return new WaitForSeconds(0.6f);
         }
 
         if(CurrentState == State.Hovering)
         {
-            thisBlock.transform.rotation = Quaternion.identity;
+            thisBlock.Rotation = Quaternion.identity;
             if (!SetStateBySupport())
                 CurrentState = State.Falling;
         }
@@ -151,25 +150,12 @@ public class Cathy1EdgeMechanic : MonoBehaviour
         if (CurrentState != State.Falling)
             return;
 
-        Cathy1Block thisBlock = gameObject.GetComponent<Cathy1Block>();
+        IBlock thisBlock = gameObject.GetComponent<IBlock>();
         if (thisBlock == null)
             return;
 
         if (BlockManager.PlayMode)
-            thisBlock.Position -= Utility.Round(new Vector3(0, 0.25f * thisBlock.GravityFactor, 0),2);
+            thisBlock.Position = Utility.Round(thisBlock.Position - new Vector3(0, 0.1f * thisBlock.GravityFactor, 0),2);
 
     }
-
-	public bool TestForSupportedBlock (int height)
-	{
-		foreach (Collider col in Physics.OverlapBox(transform.position + new Vector3(0f,0.7f*height,0f),new Vector3(0.01f,0.01f,0.01f))) {
-			if (col.gameObject == gameObject)
-				continue;
-			Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic> ();
-			if (otherBlock == null)
-				continue;
-			return true;
-		}
-		return false;
-	}
 }
