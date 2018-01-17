@@ -21,7 +21,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 
 
     public State CurrentState = State.Grounded;
-    public float FallTime = 0.25f;
+    private const float DEFAULT_GRAVITY_BASE = 0.1f;
 
     private static State CurrentEdgeState( IBlock block )
     {
@@ -155,7 +155,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
             return;
 
         if (BlockManager.PlayMode)
-            thisBlock.Position = Utility.Round(thisBlock.Position - new Vector3(0, 0.1f * thisBlock.GravityFactor, 0),2);
+            thisBlock.Position = Utility.Round(thisBlock.Position - new Vector3(0, DEFAULT_GRAVITY_BASE * thisBlock.GravityFactor, 0),2);
 
     }
 }
