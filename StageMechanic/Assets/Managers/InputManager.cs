@@ -325,6 +325,10 @@ public class InputManager : MonoBehaviour
                 return true;
             }
         }
+        else if(Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            BlockManager.AddBlockToGroup(0, BlockManager.Instance.ActiveBlock);
+        }
         return false;
     }
 

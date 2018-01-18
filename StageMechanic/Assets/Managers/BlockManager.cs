@@ -700,4 +700,50 @@ public class BlockManager : MonoBehaviour {
         }
         return ret;
     }
+
+    static List<IBlock> blockGroup = new List<IBlock>();
+
+    public static List<IBlock> GetBlockGroup(int number)
+    {
+        return blockGroup;
+    }
+
+    public static void AddBlockToGroup(int group, IBlock block)
+    {
+        if (group < 0 || block == null)
+            return;
+        blockGroup.Add(block);
+        cakeslice.Outline outline = block.GameObject.GetComponent<cakeslice.Outline>();
+        if (outline == null)
+            outline = block.GameObject.GetComponentInChildren<cakeslice.Outline>();
+        if (outline != null) {
+            outline.enabled = true;
+            outline.color = 1;
+        }
+    }
+
+    public static bool CanBeMoved(IBlock block, Vector3 direction, int distance=1)
+    {
+        if (!blockGroup.Contains(block))
+            return block.CanBeMoved(direction,distance);
+        foreach(IBlock neighbor in blockGroup)
+        {
+            if (!neighbor.CanBeMoved(direction, distance))
+                return false;
+        }
+        return true;
+    }
+
+    public static bool Move(IBlock block, Vector3 direction, int distance=1)
+    {
+        if (!blockGroup.Contains(block))
+            return block.Move(direction, distance);
+        if (!CanBeMoved(block, direction, distance))
+            return false;
+        foreach(IBlock member in blockGroup)
+        {
+            member.Move(direction, distance);
+        }
+        return true;
+    }
 }
