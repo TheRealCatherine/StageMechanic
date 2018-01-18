@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4681900576087780}
   - component: {fileID: 33611193131772834}
   - component: {fileID: 23127874934501258}
+  - component: {fileID: 114023668922790208}
   m_Layer: 0
   m_Name: CubeCrumble
   m_TagString: Untagged
@@ -127,6 +128,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114023668922790208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1905010214659300}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114524476084437876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,4 +170,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 0
-  FallTime: 0.25

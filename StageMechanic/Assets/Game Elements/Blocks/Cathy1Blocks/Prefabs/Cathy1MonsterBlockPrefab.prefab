@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114408998109044396}
   - component: {fileID: 114942713677371894}
   - component: {fileID: 82754031002639790}
+  - component: {fileID: 114340848345268672}
   m_Layer: 0
   m_Name: Cathy1MonsterBlockPrefab
   m_TagString: Untagged
@@ -194,6 +195,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114340848345268672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378607036211450}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114408998109044396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 0
-  FallTime: 0.25
 --- !u!114 &114942713677371894
 MonoBehaviour:
   m_ObjectHideFlags: 1

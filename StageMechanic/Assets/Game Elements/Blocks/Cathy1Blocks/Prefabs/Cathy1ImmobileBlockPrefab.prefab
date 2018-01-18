@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23671559967247180}
   - component: {fileID: 114057142422440404}
   - component: {fileID: 114966422134470380}
+  - component: {fileID: 114887403030271420}
   m_Layer: 0
   m_Name: Cathy1ImmobileBlockPrefab
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: eefa87040c89c8b4baaf39059fbe4335, type: 2}
   m_StaticBatchInfo:
@@ -108,6 +110,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+--- !u!114 &114887403030271420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491157440651148}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114966422134470380
 MonoBehaviour:
   m_ObjectHideFlags: 1

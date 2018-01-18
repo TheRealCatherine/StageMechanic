@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4510995931333344}
   - component: {fileID: 33396751730191154}
   - component: {fileID: 23400431112488378}
+  - component: {fileID: 114637851055494742}
   m_Layer: 0
   m_Name: CubeCold
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 9b840142028a64c448ac5c5d3bac24a2, type: 2}
   m_StaticBatchInfo:
@@ -141,6 +143,21 @@ MonoBehaviour:
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+--- !u!114 &114637851055494742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1398868740795096}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114703443900309554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,5 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inspectorGrounded: 0
-  dodododo: {x: 0, y: 0, z: 0}
+  CurrentState: 0

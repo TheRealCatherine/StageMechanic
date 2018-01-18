@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4096207225851036}
   - component: {fileID: 33810458170472772}
   - component: {fileID: 23176777701800748}
+  - component: {fileID: 114009596573442980}
   m_Layer: 0
   m_Name: CubeGrey
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4d6225d24b7ac1d49a42d6816fc7d9d4, type: 2}
   m_StaticBatchInfo:
@@ -126,6 +128,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114009596573442980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511608544911836}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114144603076756416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,8 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inspectorGrounded: 0
-  dodododo: {x: 0, y: 0, z: 0}
+  CurrentState: 0
 --- !u!114 &114260190700802840
 MonoBehaviour:
   m_ObjectHideFlags: 1

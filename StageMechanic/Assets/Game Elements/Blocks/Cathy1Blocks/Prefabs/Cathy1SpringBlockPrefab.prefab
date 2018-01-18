@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23471664427711756}
   - component: {fileID: 114698359723773998}
   - component: {fileID: 114157482613945706}
+  - component: {fileID: 114400593892943726}
   m_Layer: 0
   m_Name: Cathy1SpringBlockPrefab
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: a7514693e0644514ebd236e05d518116, type: 2}
   m_StaticBatchInfo:
@@ -112,6 +114,23 @@ MonoBehaviour:
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  Distance: {x: 0, y: 5, z: 0}
+  Delay: 0.55
+--- !u!114 &114400593892943726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131577961013122}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114698359723773998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,3 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0

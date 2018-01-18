@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4513967314905440}
   - component: {fileID: 33338363233689156}
   - component: {fileID: 23487516588115916}
+  - component: {fileID: 114251962717280258}
   m_Layer: 0
   m_Name: CubeLight
   m_TagString: Untagged
@@ -245,6 +246,21 @@ MonoBehaviour:
   FuseSound: {fileID: 0}
   ExplosionSound: {fileID: 0}
   Size: 0
+--- !u!114 &114251962717280258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1272854697201114}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114298654629261974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,4 +273,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 0
-  FallTime: 0.25

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4895883185349176}
   - component: {fileID: 33514752571933214}
   - component: {fileID: 23337340763933306}
+  - component: {fileID: 114080850443103114}
   m_Layer: 0
   m_Name: CubeDanger
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 93ad8c32e776db94b951af30b1a1dab4, type: 2}
   m_StaticBatchInfo:
@@ -126,6 +128,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114080850443103114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1047832750264998}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114219995227092140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,6 +158,8 @@ MonoBehaviour:
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  Distance: {x: 0, y: 5, z: 0}
+  Delay: 0.55
 --- !u!114 &114639485300454270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,5 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inspectorGrounded: 0
-  dodododo: {x: 0, y: 0, z: 0}
+  CurrentState: 0

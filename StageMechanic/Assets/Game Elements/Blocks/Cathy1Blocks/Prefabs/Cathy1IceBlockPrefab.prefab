@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23430123266629348}
   - component: {fileID: 114933380622396324}
   - component: {fileID: 114883329764347730}
+  - component: {fileID: 114812799144574774}
   m_Layer: 0
   m_Name: Cathy1IceBlockPrefab
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4d38928bedb233a4c82c9e1f03287f23, type: 2}
   m_StaticBatchInfo:
@@ -97,6 +99,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114812799144574774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1240530952424724}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114883329764347730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,3 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0

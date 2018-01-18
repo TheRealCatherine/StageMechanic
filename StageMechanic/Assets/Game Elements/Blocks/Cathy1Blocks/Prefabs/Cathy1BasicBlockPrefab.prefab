@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23630455415230708}
   - component: {fileID: 114443065639635840}
   - component: {fileID: 114024788676756002}
+  - component: {fileID: 114890344256305700}
   m_Layer: 0
   m_Name: Cathy1BasicBlockPrefab
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 318256974cb993340b0c63bf71549cb7, type: 2}
   m_StaticBatchInfo:
@@ -123,3 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+--- !u!114 &114890344256305700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853629512664166}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []

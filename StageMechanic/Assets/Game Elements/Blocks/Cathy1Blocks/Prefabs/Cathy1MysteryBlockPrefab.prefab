@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114074122706948598}
   - component: {fileID: 114993168133409630}
   - component: {fileID: 82313864153494584}
+  - component: {fileID: 114755583485758196}
   m_Layer: 0
   m_Name: Cathy1MysteryBlockPrefab
   m_TagString: Untagged
@@ -206,7 +207,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 0
-  FallTime: 0.25
+--- !u!114 &114755583485758196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678688784119742}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114993168133409630
 MonoBehaviour:
   m_ObjectHideFlags: 1
