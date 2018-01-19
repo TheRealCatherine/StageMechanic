@@ -168,6 +168,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             ret.Add("Fixed Rotation", new KeyValuePair<string, string>("bool", "false"));
             ret.Add("Weight Factor", new KeyValuePair<string, string>("float", "1.0"));
             ret.Add("Gravity Factor", new KeyValuePair<string, string>("float", "1.0"));
+            ret.Add("Block Group", new KeyValuePair<string, string>("int", "-1"));
             return ret;
         }
     }
@@ -185,6 +186,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 ret.Add("Weight Factor", WeightFactor.ToString());
             if(GravityFactor != 1.0f)
                 ret.Add("Gravity Factor", GravityFactor.ToString());
+            if (BlockManager.BlockGroupNumber(this) != -1)
+                ret.Add("Block Group", BlockManager.BlockGroupNumber(this).ToString());
             return ret;
         }
         set
@@ -196,6 +199,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 WeightFactor = (float)Convert.ToDouble(value["Weight Factor"]);
             if (value.ContainsKey("Gravity Factor"))
                 GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
+            if (value.ContainsKey("Block Group"))
+                BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
         }
     }
 

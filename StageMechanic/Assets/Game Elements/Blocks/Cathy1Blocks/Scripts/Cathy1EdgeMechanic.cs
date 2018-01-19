@@ -99,6 +99,21 @@ public class Cathy1EdgeMechanic : MonoBehaviour
             }
         }
 
+        foreach (IBlock block in BlockManager.BlockGroup(BlockManager.BlockGroupNumber(GetComponent<IBlock>())))
+        {
+            Cathy1EdgeMechanic em = block.GameObject.GetComponent<Cathy1EdgeMechanic>();
+            if (em.CurrentState == State.Grounded)
+            {
+                CurrentState = State.Grounded;
+                return true;
+            }
+            else if (em.CurrentState == State.Edged)
+            {
+                CurrentState = State.Edged;
+                return true;
+            }
+        }
+
         return false;
     }
 
