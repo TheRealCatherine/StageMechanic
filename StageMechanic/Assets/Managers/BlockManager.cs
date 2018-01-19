@@ -376,7 +376,8 @@ public class BlockManager : MonoBehaviour {
                 Destroy(child.gameObject);
         }
         ActiveFloor.transform.position = new Vector3(0, 0f, 3f);
-        
+        blockGroups.Clear();
+        blockToGroupMapping.Clear();
         PlayerManager.Clear();
         EventManager.Clear();
         LogController.Log("Stage Data Cleared");
@@ -701,48 +702,111 @@ public class BlockManager : MonoBehaviour {
         return ret;
     }
 
-    static List<IBlock> blockGroup = new List<IBlock>();
+    static Dictionary<IBlock, int> blockToGroupMapping = new Dictionary<IBlock, int>();
+    static Dictionary<int, List<IBlock>> blockGroups = new Dictionary<int, List<IBlock>>();
 
-    public static List<IBlock> GetBlockGroup(int number)
+    public static List<IBlock> BlockGroup(int groupNumber)
     {
-        return blockGroup;
+        if (groupNumber < 0)
+            return new List<IBlock>();
+        Debug.Assert(blockGroups.ContainsKey(groupNumber));
+        return blockGroups[groupNumber];
     }
 
-    public static void AddBlockToGroup(int group, IBlock block)
+    public static void AddBlockToGroup(IBlock block, int groupNumber)
     {
-        if (group < 0 || block == null)
+        Debug.Assert(block != null);
+        if(groupNumber < 0)
+        {
+            if(blockToGroupMapping.ContainsKey(block))
+            {
+                blockGroups[blockToGroupMapping[block]].Remove(block);
+                blockToGroupMapping.Remove(block);
+                return;
+            }
             return;
-        blockGroup.Add(block);
-        cakeslice.Outline outline = block.GameObject.GetComponent<cakeslice.Outline>();
-        if (outline == null)
-            outline = block.GameObject.GetComponentInChildren<cakeslice.Outline>();
-        if (outline != null) {
-            outline.enabled = true;
-            outline.color = 1;
+        }
+        if (blockToGroupMapping.ContainsKey(block) && blockToGroupMapping[block] != groupNumber)
+        {
+            Debug.Assert(blockGroups.ContainsKey(blockToGroupMapping[block]));
+            blockGroups[blockToGroupMapping[block]].Remove(block);
+            if (!blockGroups.ContainsKey(groupNumber))
+                blockGroups.Add(groupNumber, new List<IBlock>());
+            if (blockGroups[groupNumber] == null)
+                blockGroups[groupNumber] = new List<IBlock>();
+            blockGroups[groupNumber].Add(block);
+            blockToGroupMapping[block] = groupNumber;
+            cakeslice.Outline outline = block.GameObject.GetComponent<cakeslice.Outline>();
+            if (outline == null)
+                outline = block.GameObject.GetComponentInChildren<cakeslice.Outline>();
+            if (outline != null)
+            {
+                outline.enabled = true;
+                outline.color = groupNumber;
+            }
+        }
+        else if(!blockToGroupMapping.ContainsKey(block))
+        {
+            blockToGroupMapping.Add(block, groupNumber);
+            if (!blockGroups.ContainsKey(groupNumber))
+                blockGroups.Add(groupNumber, new List<IBlock>());
+            if (blockGroups[groupNumber] == null)
+                blockGroups[groupNumber] = new List<IBlock>();
+            blockGroups[groupNumber].Add(block);
+            cakeslice.Outline outline = block.GameObject.GetComponent<cakeslice.Outline>();
+            if (outline == null)
+                outline = block.GameObject.GetComponentInChildren<cakeslice.Outline>();
+            if (outline != null)
+            {
+                outline.enabled = true;
+                outline.color = groupNumber;
+            }
         }
     }
 
-    public static bool CanBeMoved(IBlock block, Vector3 direction, int distance=1)
+    public static void RemoveBlockFromGroup(IBlock block)
     {
-        if (!blockGroup.Contains(block))
-            return block.CanBeMoved(direction,distance);
-        foreach(IBlock neighbor in blockGroup)
+        AddBlockToGroup(block, -1);
+    }
+
+    public static int BlockGroupNumber(IBlock block)
+    {
+        if (blockToGroupMapping.ContainsKey(block))
+            return blockToGroupMapping[block];
+        return -1;
+    }
+
+    public static bool CanMoveGroup(int groupNumber, Vector3 direction, int distance = 1)
+    {
+        Debug.Assert(groupNumber >= 0);
+        Debug.Assert(blockGroups.ContainsKey(groupNumber));
+        foreach(IBlock block in BlockGroup(groupNumber))
         {
-            if (!neighbor.CanBeMoved(direction, distance))
+            if (!block.CanBeMoved(direction, distance))
                 return false;
         }
         return true;
     }
 
-    public static bool Move(IBlock block, Vector3 direction, int distance=1)
+    public static bool MoveGroup(int groupNumber, Vector3 direction, int distance = 1)
     {
-        if (!blockGroup.Contains(block))
-            return block.Move(direction, distance);
-        if (!CanBeMoved(block, direction, distance))
+        if (!CanMoveGroup(groupNumber, direction, distance))
             return false;
-        foreach(IBlock member in blockGroup)
+
+        foreach(IBlock block in BlockGroup(groupNumber))
         {
-            member.Move(direction, distance);
+
+            IBlock neighbor = GetBlockAt(block.Position + direction);
+            if (neighbor != null)
+            {
+                if (BlockGroupNumber(neighbor) == -1)
+                    neighbor.Move(direction, distance);
+                else if (BlockGroupNumber(neighbor) != groupNumber)
+                    MoveGroup(BlockGroupNumber(neighbor), direction, distance);
+            }
+            block.Position += direction;
+            //StartCoroutine(AnimateMove(Position, Position + direction, 0.2f * MoveWeight(direction, distance)));
+
         }
         return true;
     }
