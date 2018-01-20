@@ -623,11 +623,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			return 0f;
         BlockManager.RecordUndo();
         //TODO make this one movement
-        bool moved = false;
-        if (BlockManager.BlockGroupNumber(blockInQuestion) == -1)
-            moved = blockInQuestion.Move(direction);
-        else
-            moved = BlockManager.MoveGroup(BlockManager.BlockGroupNumber(blockInQuestion), direction);
+        bool moved = BlockManager.Move(blockInQuestion, direction);
         if (moved)
         {
             if (FacingDirection != direction)

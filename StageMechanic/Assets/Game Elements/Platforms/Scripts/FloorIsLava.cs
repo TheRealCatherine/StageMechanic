@@ -26,24 +26,44 @@ public class FloorIsLava : Platform
     void OnCollisionEnter(Collision collision)
     {
         if (BlockManager.PlayMode)
-            Destroy(collision.gameObject);
+        {
+            if (collision.gameObject.GetComponent<IBlock>() != null)
+                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+            else
+                Destroy(collision.gameObject);
+        }
     }
 
     void OnCollisionStay(Collision collision)
     {
         if (BlockManager.PlayMode)
-            Destroy(collision.gameObject);
+        {
+            if (collision.gameObject.GetComponent<IBlock>() != null)
+                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+            else
+                Destroy(collision.gameObject);
+        }
     }
 
     void OnTriggerEnter(Collider collision)
     {
         if (BlockManager.PlayMode)
-            Destroy(collision.gameObject);
+        {
+            if (collision.gameObject.GetComponent<IBlock>() != null)
+                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+            else
+                Destroy(collision.gameObject);
+        }
     }
 
     void OnTriggerStay(Collider collision)
     {
         if (BlockManager.PlayMode)
-            Destroy(collision.gameObject);
+        {
+            if (collision.gameObject.GetComponent<IBlock>() != null)
+                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+            else
+                Destroy(collision.gameObject);
+        }
     }
 }

@@ -60,7 +60,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         {
             GetComponent<AudioSource>().PlayOneShot(Collapse);
             yield return new WaitForSeconds(0.55f);
-            Destroy(gameObject);
+            BlockManager.DestoryBlock(this);
         }
             
     }

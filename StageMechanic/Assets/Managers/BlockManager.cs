@@ -513,18 +513,14 @@ public class BlockManager : MonoBehaviour {
         return output;
     }
 
-    public void DestroyBlock( IBlock block ) {
-        Debug.Assert(block != null);
-        Debug.Assert(block.GameObject != null);
-		Destroy (block.GameObject);
-        AutoSave();
-	}
-
     public void DestroyActiveObject()
     {
         if (ActiveObject != null)
         {
-            Destroy(ActiveObject);
+            if (ActiveObject.GetComponent<IBlock>() != null)
+                DestoryBlock(ActiveObject.GetComponent<IBlock>());
+            else
+                Destroy(ActiveObject);
             AutoSave();
         }
     }
@@ -799,15 +795,43 @@ public class BlockManager : MonoBehaviour {
             IBlock neighbor = GetBlockAt(block.Position + direction);
             if (neighbor != null)
             {
-                if (BlockGroupNumber(neighbor) == -1)
+                if (BlockGroupNumber(neighbor) < 0)
                     neighbor.Move(direction, distance);
                 else if (BlockGroupNumber(neighbor) != groupNumber)
                     MoveGroup(BlockGroupNumber(neighbor), direction, distance);
             }
-            block.Position += direction;
-            //StartCoroutine(AnimateMove(Position, Position + direction, 0.2f * MoveWeight(direction, distance)));
+            AbstractBlock ab = block.GameObject?.GetComponent<AbstractBlock>();
+            if(ab == null)
+                block.Position += direction;
+            else
+                ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.MoveWeight(direction, distance)));
 
         }
         return true;
+    }
+
+    public static bool CanBeMoved(IBlock block, Vector3 direction, int distance = 1)
+    {
+        if (BlockGroupNumber(block) < 0)
+            return block.CanBeMoved(direction, distance);
+        return CanMoveGroup(BlockGroupNumber(block),direction,distance);
+    }
+
+    public static bool Move(IBlock block, Vector3 direction, int distance = 1)
+    {
+        if (BlockGroupNumber(block) < 0)
+            return block.Move(direction, distance);
+        return MoveGroup(BlockGroupNumber(block), direction, distance);
+    }
+
+    public static void DestoryBlock(IBlock block)
+    {
+        if(blockToGroupMapping.ContainsKey(block))
+        {
+            Debug.Assert(blockGroups.ContainsKey(blockToGroupMapping[block]));
+            blockGroups[blockToGroupMapping[block]].Remove(block);
+            blockToGroupMapping.Remove(block);
+        }
+        Destroy(block.GameObject);
     }
 }

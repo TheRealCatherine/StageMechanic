@@ -111,7 +111,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
                 BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
         }
         CurrentState = State.Disarmed;
-        Destroy(GameObject);
+        BlockManager.DestoryBlock(this);
     }
 
     private void Update()
