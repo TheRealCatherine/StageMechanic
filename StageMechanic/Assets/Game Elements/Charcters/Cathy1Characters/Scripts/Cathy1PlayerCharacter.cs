@@ -22,6 +22,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
     public AudioClip ThudSound;
     public AudioClip GameOverSound;
 
+    public AudioClip[] EffortSounds;
+
     public IBlock CurrentBlock;
 
     private GameObject _player;
@@ -30,6 +32,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
     public float WalkTime { get; set; } = 0.15f;
     public float Granularity { get; set; } = 1.0f;
     public float ClimbSpeed { get; set; } = 0.05f;
+    private static System.Random rng = new System.Random();
 
     public override Vector3 FacingDirection
     {
@@ -626,6 +629,11 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
         bool moved = BlockManager.Move(blockInQuestion, direction);
         if (moved)
         {
+            if (EffortSounds.Length > 0)
+            {
+                int gruntDex = rng.Next(EffortSounds.Length);
+                GetComponent<AudioSource>().PlayOneShot(EffortSounds[gruntDex]);
+            }
             if (FacingDirection != direction)
             {
                 IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
