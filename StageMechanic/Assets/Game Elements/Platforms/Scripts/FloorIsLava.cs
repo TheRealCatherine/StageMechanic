@@ -28,7 +28,7 @@ public class FloorIsLava : Platform
         if (BlockManager.PlayMode)
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
-                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+                BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
             else
                 Destroy(collision.gameObject);
         }
@@ -39,7 +39,7 @@ public class FloorIsLava : Platform
         if (BlockManager.PlayMode)
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
-                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+                BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
             else
                 Destroy(collision.gameObject);
         }
@@ -50,7 +50,7 @@ public class FloorIsLava : Platform
         if (BlockManager.PlayMode)
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
-                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+                BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
             else
                 Destroy(collision.gameObject);
         }
@@ -61,7 +61,7 @@ public class FloorIsLava : Platform
         if (BlockManager.PlayMode)
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
-                BlockManager.DestoryBlock(collision.gameObject.GetComponent<IBlock>());
+                BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
             else
                 Destroy(collision.gameObject);
         }

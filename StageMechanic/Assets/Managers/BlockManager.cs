@@ -518,7 +518,7 @@ public class BlockManager : MonoBehaviour {
         if (ActiveObject != null)
         {
             if (ActiveObject.GetComponent<IBlock>() != null)
-                DestoryBlock(ActiveObject.GetComponent<IBlock>());
+                DestroyBlock(ActiveObject.GetComponent<IBlock>());
             else
                 Destroy(ActiveObject);
             AutoSave();
@@ -824,7 +824,7 @@ public class BlockManager : MonoBehaviour {
         return MoveGroup(BlockGroupNumber(block), direction, distance);
     }
 
-    public static void DestoryBlock(IBlock block)
+    public static void DestroyBlock(IBlock block)
     {
         if(blockToGroupMapping.ContainsKey(block))
         {
@@ -833,5 +833,34 @@ public class BlockManager : MonoBehaviour {
             blockToGroupMapping.Remove(block);
         }
         Destroy(block.GameObject);
+    }
+
+    private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration)
+    {
+        ParticleSystem system = Instantiate(animationPrefab, position, Quaternion.identity, transform);
+        ParticleSystem.MainModule module = system.main;
+        module.scalingMode = ParticleSystemScalingMode.Hierarchy;
+        module.simulationSpeed = (module.duration / duration);
+        system.transform.localScale = new Vector3(scale, scale, scale);
+        system.Play();
+        yield return new WaitForSeconds(system.main.duration);
+        system.Stop();
+        Destroy(system);
+    }
+
+    public static void PlayEffect(IBlock block, ParticleSystem animationPrefab, float scale = 1f, float duration = -1f, Vector3 offset = default(Vector3))
+    {
+        Instance.StartCoroutine(Instance._particleAnimationHelper(block.Position + offset, animationPrefab, scale, duration));
+    }
+
+    private IEnumerator _soundHelper(AudioClip clip, Vector3 position)
+    {
+        AudioSource.PlayClipAtPoint(clip, position);
+        yield return new WaitForSeconds(clip.length);
+    }
+
+    public static void PlaySound(IBlock block, AudioClip sound)
+    {
+        Instance.StartCoroutine(Instance._soundHelper(sound, block.Position));
     }
 }

@@ -18,6 +18,9 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     public AudioClip FuseSound;
     public AudioClip ExplosionSound;
 
+    public ParticleSystem ExplosionAnimation;
+    public float ExplosionAnimationScale = 1f;
+
     private const float SmallBombFuseTime = 1.5f;
     private const float LargeBombFuseTime = 1.5f;
     private const int SmallBombRadius = 1;
@@ -83,6 +86,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
             DamageRadius = new Vector3(SmallBombRadius, SmallBombRadius, SmallBombRadius);
         else
             DamageRadius = new Vector3(LargeBombRadius, LargeBombRadius, LargeBombRadius);
+
     }
 
     bool hasPlayer()
@@ -95,8 +99,10 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     {
         CurrentState = State.PlayerEnter;
         GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
+        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime);
         yield return new WaitForSeconds(TriggerTime);
-        GetComponent<AudioSource>()?.PlayOneShot(ExplosionSound);
+        BlockManager.PlaySound(this, ExplosionSound);
+        gameObject.SetActive(false);
         if (hasPlayer())
         {
             CurrentState = State.PlayerStand;
@@ -111,12 +117,14 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
                 BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
         }
         CurrentState = State.Disarmed;
-        BlockManager.DestoryBlock(this);
+        BlockManager.DestroyBlock(this);
     }
 
     private void Update()
     {
         if (!BlockManager.PlayMode)
+            return;
+        if (CurrentState == State.PlayerEnter || CurrentState == State.PlayerStand)
             return;
         if (!hasPlayer())
             return;

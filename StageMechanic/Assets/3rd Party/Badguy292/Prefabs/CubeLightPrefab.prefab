@@ -244,7 +244,9 @@ MonoBehaviour:
   ActiveStateMaterial: {fileID: 0}
   DisarmedStateMaterial: {fileID: 0}
   FuseSound: {fileID: 0}
-  ExplosionSound: {fileID: 0}
+  ExplosionSound: {fileID: 8300000, guid: 658450935bd45034dbd98aa1a50cca52, type: 3}
+  ExplosionAnimation: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
+  ExplosionAnimationScale: 2
   Size: 0
 --- !u!114 &114251962717280258
 MonoBehaviour:
