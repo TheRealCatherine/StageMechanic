@@ -376,10 +376,13 @@ public class BlockManager : MonoBehaviour {
                 Destroy(child.gameObject);
         }
         ActiveFloor.transform.position = new Vector3(0, 0f, 3f);
+        Debug.Assert(blockGroups != null);
+        Debug.Assert(blockToGroupMapping != null);
         blockGroups.Clear();
         blockToGroupMapping.Clear();
         PlayerManager.Clear();
         EventManager.Clear();
+        Cursor.transform.position = new Vector3(0f, 1f, 0f);
         LogController.Log("Stage Data Cleared");
     }
 
@@ -835,32 +838,51 @@ public class BlockManager : MonoBehaviour {
         Destroy(block.GameObject);
     }
 
-    private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration)
+    private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration, Quaternion rotation)
     {
-        ParticleSystem system = Instantiate(animationPrefab, position, Quaternion.identity, transform);
+        ParticleSystem system = Instantiate(animationPrefab, position, rotation, transform);
         ParticleSystem.MainModule module = system.main;
-        module.scalingMode = ParticleSystemScalingMode.Hierarchy;
-        module.simulationSpeed = (module.duration / duration);
-        system.transform.localScale = new Vector3(scale, scale, scale);
+        if (scale != 1.0f)
+        {
+            module.scalingMode = ParticleSystemScalingMode.Hierarchy;
+            system.transform.localScale = new Vector3(scale, scale, scale);
+        }
+        if(duration > 0)
+            module.simulationSpeed = (module.duration / duration);
+      
         system.Play();
         yield return new WaitForSeconds(system.main.duration);
         system.Stop();
-        Destroy(system);
+        Destroy(system.gameObject);
     }
 
-    public static void PlayEffect(IBlock block, ParticleSystem animationPrefab, float scale = 1f, float duration = -1f, Vector3 offset = default(Vector3))
+    public static void PlayEffect(IBlock block, ParticleSystem animationPrefab, float scale = 1f, float duration = -1f, Vector3 offset = default(Vector3), Quaternion rotation = default(Quaternion))
     {
-        Instance.StartCoroutine(Instance._particleAnimationHelper(block.Position + offset, animationPrefab, scale, duration));
+        Debug.Assert(animationPrefab != null);
+        if (duration == 0 || scale == 0)
+            return;
+        Quaternion rot = rotation;
+        if(rotation != Quaternion.identity)
+        {
+            Vector3 lookDirection = (block.Position + offset) - block.Position;
+            rot = Quaternion.LookRotation(lookDirection);
+            rot *= rotation;
+        }
+        Instance.StartCoroutine(Instance._particleAnimationHelper(block.Position + offset, animationPrefab, scale, duration, rot));
     }
 
-    private IEnumerator _soundHelper(AudioClip clip, Vector3 position)
+    private IEnumerator _soundHelper(AudioClip clip, Vector3 position, float volume)
     {
-        AudioSource.PlayClipAtPoint(clip, position);
+        //AudioSource.PlayClipAtPoint(clip, position, volume);
+        //TODO figure out why the above is OMFG quiet AF
+        GetComponent<AudioSource>().PlayOneShot(clip, volume);
         yield return new WaitForSeconds(clip.length);
     }
 
-    public static void PlaySound(IBlock block, AudioClip sound)
+    public static void PlaySound(IBlock block, AudioClip sound, float volume = 1f)
     {
-        Instance.StartCoroutine(Instance._soundHelper(sound, block.Position));
+        Debug.Assert(block != null);
+        Debug.Assert(sound != null);
+        Instance.StartCoroutine(Instance._soundHelper(sound, block.Position,volume));
     }
 }

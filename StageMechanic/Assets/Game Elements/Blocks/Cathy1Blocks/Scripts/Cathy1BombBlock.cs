@@ -19,12 +19,14 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     public AudioClip ExplosionSound;
 
     public ParticleSystem ExplosionAnimation;
-    public float ExplosionAnimationScale = 1f;
+    public float ExplosionAnimationScale = 2f;
 
-    private const float SmallBombFuseTime = 1.5f;
-    private const float LargeBombFuseTime = 1.5f;
-    private const int SmallBombRadius = 1;
-    private const int LargeBombRadius = 3;
+    private const float SMALL_BOMB_DEFAULT_FUSE_TIME = 1.5f;
+    private const float LARGE_BOMB_DEFAULT_FUSE_TIME = 1.5f;
+    private const int SMALL_BOMB_DEFAULT_RADIUS = 1;
+    private const int LARGE_BOMB_DEFAULT_RADIUS = 3;
+    private const float SMALL_BOMB_DEFAULT_ANIMATION_SCALE = 2f;
+    private const float LARGE_BOMB_DEFAULT_ANIMATION_SCALE = 3f;
 
     public enum BombSize
     {
@@ -83,9 +85,9 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         base.Awake();
         TriggerTime = 1.5f;
         if (Type == BlockType.Bomb1)
-            DamageRadius = new Vector3(SmallBombRadius, SmallBombRadius, SmallBombRadius);
+            DamageRadius = new Vector3(SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS);
         else
-            DamageRadius = new Vector3(LargeBombRadius, LargeBombRadius, LargeBombRadius);
+            DamageRadius = new Vector3(LARGE_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS);
 
     }
 
@@ -138,8 +140,9 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         get
         {
             Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", (Type==BlockType.Bomb1?SmallBombFuseTime:LargeBombFuseTime).ToString()));
-            ret.Add("Damage Radius", new KeyValuePair<string, string>("int", (Type == BlockType.Bomb1 ? SmallBombRadius : LargeBombRadius).ToString()));
+            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", (Type==BlockType.Bomb1?SMALL_BOMB_DEFAULT_FUSE_TIME:LARGE_BOMB_DEFAULT_FUSE_TIME).ToString()));
+            ret.Add("Damage Radius", new KeyValuePair<string, string>("int", (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_RADIUS : LARGE_BOMB_DEFAULT_RADIUS).ToString()));
+            ret.Add("Animation Scale", new KeyValuePair<string, string>("float", (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_ANIMATION_SCALE : LARGE_BOMB_DEFAULT_ANIMATION_SCALE).ToString()));
             return ret;
         }
     }
@@ -149,14 +152,16 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         get
         {
             Dictionary<string, string> ret = base.Properties;
-            if (TriggerTime != SmallBombFuseTime && Type==BlockType.Bomb1)
+            if (TriggerTime != SMALL_BOMB_DEFAULT_FUSE_TIME && Type==BlockType.Bomb1)
                 ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
-            if (TriggerTime != LargeBombFuseTime && Type == BlockType.Bomb2)
+            if (TriggerTime != LARGE_BOMB_DEFAULT_FUSE_TIME && Type == BlockType.Bomb2)
                 ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
-            if (Type == BlockType.Bomb1 && DamageRadius != new Vector3(SmallBombRadius, SmallBombRadius, SmallBombRadius))
+            if (Type == BlockType.Bomb1 && DamageRadius != new Vector3(SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS))
                 ret.Add("Damage Radius", DamageRadius.x.ToString());
-            if (Type == BlockType.Bomb2 && DamageRadius != new Vector3(SmallBombRadius, LargeBombRadius, LargeBombRadius))
+            if (Type == BlockType.Bomb2 && DamageRadius != new Vector3(SMALL_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS))
                 ret.Add("Damage Radius", DamageRadius.x.ToString());
+            if (Type == BlockType.Bomb1 && ExplosionAnimationScale != SMALL_BOMB_DEFAULT_ANIMATION_SCALE)
+                ret.Add("Animation Scale", ExplosionAnimationScale.ToString());
             return ret;
         }
         set
@@ -169,6 +174,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
                 int radius = int.Parse(value["Damage Radius"]);
                 DamageRadius = new Vector3(radius, radius, radius);
             }
+            if (value.ContainsKey("Animation Scale"))
+                ExplosionAnimationScale = float.Parse(value["Animation Scale"]);
         }
     }
 }

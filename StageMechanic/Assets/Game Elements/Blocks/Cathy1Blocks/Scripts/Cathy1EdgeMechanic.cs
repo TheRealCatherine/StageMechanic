@@ -21,7 +21,7 @@ public class Cathy1EdgeMechanic : MonoBehaviour
 
 
     public State CurrentState = State.Grounded;
-    private const float DEFAULT_GRAVITY_BASE = 0.1f;
+    private const float DEFAULT_GRAVITY_BASE = 0.25f;
 
     private static State CurrentEdgeState( IBlock block )
     {
@@ -98,20 +98,22 @@ public class Cathy1EdgeMechanic : MonoBehaviour
                 return true;
             }
         }
-
-        foreach (IBlock block in BlockManager.BlockGroup(BlockManager.BlockGroupNumber(GetComponent<IBlock>())))
+        if (BlockManager.BlockGroupNumber(GetComponent<IBlock>()) >= 0)
         {
-            Cathy1EdgeMechanic em = block.GameObject.GetComponent<Cathy1EdgeMechanic>();
-            
-            if (em.CurrentState == State.Grounded)
+            foreach (IBlock block in BlockManager.BlockGroup(BlockManager.BlockGroupNumber(GetComponent<IBlock>())))
             {
-                CurrentState = State.Grounded;
-                return true;
-            }
-            else if (em.CurrentState == State.Edged)
-            {
-                CurrentState = State.Edged;
-                return true;
+                Cathy1EdgeMechanic em = block.GameObject.GetComponent<Cathy1EdgeMechanic>();
+
+                if (em.CurrentState == State.Grounded)
+                {
+                    CurrentState = State.Grounded;
+                    return true;
+                }
+                else if (em.CurrentState == State.Edged)
+                {
+                    CurrentState = State.Edged;
+                    return true;
+                }
             }
         }
 

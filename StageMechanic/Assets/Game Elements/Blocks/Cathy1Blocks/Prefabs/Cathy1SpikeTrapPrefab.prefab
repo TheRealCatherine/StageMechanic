@@ -109,9 +109,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a6511b1fd74a3654d91927cf0ebcdea1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de441fa43fc880a4ca9acacd99586e63, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -228,6 +228,8 @@ MonoBehaviour:
   ActiveStateMaterial: {fileID: 0}
   DisarmedStateMaterial: {fileID: 2100000, guid: 476c8b7430d61ab4a80a7fa5c7a8acd4,
     type: 2}
+  Animation: {fileID: 19800000, guid: b2e1927a9cfbd4c03a114b0166c00dce, type: 2}
+  AnimationScale: 1
 --- !u!114 &114716359050219704
 MonoBehaviour:
   m_ObjectHideFlags: 1

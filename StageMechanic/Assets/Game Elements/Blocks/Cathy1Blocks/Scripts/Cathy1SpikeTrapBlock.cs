@@ -21,9 +21,14 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     public Material ActiveStateMaterial;
     public Material DisarmedStateMaterial;
 
+    public ParticleSystem Animation;
+    public float AnimationScale = DEFAULT_ANIMATION_SCALE;
+
+    private const float DEFAULT_TRIGGER_TIME = 0.6f;
+    private const float DEFAULT_ANIMATION_SCALE = 2;
+
     public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
 
-    private const float DEFAULT_TRIGGER_TIME = 0.6f; 
 
     /// <summary>
     /// Indicate to the Cathy1 game rules that this is a spike trap
@@ -66,6 +71,7 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     {
         CurrentState = State.PlayerEnter;
         yield return new WaitForSeconds(TriggerTime);
+        BlockManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
         GetComponent<AudioSource>().Play();
         if (hasPlayer())
         {
@@ -83,6 +89,8 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
             return;
         if (CurrentState == State.Disarmed)
             return;
+        if (CurrentState == State.PlayerEnter || CurrentState == State.PlayerStand)
+            return;
         if (!hasPlayer())
             return;
         StartCoroutine(HandleStep());
@@ -94,6 +102,7 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         {
             Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
             ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", DEFAULT_TRIGGER_TIME.ToString()));
+            ret.Add("Animation Scale", new KeyValuePair<string, string>("float", DEFAULT_ANIMATION_SCALE.ToString()));
             return ret;
         }
     }
@@ -105,6 +114,8 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
             Dictionary<string, string> ret = base.Properties;
             if (TriggerTime != DEFAULT_TRIGGER_TIME)
                 ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
+            if (AnimationScale != DEFAULT_ANIMATION_SCALE)
+                ret.Add("Animation Scale", AnimationScale.ToString());
             return ret;
         }
         set
@@ -112,6 +123,8 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
             base.Properties = value;
             if (value.ContainsKey("Trigger Time (seconds)"))
                 TriggerTime = float.Parse(value["Trigger Time (seconds)"]);
+            if (value.ContainsKey("Animation Scale"))
+                AnimationScale = float.Parse(value["Animation Scale"]);
         }
     }
 }
