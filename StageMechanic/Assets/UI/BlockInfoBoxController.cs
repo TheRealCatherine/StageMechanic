@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,7 +61,9 @@ public class BlockInfoBoxController : MonoBehaviour {
             //TODO support item types once there is an Item class
             if(lastBlock.FirstItem != null)
                 itemType.text = lastBlock.FirstItem.name;
-           
+#if UNITY_EDITOR
+            Selection.activeGameObject = lastBlock.gameObject;
+#endif
         }
         else
         {

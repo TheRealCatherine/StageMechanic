@@ -59,4 +59,10 @@ public static class Utility
     {
         return new Vector3((float)Math.Round(vector.x, places), (float)Math.Round(vector.y, places), (float)Math.Round(vector.z, places));
     }
+
+    public static void AddIfNotNull<T>(this IList<T> list, T value)
+    {
+        if ((object)value != null)
+            list.Add(value);
+    }
 }

@@ -330,10 +330,32 @@ public class BlockManager : MonoBehaviour {
 
     // Called once every frame
     void Update() {
-        //SortChildren(this.gameObject);
+        /*Cathy1EdgeMechanic[] blocks = GetComponentsInChildren<Cathy1EdgeMechanic>();
+        foreach (Cathy1EdgeMechanic block in blocks)
+            block.Calculating = true;*/
     }
 
-    public static void SortChildren(GameObject gameObject)
+
+    public static void SortChildrenByYCoord(GameObject o)
+    {
+        var children = o.GetComponentsInChildren<Transform>(true).ToList();
+        children.Remove(o.transform);
+        children.Sort(CompareYCoord);
+        for (int i = 0; i < children.Count; i++)
+            children[i].SetSiblingIndex(i);
+    }
+
+    private static int CompareYCoord(Transform lhs, Transform rhs)
+    {
+        if (lhs == rhs) return 0;
+        var test = rhs.gameObject.activeInHierarchy.CompareTo(lhs.gameObject.activeInHierarchy);
+        if (test != 0) return test;
+        if (lhs.localPosition.y < rhs.localPosition.y) return -1;
+        if (lhs.localPosition.y > rhs.localPosition.y) return 1;
+        return 0;
+    }
+
+/*    public static void SortChildren(GameObject gameObject)
     {
         Transform[] children = gameObject.GetComponentsInChildren<Transform>(true);
 
@@ -346,7 +368,7 @@ public class BlockManager : MonoBehaviour {
             if(sorted.ElementAt(i).GetSiblingIndex() != i)
                 sorted.ElementAt(i).SetSiblingIndex(i);
         }
-    }
+    }*/
 
 
     // Retrieve a List of all child game objects from a given parent
@@ -580,7 +602,7 @@ public class BlockManager : MonoBehaviour {
             if (!PlayMode)
                 TogglePlayMode();
         }
-        SortChildren(this.gameObject);
+       // SortChildren(this.gameObject);
     }
 
     public void BlocksFromJson( string json )
@@ -657,17 +679,12 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	public static IBlock GetBlockAt( Vector3 position) {
-		GameObject[] collidedGameObjects =
-			Physics.OverlapSphere (position, 0.1f)
-				//.Except (new[] { GetComponent<BoxCollider> () })
-				.Select (c => c.gameObject)
-				.ToArray ();
 
-		foreach (GameObject go in collidedGameObjects) {
-			IBlock block = go.GetComponent<IBlock> ();
-			if (block != null)
-				return block;
-		}
+        foreach(Collider collider in Physics.OverlapSphere(position, 0.000001f)) { 
+            IBlock block = collider.GetComponent<IBlock>();
+            if (block != null && block.Position == position)
+                return block;
+        }
 		return null;
 	}
 

@@ -11,7 +11,6 @@ using System.Runtime.Serialization;
 
 public interface IBlock
 {
-
     /// <summary>
     /// A human-readable identifier for the block. Typically implementations
     /// will auto-generate a guid in the case the user has not given a different
