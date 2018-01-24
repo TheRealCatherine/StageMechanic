@@ -9,6 +9,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
 
+public enum BlockMotionState
+{
+    Uknown = 0,
+    Grounded,
+    Edged,
+    Hovering,
+    Falling,
+    Moving,
+    Sliding,
+    Extended = 255
+}
+
 public interface IBlock
 {
     /// <summary>
@@ -64,6 +76,41 @@ public interface IBlock
     {
         get;
         set;
+    }
+
+    /// <summary>
+    /// The state of the block in regards to motion. If state is not one of the built
+    /// in types, this will return BlockState.Extended and MotionStateName should be consulted
+    /// for the current state.
+    /// </summary>
+    BlockMotionState MotionState
+    {
+        get;
+        set;
+    }
+
+    /// <summary>
+    /// The state of the block in regards to motion. If not one of the built-int types
+    /// IBlock.MotionState will be BlockMotionState.Extended
+    /// </summary>
+    string MotionStateName
+    {
+        get;
+        set;
+    }
+
+    bool PhysicsEnabled
+    {
+        get;
+        set;
+    }
+
+    /// <summary>
+    /// A read-only property that is true if the block should not currently be affected by gravity.
+    /// </summary>
+    bool IsGrounded
+    {
+        get;
     }
 
     /// <summary>

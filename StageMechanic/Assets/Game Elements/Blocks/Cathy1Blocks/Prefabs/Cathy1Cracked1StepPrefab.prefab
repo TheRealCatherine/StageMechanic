@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114687296223705146}
   - component: {fileID: 82605893377031744}
   - component: {fileID: 114352846254691912}
+  - component: {fileID: 54792258874707908}
   m_Layer: 0
   m_Name: Cathy1Cracked1StepPrefab
   m_TagString: Untagged
@@ -88,6 +89,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1130345185771716}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54792258874707908
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130345185771716}
+  serializedVersion: 2
+  m_Mass: 3
+  m_Drag: 1.1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &65577780083111100
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -221,6 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c82915ae58ded74da9171d2d399aadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 
+  BelowCount: 0
+  AboveCount: 0
   Material1: {fileID: 2100000, guid: 1883c97dc5e451748b2883d56e85041f, type: 2}
   Material2: {fileID: 2100000, guid: 695794c4a0a179745bf5582cbb696b11, type: 2}
   Material3: {fileID: 0}
@@ -239,4 +258,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: 0

@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public abstract class AbstractBlock : MonoBehaviour, IBlock
 {
 
@@ -219,6 +220,45 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     /// </summary>
     public float GravityFactor { get; set; } = 1.0f;
 
+    public BlockMotionState MotionState { get; set; } = BlockMotionState.Uknown;
+
+    private string _motionStateName;
+    public string MotionStateName
+    {
+        get
+        {
+            if (MotionState != BlockMotionState.Extended)
+                return MotionState.ToString();
+            else
+                return _motionStateName;
+        }
+        set
+        {
+            BlockMotionState newState = BlockMotionState.Uknown;
+            if (Enum.TryParse<BlockMotionState>(value, out newState))
+            {
+                MotionState = newState;
+                _motionStateName = null;
+            }
+            else
+            {
+                MotionState = BlockMotionState.Extended;
+                _motionStateName = value;
+            }
+        }
+    }
+
+    /// <summary>
+    /// This will be set to true only if the state is Falling in this implementation.
+    /// </summary>
+    public virtual bool IsGrounded
+    {
+        get
+        {
+            return MotionState != BlockMotionState.Falling;
+        }
+    }
+
     virtual public BlockJsonDelegate GetJsonDelegate()
     {
         return new BlockJsonDelegate(this);
@@ -285,5 +325,124 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     public virtual void Awake()
     {
         name = System.Guid.NewGuid().ToString();
+        PhysicsEnabled = false;
+        while (blocksAbove.Count < 5)
+            blocksAbove.Add(null);
+        while (blocksBelow.Count < 5)
+            blocksBelow.Add(null);
+    }
+
+    public virtual void Start()
+    {
+        UpdateNeighborsCache();
+    }
+
+
+    private void OnDisable()
+    {
+        UpdateAllNeighborsCaches();
+    }
+
+    private void OnDestroy()
+    {
+        UpdateAllNeighborsCaches();
+    }
+
+    internal List<IBlock> blocksBelow = new List<IBlock>(5);
+    internal List<IBlock> blocksAbove = new List<IBlock>(5);
+    internal const int DOWN = 0;
+    internal const int UP = DOWN;
+    internal const int FORWARD = 1;
+    internal const int BACK = 2;
+    internal const int LEFT = 3;
+    internal const int RIGHT = 4;
+#if UNITY_EDITOR
+    public string CurrentState;
+    public int BelowCount;
+    public int AboveCount;
+#endif
+
+    public void UpdateNeighborsCache()
+    {
+        HardUpdateBlocksAbove();
+        HardUpdateBlocksBelow();
+#if UNITY_EDITOR
+        UpdateNeighborCounts();
+#endif
+    }
+
+    public void UpdateAllNeighborsCaches()
+    {
+        foreach (IBlock block in blocksBelow)
+        {
+            (block as AbstractBlock)?.UpdateNeighborsCache();
+        }
+        foreach (IBlock block in blocksAbove)
+        {
+            (block as AbstractBlock)?.UpdateNeighborsCache();
+        }
+    }
+
+    protected void HardUpdateBlocksAbove()
+    {
+        blocksAbove[UP] = BlockManager.GetBlockAt(Position + Vector3.up);
+        blocksAbove[FORWARD] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.forward);
+        blocksAbove[BACK] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.back);
+        blocksAbove[LEFT] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.left);
+        blocksAbove[RIGHT] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.right);
+    }
+
+    protected void HardUpdateBlocksBelow()
+    {
+        blocksBelow[DOWN] = BlockManager.GetBlockAt(Position + Vector3.down);
+        blocksBelow[FORWARD] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.forward);
+        blocksBelow[BACK] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.back);
+        blocksBelow[LEFT] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.left);
+        blocksBelow[RIGHT] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.right);
+    }
+
+#if UNITY_EDITOR
+    public void UpdateNeighborCounts()
+    {
+        BelowCount = 0;
+        AboveCount = 0;
+        foreach (IBlock support in blocksBelow)
+        {
+            if (support != null)
+                ++BelowCount;
+        }
+        foreach (IBlock support in blocksAbove)
+        {
+            if (support != null)
+                ++AboveCount;
+        }
+    }
+#endif
+
+    bool _physicsEnabled = false;
+    public virtual bool PhysicsEnabled
+    {
+        get
+        {
+            return _physicsEnabled;
+        }
+        set
+        {
+            if (value == _physicsEnabled)
+                return;
+            if (value)
+            {
+                GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ);
+                GetComponent<Rigidbody>().useGravity = true;
+                _physicsEnabled = true;
+            }
+            else
+            {
+                transform.position = Utility.Round(Position, 0);
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                GetComponent<Rigidbody>().useGravity = false;
+                _physicsEnabled = false;
+            }
+        }
     }
 }

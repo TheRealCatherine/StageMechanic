@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114942713677371894}
   - component: {fileID: 82754031002639790}
   - component: {fileID: 114340848345268672}
+  - component: {fileID: 54409263680330516}
   m_Layer: 0
   m_Name: Cathy1MonsterBlockPrefab
   m_TagString: Untagged
@@ -88,6 +89,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1378607036211450}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54409263680330516
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378607036211450}
+  serializedVersion: 2
+  m_Mass: 3
+  m_Drag: 1.1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &65720573522983402
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -221,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: 0
 --- !u!114 &114942713677371894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,6 +248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738f3a49433f91d449d9a7276d3c1491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 
+  BelowCount: 0
+  AboveCount: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}

@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4108776041968934}
   - component: {fileID: 65806665863913134}
-  - component: {fileID: 114144603076756416}
   - component: {fileID: 114260190700802840}
+  - component: {fileID: 114144603076756416}
+  - component: {fileID: 54406826139801918}
   m_Layer: 0
   m_Name: CubeGreyPrefab
   m_TagString: Untagged
@@ -116,6 +117,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1511608544911836}
   m_Mesh: {fileID: 4300000, guid: a25ca9c5c26cca14c8c0d3f0fe8da012, type: 3}
+--- !u!54 &54406826139801918
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505719229771200}
+  serializedVersion: 2
+  m_Mass: 3
+  m_Drag: 1.1
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &65806665863913134
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -154,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: 0
 --- !u!114 &114260190700802840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,6 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8dfaadaa42ff842bb6e71064a55dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 
+  BelowCount: 0
+  AboveCount: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
