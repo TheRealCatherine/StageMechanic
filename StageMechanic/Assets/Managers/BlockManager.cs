@@ -23,6 +23,18 @@ using UnityEngine;
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
 
+    public enum BlockManagerState
+    {
+        Initializing,
+        EditMode,
+        Clearing,
+        Loading,
+        Saving,
+        PlayMode
+    }
+
+    public BlockManagerState State = BlockManagerState.Initializing;
+
     // Unity Inspector variables
     public GameObject CursorPrefab;
     public GameObject BasicPlatformPrefab;
@@ -72,6 +84,7 @@ public class BlockManager : MonoBehaviour {
             LogController.Log("Start!");
             UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
             RecordStartState();
+            State = BlockManagerState.PlayMode;
         }
         else
         {
@@ -79,6 +92,7 @@ public class BlockManager : MonoBehaviour {
             if (_startState != null && _startState.Length != 0)
                 ReloadStartState();
             UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
+            State = BlockManagerState.EditMode;
         }
         UIManager.RefreshButtonMappingDialog();
         GetComponent<PlayerManager>().PlayMode = PlayMode;
@@ -294,23 +308,31 @@ public class BlockManager : MonoBehaviour {
         if (_undos.Count > 0)
         {
             Instance.ClearForUndo();
+            PlayerManager.Player(0).GameObject.SetActive(false);
             ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
             Instance.BlocksFromJson(_undos[_undos.Count - 1]);
-            PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
-            PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
-            PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
-
-            _undos.RemoveAt(_undos.Count - 1);
-            _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
-            _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
-            _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
-            _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
-            LogController.Log("Undo");
+            Instance.StartCoroutine(Instance.UndoCleanup());
         }
         else
             LogController.Log("No undos left");
     }
 
+    private IEnumerator UndoCleanup()
+    {
+        while(!GetBlockNear(_undoPlayerPos[_undoPlayerPos.Count - 1],2).IsGrounded)
+            yield return new WaitForFixedUpdate();
+        PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
+        PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
+        PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
+        yield return new WaitForFixedUpdate();
+        _undos.RemoveAt(_undos.Count - 1);
+        _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
+        _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
+        _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
+        _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
+        PlayerManager.Player(0).GameObject.SetActive(true);
+        LogController.Log("Undo");
+    }
 
     private void Awake()
     {
@@ -392,10 +414,18 @@ public class BlockManager : MonoBehaviour {
 
     public void Clear()
     {
+        BlockManagerState oldState = State;
+        State = BlockManagerState.Clearing;
         foreach (Transform child in ActiveFloor.transform)
         {
             if(!child.GetComponent<Platform>())
-                Destroy(child.gameObject);
+            {
+                if (child.GetComponent<IBlock>() != null)
+                    DestroyBlock(child.GetComponent<IBlock>());
+                else
+                    Destroy(child.gameObject);
+            }
+                
         }
         ActiveFloor.transform.position = new Vector3(0, 0f, 3f);
         Debug.Assert(blockGroups != null);
@@ -405,15 +435,24 @@ public class BlockManager : MonoBehaviour {
         PlayerManager.Clear();
         EventManager.Clear();
         Cursor.transform.position = new Vector3(0f, 1f, 0f);
+        State = oldState;
         LogController.Log("Stage Data Cleared");
     }
 
     public void ClearForUndo()
     {
+        BlockManagerState oldState = State;
+        State = BlockManagerState.Clearing;
         foreach (Transform child in ActiveFloor.transform)
             if (!child.GetComponent<Platform>())
-                Destroy(child.gameObject);
+            {
+                if (child.GetComponent<IBlock>() != null)
+                    DestroyBlock(child.GetComponent<IBlock>());
+                else
+                    Destroy(child.gameObject);
+            }
         EventManager.Clear();
+        State = oldState;
     }
 
     public void RandomizeGravity()
@@ -481,7 +520,9 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	public string BlocksToPrettyJson() {
-		Debug.Assert (ActiveFloor != null);
+        BlockManagerState oldState = State;
+        State = BlockManagerState.Saving;
+        Debug.Assert (ActiveFloor != null);
 		string output = "";
 		StageJsonDelegate stage = new StageJsonDelegate (this);
 		StageCollection collection = new StageCollection (stage);
@@ -503,6 +544,7 @@ public class BlockManager : MonoBehaviour {
 		finally
 		{
 			Thread.CurrentThread.CurrentCulture = currentCulture;
+            State = oldState;
 		}
 
 		return output;
@@ -589,7 +631,9 @@ public class BlockManager : MonoBehaviour {
 	public void BlocksFromJson( Uri path ) {
         Clear();
         ClearUndoStates();
-		LogController.Log ("Loading from " + path.ToString ());
+        BlockManagerState oldState = State;
+        State = BlockManagerState.Loading;
+        LogController.Log ("Loading from " + path.ToString ());
 		StageCollection deserializedCollection = new StageCollection(this);
 		WebClient webClient = new WebClient();
 		Stream fs = webClient.OpenRead(path);  
@@ -597,6 +641,7 @@ public class BlockManager : MonoBehaviour {
 		deserializedCollection = ser.ReadObject(fs) as StageCollection;  
 		fs.Close();
         LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
+        State = oldState;
         if(PlayerPrefs.GetInt("AutoPlayOnLoad",0) == 1)
         {
             if (!PlayMode)
@@ -694,7 +739,7 @@ public class BlockManager : MonoBehaviour {
         foreach (Collider collider in Physics.OverlapSphere(position, radius))
         {
             IBlock block = collider.GetComponent<IBlock>();
-            if (block != null)
+            if (block != null && block.GameObject != null)
                 return block;
         }
         return null;
@@ -864,6 +909,7 @@ public class BlockManager : MonoBehaviour {
             blockGroups[blockToGroupMapping[block]].Remove(block);
             blockToGroupMapping.Remove(block);
         }
+        block.GameObject.SetActive(false);
         Destroy(block.GameObject);
     }
 

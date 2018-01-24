@@ -181,13 +181,13 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         get
         {
             Dictionary<string, string> ret = new Dictionary<string, string>();
-            if(Rotation != Quaternion.identity)
+            if (Rotation != Quaternion.identity)
                 ret.Add("Rotation", Rotation.ToString());
             if (IsFixedRotation)
                 ret.Add("Fixed Rotation", IsFixedRotation.ToString());
-            if(WeightFactor != 1.0f)
+            if (WeightFactor != 1.0f)
                 ret.Add("Weight Factor", WeightFactor.ToString());
-            if(GravityFactor != 1.0f)
+            if (GravityFactor != 1.0f)
                 ret.Add("Gravity Factor", GravityFactor.ToString());
             if (BlockManager.BlockGroupNumber(this) != -1)
                 ret.Add("Block Group", BlockManager.BlockGroupNumber(this).ToString());
@@ -278,24 +278,24 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         return new BlockJsonDelegate(this);
     }
 
-	public virtual bool CanBeMoved (Vector3 direction, int distance = 1)
-	{
-		if (WeightFactor == 0)
-			return false;
+    public virtual bool CanBeMoved(Vector3 direction, int distance = 1)
+    {
+        if (WeightFactor == 0)
+            return false;
 
-		IBlock neighbor = BlockManager.GetBlockAt (Position + direction);
-		if(neighbor != null)
-			return neighbor.CanBeMoved(direction, distance);
-		return true;
-	}
+        IBlock neighbor = BlockManager.GetBlockAt(Position + direction);
+        if (neighbor != null)
+            return neighbor.CanBeMoved(direction, distance);
+        return true;
+    }
 
-    public virtual float MoveWeight( Vector3 direction, int distance = 1)
+    public virtual float MoveWeight(Vector3 direction, int distance = 1)
     {
         if (!CanBeMoved(direction, distance))
             return 0;
         IBlock neighbor = BlockManager.GetBlockAt(Position + direction);
         float weight = WeightFactor;
-        if(neighbor != null)
+        if (neighbor != null)
         {
             if (!neighbor.CanBeMoved(direction, distance))
                 return 0;
@@ -304,17 +304,17 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         return weight;
     }
 
-	public virtual bool Move(Vector3 direction, int distance = 1)
-	{
-		if(!BlockManager.CanBeMoved(this,direction,distance))
-			return false;
+    public virtual bool Move(Vector3 direction, int distance = 1)
+    {
+        if (!BlockManager.CanBeMoved(this, direction, distance))
+            return false;
         MotionState = BlockMotionState.Moving;
-		IBlock neighbor = BlockManager.GetBlockAt (Position + direction);
-		if (neighbor != null)
-			BlockManager.Move(neighbor, direction, distance);
-        StartCoroutine(AnimateMove(Position, Position + direction, 0.2f*MoveWeight(direction,distance)));
-		return true;
-	}
+        IBlock neighbor = BlockManager.GetBlockAt(Position + direction);
+        if (neighbor != null)
+            BlockManager.Move(neighbor, direction, distance);
+        StartCoroutine(AnimateMove(Position, Position + direction, 0.2f * MoveWeight(direction, distance)));
+        return true;
+    }
 
     internal IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
     {
@@ -363,12 +363,12 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     private void OnDisable()
     {
-        UpdateAllNeighborsCaches();
+        if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
+            UpdateAllNeighborsCaches();
     }
 
     private void OnDestroy()
     {
-        UpdateAllNeighborsCaches();
     }
 
     internal List<IBlock> blocksBelow = new List<IBlock>(5);
@@ -386,10 +386,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     public void UpdateNeighborsCache()
     {
-        HardUpdateBlocksAbove();
-        HardUpdateBlocksBelow();
+            HardUpdateBlocksAbove();
+            HardUpdateBlocksBelow();
 #if UNITY_EDITOR
-        UpdateNeighborCounts();
+            UpdateNeighborCounts();
 #endif
     }
 
@@ -540,6 +540,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
         if (oldState != MotionState)
         {
+            UpdateAllNeighborsCaches();
             PhysicsEnabled = !IsGrounded;
             if (MotionState == BlockMotionState.Hovering)
             {
@@ -552,7 +553,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     public IEnumerator DoHoverAnimation()
     {
-        GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
+        /*GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
         transform.Rotate(0f, 0f, .5f);
         if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
             PhysicsEnabled = false;
@@ -570,7 +571,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         transform.Rotate(0f, 0f, -.5f);
         yield return new WaitForSeconds(0.1f);
         if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;
+            PhysicsEnabled = false;*/
         transform.rotation = Quaternion.identity;
         yield return new WaitForSeconds(0.6f);
         if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
@@ -584,13 +585,15 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     internal virtual void FixedUpdate()
     {
-        SetStateBySupport();
+        if(BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
+            SetStateBySupport();
     }
 
 #if UNITY_EDITOR
     internal virtual void OnMouseOver()
     {
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButton(0))
+        {
             Selection.activeGameObject = gameObject;
         }
     }
