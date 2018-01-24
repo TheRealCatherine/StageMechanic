@@ -10,7 +10,8 @@ public class Cathy1HeavyBlock : Cathy1Block {
 		}
 	}
 
-	void Start () {
-		WeightFactor = 2.5f;
+	internal override void Start () {
+        base.Start();
+        WeightFactor = 2.5f;
 	}
 }

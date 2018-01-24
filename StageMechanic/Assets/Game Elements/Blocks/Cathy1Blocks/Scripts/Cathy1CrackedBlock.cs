@@ -65,8 +65,9 @@ public class Cathy1CrackedBlock : Cathy1Block {
             
     }
 
-    private void Update()
+    internal override void Update()
     {
+        base.Update();
         if (!BlockManager.PlayMode)
             return;
         Vector3 player = PlayerManager.Player1Location();

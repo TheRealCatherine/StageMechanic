@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4245058794772920}
   - component: {fileID: 114524476084437876}
-  - component: {fileID: 114871016465233492}
   - component: {fileID: 65024820355163402}
   - component: {fileID: 65684932580398002}
   - component: {fileID: 65257422962962378}
@@ -197,26 +196,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f962aa4fb6329da4cb2bbe7a5a4d307e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentMoveState: 
+  BelowCount: 0
+  AboveCount: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
---- !u!114 &114871016465233492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795694030084258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentState: 0
-  BelowCount: 0
-  AboveCount: 0
-  Calculating: 1
-  IsFrozen: 1
 --- !u!136 &136676853566137162
 CapsuleCollider:
   m_ObjectHideFlags: 1

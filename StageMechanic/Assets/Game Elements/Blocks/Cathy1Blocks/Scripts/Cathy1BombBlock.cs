@@ -122,8 +122,9 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         BlockManager.DestroyBlock(this);
     }
 
-    private void Update()
+    internal override void Update()
     {
+        base.Update();
         if (!BlockManager.PlayMode)
             return;
         if (CurrentState == State.PlayerEnter || CurrentState == State.PlayerStand)

@@ -18,8 +18,9 @@ public class Cathy1IceBlock : Cathy1Block
         return (player == transform.position + Vector3.up && PlayerManager.PlayerStateName() == "Walk");
     }
 
-    private void Update()
+    internal override void Update()
     {
+        base.Update();
         if (!BlockManager.PlayMode)
             return;
         if (hasPlayer())

@@ -38,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4630910688187570}
   - component: {fileID: 65742405031589052}
-  - component: {fileID: 114639485300454270}
   - component: {fileID: 114219995227092140}
   - component: {fileID: 54107157802004516}
   m_Layer: 0
@@ -170,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45013174449f0b841a26d49677404812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: 
+  CurrentMoveState: 
   BelowCount: 0
   AboveCount: 0
   Material1: {fileID: 0}
@@ -179,14 +178,3 @@ MonoBehaviour:
   Material4: {fileID: 0}
   Distance: {x: 0, y: 5, z: 0}
   Delay: 0.55
---- !u!114 &114639485300454270
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1320435986589154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2be761442d621f43bf7e4469db1ae99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

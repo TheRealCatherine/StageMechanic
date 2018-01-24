@@ -11,7 +11,8 @@ public class Cathy1ImmobileBlock : Cathy1Block {
 	}
 
 	// Use this for initialization
-	void Start () {
+	internal override void Start () {
+        base.Start();
 		WeightFactor = 0f;
 	}
 }

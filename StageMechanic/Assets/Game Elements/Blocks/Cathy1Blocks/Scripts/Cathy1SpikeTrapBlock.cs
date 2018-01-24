@@ -83,8 +83,9 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         CurrentState = State.Disarmed;
     }
 
-    private void Update()
+    internal override void Update()
     {
+        base.Update();
         if (!BlockManager.PlayMode)
             return;
         if (CurrentState == State.Disarmed)

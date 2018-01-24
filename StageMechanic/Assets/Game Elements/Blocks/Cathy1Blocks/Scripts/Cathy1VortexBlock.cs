@@ -27,8 +27,9 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
         return (player == transform.position + Vector3.up && (player != transform.position + Vector3.up || (PlayerManager.PlayerStateName() != "Idle" || PlayerManager.PlayerStateName() != "Walk" || PlayerManager.PlayerStateName() != "Center")));
     }
 
-    private void Update()
+    internal override void Update()
     {
+        base.Update();
         if (!BlockManager.PlayMode)
             return;
         if (hasPlayer())

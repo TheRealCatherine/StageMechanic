@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public abstract class AbstractBlock : MonoBehaviour, IBlock
 {
 
@@ -332,8 +333,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             blocksBelow.Add(null);
     }
 
-    public virtual void Start()
+    internal virtual void Start()
     {
+        //TODO: don't make assumptions about the floor
+        if (Position.y == 1f)
+        {
+            MotionState = BlockMotionState.Grounded;
+            PhysicsEnabled = false;
+        }
         UpdateNeighborsCache();
     }
 
@@ -444,5 +451,107 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 _physicsEnabled = false;
             }
         }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        IBlock otherBlock = collision.gameObject.GetComponent<IBlock>();
+        if (otherBlock == null)
+        {
+            if (collision.gameObject == BlockManager.ActiveFloor && IsGrounded)
+            {
+                PhysicsEnabled = false;
+                MotionState = BlockMotionState.Grounded;
+            }
+            return;
+        }
+        else
+        {
+            if ((otherBlock.Position.y > Position.y + 0.1) || (otherBlock.Position.y < Position.y - 0.1))
+            {
+                PhysicsEnabled = false;
+                otherBlock.PhysicsEnabled = false;
+            }
+            UpdateNeighborsCache();
+        }
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        UpdateNeighborsCache();
+    }
+
+    private void SetStateBySupport()
+    {
+        if ((Position.x % 1) != 0 || (Position.z % 1) != 0)
+            return;
+
+        if ((Position.y % 1) != 0)
+            MotionState = BlockMotionState.Falling;
+
+        BlockMotionState oldState = MotionState;
+
+        if (MotionState != BlockMotionState.Falling)
+        {
+            if (Position.y == 1)
+            {
+                PhysicsEnabled = false;
+                MotionState = BlockMotionState.Grounded;
+                return;
+            }
+            else
+            {
+                MotionState = BlockMotionState.Hovering;
+            }
+        }
+        else
+            PhysicsEnabled = true;
+
+        if (blocksBelow[DOWN] != null && blocksBelow[DOWN].IsGrounded)
+            MotionState = BlockMotionState.Grounded;
+        else
+        {
+            foreach (IBlock edge in blocksBelow)
+            {
+                if (edge != null && edge.IsGrounded)
+                {
+                    MotionState = BlockMotionState.Edged;
+                    break;
+                }
+            }
+        }
+
+        if (oldState != MotionState)
+        {
+            UpdateNeighborsCache();
+            PhysicsEnabled = !IsGrounded;
+            if (MotionState == BlockMotionState.Hovering)
+                StartCoroutine(DoHoverAnimation());
+        }
+    }
+
+
+    public IEnumerator DoHoverAnimation()
+    {
+        GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
+        transform.Rotate(0f, 0f, .5f);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0f, 0f, -.10f);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0f, 0f, .10f);
+        yield return new WaitForSeconds(0.1f);
+        transform.Rotate(0f, 0f, -.5f);
+        yield return new WaitForSeconds(0.1f);
+        transform.rotation = Quaternion.identity;
+        yield return new WaitForSeconds(0.6f);
+        MotionState = BlockMotionState.Falling;
+    }
+
+    internal virtual void Update()
+    {
+        SetStateBySupport();
+#if UNITY_EDITOR
+        CurrentMoveState = MotionStateName;
+#endif
     }
 }

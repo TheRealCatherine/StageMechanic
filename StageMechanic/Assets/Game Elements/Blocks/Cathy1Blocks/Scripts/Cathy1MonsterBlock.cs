@@ -122,8 +122,9 @@ public class Cathy1MonsterBlock : Cathy1Block
         }
     }
 
-    private void Update()
+    internal override void Update()
     {
+        base.Update();
         if (!BlockManager.PlayMode)
             return;
         if (CurrentState == State.Disarmed)

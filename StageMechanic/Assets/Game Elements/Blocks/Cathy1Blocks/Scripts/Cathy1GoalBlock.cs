@@ -37,20 +37,22 @@ public class Cathy1GoalBlock : Cathy1Block
 
     }
 
-    private void Start()
+    internal override void Start()
     {
+        base.Start();
         //Make block immobile
         WeightFactor = 0f;
     }
 
-    private void Update()
+    internal override void Update()
     {
+        base.Update();
         List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position + new Vector3(0f, 0.75f, 0f), new Vector3(0.1f, 0.1f, 0.75f)));
         foreach (Collider col in crossColiders)
         {
             if (col.gameObject == gameObject)
                 continue;
-            Cathy1EdgeMechanic otherBlock = col.gameObject.GetComponent<Cathy1EdgeMechanic>();
+           IBlock otherBlock = col.gameObject.GetComponent<IBlock>();
             if (otherBlock != null)
                 continue;
             Cathy1PlayerCharacter player = col.gameObject.GetComponent<Cathy1PlayerCharacter>();
