@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -221,7 +222,20 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     /// </summary>
     public float GravityFactor { get; set; } = 1.0f;
 
-    public BlockMotionState MotionState { get; set; } = BlockMotionState.Uknown;
+    [SerializeField]
+    private BlockMotionState _motionState = BlockMotionState.Unknown;
+    public BlockMotionState MotionState
+    {
+        get
+        {
+            return _motionState;
+        }
+        set
+        {
+            _motionState = value;
+            _motionStateName = value.ToString();
+        }
+    }
 
     private string _motionStateName;
     public string MotionStateName
@@ -235,11 +249,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         set
         {
-            BlockMotionState newState = BlockMotionState.Uknown;
+            BlockMotionState newState = BlockMotionState.Unknown;
             if (Enum.TryParse<BlockMotionState>(value, out newState))
             {
                 MotionState = newState;
-                _motionStateName = null;
             }
             else
             {
@@ -295,11 +308,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	{
 		if(!BlockManager.CanBeMoved(this,direction,distance))
 			return false;
+        MotionState = BlockMotionState.Moving;
 		IBlock neighbor = BlockManager.GetBlockAt (Position + direction);
 		if (neighbor != null)
 			BlockManager.Move(neighbor, direction, distance);
         StartCoroutine(AnimateMove(Position, Position + direction, 0.2f*MoveWeight(direction,distance)));
-		//Position += direction;
 		return true;
 	}
 
@@ -315,6 +328,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
             yield return null;
         }
+        UpdateNeighborsCache();
+        MotionState = BlockMotionState.Unknown;
+        SetStateBySupport();
     }
 
     /// <summary>
@@ -364,7 +380,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     internal const int LEFT = 3;
     internal const int RIGHT = 4;
 #if UNITY_EDITOR
-    public string CurrentMoveState;
     public int BelowCount;
     public int AboveCount;
 #endif
@@ -392,20 +407,20 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     protected void HardUpdateBlocksAbove()
     {
-        blocksAbove[UP] = BlockManager.GetBlockAt(Position + Vector3.up);
-        blocksAbove[FORWARD] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.forward);
-        blocksAbove[BACK] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.back);
-        blocksAbove[LEFT] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.left);
-        blocksAbove[RIGHT] = BlockManager.GetBlockAt(Position + Vector3.up + Vector3.right);
+        blocksAbove[UP] = BlockManager.GetBlockNear(Position + Vector3.up);
+        blocksAbove[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.forward);
+        blocksAbove[BACK] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.back);
+        blocksAbove[LEFT] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.left);
+        blocksAbove[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.right);
     }
 
     protected void HardUpdateBlocksBelow()
     {
-        blocksBelow[DOWN] = BlockManager.GetBlockAt(Position + Vector3.down);
-        blocksBelow[FORWARD] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.forward);
-        blocksBelow[BACK] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.back);
-        blocksBelow[LEFT] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.left);
-        blocksBelow[RIGHT] = BlockManager.GetBlockAt(Position + Vector3.down + Vector3.right);
+        blocksBelow[DOWN] = BlockManager.GetBlockNear(Position + Vector3.down);
+        blocksBelow[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.forward);
+        blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.back);
+        blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.left);
+        blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.right);
     }
 
 #if UNITY_EDITOR
@@ -426,6 +441,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     }
 #endif
 
+    [SerializeField]
     bool _physicsEnabled = false;
     public virtual bool PhysicsEnabled
     {
@@ -446,6 +462,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             else
             {
                 transform.position = Utility.Round(Position, 0);
+                transform.rotation = Quaternion.identity;
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 GetComponent<Rigidbody>().useGravity = false;
                 _physicsEnabled = false;
@@ -483,11 +500,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     private void SetStateBySupport()
     {
-        if ((Position.x % 1) != 0 || (Position.z % 1) != 0)
+        if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
             return;
 
-        if ((Position.y % 1) != 0)
-            MotionState = BlockMotionState.Falling;
+        if ((Position.x % 1) != 0 || (Position.z % 1) != 0)
+            return;
 
         BlockMotionState oldState = MotionState;
 
@@ -523,11 +540,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
         if (oldState != MotionState)
         {
-            UpdateNeighborsCache();
             PhysicsEnabled = !IsGrounded;
             if (MotionState == BlockMotionState.Hovering)
             {
-                UpdateAllNeighborsCaches();
+                UpdateNeighborsCache();
                 StartCoroutine(DoHoverAnimation());
             }
         }
@@ -538,23 +554,45 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     {
         GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
         transform.Rotate(0f, 0f, .5f);
+        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
+            PhysicsEnabled = false;
         yield return new WaitForSeconds(0.1f);
+        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
+            PhysicsEnabled = false;
         transform.Rotate(0f, 0f, -.10f);
         yield return new WaitForSeconds(0.1f);
+        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
+            PhysicsEnabled = false;
         transform.Rotate(0f, 0f, .10f);
         yield return new WaitForSeconds(0.1f);
+        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
+            PhysicsEnabled = false;
         transform.Rotate(0f, 0f, -.5f);
         yield return new WaitForSeconds(0.1f);
+        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
+            PhysicsEnabled = false;
         transform.rotation = Quaternion.identity;
         yield return new WaitForSeconds(0.6f);
+        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
+            PhysicsEnabled = false;
         MotionState = BlockMotionState.Falling;
     }
 
     internal virtual void Update()
     {
-        SetStateBySupport();
-#if UNITY_EDITOR
-        CurrentMoveState = MotionStateName;
-#endif
     }
+
+    internal virtual void FixedUpdate()
+    {
+        SetStateBySupport();
+    }
+
+#if UNITY_EDITOR
+    internal virtual void OnMouseOver()
+    {
+        if (Input.GetMouseButton(0)) {
+            Selection.activeGameObject = gameObject;
+        }
+    }
+#endif
 }

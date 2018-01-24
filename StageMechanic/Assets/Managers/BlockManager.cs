@@ -678,15 +678,27 @@ public class BlockManager : MonoBehaviour {
 		return new PlatformJsonDelegate (ActiveFloor);
 	}
 
-	public static IBlock GetBlockAt( Vector3 position) {
+	public static IBlock GetBlockAt( Vector3 position, float radius = 0.1f) {
 
-        foreach(Collider collider in Physics.OverlapSphere(position, 0.000001f)) { 
+        foreach(Collider collider in Physics.OverlapSphere(position, radius)) { 
             IBlock block = collider.GetComponent<IBlock>();
             if (block != null && block.Position == position)
                 return block;
         }
 		return null;
 	}
+
+    public static IBlock GetBlockNear(Vector3 position, float radius = 0.1f)
+    {
+
+        foreach (Collider collider in Physics.OverlapSphere(position, radius))
+        {
+            IBlock block = collider.GetComponent<IBlock>();
+            if (block != null)
+                return block;
+        }
+        return null;
+    }
 
     public static List<IBlock> GetBlocskAt(Vector3 position, float radius = 0.1f)
     {

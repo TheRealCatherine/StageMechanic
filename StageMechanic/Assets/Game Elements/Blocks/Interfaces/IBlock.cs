@@ -11,7 +11,7 @@ using System.Runtime.Serialization;
 
 public enum BlockMotionState
 {
-    Uknown = 0,
+    Unknown = 0,
     Grounded,
     Edged,
     Hovering,

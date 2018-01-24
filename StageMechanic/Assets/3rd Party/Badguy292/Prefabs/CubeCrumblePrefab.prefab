@@ -21,9 +21,6 @@ GameObject:
   - component: {fileID: 4245058794772920}
   - component: {fileID: 114524476084437876}
   - component: {fileID: 65024820355163402}
-  - component: {fileID: 65684932580398002}
-  - component: {fileID: 65257422962962378}
-  - component: {fileID: 136676853566137162}
   - component: {fileID: 54860132743222150}
   m_Layer: 0
   m_Name: CubeCrumblePrefab
@@ -140,35 +137,11 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1795694030084258}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f1413bb833c313449a6a6c8dd219e7be, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65257422962962378
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795694030084258}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.1, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65684932580398002
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795694030084258}
-  m_Material: {fileID: 13400000, guid: f1413bb833c313449a6a6c8dd219e7be, type: 2}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.2, y: 1.1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114023668922790208
 MonoBehaviour:
@@ -203,16 +176,3 @@ MonoBehaviour:
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
---- !u!136 &136676853566137162
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795694030084258}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.1
-  m_Height: 1.1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
