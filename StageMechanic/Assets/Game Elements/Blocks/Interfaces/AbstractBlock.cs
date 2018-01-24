@@ -386,10 +386,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     public void UpdateNeighborsCache()
     {
-            HardUpdateBlocksAbove();
-            HardUpdateBlocksBelow();
+        HardUpdateBlocksAbove();
+        HardUpdateBlocksBelow();
 #if UNITY_EDITOR
-            UpdateNeighborCounts();
+        UpdateNeighborCounts();
 #endif
     }
 
@@ -552,7 +552,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                     _startHoverOnPlay = true;
             }
         }
-        else if(_startHoverOnPlay && MotionState == BlockMotionState.Hovering && BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
+        else if (_startHoverOnPlay && MotionState == BlockMotionState.Hovering && BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
         {
             StartCoroutine(DoHoverAnimation());
             _startHoverOnPlay = false;
@@ -594,15 +594,25 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     internal virtual void FixedUpdate()
     {
-            SetStateBySupport();
+        SetStateBySupport();
     }
 
+    float period = 0.0f;
+    const float throttle = 0.1f;
     internal virtual void OnMouseOver()
     {
+        period += Time.deltaTime;
+        if (period < throttle)
+            return;
         if (Input.GetMouseButton(0))
         {
-            if(!BlockManager.PlayMode)
-                UIManager.ShowBlockEditDialog(this);
+            period = 0;
+            if (!BlockManager.PlayMode)
+            {
+                if (BlockManager.Instance.ActiveBlock == this || UIManager.IsBlockEditDialogOpen)
+                    UIManager.ShowBlockEditDialog(this);
+                BlockManager.Cursor.transform.position = Position;
+            }
 #if UNITY_EDITOR
             Selection.activeGameObject = gameObject;
 #endif

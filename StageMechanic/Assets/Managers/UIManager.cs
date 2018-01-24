@@ -38,6 +38,15 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public static bool IsBlockEditDialogOpen
+    {
+        get
+        {
+            Debug.Assert(Instance != null);
+            return Instance.BlockEditDialog.isActiveAndEnabled;
+        }
+    }
+
     private void Start()
     {
         Instance = this;
