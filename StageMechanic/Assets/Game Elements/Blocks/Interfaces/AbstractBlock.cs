@@ -498,6 +498,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         UpdateNeighborsCache();
     }
 
+    bool _startHoverOnPlay = false;
     private void SetStateBySupport()
     {
         if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
@@ -547,7 +548,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 UpdateNeighborsCache();
                 if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
                     StartCoroutine(DoHoverAnimation());
+                else
+                    _startHoverOnPlay = true;
             }
+        }
+        else if(_startHoverOnPlay && MotionState == BlockMotionState.Hovering && BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
+        {
+            StartCoroutine(DoHoverAnimation());
+            _startHoverOnPlay = false;
         }
     }
 
