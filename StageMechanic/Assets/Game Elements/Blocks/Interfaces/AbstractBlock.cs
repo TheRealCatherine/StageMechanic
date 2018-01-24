@@ -357,7 +357,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     internal const int LEFT = 3;
     internal const int RIGHT = 4;
 #if UNITY_EDITOR
-    public string CurrentState;
+    public string CurrentMoveState;
     public int BelowCount;
     public int AboveCount;
 #endif

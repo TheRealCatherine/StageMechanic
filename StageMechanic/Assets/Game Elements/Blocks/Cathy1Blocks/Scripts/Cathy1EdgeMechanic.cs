@@ -113,7 +113,9 @@ public class Cathy1EdgeMechanic : MonoBehaviour
     private void Update()
     {
         SetStateBySupport();
-        thisBlock.CurrentState = thisBlock.MotionStateName;
+#if UNITY_EDITOR
+        thisBlock.CurrentMoveState = thisBlock.MotionStateName;
+#endif
         /* if (CurrentState == State.Falling)
         {
             //StartCoroutine(DoFall());
