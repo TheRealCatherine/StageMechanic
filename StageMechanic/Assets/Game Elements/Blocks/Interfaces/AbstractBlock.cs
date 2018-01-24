@@ -466,6 +466,13 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 GetComponent<Rigidbody>().useGravity = false;
                 _physicsEnabled = false;
+
+                //Probably not needed
+                /*UpdateAllNeighborsCaches();
+                foreach (IBlock edge in blocksAbove)
+                {
+                    (edge as AbstractBlock)?.SetStateBySupport();
+                }*/
             }
         }
     }
@@ -484,10 +491,24 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         else
         {
-            if ((otherBlock.Position.y > Position.y + 0.1) || (otherBlock.Position.y < Position.y - 0.1))
+            if ((otherBlock.Position.y > Position.y + 0.01) || (otherBlock.Position.y < Position.y - 0.01)
+                && ((otherBlock.Position.x == Position.x && otherBlock.Position.z == Position.z)
+                || (otherBlock.Position.x != Position.x ^ otherBlock.Position.z != Position.z)))
             {
-                PhysicsEnabled = false;
-                otherBlock.PhysicsEnabled = false;
+                if (MotionState != BlockMotionState.Falling)
+                {
+                    
+                    if (otherBlock.Position.y > Position.y)
+                    {
+                        (otherBlock as AbstractBlock).UpdateNeighborsCache();
+                        (otherBlock as AbstractBlock).SetStateBySupport();
+                        if ((otherBlock.Position.x == Position.x && otherBlock.Position.z == Position.z)
+                            || (otherBlock.Position.x != Position.x ^ otherBlock.Position.z != Position.z))
+                            otherBlock.PhysicsEnabled = false;
+                    }
+                    else
+                        PhysicsEnabled = false;
+                }
             }
             UpdateNeighborsCache();
         }
@@ -533,8 +554,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             {
                 if (edge != null && (edge.MotionState == BlockMotionState.Grounded || edge.MotionState == BlockMotionState.Edged))
                 {
-                    MotionState = BlockMotionState.Edged;
-                    break;
+                    if (edge.Position.y > Position.y - 1.1f)
+                    {
+                        MotionState = BlockMotionState.Edged;
+                        break;
+                    }
                 }
             }
         }
