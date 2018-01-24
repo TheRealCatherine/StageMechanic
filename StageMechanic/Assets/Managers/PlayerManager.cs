@@ -31,11 +31,11 @@ public class PlayerManager : MonoBehaviour {
             _playMode = value;
             if(_playMode)
             {
-                SpawnPlayers();
+                InstantiateAllPlayers();
             }
             else
             {
-                HidePlayers();
+                DestroyAllPlayers();
             }
         }
     }
@@ -57,30 +57,42 @@ public class PlayerManager : MonoBehaviour {
 
     public static void Clear()
     {
-        HidePlayers();
+        DestroyAllPlayers();
         PlayerStartLocations.Clear();
     }
 
     public static void OnUndoStart()
     {
-        HidePlayers();
+        DestroyAllPlayers();
     }
 
     public static void OnUndoFinish()
     {
-        SpawnPlayers();
+        InstantiateAllPlayers();
     }
 
-    public static void HidePlayers()
+    public static void ShowAllPlayers(bool show = true)
     {
-        Debug.Log("Hiding");
+        foreach (IPlayerCharacter player in Avatars)
+        {
+            player.GameObject.SetActive(show);
+        }
+    }
+    
+    public static void HideAllPlayers()
+    {
+        ShowAllPlayers(false);
+    }
+
+    public static void DestroyAllPlayers()
+    {
         foreach (IPlayerCharacter player in Avatars) {
             Destroy(player.GameObject);
         }
         Avatars.Clear();
     }
 
-    public static void SpawnPlayers()
+    public static void InstantiateAllPlayers()
     {
         Debug.Assert(PlayerStartLocations != null);
         if (PlayerStartLocations.Count == 0)
@@ -109,7 +121,7 @@ public class PlayerManager : MonoBehaviour {
                 Avatars.Add(Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
             else
                 Avatars[1] = Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
-            Debug.Log("Spawning player32 at " + PlayerStartLocations[2].transform.position);
+            Debug.Log("Spawning player 3 at " + PlayerStartLocations[2].transform.position);
             LoadKeybindings(2);
         }
     }

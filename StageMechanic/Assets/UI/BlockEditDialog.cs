@@ -38,6 +38,7 @@ public class BlockEditDialog : MonoBehaviour {
     {
         Clear();
         CurrentBlock = block;
+        BlockManager.Cursor.transform.position = block.Position;
         gameObject.SetActive(true);
         Refresh();
     }

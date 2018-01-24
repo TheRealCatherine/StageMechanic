@@ -554,7 +554,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     public IEnumerator DoHoverAnimation()
     {
-        /*GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
+        GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
         transform.Rotate(0f, 0f, .5f);
         if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
             PhysicsEnabled = false;
@@ -572,7 +572,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         transform.Rotate(0f, 0f, -.5f);
         yield return new WaitForSeconds(0.1f);
         if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;*/
+            PhysicsEnabled = false;
         transform.rotation = Quaternion.identity;
         yield return new WaitForSeconds(0.6f);
         if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
@@ -589,13 +589,15 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             SetStateBySupport();
     }
 
-#if UNITY_EDITOR
     internal virtual void OnMouseOver()
     {
         if (Input.GetMouseButton(0))
         {
+            if(!BlockManager.PlayMode)
+                UIManager.ShowBlockEditDialog(this);
+#if UNITY_EDITOR
             Selection.activeGameObject = gameObject;
+#endif
         }
     }
-#endif
 }

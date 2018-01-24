@@ -308,7 +308,7 @@ public class BlockManager : MonoBehaviour {
         if (_undos.Count > 0)
         {
             Instance.ClearForUndo();
-            PlayerManager.Player(0).GameObject.SetActive(false);
+            PlayerManager.HideAllPlayers();
             ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
             Instance.BlocksFromJson(_undos[_undos.Count - 1]);
             Instance.StartCoroutine(Instance.UndoCleanup());
@@ -317,6 +317,10 @@ public class BlockManager : MonoBehaviour {
             LogController.Log("No undos left");
     }
 
+    /// <summary>
+    /// Waits until all blocks have reached a defined state before spawning the player and removing undo info from the stack
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator UndoCleanup()
     {
         List<AbstractBlock> blocks = BlockManager.Instance.GetComponentsInChildren<AbstractBlock>().ToList<AbstractBlock>();
@@ -326,8 +330,6 @@ public class BlockManager : MonoBehaviour {
                 blocks.RemoveAt(blocks.Count - 1);
             yield return new WaitForEndOfFrame();
         }
-
-        yield return new WaitForEndOfFrame();
         PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
         PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
         PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
@@ -337,7 +339,7 @@ public class BlockManager : MonoBehaviour {
         _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
         _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
         _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
-        //PlayerManager.Player(0).GameObject.SetActive(true);
+        PlayerManager.ShowAllPlayers();
         LogController.Log("Undo");
     }
 
