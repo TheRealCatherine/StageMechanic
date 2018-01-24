@@ -507,13 +507,13 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         else
             PhysicsEnabled = true;
 
-        if (blocksBelow[DOWN] != null && blocksBelow[DOWN].IsGrounded)
+        if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Grounded || blocksBelow[DOWN].MotionState == BlockMotionState.Edged))
             MotionState = BlockMotionState.Grounded;
         else
         {
             foreach (IBlock edge in blocksBelow)
             {
-                if (edge != null && edge.IsGrounded)
+                if (edge != null && (edge.MotionState == BlockMotionState.Grounded || edge.MotionState == BlockMotionState.Edged))
                 {
                     MotionState = BlockMotionState.Edged;
                     break;
@@ -526,7 +526,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             UpdateNeighborsCache();
             PhysicsEnabled = !IsGrounded;
             if (MotionState == BlockMotionState.Hovering)
+            {
+                UpdateAllNeighborsCaches();
                 StartCoroutine(DoHoverAnimation());
+            }
         }
     }
 
