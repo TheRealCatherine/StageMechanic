@@ -319,8 +319,15 @@ public class BlockManager : MonoBehaviour {
 
     private IEnumerator UndoCleanup()
     {
-        while(!GetBlockNear(_undoPlayerPos[_undoPlayerPos.Count - 1],2).IsGrounded)
-            yield return new WaitForFixedUpdate();
+        List<AbstractBlock> blocks = BlockManager.Instance.GetComponentsInChildren<AbstractBlock>().ToList<AbstractBlock>();
+        while (blocks.Count > 0)
+        {
+            while (blocks.Count>0 && blocks[blocks.Count - 1].MotionState != BlockMotionState.Unknown)
+                blocks.RemoveAt(blocks.Count - 1);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForEndOfFrame();
         PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
         PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
         PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
@@ -330,7 +337,7 @@ public class BlockManager : MonoBehaviour {
         _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
         _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
         _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
-        PlayerManager.Player(0).GameObject.SetActive(true);
+        //PlayerManager.Player(0).GameObject.SetActive(true);
         LogController.Log("Undo");
     }
 

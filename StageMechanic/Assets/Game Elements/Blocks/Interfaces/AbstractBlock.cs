@@ -545,7 +545,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             if (MotionState == BlockMotionState.Hovering)
             {
                 UpdateNeighborsCache();
-                StartCoroutine(DoHoverAnimation());
+                if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
+                    StartCoroutine(DoHoverAnimation());
             }
         }
     }
@@ -585,7 +586,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     internal virtual void FixedUpdate()
     {
-        if(BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
             SetStateBySupport();
     }
 
