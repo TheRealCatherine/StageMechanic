@@ -455,7 +455,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         set
         {
-            transform.position = Utility.Round(Position, 0);
             if (value == _physicsEnabled)
                 return;
             Profiler.BeginSample("Changing physics state");
@@ -607,9 +606,17 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         Profiler.EndSample();
     }
 
-
+    bool _secondLoop = false;
     public IEnumerator DoHoverAnimation()
     {
+        yield return new WaitForEndOfFrame();
+        if (!_secondLoop)
+        {
+            UpdateNeighborsCache();
+            SetStateBySupport();
+            _secondLoop = true;
+        }
+        yield return new WaitForEndOfFrame();
         GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
         transform.Rotate(0f, 0f, .5f);
         if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
