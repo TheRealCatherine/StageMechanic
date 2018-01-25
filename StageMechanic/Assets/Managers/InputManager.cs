@@ -544,8 +544,7 @@ public class InputManager : MonoBehaviour
             period = 0.0f;
             if (altDown)
             {
-                BlockManager.ActiveFloor.transform.Rotate(90, 0, 0, Space.Self);
-                Cursor.transform.Rotate(90, 0, 0, Space.Self);
+                BlockManager.RotatePlatform(90, 0, 0);
                 return true;
             }
             else if (shiftDown)
@@ -577,8 +576,7 @@ public class InputManager : MonoBehaviour
             period = 0.0f;
             if (altDown)
             {
-                BlockManager.ActiveFloor.transform.Rotate(-90, 0, 0, Space.Self);
-                Cursor.transform.Rotate(-90, 0, 0, Space.Self);
+                BlockManager.RotatePlatform(-90, 0, 0);
                 return true;
             }
             else if (shiftDown)
@@ -609,8 +607,7 @@ public class InputManager : MonoBehaviour
             period = 0.0f;
             if (altDown)
             {
-                BlockManager.ActiveFloor.transform.Rotate(0, 90, 0, Space.Self);
-                Cursor.transform.Rotate(0, 90, 0, Space.Self);
+                BlockManager.RotatePlatform(0, 90, 0);
                 return true;
             }
             else if (shiftDown)
@@ -642,8 +639,7 @@ public class InputManager : MonoBehaviour
             period = 0.0f;
             if (altDown && !BlockManager.PlayMode)
             {
-                BlockManager.ActiveFloor.transform.Rotate(0, -90, 0, Space.Self);
-                Cursor.transform.Rotate(0, -90, 0, Space.Self);
+                BlockManager.RotatePlatform(0, -90, 0);
                 return true;
             }
             else if (shiftDown)

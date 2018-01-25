@@ -125,8 +125,8 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 3
   m_Drag: 1.1
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_AngularDrag: 0
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
@@ -137,7 +137,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1320435986589154}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f1413bb833c313449a6a6c8dd219e7be, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -169,9 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45013174449f0b841a26d49677404812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentMoveState: 
+  _motionState: 0
   BelowCount: 0
   AboveCount: 0
+  _physicsEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}

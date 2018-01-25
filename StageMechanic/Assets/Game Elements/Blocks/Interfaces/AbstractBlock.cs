@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
@@ -233,7 +234,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         set
         {
             _motionState = value;
-            _motionStateName = value.ToString();
         }
     }
 
@@ -386,15 +386,18 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     public void UpdateNeighborsCache()
     {
+        Profiler.BeginSample("Updating block neighbor cache");
         HardUpdateBlocksAbove();
         HardUpdateBlocksBelow();
 #if UNITY_EDITOR
         UpdateNeighborCounts();
 #endif
+        Profiler.EndSample();
     }
 
     public void UpdateAllNeighborsCaches()
     {
+        Profiler.BeginSample("Yelling at neighbors");
         foreach (IBlock block in blocksBelow)
         {
             (block as AbstractBlock)?.UpdateNeighborsCache();
@@ -403,6 +406,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         {
             (block as AbstractBlock)?.UpdateNeighborsCache();
         }
+        Profiler.EndSample();
     }
 
     protected void HardUpdateBlocksAbove()
@@ -451,8 +455,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         set
         {
+            transform.position = Utility.Round(Position, 0);
             if (value == _physicsEnabled)
                 return;
+            Profiler.BeginSample("Changing physics state");
             if (value)
             {
                 GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ);
@@ -468,12 +474,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 _physicsEnabled = false;
 
                 //Probably not needed
-                /*UpdateAllNeighborsCaches();
+               /*UpdateAllNeighborsCaches();
                 foreach (IBlock edge in blocksAbove)
                 {
                     (edge as AbstractBlock)?.SetStateBySupport();
-                }*/
+                }
+                UpdateNeighborsCache();*/
             }
+            Profiler.EndSample();
         }
     }
 
@@ -482,15 +490,18 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         IBlock otherBlock = collision.gameObject.GetComponent<IBlock>();
         if (otherBlock == null)
         {
+            Profiler.BeginSample("Non-block collision");
             if (collision.gameObject == BlockManager.ActiveFloor && IsGrounded)
             {
                 PhysicsEnabled = false;
                 MotionState = BlockMotionState.Grounded;
             }
+            Profiler.EndSample();
             return;
         }
         else
         {
+            Profiler.BeginSample("Block collision");
             if ((otherBlock.Position.y > Position.y + 0.01) || (otherBlock.Position.y < Position.y - 0.01)
                 && ((otherBlock.Position.x == Position.x && otherBlock.Position.z == Position.z)
                 || (otherBlock.Position.x != Position.x ^ otherBlock.Position.z != Position.z)))
@@ -511,6 +522,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 }
             }
             UpdateNeighborsCache();
+            Profiler.EndSample();
         }
     }
 
@@ -520,18 +532,18 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     }
 
     bool _startHoverOnPlay = false;
-    private void SetStateBySupport()
+    internal void SetStateBySupport()
     {
         if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
             return;
 
-        if ((Position.x % 1) != 0 || (Position.z % 1) != 0)
-            return;
+        Profiler.BeginSample("SetStateBySupport");
 
         BlockMotionState oldState = MotionState;
 
         if (MotionState != BlockMotionState.Falling)
         {
+            Profiler.BeginSample("Not Falling");
             if (Position.y == 1)
             {
                 PhysicsEnabled = false;
@@ -542,14 +554,19 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             {
                 MotionState = BlockMotionState.Hovering;
             }
+            Profiler.EndSample();
         }
         else
             PhysicsEnabled = true;
 
+        Profiler.BeginSample("testing support");
         if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Grounded || blocksBelow[DOWN].MotionState == BlockMotionState.Edged))
+        {
             MotionState = BlockMotionState.Grounded;
+        }
         else
         {
+            Profiler.BeginSample("edging");
             foreach (IBlock edge in blocksBelow)
             {
                 if (edge != null && (edge.MotionState == BlockMotionState.Grounded || edge.MotionState == BlockMotionState.Edged))
@@ -561,26 +578,33 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                     }
                 }
             }
+            Profiler.EndSample();
         }
+        Profiler.EndSample();
 
         if (oldState != MotionState)
         {
-            UpdateAllNeighborsCaches();
+            Profiler.BeginSample("changed state");
             PhysicsEnabled = !IsGrounded;
             if (MotionState == BlockMotionState.Hovering)
             {
-                UpdateNeighborsCache();
                 if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
                     StartCoroutine(DoHoverAnimation());
                 else
                     _startHoverOnPlay = true;
             }
+            else
+                _startHoverOnPlay = false;
+            Profiler.EndSample();
         }
         else if (_startHoverOnPlay && MotionState == BlockMotionState.Hovering && BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
         {
+            Profiler.BeginSample("start the hover");
             StartCoroutine(DoHoverAnimation());
             _startHoverOnPlay = false;
+            Profiler.EndSample();
         }
+        Profiler.EndSample();
     }
 
 
@@ -614,11 +638,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     internal virtual void Update()
     {
+        //I think we can get away with doing this in update which seems to help performance but
+        //it needs to be tested still, maybe move to FixedUpdate
+        SetStateBySupport();
     }
 
     internal virtual void FixedUpdate()
     {
-        SetStateBySupport();
+        //SetStateBySupport();
     }
 
     float period = 0.0f;

@@ -246,6 +246,31 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
+    public static void RotatePlatform(int x, int y, int z)
+    {
+        ActiveFloor.transform.Rotate(x, y, z, Space.Self);
+        Instance.StartCoroutine(Instance.rotateCleanup());
+    }
+
+    IEnumerator rotateCleanup()
+    {
+        SortChildrenByYCoord(ActiveFloor);
+        yield return new WaitForEndOfFrame();
+        IBlock[] blocks = ActiveFloor.GetComponentsInChildren<IBlock>();
+        yield return new WaitForEndOfFrame();
+        Debug.Log("rotating " + blocks.Length + " blocks");
+        foreach (IBlock block in blocks)
+        {
+            block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            block.Rotation = Quaternion.identity;
+            (block as AbstractBlock).MotionState = BlockMotionState.Unknown;
+            (block as AbstractBlock).UpdateNeighborsCache();
+            (block as AbstractBlock).PhysicsEnabled = true;
+            (block as AbstractBlock).PhysicsEnabled = false;
+            (block as AbstractBlock).SetStateBySupport();
+        }
+        yield return new WaitForEndOfFrame();
+    }
 
     private static string _startState;
     private static string _lastCheckpointState;

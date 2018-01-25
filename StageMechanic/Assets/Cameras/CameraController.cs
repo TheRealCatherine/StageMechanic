@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,22 @@ public class CameraController : MonoBehaviour
             else
                 _cursorZoom = value;
         }
+    }
+
+    public void RotateAroundPlatform(Vector3 direction)
+    {
+        if(direction == Vector3.left)
+        {
+            offset = new Vector3(10, Cursor.transform.position.y, 5);
+        }
+        else if (direction == Vector3.left)
+        {
+            offset = new Vector3(5, Cursor.transform.position.y, 10);
+        }
+        if (BlockManager.Instance.ActiveBlock != null)
+            transform.LookAt(BlockManager.Instance.ActiveBlock.Position);
+        else
+            transform.LookAt(new Vector3(BlockManager.ActiveFloor.transform.position.x,0, BlockManager.ActiveFloor.transform.position.z));
     }
 
     public void ResetZoom()
