@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour {
         get
         {
             Debug.Assert(Instance != null);
-            return IsSinglePlayerDeathDialogOpen || Instance.BlockEditDialog.isActiveAndEnabled || FileBrowser.IsOpen || Instance.MainMenu.isActiveAndEnabled || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
+            return IsBlockEditDialogOpen || IsSinglePlayerDeathDialogOpen || Instance.BlockEditDialog.isActiveAndEnabled || FileBrowser.IsOpen || Instance.MainMenu.isActiveAndEnabled || Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
         }
     }
 

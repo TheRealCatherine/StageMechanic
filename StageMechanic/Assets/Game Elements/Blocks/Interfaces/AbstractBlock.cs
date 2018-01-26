@@ -390,6 +390,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 #if UNITY_EDITOR
     public int BelowCount;
     public int AboveCount;
+    public string BlockDown;
+    public string BlockDownLeft;
+    public string BlockDownRight;
+    public string BlockDownForward;
+    public string BlockDownBack;
 #endif
 
     public void UpdateNeighborsCache()
@@ -433,6 +438,13 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.back);
         blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.left);
         blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.right);
+#if UNITY_EDITOR
+        BlockDown = blocksBelow[DOWN]?.Name;
+        BlockDownBack = blocksBelow[BACK]?.Name;
+        BlockDownForward = blocksBelow[FORWARD]?.Name;
+        BlockDownLeft = blocksBelow[LEFT]?.Name;
+        BlockDownRight = blocksBelow[RIGHT]?.Name;
+#endif
     }
 
 #if UNITY_EDITOR
@@ -744,9 +756,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         if (Input.GetMouseButton(0))
         {
             period = 0;
-            if (!BlockManager.PlayMode)
+            if (!BlockManager.PlayMode && !UIManager.IsAnyInputDialogOpen)
             {
-                if (BlockManager.Instance.ActiveBlock == this || UIManager.IsBlockEditDialogOpen)
+                if (BlockManager.Instance.ActiveBlock == this)
                     UIManager.ShowBlockEditDialog(this);
                 BlockManager.Cursor.transform.position = Position;
             }
