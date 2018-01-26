@@ -146,13 +146,7 @@ public class BlockManager : MonoBehaviour {
         {
             if (PlayMode)
             {
-                //TODO this is bad, very bad.
-                Cathy1Block block = GetBlockAt(PlayerManager.Player1Location() + Vector3.down)?.GameObject?.GetComponent<Cathy1Block>();
-                if (block != null && block.Type == Cathy1Block.BlockType.Goal)
-                {
-                    LogController.Log("CONGRATULATION");
-                }
-                return block;
+                return PlayerManager.Player(0)?.GameObject?.GetComponent<Cathy1PlayerCharacter>()?.CurrentBlock?.GameObject?.GetComponent<Cathy1Block>();
             }
             else
             {
@@ -757,44 +751,19 @@ public class BlockManager : MonoBehaviour {
 		return new PlatformJsonDelegate (ActiveFloor);
 	}
 
-	public static IBlock GetBlockAt( Vector3 position, float radius = 0.1f) {
+	public static AbstractBlock GetBlockAt( Vector3 position, float radius = 0.1f) {
 
-        foreach(Collider collider in Physics.OverlapSphere(position, radius)) { 
-            IBlock block = collider.GetComponent<IBlock>();
-            if (block != null && block.Position == position)
-                return block;
-        }
-		return null;
+        return Utility.GetGameObjectAt<AbstractBlock>(position, radius);
 	}
 
-    public static IBlock GetBlockNear(Vector3 position, float radius = 0.1f)
+    public static AbstractBlock GetBlockNear(Vector3 position, float radius = 0.1f)
     {
-
-        foreach (Collider collider in Physics.OverlapSphere(position, radius))
-        {
-            IBlock block = collider.GetComponent<IBlock>();
-            if (block != null && block.GameObject != null)
-                return block;
-        }
-        return null;
+        return Utility.GetGameObjectNear<AbstractBlock>(position, radius);
     }
 
-    public static List<IBlock> GetBlocskAt(Vector3 position, float radius = 0.1f)
+    public static List<AbstractBlock> GetBlocskAt(Vector3 position, float radius = 0.1f)
     {
-        GameObject[] collidedGameObjects =
-            Physics.OverlapSphere(position, radius)
-                //.Except (new[] { GetComponent<BoxCollider> () })
-                .Select(c => c.gameObject)
-                .ToArray();
-
-        List<IBlock> ret = new List<IBlock>();
-        foreach (GameObject go in collidedGameObjects)
-        {
-            IBlock block = go.GetComponent<IBlock>();
-            if (block != null)
-                ret.Add(block);
-        }
-        return ret;
+        return Utility.GetGameObjectsNear<AbstractBlock>(position, radius);
     }
 
     public static List<IBlock> GetBlocksOfType(string type = null)

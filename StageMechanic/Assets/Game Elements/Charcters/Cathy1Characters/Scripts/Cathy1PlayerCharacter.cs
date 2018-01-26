@@ -24,8 +24,6 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
     public AudioClip[] EffortSounds;
 
-    public IBlock CurrentBlock;
-
     private GameObject _player;
 
     private const float HEIGHT_ADJUST = 0.5f;
@@ -84,7 +82,16 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
                 {
                     _player.transform.position = transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f);
                 }
+                (CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Stay);
             }
+        }
+    }
+
+    public IBlock CurrentBlock {
+        get {
+            if (CurrentMoveState == State.Sidle || CurrentMoveState == State.SidleMove)
+                return BlockManager.GetBlockNear(Position + FacingDirection);
+            return BlockManager.GetBlockNear(Position + Vector3.down);
         }
     }
 
@@ -202,6 +209,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
         GetComponent<AudioSource>().PlayOneShot(WalkSound);
         float journey = 0f;
         Vector3 origin = CurrentLocation;
+        IBlock oldBlock = CurrentBlock;
         while (journey <= WalkTime)
         {
             journey = journey + Time.deltaTime;
@@ -210,9 +218,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
             yield return null;
         }
-        
+        (oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("walking", false);
+        (CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
         CurrentMoveState = State.Idle;
         yield return null;
     }
@@ -224,31 +233,37 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
     public IEnumerator ClimbTo(Vector3 location)
     {
-        CurrentMoveState = State.Aproach;
-        _player.GetComponent<Animator>().SetBool("walking", true);
-        GetComponent<AudioSource>().PlayOneShot(JumpSound);
         float journey = 0f;
         Vector3 origin = CurrentLocation;
-        Vector3 offset = (location-CurrentLocation);
-        Vector3 firstPart = origin+ new Vector3(offset.x / 4, 0f, offset.z / 4);
-        float firstPartTime = WalkTime * 0.25f;
-        while (journey <= firstPartTime)
+        Vector3 offset = (location - CurrentLocation);
+        IBlock oldBlock = CurrentBlock;
+        if (CurrentMoveState != State.Sidle && CurrentMoveState != State.SidleMove)
         {
-            journey = journey + Time.deltaTime;
-            float percent = Mathf.Clamp01(journey / firstPartTime);
+            CurrentMoveState = State.Aproach;
+            _player.GetComponent<Animator>().SetBool("walking", true);
+            GetComponent<AudioSource>().PlayOneShot(JumpSound);
+            Vector3 firstPart = origin + new Vector3(offset.x / 4, 0f, offset.z / 4);
+            float firstPartTime = WalkTime * 0.25f;
+            while (journey <= firstPartTime)
+            {
+                journey = journey + Time.deltaTime;
+                float percent = Mathf.Clamp01(journey / firstPartTime);
 
-            Teleport(Vector3.Lerp(origin, firstPart, percent));
+                Teleport(Vector3.Lerp(origin, firstPart, percent));
 
-            yield return null;
+                yield return null;
+            }
+            _player.GetComponent<Animator>().SetBool("walking", false);
         }
-        _player.GetComponent<Animator>().SetBool("walking", false);
+        (oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
         CurrentMoveState = State.Climb;
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("climbing", true);
         
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("climbing", false);
-        
+
+        (CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("walking", true);
         journey = 0f;

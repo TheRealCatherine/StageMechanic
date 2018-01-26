@@ -111,8 +111,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
             PlayerManager.Player(0).TakeDamage(float.PositiveInfinity);
 
         }
-        List<IBlock> localBlocks = BlockManager.GetBlocskAt(Position, DamageRadius.x);
-        foreach(IBlock block in localBlocks)
+        List<AbstractBlock> localBlocks = BlockManager.GetBlocskAt(Position, DamageRadius.x);
+        foreach(AbstractBlock block in localBlocks)
         {
             //any immobile block will not be affected
             if(block.WeightFactor!=0f && block.GameObject != GameObject)

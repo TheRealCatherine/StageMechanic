@@ -269,4 +269,19 @@ public class PlayerManager : MonoBehaviour {
         }
         keybindings[playerNumber] = newBindings;
     }
+
+    public static AbstractPlayerCharacter GetPlayerAt(Vector3 position, float radius = 0.1f)
+    {
+        return Utility.GetGameObjectAt<AbstractPlayerCharacter>(position, radius);
+    }
+
+    public static AbstractPlayerCharacter GetPlayerNear(Vector3 position, float radius = 0.1f)
+    {
+        return Utility.GetGameObjectNear<AbstractPlayerCharacter>(position, radius);
+    }
+
+    public static List<AbstractPlayerCharacter> GetPlayersNear(Vector3 position, float radius = 0.1f)
+    {
+        return Utility.GetGameObjectsNear<AbstractPlayerCharacter>(position, radius);
+    }
 }

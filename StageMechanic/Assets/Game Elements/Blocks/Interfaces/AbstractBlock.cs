@@ -492,10 +492,23 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             Profiler.BeginSample("Non-block collision");
             if (collision.gameObject == BlockManager.ActiveFloor && IsGrounded)
             {
+                Profiler.BeginSample("Floor collision");
                 PhysicsEnabled = false;
                 MotionState = BlockMotionState.Grounded;
+                Profiler.EndSample(); //Floor collision
             }
-            Profiler.EndSample();
+            else
+            {
+                IPlayerCharacter player = collision.gameObject.GetComponent<IPlayerCharacter>();
+                if(player != null)
+                {
+                    Profiler.BeginSample("Player collision");
+                    OnPlayerMovement(player, PlayerMovementEvent.EventType.Enter);
+                    Profiler.EndSample(); //Player collision
+                }
+            }
+
+            Profiler.EndSample(); //Non-block collision
             return;
         }
         else
@@ -527,8 +540,22 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     public void OnCollisionExit(Collision collision)
     {
+        Profiler.BeginSample("Collision exit");
         UpdateNeighborsCache();
+        IPlayerCharacter player = collision.gameObject.GetComponent<IPlayerCharacter>();
+        if (player != null)
+        {
+            Profiler.BeginSample("Player collision");
+            OnPlayerMovement(player, PlayerMovementEvent.EventType.Leave);
+            Profiler.EndSample(); //Player collision
+        }
+        Profiler.EndSample(); //Collision exit
     }
+
+    //public void OnCollisionStay(Collision collision)
+    //{
+        //TODO is there any efficient way to have this call a player movment event? :-O
+    //}
 
     bool _startHoverOnPlay = false;
     internal void SetStateBySupport()
@@ -654,6 +681,50 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     {
         //SetStateBySupport();
     }
+
+
+    public virtual void OnPlayerMovement(IPlayerCharacter player, PlayerMovementEvent.EventType type)
+    {
+        Debug.Assert(player != null);
+        PlayerMovementEvent ev = new PlayerMovementEvent();
+        ev.Type = type;
+        ev.Player = player;
+        if (player.Position.y > Position.y)
+            ev.Location = PlayerMovementEvent.EventLocation.Top;
+        else if(player.Position.y < Position.y)
+            ev.Location = PlayerMovementEvent.EventLocation.Bottom;
+        else if(player.Position.x == Position.x ^ player.Position.z == Position.z)
+            ev.Location = PlayerMovementEvent.EventLocation.Side;
+        else
+            ev.Location = PlayerMovementEvent.EventLocation.None;
+        OnPlayerMovement(ev);
+    }
+
+    protected virtual void OnPlayerMovement(PlayerMovementEvent ev)
+    {
+        Debug.Assert(ev != null);
+        switch(ev.Type)
+        {
+            case PlayerMovementEvent.EventType.Stay:
+                OnPlayerStay(ev);
+                break;
+            case PlayerMovementEvent.EventType.Enter:
+                OnPlayerEnter(ev);
+                break;
+            case PlayerMovementEvent.EventType.Leave:
+                OnPlayerLeave(ev);
+                break;
+            default:
+            case PlayerMovementEvent.EventType.None:
+                OnPlayerUnknownMotion(ev);
+                break;
+        }
+    }
+
+    protected virtual void OnPlayerEnter(PlayerMovementEvent ev) {}
+    protected virtual void OnPlayerLeave(PlayerMovementEvent ev) {}
+    protected virtual void OnPlayerStay(PlayerMovementEvent ev) {}
+    protected virtual void OnPlayerUnknownMotion(PlayerMovementEvent ev) {}
 
     float period = 0.0f;
     const float throttle = 0.1f;

@@ -24,7 +24,7 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     public ParticleSystem Animation;
     public float AnimationScale = DEFAULT_ANIMATION_SCALE;
 
-    private const float DEFAULT_TRIGGER_TIME = 0.6f;
+    private const float DEFAULT_TRIGGER_TIME = 1.2f;
     private const float DEFAULT_ANIMATION_SCALE = 2;
 
     public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
@@ -41,60 +41,51 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         }
     }
 
-    private enum State
-    {
-        NoPlayer = 0,
-        PlayerEnter,
-        PlayerStand,
-        PlayerLeave,
-        Disarmed
-    }
-
-    private State CurrentState = State.NoPlayer;
-
     /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
     public override void Awake()
     {
         base.Awake();
+        IsArmed = true;
         TriggerTime = DEFAULT_TRIGGER_TIME;
     }
 
-    bool hasPlayer()
+    void HandlePlayer(PlayerMovementEvent ev)
     {
-        Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up && (PlayerManager.PlayerStateName() == "Idle" || PlayerManager.PlayerStateName() == "Walk" || PlayerManager.PlayerStateName() == "Center"));
+        if (IsArmed == false || IsTriggered == true || ev.Location != PlayerMovementEvent.EventLocation.Top)
+            return;
+        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
+        if (statename == "Idle" || statename == "Walk" || statename == "Center")
+        {
+            IsTriggered = true;
+            StartCoroutine(HandleStep());
+        }
+    }
+
+    protected override void OnPlayerEnter(PlayerMovementEvent ev)
+    {
+        base.OnPlayerEnter(ev);
+        HandlePlayer(ev);
+    }
+
+    protected override void OnPlayerStay(PlayerMovementEvent ev)
+    {
+        base.OnPlayerStay(ev);
+        HandlePlayer(ev);
     }
 
     private IEnumerator HandleStep()
     {
-        CurrentState = State.PlayerEnter;
         yield return new WaitForSeconds(TriggerTime);
         BlockManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
         GetComponent<AudioSource>().Play();
-        if (hasPlayer())
-        {
-            CurrentState = State.PlayerStand;
-            PlayerManager.Player(0).TakeDamage(float.PositiveInfinity);
+        foreach(AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position+Vector3.up, radius:0.25f)) {
+            player.TakeDamage(float.PositiveInfinity);
         }
         Renderer rend = GetComponent<Renderer>();
         rend.material = DisarmedStateMaterial;
-        CurrentState = State.Disarmed;
-    }
-
-    internal override void Update()
-    {
-        base.Update();
-        if (!BlockManager.PlayMode)
-            return;
-        if (CurrentState == State.Disarmed)
-            return;
-        if (CurrentState == State.PlayerEnter || CurrentState == State.PlayerStand)
-            return;
-        if (!hasPlayer())
-            return;
-        StartCoroutine(HandleStep());
+        IsArmed = false;
     }
 
     public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties

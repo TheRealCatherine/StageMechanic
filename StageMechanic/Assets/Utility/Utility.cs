@@ -65,4 +65,37 @@ public static class Utility
         if ((object)value != null)
             list.Add(value);
     }
+
+    public static T GetGameObjectAt<T>(Vector3 position, float radius = 0.1f) where T : MonoBehaviour
+    {
+        foreach (Collider collider in Physics.OverlapSphere(position, radius))
+        {
+            T obj = collider.GetComponent<T>();
+            if (obj != null && obj.transform.position == position)
+                return obj;
+        }
+        return null;
+    }
+
+    public static T GetGameObjectNear<T>(Vector3 position, float radius = 0.1f) where T : MonoBehaviour
+    {
+
+        foreach (Collider collider in Physics.OverlapSphere(position, radius))
+        {
+            T obj = collider.GetComponent<T>();
+            if (obj != null)
+                return obj;
+        }
+        return null;
+    }
+
+    public static List<T> GetGameObjectsNear<T>(Vector3 position, float radius = 0.1f) where T : MonoBehaviour
+    {
+        List<T> ret = new List<T>();
+        foreach (Collider collider in Physics.OverlapSphere(position, radius))
+        {
+            ret.AddIfNotNull(collider.GetComponent<T>());
+        }
+        return ret;
+    }
 }
