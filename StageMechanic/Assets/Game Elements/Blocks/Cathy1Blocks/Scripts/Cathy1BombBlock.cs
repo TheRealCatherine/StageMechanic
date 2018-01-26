@@ -80,18 +80,34 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
     }
 
+    private Vector3 _epicenterOffset;
+    public override Vector3 Epicenter
+    {
+        get
+        {
+            return base.Epicenter+_epicenterOffset;
+        }
+
+        set
+        {
+            base.Epicenter = value + _epicenterOffset;
+        }
+    }
+
     internal override IEnumerator HandleStep()
     {
         GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
-        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime);
+        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime, _epicenterOffset);
         yield return new WaitForSeconds(TriggerTime);
         BlockManager.PlaySound(this, ExplosionSound);
-        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
+        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up + _epicenterOffset, radius: 0.25f))
         {
             player.TakeDamage(float.PositiveInfinity);
         }
-        gameObject.SetActive(false);
-        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position, DamageRadius.x);
+
+        if(_epicenterOffset == Vector3.zero)
+            gameObject.SetActive(false);
+        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position+_epicenterOffset, DamageRadius.x);
         foreach (AbstractBlock block in localBlocks)
         {
             Cathy1Block c1b = block as Cathy1Block;
@@ -108,7 +124,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
             }
         }
         IsArmed = false;
-        BlockManager.DestroyBlock(this);
+        if (_epicenterOffset == Vector3.zero)
+            BlockManager.DestroyBlock(this);
     }
 
     public void InstantDetonate()
@@ -116,15 +133,15 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         if (IsTriggered)
             return;
         IsTriggered = true;
-        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, 0.001f);
+        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, 0.1f, _epicenterOffset);
         BlockManager.PlaySound(this, ExplosionSound);
-        gameObject.SetActive(false);
-        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
+        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up + _epicenterOffset, radius: 0.25f))
         {
             player.TakeDamage(float.PositiveInfinity);
         }
-
-        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position, DamageRadius.x);
+        if (_epicenterOffset == Vector3.zero)
+            gameObject.SetActive(false);
+        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position+_epicenterOffset, DamageRadius.x);
         foreach (AbstractBlock block in localBlocks)
         {
             //any immobile block will not be affected
@@ -142,7 +159,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
             }
         }
         IsArmed = false;
-        BlockManager.DestroyBlock(this);
+        if (_epicenterOffset == Vector3.zero)
+            BlockManager.DestroyBlock(this);
     }
 
     public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
@@ -153,6 +171,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
             ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", (Type==BlockType.Bomb1?SMALL_BOMB_DEFAULT_FUSE_TIME:LARGE_BOMB_DEFAULT_FUSE_TIME).ToString()));
             ret.Add("Damage Radius", new KeyValuePair<string, string>("int", (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_RADIUS : LARGE_BOMB_DEFAULT_RADIUS).ToString()));
             ret.Add("Animation Scale", new KeyValuePair<string, string>("float", (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_ANIMATION_SCALE : LARGE_BOMB_DEFAULT_ANIMATION_SCALE).ToString()));
+            ret.Add("Epicenter Offset", new KeyValuePair<string, string>("Vector3", Vector3.zero.ToString()));
             return ret;
         }
     }
@@ -172,6 +191,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
                 ret.Add("Damage Radius", DamageRadius.x.ToString());
             if (Type == BlockType.Bomb1 && ExplosionAnimationScale != SMALL_BOMB_DEFAULT_ANIMATION_SCALE)
                 ret.Add("Animation Scale", ExplosionAnimationScale.ToString());
+            if (_epicenterOffset != Vector3.zero)
+                ret.Add("Epicenter Offset", _epicenterOffset.ToString());
             return ret;
         }
         set
@@ -186,6 +207,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
             }
             if (value.ContainsKey("Animation Scale"))
                 ExplosionAnimationScale = float.Parse(value["Animation Scale"]);
+            if (value.ContainsKey("Epicenter Offset"))
+                _epicenterOffset = Utility.StringToVector3(value["Epicenter Offset"]);
         }
     }
 }

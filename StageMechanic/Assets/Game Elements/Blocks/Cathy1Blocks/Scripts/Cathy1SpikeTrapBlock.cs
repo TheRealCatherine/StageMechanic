@@ -14,7 +14,7 @@ using UnityEngine;
 /// a certain amount of time to move before the trap enters the IsTriggerd state before
 /// moving into the disarned state.
 /// </summary>
-public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
+public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 {
     public Material ArmedStateMaterial;
     public Material TriggeredStateMaterial;
@@ -28,27 +28,8 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     private const float DEFAULT_ANIMATION_SCALE = 2;
 
     public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
-
-
-    /// <summary>
-    /// Indicate to the Cathy1 game rules that this is a spike trap
-    /// </summary>
-    public sealed override TrapBlockType TrapType
-    {
-        get
-        {
-            return TrapBlockType.Spike;
-        }
-    }
-
-    /// <summary>
-    /// Sets the trigger time of the spike trap
-    /// </summary>
-    public override void Awake()
-    {
-        base.Awake();
-        TriggerTime = DEFAULT_TRIGGER_TIME;
-    }
+    public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
+    public override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
 
     internal override IEnumerator HandleStep()
     {
