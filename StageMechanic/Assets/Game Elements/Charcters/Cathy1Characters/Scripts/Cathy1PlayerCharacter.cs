@@ -361,16 +361,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
     private void Update()
     {
-        //TODO have lava floor do this
-        if (transform.position.y < -50f)
-        {
-            if (!UIManager.IsSinglePlayerDeathDialogOpen)
-            {
-                UIManager.ShowSinglePlayerDeathDialog(ThudSound);
-            }
-        }
-        else
-            ApplyGravity();        
+        ApplyGravity();        
     }
 
     public override bool TakeDamage(float unused, string alsoNotUsed )

@@ -29,6 +29,8 @@ public class FloorIsLava : Platform
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
                 BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
+            else if(collision.gameObject.GetComponent<IPlayerCharacter>() != null)
+                collision.gameObject.GetComponent<IPlayerCharacter>().TakeDamage(float.PositiveInfinity);
             else
                 Destroy(collision.gameObject);
         }
@@ -40,6 +42,8 @@ public class FloorIsLava : Platform
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
                 BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
+            else if (collision.gameObject.GetComponent<IPlayerCharacter>() != null)
+                collision.gameObject.GetComponent<IPlayerCharacter>().TakeDamage(float.PositiveInfinity);
             else
                 Destroy(collision.gameObject);
         }
@@ -51,6 +55,8 @@ public class FloorIsLava : Platform
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
                 BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
+            else if (collision.gameObject.GetComponent<IPlayerCharacter>() != null)
+                collision.gameObject.GetComponent<IPlayerCharacter>().TakeDamage(float.PositiveInfinity);
             else
                 Destroy(collision.gameObject);
         }
@@ -62,6 +68,8 @@ public class FloorIsLava : Platform
         {
             if (collision.gameObject.GetComponent<IBlock>() != null)
                 BlockManager.DestroyBlock(collision.gameObject.GetComponent<IBlock>());
+            else if (collision.gameObject.GetComponent<IPlayerCharacter>() != null)
+                collision.gameObject.GetComponent<IPlayerCharacter>().TakeDamage(float.PositiveInfinity);
             else
                 Destroy(collision.gameObject);
         }
