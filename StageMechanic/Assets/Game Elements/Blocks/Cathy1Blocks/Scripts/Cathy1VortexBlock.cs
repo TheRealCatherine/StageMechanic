@@ -13,13 +13,8 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
 
     public sealed override BlockType Type { get; } = BlockType.Vortex;
 
-    public override TrapBlockType TrapType
-    {
-        get
-        {
-            return TrapBlockType.Vortex;
-        }
-    }
+    public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Vortex;
+    public sealed override float TriggerTime { get; set; } = 0f;
 
     internal override IEnumerator HandleStep()
     {

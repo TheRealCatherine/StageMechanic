@@ -66,17 +66,24 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         }
     }
 
+    public sealed override float TriggerTime { get; set; } = SMALL_BOMB_DEFAULT_FUSE_TIME;
+
     /// <summary>
     /// Sets the trigger time of the spike trap
     /// </summary>
     public override void Awake()
     {
-        base.Awake();
-        TriggerTime = SMALL_BOMB_DEFAULT_FUSE_TIME;
+        base.Awake();        
         if (Type == BlockType.Bomb1)
+        {
             DamageRadius = new Vector3(SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS);
+            TriggerTime = SMALL_BOMB_DEFAULT_FUSE_TIME;
+        }
         else
+        {
             DamageRadius = new Vector3(LARGE_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS);
+            TriggerTime = LARGE_BOMB_DEFAULT_FUSE_TIME;
+        }
 
     }
 

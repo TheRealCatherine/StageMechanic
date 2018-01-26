@@ -29,7 +29,7 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 
     public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
     public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
-    public override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
+    public sealed override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
 
     internal override IEnumerator HandleStep()
     {
