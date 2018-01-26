@@ -190,5 +190,29 @@ public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock
         set { }
     }
 
+    virtual internal void HandlePlayer(PlayerMovementEvent ev)
+    {
+        if (IsArmed == false || IsTriggered == true || ev.Location != PlayerMovementEvent.EventLocation.Top)
+            return;
+        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
+        if (statename == "Idle" || statename == "Walk" || statename == "Center")
+        {
+            IsTriggered = true;
+            StartCoroutine(HandleStep());
+        }
+    }
 
+    abstract internal IEnumerator HandleStep();
+
+    protected override void OnPlayerEnter(PlayerMovementEvent ev)
+    {
+        base.OnPlayerEnter(ev);
+        HandlePlayer(ev);
+    }
+
+    protected override void OnPlayerStay(PlayerMovementEvent ev)
+    {
+        base.OnPlayerStay(ev);
+        HandlePlayer(ev);
+    }
 }

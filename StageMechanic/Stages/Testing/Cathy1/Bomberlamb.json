@@ -1,0 +1,625 @@
+{
+    "Name": "Stage Collection",
+    "Version": "1.0 Cathy1",
+    "Stages": [
+        {
+            "Name": "Stage",
+            "Platforms": [
+                {
+                    "Name": "Platform",
+                    "Position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 3
+                    },
+                    "Blocks": [
+                        {
+                            "Name": "84c247f7-dcc2-4861-a627-158b26d66c9e",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "c37b6fe6-81cb-4a48-867f-11915c192c0f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "3b1d2558-b4e2-4e85-870a-8f3d018d66d4",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -2,
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "bde84260-fcc9-44c8-b17d-f7277b18b511",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -2,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "071aa365-af53-414f-95b0-a6d602d08215",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "70130f06-4ace-4087-8741-ec89f8a40261",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": 0,
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "911f8142-f147-40e2-8a2d-c1b8ccb6ee47",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": 0,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "137dc3ba-ba94-4e00-b167-03cd26cdc46d",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": 1,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "9cff4659-203f-4c69-ae0e-f2d8deac27f9",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": 2,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "bde9f066-2227-46d1-b978-d379b7fe4bd0",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": 2,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "356f3c91-27c9-4738-8d0e-a10c514a6fbe",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "90807dfa-8c7f-496c-940f-318a6e4e6081",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "df9a6395-075a-4323-8349-4ea3992fb618",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": -1,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "d492935d-eb9c-40e6-a3f1-22e81f9a0540",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": -2,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "904bcd11-a427-45bb-8986-35337113114d",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": -2,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "9494b031-9d41-4e07-b428-5b5680370683",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Heavy",
+                            "Position": {
+                                "x": -1,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "c10da9a9-85cd-4e0e-8f7b-8a56ead5b910",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "88765e29-9d6b-49a9-b6a0-d9c10b3cbd81",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": 1,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "24aae742-9550-475d-b295-c6edd02c033f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "1ae8701f-da49-4c28-8936-dd2b1c20698c",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": -1,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "d0329168-a18c-46c0-9dfa-16185e2850f8",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": -2,
+                                "y": 5,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "26f191c4-6d29-4b1e-851d-237dcb7e4fac",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 5,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "5b1780df-5837-4dee-909b-1dea26c9aa65",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 5,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "3b9beebf-21aa-481e-b5d2-612696326319",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 5,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "f538c4b9-91df-4c79-9292-8708ff31341d",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": 2,
+                                "y": 5,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "fad23d8f-51a4-4164-8f57-bf00eefb6541",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 6,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "cc1e2967-da8c-4d8b-8987-3a6ee3f4e571",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": 1,
+                                "y": 6,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "0c497b7c-f539-436e-80a5-741de2629547",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 6,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "56a20cd8-c70b-44cb-9f53-e068eed2424c",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": -1,
+                                "y": 6,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "9f6a2929-9a76-40f6-ac2a-fb4bbbc9592b",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": 0,
+                                "y": 7,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "561f07f1-425a-44a9-b41e-5493602c2a91",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -2,
+                                "y": 6,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "5b2d5a1d-c159-42b1-8833-e66e991c33e8",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -2,
+                                "y": 7,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "2ca8de21-176d-44db-a923-58624fd9ee8f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 7,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "d2ed4d73-b572-4e56-a37f-e9ca18c442a7",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 7,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "60c65be6-9e76-46a4-a6ee-ee3aff16e1b4",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 7,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "e595fcdb-e537-4f5b-bc5a-70ac97125f79",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 3,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "e13c46b5-fbcd-4729-8f09-cf74c8d3f8e2",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Large Bomb",
+                            "Position": {
+                                "x": 4,
+                                "y": 4,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Damage Radius",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "13e0d67b-60de-444a-bd87-a65d10eed579",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Cracked (2 Steps)",
+                            "Position": {
+                                "x": 5,
+                                "y": 5,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "6af64f0f-5ebd-420b-b676-738d3c744b24",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 1,
+                                "z": 2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "5c99a6de-6b82-44f3-beeb-2e56779582e6",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 2,
+                                "z": 2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "78bbd72a-5a36-456a-8502-3ca3323c9574",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 3,
+                                "z": 2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "4552a48d-d727-4fec-bc5e-51ca0eebe7cd",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 4,
+                                "z": 2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "7b36eee9-3612-44cf-b3ed-f834d963a022",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 5,
+                                "z": 2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "cae554d0-1434-4f31-8b9a-5d8abfa96f34",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 6,
+                                "z": 2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "2eea1e8d-8fb6-474d-a6f3-945a6ca849b8",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 7,
+                                "z": 2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ],
+                    "Items": null,
+                    "Events": [
+                        {
+                            "Name": "e3dafe88-a619-45d0-8d0b-2d57298d9682",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": 0,
+                                "y": 2.5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "PlayerNumber",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

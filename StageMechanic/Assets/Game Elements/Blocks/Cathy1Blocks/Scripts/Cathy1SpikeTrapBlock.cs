@@ -47,35 +47,10 @@ public sealed class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     public override void Awake()
     {
         base.Awake();
-        IsArmed = true;
         TriggerTime = DEFAULT_TRIGGER_TIME;
     }
 
-    void HandlePlayer(PlayerMovementEvent ev)
-    {
-        if (IsArmed == false || IsTriggered == true || ev.Location != PlayerMovementEvent.EventLocation.Top)
-            return;
-        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
-        if (statename == "Idle" || statename == "Walk" || statename == "Center")
-        {
-            IsTriggered = true;
-            StartCoroutine(HandleStep());
-        }
-    }
-
-    protected override void OnPlayerEnter(PlayerMovementEvent ev)
-    {
-        base.OnPlayerEnter(ev);
-        HandlePlayer(ev);
-    }
-
-    protected override void OnPlayerStay(PlayerMovementEvent ev)
-    {
-        base.OnPlayerStay(ev);
-        HandlePlayer(ev);
-    }
-
-    private IEnumerator HandleStep()
+    internal override IEnumerator HandleStep()
     {
         yield return new WaitForSeconds(TriggerTime);
         BlockManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));

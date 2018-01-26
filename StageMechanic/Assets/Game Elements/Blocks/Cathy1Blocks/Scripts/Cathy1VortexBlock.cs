@@ -21,10 +21,23 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
         }
     }
 
-    bool hasPlayer()
+    internal override IEnumerator HandleStep()
     {
-        Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up && (player != transform.position + Vector3.up || (PlayerManager.PlayerStateName() != "Idle" || PlayerManager.PlayerStateName() != "Walk" || PlayerManager.PlayerStateName() != "Center")));
+        IsTriggered = true;
+        yield return new WaitForSeconds(TriggerTime);
+        GetComponent<AudioSource>().Play();
+        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
+        {
+            player.TakeDamage(float.PositiveInfinity);
+        }
+        IsArmed = true;
+        IsTriggered = false;
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        TriggerTime = 0f;
     }
 
     internal override void Update()
@@ -32,12 +45,7 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
         base.Update();
         if (!BlockManager.PlayMode)
             return;
-        if (hasPlayer())
-        {
-            GetComponent<AudioSource>()?.Play();
-            PlayerManager.Player(0).TakeDamage(float.PositiveInfinity);
-        }
-        IBlock onTop = BlockManager.GetBlockAt(transform.position + Vector3.up);
+        IBlock onTop = BlockManager.GetBlockNear(transform.position + Vector3.up);
         if (onTop != null) {
             GetComponent<AudioSource>()?.Play();
             BlockManager.DestroyBlock(onTop);

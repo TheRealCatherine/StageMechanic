@@ -751,17 +751,17 @@ public class BlockManager : MonoBehaviour {
 		return new PlatformJsonDelegate (ActiveFloor);
 	}
 
-	public static AbstractBlock GetBlockAt( Vector3 position, float radius = 0.1f) {
+	public static AbstractBlock GetBlockAt( Vector3 position, float radius = 0.01f) {
 
         return Utility.GetGameObjectAt<AbstractBlock>(position, radius);
 	}
 
-    public static AbstractBlock GetBlockNear(Vector3 position, float radius = 0.1f)
+    public static AbstractBlock GetBlockNear(Vector3 position, float radius = 0.01f)
     {
         return Utility.GetGameObjectNear<AbstractBlock>(position, radius);
     }
 
-    public static List<AbstractBlock> GetBlocskAt(Vector3 position, float radius = 0.1f)
+    public static List<AbstractBlock> GetBlocskNear(Vector3 position, float radius = 0.01f)
     {
         return Utility.GetGameObjectsNear<AbstractBlock>(position, radius);
     }

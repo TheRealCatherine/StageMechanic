@@ -24,7 +24,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     private const float SMALL_BOMB_DEFAULT_FUSE_TIME = 1.5f;
     private const float LARGE_BOMB_DEFAULT_FUSE_TIME = 1.5f;
     private const int SMALL_BOMB_DEFAULT_RADIUS = 1;
-    private const int LARGE_BOMB_DEFAULT_RADIUS = 3;
+    private const int LARGE_BOMB_DEFAULT_RADIUS = 2;
     private const float SMALL_BOMB_DEFAULT_ANIMATION_SCALE = 2f;
     private const float LARGE_BOMB_DEFAULT_ANIMATION_SCALE = 3f;
 
@@ -35,17 +35,6 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     }
 
     public BombSize Size = BombSize.Small;
-
-    private enum State
-    {
-        NoPlayer = 0,
-        PlayerEnter,
-        PlayerStand,
-        PlayerLeave,
-        Disarmed
-    }
-
-    private State CurrentState = State.NoPlayer;
 
     /// <summary>
     /// This class is used for both Bomb1 and Bomb2 types
@@ -83,7 +72,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
     public override void Awake()
     {
         base.Awake();
-        TriggerTime = 1.5f;
+        TriggerTime = SMALL_BOMB_DEFAULT_FUSE_TIME;
         if (Type == BlockType.Bomb1)
             DamageRadius = new Vector3(SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS);
         else
@@ -91,49 +80,69 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
     }
 
-    bool hasPlayer()
+    internal override IEnumerator HandleStep()
     {
-        Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up && (PlayerManager.PlayerStateName() == "Idle" || PlayerManager.PlayerStateName() == "Walk" || PlayerManager.PlayerStateName() == "Center"));
-    }
-
-    private IEnumerator HandleStep()
-    {
-        CurrentState = State.PlayerEnter;
         GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
         BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime);
         yield return new WaitForSeconds(TriggerTime);
         BlockManager.PlaySound(this, ExplosionSound);
+        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
+        {
+            player.TakeDamage(float.PositiveInfinity);
+        }
         gameObject.SetActive(false);
-        if (hasPlayer())
+        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position, DamageRadius.x);
+        foreach (AbstractBlock block in localBlocks)
         {
-            CurrentState = State.PlayerStand;
-            PlayerManager.Player(0).TakeDamage(float.PositiveInfinity);
-
+            Cathy1Block c1b = block as Cathy1Block;
+            if(c1b != null && c1b != this && c1b.gameObject.activeInHierarchy)
+            {
+                if (c1b.Type == BlockType.Basic)
+                    BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (2 Steps)");
+                else if (c1b.Type == BlockType.Crack2)
+                    BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
+                else if (c1b.Type == BlockType.Crack1)
+                    BlockManager.DestroyBlock(c1b);
+                else if (c1b.Type == BlockType.Bomb1 || c1b.Type == BlockType.Bomb2)
+                    (c1b as Cathy1BombBlock)?.InstantDetonate();
+            }
         }
-        List<AbstractBlock> localBlocks = BlockManager.GetBlocskAt(Position, DamageRadius.x);
-        foreach(AbstractBlock block in localBlocks)
-        {
-            //any immobile block will not be affected
-            if(block.WeightFactor!=0f && block.GameObject != GameObject)
-                BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
-        }
-        CurrentState = State.Disarmed;
+        IsArmed = false;
         BlockManager.DestroyBlock(this);
     }
 
-    internal override void Update()
+    public void InstantDetonate()
     {
-        base.Update();
-        if (!BlockManager.PlayMode)
+        if (IsTriggered)
             return;
-        if (CurrentState == State.PlayerEnter || CurrentState == State.PlayerStand)
-            return;
-        if (!hasPlayer())
-            return;
-        if (CurrentState == State.Disarmed)
-            return;
-        StartCoroutine(HandleStep());
+        IsTriggered = true;
+        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, 0.001f);
+        BlockManager.PlaySound(this, ExplosionSound);
+        gameObject.SetActive(false);
+        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
+        {
+            player.TakeDamage(float.PositiveInfinity);
+        }
+
+        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position, DamageRadius.x);
+        foreach (AbstractBlock block in localBlocks)
+        {
+            //any immobile block will not be affected
+            Cathy1Block c1b = block as Cathy1Block;
+            if (c1b != null && c1b != this && c1b.gameObject.activeInHierarchy)
+            {
+                if (c1b.Type == BlockType.Basic)
+                    BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (2 Steps)");
+                else if (c1b.Type == BlockType.Crack2)
+                    BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
+                else if (c1b.Type == BlockType.Crack1)
+                    BlockManager.DestroyBlock(c1b);
+                else if (c1b.Type == BlockType.Bomb1 || c1b.Type == BlockType.Bomb2)
+                    (c1b as Cathy1BombBlock)?.InstantDetonate();
+            }
+        }
+        IsArmed = false;
+        BlockManager.DestroyBlock(this);
     }
 
     public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties

@@ -328,8 +328,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
             yield return null;
         }
-        UpdateNeighborsCache();
         MotionState = BlockMotionState.Unknown;
+        foreach (IBlock block in blocksAbove)
+        {
+            if (!(block as AbstractBlock))
+                continue;
+            (block as AbstractBlock).UpdateNeighborsCache();
+            (block as AbstractBlock).MotionState = BlockMotionState.Unknown;
+            (block as AbstractBlock).SetStateBySupport();
+        }
+        UpdateNeighborsCache();
         SetStateBySupport();
     }
 
@@ -689,11 +697,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         PlayerMovementEvent ev = new PlayerMovementEvent();
         ev.Type = type;
         ev.Player = player;
-        if (player.Position.y > Position.y)
+        if (player.Position.y > Position.y && player.Position.x == Position.x && player.Position.z == Position.z)
             ev.Location = PlayerMovementEvent.EventLocation.Top;
-        else if(player.Position.y < Position.y)
+        else if(player.Position.y < Position.y && player.Position.x == Position.x && player.Position.z == Position.z)
             ev.Location = PlayerMovementEvent.EventLocation.Bottom;
-        else if(player.Position.x == Position.x ^ player.Position.z == Position.z)
+        else if(player.Position.x == Position.x ^ player.Position.z == Position.z && player.Position.y == Position.y)
             ev.Location = PlayerMovementEvent.EventLocation.Side;
         else
             ev.Location = PlayerMovementEvent.EventLocation.None;

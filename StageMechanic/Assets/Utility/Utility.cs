@@ -66,7 +66,7 @@ public static class Utility
             list.Add(value);
     }
 
-    public static T GetGameObjectAt<T>(Vector3 position, float radius = 0.1f) where T : MonoBehaviour
+    public static T GetGameObjectAt<T>(Vector3 position, float radius = 0.01f) where T : MonoBehaviour
     {
         foreach (Collider collider in Physics.OverlapSphere(position, radius))
         {
@@ -77,7 +77,7 @@ public static class Utility
         return null;
     }
 
-    public static T GetGameObjectNear<T>(Vector3 position, float radius = 0.1f) where T : MonoBehaviour
+    public static T GetGameObjectNear<T>(Vector3 position, float radius = 0.01f) where T : MonoBehaviour
     {
 
         foreach (Collider collider in Physics.OverlapSphere(position, radius))
@@ -89,7 +89,7 @@ public static class Utility
         return null;
     }
 
-    public static List<T> GetGameObjectsNear<T>(Vector3 position, float radius = 0.1f) where T : MonoBehaviour
+    public static List<T> GetGameObjectsNear<T>(Vector3 position, float radius = 0.01f) where T : MonoBehaviour
     {
         List<T> ret = new List<T>();
         foreach (Collider collider in Physics.OverlapSphere(position, radius))
