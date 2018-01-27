@@ -257,11 +257,7 @@ public class BlockManager : MonoBehaviour {
         {
             block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             block.Rotation = Quaternion.identity;
-            (block as AbstractBlock).MotionState = BlockMotionState.Unknown;
-            (block as AbstractBlock).UpdateNeighborsCache();
-            (block as AbstractBlock).PhysicsEnabled = true;
-            (block as AbstractBlock).PhysicsEnabled = false;
-            (block as AbstractBlock).SetStateBySupport();
+            (block as AbstractBlock).UpdatePhysics();
         }
         yield return new WaitForEndOfFrame();
     }
@@ -670,7 +666,8 @@ public class BlockManager : MonoBehaviour {
 		fs.Close();
         LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
         State = oldState;
-        if(PlayerPrefs.GetInt("AutoPlayOnLoad",0) == 1)
+        RecordStartState();
+        if (PlayerPrefs.GetInt("AutoPlayOnLoad",0) == 1)
         {
             if (!PlayMode)
                 TogglePlayMode();

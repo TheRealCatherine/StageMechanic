@@ -10,7 +10,7 @@
                     "Position": {
                         "x": 0,
                         "y": 0,
-                        "z": 0
+                        "z": 3
                     },
                     "Blocks": [
                         {
@@ -497,7 +497,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -513,7 +513,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -582,7 +582,12 @@
                                 "y": 16,
                                 "z": 5
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "6f2741ad-0127-4643-97c0-e295892db0cf",
@@ -595,7 +600,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -611,7 +616,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -627,7 +632,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -753,7 +758,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -857,7 +862,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -873,7 +878,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -1186,7 +1191,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -1202,7 +1207,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -1238,7 +1243,12 @@
                                 "y": 26,
                                 "z": 9
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "c807dea4-6a39-4b73-8c41-cb082c64b0da",
@@ -1722,7 +1732,12 @@
                                 "y": 33,
                                 "z": 11
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "b3a17ce4-d1c4-45f4-b7bf-7461be7f8f08",
@@ -1733,7 +1748,12 @@
                                 "y": 33,
                                 "z": 11
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "bbeb70bf-8590-4105-a4b8-a31e232a6f8c",
@@ -1887,7 +1907,12 @@
                                 "y": 36,
                                 "z": 12
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "16b51f21-3eaf-4de1-b124-0fa8b97fb7d4",
@@ -2296,7 +2321,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2312,7 +2337,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2328,7 +2353,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2344,7 +2369,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2525,7 +2550,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2541,7 +2566,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2557,7 +2582,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2573,7 +2598,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2589,7 +2614,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2713,7 +2738,12 @@
                                 "y": 43,
                                 "z": 14
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "7fd08f25-d199-4e0e-a616-18611f41b84b",
@@ -2724,7 +2754,12 @@
                                 "y": 44,
                                 "z": 14
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "92afa2d1-cfb2-4c8d-99e3-42f6f53c199b",
@@ -2735,7 +2770,12 @@
                                 "y": 47,
                                 "z": 15
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "c5f01d3e-7248-49a5-9b4e-551af6778422",
@@ -2746,7 +2786,12 @@
                                 "y": 46,
                                 "z": 15
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         },
                         {
                             "Name": "db2fae4e-2d96-45ec-98b5-aaf3903ca749",
@@ -2759,8 +2804,12 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "3-2.json"
                                 }
                             ]
                         }
@@ -2768,7 +2817,7 @@
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "2662bb3b-08b9-4c6a-8ff3-00aa474776e0",
+                            "Name": "4308ad38-cfe0-46ba-b1af-55240e51173a",
                             "Palette": "Cathy1 Internal",
                             "Type": "Player Start",
                             "Position": {

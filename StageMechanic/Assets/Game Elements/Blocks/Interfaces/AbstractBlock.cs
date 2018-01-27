@@ -330,7 +330,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         MotionState = BlockMotionState.Unknown;
         UpdateNeighborsCache();
-        SetStateBySupport();
+        UpdatePhysics();
     }
 
     /// <summary>
@@ -389,9 +389,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     internal const int BACK = 2;
     internal const int LEFT = 3;
     internal const int RIGHT = 4;
-#if UNITY_EDITOR
     public int BelowCount;
     public int AboveCount;
+#if UNITY_EDITOR
     public string BlockDown;
     public string BlockDownLeft;
     public string BlockDownRight;
@@ -424,20 +424,20 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     protected void HardUpdateBlocksAbove()
     {
-        blocksAbove[UP] = BlockManager.GetBlockNear(Position + Vector3.up);
-        blocksAbove[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f,0f,0.7f));
-        blocksAbove[BACK] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, -0.7f));
-        blocksAbove[LEFT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(-0.7f, 0f, 0f));
-        blocksAbove[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0.7f, 0f, 0f));
+        blocksAbove[UP] = BlockManager.GetBlockAt(Position + Vector3.up);
+        blocksAbove[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, 1f));
+        blocksAbove[BACK] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, -1f));
+        blocksAbove[LEFT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(-1f, 0f, 0f));
+        blocksAbove[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(1f, 0f, 0f));
     }
 
     protected void HardUpdateBlocksBelow()
     {
         blocksBelow[DOWN] = BlockManager.GetBlockNear(Position + Vector3.down);
-        blocksBelow[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, 0.7f));
-        blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, -0.7f));
-        blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(-0.7f, 0f, 0f));
-        blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0.7f, 0f, 0f));
+        blocksBelow[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, 1f));
+        blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, -1f));
+        blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(-1f, 0f, 0f));
+        blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(1f, 0f, 0f));
 #if UNITY_EDITOR
         BlockDown = blocksBelow[DOWN]?.Name;
         BlockDownBack = blocksBelow[BACK]?.Name;
@@ -461,8 +461,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             if (support != null)
                 ++AboveCount;
         }
-        if(Selection.activeGameObject == this.gameObject)
-            Debug.Log("Updated counts: v:" + BelowCount+" ^:" + AboveCount);
     }
 
     public int NumberOfActualSupporters()
@@ -479,6 +477,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     [SerializeField]
     bool _physicsEnabled = false;
+    bool _physicsDirty = false;
     public virtual bool PhysicsEnabled
     {
         get
@@ -487,14 +486,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         set
         {
-            if (value == _physicsEnabled)
+            if (value == _physicsEnabled && !_physicsDirty)
                 return;
             Profiler.BeginSample("Changing physics state");
+            UpdateNeighborsCache();
             if (value)
             {
                 GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ);
                 GetComponent<Rigidbody>().useGravity = true;
                 _physicsEnabled = true;
+                _physicsDirty = false;
             }
             else
             {
@@ -503,14 +504,15 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 GetComponent<Rigidbody>().useGravity = false;
                 _physicsEnabled = false;
+                _physicsDirty = false;
 
                 //Probably not needed
-               /*UpdateAllNeighborsCaches();
-                foreach (IBlock edge in blocksAbove)
-                {
-                    (edge as AbstractBlock)?.SetStateBySupport();
-                }
-                UpdateNeighborsCache();*/
+                /*UpdateAllNeighborsCaches();
+                 foreach (IBlock edge in blocksAbove)
+                 {
+                     (edge as AbstractBlock)?.SetStateBySupport();
+                 }
+                 UpdateNeighborsCache();*/
             }
             Profiler.EndSample();
         }
@@ -521,59 +523,21 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         IBlock otherBlock = collision.gameObject.GetComponent<IBlock>();
         if (otherBlock == null)
         {
-            Profiler.BeginSample("Non-block collision");
-            if (collision.gameObject == BlockManager.ActiveFloor && IsGrounded)
+            IPlayerCharacter player = collision.gameObject.GetComponent<IPlayerCharacter>();
+            if (player != null)
             {
-                Profiler.BeginSample("Floor collision");
-                PhysicsEnabled = false;
-                MotionState = BlockMotionState.Grounded;
-                Profiler.EndSample(); //Floor collision
+                Profiler.BeginSample("Player collision");
+                OnPlayerMovement(player, PlayerMovementEvent.EventType.Enter);
+                Profiler.EndSample(); //Player collision
             }
-            else
-            {
-                IPlayerCharacter player = collision.gameObject.GetComponent<IPlayerCharacter>();
-                if(player != null)
-                {
-                    Profiler.BeginSample("Player collision");
-                    OnPlayerMovement(player, PlayerMovementEvent.EventType.Enter);
-                    Profiler.EndSample(); //Player collision
-                }
-            }
-
-            Profiler.EndSample(); //Non-block collision
-            return;
         }
         else
-        {
-            Profiler.BeginSample("Block collision");
-            if ((otherBlock.Position.y > Position.y + 0.01) || (otherBlock.Position.y < Position.y - 0.01)
-                && ((otherBlock.Position.x == Position.x && otherBlock.Position.z == Position.z)
-                || (otherBlock.Position.x != Position.x ^ otherBlock.Position.z != Position.z)))
-            {
-                if (MotionState != BlockMotionState.Falling)
-                {
-                    
-                    if (otherBlock.Position.y > Position.y)
-                    {
-                        (otherBlock as AbstractBlock).UpdateNeighborsCache();
-                        (otherBlock as AbstractBlock).SetStateBySupport();
-                        if ((otherBlock.Position.x == Position.x && otherBlock.Position.z == Position.z)
-                            || (otherBlock.Position.x != Position.x ^ otherBlock.Position.z != Position.z))
-                            otherBlock.PhysicsEnabled = false;
-                    }
-                    else
-                        PhysicsEnabled = false;
-                }
-            }
             UpdateNeighborsCache();
-            Profiler.EndSample();
-        }
     }
 
     public void OnCollisionExit(Collision collision)
     {
         Profiler.BeginSample("Collision exit");
-        UpdateNeighborsCache();
         IPlayerCharacter player = collision.gameObject.GetComponent<IPlayerCharacter>();
         if (player != null)
         {
@@ -581,159 +545,120 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             OnPlayerMovement(player, PlayerMovementEvent.EventType.Leave);
             Profiler.EndSample(); //Player collision
         }
+        else
+            UpdateNeighborsCache();
+
         Profiler.EndSample(); //Collision exit
     }
 
 
-    internal IEnumerator EstablishCurrentState()
-    {
-        if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
-            yield break;
-        BlockMotionState oldState = MotionState;
-        UpdateNeighborsCache();
-        MotionState = BlockMotionState.Unknown;
-
-        //If there is nothing below us we can dip out quick
-        if (BelowCount==0 || NumberOfActualSupporters()==0)
-        {
-            if (oldState == BlockMotionState.Hovering)
-                MotionState = BlockMotionState.Falling;
-            else if (oldState != BlockMotionState.Falling)
-                MotionState = BlockMotionState.Hovering;
-            yield break;
-        }
-
-        //If we are resting on the floor
-        if(Position.y == 1 && oldState != BlockMotionState.Falling)
-        {
-            MotionState = BlockMotionState.Grounded;
-            yield break;
-        }
-
-        if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Edged || blocksBelow[DOWN].MotionState == BlockMotionState.Grounded))
-        {
-            MotionState = BlockMotionState.Grounded;
-            yield break;
-        }
-        else
-        {
-            MotionState = BlockMotionState.Edged;
-            yield break;
-        }
-    }
-
-    bool _startHoverOnPlay = false;
-    internal void SetStateBySupport()
+    internal void EstablishCurrentState()
     {
         if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
             return;
-
-        Profiler.BeginSample("SetStateBySupport");
-
         BlockMotionState oldState = MotionState;
+        //UpdateNeighborsCache();
+        MotionState = BlockMotionState.Unknown;
 
-        if (MotionState != BlockMotionState.Falling)
+        //If we are resting on the floor
+        if (Position.y == 1)
         {
-            Profiler.BeginSample("Not Falling");
-            if (Position.y == 1)
+            if (oldState != BlockMotionState.Falling)
             {
-                PhysicsEnabled = false;
                 MotionState = BlockMotionState.Grounded;
                 return;
             }
             else
             {
-                MotionState = BlockMotionState.Hovering;
+                BlockManager.DestroyBlock(this);
             }
-            Profiler.EndSample();
         }
-        else
-            PhysicsEnabled = true;
 
-        Profiler.BeginSample("testing support");
-        if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Grounded || blocksBelow[DOWN].MotionState == BlockMotionState.Edged))
+        //If there is nothing below us we can dip out quick
+        if (BelowCount == 0 || NumberOfActualSupporters() == 0)
+        {
+            if (oldState != BlockMotionState.Falling)
+                MotionState = BlockMotionState.Hovering;
+            else
+                MotionState = BlockMotionState.Falling;
+            return;
+        }
+
+        if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Edged || blocksBelow[DOWN].MotionState == BlockMotionState.Grounded))
         {
             MotionState = BlockMotionState.Grounded;
+            return;
         }
         else
         {
-            Profiler.BeginSample("edging");
-            foreach (IBlock edge in blocksBelow)
+            MotionState = BlockMotionState.Edged;
+            return;
+        }
+    }
+
+    bool _startedHover = false;
+    internal void UpdatePhysics()
+    {
+        EstablishCurrentState();
+        if (MotionState == BlockMotionState.Edged || MotionState == BlockMotionState.Grounded)
+        {
+            PhysicsEnabled = false;
+        }
+        else if (MotionState == BlockMotionState.Falling)
+        {
+            PhysicsEnabled = true;
+        }
+        else if (MotionState == BlockMotionState.Hovering)
+        {
+            if (!_startedHover)
             {
-                if (edge != null && (edge.MotionState == BlockMotionState.Grounded || edge.MotionState == BlockMotionState.Edged))
+                _startedHover = true;
+                StartCoroutine(DoHoverAnimation());
+                foreach (IBlock neighbor in blocksAbove)
                 {
-                    if (edge.Position.y > Position.y - 1.1f)
+                    if (neighbor != null)
                     {
-                        MotionState = BlockMotionState.Edged;
-                        break;
+                        (neighbor as AbstractBlock).UpdateNeighborsCache();
+                        (neighbor as AbstractBlock).UpdatePhysics();
                     }
                 }
             }
-            Profiler.EndSample();
         }
-        Profiler.EndSample();
-
-        if (oldState != MotionState)
-        {
-            Profiler.BeginSample("changed state");
-            PhysicsEnabled = !IsGrounded;
-            if (MotionState == BlockMotionState.Hovering)
-            {
-                if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
-                    StartCoroutine(DoHoverAnimation());
-                else
-                    _startHoverOnPlay = true;
-            }
-            else
-                _startHoverOnPlay = false;
-            Profiler.EndSample();
-        }
-        else if (_startHoverOnPlay && MotionState == BlockMotionState.Hovering && BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
-        {
-            Profiler.BeginSample("start the hover");
-            StartCoroutine(DoHoverAnimation());
-            _startHoverOnPlay = false;
-            Profiler.EndSample();
-        }
-        Profiler.EndSample();
     }
 
-    bool _secondLoop = false;
     public IEnumerator DoHoverAnimation()
     {
         yield return new WaitForEndOfFrame();
-        if (!_secondLoop)
+        if (MotionState != BlockMotionState.Hovering)
         {
-            UpdateNeighborsCache();
-            SetStateBySupport();
-            _secondLoop = true;
+            _startedHover = false;
+            _physicsDirty = true;
+            yield break;
         }
-        else
-            _secondLoop = false;
-        yield return new WaitForEndOfFrame();
         GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
         transform.Rotate(0f, 0f, .5f);
-        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;
         yield return new WaitForSeconds(0.1f);
-        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;
         transform.Rotate(0f, 0f, -.10f);
         yield return new WaitForSeconds(0.1f);
-        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;
         transform.Rotate(0f, 0f, .10f);
         yield return new WaitForSeconds(0.1f);
-        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;
         transform.Rotate(0f, 0f, -.5f);
         yield return new WaitForSeconds(0.1f);
-        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;
         transform.rotation = Quaternion.identity;
+        if (MotionState != BlockMotionState.Hovering)
+        {
+            _startedHover = false;
+            _physicsDirty = true;
+            yield break;
+        }
         yield return new WaitForSeconds(0.6f);
-        if (MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged)
-            PhysicsEnabled = false;
+        if (MotionState != BlockMotionState.Hovering)
+        {
+            _startedHover = false;
+            _physicsDirty = true;
+            yield break;
+        }
+        _startedHover = false;
         MotionState = BlockMotionState.Falling;
     }
 
@@ -741,7 +666,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     {
         //I think we can get away with doing this in update which seems to help performance but
         //it needs to be tested still, maybe move to FixedUpdate
-        SetStateBySupport();
+        UpdatePhysics();
     }
 
     internal virtual void FixedUpdate()
@@ -758,9 +683,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         ev.Player = player;
         if (player.Position.y > Position.y && player.Position.x == Position.x && player.Position.z == Position.z)
             ev.Location = PlayerMovementEvent.EventLocation.Top;
-        else if(player.Position.y < Position.y && player.Position.x == Position.x && player.Position.z == Position.z)
+        else if (player.Position.y < Position.y && player.Position.x == Position.x && player.Position.z == Position.z)
             ev.Location = PlayerMovementEvent.EventLocation.Bottom;
-        else if(player.Position.x == Position.x ^ player.Position.z == Position.z && player.Position.y == Position.y)
+        else if (player.Position.x == Position.x ^ player.Position.z == Position.z && player.Position.y == Position.y)
             ev.Location = PlayerMovementEvent.EventLocation.Side;
         else
             ev.Location = PlayerMovementEvent.EventLocation.None;
@@ -770,7 +695,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     protected virtual void OnPlayerMovement(PlayerMovementEvent ev)
     {
         Debug.Assert(ev != null);
-        switch(ev.Type)
+        switch (ev.Type)
         {
             case PlayerMovementEvent.EventType.Stay:
                 OnPlayerStay(ev);
@@ -788,10 +713,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
     }
 
-    protected virtual void OnPlayerEnter(PlayerMovementEvent ev) {}
-    protected virtual void OnPlayerLeave(PlayerMovementEvent ev) {}
-    protected virtual void OnPlayerStay(PlayerMovementEvent ev) {}
-    protected virtual void OnPlayerUnknownMotion(PlayerMovementEvent ev) {}
+    protected virtual void OnPlayerEnter(PlayerMovementEvent ev) { }
+    protected virtual void OnPlayerLeave(PlayerMovementEvent ev) { }
+    protected virtual void OnPlayerStay(PlayerMovementEvent ev) { }
+    protected virtual void OnPlayerUnknownMotion(PlayerMovementEvent ev) { }
 
     float period = 0.0f;
     const float throttle = 0.1f;

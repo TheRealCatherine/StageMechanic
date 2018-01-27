@@ -10,7 +10,7 @@
                     "Position": {
                         "x": 0,
                         "y": 0,
-                        "z": 0
+                        "z": 3
                     },
                     "Blocks": [
                         {
@@ -2224,7 +2224,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2240,7 +2240,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2256,7 +2256,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2272,7 +2272,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2288,7 +2288,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2304,7 +2304,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2320,7 +2320,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2336,7 +2336,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2352,8 +2352,12 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "3-1.json"
                                 }
                             ]
                         }
@@ -2361,7 +2365,7 @@
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "46a90914-4f2d-486e-b18e-54f83dbac6f3",
+                            "Name": "ab03a9e8-be9a-48d0-aa0f-44d77fb39973",
                             "Palette": "Cathy1 Internal",
                             "Type": "Player Start",
                             "Position": {
