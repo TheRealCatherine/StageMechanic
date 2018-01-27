@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,12 +85,12 @@ public class Cathy1CrackedBlock : Cathy1Block {
             StartCoroutine(HandleStep());
     }
 
-    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Steps Remaining", new KeyValuePair<string, string>("int", (Type == BlockType.Crack1?1:2).ToString()));
+            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
+            ret.Add("Steps Remaining", new KeyValuePair<Type, string>(typeof(int), (Type == BlockType.Crack1?1:2).ToString()));
             return ret;
         }
     }

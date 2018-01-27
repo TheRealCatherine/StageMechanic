@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -151,15 +152,15 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         DoExplosion();
     }
 
-    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", (Type==BlockType.Bomb1?SMALL_BOMB_DEFAULT_FUSE_TIME:LARGE_BOMB_DEFAULT_FUSE_TIME).ToString()));
-            ret.Add("Damage Radius", new KeyValuePair<string, string>("int", (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_RADIUS : LARGE_BOMB_DEFAULT_RADIUS).ToString()));
-            ret.Add("Animation Scale", new KeyValuePair<string, string>("float", (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_ANIMATION_SCALE : LARGE_BOMB_DEFAULT_ANIMATION_SCALE).ToString()));
-            ret.Add("Epicenter Offset", new KeyValuePair<string, string>("Vector3", Vector3.zero.ToString()));
+            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)", new KeyValuePair<Type, string>(typeof(float), (Type==BlockType.Bomb1?SMALL_BOMB_DEFAULT_FUSE_TIME:LARGE_BOMB_DEFAULT_FUSE_TIME).ToString()));
+            ret.Add("Damage Radius", new KeyValuePair<Type, string>(typeof(int), (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_RADIUS : LARGE_BOMB_DEFAULT_RADIUS).ToString()));
+            ret.Add("Animation Scale", new KeyValuePair<Type, string>(typeof(float), (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_ANIMATION_SCALE : LARGE_BOMB_DEFAULT_ANIMATION_SCALE).ToString()));
+            ret.Add("Epicenter Offset", new KeyValuePair<Type, string>(typeof(Vector3), Vector3.zero.ToString()));
             return ret;
         }
     }

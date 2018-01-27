@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
+using System;
 
 public enum BlockMotionState
 {
@@ -198,7 +199,11 @@ public interface IBlock
         set;
     }
 
-    Dictionary<string, KeyValuePair<string,string>> DefaultProperties
+    /// <summary>
+    /// Returns the set of settable properties in the form of
+    /// Name, (Type, Defult value)
+    /// </summary>
+    Dictionary<string, KeyValuePair<Type,string>> DefaultProperties
     {
         get;
     }

@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,13 +75,13 @@ public class Cathy1GoalBlock : Cathy1Block
             CurrentState = State.NoPlayer;
     }
 
-    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Next Stage Filename", new KeyValuePair<string, string>("string", ""));
-            ret.Add("Next Stage Start Block Override", new KeyValuePair<string, string>("string", ""));
+            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
+            ret.Add("Next Stage Filename", new KeyValuePair<Type, string>(typeof(string), ""));
+            ret.Add("Next Stage Start Block Override", new KeyValuePair<Type, string>(typeof(string), ""));
             return ret;
         }
     }

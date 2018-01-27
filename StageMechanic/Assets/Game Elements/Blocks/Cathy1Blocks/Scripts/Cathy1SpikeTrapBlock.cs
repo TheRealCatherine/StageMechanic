@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,13 +60,13 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         IsArmed = false;
     }
 
-    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", DEFAULT_TRIGGER_TIME.ToString()));
-            ret.Add("Animation Scale", new KeyValuePair<string, string>("float", DEFAULT_ANIMATION_SCALE.ToString()));
+            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)", new KeyValuePair<Type, string>(typeof(float), DEFAULT_TRIGGER_TIME.ToString()));
+            ret.Add("Animation Scale", new KeyValuePair<Type, string>(typeof(float), DEFAULT_ANIMATION_SCALE.ToString()));
             return ret;
         }
     }

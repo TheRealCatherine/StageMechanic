@@ -1,4 +1,5 @@
 ﻿using CnControls;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -144,7 +145,7 @@ public class BlockEditDialog : MonoBehaviour {
             PosYField.text = CurrentBlock.Position.y.ToString();
             PosZField.text = CurrentBlock.Position.z.ToString();
 
-            foreach(KeyValuePair<string,KeyValuePair<string,string>> property in CurrentBlock.DefaultProperties)
+            foreach(KeyValuePair<string,KeyValuePair<Type,string>> property in CurrentBlock.DefaultProperties)
             {
                 Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text ;
                 addedFields.Add(label.gameObject);

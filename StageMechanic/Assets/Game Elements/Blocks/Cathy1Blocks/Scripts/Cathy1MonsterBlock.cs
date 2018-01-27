@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -141,12 +142,12 @@ public class Cathy1MonsterBlock : Cathy1Block
 
     }
 
-    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Move Probability", new KeyValuePair<string, string>("float", DEFAULT_MOVE_PROBABILITY.ToString()));
+            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
+            ret.Add("Move Probability", new KeyValuePair<Type, string>(typeof(float), DEFAULT_MOVE_PROBABILITY.ToString()));
             return ret;
         }
     }

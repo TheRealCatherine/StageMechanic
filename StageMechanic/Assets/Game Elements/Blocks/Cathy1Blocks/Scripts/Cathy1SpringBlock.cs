@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class Cathy1SpringBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Spring;
     private const float DEFAULT_DELAY = 0.55f;
-    private const float DEFAULT_DISTANCE = 5f;
+    private const float DEFAULT_DISTANCE = 6f;
     public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);
     public float Delay = DEFAULT_DELAY;
 
@@ -44,13 +45,13 @@ public class Cathy1SpringBlock : Cathy1Block
         
     }
 
-    public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<string, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<string, string>("float", DEFAULT_DELAY.ToString()));
-            ret.Add("Distance", new KeyValuePair<string, string>("float", DEFAULT_DISTANCE.ToString()));
+            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)", new KeyValuePair<Type, string>(typeof(float), DEFAULT_DELAY.ToString()));
+            ret.Add("Distance", new KeyValuePair<Type, string>(typeof(float), DEFAULT_DISTANCE.ToString()));
             return ret;
         }
     }

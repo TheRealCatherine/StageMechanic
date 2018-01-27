@@ -163,16 +163,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
     }
 
-    public virtual Dictionary<string, KeyValuePair<string, string>> DefaultProperties
+    public virtual Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<string, string>> ret = new Dictionary<string, KeyValuePair<string, string>>();
-            ret.Add("Rotation", new KeyValuePair<string, string>("Quaternion", Quaternion.identity.ToString()));
-            ret.Add("Fixed Rotation", new KeyValuePair<string, string>("bool", "false"));
-            ret.Add("Weight Factor", new KeyValuePair<string, string>("float", "1.0"));
-            ret.Add("Gravity Factor", new KeyValuePair<string, string>("float", "1.0"));
-            ret.Add("Block Group", new KeyValuePair<string, string>("int", "-1"));
+            Dictionary<string, KeyValuePair<Type, string>> ret = new Dictionary<string, KeyValuePair<Type, string>>();
+            ret.Add("Rotation", new KeyValuePair<Type, string>(typeof(Quaternion), Quaternion.identity.ToString()));
+            ret.Add("Fixed Rotation", new KeyValuePair<Type, string>(typeof(bool), "false"));
+            ret.Add("Weight Factor", new KeyValuePair<Type, string>(typeof(float), "1.0"));
+            ret.Add("Gravity Factor", new KeyValuePair<Type, string>(typeof(float), "1.0"));
+            ret.Add("Block Group", new KeyValuePair<Type, string>(typeof(int), "-1"));
             return ret;
         }
     }
