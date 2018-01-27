@@ -10,7 +10,7 @@
                     "Position": {
                         "x": 0,
                         "y": 0,
-                        "z": 0
+                        "z": 3
                     },
                     "Blocks": [
                         {
@@ -453,8 +453,12 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "9.json"
                                 }
                             ]
                         },
@@ -583,7 +587,7 @@
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "3ec5b2ef-94ea-42d9-85d3-f56ae0f5b20b",
+                            "Name": "51641551-4b77-4058-946d-78e5afd0153c",
                             "Palette": "Cathy1 Internal",
                             "Type": "Player Start",
                             "Position": {
