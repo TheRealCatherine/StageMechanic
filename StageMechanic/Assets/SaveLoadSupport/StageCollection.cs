@@ -8,8 +8,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
+using System;
 
 [DataContract(Name="StageCollection")]
+[Serializable]
 public class StageCollection {
 
 	List<StageJsonDelegate> _stages = new List<StageJsonDelegate>();

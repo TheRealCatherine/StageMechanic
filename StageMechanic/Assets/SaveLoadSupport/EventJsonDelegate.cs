@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 
+[Serializable]
 [DataContract(Name="Event")]
 public class EventJsonDelegate {
     public IEvent Event { get; set; }

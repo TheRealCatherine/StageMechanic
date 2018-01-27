@@ -8,7 +8,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
+using System;
 
+[Serializable]
 [DataContract(Name = "Platform")]
 public class PlatformJsonDelegate
 {
