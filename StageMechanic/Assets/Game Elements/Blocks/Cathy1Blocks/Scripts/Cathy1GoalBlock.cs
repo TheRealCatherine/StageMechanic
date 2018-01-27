@@ -36,6 +36,17 @@ public class Cathy1GoalBlock : Cathy1Block
 
         GetComponent<AudioSource>().PlayOneShot(Applause);
 
+        if(Input.anyKey)
+        {
+            if(!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir"))
+            {
+                Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
+                BlockManager.TogglePlayMode();
+                BlockManager.BlocksFromJson(location);
+                BlockManager.TogglePlayMode();
+            }
+        }
+
     }
 
     internal override void Start()
