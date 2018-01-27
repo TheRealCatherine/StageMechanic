@@ -345,7 +345,7 @@ public class BlockManager : MonoBehaviour {
                 blocks.RemoveAt(blocks.Count - 1);
             yield return new WaitForEndOfFrame();
         }*/
-        while (!(State == BlockManagerState.PlayMode || State == BlockManagerState.EditMode))
+        while(!(State == BlockManagerState.PlayMode || State == BlockManagerState.EditMode))
             yield return new WaitForEndOfFrame();
         PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
         PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
