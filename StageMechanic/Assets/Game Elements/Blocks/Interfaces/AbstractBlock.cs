@@ -17,6 +17,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 {
 
 
+    public ParticleSystem EdgeEffect;
+    public float EdgeEffectScale = 1f;
+    public float EdgeEffectDuration = 0.1f;
+
     /// <summary>
     /// Synonym/passthrough for GameObject.name
     /// See <see cref="IBlock.Name"/>
@@ -592,6 +596,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         else
         {
             MotionState = BlockMotionState.Edged;
+            BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration);
             return;
         }
     }
