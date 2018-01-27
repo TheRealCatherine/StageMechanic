@@ -87,6 +87,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
     }
 
+    [SerializeField]
     private Vector3 _epicenterOffset;
     public override Vector3 Epicenter
     {
@@ -97,61 +98,23 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
         set
         {
-            base.Epicenter = value + _epicenterOffset;
+            base.Epicenter = value - _epicenterOffset;
         }
     }
 
-    internal override IEnumerator HandleStep()
+    private void DoExplosion()
     {
-        GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
-        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime, _epicenterOffset);
-        yield return new WaitForSeconds(TriggerTime);
         BlockManager.PlaySound(this, ExplosionSound);
-        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up + _epicenterOffset, radius: 0.25f))
+        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Epicenter + Vector3.up, radius: 0.25f))
         {
             player.TakeDamage(float.PositiveInfinity);
         }
 
-        if(_epicenterOffset == Vector3.zero)
-            gameObject.SetActive(false);
-        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position+_epicenterOffset, DamageRadius.x);
-        foreach (AbstractBlock block in localBlocks)
-        {
-            Cathy1Block c1b = block as Cathy1Block;
-            if(c1b != null && c1b != this && c1b.gameObject.activeInHierarchy)
-            {
-                if (c1b.Type == BlockType.Basic)
-                    BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (2 Steps)");
-                else if (c1b.Type == BlockType.Crack2)
-                    BlockManager.CreateBlockAt(block.Position, "Cathy1 Internal", "Cracked (1 Step)");
-                else if (c1b.Type == BlockType.Crack1)
-                    BlockManager.DestroyBlock(c1b);
-                else if (c1b.Type == BlockType.Bomb1 || c1b.Type == BlockType.Bomb2)
-                    (c1b as Cathy1BombBlock)?.InstantDetonate();
-            }
-        }
-        IsArmed = false;
-        if (_epicenterOffset == Vector3.zero)
-            BlockManager.DestroyBlock(this);
-    }
-
-    public void InstantDetonate()
-    {
-        if (IsTriggered)
-            return;
-        IsTriggered = true;
-        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, 0.1f, _epicenterOffset);
-        BlockManager.PlaySound(this, ExplosionSound);
-        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up + _epicenterOffset, radius: 0.25f))
-        {
-            player.TakeDamage(float.PositiveInfinity);
-        }
         if (_epicenterOffset == Vector3.zero)
             gameObject.SetActive(false);
-        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Position+_epicenterOffset, DamageRadius.x);
+        List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Epicenter, DamageRadius.x);
         foreach (AbstractBlock block in localBlocks)
         {
-            //any immobile block will not be affected
             Cathy1Block c1b = block as Cathy1Block;
             if (c1b != null && c1b != this && c1b.gameObject.activeInHierarchy)
             {
@@ -168,6 +131,24 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         IsArmed = false;
         if (_epicenterOffset == Vector3.zero)
             BlockManager.DestroyBlock(this);
+
+    }
+
+    internal override IEnumerator HandleStep()
+    {
+        GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
+        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime, _epicenterOffset);
+        yield return new WaitForSeconds(TriggerTime);
+        DoExplosion();
+    }
+
+    public void InstantDetonate()
+    {
+        if (IsTriggered)
+            return;
+        IsTriggered = true;
+        BlockManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, 0.1f, _epicenterOffset);
+        DoExplosion();
     }
 
     public override Dictionary<string, KeyValuePair<string, string>> DefaultProperties

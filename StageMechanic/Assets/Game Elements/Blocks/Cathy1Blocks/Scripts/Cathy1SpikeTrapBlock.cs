@@ -31,6 +31,21 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
     public sealed override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
 
+    [SerializeField]
+    private Vector3 _epicenterOffset;
+    public override Vector3 Epicenter
+    {
+        get
+        {
+            return base.Epicenter + _epicenterOffset;
+        }
+
+        set
+        {
+            base.Epicenter = value + _epicenterOffset;
+        }
+    }
+
     internal override IEnumerator HandleStep()
     {
         yield return new WaitForSeconds(TriggerTime);
