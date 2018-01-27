@@ -224,6 +224,11 @@ MonoBehaviour:
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
+  BlockDown: 
+  BlockDownLeft: 
+  BlockDownRight: 
+  BlockDownForward: 
+  BlockDownBack: 
   _physicsEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
@@ -237,6 +242,7 @@ MonoBehaviour:
     type: 2}
   Animation: {fileID: 19800000, guid: b2e1927a9cfbd4c03a114b0166c00dce, type: 2}
   AnimationScale: 1
+  _epicenterOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114716359050219704
 MonoBehaviour:
   m_ObjectHideFlags: 1

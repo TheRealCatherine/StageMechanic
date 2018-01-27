@@ -253,6 +253,11 @@ MonoBehaviour:
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
+  BlockDown: 
+  BlockDownLeft: 
+  BlockDownRight: 
+  BlockDownForward: 
+  BlockDownBack: 
   _physicsEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
@@ -267,6 +272,7 @@ MonoBehaviour:
   ExplosionAnimation: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   ExplosionAnimationScale: 2
   Size: 0
+  _epicenterOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114251962717280258
 MonoBehaviour:
   m_ObjectHideFlags: 1

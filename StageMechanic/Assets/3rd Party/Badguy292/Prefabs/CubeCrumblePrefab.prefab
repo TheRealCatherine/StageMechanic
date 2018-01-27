@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1795694030084258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.412221, y: -1.4393374, z: -6.088134}
+  m_LocalPosition: {x: -1.5825671, y: -1.7000006, z: 0.69717884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4681900576087780}
@@ -172,6 +172,11 @@ MonoBehaviour:
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
+  BlockDown: 
+  BlockDownLeft: 
+  BlockDownRight: 
+  BlockDownForward: 
+  BlockDownBack: 
   _physicsEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}

@@ -26,6 +26,10 @@ GameObject:
   - component: {fileID: 82969689689510290}
   - component: {fileID: 114563137611217402}
   - component: {fileID: 54870067315525390}
+  - component: {fileID: 135870367219169952}
+  - component: {fileID: 135605295347704412}
+  - component: {fileID: 135042053673031070}
+  - component: {fileID: 135579013419168932}
   m_Layer: 0
   m_Name: Cathy1VortexBlockPrefab
   m_TagString: Untagged
@@ -239,8 +243,61 @@ MonoBehaviour:
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
+  BlockDown: 
+  BlockDownLeft: 
+  BlockDownRight: 
+  BlockDownForward: 
+  BlockDownBack: 
   _physicsEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+--- !u!135 &135042053673031070
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056341459242404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: -0.5, y: -0.5, z: 0}
+--- !u!135 &135579013419168932
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056341459242404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0.5, y: -0.5, z: 0}
+--- !u!135 &135605295347704412
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056341459242404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!135 &135870367219169952
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056341459242404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0.5, z: 0}

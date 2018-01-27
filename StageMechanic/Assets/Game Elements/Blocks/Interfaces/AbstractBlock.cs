@@ -329,14 +329,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             yield return null;
         }
         MotionState = BlockMotionState.Unknown;
-        foreach (IBlock block in blocksAbove)
-        {
-            if (!(block as AbstractBlock))
-                continue;
-            (block as AbstractBlock).UpdateNeighborsCache();
-            (block as AbstractBlock).MotionState = BlockMotionState.Unknown;
-            (block as AbstractBlock).SetStateBySupport();
-        }
         UpdateNeighborsCache();
         SetStateBySupport();
     }
@@ -359,6 +351,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     internal virtual void Start()
     {
+        /*SphereCollider topSphere = gameObject.AddComponent<SphereCollider>();
+        topSphere.isTrigger = true;
+        topSphere.transform.position = new Vector3(0, 0.8f, 0f);
+        topSphere.radius = 0.55f;
+
+        SphereCollider bottomSphere = gameObject.AddComponent<SphereCollider>();
+        bottomSphere.isTrigger = true;
+        bottomSphere.transform.position = new Vector3(0, 0.8f, 0f);
+        bottomSphere.radius = 0.55f;*/
+
         //TODO: don't make assumptions about the floor
         if (Position.y == 1f)
         {
@@ -402,9 +404,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         Profiler.BeginSample("Updating block neighbor cache");
         HardUpdateBlocksAbove();
         HardUpdateBlocksBelow();
-#if UNITY_EDITOR
         UpdateNeighborCounts();
-#endif
         Profiler.EndSample();
     }
 
@@ -425,19 +425,19 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     protected void HardUpdateBlocksAbove()
     {
         blocksAbove[UP] = BlockManager.GetBlockNear(Position + Vector3.up);
-        blocksAbove[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.forward);
-        blocksAbove[BACK] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.back);
-        blocksAbove[LEFT] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.left);
-        blocksAbove[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.up + Vector3.right);
+        blocksAbove[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f,0f,0.7f));
+        blocksAbove[BACK] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, -0.7f));
+        blocksAbove[LEFT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(-0.7f, 0f, 0f));
+        blocksAbove[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0.7f, 0f, 0f));
     }
 
     protected void HardUpdateBlocksBelow()
     {
         blocksBelow[DOWN] = BlockManager.GetBlockNear(Position + Vector3.down);
-        blocksBelow[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.forward);
-        blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.back);
-        blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.left);
-        blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + Vector3.right);
+        blocksBelow[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, 0.7f));
+        blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, -0.7f));
+        blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(-0.7f, 0f, 0f));
+        blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0.7f, 0f, 0f));
 #if UNITY_EDITOR
         BlockDown = blocksBelow[DOWN]?.Name;
         BlockDownBack = blocksBelow[BACK]?.Name;
@@ -447,7 +447,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 #endif
     }
 
-#if UNITY_EDITOR
     public void UpdateNeighborCounts()
     {
         BelowCount = 0;
@@ -462,8 +461,21 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             if (support != null)
                 ++AboveCount;
         }
+        if(Selection.activeGameObject == this.gameObject)
+            Debug.Log("Updated counts: v:" + BelowCount+" ^:" + AboveCount);
     }
-#endif
+
+    public int NumberOfActualSupporters()
+    {
+        int ret = 0;
+        foreach (IBlock support in blocksBelow)
+        {
+            AbstractBlock block = support as AbstractBlock;
+            if (support != null && (support.MotionState == BlockMotionState.Edged || support.MotionState == BlockMotionState.Grounded))
+                ++ret;
+        }
+        return ret;
+    }
 
     [SerializeField]
     bool _physicsEnabled = false;
@@ -572,10 +584,43 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         Profiler.EndSample(); //Collision exit
     }
 
-    //public void OnCollisionStay(Collision collision)
-    //{
-        //TODO is there any efficient way to have this call a player movment event? :-O
-    //}
+
+    internal IEnumerator EstablishCurrentState()
+    {
+        if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
+            yield break;
+        BlockMotionState oldState = MotionState;
+        UpdateNeighborsCache();
+        MotionState = BlockMotionState.Unknown;
+
+        //If there is nothing below us we can dip out quick
+        if (BelowCount==0 || NumberOfActualSupporters()==0)
+        {
+            if (oldState == BlockMotionState.Hovering)
+                MotionState = BlockMotionState.Falling;
+            else if (oldState != BlockMotionState.Falling)
+                MotionState = BlockMotionState.Hovering;
+            yield break;
+        }
+
+        //If we are resting on the floor
+        if(Position.y == 1 && oldState != BlockMotionState.Falling)
+        {
+            MotionState = BlockMotionState.Grounded;
+            yield break;
+        }
+
+        if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Edged || blocksBelow[DOWN].MotionState == BlockMotionState.Grounded))
+        {
+            MotionState = BlockMotionState.Grounded;
+            yield break;
+        }
+        else
+        {
+            MotionState = BlockMotionState.Edged;
+            yield break;
+        }
+    }
 
     bool _startHoverOnPlay = false;
     internal void SetStateBySupport()
@@ -663,6 +708,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             SetStateBySupport();
             _secondLoop = true;
         }
+        else
+            _secondLoop = false;
         yield return new WaitForEndOfFrame();
         GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
         transform.Rotate(0f, 0f, .5f);
