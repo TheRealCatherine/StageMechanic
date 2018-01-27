@@ -288,7 +288,7 @@ public class BlockManager : MonoBehaviour {
     {
         if (_startState != null && _startState.Length != 0)
         {
-            Instance.Clear();
+            Instance.StartCoroutine(Instance.Clear());
             Instance.BlocksFromJson(_startState);
         }
     }
@@ -668,7 +668,7 @@ public class BlockManager : MonoBehaviour {
     public IEnumerator HandleLoad( Stream stream, bool clearFirst = true )
     {
         if(clearFirst) { 
-        Clear();
+        StartCoroutine(Clear());
         while (State == BlockManagerState.Clearing)
             yield return new WaitForEndOfFrame();
         }
