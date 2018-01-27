@@ -596,7 +596,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         else
         {
             MotionState = BlockMotionState.Edged;
-            BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration);
+            if (EdgeEffect != null && oldState == BlockMotionState.Falling)
+            {
+                if(blocksBelow[LEFT] != null)
+                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration, new Vector3(-0.5f, -0.5f, -1f));
+                if (blocksBelow[RIGHT] != null)
+                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration, new Vector3(0.5f, -0.5f, -1f),Quaternion.Euler(0f,180f,0f));
+                //TODO get this on edged sides
+            }
             return;
         }
     }

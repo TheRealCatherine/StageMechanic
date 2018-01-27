@@ -14,6 +14,39 @@
                     },
                     "Blocks": [
                         {
+                            "Name": "9e07f2e7-903a-49cf-a24d-d6bb1875f79f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "d3b23afc-467e-4631-9d24-54809aba7d0c",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "c2f4d65f-3401-4d95-bc03-6b85d1df07cc",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 3,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
                             "Name": "1c9453cc-b28a-493a-8453-4f61a17683a4",
                             "Palette": "Cathy1 Internal",
                             "Type": "Basic",
@@ -2869,6 +2902,10 @@
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "2-1.json"
                                 }
                             ]
                         },
@@ -3015,7 +3052,7 @@
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "3673dbe7-e17c-4d3f-9bc0-461e672f877c",
+                            "Name": "3fb12131-1ff2-4021-9159-f8c47df8e66f",
                             "Palette": "Cathy1 Internal",
                             "Type": "Player Start",
                             "Position": {
