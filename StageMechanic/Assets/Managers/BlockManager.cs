@@ -306,7 +306,7 @@ public class BlockManager : MonoBehaviour {
             _undoPlayerState.RemoveAt(0);
             _undoPlatformPosition.RemoveAt(0);
         }
-        _undos.Add(Instance.BlocksToPrettyJson());
+        _undos.Add(Instance.BlocksToCondensedJson());
         _undoPlayerPos.Add(PlayerManager.Player1Location());
         _undoPlayerFacing.Add(PlayerManager.Player1FacingDirection());
         _undoPlayerState.Add(PlayerManager.PlayerState());
@@ -338,13 +338,15 @@ public class BlockManager : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator UndoCleanup()
     {
-        List<AbstractBlock> blocks = BlockManager.Instance.GetComponentsInChildren<AbstractBlock>().ToList<AbstractBlock>();
-        while (blocks.Count > 0)
+        //List<AbstractBlock> blocks = BlockManager.Instance.GetComponentsInChildren<AbstractBlock>().ToList<AbstractBlock>();
+        /*while (blocks.Count > 0)
         {
             while (blocks.Count>0 && blocks[blocks.Count - 1].MotionState != BlockMotionState.Unknown)
                 blocks.RemoveAt(blocks.Count - 1);
             yield return new WaitForEndOfFrame();
-        }
+        }*/
+        while (!(State == BlockManagerState.PlayMode || State == BlockManagerState.EditMode))
+            yield return new WaitForEndOfFrame();
         PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
         PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
         PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
@@ -436,7 +438,7 @@ public class BlockManager : MonoBehaviour {
         return blocks;
     }
 
-    public void Clear()
+    public IEnumerator Clear()
     {
         BlockManagerState oldState = State;
         State = BlockManagerState.Clearing;
@@ -458,7 +460,10 @@ public class BlockManager : MonoBehaviour {
         blockToGroupMapping.Clear();
         PlayerManager.Clear();
         EventManager.Clear();
+        ClearUndoStates();
         Cursor.transform.position = new Vector3(0f, 1f, 0f);
+        while (ActiveFloor.GetComponentsInChildren<IBlock>().Length > 0)
+            yield return new WaitForEndOfFrame();
         State = oldState;
         LogController.Log("Stage Data Cleared");
     }
@@ -653,40 +658,44 @@ public class BlockManager : MonoBehaviour {
 	}
 
 	public void BlocksFromJson( Uri path ) {
-        Clear();
-        ClearUndoStates();
-        BlockManagerState oldState = State;
-        State = BlockManagerState.Loading;
         LogController.Log ("Loading from " + path.ToString ());
 		StageCollection deserializedCollection = new StageCollection(this);
 		WebClient webClient = new WebClient();
-		Stream fs = webClient.OpenRead(path);  
-		DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());  
-		deserializedCollection = ser.ReadObject(fs) as StageCollection;  
-		fs.Close();
+		Stream fs = webClient.OpenRead(path);
+        StartCoroutine(HandleLoad(fs));
+    }
+
+    public IEnumerator HandleLoad( Stream stream, bool clearFirst = true )
+    {
+        if(clearFirst) { 
+        Clear();
+        while (State == BlockManagerState.Clearing)
+            yield return new WaitForEndOfFrame();
+        }
+        BlockManagerState oldState = State;
+        State = BlockManagerState.Loading;
+        StageCollection deserializedCollection = new StageCollection(this);
+        DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());
+        deserializedCollection = ser.ReadObject(stream) as StageCollection;
+        stream.Close();
         LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
         State = oldState;
         RecordStartState();
-        if (PlayerPrefs.GetInt("AutoPlayOnLoad",0) == 1)
+        if (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
         {
             if (!PlayMode)
                 TogglePlayMode();
         }
-       // SortChildren(this.gameObject);
     }
 
     public void BlocksFromJson( string json )
     {
-        //note: this one doesn't clear like the other one... maybe fix this
         MemoryStream stream = new MemoryStream();
         StreamWriter writer = new StreamWriter(stream);
         writer.Write(json);
         writer.Flush();
         stream.Position = 0;
-        StageCollection deserializedCollection = new StageCollection(this);
-        DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());
-        deserializedCollection = ser.ReadObject(stream) as StageCollection;
-        stream.Close();
+        StartCoroutine(HandleLoad(stream, false));
     }
 
 	// Saves a file with the textToSave using a path
