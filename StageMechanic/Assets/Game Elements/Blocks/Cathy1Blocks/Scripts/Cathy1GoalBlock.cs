@@ -16,74 +16,66 @@ public class Cathy1GoalBlock : Cathy1Block
     public string NextStageFilename;
     public string NextStageStartPos;
 
-    private enum State
-    {
-        NoPlayer = 0,
-        PlayerEnter,
-        PlayerStand,
-        PlayerLeave
-    }
-
-    private State CurrentState = State.NoPlayer;
-
     public sealed override BlockType Type { get; } = BlockType.Goal;
 
-    private IEnumerator HandleStep()
+    public override void Awake()
     {
-        CurrentState = State.PlayerEnter;
-        yield return new WaitForEndOfFrame();
-        CurrentState = State.PlayerStand;
-
-        GetComponent<AudioSource>().PlayOneShot(Applause);
-
-        if(Input.anyKey)
-        {
-            if(!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir"))
-            {
-                Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
-                BlockManager.TogglePlayMode();
-                BlockManager.BlocksFromJson(location);
-                BlockManager.TogglePlayMode();
-            }
-        }
-
-    }
-
-    internal override void Start()
-    {
-        base.Start();
+        base.Awake();
         //Make block immobile
         WeightFactor = 0f;
     }
 
-    internal override void Update()
+    bool _hasPlayedSound = false;
+    virtual internal void HandlePlayer(PlayerMovementEvent ev)
     {
-        base.Update();
-        List<Collider> crossColiders = new List<Collider>(Physics.OverlapBox(transform.position + new Vector3(0f, 0.75f, 0f), new Vector3(0.1f, 0.1f, 0.75f)));
-        foreach (Collider col in crossColiders)
+        if (ev.Location != PlayerMovementEvent.EventLocation.Top)
+            return;
+        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
+        if (statename == "Idle" || statename == "Walk" || statename == "Center")
         {
-            if (col.gameObject == gameObject)
-                continue;
-           IBlock otherBlock = col.gameObject.GetComponent<IBlock>();
-            if (otherBlock != null)
-                continue;
-            Cathy1PlayerCharacter player = col.gameObject.GetComponent<Cathy1PlayerCharacter>();
-            if (player != null)
+            if (!_hasPlayedSound)
             {
-                if (CurrentState == State.PlayerStand)
-                    continue;
-                else if (CurrentState == State.NoPlayer)
-                    StartCoroutine(HandleStep());
-
-            }
-            else
-            {
-                CurrentState = State.NoPlayer;
+                GetComponent<AudioSource>().PlayOneShot(Applause);
+                _hasPlayedSound = true;
             }
 
+            if (Input.anyKey)
+            {
+                if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir"))
+                {
+                    Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
+                    Debug.Log("loading " + location.ToString());
+                    BlockManager.TogglePlayMode();
+                    BlockManager.BlocksFromJson(location);
+                    BlockManager.TogglePlayMode();
+                }
+                else if(string.IsNullOrWhiteSpace(NextStageFilename)) {
+                    Debug.Log("No next level specified");
+                }
+                else if(!PlayerPrefs.HasKey("LastLoadDir"))
+                {
+                    Debug.Log("Unknown file location");
+                }
+            }
         }
-        if (crossColiders.Count == 0)
-            CurrentState = State.NoPlayer;
+    }
+
+    protected override void OnPlayerEnter(PlayerMovementEvent ev)
+    {
+        base.OnPlayerEnter(ev);
+        HandlePlayer(ev);
+    }
+
+    protected override void OnPlayerStay(PlayerMovementEvent ev)
+    {
+        base.OnPlayerStay(ev);
+        HandlePlayer(ev);
+    }
+
+    protected override void OnPlayerLeave(PlayerMovementEvent ev)
+    {
+        base.OnPlayerLeave(ev);
+        _hasPlayedSound = false;
     }
 
     public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
