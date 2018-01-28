@@ -16,11 +16,11 @@ using UnityEngine.Profiling;
 public abstract class AbstractBlock : MonoBehaviour, IBlock
 {
 
-
     public ParticleSystem EdgeEffect;
     public float EdgeEffectScale = 1f;
     public float EdgeEffectDuration = 0.1f;
 
+    #region Interface property implementations
     /// <summary>
     /// Synonym/passthrough for GameObject.name
     /// See <see cref="IBlock.Name"/>
@@ -281,7 +281,68 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     {
         return new BlockJsonDelegate(this);
     }
+    #endregion
 
+    #region constructors/destructors
+    /// <summary>
+    /// Sets the name to a random GUID
+    /// Called when this object is created in the scene. If overriding
+    /// you may wish to call this base class in order to have the name
+    /// set to a random GUID.
+    /// </summary>
+    public virtual void Awake()
+    {
+        name = System.Guid.NewGuid().ToString();
+        PhysicsEnabled = false;
+        while (blocksAbove.Count < 5)
+            blocksAbove.Add(null);
+        while (blocksBelow.Count < 5)
+            blocksBelow.Add(null);
+    }
+
+    internal virtual void Start()
+    {
+        /*SphereCollider topSphere = gameObject.AddComponent<SphereCollider>();
+        topSphere.isTrigger = true;
+        topSphere.transform.position = new Vector3(0, 0.8f, 0f);
+        topSphere.radius = 0.55f;
+
+        SphereCollider bottomSphere = gameObject.AddComponent<SphereCollider>();
+        bottomSphere.isTrigger = true;
+        bottomSphere.transform.position = new Vector3(0, 0.8f, 0f);
+        bottomSphere.radius = 0.55f;*/
+
+        //TODO: don't make assumptions about the floor
+        if (Position.y == 1f)
+        {
+            MotionState = BlockMotionState.Grounded;
+            PhysicsEnabled = false;
+        }
+        UpdateNeighborsCache();
+    }
+
+
+    private void OnDisable()
+    {
+        if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
+            UpdateAllNeighborsCaches();
+    }
+
+    private void OnDestroy()
+    {
+    }
+    #endregion
+
+    #region update functions
+    internal virtual void Update()
+    {
+        //I think we can get away with doing this in update which seems to help performance but
+        //it needs to be tested still, maybe move to FixedUpdate
+        UpdatePhysics();
+    }
+    #endregion
+
+    #region push/pull movement
     public virtual bool CanBeMoved(Vector3 direction, int distance = 1)
     {
         if (WeightFactor == 0)
@@ -336,55 +397,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         UpdateNeighborsCache();
         UpdatePhysics();
     }
+    #endregion
 
-    /// <summary>
-    /// Sets the name to a random GUID
-    /// Called when this object is created in the scene. If overriding
-    /// you may wish to call this base class in order to have the name
-    /// set to a random GUID.
-    /// </summary>
-    public virtual void Awake()
-    {
-        name = System.Guid.NewGuid().ToString();
-        PhysicsEnabled = false;
-        while (blocksAbove.Count < 5)
-            blocksAbove.Add(null);
-        while (blocksBelow.Count < 5)
-            blocksBelow.Add(null);
-    }
-
-    internal virtual void Start()
-    {
-        /*SphereCollider topSphere = gameObject.AddComponent<SphereCollider>();
-        topSphere.isTrigger = true;
-        topSphere.transform.position = new Vector3(0, 0.8f, 0f);
-        topSphere.radius = 0.55f;
-
-        SphereCollider bottomSphere = gameObject.AddComponent<SphereCollider>();
-        bottomSphere.isTrigger = true;
-        bottomSphere.transform.position = new Vector3(0, 0.8f, 0f);
-        bottomSphere.radius = 0.55f;*/
-
-        //TODO: don't make assumptions about the floor
-        if (Position.y == 1f)
-        {
-            MotionState = BlockMotionState.Grounded;
-            PhysicsEnabled = false;
-        }
-        UpdateNeighborsCache();
-    }
-
-
-    private void OnDisable()
-    {
-        if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
-            UpdateAllNeighborsCaches();
-    }
-
-    private void OnDestroy()
-    {
-    }
-
+    #region neighbor caching
     internal List<IBlock> blocksBelow = new List<IBlock>(5);
     internal List<IBlock> blocksAbove = new List<IBlock>(5);
     internal const int DOWN = 0;
@@ -478,50 +493,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         return ret;
     }
+    #endregion
 
-    [SerializeField]
-    bool _physicsEnabled = false;
-    bool _physicsDirty = false;
-    public virtual bool PhysicsEnabled
-    {
-        get
-        {
-            return _physicsEnabled;
-        }
-        set
-        {
-            if (value == _physicsEnabled && !_physicsDirty)
-                return;
-            Profiler.BeginSample("Changing physics state");
-            UpdateNeighborsCache();
-            if (value)
-            {
-                GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ);
-                GetComponent<Rigidbody>().useGravity = true;
-                _physicsEnabled = true;
-                _physicsDirty = false;
-            }
-            else
-            {
-                transform.position = Utility.Round(Position, 0);
-                transform.rotation = Quaternion.identity;
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                GetComponent<Rigidbody>().useGravity = false;
-                _physicsEnabled = false;
-                _physicsDirty = false;
-
-                //Probably not needed
-                /*UpdateAllNeighborsCaches();
-                 foreach (IBlock edge in blocksAbove)
-                 {
-                     (edge as AbstractBlock)?.SetStateBySupport();
-                 }
-                 UpdateNeighborsCache();*/
-            }
-            Profiler.EndSample();
-        }
-    }
-
+    #region colliders and triggers
     public void OnCollisionEnter(Collision collision)
     {
         IBlock otherBlock = collision.gameObject.GetComponent<IBlock>();
@@ -554,8 +528,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
         Profiler.EndSample(); //Collision exit
     }
+    #endregion
 
-
+    #region gravity movement
     internal void EstablishCurrentState()
     {
         Profiler.BeginSample("Determining current state");
@@ -616,6 +591,42 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         Profiler.EndSample(); //Supported
         Profiler.EndSample(); //Determining current state
     }
+
+    [SerializeField]
+    bool _physicsEnabled = false;
+    bool _physicsDirty = false;
+    public virtual bool PhysicsEnabled
+    {
+        get
+        {
+            return _physicsEnabled;
+        }
+        set
+        {
+            if (value == _physicsEnabled && !_physicsDirty)
+                return;
+            Profiler.BeginSample("Changing physics state");
+            UpdateNeighborsCache();
+            if (value)
+            {
+                GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ);
+                GetComponent<Rigidbody>().useGravity = true;
+                _physicsEnabled = true;
+                _physicsDirty = false;
+            }
+            else
+            {
+                transform.position = Utility.Round(Position, 0);
+                transform.rotation = Quaternion.identity;
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                GetComponent<Rigidbody>().useGravity = false;
+                _physicsEnabled = false;
+                _physicsDirty = false;
+            }
+            Profiler.EndSample();
+        }
+    }
+
 
     bool _startedHover = false;
     internal void UpdatePhysics()
@@ -682,20 +693,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         _startedHover = false;
         MotionState = BlockMotionState.Falling;
     }
-
-    internal virtual void Update()
-    {
-        //I think we can get away with doing this in update which seems to help performance but
-        //it needs to be tested still, maybe move to FixedUpdate
-        UpdatePhysics();
-    }
-
-    internal virtual void FixedUpdate()
-    {
-        //SetStateBySupport();
-    }
+    #endregion
 
 
+    #region Player movement event handling
     public virtual void OnPlayerMovement(IPlayerCharacter player, PlayerMovementEvent.EventType type)
     {
         Debug.Assert(player != null);
@@ -738,7 +739,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     protected virtual void OnPlayerLeave(PlayerMovementEvent ev) { }
     protected virtual void OnPlayerStay(PlayerMovementEvent ev) { }
     protected virtual void OnPlayerUnknownMotion(PlayerMovementEvent ev) { }
+    #endregion
 
+    #region input handling
     float period = 0.0f;
     const float throttle = 0.1f;
     internal virtual void OnMouseOver()
@@ -760,4 +763,5 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 #endif
         }
     }
+    #endregion
 }
