@@ -293,7 +293,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     public virtual void Awake()
     {
         name = System.Guid.NewGuid().ToString();
-        PhysicsEnabled = false;
+        GravityEnabled = false;
         while (blocksAbove.Count < 5)
             blocksAbove.Add(null);
         while (blocksBelow.Count < 5)
@@ -316,7 +316,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         if (Position.y == 1f)
         {
             MotionState = BlockMotionState.Grounded;
-            PhysicsEnabled = false;
+            GravityEnabled = false;
         }
         UpdateNeighborsCache();
     }
@@ -338,7 +338,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     {
         //I think we can get away with doing this in update which seems to help performance but
         //it needs to be tested still, maybe move to FixedUpdate
-        UpdatePhysics();
+        SetGravityEnabledByMotionState();
     }
     #endregion
 
@@ -395,7 +395,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         MotionState = BlockMotionState.Unknown;
         UpdateNeighborsCache();
-        UpdatePhysics();
+        SetGravityEnabledByMotionState();
     }
     #endregion
 
@@ -531,13 +531,27 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     #endregion
 
     #region gravity movement
-    internal void EstablishCurrentState()
+    /// <summary>
+    /// Sets this blocks current IBlock.MotionState based on the precense or absence of
+    /// supporting blocks. Note that this method _only_ sets the IBlock.MotionState
+    /// property and does not actual activate gravity or other such actions.
+    /// </summary>
+    internal void SetMotionStateBySupport()
     {
-        Profiler.BeginSample("Determining current state");
+        //If we are currently in motion then we can wait - the move() methods will call this
+        //again once they are finished.
         if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
             return;
+
+        //We might be able to move this down within the method - at least for now this is
+        //very uncommon
+        if (GravityFactor == 0f)
+        {
+            MotionState = BlockMotionState.Grounded;
+            return;
+        }
+
         BlockMotionState oldState = MotionState;
-        //UpdateNeighborsCache();
         MotionState = BlockMotionState.Unknown;
 
         Profiler.BeginSample("On the floor");
@@ -589,21 +603,29 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             Profiler.EndSample(); //Edged
         }
         Profiler.EndSample(); //Supported
-        Profiler.EndSample(); //Determining current state
     }
 
     [SerializeField]
-    bool _physicsEnabled = false;
-    bool _physicsDirty = false;
-    public virtual bool PhysicsEnabled
+    bool _gravityEnabled = false;
+    bool _gravityDirty = false;
+    /// <summary>
+    /// When true the block's RigidBody component will be set to allow this block to be affected by gravity otherwise gravity is
+    /// off and the RigidBody's constraints are set. When we eventually change to physics-based block pushing this will need
+    /// to be refactored. Note that unless _gravityDirty has been set to true setting this property multiple times to the same
+    /// value will not produce any calls to the underlying RigidBody.
+    /// </summary>
+    public virtual bool GravityEnabled
     {
         get
         {
-            return _physicsEnabled;
+            return _gravityEnabled;
         }
         set
         {
-            if (value == _physicsEnabled && !_physicsDirty)
+            if (!BlockManager.PlayMode)
+                value = false;
+
+            if (value == _gravityEnabled && !_gravityDirty)
                 return;
             Profiler.BeginSample("Changing physics state");
             UpdateNeighborsCache();
@@ -611,8 +633,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             {
                 GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ);
                 GetComponent<Rigidbody>().useGravity = true;
-                _physicsEnabled = true;
-                _physicsDirty = false;
+                _gravityEnabled = true;
+                _gravityDirty = false;
             }
             else
             {
@@ -620,8 +642,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 transform.rotation = Quaternion.identity;
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 GetComponent<Rigidbody>().useGravity = false;
-                _physicsEnabled = false;
-                _physicsDirty = false;
+                _gravityEnabled = false;
+                _gravityDirty = false;
             }
             Profiler.EndSample();
         }
@@ -629,16 +651,21 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
 
     bool _startedHover = false;
-    internal void UpdatePhysics()
+    /// <summary>
+    /// This method first calls AbstractBlock.SetMotionStateBySupport() to update this block's
+    /// motion state, then enables or disables gravity using AbstractBlock.GravityEnabled based
+    /// on the new motion state.
+    /// </summary>
+    internal void SetGravityEnabledByMotionState()
     {
-        EstablishCurrentState();
+        SetMotionStateBySupport();
         if (MotionState == BlockMotionState.Edged || MotionState == BlockMotionState.Grounded)
         {
-            PhysicsEnabled = false;
+            GravityEnabled = false;
         }
         else if (MotionState == BlockMotionState.Falling)
         {
-            PhysicsEnabled = true;
+            GravityEnabled = true;
         }
         else if (MotionState == BlockMotionState.Hovering)
         {
@@ -651,20 +678,27 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                     if (neighbor != null)
                     {
                         (neighbor as AbstractBlock).UpdateNeighborsCache();
-                        (neighbor as AbstractBlock).UpdatePhysics();
+                        (neighbor as AbstractBlock).SetGravityEnabledByMotionState();
                     }
                 }
             }
         }
     }
 
-    public IEnumerator DoHoverAnimation()
+    /// <summary>
+    /// Coroutine for wobbling the block prior to falling. If the block's MotionState changes
+    /// during this animation the wobbling will stop and _gravityDirty will be set to true
+    /// so that GravityEnabled will ensure proper settings the next time it is set.
+    /// </summary>
+    /// <returns></returns>
+    /// TODO: Don't hardcode the length of hover
+    private IEnumerator DoHoverAnimation()
     {
         yield return new WaitForEndOfFrame();
         if (MotionState != BlockMotionState.Hovering)
         {
             _startedHover = false;
-            _physicsDirty = true;
+            _gravityDirty = true;
             yield break;
         }
         GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
@@ -680,14 +714,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         if (MotionState != BlockMotionState.Hovering)
         {
             _startedHover = false;
-            _physicsDirty = true;
+            _gravityDirty = true;
             yield break;
         }
         yield return new WaitForSeconds(0.6f);
         if (MotionState != BlockMotionState.Hovering)
         {
             _startedHover = false;
-            _physicsDirty = true;
+            _gravityDirty = true;
             yield break;
         }
         _startedHover = false;

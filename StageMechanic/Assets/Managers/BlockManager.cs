@@ -257,7 +257,7 @@ public class BlockManager : MonoBehaviour {
         {
             block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             block.Rotation = Quaternion.identity;
-            (block as AbstractBlock).UpdatePhysics();
+            (block as AbstractBlock).SetGravityEnabledByMotionState();
         }
         yield return new WaitForEndOfFrame();
     }

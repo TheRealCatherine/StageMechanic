@@ -100,7 +100,7 @@ public interface IBlock
         set;
     }
 
-    bool PhysicsEnabled
+    bool GravityEnabled
     {
         get;
         set;
