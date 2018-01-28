@@ -71,7 +71,7 @@ public class MainMenu : MonoBehaviour {
         gameObject.SetActive(false);
         if(BlockManager.PlayMode)
             BlockManager.Instance.TogglePlayMode();
-        BlockManager.Instance.Clear();
+        BlockManager.Instance.StartCoroutine(BlockManager.Instance.Clear());
     }
 
     void OnQuitClicked()
