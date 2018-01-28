@@ -695,6 +695,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     private IEnumerator DoHoverAnimation()
     {
         yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        UpdateNeighborsCache();
+        SetGravityEnabledByMotionState();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         if (MotionState != BlockMotionState.Hovering)
         {
             _startedHover = false;
@@ -717,7 +722,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             _gravityDirty = true;
             yield break;
         }
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.5f);
         if (MotionState != BlockMotionState.Hovering)
         {
             _startedHover = false;
