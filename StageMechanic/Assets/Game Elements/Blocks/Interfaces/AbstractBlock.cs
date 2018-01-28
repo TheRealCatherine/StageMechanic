@@ -558,12 +558,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     internal void EstablishCurrentState()
     {
+        Profiler.BeginSample("Determining current state");
         if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
             return;
         BlockMotionState oldState = MotionState;
         //UpdateNeighborsCache();
         MotionState = BlockMotionState.Unknown;
 
+        Profiler.BeginSample("On the floor");
         //If we are resting on the floor
         if (Position.y == 1)
         {
@@ -577,7 +579,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 BlockManager.DestroyBlock(this);
             }
         }
+        Profiler.EndSample(); //On the floor
 
+        Profiler.BeginSample("No supporters");
         //If there is nothing below us we can dip out quick
         if (BelowCount == 0 || NumberOfActualSupporters() == 0)
         {
@@ -587,7 +591,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 MotionState = BlockMotionState.Falling;
             return;
         }
+        Profiler.EndSample(); //No supporters
 
+        Profiler.BeginSample("Supported");
         if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Edged || blocksBelow[DOWN].MotionState == BlockMotionState.Grounded))
         {
             MotionState = BlockMotionState.Grounded;
@@ -595,8 +601,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
         else
         {
+            Profiler.BeginSample("Edged");
             MotionState = BlockMotionState.Edged;
-            if (EdgeEffect != null && oldState == BlockMotionState.Falling)
+            if (oldState == BlockMotionState.Falling && EdgeEffect != null)
             {
                 if(blocksBelow[LEFT] != null)
                     BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration, new Vector3(-0.5f, -0.5f, -1f));
@@ -604,8 +611,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                     BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration, new Vector3(0.5f, -0.5f, -1f),Quaternion.Euler(0f,180f,0f));
                 //TODO get this on edged sides
             }
-            return;
+            Profiler.EndSample(); //Edged
         }
+        Profiler.EndSample(); //Supported
+        Profiler.EndSample(); //Determining current state
     }
 
     bool _startedHover = false;
