@@ -161,7 +161,7 @@ public class InputManager : MonoBehaviour
         // Clear all blocks
         else if (Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
         {
-            BlockManager.Instance.Clear();
+            BlockManager.Instance.StartCoroutine(BlockManager.Instance.Clear());
             return true;
         }
 
