@@ -23,6 +23,23 @@ using UnityEngine;
 [System.Serializable]
 public class BlockManager : MonoBehaviour {
 
+    public struct UndoState
+    {
+        public enum DataType
+        {
+            Unknown = 0,
+            Json,
+            Binary
+        }
+
+        public MemoryStream BlockState;
+        public DataType Type;
+        public Vector3 PlayerPosition;
+        public Vector3 PlayerFacingDirection;
+        public int PlayerStateIndex;
+        public float PlatformYPosition;
+    }
+
     public enum BlockManagerState
     {
         Initializing,
@@ -266,21 +283,13 @@ public class BlockManager : MonoBehaviour {
         yield return new WaitForEndOfFrame();
     }
 
+    private static List<UndoState> _undoStates = new List<UndoState>();
     private static string _startState;
     private static string _lastCheckpointState;
-    private static List<MemoryStream> _undos = new List<MemoryStream>();
-    private static List<Vector3> _undoPlayerPos = new List<Vector3>();
-    private static List<Vector3> _undoPlayerFacing = new List<Vector3>();
-    private static List<int> _undoPlayerState = new List<int>();
-    private static List<float> _undoPlatformPosition = new List<float>();
 
     public static void ClearUndoStates()
     {
-        _undos.Clear();
-        _undoPlayerPos.Clear();
-        _undoPlayerFacing.Clear();
-        _undoPlayerState.Clear();
-        _undoPlatformPosition.Clear();
+        _undoStates.Clear();
     }
 
     public static void RecordStartState()
@@ -301,22 +310,21 @@ public class BlockManager : MonoBehaviour {
     {
         if (!Instance.UndoEnabled)
             return;
-        Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
         try
         {
-            if (_undos.Count > Instance.MaxUndoLevels)
+            if (_undoStates.Count > Instance.MaxUndoLevels)
             {
-                _undos.RemoveAt(0);
-                _undoPlayerPos.RemoveAt(0);
-                _undoPlayerFacing.RemoveAt(0);
-                _undoPlayerState.RemoveAt(0);
-                _undoPlatformPosition.RemoveAt(0);
+                _undoStates.RemoveAt(0);
             }
-            _undos.Add(Instance.BlocksToCondensedJsonStream());
-            _undoPlayerPos.Add(PlayerManager.Player1Location());
-            _undoPlayerFacing.Add(PlayerManager.Player1FacingDirection());
-            _undoPlayerState.Add(PlayerManager.PlayerState());
-            _undoPlatformPosition.Add(ActiveFloor.transform.position.y);
+            UndoState state = new UndoState();
+            state.BlockState = Instance.BlocksToCondensedJsonStream();
+            state.Type = UndoState.DataType.Json;
+            state.PlayerPosition = PlayerManager.Player1Location();
+            state.PlayerFacingDirection = PlayerManager.Player1FacingDirection();
+            state.PlayerStateIndex = PlayerManager.PlayerState();
+            state.PlatformYPosition = ActiveFloor.transform.position.y;
+
+            _undoStates.Add(state);
         }
         catch(Exception e)
         {
@@ -324,27 +332,23 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    public static int AvailableUndoCount { get { if (!Instance.UndoEnabled) return 0; return _undos.Count; } }
+    public static int AvailableUndoCount { get { if (!Instance.UndoEnabled) return 0; return _undoStates.Count; } }
 
     public static void Undo()
     {
         if (!Instance.UndoEnabled)
             return;
-        Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
-        if (_undos.Count > 0)
+        if (_undoStates.Count > 0)
         {
             Instance.ClearForUndo();
             PlayerManager.HideAllPlayers();
-            ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
-            Instance.BlocksFromJsonStream(_undos[_undos.Count - 1]);
-            PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
-            PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
-            PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
-            _undos.RemoveAt(_undos.Count - 1);
-            _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
-            _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
-            _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
-            _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
+            UndoState state = _undoStates[_undoStates.Count - 1];
+            ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);
+            Instance.BlocksFromJsonStream(state.BlockState);
+            PlayerManager.SetPlayer1State(state.PlayerStateIndex);
+            PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
+            PlayerManager.SetPlayer1Location(state.PlayerPosition);
+            _undoStates.RemoveAt(_undoStates.Count - 1);
             PlayerManager.ShowAllPlayers();
             LogController.Log("Undo");
         }
