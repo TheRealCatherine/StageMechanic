@@ -16,6 +16,8 @@ using UnityEngine.Profiling;
 public abstract class AbstractBlock : MonoBehaviour, IBlock
 {
 
+    const float PUSH_PULL_MOVE_TIME_BASE = 0.25f;
+
     public ParticleSystem EdgeEffect;
     public float EdgeEffectScale = 1f;
     public float EdgeEffectDuration = 0.1f;
@@ -377,22 +379,26 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         IBlock neighbor = BlockManager.GetBlockAt(Position + direction);
         if (neighbor != null)
             BlockManager.Move(neighbor, direction, distance);
-        StartCoroutine(AnimateMove(Position, Position + direction, 0.2f * MoveWeight(direction, distance)));
+        StartCoroutine(AnimateMove(Position, Position + direction, PUSH_PULL_MOVE_TIME_BASE * MoveWeight(direction, distance)));
         return true;
     }
 
     internal IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
     {
         float journey = 0f;
+        GravityEnabled = false;
+        GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY);
+
         while (journey <= duration)
         {
             journey = journey + Time.deltaTime;
             float percent = Mathf.Clamp01(journey / duration);
 
-            transform.position = Vector3.Lerp(origin, target, percent);
+            GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(origin, target, percent));
 
             yield return null;
         }
+        _gravityDirty = true;
         MotionState = BlockMotionState.Unknown;
         UpdateNeighborsCache();
         SetGravityEnabledByMotionState();

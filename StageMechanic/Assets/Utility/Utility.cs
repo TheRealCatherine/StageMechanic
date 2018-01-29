@@ -66,11 +66,13 @@ public static class Utility
             list.Add(value);
     }
 
+    private static Collider[] _colliderBuffer = new Collider[30];
     public static T GetGameObjectAt<T>(Vector3 position, float radius = 0.01f) where T : MonoBehaviour
     {
-        foreach (Collider collider in Physics.OverlapSphere(position, radius))
+        int number = Physics.OverlapSphereNonAlloc(position, radius, _colliderBuffer);
+        for(int i=0;i<number;++i)
         {
-            T obj = collider.GetComponent<T>();
+            T obj = _colliderBuffer[i].GetComponent<T>();
             if (obj != null && obj.transform.position == position)
                 return obj;
         }
@@ -79,10 +81,10 @@ public static class Utility
 
     public static T GetGameObjectNear<T>(Vector3 position, float radius = 0.01f) where T : MonoBehaviour
     {
-
-        foreach (Collider collider in Physics.OverlapSphere(position, radius))
+        int number = Physics.OverlapSphereNonAlloc(position, radius, _colliderBuffer);
+        for (int i = 0; i < number; ++i)
         {
-            T obj = collider.GetComponent<T>();
+            T obj = _colliderBuffer[i].GetComponent<T>();
             if (obj != null)
                 return obj;
         }
@@ -92,9 +94,10 @@ public static class Utility
     public static List<T> GetGameObjectsNear<T>(Vector3 position, float radius = 0.01f) where T : MonoBehaviour
     {
         List<T> ret = new List<T>();
-        foreach (Collider collider in Physics.OverlapSphere(position, radius))
+        int number = Physics.OverlapSphereNonAlloc(position, radius, _colliderBuffer);
+        for (int i = 0; i < number; ++i)
         {
-            ret.AddIfNotNull(collider.GetComponent<T>());
+            ret.AddIfNotNull(_colliderBuffer[i].GetComponent<T>());
         }
         return ret;
     }
