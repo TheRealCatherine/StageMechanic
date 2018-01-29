@@ -239,5 +239,20 @@ public class Cathy1Block : AbstractBlock
             //TODO
         }
     }
+
+    private void CrushPlayer(IPlayerCharacter player)
+    {
+        player.TakeDamage(float.PositiveInfinity, "crush");
+    }
+
+    protected override void OnPlayerEnter(PlayerMovementEvent ev) {
+        if (ev.Location == PlayerMovementEvent.EventLocation.Bottom && MotionState == BlockMotionState.Falling)
+            CrushPlayer(ev.Player);
+    }
+    protected override void OnPlayerStay(PlayerMovementEvent ev) {
+        if (ev.Location == PlayerMovementEvent.EventLocation.Bottom && MotionState == BlockMotionState.Falling)
+            CrushPlayer(ev.Player);
+
+    }
 }
 
