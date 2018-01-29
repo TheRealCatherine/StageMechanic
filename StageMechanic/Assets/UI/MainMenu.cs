@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour {
     public Button CycleBackgroundButton;
     public Toggle FogToggle;
     public ParticleSystem Fog;
+    public GameObject MainMenuButton;
 
     public AudioClip StartupSound;
 
@@ -39,10 +40,16 @@ public class MainMenu : MonoBehaviour {
 
     private void OnEnable()
     {
+        MainMenuButton.gameObject.SetActive(false);
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
         FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 0) == 1);
         if (StartupSound != null)
             GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
+    }
+
+    private void OnDisable()
+    {
+        MainMenuButton.gameObject.SetActive(true);
     }
 
     private void Update()
