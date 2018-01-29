@@ -162,6 +162,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
         {
             BlockManager.Instance.StartCoroutine(BlockManager.Instance.Clear());
+            BlockManager.Instance.LastAccessedFileName = null;
             return true;
         }
 

@@ -41,6 +41,7 @@ public class BlockManager : MonoBehaviour {
     public GameObject StartLocationIndicator;
     public GameObject GoalLocationIndicator;
     public GameObject FileBrowserPrefab;
+    public ParticleSystem Fog;
 
     public int MaxUndoLevels = 99;
     public bool UndoEnabled = true;
@@ -85,18 +86,21 @@ public class BlockManager : MonoBehaviour {
             UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
             RecordStartState();
             State = BlockManagerState.PlayMode;
+            Fog.gameObject.SetActive(PlayerPrefs.GetInt("Fog", 0) == 1);
         }
         else
         {
             //Reset blocks to their pre-PlayMode state
-            if (_startState != null && _startState.Length != 0)
+            if (!string.IsNullOrWhiteSpace(_startState))
                 ReloadStartState();
             UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
             State = BlockManagerState.EditMode;
+            Fog.gameObject.SetActive(false);
         }
         UIManager.RefreshButtonMappingDialog();
         GetComponent<PlayerManager>().PlayMode = PlayMode;
         Cursor.SetActive(!PlayMode);
+
     }
 
     /// <summary>
@@ -286,7 +290,7 @@ public class BlockManager : MonoBehaviour {
 
     public static void ReloadStartState()
     {
-        if (_startState != null && _startState.Length != 0)
+        if (!string.IsNullOrWhiteSpace(_startState))
         {
             Instance.StartCoroutine(Instance.Clear());
             Instance.BlocksFromJson(_startState);
@@ -453,7 +457,7 @@ public class BlockManager : MonoBehaviour {
             }
                 
         }
-        ActiveFloor.transform.position = new Vector3(0, 0f, 3f);
+        //ActiveFloor.transform.position = new Vector3(0, 0f, 3f);
         Debug.Assert(blockGroups != null);
         Debug.Assert(blockToGroupMapping != null);
         blockGroups.Clear();
@@ -631,7 +635,7 @@ public class BlockManager : MonoBehaviour {
 
     public void QuickSave()
     {
-        if (LastAccessedFileName.Length == 0)
+        if (string.IsNullOrWhiteSpace(LastAccessedFileName))
             SaveToJson();
         else
             SaveFileUsingPath(LastAccessedFileName);
@@ -640,7 +644,7 @@ public class BlockManager : MonoBehaviour {
     public void AutoSave()
     {
 
-        if (!PlayMode && LastAccessedFileName.Length != 0)
+        if (!PlayMode && !string.IsNullOrWhiteSpace(LastAccessedFileName))
         {
             SaveFileUsingPath(LastAccessedFileName.Replace(".json", "_autosave.json"));
             LogController.Log("Autosaved");
@@ -695,18 +699,18 @@ public class BlockManager : MonoBehaviour {
         writer.Write(json);
         writer.Flush();
         stream.Position = 0;
-        StartCoroutine(HandleLoad(stream, false));
+        StartCoroutine(HandleLoad(stream, true));
     }
 
 	// Saves a file with the textToSave using a path
 	private void SaveFileUsingPath(string path) {
-		if (path.Length != 0) {
+		if (!string.IsNullOrWhiteSpace(path)) {
             Uri location = new Uri("file:///" + path);
             string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
             PlayerPrefs.SetString("LastSaveDir", directory);
             string json = BlocksToPrettyJson ();
             //TODO this probably can throw an exception?
-			if (json.Length != 0)
+			if (!string.IsNullOrWhiteSpace(json))
 				System.IO.File.WriteAllText (path, json);
             if (!path.Contains("_autosave.")) {
                 LastAccessedFileName = path;
@@ -721,7 +725,7 @@ public class BlockManager : MonoBehaviour {
 	// Loads a file using a path
 	private void LoadFileUsingPath(string path) {
         //TODO ensure file is valid
-        if (path.Length != 0) {
+        if (!string.IsNullOrWhiteSpace(path)) {
             Uri location = new Uri("file:///" + path);
             string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
             PlayerPrefs.SetString("LastLoadDir", directory);
@@ -745,7 +749,7 @@ public class BlockManager : MonoBehaviour {
 
     public bool TryReloadCurrentLevel()
     {
-        if(LastAccessedFileName.Length != 0)
+        if(!string.IsNullOrWhiteSpace(LastAccessedFileName))
         {
             ReloadCurrentLevel();
             return true;

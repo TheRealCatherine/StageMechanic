@@ -10,7 +10,7 @@
                     "Position": {
                         "x": 0,
                         "y": 0,
-                        "z": 0
+                        "z": 3
                     },
                     "Blocks": [
                         {
@@ -563,8 +563,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -579,8 +579,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -672,8 +672,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -721,8 +721,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -836,8 +836,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -852,8 +852,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -923,8 +923,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -939,8 +939,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -1087,8 +1087,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -2159,8 +2159,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -2186,8 +2186,8 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
-                                    "Value": "2"
+                                    "Key": "Weight Factor",
+                                    "Value": "2.5"
                                 }
                             ]
                         },
@@ -2631,7 +2631,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2647,7 +2647,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2663,7 +2663,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2679,7 +2679,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2695,7 +2695,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2711,7 +2711,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2727,7 +2727,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2743,7 +2743,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2759,7 +2759,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2775,7 +2775,7 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
@@ -2802,16 +2802,60 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Weight",
+                                    "Key": "Weight Factor",
                                     "Value": "0"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "6aa27a10-cf97-4eee-a2f5-664d0d63c932",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 4,
+                                "z": 0
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "5c3a6181-fc05-4096-b070-ddcf1962ebf2",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "f5c07f59-f374-4212-b464-bef308b15911",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [ ]
+                        },
+                        {
+                            "Name": "89d1de9e-49c4-4385-a339-70d8e1014982",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 3,
+                                "z": 1
+                            },
+                            "Properties": [ ]
                         }
                     ],
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "61f4bfd4-2ba9-48b9-9251-891cdf4f7c7d",
+                            "Name": "45a8e9ea-cb61-4762-9685-1d04fb8a2f21",
                             "Palette": "Cathy1 Internal",
                             "Type": "Player Start",
                             "Position": {

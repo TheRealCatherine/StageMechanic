@@ -8,6 +8,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -17,8 +18,8 @@ public class BlockInfoBoxController : MonoBehaviour {
 
     public BlockManager blockManager;
 
+    public Text filename;
     public Text blockPosition;
-    public Text blockRotation;
     public Text blockName;
     public Text blockType;
     public Text itemType;
@@ -50,12 +51,12 @@ public class BlockInfoBoxController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        filename.text = Path.GetFileName(BlockManager.Instance.LastAccessedFileName);
         // TODO make this event based instead of updating every frame
         lastBlock = blockManager.ActiveBlock;
         if (lastBlock != null)
         {
             blockPosition.text = lastBlock.Position.ToString();
-            blockRotation.text = lastBlock.Rotation.ToString();
             blockName.text = lastBlock.Name;
             blockType.text = lastBlock.TypeName;
             //TODO support item types once there is an Item class
@@ -68,7 +69,6 @@ public class BlockInfoBoxController : MonoBehaviour {
         else
         {
             blockPosition.text = BlockManager.Cursor.transform.localPosition.ToString();
-            blockRotation.text = BlockManager.Cursor.transform.localRotation.ToString();
             blockName.text = String.Empty;
             blockType.text = String.Empty;
             itemType.text = String.Empty;
@@ -87,7 +87,7 @@ public class BlockInfoBoxController : MonoBehaviour {
         if (timeleft <= 0.0)
         {
             float fps = accum / frames;
-            fpsCount.text = System.String.Format("{0:F2} FPS", fps);
+            fpsCount.text = System.String.Format("{0:F2}", fps);
             timeleft = updateInterval;
             accum = 0.0F;
             frames = 0;

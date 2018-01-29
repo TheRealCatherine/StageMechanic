@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour {
     public Button VolumeUpButton;
     public Button VolumeDownButton;
     public Button CycleBackgroundButton;
+    public Toggle FogToggle;
+    public ParticleSystem Fog;
 
     public AudioClip StartupSound;
 
@@ -31,11 +33,14 @@ public class MainMenu : MonoBehaviour {
         VolumeUpButton.onClick.AddListener(onVolumeUpButtonClicked);
         VolumeDownButton.onClick.AddListener(onVolumeDownButtonClicked);
         CycleBackgroundButton.onClick.AddListener(onCycleBackgroundButtonClicked);
+
+        FogToggle.onValueChanged.AddListener(onFogValueChanged);
     }
 
     private void OnEnable()
     {
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
+        FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 0) == 1);
         if (StartupSound != null)
             GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
     }
@@ -72,6 +77,7 @@ public class MainMenu : MonoBehaviour {
         if(BlockManager.PlayMode)
             BlockManager.Instance.TogglePlayMode();
         BlockManager.Instance.StartCoroutine(BlockManager.Instance.Clear());
+        BlockManager.Instance.LastAccessedFileName = null;
     }
 
     void OnQuitClicked()
@@ -102,4 +108,10 @@ public class MainMenu : MonoBehaviour {
         SkyboxManager.NextSkybox();
     }
 
+    public void onFogValueChanged(bool value)
+    {
+        if(BlockManager.PlayMode || !value)
+          Fog.gameObject.SetActive(value);
+        PlayerPrefs.SetInt("Fog", value ? 1 : 0);
+    }
 }
