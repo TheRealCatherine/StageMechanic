@@ -268,7 +268,7 @@ public class BlockManager : MonoBehaviour {
 
     private static string _startState;
     private static string _lastCheckpointState;
-    private static List<string> _undos = new List<string>();
+    private static List<MemoryStream> _undos = new List<MemoryStream>();
     private static List<Vector3> _undoPlayerPos = new List<Vector3>();
     private static List<Vector3> _undoPlayerFacing = new List<Vector3>();
     private static List<int> _undoPlayerState = new List<int>();
@@ -302,19 +302,26 @@ public class BlockManager : MonoBehaviour {
         if (!Instance.UndoEnabled)
             return;
         Debug.Assert(_undos.Count == _undoPlayerPos.Count && _undoPlayerPos.Count == _undoPlayerState.Count);
-        if (_undos.Count > Instance.MaxUndoLevels)
+        try
         {
-            _undos.RemoveAt(0);
-            _undoPlayerPos.RemoveAt(0);
-            _undoPlayerFacing.RemoveAt(0);
-            _undoPlayerState.RemoveAt(0);
-            _undoPlatformPosition.RemoveAt(0);
+            if (_undos.Count > Instance.MaxUndoLevels)
+            {
+                _undos.RemoveAt(0);
+                _undoPlayerPos.RemoveAt(0);
+                _undoPlayerFacing.RemoveAt(0);
+                _undoPlayerState.RemoveAt(0);
+                _undoPlatformPosition.RemoveAt(0);
+            }
+            _undos.Add(Instance.BlocksToCondensedJsonStream());
+            _undoPlayerPos.Add(PlayerManager.Player1Location());
+            _undoPlayerFacing.Add(PlayerManager.Player1FacingDirection());
+            _undoPlayerState.Add(PlayerManager.PlayerState());
+            _undoPlatformPosition.Add(ActiveFloor.transform.position.y);
         }
-        _undos.Add(Instance.BlocksToCondensedJson());
-        _undoPlayerPos.Add(PlayerManager.Player1Location());
-        _undoPlayerFacing.Add(PlayerManager.Player1FacingDirection());
-        _undoPlayerState.Add(PlayerManager.PlayerState());
-        _undoPlatformPosition.Add(ActiveFloor.transform.position.y);
+        catch(Exception e)
+        {
+            Debug.LogAssertion(e.Message);
+        }
     }
 
     public static int AvailableUndoCount { get { if (!Instance.UndoEnabled) return 0; return _undos.Count; } }
@@ -329,39 +336,20 @@ public class BlockManager : MonoBehaviour {
             Instance.ClearForUndo();
             PlayerManager.HideAllPlayers();
             ActiveFloor.transform.position = new Vector3(0f, _undoPlatformPosition[_undoPlatformPosition.Count - 1], 0f);
-            Instance.BlocksFromJson(_undos[_undos.Count - 1]);
-            Instance.StartCoroutine(Instance.UndoCleanup());
+            Instance.BlocksFromJsonStream(_undos[_undos.Count - 1]);
+            PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
+            PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
+            PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
+            _undos.RemoveAt(_undos.Count - 1);
+            _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
+            _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
+            _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
+            _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
+            PlayerManager.ShowAllPlayers();
+            LogController.Log("Undo");
         }
         else
             LogController.Log("No undos left");
-    }
-
-    /// <summary>
-    /// Waits until all blocks have reached a defined state before spawning the player and removing undo info from the stack
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator UndoCleanup()
-    {
-        //List<AbstractBlock> blocks = BlockManager.Instance.GetComponentsInChildren<AbstractBlock>().ToList<AbstractBlock>();
-        /*while (blocks.Count > 0)
-        {
-            while (blocks.Count>0 && blocks[blocks.Count - 1].MotionState != BlockMotionState.Unknown)
-                blocks.RemoveAt(blocks.Count - 1);
-            yield return new WaitForEndOfFrame();
-        }*/
-        while(!(State == BlockManagerState.PlayMode || State == BlockManagerState.EditMode))
-            yield return new WaitForEndOfFrame();
-        PlayerManager.SetPlayer1State(_undoPlayerState[_undoPlayerState.Count - 1]);
-        PlayerManager.SetPlayer1FacingDirection(_undoPlayerFacing[_undoPlayerFacing.Count - 1]);
-        PlayerManager.SetPlayer1Location(_undoPlayerPos[_undoPlayerPos.Count - 1]);
-        yield return new WaitForFixedUpdate();
-        _undos.RemoveAt(_undos.Count - 1);
-        _undoPlayerPos.RemoveAt(_undoPlayerPos.Count - 1);
-        _undoPlayerFacing.RemoveAt(_undoPlayerFacing.Count - 1);
-        _undoPlayerState.RemoveAt(_undoPlayerState.Count - 1);
-        _undoPlatformPosition.RemoveAt(_undoPlatformPosition.Count - 1);
-        PlayerManager.ShowAllPlayers();
-        LogController.Log("Undo");
     }
 
     private void Awake()
@@ -381,14 +369,6 @@ public class BlockManager : MonoBehaviour {
         if (UIManager.Instance.MainMenu.isActiveAndEnabled)
             Cursor.SetActive(false);
     }
-
-    // Called once every frame
-    void Update() {
-        /*Cathy1EdgeMechanic[] blocks = GetComponentsInChildren<Cathy1EdgeMechanic>();
-        foreach (Cathy1EdgeMechanic block in blocks)
-            block.Calculating = true;*/
-    }
-
 
     public static void SortChildrenByYCoord(GameObject o)
     {
@@ -452,9 +432,9 @@ public class BlockManager : MonoBehaviour {
         {
             if(!child.GetComponent<Platform>())
             {
-                if (child.GetComponent<IBlock>() != null)
+                /*if (child.GetComponent<IBlock>() != null)
                     DestroyBlock(child.GetComponent<IBlock>());
-                else
+                else*/
                     Destroy(child.gameObject);
             }
                 
@@ -481,9 +461,9 @@ public class BlockManager : MonoBehaviour {
         foreach (Transform child in ActiveFloor.transform)
             if (!child.GetComponent<Platform>())
             {
-                if (child.GetComponent<IBlock>() != null)
+                /*if (child.GetComponent<IBlock>() != null)
                     DestroyBlock(child.GetComponent<IBlock>());
-                else
+                else*/
                     Destroy(child.gameObject);
             }
         EventManager.Clear();
@@ -615,6 +595,35 @@ public class BlockManager : MonoBehaviour {
         return output;
     }
 
+    public MemoryStream BlocksToCondensedJsonStream()
+    {
+        Debug.Assert(ActiveFloor != null);
+        StageJsonDelegate stage = new StageJsonDelegate(this);
+        StageCollection collection = new StageCollection(stage);
+        CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+        try
+        {
+            MemoryStream ms = new MemoryStream();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StageCollection));
+            XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter(ms, Encoding.UTF8, true, false);
+            serializer.WriteObject(writer, collection);
+            writer.Flush();
+            return ms;
+        }
+        catch (System.Exception exception)
+        {
+            LogController.Log(exception.ToString());
+        }
+        finally
+        {
+            Thread.CurrentThread.CurrentCulture = currentCulture;
+        }
+        return null;
+    }
+
+
     public void DestroyActiveObject()
     {
         if (ActiveObject != null)
@@ -668,7 +677,7 @@ public class BlockManager : MonoBehaviour {
 		StageCollection deserializedCollection = new StageCollection(this);
 		WebClient webClient = new WebClient();
 		Stream fs = webClient.OpenRead(path);
-        StartCoroutine(HandleLoad(fs));
+        StartCoroutine(HandleLoad(fs, false));
     }
 
     public IEnumerator HandleLoad( Stream stream, bool clearFirst = true )
@@ -704,8 +713,14 @@ public class BlockManager : MonoBehaviour {
         StartCoroutine(HandleLoad(stream, true));
     }
 
-	// Saves a file with the textToSave using a path
-	private void SaveFileUsingPath(string path) {
+    public void BlocksFromJsonStream(MemoryStream stream)
+    {
+        stream.Position = 0;
+        StartCoroutine(HandleLoad(stream, false));
+    }
+
+    // Saves a file with the textToSave using a path
+    private void SaveFileUsingPath(string path) {
 		if (!string.IsNullOrWhiteSpace(path)) {
             Uri location = new Uri("file:///" + path);
             string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
