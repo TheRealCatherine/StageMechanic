@@ -17,12 +17,12 @@ public class Cathy1SpringBlock : Cathy1Block
     public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);
     public float Delay = DEFAULT_DELAY;
 
-    float period = 0.0f;
+    private float waitPeriod = 0.0f;
     protected override void OnPlayerStay(PlayerMovementEvent ev)
     {
         base.OnPlayerEnter(ev);
-        period += Time.deltaTime;
-        if (period < Delay)
+        waitPeriod += Time.deltaTime;
+        if (waitPeriod < Delay)
             return;
         StartCoroutine(HandlePlayer(ev));
     }
@@ -38,7 +38,7 @@ public class Cathy1SpringBlock : Cathy1Block
         string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
         if (statename == "Idle" || statename == "Walk" || statename == "Center")
         {
-            period = 0f;
+            waitPeriod = 0f;
             PlayerManager.Player1BoingyTo(transform.position + Vector3.up + Distance);
         }
     }
