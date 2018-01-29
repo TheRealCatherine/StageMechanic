@@ -39,7 +39,7 @@ public class BlockManager : MonoBehaviour {
             Binary
         }
 
-        public string BlockState;
+        public byte[] BlockState;
         public DataType Type;
         public Vector3 PlayerPosition;
         public Vector3 PlayerFacingDirection;
@@ -117,7 +117,7 @@ public class BlockManager : MonoBehaviour {
                 _undoStates.RemoveAt(0);
             }
             UndoState state = new UndoState();
-            state.BlockState = Instance.BlocksToCondensedJson();
+            state.BlockState = Instance.BlocksToCondensedJsonStream();
             state.Type = UndoState.DataType.Json;
             state.PlayerPosition = PlayerManager.Player1Location();
             state.PlayerFacingDirection = PlayerManager.Player1FacingDirection();
@@ -145,7 +145,7 @@ public class BlockManager : MonoBehaviour {
             PlayerManager.HideAllPlayers();
             UndoState state = _undoStates[_undoStates.Count - 1];
             ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);
-            Instance.BlocksFromJson(state.BlockState);
+            Instance.BlocksFromJsonStream(state.BlockState);
             PlayerManager.SetPlayer1State(state.PlayerStateIndex);
             PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
             PlayerManager.SetPlayer1Location(state.PlayerPosition);
@@ -242,7 +242,7 @@ public class BlockManager : MonoBehaviour {
         return output;
     }
 
-    public MemoryStream BlocksToCondensedJsonStream()
+    public byte[] BlocksToCondensedJsonStream()
     {
         Debug.Assert(ActiveFloor != null);
         StageJsonDelegate stage = new StageJsonDelegate(this);
@@ -257,7 +257,7 @@ public class BlockManager : MonoBehaviour {
             XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter(ms, Encoding.UTF8, true, false);
             serializer.WriteObject(writer, collection);
             writer.Flush();
-            return ms;
+            return ms.ToArray();
         }
         catch (System.Exception exception)
         {
@@ -351,9 +351,10 @@ public class BlockManager : MonoBehaviour {
         StartCoroutine(HandleLoad(stream, true));
     }
 
-    public void BlocksFromJsonStream(MemoryStream stream)
+    public void BlocksFromJsonStream(byte[] bytes)
     {
-        Debug.Assert(stream != null);
+        Debug.Assert(bytes != null);
+        MemoryStream stream = new MemoryStream(bytes);
         stream.Position = 0;
         StartCoroutine(HandleLoad(stream, false));
     }
