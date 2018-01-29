@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour {
     public Button CreateButton;
     public Button QuitButton;
     public Toggle AutoPlay;
+    public Button SaveButton;
+    public Button SaveAsButton;
 
     public Button PlayPauseButton;
     public Button NextTrackButton;
@@ -28,6 +30,9 @@ public class MainMenu : MonoBehaviour {
         QuitButton.onClick.AddListener(OnQuitClicked);
         AutoPlay.onValueChanged.AddListener(OnAutoPlayChecked);
 
+        SaveButton.onClick.AddListener(onSaveClicked);
+        SaveAsButton.onClick.AddListener(onSaveAsClicked);
+
         PlayPauseButton.onClick.AddListener(onPlayPauseButtonClicked);
         NextTrackButton.onClick.AddListener(onNextTrackButtonClicked);
         PrevTrackButton.onClick.AddListener(onPrevTrackButtonClicked);
@@ -43,6 +48,15 @@ public class MainMenu : MonoBehaviour {
         MainMenuButton.gameObject.SetActive(false);
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
         FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 0) == 1);
+        SaveButton.gameObject.SetActive(true);
+        if(string.IsNullOrWhiteSpace(BlockManager.Instance.LastAccessedFileName))
+        {
+            SaveButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            SaveButton.gameObject.SetActive(true);
+        }
         if (StartupSound != null)
             GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
     }
@@ -120,5 +134,16 @@ public class MainMenu : MonoBehaviour {
         if(BlockManager.PlayMode || !value)
           Fog.gameObject.SetActive(value);
         PlayerPrefs.SetInt("Fog", value ? 1 : 0);
+    }
+
+    public void onSaveClicked()
+    {
+        BlockManager.Instance.QuickSave();
+        SaveButton.gameObject.SetActive(false);
+    }
+
+    public void onSaveAsClicked()
+    {
+        BlockManager.Instance.SaveToJson();
     }
 }
