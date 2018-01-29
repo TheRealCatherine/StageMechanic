@@ -378,6 +378,8 @@ public class BlockManager : MonoBehaviour {
         RotatableFloors.Add(ActiveFloor);
         Cursor = CursorPrefab;
         Cursor.transform.SetParent(transform, false);
+        if (UIManager.Instance.MainMenu.isActiveAndEnabled)
+            Cursor.SetActive(false);
     }
 
     // Called once every frame

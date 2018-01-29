@@ -81,8 +81,16 @@ public class UIManager : MonoBehaviour {
     public static void ShowMainMenu()
     {
         Debug.Assert(Instance != null);
-        Instance.MainMenu.enabled = true;
         Instance.MainMenu.gameObject.SetActive(true);
+    }
+
+    public static void ToggleMainMenu()
+    {
+        Debug.Assert(Instance != null);
+        if(Instance.MainMenu.gameObject.activeInHierarchy)
+            Instance.MainMenu.gameObject.SetActive(false);
+        else
+            Instance.MainMenu.gameObject.SetActive(true);
     }
 
     public static void ToggleBlockInfoDialog()

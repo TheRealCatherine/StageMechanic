@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
 
     public Button LoadButton;
     public Button CreateButton;
@@ -20,11 +21,11 @@ public class MainMenu : MonoBehaviour {
     public Button CycleBackgroundButton;
     public Toggle FogToggle;
     public ParticleSystem Fog;
-    public GameObject MainMenuButton;
 
     public AudioClip StartupSound;
 
-	void Start () {
+    void Start()
+    {
         LoadButton.onClick.AddListener(OnLoadAndEditClicked);
         CreateButton.onClick.AddListener(OnCreateClicked);
         QuitButton.onClick.AddListener(OnQuitClicked);
@@ -45,11 +46,11 @@ public class MainMenu : MonoBehaviour {
 
     private void OnEnable()
     {
-        MainMenuButton.gameObject.SetActive(false);
+        BlockManager.Cursor?.SetActive(false);
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
         FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 0) == 1);
         SaveButton.gameObject.SetActive(true);
-        if(string.IsNullOrWhiteSpace(BlockManager.Instance.LastAccessedFileName))
+        if (string.IsNullOrWhiteSpace(BlockManager.Instance.LastAccessedFileName))
         {
             SaveButton.gameObject.SetActive(false);
         }
@@ -63,7 +64,10 @@ public class MainMenu : MonoBehaviour {
 
     private void OnDisable()
     {
-        MainMenuButton.gameObject.SetActive(true);
+        if(!BlockManager.PlayMode)
+        {
+            BlockManager.Cursor?.SetActive(true);
+        }
     }
 
     private void Update()
@@ -95,7 +99,7 @@ public class MainMenu : MonoBehaviour {
     void OnCreateClicked()
     {
         gameObject.SetActive(false);
-        if(BlockManager.PlayMode)
+        if (BlockManager.PlayMode)
             BlockManager.Instance.TogglePlayMode();
         BlockManager.Instance.StartCoroutine(BlockManager.Instance.Clear());
         BlockManager.Instance.LastAccessedFileName = null;
@@ -110,29 +114,35 @@ public class MainMenu : MonoBehaviour {
 #endif
     }
 
-    public void onPlayPauseButtonClicked() {
+    public void onPlayPauseButtonClicked()
+    {
         MusicManager.TogglePause();
     }
-    public void onNextTrackButtonClicked() {
+    public void onNextTrackButtonClicked()
+    {
         MusicManager.PlayNextTrack();
     }
-    public void onPrevTrackButtonClicked() {
+    public void onPrevTrackButtonClicked()
+    {
         MusicManager.PlayPreviousTrack();
     }
-    public void onVolumeUpButtonClicked() {
+    public void onVolumeUpButtonClicked()
+    {
         MusicManager.VolumeUp();
     }
-    public void onVolumeDownButtonClicked() {
+    public void onVolumeDownButtonClicked()
+    {
         MusicManager.VolumeDown();
     }
-    public void onCycleBackgroundButtonClicked() {
+    public void onCycleBackgroundButtonClicked()
+    {
         SkyboxManager.NextSkybox();
     }
 
     public void onFogValueChanged(bool value)
     {
-        if(BlockManager.PlayMode || !value)
-          Fog.gameObject.SetActive(value);
+        if (BlockManager.PlayMode || !value)
+            Fog.gameObject.SetActive(value);
         PlayerPrefs.SetInt("Fog", value ? 1 : 0);
     }
 

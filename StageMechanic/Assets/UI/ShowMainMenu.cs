@@ -6,6 +6,6 @@ public class ShowMainMenu : MonoBehaviour {
    
 	public void onButtonClicked()
     {
-        UIManager.ShowMainMenu();
+        UIManager.ToggleMainMenu();
     }
 }
