@@ -101,8 +101,7 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(false);
         if (BlockManager.PlayMode)
             BlockManager.Instance.TogglePlayMode();
-        BlockManager.Instance.StartCoroutine(BlockManager.Instance.Clear());
-        BlockManager.Instance.LastAccessedFileName = null;
+        BlockManager.Clear();
     }
 
     void OnQuitClicked()

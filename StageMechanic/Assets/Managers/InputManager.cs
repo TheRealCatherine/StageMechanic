@@ -12,8 +12,6 @@ using CnControls;
 [System.Serializable]
 public class InputManager : MonoBehaviour
 {
-
-    public GameObject Cursor;
     public CameraController Camera;
 
     internal const float scrollSpeed = 8.0f;
@@ -161,7 +159,7 @@ public class InputManager : MonoBehaviour
         // Clear all blocks
         else if (Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
         {
-            BlockManager.Instance.StartCoroutine(BlockManager.Instance.Clear());
+            BlockManager.Clear();
             BlockManager.Instance.LastAccessedFileName = null;
             return true;
         }
@@ -241,7 +239,7 @@ public class InputManager : MonoBehaviour
         {
             if (!BlockManager.PlayMode)
             {
-                BlockManager.CreateBlockAtCursor(BlockManager.Instance.BlockCycleType);
+                BlockManager.CreateBlockAtCursor(BlockManager.BlockCycleType);
                 return true;
             }
 
@@ -260,7 +258,7 @@ public class InputManager : MonoBehaviour
             || (GetGamepadType(0)==GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button4)))
         {
             //TODO generic
-            Cathy1Block.BlockType type = BlockManager.Instance.PrevBlockType();
+            Cathy1Block.BlockType type = BlockManager.PrevBlockType();
             if (BlockManager.Instance.ActiveObject != null)
                 BlockManager.CreateBlockAtCursor(type);
             return true;
@@ -271,7 +269,7 @@ public class InputManager : MonoBehaviour
             || (GetGamepadType(0) == GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button5)))
         {
             //TODO generic
-            Cathy1Block.BlockType type = BlockManager.Instance.NextBlockType();
+            Cathy1Block.BlockType type = BlockManager.NextBlockType();
             if (BlockManager.Instance.ActiveObject != null)
                 BlockManager.CreateBlockAtCursor(type);
             return true;
@@ -294,15 +292,15 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition"))
         {
-            GetComponent<EventManager>().CreatePlayerStartLocation(0, Cursor.transform.position, Cursor.transform.rotation);
+            GetComponent<EventManager>().CreatePlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
         }
         else if (Input.GetKeyDown(KeyCode.O))
         {
-            GetComponent<EventManager>().CreatePlayerStartLocation(1, Cursor.transform.position, Cursor.transform.rotation);
+            GetComponent<EventManager>().CreatePlayerStartLocation(1, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
         }
         else if (Input.GetKeyDown(KeyCode.T))
         {
-            GetComponent<EventManager>().CreatePlayerStartLocation(2, Cursor.transform.position, Cursor.transform.rotation);
+            GetComponent<EventManager>().CreatePlayerStartLocation(2, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
         }
 
         // Buttons for setting items
@@ -312,7 +310,7 @@ public class InputManager : MonoBehaviour
             {
                 //TODO use a method of BlockManager to do this
                 Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
-                block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+                block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
                 return true;
             }
         }
@@ -322,7 +320,7 @@ public class InputManager : MonoBehaviour
             {
                 //TODO use a method of BlockManager to do this
                 Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
-                block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+                block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
                 return true;
             }
         }
@@ -517,12 +515,12 @@ public class InputManager : MonoBehaviour
         //Fast cursor movement
         if (Input.GetKeyDown(KeyCode.PageUp))
         {
-            Cursor.transform.position += new Vector3(0, 10, 0);
+            BlockManager.Cursor.transform.position += new Vector3(0, 10, 0);
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.PageDown))
         {
-            Cursor.transform.position += new Vector3(0, -10, 0);
+            BlockManager.Cursor.transform.position += new Vector3(0, -10, 0);
             return true;
         }
 
@@ -530,7 +528,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.F2))
         {
             Camera.ResetZoom();
-            Cursor.transform.position = Vector3.zero;
+            BlockManager.Cursor.transform.position = Vector3.zero;
             return true;
         }
 
@@ -553,7 +551,7 @@ public class InputManager : MonoBehaviour
                 GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(0, 1, 0);
-                Cursor.transform.position += new Vector3(0, 1, 0);
+                BlockManager.Cursor.transform.position += new Vector3(0, 1, 0);
                 return true;
             }
             else if (ctrlDown)
@@ -563,7 +561,7 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                Cursor.transform.position += new Vector3(0, 1, 0);
+                BlockManager.Cursor.transform.position += new Vector3(0, 1, 0);
                 return true;
             }
         }
@@ -585,7 +583,7 @@ public class InputManager : MonoBehaviour
                 GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(0, -1, 0);
-                Cursor.transform.position += new Vector3(0, -1, 0);
+                BlockManager.Cursor.transform.position += new Vector3(0, -1, 0);
                 return true;
             }
             else if (ctrlDown)
@@ -594,7 +592,7 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                Cursor.transform.position += new Vector3(0, -1, 0);
+                BlockManager.Cursor.transform.position += new Vector3(0, -1, 0);
                 return true;
             }
         }
@@ -616,7 +614,7 @@ public class InputManager : MonoBehaviour
                 GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(-1, 0, 0);
-                Cursor.transform.position += new Vector3(-1, 0, 0);
+                BlockManager.Cursor.transform.position += new Vector3(-1, 0, 0);
                 return true;
             }
             else if (ctrlDown)
@@ -626,7 +624,7 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                Cursor.transform.position += new Vector3(-1, 0, 0);
+                BlockManager.Cursor.transform.position += new Vector3(-1, 0, 0);
                 return true;
             }
         }
@@ -648,7 +646,7 @@ public class InputManager : MonoBehaviour
                 GameObject ao = BlockManager.Instance.ActiveObject;
                 if (ao != null)
                     ao.transform.Translate(1, 0, 0);
-                Cursor.transform.position += new Vector3(1, 0, 0);
+                BlockManager.Cursor.transform.position += new Vector3(1, 0, 0);
                 return true;
             }
             else if (ctrlDown)
@@ -658,7 +656,7 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                Cursor.transform.position += new Vector3(1, 0, 0);
+                BlockManager.Cursor.transform.position += new Vector3(1, 0, 0);
                 return true;
             }
         }
@@ -670,7 +668,7 @@ public class InputManager : MonoBehaviour
                 return false;
             }
             period = 0.0f;
-            Cursor.transform.position += new Vector3(0, 0, -1);
+            BlockManager.Cursor.transform.position += new Vector3(0, 0, -1);
             return true;
         }
         else if (goCloser)
@@ -681,7 +679,7 @@ public class InputManager : MonoBehaviour
                 return false;
             }
             period = 0.0f;
-            Cursor.transform.position += new Vector3(0, 0, 1);
+            BlockManager.Cursor.transform.position += new Vector3(0, 0, 1);
             return true;
         }
         return false;
@@ -749,7 +747,7 @@ public class InputManager : MonoBehaviour
                 return;
             else if (Input.GetKeyDown(KeyCode.U))
             {
-                BlockManager.ToggleUndoOn();
+                BlockManager.ToggleUndoEnabled();
                 return;
             }
             else if (Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)

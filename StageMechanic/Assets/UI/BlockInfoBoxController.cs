@@ -16,8 +16,6 @@ using UnityEngine.UI;
 
 public class BlockInfoBoxController : MonoBehaviour {
 
-    public BlockManager blockManager;
-
     public Text filename;
     public Text blockPosition;
     public Text blockName;
@@ -53,7 +51,7 @@ public class BlockInfoBoxController : MonoBehaviour {
     {
         filename.text = Path.GetFileName(BlockManager.Instance.LastAccessedFileName);
         // TODO make this event based instead of updating every frame
-        lastBlock = blockManager.ActiveBlock;
+        lastBlock = BlockManager.Instance.ActiveBlock;
         if (lastBlock != null)
         {
             blockPosition.text = lastBlock.Position.ToString();
@@ -74,7 +72,7 @@ public class BlockInfoBoxController : MonoBehaviour {
             itemType.text = String.Empty;
         }
 
-        blockCount.text = blockManager.BlockCount().ToString();
+        blockCount.text = BlockManager.BlockCount.ToString();
         logTime.text = LogController.LastMessageTime;
         logMessage.text = LogController.LastMessage;
 

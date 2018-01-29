@@ -20,9 +20,16 @@ using System.Threading;
 using System.Xml;
 using UnityEngine;
 
-[System.Serializable]
 public class BlockManager : MonoBehaviour {
 
+    #region Serialization
+    /// TODO: Consider relocating UNDO related
+
+    /// <summary>
+    /// Used internally to record information about an undo state,
+    /// this includes all blocks, their states and positions as well
+    /// as player states and positions.
+    /// </summary>
     public struct UndoState
     {
         public enum DataType
@@ -40,35 +47,27 @@ public class BlockManager : MonoBehaviour {
         public float PlatformYPosition;
     }
 
-    public enum BlockManagerState
+    public static int MaxUndoLevels = 99;
+    private static List<UndoState> _undoStates = new List<UndoState>();
+    private static string _startState;
+    private static string _lastCheckpointState;
+
+    private static bool _undoEnabled = true;
+    public static bool UndoEnabled
     {
-        Initializing,
-        EditMode,
-        Clearing,
-        Loading,
-        Saving,
-        PlayMode
+        get
+        {
+            return _undoEnabled;
+        }
+        set
+        {
+            _undoEnabled = value;
+            if(value)
+                LogController.Log(MaxUndoLevels + " Undos On");
+            else
+                LogController.Log("Undo off");
+        }
     }
-
-    public BlockManagerState State = BlockManagerState.Initializing;
-
-    // Unity Inspector variables
-    public GameObject CursorPrefab;
-    public GameObject BasicPlatformPrefab;
-    public GameObject StartLocationIndicator;
-    public GameObject GoalLocationIndicator;
-    public GameObject FileBrowserPrefab;
-    public ParticleSystem Fog;
-
-    public int MaxUndoLevels = 99;
-    public bool UndoEnabled = true;
-
-    /// <summary>
-    /// There should only ever be one BlockManager in the scene - it manages all blocks for all platforms and loaded stages. As such it
-    /// can be used statically via this property when accessing methods that are not already marked static.
-    /// </summary>
-    /// TODO Singleton flamewar
-    public static BlockManager Instance { get; private set; }
 
     /// <summary>
     /// Used for auto-saving and saving while creating stages as
@@ -77,215 +76,15 @@ public class BlockManager : MonoBehaviour {
     public string LastAccessedFileName;
 
     /// <summary>
-    /// Used by many classes to determine current game state, eventually this will be moved into
-    /// a seperate GameManager class or something but for now this is pretty much THE way to
-    /// determine if the application is currently in PlayMode or EditMode. Note that this property
-    /// is read-pnly. Use BlockManager.TogglePlayMode() to change the application state to/from
-    /// PlayMode and EditMode. This too will change in an upcoming revision.
-    /// </summary>
-    /// TODO: Move this out to a separate GameManager class
-    public static bool PlayMode { get; protected set; } = false;
-
-    /// <summary>
-    /// Toggles the application between PlayMode and EditMode. This will show/hide the cursor,
-    /// inform PlayerManager of the new mode, and if entering play mode record the starting state
-    /// of the blocks to facilitate player death and test-playing while creating (restore on exiting
-    /// PlayMode)
-    /// </summary>
-    /// TODO Combine this with the PlayMode property and move it to GameManager class
-    /// TODO change the way the button mapping box behaves
-    public void TogglePlayMode()
-    {
-        PlayMode = !PlayMode;
-        if (PlayMode)
-        {
-            LogController.Log("Start!");
-            UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
-            RecordStartState();
-            State = BlockManagerState.PlayMode;
-            Fog.gameObject.SetActive(PlayerPrefs.GetInt("Fog", 0) == 1);
-        }
-        else
-        {
-            //Reset blocks to their pre-PlayMode state
-            if (!string.IsNullOrWhiteSpace(_startState))
-                ReloadStartState();
-            UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
-            State = BlockManagerState.EditMode;
-            Fog.gameObject.SetActive(false);
-        }
-        UIManager.RefreshButtonMappingDialog();
-        GetComponent<PlayerManager>().PlayMode = PlayMode;
-        Cursor.SetActive(!PlayMode);
-
-    }
-
-    /// <summary>
     /// When turned on, BlockManager will record BlockManager.MaxUndoLevels worth of states.
-    /// Note that currently this is the same as creating a save file but storing it in memory
-    /// rather than to disk, as such it can cause a performance impact on some systems. We
-    /// will need to address this in a future revision.
+    /// Note that this is the same as setting the BlockManager.UndoEnabled property to its
+    /// inverse.
     /// </summary>
-    /// TODO: Consider moving this to being just a property and perhaps relocating UNDO related
     /// code to another class
-    public static void ToggleUndoOn()
+    public static void ToggleUndoEnabled()
     {
-        Instance.UndoEnabled = !Instance.UndoEnabled;
-        if (Instance.UndoEnabled)
-            LogController.Log(Instance.MaxUndoLevels + " Undos On");
-        else
-            LogController.Log("Undo off");
+        UndoEnabled = !UndoEnabled;
     }
-
-    /// <summary>
-    /// This is a hacky method from early on in the implementation. In theory it should return
-    /// the GameObject of whatever is under the cursor. In actuality it usually only does this
-    /// correctly if its a block.
-    /// </summary>
-    /// TODO: Move cursor when set
-    public GameObject ActiveObject {
-        get {
-            return GetBlockAt(Cursor.transform.position)?.GameObject;
-        }
-        set {
-        }
-    }
-
-    /// <summary>
-    /// When in EditMode, returns the block, if any, that is currently under the cursor,
-    /// or null if the cursor is not on a block.
-    /// 
-    /// When in PlayMode, returns the block underneath Player 1
-    /// </summary>
-    /// TODO Support IBlock interface
-    /// TODO Get rid this Goal Block hack and move it to GoalBlock
-    /// TODO Get sidled-on block when player is sidling
-    /// TODO Query PlayerManager for active block when in PlayMode
-    public Cathy1Block ActiveBlock
-    {
-        get
-        {
-            if (PlayMode)
-            {
-                return PlayerManager.Player(0)?.GameObject?.GetComponent<Cathy1PlayerCharacter>()?.CurrentBlock?.GameObject?.GetComponent<Cathy1Block>();
-            }
-            else
-            {
-                return GetBlockAt(Cursor.transform.position)?.GameObject?.GetComponent<Cathy1Block>();
-            }
-        }
-        set
-        {
-        }
-    }
-
-    /// <summary>
-    /// The Cursor used in Edit Mode.
-    /// </summary>
-    /// TODO Right now this gets moved from the top level scene, do we want this behavior?
-    private static GameObject _cursor;
-    public static GameObject Cursor {
-        get {
-            return _cursor;
-        }
-        set {
-            _cursor = value;
-        }
-    }
-
-    /// <summary>
-    /// Used for cycling the default block type while in EditMode. This will be moved to
-    /// Cathy1BlockFactory or similar class later.
-    /// </summary>
-    private Cathy1Block.BlockType _blockCycleType = Cathy1Block.BlockType.Basic;
-    public Cathy1Block.BlockType BlockCycleType {
-        get {
-            return _blockCycleType;
-        }
-        set {
-            _blockCycleType = value;
-        }
-    }
-
-    /// <summary>
-    /// Used for cycling the default block type while in EditMode. This will be moved to
-    /// Cathy1BlockFactory or similar class later.
-    /// </summary>
-    public Cathy1Block.BlockType NextBlockType() {
-        if (BlockCycleType >= Cathy1Block.BlockType.Goal) {
-            BlockCycleType = Cathy1Block.BlockType.Basic;
-            return BlockCycleType;
-        }
-        return ++BlockCycleType;
-    }
-
-    /// <summary>
-    /// Used for cycling the default block type while in EditMode. This will be moved to
-    /// Cathy1BlockFactory or similar class later.
-    /// </summary>
-    public Cathy1Block.BlockType PrevBlockType() {
-        if (BlockCycleType <= Cathy1Block.BlockType.Basic) {
-            BlockCycleType = Cathy1Block.BlockType.Goal;
-            return BlockCycleType;
-        }
-        return --BlockCycleType;
-    }
-
-    /// <summary>
-    /// Used to support Cathy-2 style rotatable floors and other multi-platform implementations
-    /// This is to be implemented in the future
-    /// Right now it only contains the BlockManager.ActiveFloor
-    /// </summary>
-    private List<GameObject> _rotatableFloors = new List<GameObject>();
-    public List<GameObject> RotatableFloors {
-        get {
-            return _rotatableFloors;
-        }
-        set {
-            _rotatableFloors = value;
-        }
-    }
-
-    /// <summary>
-    /// Currently this will always be the platform on which the stage rests. When BlockManager.RotatableFloors
-    /// is implemented later this will be set to the platform currently selected by the cursor or occupied by
-    /// the player.
-    /// </summary>
-    private static GameObject _activeFloor;
-    public static GameObject ActiveFloor {
-        get {
-            return _activeFloor;
-        }
-        set {
-            _activeFloor = value;
-        }
-    }
-
-    public static void RotatePlatform(int x, int y, int z)
-    {
-        ActiveFloor.transform.Rotate(x, y, z, Space.Self);
-        Instance.StartCoroutine(Instance.rotateCleanup());
-    }
-
-    IEnumerator rotateCleanup()
-    {
-        SortChildrenByYCoord(ActiveFloor);
-        yield return new WaitForEndOfFrame();
-        IBlock[] blocks = ActiveFloor.GetComponentsInChildren<IBlock>();
-        yield return new WaitForEndOfFrame();
-        Debug.Log("rotating " + blocks.Length + " blocks");
-        foreach (IBlock block in blocks)
-        {
-            block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            block.Rotation = Quaternion.identity;
-            (block as AbstractBlock).SetGravityEnabledByMotionState();
-        }
-        yield return new WaitForEndOfFrame();
-    }
-
-    private static List<UndoState> _undoStates = new List<UndoState>();
-    private static string _startState;
-    private static string _lastCheckpointState;
 
     public static void ClearUndoStates()
     {
@@ -301,18 +100,18 @@ public class BlockManager : MonoBehaviour {
     {
         if (!string.IsNullOrWhiteSpace(_startState))
         {
-            Instance.StartCoroutine(Instance.Clear());
+            Clear();
             Instance.BlocksFromJson(_startState);
         }
     }
 
     public static void RecordUndo()
     {
-        if (!Instance.UndoEnabled)
+        if (!UndoEnabled)
             return;
         try
         {
-            if (_undoStates.Count > Instance.MaxUndoLevels)
+            if (_undoStates.Count > MaxUndoLevels)
             {
                 _undoStates.RemoveAt(0);
             }
@@ -326,17 +125,17 @@ public class BlockManager : MonoBehaviour {
 
             _undoStates.Add(state);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Debug.LogAssertion(e.Message);
         }
     }
 
-    public static int AvailableUndoCount { get { if (!Instance.UndoEnabled) return 0; return _undoStates.Count; } }
+    public static int AvailableUndoCount { get { if (!UndoEnabled) return 0; return _undoStates.Count; } }
 
     public static void Undo()
     {
-        if (!Instance.UndoEnabled)
+        if (!UndoEnabled)
             return;
         if (_undoStates.Count > 0)
         {
@@ -356,108 +155,6 @@ public class BlockManager : MonoBehaviour {
             LogController.Log("No undos left");
     }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    // Called when the BlockManager is intantiated, when the Level Editor is loaded
-    void Start() {
-        // Create the cursor
-        ActiveFloor = Instantiate(BasicPlatformPrefab, new Vector3(0, 0f, 3f), new Quaternion(0, 0, 0, 0)) as GameObject;
-        ActiveFloor.name = "Platform";
-        ActiveFloor.transform.SetParent(transform, false);
-        RotatableFloors.Add(ActiveFloor);
-        Cursor = CursorPrefab;
-        Cursor.transform.SetParent(transform, false);
-        if (UIManager.Instance.MainMenu.isActiveAndEnabled)
-            Cursor.SetActive(false);
-    }
-
-    public static void SortChildrenByYCoord(GameObject o)
-    {
-        var children = o.GetComponentsInChildren<Transform>(true).ToList();
-        children.Remove(o.transform);
-        children.Sort(CompareYCoord);
-        for (int i = 0; i < children.Count; i++)
-            children[i].SetSiblingIndex(i);
-    }
-
-    private static int CompareYCoord(Transform lhs, Transform rhs)
-    {
-        if (lhs == rhs) return 0;
-        var test = rhs.gameObject.activeInHierarchy.CompareTo(lhs.gameObject.activeInHierarchy);
-        if (test != 0) return test;
-        if (lhs.localPosition.y < rhs.localPosition.y) return -1;
-        if (lhs.localPosition.y > rhs.localPosition.y) return 1;
-        return 0;
-    }
-
-/*    public static void SortChildren(GameObject gameObject)
-    {
-        Transform[] children = gameObject.GetComponentsInChildren<Transform>(true);
-
-         var sorted = from child in children
-                                orderby child.localPosition.y ascending
-                                where child != gameObject.transform
-                                select child;
-        for (int i = 0; i < sorted.Count(); i++)
-        {
-            if(sorted.ElementAt(i).GetSiblingIndex() != i)
-                sorted.ElementAt(i).SetSiblingIndex(i);
-        }
-    }*/
-
-
-    // Retrieve a List of all child game objects from a given parent
-    static List<GameObject> GetChildren(GameObject obj) {
-        List<GameObject> list = new List<GameObject>();
-        foreach (Transform child in obj.transform)
-            list.Add(child.gameObject);
-        return list;
-    }
-
-    public int BlockCount()
-    {
-        int blocks = 0;
-        foreach (Transform child in ActiveFloor.transform)
-        {
-            if (child.gameObject.GetComponent<IBlock>() != null)
-                ++blocks;
-        }
-        return blocks;
-    }
-
-    public IEnumerator Clear()
-    {
-        BlockManagerState oldState = State;
-        State = BlockManagerState.Clearing;
-        foreach (Transform child in ActiveFloor.transform)
-        {
-            if(!child.GetComponent<Platform>())
-            {
-                /*if (child.GetComponent<IBlock>() != null)
-                    DestroyBlock(child.GetComponent<IBlock>());
-                else*/
-                    Destroy(child.gameObject);
-            }
-                
-        }
-        //ActiveFloor.transform.position = new Vector3(0, 0f, 3f);
-        Debug.Assert(blockGroups != null);
-        Debug.Assert(blockToGroupMapping != null);
-        blockGroups.Clear();
-        blockToGroupMapping.Clear();
-        PlayerManager.Clear();
-        EventManager.Clear();
-        ClearUndoStates();
-        Cursor.transform.position = new Vector3(0f, 1f, 0f);
-        while (ActiveFloor.GetComponentsInChildren<IBlock>().Length > 0)
-            yield return new WaitForEndOfFrame();
-        State = oldState;
-        LogController.Log("Stage Data Cleared");
-    }
-
     public void ClearForUndo()
     {
         BlockManagerState oldState = State;
@@ -468,106 +165,44 @@ public class BlockManager : MonoBehaviour {
                 /*if (child.GetComponent<IBlock>() != null)
                     DestroyBlock(child.GetComponent<IBlock>());
                 else*/
-                    Destroy(child.gameObject);
+                Destroy(child.gameObject);
             }
         EventManager.Clear();
         State = oldState;
     }
 
-    public void RandomizeGravity()
+    public string BlocksToPrettyJson()
     {
-        System.Random randomNumberGenerator = new System.Random(new System.DateTime().Millisecond);
-
-        foreach (Transform child in ActiveFloor.transform)
-        {
-            IBlock block = child.gameObject.GetComponent<IBlock>();
-            if (block != null)
-                block.GravityFactor = randomNumberGenerator.Next(-100,100)/100f;
-        }
-        AutoSave();
-    }
-
-    // Create a basic block at the current cursor position
-
-    public static IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic) {
-        Debug.Assert(Instance != null);
-        Debug.Assert(Cursor != null);
-        Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
-        Instance.AutoSave();
-        return block;
-    }
-
-    public static IBlock CreateBlockAtCursor(string palette, string type)
-    {
-        return CreateBlockAt(Cursor.transform.position, palette, type);
-    }
-
-    public static IBlock CreateBlockAt(Vector3 position, string palette, string type)
-    {
-        Debug.Assert(Instance != null);
-        Debug.Assert(Cursor != null);
-        if (palette == "Cathy1 Internal")
-        {
-            Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
-            Instance.AutoSave();
-            return block;
-        }
-        return null;
-    }
-
-    /// <summary>
-    /// Returns a Cathy1BlockFactory that can be used to create Cathy1-style blocks
-    /// </summary>
-    /// TODO create the factory, don't be the factory.
-    public Cathy1BlockFactory Cathy1BlockFactory
-    {
-        get
-        {
-            return GetComponent<Cathy1BlockFactory>();
-        }
-    }
-
-	/// <summary>
-    /// Sets the material on a block.
-    /// </summary>
-    /// <param name="block"></param>
-    /// <param name="material"></param>
-    /// TODO: Move this to AbstractBlock?
-	public static void SetMaterial( IBlock block, Material material ) {
-		Renderer rend = block.GameObject.GetComponent<Renderer> ();
-		rend.material = material;
-	}
-
-	public string BlocksToPrettyJson() {
         BlockManagerState oldState = State;
         State = BlockManagerState.Saving;
-        Debug.Assert (ActiveFloor != null);
-		string output = "";
-		StageJsonDelegate stage = new StageJsonDelegate (this);
-		StageCollection collection = new StageCollection (stage);
-		CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-		Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+        Debug.Assert(ActiveFloor != null);
+        string output = "";
+        StageJsonDelegate stage = new StageJsonDelegate(this);
+        StageCollection collection = new StageCollection(stage);
+        CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-		try	{
-			MemoryStream ms = new MemoryStream();
-			DataContractJsonSerializer serializer = new DataContractJsonSerializer (typeof(StageCollection));
-			XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter (ms, Encoding.UTF8, true, true, "    ");
-			serializer.WriteObject (writer, collection);
-			writer.Flush ();
-			output += Encoding.UTF8.GetString(ms.ToArray());
-		}
-		catch (System.Exception exception)
-		{
+        try
+        {
+            MemoryStream ms = new MemoryStream();
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StageCollection));
+            XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter(ms, Encoding.UTF8, true, true, "    ");
+            serializer.WriteObject(writer, collection);
+            writer.Flush();
+            output += Encoding.UTF8.GetString(ms.ToArray());
+        }
+        catch (System.Exception exception)
+        {
             LogController.Log(exception.ToString());
-		}
-		finally
-		{
-			Thread.CurrentThread.CurrentCulture = currentCulture;
+        }
+        finally
+        {
+            Thread.CurrentThread.CurrentCulture = currentCulture;
             State = oldState;
-		}
+        }
 
-		return output;
-	}
+        return output;
+    }
 
     public string BlocksToCondensedJson()
     {
@@ -627,26 +262,14 @@ public class BlockManager : MonoBehaviour {
         return null;
     }
 
-
-    public void DestroyActiveObject()
+    public void SaveToJson()
     {
-        if (ActiveObject != null)
-        {
-            if (ActiveObject.GetComponent<IBlock>() != null)
-                DestroyBlock(ActiveObject.GetComponent<IBlock>());
-            else
-                Destroy(ActiveObject);
-            AutoSave();
-        }
-    }
-
-	public void SaveToJson() {
-		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
-		fileBrowserObject.name = "FileBrowser";
-		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
+        GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
+        fileBrowserObject.name = "FileBrowser";
+        FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
         fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastSaveDir"));
         fileBrowserScript.SaveFilePanel(this, "SaveFileUsingPath", "MyLevels", "json");
-	}
+    }
 
     public void QuickSave()
     {
@@ -666,30 +289,33 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-	public void LoadFromJson() {
-		GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
+    public void LoadFromJson()
+    {
+        GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
 
         fileBrowserObject.name = "FileBrowser";
-		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape,PlayerPrefs.GetString("LastLoadDir"));
+        FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
+        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastLoadDir"));
 
         fileBrowserScript.OpenFilePanel(this, "LoadFileUsingPath", "json");
-	}
-
-	public void BlocksFromJson( Uri path ) {
-        LogController.Log ("Loading from " + path.ToString ());
-		StageCollection deserializedCollection = new StageCollection(this);
-		WebClient webClient = new WebClient();
-		Stream fs = webClient.OpenRead(path);
-        StartCoroutine(HandleLoad(fs, false));
     }
 
-    public IEnumerator HandleLoad( Stream stream, bool clearFirst = true )
+    public void BlocksFromJson(Uri path)
     {
-        if(clearFirst) { 
-        StartCoroutine(Clear());
-        while (State == BlockManagerState.Clearing)
-            yield return new WaitForEndOfFrame();
+        LogController.Log("Loading from " + path.ToString());
+        StageCollection deserializedCollection = new StageCollection(this);
+        WebClient webClient = new WebClient();
+        Stream fs = webClient.OpenRead(path);
+        StartCoroutine(HandleLoad(fs, true));
+    }
+
+    public IEnumerator HandleLoad(Stream stream, bool clearFirst = true)
+    {
+        if (clearFirst)
+        {
+            Clear();
+            while (State == BlockManagerState.Clearing)
+                yield return new WaitForEndOfFrame();
         }
         BlockManagerState oldState = State;
         State = BlockManagerState.Loading;
@@ -707,7 +333,7 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-    public void BlocksFromJson( string json )
+    public void BlocksFromJson(string json)
     {
         MemoryStream stream = new MemoryStream();
         StreamWriter writer = new StreamWriter(stream);
@@ -724,29 +350,36 @@ public class BlockManager : MonoBehaviour {
     }
 
     // Saves a file with the textToSave using a path
-    private void SaveFileUsingPath(string path) {
-		if (!string.IsNullOrWhiteSpace(path)) {
+    private void SaveFileUsingPath(string path)
+    {
+        if (!string.IsNullOrWhiteSpace(path))
+        {
             Uri location = new Uri("file:///" + path);
             string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
             PlayerPrefs.SetString("LastSaveDir", directory);
-            string json = BlocksToPrettyJson ();
+            string json = BlocksToPrettyJson();
             //TODO this probably can throw an exception?
-			if (!string.IsNullOrWhiteSpace(json))
-				System.IO.File.WriteAllText (path, json);
-            if (!path.Contains("_autosave.")) {
+            if (!string.IsNullOrWhiteSpace(json))
+                System.IO.File.WriteAllText(path, json);
+            if (!path.Contains("_autosave."))
+            {
                 LastAccessedFileName = path;
                 File.Delete(path.Replace(".json", "_autosave.json"));
                 LogController.Log("Saved & Autosave");
             }
-		} else {
+        }
+        else
+        {
             LogController.Log("Invalid path");
-		}
-	}
+        }
+    }
 
-	// Loads a file using a path
-	private void LoadFileUsingPath(string path) {
+    // Loads a file using a path
+    private void LoadFileUsingPath(string path)
+    {
         //TODO ensure file is valid
-        if (!string.IsNullOrWhiteSpace(path)) {
+        if (!string.IsNullOrWhiteSpace(path))
+        {
             Uri location = new Uri("file:///" + path);
             string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
             PlayerPrefs.SetString("LastLoadDir", directory);
@@ -758,10 +391,12 @@ public class BlockManager : MonoBehaviour {
             }
             else
                 LastAccessedFileName = path;
-		} else {
+        }
+        else
+        {
             LogController.Log("Invalid path");
-		}
-	}
+        }
+    }
 
     public void ReloadCurrentLevel()
     {
@@ -770,7 +405,7 @@ public class BlockManager : MonoBehaviour {
 
     public bool TryReloadCurrentLevel()
     {
-        if(!string.IsNullOrWhiteSpace(LastAccessedFileName))
+        if (!string.IsNullOrWhiteSpace(LastAccessedFileName))
         {
             ReloadCurrentLevel();
             return true;
@@ -778,9 +413,391 @@ public class BlockManager : MonoBehaviour {
         return false;
     }
 
-	public PlatformJsonDelegate GetPlatformJsonDelegate() {
-		return new PlatformJsonDelegate (ActiveFloor);
+    public PlatformJsonDelegate GetPlatformJsonDelegate()
+    {
+        return new PlatformJsonDelegate(ActiveFloor);
+    }
+    #endregion
+
+    public enum BlockManagerState
+    {
+        Initializing,
+        EditMode,
+        Clearing,
+        Loading,
+        Saving,
+        PlayMode
+    }
+
+    public BlockManagerState State = BlockManagerState.Initializing;
+
+    // Unity Inspector variables
+    public GameObject CursorPrefab;
+    public GameObject BasicPlatformPrefab;
+    public GameObject StartLocationIndicator;
+    public GameObject GoalLocationIndicator;
+    public GameObject FileBrowserPrefab;
+    public ParticleSystem Fog;
+
+
+    /// <summary>
+    /// There should only ever be one BlockManager in the scene - it manages all blocks for all platforms and loaded stages. As such it
+    /// can be used statically via this property when accessing methods that are not already marked static.
+    /// </summary>
+    /// TODO Singleton flamewar
+    public static BlockManager Instance { get; private set; }
+
+
+    /// <summary>
+    /// Used by many classes to determine current game state, eventually this will be moved into
+    /// a seperate GameManager class or something but for now this is pretty much THE way to
+    /// determine if the application is currently in PlayMode or EditMode. Note that this property
+    /// is read-pnly. Use BlockManager.TogglePlayMode() to change the application state to/from
+    /// PlayMode and EditMode. This too will change in an upcoming revision.
+    /// </summary>
+    /// TODO: Move this out to a separate GameManager class
+    public static bool PlayMode { get; protected set; } = false;
+
+    /// <summary>
+    /// Toggles the application between PlayMode and EditMode. This will show/hide the cursor,
+    /// inform PlayerManager of the new mode, and if entering play mode record the starting state
+    /// of the blocks to facilitate player death and test-playing while creating (restore on exiting
+    /// PlayMode)
+    /// </summary>
+    /// TODO Combine this with the PlayMode property and move it to GameManager class
+    /// TODO change the way the button mapping box behaves
+    public void TogglePlayMode()
+    {
+        PlayMode = !PlayMode;
+        if (PlayMode)
+        {
+            LogController.Log("Start!");
+            UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
+            RecordStartState();
+            State = BlockManagerState.PlayMode;
+            Fog.gameObject.SetActive(PlayerPrefs.GetInt("Fog", 0) == 1);
+        }
+        else
+        {
+            //Reset blocks to their pre-PlayMode state
+            if (!string.IsNullOrWhiteSpace(_startState))
+                ReloadStartState();
+            UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
+            State = BlockManagerState.EditMode;
+            Fog.gameObject.SetActive(false);
+        }
+        UIManager.RefreshButtonMappingDialog();
+        GetComponent<PlayerManager>().PlayMode = PlayMode;
+        Cursor.SetActive(!PlayMode);
+
+    }
+
+    #region BlockAccounting
+    private static List<IBlock> _blockCache = new List<IBlock>();
+
+    /// <summary>
+    /// Read-only property that technically returns the number of blocks
+    /// in the internal cache.
+    /// </summary>
+    public static int BlockCount
+    {
+        get
+        {
+            return _blockCache.Count;
+        }
+    }
+
+    /// <summary>
+    /// When in EditMode, returns the block, if any, that is currently under the cursor,
+    /// or null if the cursor is not on a block. Setting this property in EditMode will
+    /// move the cursor to the position of the block.
+    /// 
+    /// When in PlayMode, returns the block associated with player 1, this will be either
+    /// the block the player is standing on or sidled on (if sidling)
+    /// </summary>
+    /// TODO Support IBlock interface
+    public Cathy1Block ActiveBlock
+    {
+        get
+        {
+            if (PlayMode)
+                return PlayerManager.Player(0)?.GameObject?.GetComponent<Cathy1PlayerCharacter>()?.CurrentBlock?.GameObject?.GetComponent<Cathy1Block>();
+            else
+                return GetBlockAt(Cursor.transform.position)?.GameObject?.GetComponent<Cathy1Block>();
+        }
+        set
+        {
+            if(!PlayMode)
+                Cursor.transform.position = value.Position;
+        }
+    }
+
+    public static void Clear()
+    {
+        BlockManagerState oldState = Instance.State;
+        Instance.State = BlockManagerState.Clearing;
+
+        //Clear all cached data
+        foreach (IBlock block in _blockCache)
+        {
+            Destroy(block.GameObject);
+        }
+        _blockCache.Clear();
+        blockGroups.Clear();
+        blockToGroupMapping.Clear();
+        PlayerManager.Clear();
+        EventManager.Clear();
+        ClearUndoStates();
+        Instance.LastAccessedFileName = null;
+
+        ActiveFloor.transform.position = Vector3.zero;
+        Cursor.transform.position = new Vector3(0f, 1f, 0f);
+        Instance.State = oldState;
+    }
+
+    // Create a basic block at the current cursor position
+
+    public static IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic)
+    {
+        Debug.Assert(Instance != null);
+        Debug.Assert(Cursor != null);
+        Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+        _blockCache.Add(block);
+        Instance.AutoSave();
+        return block;
+    }
+
+    public static IBlock CreateBlockAtCursor(string palette, string type)
+    {
+        return CreateBlockAt(Cursor.transform.position, palette, type);
+    }
+
+    public static IBlock CreateBlockAt(Vector3 position, string palette, string type)
+    {
+        Debug.Assert(Instance != null);
+        Debug.Assert(Cursor != null);
+        if (palette == "Cathy1 Internal")
+        {
+            Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+            _blockCache.Add(block);
+            Instance.AutoSave();
+            return block;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Returns a Cathy1BlockFactory that can be used to create Cathy1-style blocks
+    /// </summary>
+    /// TODO create the factory, don't be the factory.
+    public Cathy1BlockFactory Cathy1BlockFactory
+    {
+        get
+        {
+            return GetComponent<Cathy1BlockFactory>();
+        }
+    }
+
+    public static void DestroyBlock(IBlock block)
+    {
+        if (blockToGroupMapping.ContainsKey(block))
+        {
+            Debug.Assert(blockGroups.ContainsKey(blockToGroupMapping[block]));
+            blockGroups[blockToGroupMapping[block]].Remove(block);
+            blockToGroupMapping.Remove(block);
+        }
+        _blockCache.Remove(block);
+        block.GameObject.SetActive(false);
+        Destroy(block.GameObject);
+    }
+
+    #endregion
+
+    /// <summary>
+    /// This is a hacky method from early on in the implementation. In theory it should return
+    /// the GameObject of whatever is under the cursor. In actuality it usually only does this
+    /// correctly if its a block.
+    /// </summary>
+    /// TODO: Move cursor when set
+    public GameObject ActiveObject {
+        get {
+            return GetBlockAt(Cursor.transform.position)?.GameObject;
+        }
+        set {
+        }
+    }
+
+    
+
+    /// <summary>
+    /// The Cursor used in Edit Mode.
+    /// </summary>
+    /// TODO Right now this gets moved from the top level scene, do we want this behavior?
+    private static GameObject _cursor;
+    public static GameObject Cursor {
+        get {
+            return _cursor;
+        }
+        set {
+            _cursor = value;
+        }
+    }
+
+    /// <summary>
+    /// Used for cycling the default block type while in EditMode. This will be moved to
+    /// Cathy1BlockFactory or similar class later.
+    /// </summary>
+    private static Cathy1Block.BlockType _blockCycleType = Cathy1Block.BlockType.Basic;
+    public static Cathy1Block.BlockType BlockCycleType {
+        get {
+            return _blockCycleType;
+        }
+        set {
+            _blockCycleType = value;
+        }
+    }
+
+    /// <summary>
+    /// Used for cycling the default block type while in EditMode. This will be moved to
+    /// Cathy1BlockFactory or similar class later.
+    /// </summary>
+    public static Cathy1Block.BlockType NextBlockType() {
+        if (BlockCycleType >= Cathy1Block.BlockType.Goal) {
+            BlockCycleType = Cathy1Block.BlockType.Basic;
+            return BlockCycleType;
+        }
+        return ++BlockCycleType;
+    }
+
+    /// <summary>
+    /// Used for cycling the default block type while in EditMode. This will be moved to
+    /// Cathy1BlockFactory or similar class later.
+    /// </summary>
+    public static Cathy1Block.BlockType PrevBlockType() {
+        if (BlockCycleType <= Cathy1Block.BlockType.Basic) {
+            BlockCycleType = Cathy1Block.BlockType.Goal;
+            return BlockCycleType;
+        }
+        return --BlockCycleType;
+    }
+
+    /// <summary>
+    /// Used to support Cathy-2 style rotatable floors and other multi-platform implementations
+    /// This is to be implemented in the future
+    /// Right now it only contains the BlockManager.ActiveFloor
+    /// </summary>
+    private List<GameObject> _rotatableFloors = new List<GameObject>();
+    public List<GameObject> RotatableFloors {
+        get {
+            return _rotatableFloors;
+        }
+        set {
+            _rotatableFloors = value;
+        }
+    }
+
+    /// <summary>
+    /// Currently this will always be the platform on which the stage rests. When BlockManager.RotatableFloors
+    /// is implemented later this will be set to the platform currently selected by the cursor or occupied by
+    /// the player.
+    /// </summary>
+    private static GameObject _activeFloor;
+    public static GameObject ActiveFloor {
+        get {
+            return _activeFloor;
+        }
+        set {
+            _activeFloor = value;
+        }
+    }
+
+    public static void RotatePlatform(int x, int y, int z)
+    {
+        ActiveFloor.transform.Rotate(x, y, z, Space.Self);
+        Instance.StartCoroutine(Instance.rotateCleanup());
+    }
+
+    IEnumerator rotateCleanup()
+    {
+        yield return new WaitForEndOfFrame();
+        IBlock[] blocks = ActiveFloor.GetComponentsInChildren<IBlock>();
+        yield return new WaitForEndOfFrame();
+        Debug.Log("rotating " + blocks.Length + " blocks");
+        foreach (IBlock block in blocks)
+        {
+            block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            block.Rotation = Quaternion.identity;
+            (block as AbstractBlock).SetGravityEnabledByMotionState();
+        }
+        yield return new WaitForEndOfFrame();
+    }
+
+
+   
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    // Called when the BlockManager is intantiated, when the Level Editor is loaded
+    void Start() {
+        // Create the cursor
+        ActiveFloor = Instantiate(BasicPlatformPrefab, new Vector3(0, 0f, 3f), new Quaternion(0, 0, 0, 0)) as GameObject;
+        ActiveFloor.name = "Platform";
+        ActiveFloor.transform.SetParent(transform, false);
+        RotatableFloors.Add(ActiveFloor);
+        Cursor = CursorPrefab;
+        Cursor.transform.SetParent(transform, false);
+        if (UIManager.Instance.MainMenu.isActiveAndEnabled)
+            Cursor.SetActive(false);
+    }
+
+
+    
+
+    public void RandomizeGravity()
+    {
+        System.Random randomNumberGenerator = new System.Random(new System.DateTime().Millisecond);
+
+        foreach (Transform child in ActiveFloor.transform)
+        {
+            IBlock block = child.gameObject.GetComponent<IBlock>();
+            if (block != null)
+                block.GravityFactor = randomNumberGenerator.Next(-100,100)/100f;
+        }
+        AutoSave();
+    }
+
+   
+
+	/// <summary>
+    /// Sets the material on a block.
+    /// </summary>
+    /// <param name="block"></param>
+    /// <param name="material"></param>
+    /// TODO: Move this to AbstractBlock?
+	public static void SetMaterial( IBlock block, Material material ) {
+		Renderer rend = block.GameObject.GetComponent<Renderer> ();
+		rend.material = material;
 	}
+
+	
+
+
+    public void DestroyActiveObject()
+    {
+        if (ActiveObject != null)
+        {
+            if (ActiveObject.GetComponent<IBlock>() != null)
+                DestroyBlock(ActiveObject.GetComponent<IBlock>());
+            else
+                Destroy(ActiveObject);
+            AutoSave();
+        }
+    }
+
+	
 
 	public static AbstractBlock GetBlockAt( Vector3 position, float radius = 0.01f) {
 
@@ -809,6 +826,7 @@ public class BlockManager : MonoBehaviour {
         return ret;
     }
 
+    #region Block groups
     static Dictionary<IBlock, int> blockToGroupMapping = new Dictionary<IBlock, int>();
     static Dictionary<int, List<IBlock>> blockGroups = new Dictionary<int, List<IBlock>>();
 
@@ -934,19 +952,10 @@ public class BlockManager : MonoBehaviour {
             return block.Move(direction, distance);
         return MoveGroup(BlockGroupNumber(block), direction, distance);
     }
+    #endregion
 
-    public static void DestroyBlock(IBlock block)
-    {
-        if(blockToGroupMapping.ContainsKey(block))
-        {
-            Debug.Assert(blockGroups.ContainsKey(blockToGroupMapping[block]));
-            blockGroups[blockToGroupMapping[block]].Remove(block);
-            blockToGroupMapping.Remove(block);
-        }
-        block.GameObject.SetActive(false);
-        Destroy(block.GameObject);
-    }
 
+    #region SoundsAndEffects
     private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration, Quaternion rotation)
     {
         ParticleSystem system = Instantiate(animationPrefab, position, rotation, transform);
@@ -994,4 +1003,5 @@ public class BlockManager : MonoBehaviour {
         Debug.Assert(sound != null);
         Instance.StartCoroutine(Instance._soundHelper(sound, block.Position,volume));
     }
+    #endregion
 }

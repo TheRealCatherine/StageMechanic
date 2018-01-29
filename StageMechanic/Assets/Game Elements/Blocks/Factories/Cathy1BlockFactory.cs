@@ -216,7 +216,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
                 oldItem = bl.FirstItem;
                 if (oldItem != null)
                     oldItem.transform.parent = null;
-                Destroy(obj);
+                BlockManager.DestroyBlock(bl);
             }
 
         }

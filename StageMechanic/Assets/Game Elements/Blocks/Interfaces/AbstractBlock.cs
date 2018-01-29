@@ -496,7 +496,6 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         int ret = 0;
         foreach (IBlock support in blocksBelow)
         {
-            AbstractBlock block = support as AbstractBlock;
             if (support != null && (support.MotionState == BlockMotionState.Edged || support.MotionState == BlockMotionState.Grounded))
                 ++ret;
         }

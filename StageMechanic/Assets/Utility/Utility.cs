@@ -101,4 +101,23 @@ public static class Utility
         }
         return ret;
     }
+
+    public static void SortChildrenByYCoord(GameObject o)
+    {
+        var children = new List<Transform>(o.GetComponentsInChildren<Transform>(true));
+        children.Remove(o.transform);
+        children.Sort(CompareYCoord);
+        for (int i = 0; i < children.Count; i++)
+            children[i].SetSiblingIndex(i);
+    }
+
+    private static int CompareYCoord(Transform lhs, Transform rhs)
+    {
+        if (lhs == rhs) return 0;
+        var test = rhs.gameObject.activeInHierarchy.CompareTo(lhs.gameObject.activeInHierarchy);
+        if (test != 0) return test;
+        if (lhs.localPosition.y < rhs.localPosition.y) return -1;
+        if (lhs.localPosition.y > rhs.localPosition.y) return 1;
+        return 0;
+    }
 }
