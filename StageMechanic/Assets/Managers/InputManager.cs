@@ -750,11 +750,17 @@ public class InputManager : MonoBehaviour
                 BlockManager.ToggleUndoEnabled();
                 return;
             }
-            else if (Input.GetKeyDown(KeyCode.Backspace) && BlockManager.PlayMode)
+            else if (BlockManager.PlayMode && (Input.GetKeyDown(KeyCode.Backspace) || (Input.GetKeyDown(KeyCode.Z) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))))
             {
                 BlockManager.Undo();
                 return;
             }
+            else if (BlockManager.PlayMode && ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) && (Input.GetKeyDown(KeyCode.Y) || (Input.GetKeyDown(KeyCode.Z) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))))))
+            {
+                BlockManager.Redo();
+                return;
+            }
+
         }
 
         //Edit Mode

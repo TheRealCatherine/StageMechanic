@@ -49,6 +49,7 @@ public class BlockManager : MonoBehaviour {
 
     public static int MaxUndoLevels = 99;
     private static List<UndoState> _undoStates = new List<UndoState>();
+    private static List<UndoState> _redoStates = new List<UndoState>();
     private static string _startState;
     private static string _lastCheckpointState;
 
@@ -132,6 +133,7 @@ public class BlockManager : MonoBehaviour {
     }
 
     public static int AvailableUndoCount { get { if (!UndoEnabled) return 0; return _undoStates.Count; } }
+    public static int AvailableRedoCount { get { if (!UndoEnabled) return 0; return _redoStates.Count; } }
 
     public static void Undo()
     {
@@ -153,6 +155,12 @@ public class BlockManager : MonoBehaviour {
         }
         else
             LogController.Log("No undos left");
+    }
+
+    //TODO
+    public static void Redo()
+    {
+
     }
 
     public void ClearForUndo()
