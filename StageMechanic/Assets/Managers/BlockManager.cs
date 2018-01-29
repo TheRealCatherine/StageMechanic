@@ -39,7 +39,7 @@ public class BlockManager : MonoBehaviour {
             Binary
         }
 
-        public MemoryStream BlockState;
+        public string BlockState;
         public DataType Type;
         public Vector3 PlayerPosition;
         public Vector3 PlayerFacingDirection;
@@ -116,7 +116,7 @@ public class BlockManager : MonoBehaviour {
                 _undoStates.RemoveAt(0);
             }
             UndoState state = new UndoState();
-            state.BlockState = Instance.BlocksToCondensedJsonStream();
+            state.BlockState = Instance.BlocksToCondensedJson();
             state.Type = UndoState.DataType.Json;
             state.PlayerPosition = PlayerManager.Player1Location();
             state.PlayerFacingDirection = PlayerManager.Player1FacingDirection();
@@ -143,7 +143,7 @@ public class BlockManager : MonoBehaviour {
             PlayerManager.HideAllPlayers();
             UndoState state = _undoStates[_undoStates.Count - 1];
             ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);
-            Instance.BlocksFromJsonStream(state.BlockState);
+            Instance.BlocksFromJson(state.BlockState);
             PlayerManager.SetPlayer1State(state.PlayerStateIndex);
             PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
             PlayerManager.SetPlayer1Location(state.PlayerPosition);
@@ -345,6 +345,7 @@ public class BlockManager : MonoBehaviour {
 
     public void BlocksFromJsonStream(MemoryStream stream)
     {
+        Debug.Assert(stream != null);
         stream.Position = 0;
         StartCoroutine(HandleLoad(stream, false));
     }
@@ -493,7 +494,7 @@ public class BlockManager : MonoBehaviour {
     }
 
     #region BlockAccounting
-    private static List<IBlock> _blockCache = new List<IBlock>();
+    internal static List<IBlock> BlockCache = new List<IBlock>();
 
     /// <summary>
     /// Read-only property that technically returns the number of blocks
@@ -503,7 +504,7 @@ public class BlockManager : MonoBehaviour {
     {
         get
         {
-            return _blockCache.Count;
+            return BlockCache.Count;
         }
     }
 
@@ -538,11 +539,11 @@ public class BlockManager : MonoBehaviour {
         Instance.State = BlockManagerState.Clearing;
 
         //Clear all cached data
-        foreach (IBlock block in _blockCache)
+        foreach (IBlock block in BlockCache)
         {
             Destroy(block.GameObject);
         }
-        _blockCache.Clear();
+        BlockCache.Clear();
         blockGroups.Clear();
         blockToGroupMapping.Clear();
         PlayerManager.Clear();
@@ -562,7 +563,7 @@ public class BlockManager : MonoBehaviour {
         Debug.Assert(Instance != null);
         Debug.Assert(Cursor != null);
         Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
-        _blockCache.Add(block);
+        BlockCache.Add(block);
         Instance.AutoSave();
         return block;
     }
@@ -579,7 +580,7 @@ public class BlockManager : MonoBehaviour {
         if (palette == "Cathy1 Internal")
         {
             Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
-            _blockCache.Add(block);
+            BlockCache.Add(block);
             Instance.AutoSave();
             return block;
         }
@@ -606,7 +607,7 @@ public class BlockManager : MonoBehaviour {
             blockGroups[blockToGroupMapping[block]].Remove(block);
             blockToGroupMapping.Remove(block);
         }
-        _blockCache.Remove(block);
+        BlockCache.Remove(block);
         block.GameObject.SetActive(false);
         Destroy(block.GameObject);
     }

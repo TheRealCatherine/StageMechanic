@@ -67,11 +67,9 @@ public class PlatformJsonDelegate
         {
             Debug.Assert(_platform != null);
             List<BlockJsonDelegate> ret = new List<BlockJsonDelegate>();
-            foreach (Transform child in _platform.transform)
+            foreach (IBlock child in BlockManager.BlockCache)
             {
-                IBlock block = child.gameObject.GetComponent<IBlock>();
-                if (block != null)
-                    ret.Add(block.GetJsonDelegate());
+                ret.Add(child.GetJsonDelegate());
             }
             return ret;
         }
