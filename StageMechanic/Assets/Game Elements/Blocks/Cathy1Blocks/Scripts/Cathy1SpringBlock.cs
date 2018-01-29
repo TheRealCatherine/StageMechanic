@@ -12,37 +12,35 @@ using UnityEngine;
 public class Cathy1SpringBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Spring;
-    private const float DEFAULT_DELAY = 0.55f;
+    private const float DEFAULT_DELAY = 0.75f;
     private const float DEFAULT_DISTANCE = 6f;
     public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);
     public float Delay = DEFAULT_DELAY;
 
-
-    IEnumerator DoBoigy()
+    float period = 0.0f;
+    protected override void OnPlayerStay(PlayerMovementEvent ev)
     {
-        if (!hasPlayer())
+        base.OnPlayerEnter(ev);
+        period += Time.deltaTime;
+        if (period < Delay)
+            return;
+        StartCoroutine(HandlePlayer(ev));
+    }
+
+
+    virtual internal IEnumerator HandlePlayer(PlayerMovementEvent ev)
+    {
+        if (ev.Location != PlayerMovementEvent.EventLocation.Top)
             yield break;
         yield return new WaitForSeconds(Delay);
-        if (!hasPlayer())
+        if ((ev.Player as Cathy1PlayerCharacter)?.CurrentBlock != (this as IBlock))
             yield break;
-        PlayerManager.Player1BoingyTo(transform.position + Vector3.up + Distance);
-    }
-
-    bool hasPlayer()
-    {
-        Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up && (PlayerManager.PlayerStateName() == "Idle" || PlayerManager.PlayerStateName() == "Walk" || PlayerManager.PlayerStateName() == "Center"));
-    }
-
-    internal override void Update()
-    {
-        base.Update();
-        if (!BlockManager.PlayMode)
-            return;
-        if (!hasPlayer())
-            return;
-        StartCoroutine(DoBoigy());
-        
+        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
+        if (statename == "Idle" || statename == "Walk" || statename == "Center")
+        {
+            period = 0f;
+            PlayerManager.Player1BoingyTo(transform.position + Vector3.up + Distance);
+        }
     }
 
     public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
