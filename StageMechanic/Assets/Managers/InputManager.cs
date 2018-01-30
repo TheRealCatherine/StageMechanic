@@ -129,9 +129,9 @@ public class InputManager : MonoBehaviour
             if (!BlockManager.PlayMode)
             {
                 if (ctrlDown)
-                    BlockManager.Instance.SaveToJson();
+                    BlockManager.SaveToJson();
                 else
-                    BlockManager.Instance.QuickSave();
+                    Serializer.QuickSave();
 
                 return true;
             }
@@ -145,14 +145,14 @@ public class InputManager : MonoBehaviour
             {
                 BlockManager.Instance.TogglePlayMode();
             }
-            BlockManager.Instance.LoadFromJson();
+            BlockManager.LoadFromJson();
             return true;
         }
 
         // Reload current level
         else if (Input.GetKeyDown(KeyCode.F5))
         {
-            BlockManager.Instance.ReloadCurrentLevel();
+            Serializer.ReloadCurrentLevel();
             return true;
         }
 
@@ -160,7 +160,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Delete) && ctrlDown)
         {
             BlockManager.Clear();
-            BlockManager.Instance.LastAccessedFileName = null;
+            Serializer.LastAccessedFileName = null;
             return true;
         }
 
@@ -747,17 +747,17 @@ public class InputManager : MonoBehaviour
                 return;
             else if (Input.GetKeyDown(KeyCode.U))
             {
-                BlockManager.ToggleUndoEnabled();
+                Serializer.ToggleUndoEnabled();
                 return;
             }
             else if (BlockManager.PlayMode && (Input.GetKeyDown(KeyCode.Backspace) || (Input.GetKeyDown(KeyCode.Z) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))))
             {
-                BlockManager.Undo();
+                Serializer.Undo();
                 return;
             }
             else if (BlockManager.PlayMode && Input.GetKeyDown(KeyCode.Y) && ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))))                
             {
-                BlockManager.Redo();
+                Serializer.Redo();
                 return;
             }
         }

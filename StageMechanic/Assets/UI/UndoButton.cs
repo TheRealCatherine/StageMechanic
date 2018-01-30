@@ -6,6 +6,6 @@ public class UndoButton : MonoBehaviour {
 
 	public void Undo()
     {
-        BlockManager.Undo();
+        Serializer.Undo();
     }
 }

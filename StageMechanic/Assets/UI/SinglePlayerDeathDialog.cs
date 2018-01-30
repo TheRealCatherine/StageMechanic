@@ -24,7 +24,7 @@ public class SinglePlayerDeathDialog : MonoBehaviour {
     public void Show(AudioClip deathRattle = null)
     {
         PlayerManager.DestroyAllPlayers();
-        if (BlockManager.AvailableUndoCount > 0)
+        if (Serializer.AvailableUndoCount > 0)
             UndoLasMoveButton.interactable = true;
         else
             UndoLasMoveButton.interactable = false;
@@ -41,7 +41,7 @@ public class SinglePlayerDeathDialog : MonoBehaviour {
 
     void OnRestartFromBeginningClicked()
     {
-        BlockManager.ReloadStartState();
+        Serializer.ReloadStartState();
         PlayerManager.InstantiateAllPlayers();
         gameObject.SetActive(false);
     }
@@ -50,7 +50,7 @@ public class SinglePlayerDeathDialog : MonoBehaviour {
     {
         gameObject.SetActive(false);
         PlayerManager.InstantiateAllPlayers();
-        BlockManager.Undo();
+        Serializer.Undo();
     }
 
     void OnLoadAndEditClicked()
@@ -60,7 +60,7 @@ public class SinglePlayerDeathDialog : MonoBehaviour {
         {
             BlockManager.Instance.TogglePlayMode();
         }
-        BlockManager.Instance.LoadFromJson();
+        BlockManager.LoadFromJson();
     }
 
     void OnExitPlayModeClicked()

@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
 #endif
 
-        UndoPanel.SetActive(BlockManager.PlayMode && BlockManager.AvailableUndoCount > 0);
+        UndoPanel.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
     }
 
     public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)

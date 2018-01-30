@@ -50,7 +50,7 @@ public class MainMenu : MonoBehaviour
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
         FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 0) == 1);
         SaveButton.gameObject.SetActive(true);
-        if (string.IsNullOrWhiteSpace(BlockManager.Instance.LastAccessedFileName))
+        if (string.IsNullOrWhiteSpace(Serializer.LastAccessedFileName))
         {
             SaveButton.gameObject.SetActive(false);
         }
@@ -93,7 +93,7 @@ public class MainMenu : MonoBehaviour
         {
             BlockManager.Instance.TogglePlayMode();
         }
-        BlockManager.Instance.LoadFromJson();
+        BlockManager.LoadFromJson();
     }
 
     void OnCreateClicked()
@@ -147,12 +147,12 @@ public class MainMenu : MonoBehaviour
 
     public void onSaveClicked()
     {
-        BlockManager.Instance.QuickSave();
+        Serializer.QuickSave();
         SaveButton.gameObject.SetActive(false);
     }
 
     public void onSaveAsClicked()
     {
-        BlockManager.Instance.SaveToJson();
+        BlockManager.SaveToJson();
     }
 }

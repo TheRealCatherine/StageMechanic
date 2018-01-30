@@ -630,7 +630,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+FacingDirection);
 		if (blockInQuestion == null)
 			return 0f;
-        BlockManager.RecordUndo();
+        Serializer.RecordUndo();
         //TODO make this one movement
         bool moved = BlockManager.Move(blockInQuestion, direction);
         if (moved)

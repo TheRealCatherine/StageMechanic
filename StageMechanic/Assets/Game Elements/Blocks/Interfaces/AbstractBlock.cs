@@ -331,7 +331,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     private void OnDisable()
     {
-        if (BlockManager.Instance.State == BlockManager.BlockManagerState.PlayMode)
+        if (BlockManager.PlayMode)
             UpdateAllNeighborsCaches();
     }
 

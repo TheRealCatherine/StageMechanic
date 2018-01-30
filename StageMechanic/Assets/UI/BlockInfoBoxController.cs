@@ -49,7 +49,7 @@ public class BlockInfoBoxController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        filename.text = Path.GetFileName(BlockManager.Instance.LastAccessedFileName);
+        filename.text = Path.GetFileName(Serializer.LastAccessedFileName);
         // TODO make this event based instead of updating every frame
         lastBlock = BlockManager.Instance.ActiveBlock;
         if (lastBlock != null)
