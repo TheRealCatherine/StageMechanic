@@ -14,6 +14,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
@@ -119,8 +120,8 @@ public class BlockManager : MonoBehaviour {
             UndoState state = new UndoState
             {
                 //TODO support binary
-                BlockState = Instance.BlocksToCondensedJsonStream(),
-                Type = UndoState.DataType.Json,
+                BlockState = Instance.BlocksToBinaryStream(),
+                Type = UndoState.DataType.Binary,
                 PlayerPosition = PlayerManager.Player1Location(),
                 PlayerFacingDirection = PlayerManager.Player1FacingDirection(),
                 PlayerStateIndex = PlayerManager.PlayerState(),
@@ -150,6 +151,9 @@ public class BlockManager : MonoBehaviour {
             ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);
             if(state.Type == UndoState.DataType.Json)
                 Instance.BlocksFromJsonStream(state.BlockState);
+            else if (state.Type == UndoState.DataType.Binary)
+                Instance.BlocksFromBinaryStream(state.BlockState);
+
             PlayerManager.SetPlayer1State(state.PlayerStateIndex);
             PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
             PlayerManager.SetPlayer1Location(state.PlayerPosition);
@@ -271,6 +275,27 @@ public class BlockManager : MonoBehaviour {
         return null;
     }
 
+    public byte[] BlocksToBinaryStream()
+    {
+        Debug.Assert(ActiveFloor != null);
+        StageBinaryDelegate stage = new StageBinaryDelegate();
+        StageCollectionBinaryDelegate collection = new StageCollectionBinaryDelegate(stage);
+
+        try
+        {
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(ms,collection);
+            ms.Close();
+            return ms.ToArray();
+        }
+        catch (System.Exception exception)
+        {
+            LogController.Log(exception.ToString());
+        }
+        return null;
+    }
+
     public void SaveToJson()
     {
         GameObject fileBrowserObject = Instantiate(FileBrowserPrefab, this.transform);
@@ -338,6 +363,19 @@ public class BlockManager : MonoBehaviour {
         State = oldState;
     }
 
+    public void HandleBinaryLoad(Stream stream, bool clearFirst = true)
+    {
+        if (clearFirst)
+            Clear();
+        BlockManagerState oldState = State;
+        State = BlockManagerState.Loading;
+        BinaryFormatter formatter = new BinaryFormatter();
+        StageCollection deserializedCollection = formatter.Deserialize(stream) as StageCollection;
+        stream.Close();
+        State = oldState;
+    }
+
+
     public void BlocksFromJson(string json)
     {
         MemoryStream stream = new MemoryStream();
@@ -354,6 +392,14 @@ public class BlockManager : MonoBehaviour {
         MemoryStream stream = new MemoryStream(bytes);
         stream.Position = 0;
         HandleLoad(stream, false);
+    }
+
+    public void BlocksFromBinaryStream(byte[] bytes)
+    {
+        Debug.Assert(bytes != null);
+        MemoryStream stream = new MemoryStream(bytes);
+        stream.Position = 0;
+        HandleBinaryLoad(stream, false);
     }
 
     // Saves a file with the textToSave using a path
@@ -423,6 +469,10 @@ public class BlockManager : MonoBehaviour {
     public PlatformJsonDelegate GetPlatformJsonDelegate()
     {
         return new PlatformJsonDelegate(ActiveFloor);
+    }
+    public PlatformBinaryDelegate GetPlatformBinaryDelegate()
+    {
+        return new PlatformBinaryDelegate(ActiveFloor);
     }
     #endregion
 

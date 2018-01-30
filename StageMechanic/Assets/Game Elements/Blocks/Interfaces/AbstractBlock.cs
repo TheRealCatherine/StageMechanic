@@ -283,6 +283,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     {
         return new BlockJsonDelegate(this);
     }
+
+    public BlockBinaryDelegate GetBinaryDelegate()
+    {
+        return new BlockBinaryDelegate(this);
+    }
     #endregion
 
     #region constructors/destructors

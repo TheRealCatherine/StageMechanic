@@ -111,6 +111,11 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
         return new EventJsonDelegate(this);
     }
 
+    public EventBinaryDelegate GetBinaryDelegate()
+    {
+        return new EventBinaryDelegate(this);
+    }
+
     /// <summary>
     /// Sets the name to a random GUID
     /// Called when this object is created in the scene. If overriding
