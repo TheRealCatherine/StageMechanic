@@ -553,15 +553,18 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         if (MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding)
             return;
 
+        BlockMotionState oldState = MotionState;
+
         //We might be able to move this down within the method - at least for now this is
         //very uncommon
         if (GravityFactor == 0f)
         {
             MotionState = BlockMotionState.Grounded;
+            if (MotionState != oldState)
+                OnMotionStateChanged(MotionState, oldState);
             return;
         }
 
-        BlockMotionState oldState = MotionState;
         MotionState = BlockMotionState.Unknown;
 
         Profiler.BeginSample("On the floor");
@@ -571,6 +574,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             if (oldState != BlockMotionState.Falling)
             {
                 MotionState = BlockMotionState.Grounded;
+                if (MotionState != oldState)
+                    OnMotionStateChanged(MotionState, oldState);
                 return;
             }
             else
@@ -588,6 +593,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 MotionState = BlockMotionState.Hovering;
             else
                 MotionState = BlockMotionState.Falling;
+            if (MotionState != oldState)
+                OnMotionStateChanged(MotionState, oldState);
             return;
         }
         Profiler.EndSample(); //No supporters
@@ -596,6 +603,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         if (blocksBelow[DOWN] != null && (blocksBelow[DOWN].MotionState == BlockMotionState.Edged || blocksBelow[DOWN].MotionState == BlockMotionState.Grounded))
         {
             MotionState = BlockMotionState.Grounded;
+            if (MotionState != oldState)
+                OnMotionStateChanged(MotionState, oldState);
             return;
         }
         else
@@ -610,6 +619,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                     BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration, new Vector3(0.5f, -0.5f, -1f),Quaternion.Euler(0f,180f,0f));
                 //TODO get this on edged sides
             }
+            if (MotionState != oldState)
+                OnMotionStateChanged(MotionState, oldState);
             Profiler.EndSample(); //Edged
         }
         Profiler.EndSample(); //Supported
@@ -744,6 +755,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     }
     #endregion
 
+    public virtual void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState) { }
 
     #region Player movement event handling
     public virtual void OnPlayerMovement(IPlayerCharacter player, PlayerMovementEvent.EventType type)
