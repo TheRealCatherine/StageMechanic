@@ -21,7 +21,8 @@ using System.Threading;
 using System.Xml;
 using UnityEngine;
 
-public class BlockManager : MonoBehaviour {
+public class BlockManager : MonoBehaviour
+{
 
     #region Serialization
     /// TODO: Consider relocating UNDO related
@@ -64,7 +65,7 @@ public class BlockManager : MonoBehaviour {
         set
         {
             _undoEnabled = value;
-            if(value)
+            if (value)
                 LogController.Log(MaxUndoLevels + " Undos On");
             else
                 LogController.Log("Undo off");
@@ -111,12 +112,29 @@ public class BlockManager : MonoBehaviour {
     {
         if (!UndoEnabled)
             return;
+        if (_undoStates.Count > MaxUndoLevels)
+        {
+            _undoStates.RemoveAt(0);
+        }
+        _undoStates.Add(CurrentUndoState());
+        _redoStates.Clear();
+    }
+
+    public static void RecordRedo()
+    {
+        if (!UndoEnabled)
+            return;
+        if (_undoStates.Count > MaxUndoLevels)
+        {
+            _undoStates.RemoveAt(0);
+        }
+        _redoStates.Add(CurrentUndoState());
+    }
+
+    private static UndoState CurrentUndoState()
+    {
         try
         {
-            if (_undoStates.Count > MaxUndoLevels)
-            {
-                _undoStates.RemoveAt(0);
-            }
             UndoState state = new UndoState
             {
                 //TODO support binary
@@ -128,12 +146,14 @@ public class BlockManager : MonoBehaviour {
                 PlatformYPosition = ActiveFloor.transform.position.y
             };
             Debug.Assert(state.BlockState != null);
-            _undoStates.Add(state);
+
+            return state;
         }
         catch (Exception e)
         {
             Debug.LogAssertion(e.Message);
         }
+        return default(UndoState);
     }
 
     public static int AvailableUndoCount { get { if (!UndoEnabled) return 0; return _undoStates.Count; } }
@@ -145,20 +165,11 @@ public class BlockManager : MonoBehaviour {
             return;
         if (_undoStates.Count > 0)
         {
-            Instance.ClearForUndo();
-            PlayerManager.HideAllPlayers();
+            //TODO
+            //RecordRedo();
             UndoState state = _undoStates[_undoStates.Count - 1];
-            ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);
-            if(state.Type == UndoState.DataType.Json)
-                Instance.BlocksFromJsonStream(state.BlockState);
-            else if (state.Type == UndoState.DataType.Binary)
-                Instance.BlocksFromBinaryStream(state.BlockState);
-
-            PlayerManager.SetPlayer1State(state.PlayerStateIndex);
-            PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
-            PlayerManager.SetPlayer1Location(state.PlayerPosition);
+            RestoreUndoState(state);
             _undoStates.RemoveAt(_undoStates.Count - 1);
-            PlayerManager.ShowAllPlayers();
             LogController.Log("Undo");
         }
         else
@@ -168,14 +179,42 @@ public class BlockManager : MonoBehaviour {
     //TODO
     public static void Redo()
     {
+        if (!UndoEnabled)
+            return;
+        if (_redoStates.Count > 0)
+        {
+            RecordUndo();
+            UndoState state = _redoStates[_redoStates.Count - 1];
+            RestoreUndoState(state);
+            _redoStates.RemoveAt(_redoStates.Count - 1);
+            LogController.Log("Redo");
+        }
+        else
+            LogController.Log("No redos left");
+    }
 
+    private static void RestoreUndoState(UndoState state)
+    {
+        Instance.ClearForUndo();
+        PlayerManager.HideAllPlayers();
+
+        ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);
+        if (state.Type == UndoState.DataType.Json)
+            Instance.BlocksFromJsonStream(state.BlockState);
+        else if (state.Type == UndoState.DataType.Binary)
+            Instance.BlocksFromBinaryStream(state.BlockState);
+
+        PlayerManager.SetPlayer1State(state.PlayerStateIndex);
+        PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
+        PlayerManager.SetPlayer1Location(state.PlayerPosition);
+        PlayerManager.ShowAllPlayers();
     }
 
     public void ClearForUndo()
     {
         BlockManagerState oldState = State;
         State = BlockManagerState.Clearing;
-        foreach(IBlock block in BlockCache)
+        foreach (IBlock block in BlockCache)
         {
             Destroy(block.GameObject);
         }
@@ -285,7 +324,7 @@ public class BlockManager : MonoBehaviour {
         {
             MemoryStream ms = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(ms,collection);
+            formatter.Serialize(ms, collection);
             ms.Close();
             return ms.ToArray();
         }
@@ -584,7 +623,7 @@ public class BlockManager : MonoBehaviour {
         }
         set
         {
-            if(!PlayMode)
+            if (!PlayMode)
                 Cursor.transform.position = value.Position;
         }
     }
@@ -676,26 +715,32 @@ public class BlockManager : MonoBehaviour {
     /// correctly if its a block.
     /// </summary>
     /// TODO: Move cursor when set
-    public GameObject ActiveObject {
-        get {
+    public GameObject ActiveObject
+    {
+        get
+        {
             return GetBlockAt(Cursor.transform.position)?.GameObject;
         }
-        set {
+        set
+        {
         }
     }
 
-    
+
 
     /// <summary>
     /// The Cursor used in Edit Mode.
     /// </summary>
     /// TODO Right now this gets moved from the top level scene, do we want this behavior?
     private static GameObject _cursor;
-    public static GameObject Cursor {
-        get {
+    public static GameObject Cursor
+    {
+        get
+        {
             return _cursor;
         }
-        set {
+        set
+        {
             _cursor = value;
         }
     }
@@ -705,11 +750,14 @@ public class BlockManager : MonoBehaviour {
     /// Cathy1BlockFactory or similar class later.
     /// </summary>
     private static Cathy1Block.BlockType _blockCycleType = Cathy1Block.BlockType.Basic;
-    public static Cathy1Block.BlockType BlockCycleType {
-        get {
+    public static Cathy1Block.BlockType BlockCycleType
+    {
+        get
+        {
             return _blockCycleType;
         }
-        set {
+        set
+        {
             _blockCycleType = value;
         }
     }
@@ -718,8 +766,10 @@ public class BlockManager : MonoBehaviour {
     /// Used for cycling the default block type while in EditMode. This will be moved to
     /// Cathy1BlockFactory or similar class later.
     /// </summary>
-    public static Cathy1Block.BlockType NextBlockType() {
-        if (BlockCycleType >= Cathy1Block.BlockType.Goal) {
+    public static Cathy1Block.BlockType NextBlockType()
+    {
+        if (BlockCycleType >= Cathy1Block.BlockType.Goal)
+        {
             BlockCycleType = Cathy1Block.BlockType.Basic;
             return BlockCycleType;
         }
@@ -730,8 +780,10 @@ public class BlockManager : MonoBehaviour {
     /// Used for cycling the default block type while in EditMode. This will be moved to
     /// Cathy1BlockFactory or similar class later.
     /// </summary>
-    public static Cathy1Block.BlockType PrevBlockType() {
-        if (BlockCycleType <= Cathy1Block.BlockType.Basic) {
+    public static Cathy1Block.BlockType PrevBlockType()
+    {
+        if (BlockCycleType <= Cathy1Block.BlockType.Basic)
+        {
             BlockCycleType = Cathy1Block.BlockType.Goal;
             return BlockCycleType;
         }
@@ -744,11 +796,14 @@ public class BlockManager : MonoBehaviour {
     /// Right now it only contains the BlockManager.ActiveFloor
     /// </summary>
     private List<GameObject> _rotatableFloors = new List<GameObject>();
-    public List<GameObject> RotatableFloors {
-        get {
+    public List<GameObject> RotatableFloors
+    {
+        get
+        {
             return _rotatableFloors;
         }
-        set {
+        set
+        {
             _rotatableFloors = value;
         }
     }
@@ -759,11 +814,14 @@ public class BlockManager : MonoBehaviour {
     /// the player.
     /// </summary>
     private static GameObject _activeFloor;
-    public static GameObject ActiveFloor {
-        get {
+    public static GameObject ActiveFloor
+    {
+        get
+        {
             return _activeFloor;
         }
-        set {
+        set
+        {
             _activeFloor = value;
         }
     }
@@ -790,7 +848,7 @@ public class BlockManager : MonoBehaviour {
     }
 
 
-   
+
 
     private void Awake()
     {
@@ -798,7 +856,8 @@ public class BlockManager : MonoBehaviour {
     }
 
     // Called when the BlockManager is intantiated, when the Level Editor is loaded
-    void Start() {
+    void Start()
+    {
         // Create the cursor
         ActiveFloor = Instantiate(BasicPlatformPrefab, new Vector3(0, 0f, 3f), new Quaternion(0, 0, 0, 0)) as GameObject;
         ActiveFloor.name = "Platform";
@@ -811,7 +870,7 @@ public class BlockManager : MonoBehaviour {
     }
 
 
-    
+
 
     public void RandomizeGravity()
     {
@@ -821,25 +880,26 @@ public class BlockManager : MonoBehaviour {
         {
             IBlock block = child.gameObject.GetComponent<IBlock>();
             if (block != null)
-                block.GravityFactor = randomNumberGenerator.Next(-100,100)/100f;
+                block.GravityFactor = randomNumberGenerator.Next(-100, 100) / 100f;
         }
         AutoSave();
     }
 
-   
 
-	/// <summary>
+
+    /// <summary>
     /// Sets the material on a block.
     /// </summary>
     /// <param name="block"></param>
     /// <param name="material"></param>
     /// TODO: Move this to AbstractBlock?
-	public static void SetMaterial( IBlock block, Material material ) {
-		Renderer rend = block.GameObject.GetComponent<Renderer> ();
-		rend.material = material;
-	}
+    public static void SetMaterial(IBlock block, Material material)
+    {
+        Renderer rend = block.GameObject.GetComponent<Renderer>();
+        rend.material = material;
+    }
 
-	
+
 
 
     public void DestroyActiveObject()
@@ -854,12 +914,13 @@ public class BlockManager : MonoBehaviour {
         }
     }
 
-	
 
-	public static AbstractBlock GetBlockAt( Vector3 position, float radius = 0.01f) {
+
+    public static AbstractBlock GetBlockAt(Vector3 position, float radius = 0.01f)
+    {
 
         return Utility.GetGameObjectAt<AbstractBlock>(position, radius);
-	}
+    }
 
     public static AbstractBlock GetBlockNear(Vector3 position, float radius = 0.01f)
     {
@@ -898,9 +959,9 @@ public class BlockManager : MonoBehaviour {
     public static void AddBlockToGroup(IBlock block, int groupNumber)
     {
         Debug.Assert(block != null);
-        if(groupNumber < 0)
+        if (groupNumber < 0)
         {
-            if(blockToGroupMapping.ContainsKey(block))
+            if (blockToGroupMapping.ContainsKey(block))
             {
                 blockGroups[blockToGroupMapping[block]].Remove(block);
                 blockToGroupMapping.Remove(block);
@@ -927,7 +988,7 @@ public class BlockManager : MonoBehaviour {
                 outline.color = groupNumber;
             }
         }
-        else if(!blockToGroupMapping.ContainsKey(block))
+        else if (!blockToGroupMapping.ContainsKey(block))
         {
             blockToGroupMapping.Add(block, groupNumber);
             if (!blockGroups.ContainsKey(groupNumber))
@@ -962,7 +1023,7 @@ public class BlockManager : MonoBehaviour {
     {
         Debug.Assert(groupNumber >= 0);
         Debug.Assert(blockGroups.ContainsKey(groupNumber));
-        foreach(IBlock block in BlockGroup(groupNumber))
+        foreach (IBlock block in BlockGroup(groupNumber))
         {
             if (!block.CanBeMoved(direction, distance))
                 return false;
@@ -975,7 +1036,7 @@ public class BlockManager : MonoBehaviour {
         if (!CanMoveGroup(groupNumber, direction, distance))
             return false;
 
-        foreach(IBlock block in BlockGroup(groupNumber))
+        foreach (IBlock block in BlockGroup(groupNumber))
         {
 
             IBlock neighbor = GetBlockAt(block.Position + direction);
@@ -987,7 +1048,7 @@ public class BlockManager : MonoBehaviour {
                     MoveGroup(BlockGroupNumber(neighbor), direction, distance);
             }
             AbstractBlock ab = block.GameObject?.GetComponent<AbstractBlock>();
-            if(ab == null)
+            if (ab == null)
                 block.Position += direction;
             else
                 ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.MoveWeight(direction, distance)));
@@ -1000,7 +1061,7 @@ public class BlockManager : MonoBehaviour {
     {
         if (BlockGroupNumber(block) < 0)
             return block.CanBeMoved(direction, distance);
-        return CanMoveGroup(BlockGroupNumber(block),direction,distance);
+        return CanMoveGroup(BlockGroupNumber(block), direction, distance);
     }
 
     public static bool Move(IBlock block, Vector3 direction, int distance = 1)
@@ -1022,9 +1083,9 @@ public class BlockManager : MonoBehaviour {
             module.scalingMode = ParticleSystemScalingMode.Hierarchy;
             system.transform.localScale = new Vector3(scale, scale, scale);
         }
-        if(duration > 0)
+        if (duration > 0)
             module.simulationSpeed = (module.duration / duration);
-      
+
         system.Play();
         yield return new WaitForSeconds(system.main.duration);
         system.Stop();
@@ -1037,7 +1098,7 @@ public class BlockManager : MonoBehaviour {
         if (duration == 0 || scale == 0)
             return;
         Quaternion rot = rotation;
-        if(rotation != Quaternion.identity)
+        if (rotation != Quaternion.identity)
         {
             Vector3 lookDirection = (block.Position + offset) - block.Position;
             rot = Quaternion.LookRotation(lookDirection);
@@ -1058,7 +1119,7 @@ public class BlockManager : MonoBehaviour {
     {
         Debug.Assert(block != null);
         Debug.Assert(sound != null);
-        Instance.StartCoroutine(Instance._soundHelper(sound, block.Position,volume));
+        Instance.StartCoroutine(Instance._soundHelper(sound, block.Position, volume));
     }
     #endregion
 }
