@@ -755,12 +755,11 @@ public class InputManager : MonoBehaviour
                 BlockManager.Undo();
                 return;
             }
-            else if (BlockManager.PlayMode && ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) && (Input.GetKeyDown(KeyCode.Y) || (Input.GetKeyDown(KeyCode.Z) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))))))
+            else if (BlockManager.PlayMode && Input.GetKeyDown(KeyCode.Y) && ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))))                
             {
                 BlockManager.Redo();
                 return;
             }
-
         }
 
         //Edit Mode

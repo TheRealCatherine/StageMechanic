@@ -56,6 +56,7 @@ public class BlockManager : MonoBehaviour
     private static string _lastCheckpointState;
 
     private static bool _undoEnabled = true;
+    private static bool _redoEnabled = false;
     public static bool UndoEnabled
     {
         get
@@ -69,6 +70,22 @@ public class BlockManager : MonoBehaviour
                 LogController.Log(MaxUndoLevels + " Undos On");
             else
                 LogController.Log("Undo off");
+        }
+    }
+
+    public static bool RedoEnabled
+    {
+        get
+        {
+            return (UndoEnabled && _redoEnabled);
+        }
+        set
+        {
+            _redoEnabled = value;
+            if (value)
+                LogController.Log(MaxUndoLevels + " Redos On");
+            else
+                LogController.Log("Redo off");
         }
     }
 
@@ -87,6 +104,11 @@ public class BlockManager : MonoBehaviour
     public static void ToggleUndoEnabled()
     {
         UndoEnabled = !UndoEnabled;
+    }
+
+    public static void ToggleRedoEnabled()
+    {
+        RedoEnabled = !RedoEnabled;
     }
 
     public static void ClearUndoStates()
@@ -108,7 +130,7 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-    public static void RecordUndo()
+    public static void RecordUndo(bool clearRedo = true)
     {
         if (!UndoEnabled)
             return;
@@ -117,16 +139,17 @@ public class BlockManager : MonoBehaviour
             _undoStates.RemoveAt(0);
         }
         _undoStates.Add(CurrentUndoState());
-        _redoStates.Clear();
+        if(clearRedo)
+            _redoStates.Clear();
     }
 
     public static void RecordRedo()
     {
-        if (!UndoEnabled)
+        if (!RedoEnabled)
             return;
-        if (_undoStates.Count > MaxUndoLevels)
+        if (_redoStates.Count > MaxUndoLevels)
         {
-            _undoStates.RemoveAt(0);
+            _redoStates.RemoveAt(0);
         }
         _redoStates.Add(CurrentUndoState());
     }
@@ -165,8 +188,7 @@ public class BlockManager : MonoBehaviour
             return;
         if (_undoStates.Count > 0)
         {
-            //TODO
-            //RecordRedo();
+            RecordRedo();
             UndoState state = _undoStates[_undoStates.Count - 1];
             RestoreUndoState(state);
             _undoStates.RemoveAt(_undoStates.Count - 1);
@@ -181,9 +203,16 @@ public class BlockManager : MonoBehaviour
     {
         if (!UndoEnabled)
             return;
+        if (!RedoEnabled)
+        {
+            RedoEnabled = true;
+            return;
+        }
+
         if (_redoStates.Count > 0)
         {
-            RecordUndo();
+            RecordUndo(false);
+            Debug.Log(_redoStates.Count);
             UndoState state = _redoStates[_redoStates.Count - 1];
             RestoreUndoState(state);
             _redoStates.RemoveAt(_redoStates.Count - 1);
