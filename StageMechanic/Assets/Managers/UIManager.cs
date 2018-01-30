@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
     public BlockInfoBoxController BlockInfoBox;
     public SinglePlayerDeathDialog SinglePlayerDeathDialog;
@@ -20,10 +21,13 @@ public class UIManager : MonoBehaviour {
     public SimpleButton DeleteBlockButton;
     public Dpad FurtherCloserButtons;
 
+    public GameObject UndoPanel;
     //TODO Singleton flame war
     public static UIManager Instance;
-    public static bool IsSinglePlayerDeathDialogOpen {
-        get {
+    public static bool IsSinglePlayerDeathDialogOpen
+    {
+        get
+        {
             Debug.Assert(Instance != null);
             return Instance.SinglePlayerDeathDialog.gameObject.activeInHierarchy;
         }
@@ -64,6 +68,8 @@ public class UIManager : MonoBehaviour {
 #else
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
 #endif
+
+        UndoPanel.SetActive(BlockManager.PlayMode && BlockManager.AvailableUndoCount > 0);
     }
 
     public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)
@@ -87,7 +93,7 @@ public class UIManager : MonoBehaviour {
     public static void ToggleMainMenu()
     {
         Debug.Assert(Instance != null);
-        if(Instance.MainMenu.gameObject.activeInHierarchy)
+        if (Instance.MainMenu.gameObject.activeInHierarchy)
             Instance.MainMenu.gameObject.SetActive(false);
         else
             Instance.MainMenu.gameObject.SetActive(true);
