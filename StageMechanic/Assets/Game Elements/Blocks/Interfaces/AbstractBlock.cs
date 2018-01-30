@@ -279,12 +279,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
     }
 
-    private BlockJsonDelegate _cachedDelegate;
     public BlockJsonDelegate GetJsonDelegate()
     {
-        if (_cachedDelegate == null)
-            _cachedDelegate = new BlockJsonDelegate(this);
-        return _cachedDelegate;
+        return new BlockJsonDelegate(this);
     }
     #endregion
 

@@ -116,14 +116,17 @@ public class BlockManager : MonoBehaviour {
             {
                 _undoStates.RemoveAt(0);
             }
-            UndoState state = new UndoState();
-            state.BlockState = Instance.BlocksToCondensedJsonStream();
-            state.Type = UndoState.DataType.Json;
-            state.PlayerPosition = PlayerManager.Player1Location();
-            state.PlayerFacingDirection = PlayerManager.Player1FacingDirection();
-            state.PlayerStateIndex = PlayerManager.PlayerState();
-            state.PlatformYPosition = ActiveFloor.transform.position.y;
-
+            UndoState state = new UndoState
+            {
+                //TODO support binary
+                BlockState = Instance.BlocksToCondensedJsonStream(),
+                Type = UndoState.DataType.Json,
+                PlayerPosition = PlayerManager.Player1Location(),
+                PlayerFacingDirection = PlayerManager.Player1FacingDirection(),
+                PlayerStateIndex = PlayerManager.PlayerState(),
+                PlatformYPosition = ActiveFloor.transform.position.y
+            };
+            Debug.Assert(state.BlockState != null);
             _undoStates.Add(state);
         }
         catch (Exception e)
@@ -145,7 +148,8 @@ public class BlockManager : MonoBehaviour {
             PlayerManager.HideAllPlayers();
             UndoState state = _undoStates[_undoStates.Count - 1];
             ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);
-            Instance.BlocksFromJsonStream(state.BlockState);
+            if(state.Type == UndoState.DataType.Json)
+                Instance.BlocksFromJsonStream(state.BlockState);
             PlayerManager.SetPlayer1State(state.PlayerStateIndex);
             PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
             PlayerManager.SetPlayer1Location(state.PlayerPosition);
@@ -167,14 +171,11 @@ public class BlockManager : MonoBehaviour {
     {
         BlockManagerState oldState = State;
         State = BlockManagerState.Clearing;
-        foreach (Transform child in ActiveFloor.transform)
-            if (!child.GetComponent<Platform>())
-            {
-                /*if (child.GetComponent<IBlock>() != null)
-                    DestroyBlock(child.GetComponent<IBlock>());
-                else*/
-                Destroy(child.gameObject);
-            }
+        foreach(IBlock block in BlockCache)
+        {
+            Destroy(block.GameObject);
+        }
+        BlockCache.Clear();
         EventManager.Clear();
         State = oldState;
     }
@@ -314,17 +315,19 @@ public class BlockManager : MonoBehaviour {
         StageCollection deserializedCollection = new StageCollection(this);
         WebClient webClient = new WebClient();
         Stream fs = webClient.OpenRead(path);
-        StartCoroutine(HandleLoad(fs, true));
+        HandleLoad(fs, true);
+        RecordStartState();
+        if (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
+        {
+            if (!PlayMode)
+                TogglePlayMode();
+        }
     }
 
-    public IEnumerator HandleLoad(Stream stream, bool clearFirst = true)
+    public void HandleLoad(Stream stream, bool clearFirst = true)
     {
         if (clearFirst)
-        {
             Clear();
-            while (State == BlockManagerState.Clearing)
-                yield return new WaitForEndOfFrame();
-        }
         BlockManagerState oldState = State;
         State = BlockManagerState.Loading;
         StageCollection deserializedCollection = new StageCollection(this);
@@ -333,12 +336,6 @@ public class BlockManager : MonoBehaviour {
         stream.Close();
         LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
         State = oldState;
-        RecordStartState();
-        if (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
-        {
-            if (!PlayMode)
-                TogglePlayMode();
-        }
     }
 
     public void BlocksFromJson(string json)
@@ -348,7 +345,7 @@ public class BlockManager : MonoBehaviour {
         writer.Write(json);
         writer.Flush();
         stream.Position = 0;
-        StartCoroutine(HandleLoad(stream, true));
+        HandleLoad(stream, false);
     }
 
     public void BlocksFromJsonStream(byte[] bytes)
@@ -356,7 +353,7 @@ public class BlockManager : MonoBehaviour {
         Debug.Assert(bytes != null);
         MemoryStream stream = new MemoryStream(bytes);
         stream.Position = 0;
-        StartCoroutine(HandleLoad(stream, false));
+        HandleLoad(stream, false);
     }
 
     // Saves a file with the textToSave using a path
