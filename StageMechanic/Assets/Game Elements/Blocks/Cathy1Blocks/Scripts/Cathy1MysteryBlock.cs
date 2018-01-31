@@ -14,7 +14,7 @@ public class Cathy1MysteryBlock : Cathy1Block
     public sealed override BlockType Type { get; } = BlockType.Random;
 
     public float Delay = DEFAULT_DELAY;
-    public const float DEFAULT_DELAY = 0.5f;
+    public const float DEFAULT_DELAY = 0.05f;
 
     public readonly string[] PossibleTypes = {
         "Basic",
@@ -36,6 +36,15 @@ public class Cathy1MysteryBlock : Cathy1Block
         base.OnPlayerEnter(ev);
         StartCoroutine(HandlePlayer(ev));
     }
+
+    //TODO OnPlayerEnter for some reason was not sufficient here, need to figure out why
+    //and then probably remove this
+    protected override void OnPlayerStay(PlayerMovementEvent ev)
+    {
+        base.OnPlayerStay(ev);
+        StartCoroutine(HandlePlayer(ev));
+    }
+
 
     bool _started = false;
     virtual internal IEnumerator HandlePlayer(PlayerMovementEvent ev)
