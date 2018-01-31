@@ -56,6 +56,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
         Center,
         Sidle,
         SidleMove,
+        Slide,
+        PushPull,
         Fall
     }
     private State _currentState = State.Idle;
@@ -180,7 +182,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
     public IEnumerator SlideTo(Vector3 location)
     {
-        CurrentMoveState = State.Walk;
+        CurrentMoveState = State.Slide;
         float journey = 0f;
         Vector3 origin = CurrentLocation;
         while (journey <= WalkTime)
@@ -191,7 +193,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
             yield return null;
         }
+        (CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
         CurrentMoveState = State.Idle;
+        ApplyGravity();
         yield return null;
     }
 
@@ -229,6 +233,36 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
     public void Walk(Vector3 direction)
     {
         StartCoroutine(WalkTo(CurrentLocation + direction));
+    }
+
+    public IEnumerator PushPullTo(Vector3 location)
+    {
+        CurrentMoveState = State.PushPull;
+        _player.GetComponent<Animator>().SetBool("walking", true);
+        yield return new WaitForEndOfFrame();
+        GetComponent<AudioSource>().PlayOneShot(WalkSound);
+        float journey = 0f;
+        Vector3 origin = CurrentLocation;
+        IBlock oldBlock = CurrentBlock;
+        while (journey <= WalkTime)
+        {
+            journey = journey + Time.deltaTime;
+            float percent = Mathf.Clamp01(journey / WalkTime);
+            Teleport(Vector3.Lerp(origin, location, percent));
+
+            yield return null;
+        }
+       (oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
+        yield return new WaitForEndOfFrame();
+        _player.GetComponent<Animator>().SetBool("walking", false);
+        (CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
+        CurrentMoveState = State.Idle;
+        yield return null;
+    }
+
+    public void DoPushPull(Vector3 direction)
+    {
+        StartCoroutine(PushPullTo(CurrentLocation + direction));
     }
 
     public IEnumerator ClimbTo(Vector3 location)
@@ -393,7 +427,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 	{
         if (CurrentMoveState == State.Idle || CurrentMoveState == State.Fall)
         {
-            if (BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
+            if (BlockManager.GetBlockNear(transform.position + Vector3.down) == null)
             {
                 CurrentMoveState = State.Fall;
                 base.ApplyGravity(factor, acceleration);
@@ -645,7 +679,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
                 IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
                 if (nextFloor != null)
                 {
-                    Walk(direction);
+                    DoPushPull(direction);
                 }
                 else
                 {

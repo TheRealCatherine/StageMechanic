@@ -12,25 +12,40 @@ public class Cathy1IceBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Ice;
 
-    bool hasPlayer()
+    protected override void OnPlayerEnter(PlayerMovementEvent ev)
     {
-        Vector3 player = PlayerManager.Player1Location();
-        return (player == transform.position + Vector3.up && PlayerManager.PlayerStateName() == "Walk");
+        base.OnPlayerEnter(ev);
+        StartCoroutine(HandlePlayer(ev));
     }
 
-    internal override void Update()
+    protected override void OnPlayerStay(PlayerMovementEvent ev)
     {
-        base.Update();
-        if (!BlockManager.PlayMode)
-            return;
-        if (hasPlayer())
+        base.OnPlayerStay(ev);
+        StartCoroutine(HandlePlayer(ev));
+    }
+
+    protected override void OnPlayerLeave(PlayerMovementEvent ev)
+    {
+        base.OnPlayerLeave(ev);
+        _started = false;
+        _shouldSlide = false;
+    }
+
+    bool _started = false;
+    bool _shouldSlide = false;
+    virtual internal IEnumerator HandlePlayer(PlayerMovementEvent ev)
+    {
+        if (ev.Location != PlayerMovementEvent.EventLocation.Top || _started)
+            yield break;
+        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
+        if (statename == "Walk" || statename == "Slide")
         {
+            _shouldSlide = true;
+        }
+        else if(statename == "Idle" && _shouldSlide)
+        {
+            _started = true;
             PlayerManager.Player1SlideForward();
         }
-        IBlock onTop = BlockManager.GetBlockAt(transform.position + Vector3.up);
-        if (onTop != null)
-        {
-        }
-
     }
 }
