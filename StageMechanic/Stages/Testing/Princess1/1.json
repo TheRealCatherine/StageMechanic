@@ -10,7 +10,7 @@
                     "Position": {
                         "x": 0,
                         "y": 0,
-                        "z": 3
+                        "z": 0
                     },
                     "Blocks": [
                         {
@@ -272,6 +272,10 @@
                                 {
                                     "Key": "Next Stage Filename",
                                     "Value": "2.json"
+                                },
+                                {
+                                    "Key": "Must Not Fall",
+                                    "Value": "True"
                                 }
                             ]
                         }
@@ -279,7 +283,7 @@
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "248a34f7-30fc-4303-95f5-ef84885d62bc",
+                            "Name": "3ec7777a-d887-42dc-a6b8-583254058eaa",
                             "Palette": "Cathy1 Internal",
                             "Type": "Player Start",
                             "Position": {

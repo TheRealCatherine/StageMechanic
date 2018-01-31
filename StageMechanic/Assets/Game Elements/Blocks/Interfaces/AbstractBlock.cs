@@ -755,7 +755,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     }
     #endregion
 
-    public virtual void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState) { }
+    protected virtual void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState) { }
 
     #region Player movement event handling
     public virtual void OnPlayerMovement(IPlayerCharacter player, PlayerMovementEvent.EventType type)

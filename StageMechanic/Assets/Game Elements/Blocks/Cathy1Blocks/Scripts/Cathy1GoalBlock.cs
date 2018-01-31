@@ -15,6 +15,7 @@ public class Cathy1GoalBlock : Cathy1Block
     public AudioClip Applause;
     public string NextStageFilename;
     public string NextStageStartPos;
+    public bool MustNotFall = false;
 
     public sealed override BlockType Type { get; } = BlockType.Goal;
 
@@ -78,6 +79,17 @@ public class Cathy1GoalBlock : Cathy1Block
         _hasPlayedSound = false;
     }
 
+    protected override void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState)
+    {
+        base.OnMotionStateChanged(newState, oldState);
+        if (MustNotFall && (newState == BlockMotionState.Hovering || newState == BlockMotionState.Falling))
+        {
+            PlayerManager.DestroyAllPlayers();
+            UIManager.ShowSinglePlayerDeathDialog();
+        }
+
+    }
+
     public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
     {
         get
@@ -85,6 +97,7 @@ public class Cathy1GoalBlock : Cathy1Block
             Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
             ret.Add("Next Stage Filename", new KeyValuePair<Type, string>(typeof(string), ""));
             ret.Add("Next Stage Start Block Override", new KeyValuePair<Type, string>(typeof(string), ""));
+            ret.Add("Must Not Fall", new KeyValuePair<Type, string>(typeof(bool), false.ToString()));
             return ret;
         }
     }
@@ -98,6 +111,8 @@ public class Cathy1GoalBlock : Cathy1Block
                 ret.Add("Next Stage Filename", NextStageFilename);
             if (!string.IsNullOrEmpty(NextStageStartPos) && !string.IsNullOrWhiteSpace(NextStageStartPos))
                 ret.Add("Next Stage Start Block Override", NextStageStartPos);
+            if (MustNotFall)
+                ret.Add("Must Not Fall", true.ToString());
             return ret;
         }
         set
@@ -107,6 +122,8 @@ public class Cathy1GoalBlock : Cathy1Block
                 NextStageFilename = value["Next Stage Filename"];
             if (value.ContainsKey("Next Stage Start Block Override"))
                 NextStageStartPos = value["Next Stage Start Block Override"];
+            if (value.ContainsKey("Must Not Fall"))
+                MustNotFall = bool.Parse(value["Must Not Fall"]);
         }
     }
 }
