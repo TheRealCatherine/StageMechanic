@@ -22,6 +22,8 @@ public class MainMenu : MonoBehaviour
     public Toggle FogToggle;
     public ParticleSystem Fog;
 
+    public TogglePlayMode TogglePlayModeButton;
+
     public AudioClip StartupSound;
 
     void Start()
@@ -50,6 +52,7 @@ public class MainMenu : MonoBehaviour
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
         FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 0) == 1);
         SaveButton.gameObject.SetActive(true);
+        TogglePlayModeButton.gameObject.SetActive(false);
         if (string.IsNullOrWhiteSpace(Serializer.LastAccessedFileName))
         {
             SaveButton.gameObject.SetActive(false);
@@ -68,6 +71,7 @@ public class MainMenu : MonoBehaviour
         {
             BlockManager.Cursor?.SetActive(true);
         }
+        TogglePlayModeButton.gameObject.SetActive(true);
     }
 
     private void Update()

@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     public SimpleButton DeleteBlockButton;
     public Dpad FurtherCloserButtons;
 
-    public GameObject UndoPanel;
+    public GameObject UndoButton;
     //TODO Singleton flame war
     public static UIManager Instance;
     public static bool IsSinglePlayerDeathDialogOpen
@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
 #endif
 
-        UndoPanel.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
+        UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
     }
 
     public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)
