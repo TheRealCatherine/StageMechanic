@@ -415,7 +415,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         //TODO NotLikeThiiiiiiisssssss do it in the ice block class handling blocks on top
         if (push && blocksBelow[DOWN] != null && (blocksBelow[DOWN] as Cathy1Block).Type==Cathy1Block.BlockType.Ice)
         {
-            Move(target - origin);
+            if(BlockManager.GetBlockNear(Position + (target-origin)) == null)
+                Move(target - origin);
         }
     }
     #endregion
