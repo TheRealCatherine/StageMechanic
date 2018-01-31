@@ -409,7 +409,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             yield return null;
         }
         _gravityDirty = true;
-        MotionState = BlockMotionState.Unknown;
+        MotionState = BlockMotionState.Grounded;
         UpdateNeighborsCache();
         SetGravityEnabledByMotionState();
         //TODO NotLikeThiiiiiiisssssss do it in the ice block class handling blocks on top
@@ -621,12 +621,12 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         {
             Profiler.BeginSample("Edged");
             MotionState = BlockMotionState.Edged;
-            if (oldState == BlockMotionState.Falling && EdgeEffect != null)
+            if (oldState != BlockMotionState.Unknown && oldState != BlockMotionState.Edged && EdgeEffect != null)
             {
                 if(blocksBelow[LEFT] != null)
-                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration, new Vector3(-0.5f, -0.5f, -1f));
+                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(-0.5f, -0.5f, -0.5f));
                 if (blocksBelow[RIGHT] != null)
-                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, EdgeEffectDuration, new Vector3(0.5f, -0.5f, -1f),Quaternion.Euler(0f,180f,0f));
+                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(0.5f, -0.5f, -0.5f));                    
                 //TODO get this on edged sides
             }
             if (MotionState != oldState)
@@ -738,54 +738,58 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             _gravityDirty = true;
             yield break;
         }
-        rb.constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
-        transform.Rotate(0f, 0f, 5f);
-        yield return new WaitForSeconds(0.1f);
-        if (MotionState != BlockMotionState.Hovering)
+        if (BlockManager.PlayMode)
         {
-            _startedHover = false;
-            _gravityDirty = true;
-            yield break;
-        }
-        transform.Rotate(0f, 0f, -10f);
-        yield return new WaitForSeconds(0.1f);
-        if (MotionState != BlockMotionState.Hovering)
-        {
-            _startedHover = false;
-            _gravityDirty = true;
-            yield break;
-        }
-        transform.Rotate(0f, 0f, 10f);
-        yield return new WaitForSeconds(0.1f);
-        if (MotionState != BlockMotionState.Hovering)
-        {
-            _startedHover = false;
-            _gravityDirty = true;
-            yield break;
-        }
-        transform.Rotate(0f, 0f, -5f);
-        yield return new WaitForSeconds(0.1f);
-        if (MotionState != BlockMotionState.Hovering)
-        {
-            _startedHover = false;
-            _gravityDirty = true;
-            yield break;
-        }
-        transform.rotation = Quaternion.identity;
-        if (MotionState != BlockMotionState.Hovering)
-        {
-            _startedHover = false;
-            _gravityDirty = true;
-            yield break;
-        }
-        yield return new WaitForSeconds(0.5f);
-        if (MotionState != BlockMotionState.Hovering)
-        {
-            _startedHover = false;
-            _gravityDirty = true;
-            yield break;
+            rb.constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
+            transform.Rotate(0f, 0f, 5f);
+            yield return new WaitForSeconds(0.1f);
+            if (MotionState != BlockMotionState.Hovering)
+            {
+                _startedHover = false;
+                _gravityDirty = true;
+                yield break;
+            }
+            transform.Rotate(0f, 0f, -10f);
+            yield return new WaitForSeconds(0.1f);
+            if (MotionState != BlockMotionState.Hovering)
+            {
+                _startedHover = false;
+                _gravityDirty = true;
+                yield break;
+            }
+            transform.Rotate(0f, 0f, 10f);
+            yield return new WaitForSeconds(0.1f);
+            if (MotionState != BlockMotionState.Hovering)
+            {
+                _startedHover = false;
+                _gravityDirty = true;
+                yield break;
+            }
+            transform.Rotate(0f, 0f, -5f);
+            yield return new WaitForSeconds(0.1f);
+            if (MotionState != BlockMotionState.Hovering)
+            {
+                _startedHover = false;
+                _gravityDirty = true;
+                yield break;
+            }
+            transform.rotation = Quaternion.identity;
+            if (MotionState != BlockMotionState.Hovering)
+            {
+                _startedHover = false;
+                _gravityDirty = true;
+                yield break;
+            }
+            yield return new WaitForSeconds(0.5f);
+            if (MotionState != BlockMotionState.Hovering)
+            {
+                _startedHover = false;
+                _gravityDirty = true;
+                yield break;
+            }
         }
         _startedHover = false;
+        _gravityDirty = true;
         MotionState = BlockMotionState.Falling;
     }
     #endregion
