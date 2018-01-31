@@ -666,7 +666,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			return 0f;
         Serializer.RecordUndo();
         //TODO make this one movement
-        bool moved = BlockManager.Move(blockInQuestion, direction);
+        bool moved = BlockManager.Move(blockInQuestion, direction,1,(direction==FacingDirection));
         if (moved)
         {
             if (EffortSounds.Length > 0)

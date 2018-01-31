@@ -244,5 +244,6 @@ public interface IBlock
 	/// </summary>
 	/// <param name="direction">Direction.</param>
 	/// <param name="distance">Distance.</param>
-	bool Move (Vector3 direction, int distance = 1);
+    /// TODO do this push business differently
+	bool Move (Vector3 direction, int distance = 1, bool push = false);
 }

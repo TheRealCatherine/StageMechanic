@@ -376,7 +376,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         return weight;
     }
 
-    public virtual bool Move(Vector3 direction, int distance = 1)
+    public virtual bool Move(Vector3 direction, int distance = 1, bool push = true)
     {
         if (!BlockManager.CanBeMoved(this, direction, distance))
             return false;
@@ -384,11 +384,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         IBlock neighbor = BlockManager.GetBlockAt(Position + direction);
         if (neighbor != null)
             BlockManager.Move(neighbor, direction, distance);
-        StartCoroutine(AnimateMove(Position, Position + direction, PUSH_PULL_MOVE_TIME_BASE * MoveWeight(direction, distance)));
+        StartCoroutine(AnimateMove(Position, Position + direction, PUSH_PULL_MOVE_TIME_BASE * MoveWeight(direction, distance),push));
         return true;
     }
 
-    internal IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
+    internal IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration, bool push)
     {
         float journey = 0f;
         GravityEnabled = false;
@@ -407,6 +407,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         MotionState = BlockMotionState.Unknown;
         UpdateNeighborsCache();
         SetGravityEnabledByMotionState();
+        //TODO NotLikeThiiiiiiisssssss do it in the ice block class handling blocks on top
+        if (push && blocksBelow[DOWN] != null && (blocksBelow[DOWN] as Cathy1Block).Type==Cathy1Block.BlockType.Ice)
+        {
+            Move(target - origin);
+        }
     }
     #endregion
 

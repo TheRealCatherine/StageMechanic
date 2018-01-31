@@ -588,7 +588,7 @@ public class BlockManager : MonoBehaviour
             if (ab == null)
                 block.Position += direction;
             else
-                ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.MoveWeight(direction, distance)));
+                ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.MoveWeight(direction, distance),false));
 
         }
         return true;
@@ -601,10 +601,10 @@ public class BlockManager : MonoBehaviour
         return CanMoveGroup(BlockGroupNumber(block), direction, distance);
     }
 
-    public static bool Move(IBlock block, Vector3 direction, int distance = 1)
+    public static bool Move(IBlock block, Vector3 direction, int distance = 1, bool push = false)
     {
         if (BlockGroupNumber(block) < 0)
-            return block.Move(direction, distance);
+            return block.Move(direction, distance, push);
         return MoveGroup(BlockGroupNumber(block), direction, distance);
     }
     #endregion
