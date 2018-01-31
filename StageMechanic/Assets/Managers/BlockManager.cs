@@ -57,7 +57,7 @@ public class BlockManager : MonoBehaviour
 
         fileBrowserScript.OpenFilePanel(Instance, "LoadFileUsingPath", "json");
     }
-    private void LoadFileUsingPath(string path) { Serializer.LoadFileUsingPath(path); }
+    private void LoadFileUsingPath(string path) { Serializer.LoadFileUsingLocalPath(path); }
 
     public PlatformJsonDelegate GetPlatformJsonDelegate()
     {

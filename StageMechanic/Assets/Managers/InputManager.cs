@@ -164,6 +164,43 @@ public class InputManager : MonoBehaviour
             return true;
         }
 
+        else if(Input.GetKeyDown(KeyCode.Keypad1) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/1-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad2) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/2-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/3-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad4) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/4-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad5) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/5-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad6) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/6-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad7) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/7-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad8) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/8-1.json"));
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad9) && ctrlDown)
+        {
+            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/9-1.json"));
+        }
+
         //Manually move the platform
         //"Be like me. Prepare to fall. --Amy Macdonald"
         else if (Input.GetKeyDown(KeyCode.Tab))
@@ -481,7 +518,6 @@ public class InputManager : MonoBehaviour
         float hori = 0.0f;
         bool goFurther = false;
         bool goCloser = false;
-        bool gamepadInput = false;
 
         if (GetGamepadType(0) == GamepadType.XBox360)
         {
@@ -489,8 +525,6 @@ public class InputManager : MonoBehaviour
             hori = CnInputManager.GetAxis("joystick 1 6th axis");
             goFurther = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime >= 1;
             goCloser = CnInputManager.GetAxis("joystick 1 Y axis") * 100 * Time.deltaTime <= -1;
-            if (goCloser || goFurther || vert != 0.0f || hori != 0.0f)
-                gamepadInput = true;
         }
         else if (GetGamepadType(0) == GamepadType.PS4)
         {
@@ -498,8 +532,6 @@ public class InputManager : MonoBehaviour
             hori = CnInputManager.GetAxis("joystick 1 7th axis");
             goFurther = Input.GetKeyDown(KeyCode.Joystick1Button7);
             goCloser = Input.GetKeyDown(KeyCode.Joystick1Button6);
-            if (goCloser || goFurther || vert != 0.0f || hori != 0.0f)
-                gamepadInput = true;
         }
 
         bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
