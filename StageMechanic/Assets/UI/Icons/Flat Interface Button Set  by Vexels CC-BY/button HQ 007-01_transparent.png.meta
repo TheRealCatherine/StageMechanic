@@ -1,12 +1,57 @@
 fileFormatVersion: 2
 guid: e2751f2ae3304d54087d527240be2c1a
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Vexels_Power
+    21300002: Vexels_Silent
+    21300004: Vexels_Volume_Down
+    21300006: Vexels_Volume_Middle
+    21300008: Vexels_Volume_Up
+    21300010: Vexels_Prev
+    21300012: Vexels_Rewind
+    21300014: Vexels_Stop
+    21300016: Vexels_FastForward
+    21300018: Vexels_Next
+    21300020: Vexels_No_Camera
+    21300022: Vexels_Camera
+    21300024: Vexels_No_Mic
+    21300026: Vexels_Mic
+    21300028: Vexels_Eject
+    21300030: Vexels_Play
+    21300032: Vexels_Pause
+    21300034: Vexels_Shuffle
+    21300036: Vexels_Maximize
+    21300038: Vexels_Repeat
+    21300040: button HQ 007-01_transparent_20
+    21300042: button HQ 007-01_transparent_21
+    21300044: button HQ 007-01_transparent_22
+    21300046: button HQ 007-01_transparent_23
+    21300048: button HQ 007-01_transparent_24
+    21300050: button HQ 007-01_transparent_25
+    21300052: button HQ 007-01_transparent_26
+    21300054: button HQ 007-01_transparent_27
+    21300056: button HQ 007-01_transparent_28
+    21300058: button HQ 007-01_transparent_29
+    21300060: button HQ 007-01_transparent_30
+    21300062: button HQ 007-01_transparent_31
+    21300064: button HQ 007-01_transparent_32
+    21300066: button HQ 007-01_transparent_33
+    21300068: button HQ 007-01_transparent_34
+    21300070: button HQ 007-01_transparent_35
+    21300072: button HQ 007-01_transparent_36
+    21300074: button HQ 007-01_transparent_37
+    21300076: button HQ 007-01_transparent_38
+    21300078: button HQ 007-01_transparent_39
+    21300080: button HQ 007-01_transparent_40
+    21300082: button HQ 007-01_transparent_41
+    21300084: button HQ 007-01_transparent_42
+    21300086: button HQ 007-01_transparent_43
+    21300088: button HQ 007-01_transparent_44
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -32,13 +77,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
-    wrapV: -1
+    wrapU: 1
+    wrapV: 1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -46,9 +91,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -66,13 +111,935 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Vexels_Power
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 1137
+        width: 289
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b2ef84f2bd1d174e979b557026ad737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Silent
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 1138
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49be71cc57706c439a34e57228036c7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Volume_Down
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 1138
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b4e41898e34be47a068077846da1ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Volume_Middle
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1138
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b04cde8391b0b740a28e75b491ca716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Volume_Up
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 1138
+        width: 289
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb05b02cd5b9c9b4fb941f35028081e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Prev
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 849
+        width: 289
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e87fe072619cc8a42b844da0b9fd8506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Rewind
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 849
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df6b152a3fadea4cb987aed7ea87d6f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Stop
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 849
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bcb72d0f1076ab449e29987e5fd5de2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_FastForward
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 849
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32cd6006e8bfc154b8980e020fdaa1f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Next
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 849
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff4e45d8e244ffe42b1fe855598f0f23
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_No_Camera
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 561
+        width: 289
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38951693a9fa7d24b9d838573c19fda7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Camera
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 561
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab753f77a0df4f49b75779a5ff3de4f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_No_Mic
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 561
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f4a42f485afdcf478173f76b82fe532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Mic
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 561
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9772b81ac349be044a5cfce30ede4239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Eject
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 561
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f2b45297d453f428bf55e6dafd1837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Play
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 272
+        width: 289
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68913b1cf27f87642ba7a1d8079d8def
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Pause
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 272
+        width: 288
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 817edcda379ca6742a622af33c7e908c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Shuffle
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 272
+        width: 288
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 685941c84f8ae2b41b27317171c649e3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Maximize
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 272
+        width: 288
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e4340be233a9034184b671f3d3d700f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vexels_Repeat
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 272
+        width: 288
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8663b997cf521114da6a642fcb7879bc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_20
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 43
+        width: 18
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 635a118791116034080cc3b4b8e276b0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_21
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 43
+        width: 14
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655c616d4c231d1489681d8bf229e4bd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_22
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 42
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e7a5f2b04495a40ac6a73de8e65fb1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_23
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 43
+        width: 6
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de45d809f3c7444792278c3a7c84889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_24
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 43
+        width: 17
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a749dca29e6d24ea5f1a1647df1f03
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_25
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 43
+        width: 17
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b501d22a6c4904d8b3d43e0d47c454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_26
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 43
+        width: 16
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 870c4a10b89db0346876f224e2c98580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_27
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 43
+        width: 17
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf6c86c370062f4397aae75440ff47e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_28
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 43
+        width: 17
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0320f1a62a1a1ad44a972af1e5fbfc3e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_29
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 43
+        width: 18
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030cb0bfec96f0247aceda68b914dd3c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_30
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 40
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56542c436c14c0347a9ce30686b09fd1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_31
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 40
+        width: 28
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 637ba214f9018cf46803b0d2ebf50d60
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_32
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 40
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc0b2f47dc5f3240a28c75eff00ebd4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_33
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 40
+        width: 18
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d05fefb9c3acaa4d81f81859ff3b5d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_34
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 40
+        width: 28
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3565ec913800c534facba8efa8186daf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_35
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 41
+        width: 18
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f22bbe312b7bfd4a9644b7f8514b27c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_36
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 41
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07cfe15714875a04e97dc6abe68a09e0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_37
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 32
+        width: 27
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fa00e7115bb6224db53f457eee1187a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_38
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 41
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9225bed5e677ca94482f827e23dfc392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_39
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 41
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77e1093262a37b94bbeef98fb19eb00b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_40
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 41
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abef07644acdb64eaf0076bf9c19a92
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_41
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 41
+        width: 18
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b65e20c9e695a3c42a120a28586def71
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_42
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 41
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24119d26c73850845b07b98cbbcdccd2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_43
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 41
+        width: 26
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf3994bd47f86145b5e174578b4f81e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button HQ 007-01_transparent_44
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 41
+        width: 25
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74959e8ed8416874a912b8404fdb00fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 006cf6effccfaa44bbd79eb453f6ee7a
     vertices: []
     indices: 
     edges: []
