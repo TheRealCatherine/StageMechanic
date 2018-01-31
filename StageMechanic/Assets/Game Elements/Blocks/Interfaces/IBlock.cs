@@ -19,6 +19,7 @@ public enum BlockMotionState
     Falling,
     Moving,
     Sliding,
+    Flying,
     Extended = 255
 }
 
