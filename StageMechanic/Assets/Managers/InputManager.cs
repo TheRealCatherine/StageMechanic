@@ -447,13 +447,11 @@ public class InputManager : MonoBehaviour
                                 if (axees.Contains(key))
                                 {
                                     inputs.Add(item.Key);
-                                    Debug.Log(item.Key + " " + key);
                                 }
                             }
                             else if (((CnInputManager.ButtonExists(key) && CnInputManager.GetButton(key)) || (!CnInputManager.ButtonExists(key) && (Input.GetKey(key)))) && !inputs.Contains(item.Key))
                             {
                                 inputs.Add(item.Key);
-                                Debug.Log(item.Key + " " + key);
                             }
                         }
                         catch (ArgumentException)

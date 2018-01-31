@@ -13,22 +13,30 @@ public class EventBinaryDelegate
     public float PositionX;
     public float PositionY;
     public float PositionZ;
-    public Dictionary<string, string> Properties;
+    public string[] PropertyKeys;
+    public string[] PropertyValues;
 
     public EventBinaryDelegate(Cathy1AbstractEvent ev) {
         PositionX = ev.Position.x;
         PositionY = ev.Position.y;
         PositionZ = ev.Position.z;
-        Properties = ev.Properties;
+        Dictionary<string, string> properties = ev.Properties;
+        PropertyKeys = properties.Keys.ToArray();
+        PropertyValues = properties.Values.ToArray();
     }
 
     [OnDeserialized]
     private void OnDeserialedMethod(StreamingContext context)
     {
+        Dictionary<string, string> properties = new Dictionary<string, string>();
+        for (int i = 0; i < PropertyKeys.Length; ++i)
+        {
+            properties.Add(PropertyKeys[i], PropertyValues[i]);
+        }
         Quaternion rotation = Quaternion.identity;
         int playerNumber = 0;
-        if (Properties.ContainsKey("PlayerNumber"))
-            playerNumber = int.Parse(Properties["PlayerNumber"]);
+        if (properties.ContainsKey("PlayerNumber"))
+            playerNumber = int.Parse(properties["PlayerNumber"]);
         PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(playerNumber, new Vector3(PositionX, PositionY, PositionZ), rotation);
     }
 

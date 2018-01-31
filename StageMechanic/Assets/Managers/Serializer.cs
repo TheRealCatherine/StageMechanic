@@ -385,7 +385,7 @@ public static class Serializer
         if (clearFirst)
             BlockManager.Clear();
         BinaryFormatter formatter = new BinaryFormatter();
-        StageCollection deserializedCollection = formatter.Deserialize(stream) as StageCollection;
+        StageCollectionBinaryDelegate deserializedCollection = formatter.Deserialize(stream) as StageCollectionBinaryDelegate;
         stream.Close();
     }
 

@@ -174,6 +174,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         get
         {
             Dictionary<string, KeyValuePair<Type, string>> ret = new Dictionary<string, KeyValuePair<Type, string>>();
+            ret.Add("Motion State", new KeyValuePair<Type, string>(typeof(string), BlockMotionState.Unknown.ToString()));
             ret.Add("Rotation", new KeyValuePair<Type, string>(typeof(Quaternion), Quaternion.identity.ToString()));
             ret.Add("Fixed Rotation", new KeyValuePair<Type, string>(typeof(bool), "false"));
             ret.Add("Weight Factor", new KeyValuePair<Type, string>(typeof(float), "1.0"));
@@ -188,6 +189,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         get
         {
             Dictionary<string, string> ret = new Dictionary<string, string>();
+            if (MotionState != BlockMotionState.Unknown)
+                ret.Add("Motion State", MotionStateName);
             if (Rotation != Quaternion.identity)
                 ret.Add("Rotation", Rotation.ToString());
             if (IsFixedRotation)
@@ -203,6 +206,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         set
         {
             //    Rotation = Utility.StringToQuaternion(value["Rotation"]);*/
+            if (value.ContainsKey("Motion State"))
+                MotionStateName = value["Motion State"];
             if (value.ContainsKey("Fixed Rotation"))
                 IsFixedRotation = Convert.ToBoolean(value["Fixed Rotation"]);
             if (value.ContainsKey("Weight Factor"))
@@ -720,6 +725,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
     /// TODO: Don't hardcode the length of hover
     private IEnumerator DoHoverAnimation()
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         UpdateNeighborsCache();
@@ -732,15 +738,39 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             _gravityDirty = true;
             yield break;
         }
-        GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
-        transform.Rotate(0f, 0f, .5f);
+        rb.constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
+        transform.Rotate(0f, 0f, 5f);
         yield return new WaitForSeconds(0.1f);
-        transform.Rotate(0f, 0f, -.10f);
+        if (MotionState != BlockMotionState.Hovering)
+        {
+            _startedHover = false;
+            _gravityDirty = true;
+            yield break;
+        }
+        transform.Rotate(0f, 0f, -10f);
         yield return new WaitForSeconds(0.1f);
-        transform.Rotate(0f, 0f, .10f);
+        if (MotionState != BlockMotionState.Hovering)
+        {
+            _startedHover = false;
+            _gravityDirty = true;
+            yield break;
+        }
+        transform.Rotate(0f, 0f, 10f);
         yield return new WaitForSeconds(0.1f);
-        transform.Rotate(0f, 0f, -.5f);
+        if (MotionState != BlockMotionState.Hovering)
+        {
+            _startedHover = false;
+            _gravityDirty = true;
+            yield break;
+        }
+        transform.Rotate(0f, 0f, -5f);
         yield return new WaitForSeconds(0.1f);
+        if (MotionState != BlockMotionState.Hovering)
+        {
+            _startedHover = false;
+            _gravityDirty = true;
+            yield break;
+        }
         transform.rotation = Quaternion.identity;
         if (MotionState != BlockMotionState.Hovering)
         {
