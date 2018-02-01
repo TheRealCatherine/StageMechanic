@@ -15,9 +15,8 @@ public class UIManager : MonoBehaviour
     public ScrollRect BlockTypesList;
     public BlockEditDialog BlockEditDialog;
 
+    public SimpleButton GrabButton;
     public SimpleButton SetStartPosButton;
-    public SimpleButton NextBlockTypButton;
-    public SimpleButton PrevBlockTypeButton;
     public SimpleButton DeleteBlockButton;
     public Dpad FurtherCloserButtons;
 
@@ -61,14 +60,11 @@ public class UIManager : MonoBehaviour
         // for Android
 #if UNITY_ANDROID
         SetStartPosButton.gameObject.SetActive(!BlockManager.PlayMode);
-        NextBlockTypButton.gameObject.SetActive(!BlockManager.PlayMode);
-        PrevBlockTypeButton.gameObject.SetActive(!BlockManager.PlayMode);
         DeleteBlockButton.gameObject.SetActive(!BlockManager.PlayMode);
         FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);
-#else
-        BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
+        GrabButton.gameObject.SetActive(BlockManager.PlayMode);
 #endif
-
+        BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
         UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
     }
 
