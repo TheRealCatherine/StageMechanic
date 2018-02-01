@@ -406,9 +406,6 @@ public class BlockManager : MonoBehaviour
             Cursor.SetActive(false);
     }
 
-
-
-
     public void RandomizeGravity()
     {
         System.Random randomNumberGenerator = new System.Random(new System.DateTime().Millisecond);

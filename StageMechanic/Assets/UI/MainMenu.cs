@@ -8,16 +8,22 @@ public class MainMenu : MonoBehaviour
     public Button SaveButton;
     public Toggle AutoPlay;
     public Toggle FogToggle;
+    public Toggle VisiblePlatformToggle;
     public ParticleSystem Fog;
     public TogglePlayMode TogglePlayModeButton;
     public Button ToggleTouchScreenButton;
+    public Button CameraPerspectiveButton;
+    public Button SettingsButton;
     public AudioClip StartupSound;
+    public Camera MainCamera;
+    public GameObject SettingsWindow;
 
     private void OnEnable()
     {
         BlockManager.Cursor?.SetActive(false);
-        AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
-        FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 0) == 1);
+        AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
+        FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
+        //VisiblePlatformToggle.isOn = (PlayerPrefs.GetInt("PlatformVisible", 1) == 1);
         SaveButton.gameObject.SetActive(true);
         TogglePlayModeButton.gameObject.SetActive(false);
         if (string.IsNullOrWhiteSpace(Serializer.LastAccessedFileName))
@@ -45,6 +51,8 @@ public class MainMenu : MonoBehaviour
     {
         if (gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape))
             OnEscPressed();
+        //if(BlockManager.ActiveFloor != null)
+        //    BlockManager.ActiveFloor.GetComponent<Renderer>().enabled = VisiblePlatformToggle.isOn;
     }
 
     void OnEscPressed()
@@ -55,6 +63,15 @@ public class MainMenu : MonoBehaviour
     public void OnAutoPlayChecked(bool value)
     {
         PlayerPrefs.SetInt("AutoPlayOnLoad", value ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public void OnPlatformVisibleChecked(bool value)
+    {
+        PlayerPrefs.SetInt("PlatformVisible", value ? 1 : 0);
+        PlayerPrefs.Save();
+        if(BlockManager.ActiveFloor != null)
+            BlockManager.ActiveFloor.GetComponent<Renderer>().enabled = value;
     }
 
     public void OnLoadAndEditClicked()
@@ -114,6 +131,7 @@ public class MainMenu : MonoBehaviour
         if (BlockManager.PlayMode || !value)
             Fog.gameObject.SetActive(value);
         PlayerPrefs.SetInt("Fog", value ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public void OnSaveClicked()
@@ -142,5 +160,23 @@ public class MainMenu : MonoBehaviour
             ToggleTouchScreenButton.image.color = Color.green;
         else
             ToggleTouchScreenButton.image.color = Color.white;
+    }
+
+    public void OnSettingsClicked()
+    {
+        SettingsWindow.gameObject.SetActive(!SettingsWindow.gameObject.activeInHierarchy);
+        if (SettingsWindow.gameObject.activeInHierarchy)
+            SettingsButton.image.color = Color.green;
+        else
+            SettingsButton.image.color = Color.white;
+    }
+
+    public void OnCameraPerspectiveClicked()
+    {
+        MainCamera.orthographic = !MainCamera.orthographic;
+        if (MainCamera.orthographic)
+            CameraPerspectiveButton.image.color = Color.green;
+        else
+            CameraPerspectiveButton.image.color = Color.white;
     }
 }

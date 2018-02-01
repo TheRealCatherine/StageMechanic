@@ -353,7 +353,7 @@ public static class Serializer
     }
 
 
-    public static void BlocksFromJson(Uri path)
+    public static void BlocksFromJson(Uri path, bool startPlayMode = false)
     {
         LogController.Log("Loading from " + path.ToString());
         StageCollection deserializedCollection = new StageCollection(BlockManager.Instance);
@@ -362,7 +362,7 @@ public static class Serializer
         Stream fs = webClient.OpenRead(path);
         HandleLoad(fs, true);
         RecordStartState();
-        if (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
+        if (startPlayMode || PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
         {
             if (!BlockManager.PlayMode)
                 BlockManager.Instance.TogglePlayMode();
