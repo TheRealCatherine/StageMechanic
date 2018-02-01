@@ -122,7 +122,6 @@ public class InputManager : MonoBehaviour
     bool TryLevelOperationCommands()
     {
         bool ctrlDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand);
-        bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
 
         // Save
         if (Input.GetKeyDown(KeyCode.S))
@@ -165,78 +164,41 @@ public class InputManager : MonoBehaviour
             return true;
         }
 
-        else if(Input.GetKeyDown(KeyCode.Alpha1) && ctrlDown)
+        else if(Input.GetKeyDown(KeyCode.Keypad1) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/1-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad2) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/2-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad3) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/3-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad4) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/4-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha5) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad5) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/5-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha6) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad6) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/6-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha7) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad7) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/7-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha8) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad8) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/8-1.json"));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha9) && ctrlDown)
+        else if (Input.GetKeyDown(KeyCode.Keypad9) && ctrlDown)
         {
             Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/9-1.json"));
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://github.com/TheRealCatherine/StageMechanic/blob/master/StageMechanic/Stages/Testing/Cathy1/Easy/1-1%20with%20sections.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/2-2.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/3-2.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/4-2.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/5-2.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/6-2.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/7-2.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/9-2.json"));
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9) && altDown)
-        {
-            Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/9-3.json"));
         }
 
         //Manually move the platform
@@ -835,8 +797,6 @@ public class InputManager : MonoBehaviour
         {
             if (TryCursorMovement())
                 return;
-            else if (TryLevelOperationCommands())
-                return;
             else if (TryCreateBlockAtCursor())
                 return;
             else if (TryBlockCommands())
@@ -850,6 +810,8 @@ public class InputManager : MonoBehaviour
             return;
         }
         else if (TryAtmosphereCommands())
+            return;
+        else if (TryLevelOperationCommands())
             return;
         else if (TryUICommands())
             return;
