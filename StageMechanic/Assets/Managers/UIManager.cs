@@ -63,17 +63,16 @@ public class UIManager : MonoBehaviour
     {
         if (ShowOnscreenControlls && !MainMenu.gameObject.activeInHierarchy) {
             DirectionButtons.gameObject.SetActive(true);
-            DeleteBlockButton.gameObject.SetActive(!BlockManager.PlayMode);
             FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);
             GrabButton.gameObject.SetActive(BlockManager.PlayMode);
         }
         else
         {
             DirectionButtons.gameObject.SetActive(false);
-            DeleteBlockButton.gameObject.SetActive(false);
             FurtherCloserButtons.gameObject.SetActive(false);
             GrabButton.gameObject.SetActive(false);
         }
+        DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode);
         PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.Instance.ActiveBlock != null);
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
         UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
