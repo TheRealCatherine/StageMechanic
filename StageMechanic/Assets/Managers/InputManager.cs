@@ -327,15 +327,15 @@ public class InputManager : MonoBehaviour
         {
             BlockManager.Instance.DestroyActiveObject();
         }
-        else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition"))
+        else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition1"))
         {
             GetComponent<EventManager>().CreatePlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
         }
-        else if (Input.GetKeyDown(KeyCode.O))
+        else if (Input.GetKeyDown(KeyCode.O) || CnInputManager.GetButtonDown("StartPosition2"))
         {
             GetComponent<EventManager>().CreatePlayerStartLocation(1, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
         }
-        else if (Input.GetKeyDown(KeyCode.T))
+        else if (Input.GetKeyDown(KeyCode.T) || CnInputManager.GetButtonDown("StartPosition3"))
         {
             GetComponent<EventManager>().CreatePlayerStartLocation(2, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
         }

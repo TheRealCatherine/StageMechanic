@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public ButtonMappingDialog ButtonMappingDialog;
     public MainMenu MainMenu;
     public ScrollRect BlockTypesList;
+    public ScrollRect PlayerStartPositionsList;
     public BlockEditDialog BlockEditDialog;
 
     public bool ShowOnscreenControlls;
@@ -62,7 +63,6 @@ public class UIManager : MonoBehaviour
     {
         if (ShowOnscreenControlls && !MainMenu.gameObject.activeInHierarchy) {
             DirectionButtons.gameObject.SetActive(true);
-            SetStartPosButton.gameObject.SetActive(!BlockManager.PlayMode);
             DeleteBlockButton.gameObject.SetActive(!BlockManager.PlayMode);
             FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);
             GrabButton.gameObject.SetActive(BlockManager.PlayMode);
@@ -70,11 +70,11 @@ public class UIManager : MonoBehaviour
         else
         {
             DirectionButtons.gameObject.SetActive(false);
-            SetStartPosButton.gameObject.SetActive(false);
             DeleteBlockButton.gameObject.SetActive(false);
             FurtherCloserButtons.gameObject.SetActive(false);
             GrabButton.gameObject.SetActive(false);
         }
+        PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.Instance.ActiveBlock != null);
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
         UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
     }
