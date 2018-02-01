@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public Toggle AutoPlay;
     public Button SaveButton;
     public Button SaveAsButton;
+    public Button InputsButton;
 
     public Button PlayPauseButton;
     public Button NextTrackButton;
@@ -32,9 +33,9 @@ public class MainMenu : MonoBehaviour
         CreateButton.onClick.AddListener(OnCreateClicked);
         QuitButton.onClick.AddListener(OnQuitClicked);
         AutoPlay.onValueChanged.AddListener(OnAutoPlayChecked);
-
         SaveButton.onClick.AddListener(onSaveClicked);
         SaveAsButton.onClick.AddListener(onSaveAsClicked);
+        InputsButton.onClick.AddListener(OnInputsClicked);
 
         PlayPauseButton.onClick.AddListener(onPlayPauseButtonClicked);
         NextTrackButton.onClick.AddListener(onNextTrackButtonClicked);
@@ -158,5 +159,13 @@ public class MainMenu : MonoBehaviour
     public void onSaveAsClicked()
     {
         BlockManager.SaveToJson();
+    }
+
+    public void OnInputsClicked()
+    {
+        UIManager.ToggleButtonMappingDialog();
+        if (!BlockManager.PlayMode)
+            BlockManager.Instance.TogglePlayMode();
+        gameObject.SetActive(false);
     }
 }
