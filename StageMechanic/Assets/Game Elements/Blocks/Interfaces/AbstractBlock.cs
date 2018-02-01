@@ -627,8 +627,13 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
                 if(blocksBelow[LEFT] != null)
                     BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(-0.5f, -0.5f, -0.5f));
                 if (blocksBelow[RIGHT] != null)
-                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(0.5f, -0.5f, -0.5f));                    
-                //TODO get this on edged sides
+                    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(0.5f, -0.5f, -0.5f));
+                //TODO Figur out correct Vector3 and Quaterion values for issue #32
+                //if (blocksBelow[FORWARD] != null)
+                //    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(-0.5f, -0.5f, -0.5f),Quaternion.Euler(0,90,0));
+                //if (blocksBelow[BACK] != null)
+                //    BlockManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(0.5f, -0.5f, -0.5f),Quaternion.Euler(0,90,0));
+
             }
             if (MotionState != oldState)
                 OnMotionStateChanged(MotionState, oldState);
