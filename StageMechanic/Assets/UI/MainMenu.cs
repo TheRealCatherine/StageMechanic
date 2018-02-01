@@ -5,47 +5,12 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
-    public Button LoadButton;
-    public Button CreateButton;
-    public Button QuitButton;
-    public Toggle AutoPlay;
     public Button SaveButton;
-    public Button SaveAsButton;
-    public Button InputsButton;
-
-    public Button PlayPauseButton;
-    public Button NextTrackButton;
-    public Button PrevTrackButton;
-    public Button VolumeUpButton;
-    public Button VolumeDownButton;
-    public Button CycleBackgroundButton;
+    public Toggle AutoPlay;
     public Toggle FogToggle;
     public ParticleSystem Fog;
-
     public TogglePlayMode TogglePlayModeButton;
-
     public AudioClip StartupSound;
-
-    void Start()
-    {
-        LoadButton.onClick.AddListener(OnLoadAndEditClicked);
-        CreateButton.onClick.AddListener(OnCreateClicked);
-        QuitButton.onClick.AddListener(OnQuitClicked);
-        AutoPlay.onValueChanged.AddListener(OnAutoPlayChecked);
-        SaveButton.onClick.AddListener(onSaveClicked);
-        SaveAsButton.onClick.AddListener(onSaveAsClicked);
-        InputsButton.onClick.AddListener(OnInputsClicked);
-
-        PlayPauseButton.onClick.AddListener(onPlayPauseButtonClicked);
-        NextTrackButton.onClick.AddListener(onNextTrackButtonClicked);
-        PrevTrackButton.onClick.AddListener(onPrevTrackButtonClicked);
-        VolumeUpButton.onClick.AddListener(onVolumeUpButtonClicked);
-        VolumeDownButton.onClick.AddListener(onVolumeDownButtonClicked);
-        CycleBackgroundButton.onClick.AddListener(onCycleBackgroundButtonClicked);
-
-        FogToggle.onValueChanged.AddListener(onFogValueChanged);
-    }
 
     private void OnEnable()
     {
@@ -86,12 +51,12 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void OnAutoPlayChecked(bool value)
+    public void OnAutoPlayChecked(bool value)
     {
         PlayerPrefs.SetInt("AutoPlayOnLoad", value ? 1 : 0);
     }
 
-    void OnLoadAndEditClicked()
+    public void OnLoadAndEditClicked()
     {
         gameObject.SetActive(false);
         if (BlockManager.PlayMode)
@@ -101,7 +66,7 @@ public class MainMenu : MonoBehaviour
         BlockManager.LoadFromJson();
     }
 
-    void OnCreateClicked()
+    public void OnCreateClicked()
     {
         gameObject.SetActive(false);
         if (BlockManager.PlayMode)
@@ -109,7 +74,7 @@ public class MainMenu : MonoBehaviour
         BlockManager.Clear();
     }
 
-    void OnQuitClicked()
+    public void OnQuitClicked()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -118,45 +83,45 @@ public class MainMenu : MonoBehaviour
 #endif
     }
 
-    public void onPlayPauseButtonClicked()
+    public void OnPlayPauseButtonClicked()
     {
         MusicManager.TogglePause();
     }
-    public void onNextTrackButtonClicked()
+    public void OnNextTrackButtonClicked()
     {
         MusicManager.PlayNextTrack();
     }
-    public void onPrevTrackButtonClicked()
+    public void OnPrevTrackButtonClicked()
     {
         MusicManager.PlayPreviousTrack();
     }
-    public void onVolumeUpButtonClicked()
+    public void OnVolumeUpButtonClicked()
     {
         MusicManager.VolumeUp();
     }
-    public void onVolumeDownButtonClicked()
+    public void OnVolumeDownButtonClicked()
     {
         MusicManager.VolumeDown();
     }
-    public void onCycleBackgroundButtonClicked()
+    public void OnCycleBackgroundButtonClicked()
     {
         SkyboxManager.NextSkybox();
     }
 
-    public void onFogValueChanged(bool value)
+    public void OnFogValueChanged(bool value)
     {
         if (BlockManager.PlayMode || !value)
             Fog.gameObject.SetActive(value);
         PlayerPrefs.SetInt("Fog", value ? 1 : 0);
     }
 
-    public void onSaveClicked()
+    public void OnSaveClicked()
     {
         Serializer.QuickSave();
         SaveButton.gameObject.SetActive(false);
     }
 
-    public void onSaveAsClicked()
+    public void OnSaveAsClicked()
     {
         BlockManager.SaveToJson();
     }
