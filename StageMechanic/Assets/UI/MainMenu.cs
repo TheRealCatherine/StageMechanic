@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public Toggle FogToggle;
     public ParticleSystem Fog;
     public TogglePlayMode TogglePlayModeButton;
+    public Button ToggleTouchScreenButton;
     public AudioClip StartupSound;
 
     private void OnEnable()
@@ -137,5 +138,9 @@ public class MainMenu : MonoBehaviour
     public void OnOnscreenControllsClicked()
     {
         UIManager.ToggleOnscreenControlls();
+        if (UIManager.Instance.ShowOnscreenControlls)
+            ToggleTouchScreenButton.image.color = Color.green;
+        else
+            ToggleTouchScreenButton.image.color = Color.white;
     }
 }
