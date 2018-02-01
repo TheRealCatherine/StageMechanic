@@ -133,4 +133,9 @@ public class MainMenu : MonoBehaviour
             BlockManager.Instance.TogglePlayMode();
         gameObject.SetActive(false);
     }
+
+    public void OnOnscreenControllsClicked()
+    {
+        UIManager.ToggleOnscreenControlls();
+    }
 }

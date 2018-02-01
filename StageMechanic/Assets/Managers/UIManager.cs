@@ -15,10 +15,12 @@ public class UIManager : MonoBehaviour
     public ScrollRect BlockTypesList;
     public BlockEditDialog BlockEditDialog;
 
+    public bool ShowOnscreenControlls;
     public SimpleButton GrabButton;
     public SimpleButton SetStartPosButton;
     public SimpleButton DeleteBlockButton;
     public Dpad FurtherCloserButtons;
+    public Dpad DirectionButtons;
 
     public GameObject UndoButton;
     //TODO Singleton flame war
@@ -53,17 +55,26 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        ShowOnscreenControlls = Input.touchSupported;
     }
 
     private void Update()
     {
-        // for Android
-#if UNITY_ANDROID
-        SetStartPosButton.gameObject.SetActive(!BlockManager.PlayMode);
-        DeleteBlockButton.gameObject.SetActive(!BlockManager.PlayMode);
-        FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);
-        GrabButton.gameObject.SetActive(BlockManager.PlayMode);
-#endif
+        if (ShowOnscreenControlls && !MainMenu.gameObject.activeInHierarchy) {
+            DirectionButtons.gameObject.SetActive(true);
+            SetStartPosButton.gameObject.SetActive(!BlockManager.PlayMode);
+            DeleteBlockButton.gameObject.SetActive(!BlockManager.PlayMode);
+            FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);
+            GrabButton.gameObject.SetActive(BlockManager.PlayMode);
+        }
+        else
+        {
+            DirectionButtons.gameObject.SetActive(false);
+            SetStartPosButton.gameObject.SetActive(false);
+            DeleteBlockButton.gameObject.SetActive(false);
+            FurtherCloserButtons.gameObject.SetActive(false);
+            GrabButton.gameObject.SetActive(false);
+        }
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
         UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
     }
@@ -111,5 +122,10 @@ public class UIManager : MonoBehaviour
     {
         Instance.BlockInfoBox.gameObject.SetActive(false);
         Instance.BlockEditDialog.Show(block);
+    }
+
+    public static void ToggleOnscreenControlls()
+    {
+        Instance.ShowOnscreenControlls = !Instance.ShowOnscreenControlls;
     }
 }

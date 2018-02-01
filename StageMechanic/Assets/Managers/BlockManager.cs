@@ -120,7 +120,7 @@ public class BlockManager : MonoBehaviour
             //Reset blocks to their pre-PlayMode state
             if (Serializer.HasStartState())
                 Serializer.ReloadStartState();
-            UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
+            //UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
             Fog.gameObject.SetActive(false);
         }
         UIManager.RefreshButtonMappingDialog();
