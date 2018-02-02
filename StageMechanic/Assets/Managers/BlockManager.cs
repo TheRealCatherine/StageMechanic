@@ -125,7 +125,7 @@ public class BlockManager : MonoBehaviour
             Fog.gameObject.SetActive(false);
         }
         UIManager.RefreshButtonMappingDialog();
-        GetComponent<PlayerManager>().PlayMode = PlayMode;
+        PlayerManager.Instance.PlayMode = PlayMode;
         Cursor.SetActive(!PlayMode);
 
     }
