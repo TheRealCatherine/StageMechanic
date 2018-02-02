@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
 
-    private static AudioSource Player;
-    private static MusicManager Instance;
-    private static int CurrentIndex;
+    public AudioSource Player;
     public AudioClip[] Clips;
 
-	void Start () {
-        Player = GetComponent<AudioSource>();
+    private static MusicManager Instance;
+    private static int CurrentIndex;
+
+    void Start () {
         Instance = this;
         Player.volume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
         if (PlayerPrefs.HasKey("MusicTrackIndex"))
@@ -22,30 +20,30 @@ public class MusicManager : MonoBehaviour {
 	
 	public static void VolumeUp()
     {
-        Debug.Assert(Player != null);
-        Player.volume += 0.1f;
-        PlayerPrefs.SetFloat("MusicVolume", Player.volume);
-        LogController.Log("Volume: " + (int)(Player.volume * 100f)+"%");
+        Debug.Assert(Instance.Player != null);
+        Instance.Player.volume += 0.1f;
+        PlayerPrefs.SetFloat("MusicVolume", Instance.Player.volume);
+        LogController.Log("Volume: " + (int)(Instance.Player.volume * 100f)+"%");
     }
 
     public static void VolumeDown()
     {
-        Debug.Assert(Player != null);
-        Player.volume -= 0.1f;
-        PlayerPrefs.SetFloat("MusicVolume", Player.volume);
-        LogController.Log("Volume: " + (int)(Player.volume * 100f)+"%");
+        Debug.Assert(Instance.Player != null);
+        Instance.Player.volume -= 0.1f;
+        PlayerPrefs.SetFloat("MusicVolume", Instance.Player.volume);
+        LogController.Log("Volume: " + (int)(Instance.Player.volume * 100f)+"%");
     }
 
     public static void Pause()
     {
-       Player.Pause();
+        Instance.Player.Pause();
        PlayerPrefs.SetInt("MusicPaused", 1);
        LogController.Log("Music Paused");
     }
 
     public static void UnPause()
     {
-        Player.Play();
+        Instance.Player.Play();
         PlayerPrefs.SetInt("MusicPaused", 0);
         LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
     }
@@ -62,12 +60,12 @@ public class MusicManager : MonoBehaviour {
     {
         Debug.Assert(Instance != null);
         CurrentIndex = Random.Range(0, Instance.Clips.Length);
-        Player.clip = Instance.Clips[CurrentIndex] as AudioClip;
-        Player.Play();
+        Instance.Player.clip = Instance.Clips[CurrentIndex] as AudioClip;
+        Instance.Player.Play();
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
         LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 0)
-            Player.Play();
+            Instance.Player.Play();
     }
 
     public static void PlayTrack(int number = 0)
@@ -81,10 +79,10 @@ public class MusicManager : MonoBehaviour {
 
         CurrentIndex = number;
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
-        Player.clip = Instance.Clips[CurrentIndex];
+        Instance.Player.clip = Instance.Clips[CurrentIndex];
         LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused",0) == 0)
-            Player.Play();
+            Instance.Player.Play();
 
     }
 
@@ -93,17 +91,17 @@ public class MusicManager : MonoBehaviour {
         Debug.Assert(Instance != null);
         if (++CurrentIndex < Instance.Clips.Length)
         {
-            Player.clip = Instance.Clips[CurrentIndex];
+            Instance.Player.clip = Instance.Clips[CurrentIndex];
         }
         else
         {
-            Player.clip = Instance.Clips[0];
+            Instance.Player.clip = Instance.Clips[0];
             CurrentIndex = 0;
         }
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
         LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 0)
-            Player.Play();
+            Instance.Player.Play();
     }
 
     public static void PlayPreviousTrack()
@@ -111,16 +109,16 @@ public class MusicManager : MonoBehaviour {
         Debug.Assert(Instance != null);
         if (--CurrentIndex >= 0)
         {
-            Player.clip = Instance.Clips[CurrentIndex];
+            Instance.Player.clip = Instance.Clips[CurrentIndex];
         }
         else
         {
-            Player.clip = Instance.Clips[Instance.Clips.Length-1];
+            Instance.Player.clip = Instance.Clips[Instance.Clips.Length-1];
             CurrentIndex = Instance.Clips.Length-1;
         }
         PlayerPrefs.SetInt("MusicTrackIndex", CurrentIndex);
         LogController.Log("Playing " + (CurrentIndex+1) + ": " + Instance.Clips[CurrentIndex].name);
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 0)
-            Player.Play();
+            Instance.Player.Play();
     }
 }
