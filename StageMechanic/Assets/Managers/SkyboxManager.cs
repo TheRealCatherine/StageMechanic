@@ -6,6 +6,7 @@ using UnityEngine;
 public class SkyboxManager : MonoBehaviour {
 
     private static SkyboxManager Instance;
+    public Camera MainCamera;
     public Material[] Skyboxes;
 
 	// Use this for initialization
@@ -23,21 +24,19 @@ public class SkyboxManager : MonoBehaviour {
         PlayerPrefs.SetInt("SkyboxIndex", index);
         if(Instance.Skyboxes[index].GetTag("ChromaKey",false,"Nothing") != "Nothing" || Instance.Skyboxes[index].name.Contains("Chroma"))
         {
-            Camera cam = Instance?.GetComponent<Camera>();
-            Debug.Assert(cam != null);
+            Debug.Assert(Instance.MainCamera != null);
             //cam.clearFlags = CameraClearFlags.Skybox;
             //if (Instance.Skyboxes[index].name.Contains("Blue"))
             //    cam.backgroundColor = new Color(0, 71, 187);
             //else
-            cam.backgroundColor = Color.green;
-            cam.clearFlags = CameraClearFlags.SolidColor;
+            Instance.MainCamera.backgroundColor = Color.green;
+            Instance.MainCamera.clearFlags = CameraClearFlags.SolidColor;
         }
         else
         {
-            Camera cam = Instance?.GetComponent<Camera>();
-            Debug.Assert(cam != null);
-            cam.clearFlags = CameraClearFlags.Skybox;
-            cam.backgroundColor = Color.black;
+            Debug.Assert(Instance.MainCamera != null);
+            Instance.MainCamera.clearFlags = CameraClearFlags.Skybox;
+            Instance.MainCamera.backgroundColor = Color.black;
             DynamicGI.UpdateEnvironment();
 
         }

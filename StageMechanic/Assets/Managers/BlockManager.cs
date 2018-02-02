@@ -76,6 +76,7 @@ public class BlockManager : MonoBehaviour
     public GameObject StartLocationIndicator;
     public GameObject GoalLocationIndicator;
     public GameObject FileBrowserPrefab;
+    public Cathy1BlockFactory Cathy1BlockFactory;
     public ParticleSystem Fog;
 
 
@@ -211,24 +212,12 @@ public class BlockManager : MonoBehaviour
         Debug.Assert(Cursor != null);
         if (palette == "Cathy1 Internal")
         {
-            Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+            Cathy1Block block = Instance.Cathy1BlockFactory.CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
             BlockCache.Add(block);
             Serializer.AutoSave();
             return block;
         }
         return null;
-    }
-
-    /// <summary>
-    /// Returns a Cathy1BlockFactory that can be used to create Cathy1-style blocks
-    /// </summary>
-    /// TODO create the factory, don't be the factory.
-    public Cathy1BlockFactory Cathy1BlockFactory
-    {
-        get
-        {
-            return GetComponent<Cathy1BlockFactory>();
-        }
     }
 
     public static void DestroyBlock(IBlock block)
