@@ -10,8 +10,9 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour {
 
+    public Cathy1EventFactory Cathy1EventFactory;
     public static List<Cathy1AbstractEvent> EventList = new List<Cathy1AbstractEvent>();
-    private static EventManager Instance;
+    public static EventManager Instance;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class EventManager : MonoBehaviour {
     public void CreatePlayerStartLocation(int playerNumber, Vector3 pos, Quaternion rotation)
     {
         Debug.Log("Assigning " + playerNumber + " start position: " + pos.ToString());
-        Cathy1PlayerStartLocation ev = GetComponent<Cathy1EventFactory>().CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
+        Cathy1PlayerStartLocation ev = Cathy1EventFactory.CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
         ev.PlayerNumber = playerNumber;
         ev.transform.parent = gameObject.transform;
         if(EventList.Count > playerNumber)
