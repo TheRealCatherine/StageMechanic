@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public Toggle AutoPlay;
     public Toggle FogToggle;
     public Toggle VisiblePlatformToggle;
+    public Toggle CameraEffectsToggle;
     public ParticleSystem Fog;
     public TogglePlayMode TogglePlayModeButton;
     public Button ToggleTouchScreenButton;
@@ -27,6 +28,7 @@ public class MainMenu : MonoBehaviour
         BlockManager.Cursor?.SetActive(false);
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
         FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
+        CameraEffectsToggle.isOn = (PlayerPrefs.GetInt("PostProcessing", 1) == 1);
         //VisiblePlatformToggle.isOn = (PlayerPrefs.GetInt("PlatformVisible", 1) == 1);
         SaveButton.gameObject.SetActive(true);
         TogglePlayModeButton.gameObject.SetActive(false);
@@ -76,6 +78,13 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.Save();
         if(BlockManager.ActiveFloor != null)
             BlockManager.ActiveFloor.GetComponent<Renderer>().enabled = value;
+    }
+
+    public void OnCameraEffectsChecked(bool value)
+    {
+        PlayerPrefs.SetInt("PostProcessing", value ? 1 : 0);
+        PlayerPrefs.Save();
+        VisualEffectsManager.EnablePostProcessing(value);
     }
 
     public void OnLoadAndEditClicked()

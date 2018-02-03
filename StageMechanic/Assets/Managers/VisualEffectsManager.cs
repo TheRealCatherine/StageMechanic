@@ -6,17 +6,23 @@
  */
 using System.Collections;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class VisualEffectsManager : MonoBehaviour {
 
     public static VisualEffectsManager Instance;
-    public Camera MainCamera;
+    public PostProcessingBehaviour PostProcessor;
     public ParticleSystem Fog;
 
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        EnablePostProcessing(PlayerPrefs.GetInt("PostProcessing", 1) == 1);
     }
 
     private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration, Quaternion rotation)
@@ -52,8 +58,13 @@ public class VisualEffectsManager : MonoBehaviour {
         Instance.StartCoroutine(Instance._particleAnimationHelper(block.Position + offset, animationPrefab, scale, duration, rot));
     }
     
-    public static void ShowFog(bool show)
+    public static void EnableFog(bool show)
     {
         Instance?.Fog?.gameObject.SetActive(show);
+    }
+
+    public static void EnablePostProcessing(bool process)
+    {
+        Instance.PostProcessor.enabled = process;
     }
 }

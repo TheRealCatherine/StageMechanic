@@ -56,7 +56,7 @@ public class BlockManager : MonoBehaviour
             LogController.Log("Start!");
             UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
             Serializer.RecordStartState();
-            VisualEffectsManager.ShowFog(PlayerPrefs.GetInt("Fog", 0) == 1);
+            VisualEffectsManager.EnableFog(PlayerPrefs.GetInt("Fog", 1) == 1);
         }
         else
         {
@@ -64,7 +64,7 @@ public class BlockManager : MonoBehaviour
             if (Serializer.HasStartState())
                 Serializer.ReloadStartState();
             //UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
-            VisualEffectsManager.ShowFog(false);
+            VisualEffectsManager.EnableFog(false);
         }
         UIManager.RefreshButtonMappingDialog();
         PlayerManager.Instance.PlayMode = PlayMode;
