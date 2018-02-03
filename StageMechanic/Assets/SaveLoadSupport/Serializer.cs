@@ -214,7 +214,7 @@ public static class Serializer
 
     private static void RestoreUndoState(UndoState state)
     {
-        BlockManager.Instance.ClearForUndo();
+        BlockManager.ClearForUndo();
         PlayerManager.HideAllPlayers();
 
         BlockManager.ActiveFloor.transform.position = new Vector3(0f, state.PlatformYPosition, 0f);

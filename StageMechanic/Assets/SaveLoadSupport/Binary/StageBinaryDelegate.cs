@@ -8,6 +8,6 @@ class StageBinaryDelegate
 
     public StageBinaryDelegate()
     {
-        Platforms.Add(BlockManager.Instance.GetPlatformBinaryDelegate());
+        Platforms.Add(BlockManager.GetPlatformBinaryDelegate());
     }
 }

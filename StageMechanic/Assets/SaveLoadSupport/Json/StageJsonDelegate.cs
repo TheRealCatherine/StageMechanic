@@ -43,7 +43,7 @@ public class StageJsonDelegate {
 			Debug.Assert (_manager != null);
 			List<PlatformJsonDelegate> ret = new List<PlatformJsonDelegate> ();
 			//TODO export all platforms
-			ret.Add (_manager.GetPlatformJsonDelegate());
+			ret.Add (BlockManager.GetPlatformJsonDelegate());
 			return ret;
 		}
 		set {

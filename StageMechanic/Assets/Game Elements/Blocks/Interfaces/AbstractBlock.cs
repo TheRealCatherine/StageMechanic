@@ -860,7 +860,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             period = 0;
             if (!BlockManager.PlayMode && !UIManager.IsAnyInputDialogOpen)
             {
-                if (BlockManager.Instance.ActiveBlock == this)
+                if (BlockManager.ActiveBlock == this)
                     UIManager.ShowBlockEditDialog(this);
                 BlockManager.Cursor.transform.position = Position;
             }

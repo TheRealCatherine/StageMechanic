@@ -283,7 +283,7 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
-            IBlock block = BlockManager.Instance.ActiveBlock;
+            IBlock block = BlockManager.ActiveBlock;
             if(block != null)
             {
                 UIManager.ShowBlockEditDialog(block);
@@ -296,7 +296,7 @@ public class InputManager : MonoBehaviour
         {
             //TODO generic
             Cathy1Block.BlockType type = BlockManager.PrevBlockType();
-            if (BlockManager.Instance.ActiveObject != null)
+            if (BlockManager.ActiveBlock != null)
                 BlockManager.CreateBlockAtCursor(type);
             return true;
         }
@@ -307,7 +307,7 @@ public class InputManager : MonoBehaviour
         {
             //TODO generic
             Cathy1Block.BlockType type = BlockManager.NextBlockType();
-            if (BlockManager.Instance.ActiveObject != null)
+            if (BlockManager.ActiveBlock != null)
                 BlockManager.CreateBlockAtCursor(type);
             return true;
         }
@@ -336,38 +336,38 @@ public class InputManager : MonoBehaviour
         // Buttons for setting items
         else if (Input.GetKeyDown(KeyCode.Home))
         {
-            if (BlockManager.Instance.ActiveObject != null)
+            if (BlockManager.ActiveBlock != null)
             {
                 //TODO use a method of BlockManager to do this
-                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
+                Cathy1Block block = BlockManager.ActiveBlock.GetComponent<Cathy1Block>();
                 block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
                 return true;
             }
         }
         else if (Input.GetKeyDown(KeyCode.End))
         {
-            if (BlockManager.Instance.ActiveObject != null)
+            if (BlockManager.ActiveBlock != null)
             {
                 //TODO use a method of BlockManager to do this
-                Cathy1Block block = BlockManager.Instance.ActiveObject.GetComponent<Cathy1Block>();
+                Cathy1Block block = BlockManager.ActiveBlock.GetComponent<Cathy1Block>();
                 block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
                 return true;
             }
         }
         else if(Input.GetKeyDown(KeyCode.Keypad0))
         {
-            if(BlockManager.Instance.ActiveBlock != null)
-                BlockManager.AddBlockToGroup(BlockManager.Instance.ActiveBlock,0);
+            if(BlockManager.ActiveBlock != null)
+                BlockManager.AddBlockToGroup(BlockManager.ActiveBlock,0);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            if (BlockManager.Instance.ActiveBlock != null)
-                BlockManager.AddBlockToGroup(BlockManager.Instance.ActiveBlock, 1);
+            if (BlockManager.ActiveBlock != null)
+                BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 1);
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            if (BlockManager.Instance.ActiveBlock != null)
-                BlockManager.AddBlockToGroup(BlockManager.Instance.ActiveBlock, 2);
+            if (BlockManager.ActiveBlock != null)
+                BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 2);
         }
         return false;
     }
@@ -571,7 +571,7 @@ public class InputManager : MonoBehaviour
             }
             else if (shiftDown)
             {
-                GameObject ao = BlockManager.Instance.ActiveObject;
+                GameObject ao = BlockManager.ActiveBlock?.gameObject;
                 if (ao != null)
                     ao.transform.Translate(0, 1, 0);
                 BlockManager.Cursor.transform.position += new Vector3(0, 1, 0);
@@ -603,7 +603,7 @@ public class InputManager : MonoBehaviour
             }
             else if (shiftDown)
             {
-                GameObject ao = BlockManager.Instance.ActiveObject;
+                GameObject ao = BlockManager.ActiveBlock?.gameObject;
                 if (ao != null)
                     ao.transform.Translate(0, -1, 0);
                 BlockManager.Cursor.transform.position += new Vector3(0, -1, 0);
@@ -634,7 +634,7 @@ public class InputManager : MonoBehaviour
             }
             else if (shiftDown)
             {
-                GameObject ao = BlockManager.Instance.ActiveObject;
+                GameObject ao = BlockManager.ActiveBlock?.gameObject;
                 if (ao != null)
                     ao.transform.Translate(-1, 0, 0);
                 BlockManager.Cursor.transform.position += new Vector3(-1, 0, 0);
@@ -666,7 +666,7 @@ public class InputManager : MonoBehaviour
             }
             else if (shiftDown)
             {
-                GameObject ao = BlockManager.Instance.ActiveObject;
+                GameObject ao = BlockManager.ActiveBlock?.gameObject;
                 if (ao != null)
                     ao.transform.Translate(1, 0, 0);
                 BlockManager.Cursor.transform.position += new Vector3(1, 0, 0);

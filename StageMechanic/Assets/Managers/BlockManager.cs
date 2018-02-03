@@ -5,6 +5,7 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,29 +13,74 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
 
-    #region Serialization
+    //TODO Move these to some kind of Platform Manager
+    #region Platform management
 
-    public void ClearForUndo()
-    {
-        foreach (IBlock block in BlockCache)
-        {
-            Destroy(block.GameObject);
-        }
-        BlockCache.Clear();
-        EventManager.Clear();
-    }
-
-    public PlatformJsonDelegate GetPlatformJsonDelegate()
+    public static PlatformJsonDelegate GetPlatformJsonDelegate()
     {
         return new PlatformJsonDelegate(ActiveFloor);
     }
-    public PlatformBinaryDelegate GetPlatformBinaryDelegate()
+    public static PlatformBinaryDelegate GetPlatformBinaryDelegate()
     {
         return new PlatformBinaryDelegate(ActiveFloor);
     }
 
+    /// <summary>
+    /// Used to support Cathy-2 style rotatable floors and other multi-platform implementations
+    /// This is to be implemented in the future
+    /// Right now it only contains the BlockManager.ActiveFloor
+    /// </summary>
+    private List<GameObject> _rotatableFloors = new List<GameObject>();
+    public List<GameObject> RotatableFloors
+    {
+        get
+        {
+            return _rotatableFloors;
+        }
+        set
+        {
+            _rotatableFloors = value;
+        }
+    }
 
+    /// <summary>
+    /// Currently this will always be the platform on which the stage rests. When BlockManager.RotatableFloors
+    /// is implemented later this will be set to the platform currently selected by the cursor or occupied by
+    /// the player.
+    /// </summary>
+    private static GameObject _activeFloor;
+    public static GameObject ActiveFloor
+    {
+        get
+        {
+            return _activeFloor;
+        }
+        set
+        {
+            _activeFloor = value;
+        }
+    }
 
+    public static void RotatePlatform(int x, int y, int z)
+    {
+        ActiveFloor.transform.Rotate(x, y, z, Space.Self);
+        Instance.StartCoroutine(Instance.rotateCleanup());
+    }
+
+    IEnumerator rotateCleanup()
+    {
+        yield return new WaitForEndOfFrame();
+        IBlock[] blocks = ActiveFloor.GetComponentsInChildren<IBlock>();
+        yield return new WaitForEndOfFrame();
+        Debug.Log("rotating " + blocks.Length + " blocks");
+        foreach (IBlock block in blocks)
+        {
+            block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            block.Rotation = Quaternion.identity;
+            (block as AbstractBlock).SetGravityEnabledByMotionState();
+        }
+        yield return new WaitForEndOfFrame();
+    }
     #endregion
 
     // Unity Inspector variables
@@ -118,17 +164,17 @@ public class BlockManager : MonoBehaviour
     /// move the cursor to the position of the block.
     /// 
     /// When in PlayMode, returns the block associated with player 1, this will be either
-    /// the block the player is standing on or sidled on (if sidling)
+    /// the block the player is standing on or sidled on (if sidling). Setting this property
+    /// while in PlayMode has no effect.
     /// </summary>
-    /// TODO Support IBlock interface
-    public Cathy1Block ActiveBlock
+    public static AbstractBlock ActiveBlock
     {
         get
         {
             if (PlayMode)
-                return PlayerManager.Player(0)?.GameObject?.GetComponent<Cathy1PlayerCharacter>()?.CurrentBlock?.GameObject?.GetComponent<Cathy1Block>();
+                return PlayerManager.Player(0)?.GameObject?.GetComponent<Cathy1PlayerCharacter>()?.CurrentBlock?.GameObject?.GetComponent<AbstractBlock>();
             else
-                return GetBlockAt(Cursor.transform.position)?.GameObject?.GetComponent<Cathy1Block>();
+                return GetBlockNear(Cursor.transform.position)?.GameObject?.GetComponent<AbstractBlock>();
         }
         set
         {
@@ -137,6 +183,11 @@ public class BlockManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Clears not only BlockManager but also PlayerManager, EventManager, the Serializer
+    /// and everything else. Eventually most of this will be moved out to like a GameManager
+    /// or similar class.
+    /// </summary>
     public static void Clear()
     {
         //Clear all cached data
@@ -156,8 +207,28 @@ public class BlockManager : MonoBehaviour
         Cursor.transform.position = new Vector3(0f, 1f, 0f);
     }
 
-    // Create a basic block at the current cursor position
+    /// <summary>
+    /// Clears only the internal block cache (and destroys all the blocks in it)
+    /// and clears the EventManager only.
+    /// </summary>
+    public static void ClearForUndo()
+    {
+        foreach (IBlock block in BlockCache)
+        {
+            Destroy(block.GameObject);
+        }
+        BlockCache.Clear();
+        EventManager.Clear();
+    }
 
+
+    /// <summary>
+    /// Creates a block of the specified type at the given position. This is a legacy method that will
+    /// be removed.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    [Obsolete("Please use new CreateBlockAtCursor(string palette, string type) method instead of the Cathy1 hardcoded method")]
     public static IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic)
     {
         Debug.Assert(Instance != null);
@@ -168,11 +239,26 @@ public class BlockManager : MonoBehaviour
         return block;
     }
 
+    /// <summary>
+    /// Convenience method for CreateBlockAt() that uses the current location of the cursor as the position.
+    /// </summary>
+    /// <param name="palette"></param>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public static IBlock CreateBlockAtCursor(string palette, string type)
     {
         return CreateBlockAt(Cursor.transform.position, palette, type);
     }
 
+    /// <summary>
+    /// Attempts to create a block of a given type from the given block palette at the specified position. Currently
+    /// only the "Cathy1 Internal" block palette is supported. If the palette is uknown or the block type
+    /// requested is not part of the specified palette this will return null.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="palette"></param>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public static IBlock CreateBlockAt(Vector3 position, string palette, string type)
     {
         Debug.Assert(Instance != null);
@@ -187,6 +273,11 @@ public class BlockManager : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// We probably want to do this another way - but right now this is used to deal with Block Groups
+    /// and other edge cases (see what I did there).
+    /// </summary>
+    /// <param name="block"></param>
     public static void DestroyBlock(IBlock block)
     {
         if (blockToGroupMapping.ContainsKey(block))
@@ -201,23 +292,6 @@ public class BlockManager : MonoBehaviour
     }
 
     #endregion
-
-    /// <summary>
-    /// This is a hacky method from early on in the implementation. In theory it should return
-    /// the GameObject of whatever is under the cursor. In actuality it usually only does this
-    /// correctly if its a block.
-    /// </summary>
-    /// TODO: Move cursor when set
-    public GameObject ActiveObject
-    {
-        get
-        {
-            return GetBlockAt(Cursor.transform.position)?.GameObject;
-        }
-        set
-        {
-        }
-    }
 
     /// <summary>
     /// The Cursor used in Edit Mode.
@@ -281,63 +355,7 @@ public class BlockManager : MonoBehaviour
         return --BlockCycleType;
     }
 
-    /// <summary>
-    /// Used to support Cathy-2 style rotatable floors and other multi-platform implementations
-    /// This is to be implemented in the future
-    /// Right now it only contains the BlockManager.ActiveFloor
-    /// </summary>
-    private List<GameObject> _rotatableFloors = new List<GameObject>();
-    public List<GameObject> RotatableFloors
-    {
-        get
-        {
-            return _rotatableFloors;
-        }
-        set
-        {
-            _rotatableFloors = value;
-        }
-    }
-
-    /// <summary>
-    /// Currently this will always be the platform on which the stage rests. When BlockManager.RotatableFloors
-    /// is implemented later this will be set to the platform currently selected by the cursor or occupied by
-    /// the player.
-    /// </summary>
-    private static GameObject _activeFloor;
-    public static GameObject ActiveFloor
-    {
-        get
-        {
-            return _activeFloor;
-        }
-        set
-        {
-            _activeFloor = value;
-        }
-    }
-
-    public static void RotatePlatform(int x, int y, int z)
-    {
-        ActiveFloor.transform.Rotate(x, y, z, Space.Self);
-        Instance.StartCoroutine(Instance.rotateCleanup());
-    }
-
-    IEnumerator rotateCleanup()
-    {
-        yield return new WaitForEndOfFrame();
-        IBlock[] blocks = ActiveFloor.GetComponentsInChildren<IBlock>();
-        yield return new WaitForEndOfFrame();
-        Debug.Log("rotating " + blocks.Length + " blocks");
-        foreach (IBlock block in blocks)
-        {
-            block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            block.Rotation = Quaternion.identity;
-            (block as AbstractBlock).SetGravityEnabledByMotionState();
-        }
-        yield return new WaitForEndOfFrame();
-    }
-
+    #region Monobehavior implementations
     private void Awake()
     {
         Instance = this;
@@ -354,15 +372,16 @@ public class BlockManager : MonoBehaviour
         Cursor = CursorPrefab;
         Cursor.transform.SetParent(Stage.transform, false);
     }
+    #endregion
 
     public void DestroyActiveObject()
     {
-        if (ActiveObject != null)
+        if (ActiveBlock != null)
         {
-            if (ActiveObject.GetComponent<IBlock>() != null)
-                DestroyBlock(ActiveObject.GetComponent<IBlock>());
+            if (ActiveBlock.GetComponent<IBlock>() != null)
+                DestroyBlock(ActiveBlock.GetComponent<IBlock>());
             else
-                Destroy(ActiveObject);
+                Destroy(ActiveBlock.gameObject);
             Serializer.AutoSave();
         }
     }

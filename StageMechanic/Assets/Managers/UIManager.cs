@@ -71,8 +71,8 @@ public class UIManager : MonoBehaviour
             FurtherCloserButtons.gameObject.SetActive(false);
             GrabButton.gameObject.SetActive(false);
         }
-        DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.Instance.ActiveBlock != null);
-        PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.Instance.ActiveBlock != null);
+        DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.ActiveBlock != null);
+        PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.ActiveBlock != null);
         BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
         UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
     }

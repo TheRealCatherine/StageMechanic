@@ -25,7 +25,7 @@ public class BlockInfoBoxController : MonoBehaviour {
     public Text logTime;
     public Text logMessage;
 
-    Cathy1Block lastBlock = null;
+    AbstractBlock lastBlock = null;
 
     //FPS couter stuff
     public float updateInterval = 1.5F;
@@ -48,15 +48,15 @@ public class BlockInfoBoxController : MonoBehaviour {
     {
         filename.text = Path.GetFileName(Serializer.LastAccessedFileName);
         // TODO make this event based instead of updating every frame
-        lastBlock = BlockManager.Instance.ActiveBlock;
+        lastBlock = BlockManager.ActiveBlock;
         if (lastBlock != null)
         {
             blockPosition.text = lastBlock.Position.ToString();
             blockName.text = lastBlock.Name;
             blockType.text = lastBlock.TypeName;
             //TODO support item types once there is an Item class
-            if(lastBlock.FirstItem != null)
-                itemType.text = lastBlock.FirstItem.name;
+            //if(lastBlock.FirstItem != null)
+            //    itemType.text = lastBlock.FirstItem.name;
 #if UNITY_EDITOR
             Selection.activeGameObject = lastBlock.gameObject;
 #endif

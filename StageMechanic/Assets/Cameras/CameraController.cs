@@ -43,8 +43,8 @@ public class CameraController : MonoBehaviour
         {
             offset = new Vector3(5, Cursor.transform.position.y, 10);
         }
-        if (BlockManager.Instance.ActiveBlock != null)
-            transform.LookAt(BlockManager.Instance.ActiveBlock.Position);
+        if (BlockManager.ActiveBlock != null)
+            transform.LookAt(BlockManager.ActiveBlock.Position);
         else
             transform.LookAt(new Vector3(BlockManager.ActiveFloor.transform.position.x,0, BlockManager.ActiveFloor.transform.position.z));
     }
