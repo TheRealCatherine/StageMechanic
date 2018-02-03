@@ -338,7 +338,7 @@ public static class Serializer
     public static void QuickSave()
     {
         if (string.IsNullOrWhiteSpace(LastAccessedFileName))
-            BlockManager.SaveToJson();
+            UIManager.SaveToJson();
         else
             SaveFileUsingPath(LastAccessedFileName);
     }

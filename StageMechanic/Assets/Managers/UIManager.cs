@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public ScrollRect BlockTypesList;
     public ScrollRect PlayerStartPositionsList;
     public BlockEditDialog BlockEditDialog;
+    public GameObject FileBrowserPrefab;
 
     public bool ShowOnscreenControlls;
     public SimpleButton GrabButton;
@@ -127,4 +128,27 @@ public class UIManager : MonoBehaviour
     {
         Instance.ShowOnscreenControlls = !Instance.ShowOnscreenControlls;
     }
+
+    public static void SaveToJson()
+    {
+        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, BlockManager.Instance.Stage.transform);
+        fileBrowserObject.name = "FileBrowser";
+        FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
+        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastSaveDir"));
+        fileBrowserScript.SaveFilePanel(Instance, "SaveFileUsingPath", "MyLevels", "json");
+    }
+    private void SaveFileUsingPath(string path) { Serializer.SaveFileUsingPath(path); }
+
+    public static void LoadFromJson()
+    {
+        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, BlockManager.Instance.Stage.transform);
+
+        fileBrowserObject.name = "FileBrowser";
+        FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
+        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastLoadDir"));
+
+        fileBrowserScript.OpenFilePanel(Instance, "LoadFileUsingPath", "json");
+    }
+    private void LoadFileUsingPath(string path) { Serializer.LoadFileUsingLocalPath(path); }
+
 }

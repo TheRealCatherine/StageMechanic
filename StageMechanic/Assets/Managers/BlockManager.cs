@@ -36,29 +36,6 @@ public class BlockManager : MonoBehaviour
         EventManager.Clear();
     }
 
-    //TODO move to UI manager?
-    public static void SaveToJson()
-    {
-        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab,Instance.Stage.transform);
-        fileBrowserObject.name = "FileBrowser";
-        FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastSaveDir"));
-        fileBrowserScript.SaveFilePanel(Instance, "SaveFileUsingPath", "MyLevels", "json");
-    }
-    private void SaveFileUsingPath(string path) { Serializer.SaveFileUsingPath(path); }
-
-    public static void LoadFromJson()
-    {
-        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, Instance.Stage.transform);
-
-        fileBrowserObject.name = "FileBrowser";
-        FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-        fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastLoadDir"));
-
-        fileBrowserScript.OpenFilePanel(Instance, "LoadFileUsingPath", "json");
-    }
-    private void LoadFileUsingPath(string path) { Serializer.LoadFileUsingLocalPath(path); }
-
     public PlatformJsonDelegate GetPlatformJsonDelegate()
     {
         return new PlatformJsonDelegate(ActiveFloor);
@@ -68,6 +45,8 @@ public class BlockManager : MonoBehaviour
         return new PlatformBinaryDelegate(ActiveFloor);
     }
 
+
+
     #endregion
 
     // Unity Inspector variables
@@ -76,7 +55,6 @@ public class BlockManager : MonoBehaviour
     public GameObject BasicPlatformPrefab;
     public GameObject StartLocationIndicator;
     public GameObject GoalLocationIndicator;
-    public GameObject FileBrowserPrefab;
     public Cathy1BlockFactory Cathy1BlockFactory;
     public ParticleSystem Fog;
 

@@ -81,7 +81,7 @@ public class MainMenu : MonoBehaviour
         {
             BlockManager.Instance.TogglePlayMode();
         }
-        BlockManager.LoadFromJson();
+        UIManager.LoadFromJson();
     }
 
     public void OnCreateClicked()
@@ -142,7 +142,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnSaveAsClicked()
     {
-        BlockManager.SaveToJson();
+        UIManager.SaveToJson();
     }
 
     public void OnInputsClicked()

@@ -60,7 +60,7 @@ public class SinglePlayerDeathDialog : MonoBehaviour {
         {
             BlockManager.Instance.TogglePlayMode();
         }
-        BlockManager.LoadFromJson();
+        UIManager.LoadFromJson();
     }
 
     void OnExitPlayModeClicked()

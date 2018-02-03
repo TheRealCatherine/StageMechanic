@@ -129,7 +129,7 @@ public class InputManager : MonoBehaviour
             if (!BlockManager.PlayMode)
             {
                 if (ctrlDown)
-                    BlockManager.SaveToJson();
+                    UIManager.SaveToJson();
                 else
                     Serializer.QuickSave();
 
@@ -145,7 +145,7 @@ public class InputManager : MonoBehaviour
             {
                 BlockManager.Instance.TogglePlayMode();
             }
-            BlockManager.LoadFromJson();
+            UIManager.LoadFromJson();
             return true;
         }
 
