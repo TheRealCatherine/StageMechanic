@@ -27,7 +27,7 @@ public class StageJsonDelegate {
 	public string Name {
 		get {
 			Debug.Assert (_manager != null);
-			return _manager.name;
+			return _manager.Stage.name;
 		}
 		set {
 			if (_manager == null)
