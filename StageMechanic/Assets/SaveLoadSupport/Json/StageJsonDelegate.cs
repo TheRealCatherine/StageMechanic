@@ -34,7 +34,7 @@ public class StageJsonDelegate {
 			if (_manager == null)
 				_manager = StageCollection.BlockManager;
 			Debug.Assert (_manager != null);
-			_manager.name = value;
+			_manager.Stage.name = value;
 		}
 	}
 

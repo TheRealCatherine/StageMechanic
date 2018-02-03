@@ -39,7 +39,7 @@ public class BlockManager : MonoBehaviour
     //TODO move to UI manager?
     public static void SaveToJson()
     {
-        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, Instance.transform);
+        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab,Instance.Stage.transform);
         fileBrowserObject.name = "FileBrowser";
         FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
         fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastSaveDir"));
@@ -49,7 +49,7 @@ public class BlockManager : MonoBehaviour
 
     public static void LoadFromJson()
     {
-        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, Instance.transform);
+        GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, Instance.Stage.transform);
 
         fileBrowserObject.name = "FileBrowser";
         FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
@@ -71,6 +71,7 @@ public class BlockManager : MonoBehaviour
     #endregion
 
     // Unity Inspector variables
+    public GameObject Stage;
     public GameObject CursorPrefab;
     public GameObject BasicPlatformPrefab;
     public GameObject StartLocationIndicator;
@@ -195,7 +196,7 @@ public class BlockManager : MonoBehaviour
     {
         Debug.Assert(Instance != null);
         Debug.Assert(Cursor != null);
-        Cathy1Block block = Instance.GetComponent<Cathy1BlockFactory>().CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+        Cathy1Block block = Instance.Cathy1BlockFactory.CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
         BlockCache.Add(block);
         Serializer.AutoSave();
         return block;
@@ -385,14 +386,12 @@ public class BlockManager : MonoBehaviour
     void Start()
     {
         // Create the cursor
-        ActiveFloor = Instantiate(BasicPlatformPrefab, new Vector3(0, 0f, 3f), new Quaternion(0, 0, 0, 0)) as GameObject;
+        ActiveFloor = Instantiate(BasicPlatformPrefab, new Vector3(0, 0f, 3f), new Quaternion(0, 0, 0, 0));
         ActiveFloor.name = "Platform";
-        ActiveFloor.transform.SetParent(transform, false);
+        ActiveFloor.transform.SetParent(Stage.transform, false);
         RotatableFloors.Add(ActiveFloor);
         Cursor = CursorPrefab;
-        Cursor.transform.SetParent(transform, false);
-        if (UIManager.Instance.MainMenu.isActiveAndEnabled)
-            Cursor.SetActive(false);
+        Cursor.transform.SetParent(Stage.transform, false);
     }
 
     public void RandomizeGravity()

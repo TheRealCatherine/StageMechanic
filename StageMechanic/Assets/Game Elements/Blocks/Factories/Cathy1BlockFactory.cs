@@ -280,7 +280,6 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         if (oldName != String.Empty)
             block.Name = oldName;
         block.FirstItem = oldItem;
-        block.BlockManager = GetComponent<BlockManager>();
         return block;
     }
 

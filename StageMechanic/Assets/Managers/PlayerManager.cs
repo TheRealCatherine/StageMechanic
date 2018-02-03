@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
+    public GameObject Stage;
     public GameObject Player1Prefab;
     public GameObject Player2Prefab;
     public GameObject Player3Prefab;
@@ -100,27 +101,27 @@ public class PlayerManager : MonoBehaviour {
         if (PlayerStartLocations.Count > 0)
         {
             if (Avatars.Count == 0)
-                Avatars.Add(Instantiate(Instance.Player1Prefab, PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+                Avatars.Add(Instantiate(Instance.Player1Prefab, PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
             else
-                Avatars[0] = Instantiate(Instance.Player1Prefab, PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+                Avatars[0] = Instantiate(Instance.Player1Prefab, PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
             Debug.Log("Spawning player 1 at " + PlayerStartLocations[0].transform.position);
             LoadKeybindings(0);
         }
         if (PlayerStartLocations.Count > 1)
         {
             if (Avatars.Count == 1)
-                Avatars.Add(Instantiate(Instance.Player2Prefab, PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+                Avatars.Add(Instantiate(Instance.Player2Prefab, PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
             else
-                Avatars[1] = Instantiate(Instance.Player2Prefab, PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+                Avatars[1] = Instantiate(Instance.Player2Prefab, PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
             Debug.Log("Spawning player 2 at " + PlayerStartLocations[1].transform.position);
             LoadKeybindings(1);
         }
         if (PlayerStartLocations.Count > 2)
         {
             if (Avatars.Count == 2)
-                Avatars.Add(Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>());
+                Avatars.Add(Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
             else
-                Avatars[1] = Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.transform).GetComponent<Cathy1PlayerCharacter>();
+                Avatars[1] = Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
             Debug.Log("Spawning player 3 at " + PlayerStartLocations[2].transform.position);
             LoadKeybindings(2);
         }

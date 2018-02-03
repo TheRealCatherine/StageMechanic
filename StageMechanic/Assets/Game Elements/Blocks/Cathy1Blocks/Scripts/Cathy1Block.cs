@@ -55,8 +55,6 @@ public class Cathy1Block : AbstractBlock
     internal BlockType _type = BlockType.Basic;
     public virtual BlockType Type { get { return _type; } }
 
-    public BlockManager BlockManager { get; set; } = null;
-
     /**
 	 * Will be true if this is a customized block type
 	 * That is, any of its properties have been changed

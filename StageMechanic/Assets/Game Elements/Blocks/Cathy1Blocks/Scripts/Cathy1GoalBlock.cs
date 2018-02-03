@@ -46,7 +46,7 @@ public class Cathy1GoalBlock : Cathy1Block
                 {
                     Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
                     Debug.Log("loading " + location.ToString());
-                    BlockManager.TogglePlayMode();
+                    BlockManager.Instance.TogglePlayMode();
                     Serializer.BlocksFromJson(location,startPlayMode:true);
                 }
                 else if(string.IsNullOrWhiteSpace(NextStageFilename)) {

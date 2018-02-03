@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour {
     public Cathy1EventFactory Cathy1EventFactory;
     public static List<Cathy1AbstractEvent> EventList = new List<Cathy1AbstractEvent>();
     public static EventManager Instance;
+    public GameObject Stage;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class EventManager : MonoBehaviour {
         Debug.Log("Assigning " + playerNumber + " start position: " + pos.ToString());
         Cathy1PlayerStartLocation ev = Cathy1EventFactory.CreateEvent(pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart) as Cathy1PlayerStartLocation;
         ev.PlayerNumber = playerNumber;
-        ev.transform.parent = gameObject.transform;
+        ev.transform.parent = Stage.gameObject.transform;
         if(EventList.Count > playerNumber)
         {
             Destroy(EventList[playerNumber]);
