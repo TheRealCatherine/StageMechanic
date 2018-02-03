@@ -63,52 +63,52 @@ public class InputManager : MonoBehaviour
             || (GetGamepadType(0) == GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button1))
             || Input.GetKeyDown(KeyCode.Alpha1))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Basic);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Basic");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Immobile);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Immobile");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Crack2);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Cracked(2 Steps)");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Heavy);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Heavy");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.SpikeTrap);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Spike Trap");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Ice);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Ice");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Bomb1);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Small Bomb");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Random);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Mystery");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Monster);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Monster");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            BlockManager.CreateBlockAtCursor(Cathy1Block.BlockType.Vortex);
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Vortex");
             return true;
         }
         return false;
@@ -266,8 +266,6 @@ public class InputManager : MonoBehaviour
     /// TODO: don't hardcode commands or buttons
     bool TryBlockCommands()
     {
-        bool altDown = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.RightApple) || Input.GetKey(KeyCode.LeftApple);
-
         // Block type cycling
         if (Input.GetKeyDown(KeyCode.Space)
             || CnInputManager.GetButtonDown("Grab") 
