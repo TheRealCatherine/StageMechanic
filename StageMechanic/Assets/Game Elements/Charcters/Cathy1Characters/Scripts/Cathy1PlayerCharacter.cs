@@ -289,7 +289,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
             }
             _player.GetComponent<Animator>().SetBool("walking", false);
         }
-        (oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
+        AbstractBlock oab = oldBlock as AbstractBlock;
+        if(oab != null && oab.gameObject != null)
+            oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
         CurrentMoveState = State.Climb;
         yield return new WaitForEndOfFrame();
         _player.GetComponent<Animator>().SetBool("climbing", true);
