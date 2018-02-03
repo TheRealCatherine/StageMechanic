@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: AA Ving
+  m_Name: Motion Debug
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
     m_Settings:
-      mode: 0
+      mode: 3
       depth:
         scale: 1
       motionVectors:
         sourceOpacity: 1
-        motionImageOpacity: 0
+        motionImageOpacity: 0.291
         motionImageAmplitude: 16
         motionVectorsOpacity: 1
         motionVectorsResolution: 24

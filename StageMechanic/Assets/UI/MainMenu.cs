@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public Toggle FogToggle;
     public Toggle VisiblePlatformToggle;
     public Toggle CameraEffectsToggle;
+    public Toggle MotionDebugToggle;
     public ParticleSystem Fog;
     public TogglePlayMode TogglePlayModeButton;
     public Button ToggleTouchScreenButton;
@@ -29,6 +30,8 @@ public class MainMenu : MonoBehaviour
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
         FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
         CameraEffectsToggle.isOn = (PlayerPrefs.GetInt("PostProcessing", 1) == 1);
+        MotionDebugToggle.isOn = (PlayerPrefs.GetInt("MotionDebug", 0) == 1);
+        MotionDebugToggle.gameObject.SetActive(CameraEffectsToggle.isOn);
         //VisiblePlatformToggle.isOn = (PlayerPrefs.GetInt("PlatformVisible", 1) == 1);
         SaveButton.gameObject.SetActive(true);
         TogglePlayModeButton.gameObject.SetActive(false);
@@ -85,6 +88,16 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("PostProcessing", value ? 1 : 0);
         PlayerPrefs.Save();
         VisualEffectsManager.EnablePostProcessing(value);
+        MotionDebugToggle.isOn = (PlayerPrefs.GetInt("MotionDebug", 0) == 1);
+        VisualEffectsManager.EnableMotionDebug(PlayerPrefs.GetInt("MotionDebug", 0) == 1);
+        MotionDebugToggle.gameObject.SetActive(value);
+    }
+
+    public void OnMotionDebugChecked(bool value)
+    {
+        PlayerPrefs.SetInt("MotionDebug", value ? 1 : 0);
+        PlayerPrefs.Save();
+        VisualEffectsManager.EnableMotionDebug(value);
     }
 
     public void OnLoadAndEditClicked()

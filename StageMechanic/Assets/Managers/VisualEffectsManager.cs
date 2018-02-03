@@ -12,6 +12,8 @@ public class VisualEffectsManager : MonoBehaviour {
 
     public static VisualEffectsManager Instance;
     public PostProcessingBehaviour PostProcessor;
+    public PostProcessingProfile DefaultProfile;
+    public PostProcessingProfile MotionDebutProfile;
     public ParticleSystem Fog;
 
 
@@ -23,6 +25,7 @@ public class VisualEffectsManager : MonoBehaviour {
     private void Start()
     {
         EnablePostProcessing(PlayerPrefs.GetInt("PostProcessing", 1) == 1);
+        EnableMotionDebug(PlayerPrefs.GetInt("MotionDebug", 0) == 1);
     }
 
     private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration, Quaternion rotation)
@@ -66,5 +69,13 @@ public class VisualEffectsManager : MonoBehaviour {
     public static void EnablePostProcessing(bool process)
     {
         Instance.PostProcessor.enabled = process;
+    }
+
+    public static void EnableMotionDebug(bool show)
+    {
+        if (show)
+            Instance.PostProcessor.profile = Instance.MotionDebutProfile;
+        else
+            Instance.PostProcessor.profile = Instance.DefaultProfile;
     }
 }
