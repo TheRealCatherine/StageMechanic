@@ -20,7 +20,6 @@ public class BlockManager : MonoBehaviour
     public GameObject StartLocationIndicator;           //Of
     public GameObject GoalLocationIndicator;            //These
     public Cathy1BlockFactory Cathy1BlockFactory;       //Should be a list of IBlockFactory objects
-    public ParticleSystem Fog;                          //Move to VisualEffectsManager
 
 
     /// <summary>
@@ -57,7 +56,7 @@ public class BlockManager : MonoBehaviour
             LogController.Log("Start!");
             UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
             Serializer.RecordStartState();
-            Fog.gameObject.SetActive(PlayerPrefs.GetInt("Fog", 0) == 1);
+            VisualEffectsManager.ShowFog(PlayerPrefs.GetInt("Fog", 0) == 1);
         }
         else
         {
@@ -65,7 +64,7 @@ public class BlockManager : MonoBehaviour
             if (Serializer.HasStartState())
                 Serializer.ReloadStartState();
             //UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
-            Fog.gameObject.SetActive(false);
+            VisualEffectsManager.ShowFog(false);
         }
         UIManager.RefreshButtonMappingDialog();
         PlayerManager.Instance.PlayMode = PlayMode;

@@ -11,6 +11,8 @@ public class VisualEffectsManager : MonoBehaviour {
 
     public static VisualEffectsManager Instance;
     public Camera MainCamera;
+    public ParticleSystem Fog;
+
 
     private void Awake()
     {
@@ -48,5 +50,10 @@ public class VisualEffectsManager : MonoBehaviour {
             rot *= rotation;
         }
         Instance.StartCoroutine(Instance._particleAnimationHelper(block.Position + offset, animationPrefab, scale, duration, rot));
+    }
+    
+    public static void ShowFog(bool show)
+    {
+        Instance?.Fog?.gameObject.SetActive(show);
     }
 }
