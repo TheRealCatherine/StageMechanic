@@ -13,91 +13,21 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
 
-    //TODO Move these to some kind of Platform Manager
-    #region Platform management
-
-    public static PlatformJsonDelegate GetPlatformJsonDelegate()
-    {
-        return new PlatformJsonDelegate(ActiveFloor);
-    }
-    public static PlatformBinaryDelegate GetPlatformBinaryDelegate()
-    {
-        return new PlatformBinaryDelegate(ActiveFloor);
-    }
-
-    /// <summary>
-    /// Used to support Cathy-2 style rotatable floors and other multi-platform implementations
-    /// This is to be implemented in the future
-    /// Right now it only contains the BlockManager.ActiveFloor
-    /// </summary>
-    private List<GameObject> _rotatableFloors = new List<GameObject>();
-    public List<GameObject> RotatableFloors
-    {
-        get
-        {
-            return _rotatableFloors;
-        }
-        set
-        {
-            _rotatableFloors = value;
-        }
-    }
-
-    /// <summary>
-    /// Currently this will always be the platform on which the stage rests. When BlockManager.RotatableFloors
-    /// is implemented later this will be set to the platform currently selected by the cursor or occupied by
-    /// the player.
-    /// </summary>
-    private static GameObject _activeFloor;
-    public static GameObject ActiveFloor
-    {
-        get
-        {
-            return _activeFloor;
-        }
-        set
-        {
-            _activeFloor = value;
-        }
-    }
-
-    public static void RotatePlatform(int x, int y, int z)
-    {
-        ActiveFloor.transform.Rotate(x, y, z, Space.Self);
-        Instance.StartCoroutine(Instance.rotateCleanup());
-    }
-
-    IEnumerator rotateCleanup()
-    {
-        yield return new WaitForEndOfFrame();
-        IBlock[] blocks = ActiveFloor.GetComponentsInChildren<IBlock>();
-        yield return new WaitForEndOfFrame();
-        Debug.Log("rotating " + blocks.Length + " blocks");
-        foreach (IBlock block in blocks)
-        {
-            block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            block.Rotation = Quaternion.identity;
-            (block as AbstractBlock).SetGravityEnabledByMotionState();
-        }
-        yield return new WaitForEndOfFrame();
-    }
-    #endregion
-
     // Unity Inspector variables
-    public GameObject Stage;
-    public GameObject CursorPrefab;
-    public GameObject BasicPlatformPrefab;
-    public GameObject StartLocationIndicator;
-    public GameObject GoalLocationIndicator;
-    public Cathy1BlockFactory Cathy1BlockFactory;
-    public ParticleSystem Fog;
+    public GameObject Stage;                            //Keep this one
+    public GameObject CursorPrefab;                     //Get 
+    public GameObject BasicPlatformPrefab;              //Rid
+    public GameObject StartLocationIndicator;           //Of
+    public GameObject GoalLocationIndicator;            //These
+    public Cathy1BlockFactory Cathy1BlockFactory;       //Should be a list of IBlockFactory objects
+    public ParticleSystem Fog;                          //Move to VisualEffectsManager
 
 
     /// <summary>
     /// There should only ever be one BlockManager in the scene - it manages all blocks for all platforms and loaded stages. As such it
     /// can be used statically via this property when accessing methods that are not already marked static.
     /// </summary>
-    /// TODO Singleton flamewar
+    /// TODO Singleton flamewar, is there a better pattern in Unity for doing this?
     public static BlockManager Instance { get; private set; }
 
 
@@ -356,15 +286,16 @@ public class BlockManager : MonoBehaviour
     }
 
     #region Monobehavior implementations
+
     private void Awake()
     {
         Instance = this;
     }
 
-    // Called when the BlockManager is intantiated, when the Level Editor is loaded
-    void Start()
+    private void Start()
     {
-        // Create the cursor
+        //TODO pretty much none of this should be here. This is some of the very earliest code in the
+        //whole project. BlockManager shouldn't be reponsible for managing platforms or the cursor.
         ActiveFloor = Instantiate(BasicPlatformPrefab, new Vector3(0, 0f, 3f), new Quaternion(0, 0, 0, 0));
         ActiveFloor.name = "Platform";
         ActiveFloor.transform.SetParent(Stage.transform, false);
@@ -542,4 +473,73 @@ public class BlockManager : MonoBehaviour
     }
     #endregion
 
+    //TODO Move these to some kind of Platform Manager
+    #region Platform management
+
+    public static PlatformJsonDelegate GetPlatformJsonDelegate()
+    {
+        return new PlatformJsonDelegate(ActiveFloor);
+    }
+    public static PlatformBinaryDelegate GetPlatformBinaryDelegate()
+    {
+        return new PlatformBinaryDelegate(ActiveFloor);
+    }
+
+    /// <summary>
+    /// Used to support Cathy-2 style rotatable floors and other multi-platform implementations
+    /// This is to be implemented in the future
+    /// Right now it only contains the BlockManager.ActiveFloor
+    /// </summary>
+    private List<GameObject> _rotatableFloors = new List<GameObject>();
+    public List<GameObject> RotatableFloors
+    {
+        get
+        {
+            return _rotatableFloors;
+        }
+        set
+        {
+            _rotatableFloors = value;
+        }
+    }
+
+    /// <summary>
+    /// Currently this will always be the platform on which the stage rests. When BlockManager.RotatableFloors
+    /// is implemented later this will be set to the platform currently selected by the cursor or occupied by
+    /// the player.
+    /// </summary>
+    private static GameObject _activeFloor;
+    public static GameObject ActiveFloor
+    {
+        get
+        {
+            return _activeFloor;
+        }
+        set
+        {
+            _activeFloor = value;
+        }
+    }
+
+    public static void RotatePlatform(int x, int y, int z)
+    {
+        ActiveFloor.transform.Rotate(x, y, z, Space.Self);
+        Instance.StartCoroutine(Instance.rotateCleanup());
+    }
+
+    IEnumerator rotateCleanup()
+    {
+        yield return new WaitForEndOfFrame();
+        IBlock[] blocks = ActiveFloor.GetComponentsInChildren<IBlock>();
+        yield return new WaitForEndOfFrame();
+        Debug.Log("rotating " + blocks.Length + " blocks");
+        foreach (IBlock block in blocks)
+        {
+            block.GameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            block.Rotation = Quaternion.identity;
+            (block as AbstractBlock).SetGravityEnabledByMotionState();
+        }
+        yield return new WaitForEndOfFrame();
+    }
+    #endregion
 }
