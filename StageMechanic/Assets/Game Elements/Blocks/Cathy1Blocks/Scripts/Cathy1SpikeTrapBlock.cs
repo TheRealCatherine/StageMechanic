@@ -50,7 +50,7 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     internal override IEnumerator HandleStep()
     {
         yield return new WaitForSeconds(TriggerTime);
-        BlockManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
+        VisualEffectsManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
         GetComponent<AudioSource>().Play();
         foreach(AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position+Vector3.up, radius:0.25f)) {
             player.TakeDamage(float.PositiveInfinity);

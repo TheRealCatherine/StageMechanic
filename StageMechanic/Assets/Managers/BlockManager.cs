@@ -231,8 +231,6 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-
-
     /// <summary>
     /// The Cursor used in Edit Mode.
     /// </summary>
@@ -352,9 +350,6 @@ public class BlockManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-
-
-
     private void Awake()
     {
         Instance = this;
@@ -385,8 +380,6 @@ public class BlockManager : MonoBehaviour
         Serializer.AutoSave();
     }
 
-
-
     /// <summary>
     /// Sets the material on a block.
     /// </summary>
@@ -413,8 +406,6 @@ public class BlockManager : MonoBehaviour
             Serializer.AutoSave();
         }
     }
-
-
 
     public static AbstractBlock GetBlockAt(Vector3 position, float radius = 0.01f)
     {
@@ -572,54 +563,4 @@ public class BlockManager : MonoBehaviour
     }
     #endregion
 
-
-    #region SoundsAndEffects
-    private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration, Quaternion rotation)
-    {
-        ParticleSystem system = Instantiate(animationPrefab, position, rotation, transform);
-        ParticleSystem.MainModule module = system.main;
-        if (scale != 1.0f)
-        {
-            module.scalingMode = ParticleSystemScalingMode.Hierarchy;
-            system.transform.localScale = new Vector3(scale, scale, scale);
-        }
-        if (duration > 0)
-            module.simulationSpeed = (module.duration / duration);
-
-        system.Play();
-        yield return new WaitForSeconds(system.main.duration);
-        system.Stop();
-        Destroy(system.gameObject);
-    }
-
-    public static void PlayEffect(IBlock block, ParticleSystem animationPrefab, float scale = 1f, float duration = -1f, Vector3 offset = default(Vector3), Quaternion rotation = default(Quaternion))
-    {
-        Debug.Assert(animationPrefab != null);
-        if (duration == 0 || scale == 0)
-            return;
-        Quaternion rot = rotation;
-        if (rotation != Quaternion.identity)
-        {
-            Vector3 lookDirection = (block.Position + offset) - block.Position;
-            rot = Quaternion.LookRotation(lookDirection);
-            rot *= rotation;
-        }
-        Instance.StartCoroutine(Instance._particleAnimationHelper(block.Position + offset, animationPrefab, scale, duration, rot));
-    }
-
-    private IEnumerator _soundHelper(AudioClip clip, Vector3 position, float volume)
-    {
-        //AudioSource.PlayClipAtPoint(clip, position, volume);
-        //TODO figure out why the above is OMFG quiet AF
-        GetComponent<AudioSource>().PlayOneShot(clip, volume);
-        yield return new WaitForSeconds(clip.length);
-    }
-
-    public static void PlaySound(IBlock block, AudioClip sound, float volume = 1f)
-    {
-        Debug.Assert(block != null);
-        Debug.Assert(sound != null);
-        Instance.StartCoroutine(Instance._soundHelper(sound, block.Position, volume));
-    }
-    #endregion
 }
