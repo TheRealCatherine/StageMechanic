@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Cathy1HeavyBlock : Cathy1Block {
+﻿public class Cathy1HeavyBlock : Cathy1Block {
 
 	public override Cathy1Block.BlockType Type {
 		get {

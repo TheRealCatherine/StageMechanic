@@ -4,7 +4,7 @@ using UnityStandardAssets.CrossPlatformInput.PlatformSpecific;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-	public static class CrossPlatformInputManager
+    public static class CrossPlatformInputManager
 	{
 		public enum ActiveInputMethod
 		{

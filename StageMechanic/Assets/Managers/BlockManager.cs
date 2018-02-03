@@ -5,20 +5,8 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 
-using GracesGames;
-using GracesGames.SimpleFileBrowser.Scripts;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading;
-using System.Xml;
 using UnityEngine;
 
 public class BlockManager : MonoBehaviour
@@ -75,7 +63,7 @@ public class BlockManager : MonoBehaviour
     /// PlayMode and EditMode. This too will change in an upcoming revision.
     /// </summary>
     /// TODO: Move this out to a separate GameManager class
-    public static bool PlayMode { get; protected set; } = false;
+    public static bool PlayMode { get; private set; } = false;
 
     /// <summary>
     /// Toggles the application between PlayMode and EditMode. This will show/hide the cursor,
@@ -366,34 +354,6 @@ public class BlockManager : MonoBehaviour
         Cursor = CursorPrefab;
         Cursor.transform.SetParent(Stage.transform, false);
     }
-
-    public void RandomizeGravity()
-    {
-        System.Random randomNumberGenerator = new System.Random(new System.DateTime().Millisecond);
-
-        foreach (Transform child in ActiveFloor.transform)
-        {
-            IBlock block = child.gameObject.GetComponent<IBlock>();
-            if (block != null)
-                block.GravityFactor = randomNumberGenerator.Next(-100, 100) / 100f;
-        }
-        Serializer.AutoSave();
-    }
-
-    /// <summary>
-    /// Sets the material on a block.
-    /// </summary>
-    /// <param name="block"></param>
-    /// <param name="material"></param>
-    /// TODO: Move this to AbstractBlock?
-    public static void SetMaterial(IBlock block, Material material)
-    {
-        Renderer rend = block.GameObject.GetComponent<Renderer>();
-        rend.material = material;
-    }
-
-
-
 
     public void DestroyActiveObject()
     {

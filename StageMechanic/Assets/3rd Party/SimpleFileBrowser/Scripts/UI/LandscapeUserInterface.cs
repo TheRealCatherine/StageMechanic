@@ -1,8 +1,8 @@
-﻿using UnityEngine.UI;
+﻿using GracesGames.Common.Scripts;
+using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
-
-namespace GracesGames.SimpleFileBrowser.Scripts.UI {
+namespace GracesGames.SimpleFileBrowser.Scripts.UI
+{
 
     public class LandscapeUserInterface : UserInterface {
 

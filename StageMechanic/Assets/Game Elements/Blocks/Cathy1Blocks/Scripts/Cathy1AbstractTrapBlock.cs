@@ -5,7 +5,6 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock

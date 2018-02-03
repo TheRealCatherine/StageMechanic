@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using CnControls;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using CnControls;
+using UnityEngine.UI;
 
 public class ButtonMappingDialog : MonoBehaviour
 {

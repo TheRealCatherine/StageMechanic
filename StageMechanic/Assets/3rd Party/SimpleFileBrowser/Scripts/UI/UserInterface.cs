@@ -1,17 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
-
+﻿using GracesGames.Common.Scripts;
 using System;
 using System.IO;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
+namespace GracesGames.SimpleFileBrowser.Scripts.UI
+{
 
-namespace GracesGames.SimpleFileBrowser.Scripts.UI {
+    // The UI used in the File Browser. 
 
-	// The UI used in the File Browser. 
-
-	public abstract class UserInterface : MonoBehaviour {
+    public abstract class UserInterface : MonoBehaviour {
 
 		// Dimension used to set the scale of the UI
 		[Range(0.1f, 1.0f)] public float UserInterfaceScale = 1f;

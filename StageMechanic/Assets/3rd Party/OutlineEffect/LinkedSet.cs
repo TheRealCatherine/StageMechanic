@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace cakeslice
 {
-	public class LinkedSet<T> : IEnumerable<T>
+    public class LinkedSet<T> : IEnumerable<T>
 	{
 
 		private LinkedList<T> list;

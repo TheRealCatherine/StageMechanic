@@ -22,10 +22,9 @@
 //  THE SOFTWARE.
 */
 
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.VR;
 
 namespace cakeslice
 {

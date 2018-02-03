@@ -5,11 +5,9 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 
 public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
 {

@@ -1,15 +1,15 @@
 ﻿using System;
+using System.IO;
+// Include these namespaces to use BinaryFormatter
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Include these namespaces to use BinaryFormatter
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-
-namespace GracesGames.SimpleFileBrowser.Scripts {
-	// Demo class to illustrate the usage of the FileBrowser script
-	// Able to save and load files containing serialized data (e.g. text)
-	public class DemoCaller : MonoBehaviour {
+namespace GracesGames.SimpleFileBrowser.Scripts
+{
+    // Demo class to illustrate the usage of the FileBrowser script
+    // Able to save and load files containing serialized data (e.g. text)
+    public class DemoCaller : MonoBehaviour {
 
 		// Use the file browser prefab
 		public GameObject FileBrowserPrefab;

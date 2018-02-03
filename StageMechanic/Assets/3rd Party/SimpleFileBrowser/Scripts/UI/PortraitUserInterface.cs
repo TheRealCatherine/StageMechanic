@@ -1,10 +1,10 @@
-﻿using UnityEngine.UI;
+﻿using GracesGames.Common.Scripts;
+using UnityEngine.UI;
 
-using GracesGames.Common.Scripts;
+namespace GracesGames.SimpleFileBrowser.Scripts.UI
+{
 
-namespace GracesGames.SimpleFileBrowser.Scripts.UI {
-
-	public class PortraitUserInterface : UserInterface {
+    public class PortraitUserInterface : UserInterface {
 
 		protected override void SetupParents() {
 			// Find directories parent to group directory buttons

@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class PlayerMovementEvent
+﻿public class PlayerMovementEvent
 {
     public enum EventType
     {

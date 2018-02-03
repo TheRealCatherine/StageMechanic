@@ -1,14 +1,13 @@
-using UnityEngine;
-using UnityEngine.PostProcessing;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using UnityEngine;
+using UnityEngine.PostProcessing;
 
 namespace UnityEditor.PostProcessing
 {
+    using ColorWheelMode = ColorGradingModel.ColorWheelMode;
     using Settings = ColorGradingModel.Settings;
     using Tonemapper = ColorGradingModel.Tonemapper;
-	using ColorWheelMode = ColorGradingModel.ColorWheelMode;
 
     [PostProcessingModelEditor(typeof(ColorGradingModel))]
     public class ColorGradingModelEditor : PostProcessingModelEditor

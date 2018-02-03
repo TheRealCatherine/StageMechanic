@@ -2,7 +2,7 @@
 
 namespace CnControls
 {
-	public class EmptyGraphic : Graphic
+    public class EmptyGraphic : Graphic
 	{
 		protected override void OnPopulateMesh(VertexHelper vh)
 		{

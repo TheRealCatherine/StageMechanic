@@ -4,11 +4,9 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
-using System;
 
 /// <summary>
 /// Like the other *JsonDelegate classes, this one is responsible for being a

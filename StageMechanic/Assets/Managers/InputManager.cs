@@ -4,10 +4,10 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using CnControls;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using CnControls;
 
 [System.Serializable]
 public class InputManager : MonoBehaviour
@@ -309,13 +309,6 @@ public class InputManager : MonoBehaviour
             Cathy1Block.BlockType type = BlockManager.NextBlockType();
             if (BlockManager.Instance.ActiveObject != null)
                 BlockManager.CreateBlockAtCursor(type);
-            return true;
-        }
-
-        // Randomize gravity
-        else if (Input.GetKeyDown(KeyCode.G) && altDown)
-        {
-            BlockManager.Instance.RandomizeGravity();
             return true;
         }
 

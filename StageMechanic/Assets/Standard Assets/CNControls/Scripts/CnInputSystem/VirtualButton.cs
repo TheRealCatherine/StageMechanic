@@ -2,10 +2,10 @@
 
 namespace CnControls
 {
-	/// <summary>
-	/// Virtual button class
-	/// </summary>
-	public class VirtualButton
+    /// <summary>
+    /// Virtual button class
+    /// </summary>
+    public class VirtualButton
 	{
 		/// <summary>
 		/// Name of the button for which this virtual button has to be registered

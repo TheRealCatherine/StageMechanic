@@ -1,5 +1,3 @@
-using UnityEngine.Rendering;
-
 namespace UnityEngine.PostProcessing
 {
     using DebugMode = BuiltinDebugViewsModel.Mode;

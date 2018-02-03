@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GracesGames.Common.Scripts {
+namespace GracesGames.Common.Scripts
+{
 
-	[Serializable]
+    [Serializable]
 	public class FiniteStack<T> : LinkedList<T> {
 
 		private const int Size = 10;

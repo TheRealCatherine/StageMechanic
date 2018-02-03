@@ -4,11 +4,9 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Runtime.Serialization;
-using System;
 
 public class Cathy1Block : AbstractBlock
 {

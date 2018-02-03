@@ -1,16 +1,15 @@
-﻿using UnityEngine;
-
+﻿using GracesGames.Common.Scripts;
+using GracesGames.SimpleFileBrowser.Scripts.UI;
 using System;
 using System.IO;
 using System.Linq;
+using UnityEngine;
 
-using GracesGames.Common.Scripts;
-using GracesGames.SimpleFileBrowser.Scripts.UI;
+namespace GracesGames.SimpleFileBrowser.Scripts
+{
 
-namespace GracesGames.SimpleFileBrowser.Scripts {
-
-	// Enum used to define save and load mode
-	public enum FileBrowserMode {
+    // Enum used to define save and load mode
+    public enum FileBrowserMode {
 		Save,
 		Load
 	}
