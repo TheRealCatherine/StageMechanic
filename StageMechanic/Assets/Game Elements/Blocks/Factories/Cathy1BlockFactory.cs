@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
+public class Cathy1BlockFactory : AbstractBlockFactory
 {
 
     public GameObject BlockPrefab;
@@ -42,7 +42,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
     public Sprite MysterIcon;
     public Sprite GoalIcon;
 
-    public int BlockTypeCount
+    public override int BlockTypeCount
     {
         get
         {
@@ -68,7 +68,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         "Goal"
     };
 
-    public List<string> BlockTypeNames
+    public override List<string> BlockTypeNames
     {
         get
         {
@@ -76,7 +76,7 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         }
     }
 
-    public Sprite IconForType(string name)
+    public override Sprite IconForType(string name)
     {
         switch(name)
         {
@@ -281,12 +281,12 @@ public class Cathy1BlockFactory : MonoBehaviour, IBlockFactory
         return block;
     }
 
-    public IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, int blockTypeIndex, GameObject parent)
+    public override IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, int blockTypeIndex, GameObject parent)
     {
         return CreateBlock(globalPosition, globalRotation, BlockTypeNames.ElementAtOrDefault(blockTypeIndex), parent);
     }
 
-    public IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string blockTypeName, GameObject parent)
+    public override IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string blockTypeName, GameObject parent)
     {
         Cathy1Block.BlockType type = Cathy1Block.BlockType.Custom;
         try

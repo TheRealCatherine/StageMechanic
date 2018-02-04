@@ -15,7 +15,7 @@ public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Cathy1BlockFactory factory = BlockManager.Instance.Cathy1BlockFactory;
+        AbstractBlockFactory factory = BlockManager.Instance.BlockFactories[0];
         List<string> types = factory.BlockTypeNames;
         int count = 0;
         foreach(string name in types)
@@ -34,7 +34,7 @@ public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
 
     void OnBlockClicked()
     {
-        Cathy1BlockFactory factory = BlockManager.Instance.Cathy1BlockFactory;
+        AbstractBlockFactory factory = BlockManager.Instance.BlockFactories[0];
         Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         BlockManager.CreateBlockAtCursor("Cathy1 Internal", clickedButton.GetComponentInChildren<Text>().text);
     }

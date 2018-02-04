@@ -142,7 +142,7 @@ public class BlockEditDialog : MonoBehaviour {
         if (CurrentBlock != null)
         {
             //TODO make this generic
-            Sprite icon = BlockManager.Instance.Cathy1BlockFactory.IconForType(CurrentBlock.TypeName);
+            Sprite icon = BlockManager.Instance.BlockFactories[0].IconForType(CurrentBlock.TypeName);
             BlockButton.image.sprite = icon;
             BlockButton.GetComponentInChildren<Text>().text = CurrentBlock.TypeName;
             NameField.text = CurrentBlock.Name;
@@ -183,7 +183,7 @@ public class BlockEditDialog : MonoBehaviour {
         bool prev = (CnInputManager.GetAxis("joystick 1 X axis") < 0f && period > InputManager.JoystickThrottleRate);
         if (next)
         {
-            List<string> types = BlockManager.Instance.Cathy1BlockFactory.BlockTypeNames;
+            List<string> types = BlockManager.Instance.BlockFactories[0].BlockTypeNames;
             int index = types.IndexOf(CurrentBlock.TypeName);
             if (++index >= types.Count)
                 index = 0;
@@ -195,7 +195,7 @@ public class BlockEditDialog : MonoBehaviour {
         }
         else if (prev)
         {
-            List<string> types = BlockManager.Instance.Cathy1BlockFactory.BlockTypeNames;
+            List<string> types = BlockManager.Instance.BlockFactories[0].BlockTypeNames;
             int index = types.IndexOf(CurrentBlock.TypeName);
             if (--index <= 0 )
                 index = types.Count-1;

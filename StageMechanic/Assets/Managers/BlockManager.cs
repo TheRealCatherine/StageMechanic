@@ -19,7 +19,7 @@ public class BlockManager : MonoBehaviour
     public GameObject BasicPlatformPrefab;              //Rid
     public GameObject StartLocationIndicator;           //Of
     public GameObject GoalLocationIndicator;            //These
-    public Cathy1BlockFactory Cathy1BlockFactory;       //Should be a list of IBlockFactory objects
+    public AbstractBlockFactory[] BlockFactories;
 
 
     /// <summary>
@@ -162,7 +162,8 @@ public class BlockManager : MonoBehaviour
     {
         Debug.Assert(Instance != null);
         Debug.Assert(Cursor != null);
-        Cathy1Block block = Instance.Cathy1BlockFactory.CreateBlock(Cursor.transform.position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+        Cathy1Block block = Instance.BlockFactories[0].CreateBlock(Cursor.transform.position, Cursor.transform.rotation, Cathy1BlockFactory.NameForType(type), ActiveFloor) as Cathy1Block;
+        block.gameObject.layer = Instance.Stage.gameObject.layer;
         BlockCache.Add(block);
         Serializer.AutoSave();
         return block;
@@ -194,7 +195,8 @@ public class BlockManager : MonoBehaviour
         Debug.Assert(Cursor != null);
         if (palette == "Cathy1 Internal")
         {
-            Cathy1Block block = Instance.Cathy1BlockFactory.CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+            Cathy1Block block = Instance.BlockFactories[0].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
+            block.gameObject.layer = Instance.Stage.gameObject.layer;
             BlockCache.Add(block);
             Serializer.AutoSave();
             return block;
