@@ -292,8 +292,7 @@ public class InputManager : MonoBehaviour
             || (GetGamepadType(0)==GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button4))
             || (GetGamepadType(0)==GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button4)))
         {
-            //TODO generic
-            Cathy1Block.BlockType type = BlockManager.PrevBlockType();
+            KeyValuePair<string,string> type = BlockManager.PrevBlockType();
             if (BlockManager.ActiveBlock != null)
                 BlockManager.CreateBlockAtCursor(type);
             return true;
@@ -303,8 +302,7 @@ public class InputManager : MonoBehaviour
             || (GetGamepadType(0) == GamepadType.XBox360 && Input.GetKeyDown(KeyCode.Joystick1Button5))
             || (GetGamepadType(0) == GamepadType.PS4 && Input.GetKeyDown(KeyCode.Joystick1Button5)))
         {
-            //TODO generic
-            Cathy1Block.BlockType type = BlockManager.NextBlockType();
+            KeyValuePair<string, string> type = BlockManager.NextBlockType();
             if (BlockManager.ActiveBlock != null)
                 BlockManager.CreateBlockAtCursor(type);
             return true;

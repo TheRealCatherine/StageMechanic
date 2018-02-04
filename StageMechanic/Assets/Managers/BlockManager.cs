@@ -20,6 +20,8 @@ public class BlockManager : MonoBehaviour
     public GameObject StartLocationIndicator;           //Of
     public GameObject GoalLocationIndicator;            //These
     public AbstractBlockFactory[] BlockFactories;
+    private List<KeyValuePair<string, string>> BlockTypeCache;
+
 
 
     /// <summary>
@@ -150,25 +152,6 @@ public class BlockManager : MonoBehaviour
         EventManager.Clear();
     }
 
-
-    /// <summary>
-    /// Creates a block of the specified type at the given position. This is a legacy method that will
-    /// be removed.
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    [Obsolete("Please use new CreateBlockAtCursor(string palette, string type) method instead of the Cathy1 hardcoded method")]
-    public static IBlock CreateBlockAtCursor(Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic)
-    {
-        Debug.Assert(Instance != null);
-        Debug.Assert(Cursor != null);
-        Cathy1Block block = Instance.BlockFactories[0].CreateBlock(Cursor.transform.position, Cursor.transform.rotation, Cathy1BlockFactory.NameForType(type), ActiveFloor) as Cathy1Block;
-        block.gameObject.layer = Instance.Stage.gameObject.layer;
-        BlockCache.Add(block);
-        Serializer.AutoSave();
-        return block;
-    }
-
     /// <summary>
     /// Convenience method for CreateBlockAt() that uses the current location of the cursor as the position.
     /// </summary>
@@ -178,6 +161,17 @@ public class BlockManager : MonoBehaviour
     public static IBlock CreateBlockAtCursor(string palette, string type)
     {
         return CreateBlockAt(Cursor.transform.position, palette, type);
+    }
+
+    /// <summary>
+    /// Convenience method for CreateBlockAt() that uses the current location of the cursor as the position.
+    /// </summary>
+    /// <param name="palette"></param>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static IBlock CreateBlockAtCursor(KeyValuePair<string, string> type)
+    {
+        return CreateBlockAt(Cursor.transform.position, type.Key, type.Value);
     }
 
     /// <summary>
@@ -241,49 +235,63 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Used for cycling the default block type while in EditMode. This will be moved to
-    /// Cathy1BlockFactory or similar class later.
-    /// </summary>
-    private static Cathy1Block.BlockType _blockCycleType = Cathy1Block.BlockType.Basic;
-    public static Cathy1Block.BlockType BlockCycleType
+    private static int _blockCycleType = 0;
+    public static KeyValuePair<string, string> BlockCycleType
     {
         get
         {
-            return _blockCycleType;
+            return Instance.BlockTypeCache[_blockCycleType];
         }
         set
         {
-            _blockCycleType = value;
+            _blockCycleType = Instance.BlockTypeCache.IndexOf(value);
         }
+    }
+
+    private List<KeyValuePair<string, string>> GetAllBlockTypes()
+    {
+        if (BlockTypeCache != null)
+            return BlockTypeCache;
+        List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>();
+        foreach (AbstractBlockFactory factory in BlockFactories)
+        {
+            List<string> blockNames = factory.BlockTypeNames;
+            foreach (string name in blockNames)
+            {
+                ret.Add(new KeyValuePair<string, string>("Cathy1 Internal", name));
+            }
+        }
+        BlockTypeCache = ret;
+        return ret;
+    }
+
+
+    /// <summary>
+    /// Used for cycling the default block type while in EditMode. This will be moved to
+    /// Cathy1BlockFactory or similar class later.
+    /// </summary>
+    public static KeyValuePair<string, string> NextBlockType()
+    {
+        if ((++_blockCycleType) >= Instance.BlockTypeCache.Count)
+        {
+            _blockCycleType = 0;
+            return BlockCycleType;
+        }
+        return BlockCycleType;
     }
 
     /// <summary>
     /// Used for cycling the default block type while in EditMode. This will be moved to
     /// Cathy1BlockFactory or similar class later.
     /// </summary>
-    public static Cathy1Block.BlockType NextBlockType()
+    public static KeyValuePair<string, string> PrevBlockType()
     {
-        if (BlockCycleType >= Cathy1Block.BlockType.Goal)
+        if ((--_blockCycleType) < 0)
         {
-            BlockCycleType = Cathy1Block.BlockType.Basic;
+            _blockCycleType = Instance.BlockTypeCache.Count - 1;
             return BlockCycleType;
         }
-        return ++BlockCycleType;
-    }
-
-    /// <summary>
-    /// Used for cycling the default block type while in EditMode. This will be moved to
-    /// Cathy1BlockFactory or similar class later.
-    /// </summary>
-    public static Cathy1Block.BlockType PrevBlockType()
-    {
-        if (BlockCycleType <= Cathy1Block.BlockType.Basic)
-        {
-            BlockCycleType = Cathy1Block.BlockType.Goal;
-            return BlockCycleType;
-        }
-        return --BlockCycleType;
+        return BlockCycleType;
     }
 
     #region Monobehavior implementations
@@ -303,6 +311,7 @@ public class BlockManager : MonoBehaviour
         RotatableFloors.Add(ActiveFloor);
         Cursor = CursorPrefab;
         Cursor.transform.SetParent(Stage.transform, false);
+        GetAllBlockTypes(); //Cache all palettes and block types
     }
     #endregion
 
@@ -453,7 +462,7 @@ public class BlockManager : MonoBehaviour
             if (ab == null)
                 block.Position += direction;
             else
-                ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.MoveWeight(direction, distance),false));
+                ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.MoveWeight(direction, distance), false));
 
         }
         return true;
