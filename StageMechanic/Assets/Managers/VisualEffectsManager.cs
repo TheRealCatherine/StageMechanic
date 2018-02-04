@@ -7,6 +7,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.PostProcessing;
+using UnityEngine.Rendering.PostProcessing;
 
 public class VisualEffectsManager : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class VisualEffectsManager : MonoBehaviour {
     public PostProcessingBehaviour PostProcessor;
     public PostProcessingProfile DefaultProfile;
     public PostProcessingProfile MotionDebutProfile;
+    public PostProcessLayer MainStageProcessLayer;
     public ParticleSystem Fog;
 
 
@@ -68,6 +70,7 @@ public class VisualEffectsManager : MonoBehaviour {
 
     public static void EnablePostProcessing(bool process)
     {
+        Instance.MainStageProcessLayer.enabled = process;
         Instance.PostProcessor.enabled = process;
     }
 
