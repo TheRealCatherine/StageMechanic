@@ -51,7 +51,6 @@ public class Cathy1BlockFactory : AbstractBlockFactory
     }
 
     public static readonly List<string> _blockTypeNames = new List<string>{
-        "Custom",
         "Basic",
         "Immobile",
         "Cracked (2 Steps)",
@@ -117,7 +116,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
     {
         switch (name)
         {
-
+            default:
             case "Basic":
                 return Cathy1Block.BlockType.Basic;
             case "Spike Trap":
@@ -146,9 +145,6 @@ public class Cathy1BlockFactory : AbstractBlockFactory
                 return Cathy1Block.BlockType.Random;
             case "Goal":
                 return Cathy1Block.BlockType.Goal;
-            case "Custom":
-            default:
-                return Cathy1Block.BlockType.Custom;
         }
     }
 
@@ -156,7 +152,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
     {
         switch (type)
         {
-
+            default:
             case Cathy1Block.BlockType.Basic:
                 return "Basic";
             case Cathy1Block.BlockType.SpikeTrap:
@@ -185,9 +181,6 @@ public class Cathy1BlockFactory : AbstractBlockFactory
                 return "Mystery";
             case Cathy1Block.BlockType.Goal:
                 return "Goal";
-            case Cathy1Block.BlockType.Custom:
-            default:
-                return "Custom";
         }
     }
     //TODO fix support for changing block types at a location
@@ -288,7 +281,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 
     public override IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string blockTypeName, GameObject parent)
     {
-        Cathy1Block.BlockType type = Cathy1Block.BlockType.Custom;
+        Cathy1Block.BlockType type = Cathy1Block.BlockType.Basic;
         try
         {
             type = TypeForName(blockTypeName);

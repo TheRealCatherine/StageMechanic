@@ -20,8 +20,7 @@ public class Cathy1Block : AbstractBlock
     /// </summary>
     public enum BlockType
     {
-        Custom = 0,
-        Basic,          //Typical block
+        Basic = 0,          //Typical block
         Immobile,       //Basic blocks that cannot normally be moved by the player
         Crack2,         //Can step on twice
         Crack1,         //Can step on once
@@ -37,7 +36,7 @@ public class Cathy1Block : AbstractBlock
         Goal            //Level completion zone
     }
 
-    //TODO move to teleport subclass
+    //TODO move to teleport subclass (or just remove)
     public enum TeleportBlockType
     {
         None = 0,
@@ -52,19 +51,6 @@ public class Cathy1Block : AbstractBlock
     //TODO move to Abstract
     internal BlockType _type = BlockType.Basic;
     public virtual BlockType Type { get { return _type; } }
-
-    /**
-	 * Will be true if this is a customized block type
-	 * That is, any of its properties have been changed
-	 * manually, rather than by setting the BlockType
-	 */
-    public bool IsCustomType
-    {
-        get
-        {
-            return this.Type == BlockType.Custom;
-        }
-    }
 
     /// <summary>
     /// Will be true if this block exibits properties of one of the Cathy1 style traps
