@@ -36,74 +36,7 @@ public class Cathy1Block : AbstractBlock
 		Goal            //Level completion zone
 	}
 
-	//TODO move to teleport subclass (or just remove)
-	public enum TeleportBlockType
-	{
-		None = 0,
-		Custom,
-		Side,               //Move player up or down along the side of the blocks, allows edge grabbing
-		SideNoGrab,         //Same as Slide, but does not allow edge grabbing
-		Platform,           //Move player to the top of a block from the top of this block
-		PlatformToSide,     //Move player from top of platform to an edge grab
-		SideToPlatform      //Move player from an edge grab to the top of a platform
-	}
-
-	//TODO move to Abstract
-	internal BlockType _type = BlockType.Basic;
-	public virtual BlockType Type { get { return _type; } }
-
-	/// <summary>
-	/// Will be true if this block exibits properties of one of the Cathy1 style traps
-	/// Bomb, Spike, or Vortex
-	/// </summary>
-	public bool IsTrap
-	{
-		get
-		{
-			Cathy1AbstractTrapBlock trapHouse = GetComponent<Cathy1AbstractTrapBlock>();
-			if (trapHouse != null)
-				return trapHouse.TrapType != Cathy1AbstractTrapBlock.TrapBlockType.None;
-			return false;
-		}
-	}
-
-	/**
-	 * Returns true if the block is heavier than normal
-	 */
-	public bool IsHeavy
-	{
-		get
-		{
-			return WeightFactor > 1.0F;
-		}
-	}
-
-	/**
-	 * Returns true if the block is lighter than normal
-	 */
-	public bool IsLight
-	{
-		get
-		{
-			return WeightFactor < 1.0F;
-		}
-	}
-
-	public bool IsMovableByPlayer
-	{
-		get
-		{
-			return WeightFactor != 0;
-		}
-	}
-
-	public bool IsFixedPosition
-	{
-		get
-		{
-			return GravityFactor == 0;
-		}
-	}
+    public virtual BlockType Type { get; } = BlockType.Basic;
 
 
 	/**
@@ -184,9 +117,7 @@ public class Cathy1Block : AbstractBlock
 		}
 		set
 		{
-			//TODO    Cathy1Block.BlockType type = (Cathy1Block.BlockType)Enum.Parse(typeof(Cathy1Block.BlockType), value);
-			//    Debug.Assert(Enum.IsDefined(typeof(Cathy1Block.BlockType), type));
-			//    Type = type;
+			
 		}
 	}
 
@@ -224,7 +155,7 @@ public class Cathy1Block : AbstractBlock
 
 	private void CrushPlayer(IPlayerCharacter player)
 	{
-		player.TakeDamage(float.PositiveInfinity, "crush");
+		player.TakeDamage(float.PositiveInfinity, "Crush");
 	}
 
 	protected override void OnPlayerEnter(PlayerMovementEvent ev) {
