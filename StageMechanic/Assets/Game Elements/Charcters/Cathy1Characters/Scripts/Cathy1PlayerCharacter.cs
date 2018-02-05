@@ -667,9 +667,13 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		if (blockInQuestion == null)
 			return 0f;
         Serializer.RecordUndo();
-        //TODO make this one movement
-        bool moved = BlockManager.Move(blockInQuestion, direction,1,(direction==FacingDirection));
-        if (moved)
+		//TODO make this one movement
+		bool moved = false;
+		if (direction == FacingDirection)
+			moved = blockInQuestion.Push(direction,1);
+		else
+			moved = blockInQuestion.Pull(direction, 1);
+		if (moved)
         {
             if (EffortSounds.Length > 0)
             {
@@ -678,7 +682,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
             }
             if (FacingDirection != direction)
             {
-                IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
+                IBlock nextFloor = BlockManager.GetBlockNear(transform.position + direction + Vector3.down);
                 if (nextFloor != null)
                 {
                     DoPushPull(direction);

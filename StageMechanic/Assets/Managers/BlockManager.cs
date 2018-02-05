@@ -430,7 +430,7 @@ public class BlockManager : MonoBehaviour
         return -1;
     }
 
-    public static bool CanMoveGroup(int groupNumber, Vector3 direction, int distance = 1)
+    /*public static bool CanMoveGroup(int groupNumber, Vector3 direction, int distance = 1)
     {
         Debug.Assert(groupNumber >= 0);
         Debug.Assert(blockGroups.ContainsKey(groupNumber));
@@ -480,7 +480,7 @@ public class BlockManager : MonoBehaviour
         if (BlockGroupNumber(block) < 0)
             return block.Move(direction, distance, push);
         return MoveGroup(BlockGroupNumber(block), direction, distance);
-    }
+    }*/
     #endregion
 
     //TODO Move these to some kind of Platform Manager
