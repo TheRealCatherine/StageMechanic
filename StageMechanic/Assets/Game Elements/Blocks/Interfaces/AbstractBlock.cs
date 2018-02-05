@@ -169,17 +169,17 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         }
     }
 
-    public virtual Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public virtual Dictionary<string, DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = new Dictionary<string, KeyValuePair<Type, string>>();
-            ret.Add("Motion State", new KeyValuePair<Type, string>(typeof(string), BlockMotionState.Unknown.ToString()));
-            ret.Add("Rotation", new KeyValuePair<Type, string>(typeof(Quaternion), Quaternion.identity.ToString()));
-            ret.Add("Fixed Rotation", new KeyValuePair<Type, string>(typeof(bool), "false"));
-            ret.Add("Weight Factor", new KeyValuePair<Type, string>(typeof(float), "1.0"));
-            ret.Add("Gravity Factor", new KeyValuePair<Type, string>(typeof(float), "1.0"));
-            ret.Add("Block Group", new KeyValuePair<Type, string>(typeof(int), "-1"));
+            Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
+            ret.Add("Motion State",     new DefaultValue { TypeInfo = typeof(string),       Value = "Unknown" });
+            ret.Add("Rotation",         new DefaultValue { TypeInfo = typeof(Quaternion),   Value = Quaternion.identity.ToString() });
+            ret.Add("Fixed Rotation",   new DefaultValue { TypeInfo = typeof(bool),         Value = "False" });
+            ret.Add("Weight Factor",    new DefaultValue { TypeInfo = typeof(float),        Value = "1.0" });
+            ret.Add("Gravity Factor",   new DefaultValue { TypeInfo = typeof(float),        Value = "1.0" });
+            ret.Add("Block Group",      new DefaultValue { TypeInfo = typeof(int),          Value = "-1" });
             return ret;
         }
     }
@@ -389,7 +389,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         IBlock neighbor = BlockManager.GetBlockAt(Position + direction);
         if (neighbor != null)
             BlockManager.Move(neighbor, direction, distance);
-        StartCoroutine(AnimateMove(Position, Position + direction, PUSH_PULL_MOVE_TIME_BASE * MoveWeight(direction, distance),push));
+        StartCoroutine(AnimateMove(Position, Position + direction, PUSH_PULL_MOVE_TIME_BASE * MoveWeight(direction, distance), push));
         return true;
     }
 
@@ -413,9 +413,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
         UpdateNeighborsCache();
         SetGravityEnabledByMotionState();
         //TODO NotLikeThiiiiiiisssssss do it in the ice block class handling blocks on top
-        if (push && blocksBelow[DOWN] != null && (blocksBelow[DOWN] as Cathy1Block).Type==Cathy1Block.BlockType.Ice)
+        if (push && blocksBelow[DOWN] != null && (blocksBelow[DOWN] as Cathy1Block).Type == Cathy1Block.BlockType.Ice)
         {
-            if(BlockManager.GetBlockNear(Position + (target-origin)) == null)
+            if (BlockManager.GetBlockNear(Position + (target - origin)) == null)
                 Move(target - origin);
         }
     }
@@ -624,7 +624,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             MotionState = BlockMotionState.Edged;
             if (oldState != BlockMotionState.Unknown && oldState != BlockMotionState.Edged && EdgeEffect != null)
             {
-                if(blocksBelow[LEFT] != null)
+                if (blocksBelow[LEFT] != null)
                     VisualEffectsManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(-0.5f, -0.5f, -0.5f));
                 if (blocksBelow[RIGHT] != null)
                     VisualEffectsManager.PlayEffect(this, EdgeEffect, EdgeEffectScale, -1, new Vector3(0.5f, -0.5f, -0.5f));

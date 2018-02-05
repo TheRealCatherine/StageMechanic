@@ -88,14 +88,14 @@ public class Cathy1GoalBlock : Cathy1Block
 
     }
 
-    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public override Dictionary<string, DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
-            ret.Add("Next Stage Filename", new KeyValuePair<Type, string>(typeof(string), ""));
-            ret.Add("Next Stage Start Block Override", new KeyValuePair<Type, string>(typeof(string), ""));
-            ret.Add("Must Not Fall", new KeyValuePair<Type, string>(typeof(bool), false.ToString()));
+            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+            ret.Add("Next Stage Filename",                  new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
+            ret.Add("Next Stage Start Block Override",      new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
+            ret.Add("Must Not Fall",                        new DefaultValue { TypeInfo = typeof(bool),     Value = "False" });
             return ret;
         }
     }

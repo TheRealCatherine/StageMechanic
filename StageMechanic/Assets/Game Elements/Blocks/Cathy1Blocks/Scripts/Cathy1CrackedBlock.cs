@@ -85,12 +85,12 @@ public class Cathy1CrackedBlock : Cathy1Block {
             StartCoroutine(HandleStep());
     }
 
-    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public override Dictionary<string, DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
-            ret.Add("Steps Remaining", new KeyValuePair<Type, string>(typeof(int), (Type == BlockType.Crack1?1:2).ToString()));
+            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+            ret.Add("Steps Remaining", new DefaultValue { TypeInfo = typeof(int), Value = (Type == BlockType.Crack1 ? 1 : 2).ToString() });
             return ret;
         }
     }

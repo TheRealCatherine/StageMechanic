@@ -60,13 +60,13 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
         IsArmed = false;
     }
 
-    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public override Dictionary<string, DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<Type, string>(typeof(float), DEFAULT_TRIGGER_TIME.ToString()));
-            ret.Add("Animation Scale", new KeyValuePair<Type, string>(typeof(float), DEFAULT_ANIMATION_SCALE.ToString()));
+            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)",   new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_TRIGGER_TIME.ToString() } );
+            ret.Add("Animation Scale",          new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_ANIMATION_SCALE.ToString() } );
             return ret;
         }
     }

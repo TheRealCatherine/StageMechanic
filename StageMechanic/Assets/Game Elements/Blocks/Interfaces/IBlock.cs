@@ -21,23 +21,8 @@ public enum BlockMotionState
     Extended = 255
 }
 
-public interface IBlock
+public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable
 {
-    /// <summary>
-    /// A human-readable identifier for the block. Typically implementations
-    /// will auto-generate a guid in the case the user has not given a different
-    /// name to the block. 
-    /// </summary>
-    /// <exception cref="BlockNameException">
-    /// May throw a BlockNameException if the caller tries to set an invalid name.
-    /// There is no inherent requirement for Names to be unique, however certain
-    /// implementations may choose to impose this or other requirements on naming.
-    /// </exception>
-    string Name
-    {
-        get;
-        set;
-    }
 
     /// <summary>
     /// A string representation of the type of block. Note that this is
@@ -55,28 +40,7 @@ public interface IBlock
         set;
     }
 
-    /// <summary>
-    /// The block's position within the gameworld. This may be relative or global
-    /// or have other meaning according to rulset. In initially implemented concepts
-    /// this is the global position of the block, but implementors may use other
-    /// meanings.
-    /// </summary>
-    Vector3 Position
-    {
-        get;
-        set;
-    }
 
-    /// <summary>
-    /// The blocks rotation. This may be the global rotation or relative to its parent
-    /// or some other object, according to the defined ruleset. In initial implementations
-    /// this is used as a global rotation.
-    /// </summary>
-    Quaternion Rotation
-    {
-        get;
-        set;
-    }
 
     /// <summary>
     /// The state of the block in regards to motion. If state is not one of the built
@@ -193,29 +157,6 @@ public interface IBlock
     /// different to different types of children.
     /// </summary>
     List<GameObject> Children
-    {
-        get;
-        set;
-    }
-
-    /// <summary>
-    /// Returns the set of settable properties in the form of
-    /// Name, (Type, Defult value)
-    /// </summary>
-    Dictionary<string, KeyValuePair<Type,string>> DefaultProperties
-    {
-        get;
-    }
-
-    /// <summary>
-    /// Returns the set of non-default block-specific
-    /// properties. This can be any arbitrary set of
-    /// strings. Blocks do not have to include properties
-    /// that are set to defaults in this property, to get
-    /// a list of all recognized properties on a block use
-    /// the DefaultProperties.
-    /// </summary>
-    Dictionary<string,string> Properties
     {
         get;
         set;

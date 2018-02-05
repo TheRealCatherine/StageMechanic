@@ -150,7 +150,7 @@ public class BlockEditDialog : MonoBehaviour {
             PosYField.text = CurrentBlock.Position.y.ToString();
             PosZField.text = CurrentBlock.Position.z.ToString();
 
-            foreach(KeyValuePair<string,KeyValuePair<Type,string>> property in CurrentBlock.DefaultProperties)
+            foreach(KeyValuePair<string,DefaultValue> property in CurrentBlock.DefaultProperties)
             {
                 Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text ;
                 addedFields.Add(label.gameObject);
@@ -162,7 +162,7 @@ public class BlockEditDialog : MonoBehaviour {
                 SinglePropertyWithDefault holder = stringField.GetComponent<SinglePropertyWithDefault>();
                 Debug.Assert(holder != null);
                 holder.PropertyName = property.Key;
-                holder.PropertyType = property.Value.Key;
+                holder.PropertyType = property.Value.TypeInfo;
                 holder.PropertyDefaultValue = property.Value.Value;
 
                 foreach (KeyValuePair<string, string> setProperty in CurrentBlock.Properties)

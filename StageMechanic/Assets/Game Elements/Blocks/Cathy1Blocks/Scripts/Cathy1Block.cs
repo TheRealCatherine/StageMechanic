@@ -125,11 +125,11 @@ public class Cathy1Block : AbstractBlock
 	/// <summary>
 	/// The recognized properties for this block, includes base class properties
 	/// </summary>
-	public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+	public override Dictionary<string, DefaultValue> DefaultProperties
 	{
 		get
 		{
-			Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
+			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
 			//TODO material number
 			return ret;
 		}

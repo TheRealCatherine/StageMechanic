@@ -152,15 +152,15 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
         DoExplosion();
     }
 
-    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public override Dictionary<string,DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<Type, string>(typeof(float), (Type==BlockType.Bomb1?SMALL_BOMB_DEFAULT_FUSE_TIME:LARGE_BOMB_DEFAULT_FUSE_TIME).ToString()));
-            ret.Add("Damage Radius", new KeyValuePair<Type, string>(typeof(int), (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_RADIUS : LARGE_BOMB_DEFAULT_RADIUS).ToString()));
-            ret.Add("Animation Scale", new KeyValuePair<Type, string>(typeof(float), (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_ANIMATION_SCALE : LARGE_BOMB_DEFAULT_ANIMATION_SCALE).ToString()));
-            ret.Add("Epicenter Offset", new KeyValuePair<Type, string>(typeof(Vector3), Vector3.zero.ToString()));
+            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)",   new DefaultValue { TypeInfo = typeof(float),    Value = (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_FUSE_TIME : LARGE_BOMB_DEFAULT_FUSE_TIME).ToString() });
+            ret.Add("Damage Radius",            new DefaultValue { TypeInfo = typeof(int),      Value = (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_RADIUS : LARGE_BOMB_DEFAULT_RADIUS).ToString() });
+            ret.Add("Animation Scale",          new DefaultValue { TypeInfo = typeof(float),    Value = (Type == BlockType.Bomb1 ? SMALL_BOMB_DEFAULT_ANIMATION_SCALE : LARGE_BOMB_DEFAULT_ANIMATION_SCALE).ToString() });
+            ret.Add("Epicenter Offset",         new DefaultValue { TypeInfo = typeof(Vector3),  Value = Vector3.zero.ToString() });
             return ret;
         }
     }

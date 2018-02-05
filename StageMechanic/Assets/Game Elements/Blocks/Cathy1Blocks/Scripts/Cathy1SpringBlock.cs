@@ -13,7 +13,7 @@ public class Cathy1SpringBlock : Cathy1Block
 {
     public sealed override BlockType Type { get; } = BlockType.Spring;
     private const float DEFAULT_DELAY = 0.75f;
-    private const float DEFAULT_DISTANCE = 6f;
+    private const float DEFAULT_DISTANCE = 8f;
     public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);
     public float Delay = DEFAULT_DELAY;
 
@@ -43,13 +43,13 @@ public class Cathy1SpringBlock : Cathy1Block
         }
     }
 
-    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public override Dictionary<string, DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<Type, string>(typeof(float), DEFAULT_DELAY.ToString()));
-            ret.Add("Distance", new KeyValuePair<Type, string>(typeof(float), DEFAULT_DISTANCE.ToString()));
+            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)",   new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_DELAY.ToString() } );
+            ret.Add("Distance",                 new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_DISTANCE.ToString() } );
             return ret;
         }
     }

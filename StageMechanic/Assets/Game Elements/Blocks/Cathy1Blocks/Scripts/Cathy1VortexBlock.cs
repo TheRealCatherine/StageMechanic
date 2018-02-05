@@ -18,7 +18,8 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
     internal override IEnumerator HandleStep()
     {
         IsTriggered = true;
-        yield return new WaitForSeconds(TriggerTime);
+        if(TriggerTime>0)
+            yield return new WaitForSeconds(TriggerTime);
         GetComponent<AudioSource>().Play();
         foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
         {

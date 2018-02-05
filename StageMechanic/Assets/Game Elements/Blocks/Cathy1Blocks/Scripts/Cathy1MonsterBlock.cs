@@ -142,12 +142,12 @@ public class Cathy1MonsterBlock : Cathy1Block
 
     }
 
-    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public override Dictionary<string, DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
-            ret.Add("Move Probability", new KeyValuePair<Type, string>(typeof(float), DEFAULT_MOVE_PROBABILITY.ToString()));
+            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+            ret.Add("Move Probability", new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_MOVE_PROBABILITY.ToString() });
             return ret;
         }
     }

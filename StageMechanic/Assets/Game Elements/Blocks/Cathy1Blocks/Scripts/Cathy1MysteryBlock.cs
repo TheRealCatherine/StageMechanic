@@ -63,12 +63,12 @@ public class Cathy1MysteryBlock : Cathy1Block
         }
     }
 
-    public override Dictionary<string, KeyValuePair<Type, string>> DefaultProperties
+    public override Dictionary<string, DefaultValue> DefaultProperties
     {
         get
         {
-            Dictionary<string, KeyValuePair<Type, string>> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new KeyValuePair<Type, string>(typeof(float), DEFAULT_DELAY.ToString()));
+            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+            ret.Add("Trigger Time (seconds)", new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_DELAY.ToString() });
             return ret;
         }
     }
