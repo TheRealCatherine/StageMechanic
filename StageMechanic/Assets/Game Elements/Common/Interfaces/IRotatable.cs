@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Used to describe objects which can have a rotation describable
-/// by a Quaternion value.
+/// by a <c>UnityEngine.Quaternion</c> value.
 /// </summary>
 public interface IRotatable
 {
