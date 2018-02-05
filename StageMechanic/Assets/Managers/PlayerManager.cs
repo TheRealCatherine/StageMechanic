@@ -103,6 +103,7 @@ public class PlayerManager : MonoBehaviour {
             else
                 Avatars[0] = Instantiate(Instance.Player1Prefab, PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
             Debug.Log("Spawning player 1 at " + PlayerStartLocations[0].transform.position);
+            Avatars[0].GameObject.layer = BlockManager.Instance.Stage.layer;
             LoadKeybindings(0);
         }
         if (PlayerStartLocations.Count > 1)
@@ -112,6 +113,7 @@ public class PlayerManager : MonoBehaviour {
             else
                 Avatars[1] = Instantiate(Instance.Player2Prefab, PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
             Debug.Log("Spawning player 2 at " + PlayerStartLocations[1].transform.position);
+            Avatars[1].GameObject.layer = BlockManager.Instance.Stage.layer;
             LoadKeybindings(1);
         }
         if (PlayerStartLocations.Count > 2)
@@ -121,6 +123,7 @@ public class PlayerManager : MonoBehaviour {
             else
                 Avatars[1] = Instantiate(Instance.Player3Prefab, PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
             Debug.Log("Spawning player 3 at " + PlayerStartLocations[2].transform.position);
+            Avatars[2].GameObject.layer = BlockManager.Instance.Stage.layer;
             LoadKeybindings(2);
         }
     }

@@ -41,7 +41,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.337
+    value: 0.324
   smoothness:
     overrideState: 1
     value: 0.79
@@ -68,13 +68,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   gradingMode:
     overrideState: 1
-    value: 0
+    value: 1
   externalLut:
     overrideState: 0
     value: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
     value: -14
   colorFilter:
     overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    value: {r: 0.6698113, g: 0.31910822, b: 0.31910822, a: 1}
   hueShift:
     overrideState: 0
     value: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
     value: 0.37
   contrast:
     overrideState: 1
-    value: 8
+    value: 13
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -136,8 +136,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   mixerRedOutBlueIn:
-    overrideState: 1
-    value: 3
+    overrideState: 0
+    value: 6
   mixerGreenOutRedIn:
     overrideState: 0
     value: 0
@@ -160,11 +160,11 @@ MonoBehaviour:
     overrideState: 0
     value: {x: 1, y: 0.9862701, z: 0.98627007, w: 0}
   gamma:
-    overrideState: 1
-    value: {x: 0.93775064, y: 0.944004, z: 1, w: 0}
+    overrideState: 0
+    value: {x: 0.98938525, y: 0.9518149, z: 1, w: 0}
   gain:
-    overrideState: 1
-    value: {x: 1, y: 0.9823572, z: 0.9542336, w: 0}
+    overrideState: 0
+    value: {x: 1, y: 0.94392246, z: 0.93779296, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -353,7 +353,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.29
+    value: 0.84
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
