@@ -7,12 +7,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EventLocationAffinity
+{
+    Block = 0,
+    Position
+}
+
 public interface IEvent {
 
     /// <summary>
     /// A human-readable identifier for the event. Typically implementations
     /// will auto-generate a guid in the case the user has not given a different
-    /// name to the block. 
+    /// name to the event. 
     /// </summary>
     /// <exception cref="EventNameException">
     /// May throw a EventNameException if the caller tries to set an invalid name.
@@ -27,15 +33,18 @@ public interface IEvent {
 
     /// <summary>
     /// A string representation of the type of event. Note that this is
-    /// used in save files and other places as well as UI. Setting this value
-    /// should change the type of the event to the specified type.
+    /// used in save files and other places as well as UI.
     /// </summary>
-    /// <exception cref="EventTypeExcpetion">
-    /// May throw a EventTypeException if the caller tries to set an invalid
-    /// event type. Implentations may instead choose to handle this situation
-    /// by setting the type to a default value or creating a new event type.
-    /// </exception>
     string TypeName
+    {
+        get;
+    }
+
+    /// <summary>
+    /// Defines if an event should "stick to" a block (ie move with it
+    /// like an item) or should be stuck to a given coordinate.
+    /// </summary>
+    EventLocationAffinity LocationAffinity
     {
         get;
         set;

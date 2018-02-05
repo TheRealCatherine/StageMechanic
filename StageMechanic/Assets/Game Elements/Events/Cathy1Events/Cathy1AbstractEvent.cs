@@ -93,8 +93,8 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
     {
         get
         {
-            //Dictionary<string, string> ret = base.Properties;
             Dictionary<string, string> ret = new Dictionary<string, string>();
+
             return ret;
         }
         set
@@ -104,6 +104,8 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
             //TODO
         }
     }
+
+    public EventLocationAffinity LocationAffinity { get; set; }
 
     virtual public EventJsonDelegate GetJsonDelegate()
     {

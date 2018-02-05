@@ -36,7 +36,8 @@ public class Cathy1Block : AbstractBlock
 		Goal            //Level completion zone
 	}
 
-    public virtual BlockType Type { get; } = BlockType.Basic;
+    BlockType _blockType = BlockType.Basic;
+    public virtual BlockType Type { get { return _blockType; } }
 
 
 	/**
