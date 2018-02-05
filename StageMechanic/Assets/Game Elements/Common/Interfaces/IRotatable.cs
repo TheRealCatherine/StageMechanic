@@ -19,4 +19,16 @@ public interface IRotatable
         get;
         set;
     }
+
+    /// <summary>
+    /// This should only be true if the object cannot be rotated by any means, even
+    /// if everything around it is rotating. This is not expected to be a commonly
+    /// used feature in any anticipated sitations, but implementors should take
+    /// it into account.
+    /// </summary>
+    bool IsFixedRotation
+    {
+        get;
+        set;
+    }
 }

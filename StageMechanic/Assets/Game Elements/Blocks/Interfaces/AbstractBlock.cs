@@ -107,65 +107,30 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
     public virtual List<IEvent> Events { get; set; }
 
-    /// <summary>
-    /// Uses GameObject.transform.parent internally. This method is
-    /// virtual because some blocks may want to report no parent
-    /// if their actual parent is a certain type, or some other
-    /// condition in which there actually is a parent.
-    /// See <see cref="IBlock.Parent"/>
-    /// See also <seealso cref="UnityEngine.GameObject"/>
-    /// See also <seealso cref="Transform.parent"/>
-    /// </summary>
-    public virtual GameObject Parent
+
+    public virtual IHierarchical Parent
     {
         get
         {
-            Debug.Assert(transform != null);
-            if (transform.parent == null)
-                return null;
-            return transform.parent.gameObject;
+            return null;
         }
 
         set
         {
-            if (value == null)
-                transform.SetParent(null);
-            else
-                transform.SetParent(value.transform, true);
+            throw new HierarchyException("Blocks do not yet support Hierarchies");
         }
     }
 
-    /// <summary>
-    /// This implementation returns all AbstractBlock-derived
-    /// children of an instance. It is marked virtual because it
-    /// is expected that other implementations may include other
-    /// types of children. Note that Items, while technically children
-    /// of blocks in most implementations, have their own properties.
-    /// </summary>
-    public virtual List<GameObject> Children
+
+    public virtual IHierarchical[] Children
     {
         get
         {
-            List<GameObject> chillins = new List<GameObject>();
-            foreach (GameObject kiddo in transform)
-            {
-                AbstractBlock jennyFromTheBlock = kiddo.GetComponent<AbstractBlock>();
-                if (jennyFromTheBlock != null)
-                    chillins.Add(kiddo);
-            }
-            return chillins;
+            return null;
         }
-        //TODO remove items not in list or clear list first
         set
         {
-            foreach (GameObject rugrat in value)
-            {
-                //Cathy1 blocks can currently only have Cathy1 blocks as children
-                //Items are also children technically, but should be accessd via Item or Items
-                AbstractBlock blockPartyLikeIts1999 = rugrat.GetComponent<AbstractBlock>();
-                if (blockPartyLikeIts1999 != null)
-                    blockPartyLikeIts1999.Parent = GameObject;
-            }
+            throw new HierarchyException("Blocks do not yet support Hierarchies");
         }
     }
 
@@ -868,6 +833,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
             Selection.activeGameObject = gameObject;
 #endif
         }
+    }
+
+    public void AddChild(IHierarchical child)
+    {
+        throw new HierarchyException("Blocks do not yet support Hierarchies");
+    }
+
+    public void RemoveChild(IHierarchical child)
+    {
+        throw new HierarchyException("Blocks do not yet support Hierarchies");
     }
     #endregion
 }

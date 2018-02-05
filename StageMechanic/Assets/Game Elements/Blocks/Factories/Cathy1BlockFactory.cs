@@ -202,7 +202,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
             if (bl != null)
             {
                 if (parent == null)
-                    parent = bl.Parent.gameObject;
+                    parent = bl.gameObject.transform.parent.gameObject;
                 oldName = bl.Name;
                 oldItem = bl.FirstItem;
                 if (oldItem != null)
@@ -267,7 +267,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
         Debug.Assert(newBlock != null);
         Cathy1Block block = newBlock.GetComponent<Cathy1Block>();
         Debug.Assert(block != null);
-        block.Parent = parent;
+        block.transform.parent = parent.transform;
         if (oldName != String.Empty)
             block.Name = oldName;
         block.FirstItem = oldItem;

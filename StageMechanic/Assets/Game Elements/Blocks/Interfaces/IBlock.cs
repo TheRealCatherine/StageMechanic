@@ -21,7 +21,7 @@ public enum BlockMotionState
     Extended = 255
 }
 
-public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable
+public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable, IHierarchical
 {
 
     /// <summary>
@@ -88,18 +88,6 @@ public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable
     }
 
     /// <summary>
-    /// This should only be true if the block cannot be rotated by any means, even
-    /// if everything around it is rotating. This is not expected to be a commonly
-    /// used feature in any anticipated sitations, but implementors should take
-    /// it into account.
-    /// </summary>
-    bool IsFixedRotation
-    {
-        get;
-        set;
-    }
-
-    /// <summary>
     /// Multiplier determining how quickly or slowly the player can move the block.
     /// A value of 0 should indicate the block is not movable by the player and a
     /// negative value should either mean not movable by the player or may be used
@@ -140,27 +128,7 @@ public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable
         set;
     }
 
-    /// <summary>
-    /// The parent object in the scene of this block. This may be
-    /// any type of GameObject and differnt game rules may react
-    /// differently to different types of parent.
-    /// </summary>
-    GameObject Parent
-    {
-        get;
-        set;
-    }
 
-    /// <summary>
-    /// The list of children of this block. Thse can be any
-    /// type of GameObject and different game rules may react
-    /// different to different types of children.
-    /// </summary>
-    List<GameObject> Children
-    {
-        get;
-        set;
-    }
 
     /// <summary>
     /// Create and return a new JSON delegate for this Block
