@@ -17,6 +17,7 @@ public class VisualEffectsManager : MonoBehaviour {
     public PostProcessingProfile MotionDebutProfile;
     public PostProcessLayer MainStageProcessLayer;
     public ParticleSystem Fog;
+	public GameObject Clouds;
 
 
     private void Awake()
@@ -66,6 +67,7 @@ public class VisualEffectsManager : MonoBehaviour {
     public static void EnableFog(bool show)
     {
         Instance?.Fog?.gameObject.SetActive(show);
+		Instance?.Clouds.gameObject.SetActive(show);
     }
 
     public static void EnablePostProcessing(bool process)
