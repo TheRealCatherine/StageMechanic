@@ -16,8 +16,6 @@ public class Cathy1GoalBlock : Cathy1Block
     public string NextStageStartPos;
     public bool MustNotFall = false;
 
-    public sealed override BlockType Type { get; } = BlockType.Goal;
-
     public override void Awake()
     {
         base.Awake();

@@ -11,8 +11,6 @@ using UnityEngine;
 
 public class Cathy1MysteryBlock : Cathy1Block
 {
-    public sealed override BlockType Type { get; } = BlockType.Random;
-
     public float Delay = DEFAULT_DELAY;
     public const float DEFAULT_DELAY = 0.05f;
 

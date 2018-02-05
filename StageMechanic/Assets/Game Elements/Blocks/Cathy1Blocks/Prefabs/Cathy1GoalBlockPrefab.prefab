@@ -221,6 +221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27962e85a8dfc54ea7fc4ffa893cea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: ed19204b3d0eb7941ad49048e32bc93d, type: 3}
+  EdgeEffect: {fileID: 0}
+  EdgeEffectScale: 1
+  EdgeEffectDuration: 0.1
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
@@ -229,14 +233,16 @@ MonoBehaviour:
   BlockDownRight: 
   BlockDownForward: 
   BlockDownBack: 
-  _physicsEnabled: 0
+  _gravityEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  TypeOfBlock: Goal
   Applause: {fileID: 8300000, guid: 974aed704e566b74c86050068f943614, type: 3}
   NextStageFilename: 
   NextStageStartPos: 
+  MustNotFall: 0
 --- !u!114 &114507502396545874
 MonoBehaviour:
   m_ObjectHideFlags: 1

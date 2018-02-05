@@ -221,6 +221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c82915ae58ded74da9171d2d399aadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3771e1ac0471d1447bb8ace5f06f71b2, type: 3}
+  EdgeEffect: {fileID: 0}
+  EdgeEffectScale: 1
+  EdgeEffectDuration: 0.1
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
@@ -229,11 +233,12 @@ MonoBehaviour:
   BlockDownRight: 
   BlockDownForward: 
   BlockDownBack: 
-  _physicsEnabled: 0
+  _gravityEnabled: 0
   Material1: {fileID: 2100000, guid: 1883c97dc5e451748b2883d56e85041f, type: 2}
   Material2: {fileID: 2100000, guid: 695794c4a0a179745bf5582cbb696b11, type: 2}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  TypeOfBlock: Cracked (2 Steps)
   StepsRemaining: 2
   Crack: {fileID: 8300000, guid: 3f09f277f1881704d9dd10c109d01722, type: 3}
   Collapse: {fileID: 8300000, guid: f87438c2eb85e5241bb9e2bce9ce2e31, type: 3}

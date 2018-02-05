@@ -25,16 +25,6 @@ public class Cathy1CrackedBlock : Cathy1Block {
 
     private State CurrentState = State.NoPlayer;
 
-    public sealed override BlockType Type
-    {
-        get
-        {
-            if (StepsRemaining == 1)
-                return Cathy1Block.BlockType.Crack1;
-            return Cathy1Block.BlockType.Crack2;
-        }
-    }
-
     private IEnumerator HandleStep()
     {
         CurrentState = State.PlayerEnter;
@@ -90,7 +80,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         get
         {
             Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-            ret.Add("Steps Remaining", new DefaultValue { TypeInfo = typeof(int), Value = (Type == BlockType.Crack1 ? 1 : 2).ToString() });
+            ret.Add("Steps Remaining", new DefaultValue { TypeInfo = typeof(int), Value = StepsRemaining.ToString() });
             return ret;
         }
     }
@@ -100,8 +90,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
         get
         {
             Dictionary<string, string> ret = base.Properties;
-            if (!((Type == BlockType.Crack1 && StepsRemaining == 1) || (Type == BlockType.Crack2 && StepsRemaining == 2)))
-                ret.Add("Steps Remaining", StepsRemaining.ToString());
+            ret.Add("Steps Remaining", StepsRemaining.ToString());
             return ret;
         }
         set

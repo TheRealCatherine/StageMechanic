@@ -18,6 +18,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
 	const float PUSH_PULL_MOVE_TIME_BASE = 0.25f;
 
+	public Sprite Icon;
 	public ParticleSystem EdgeEffect;
 	public float EdgeEffectScale = 1f;
 	public float EdgeEffectDuration = 0.1f;
@@ -396,7 +397,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		UpdateNeighborsCache();
 		SetGravityEnabledByMotionState();
 		//TODO NotLikeThiiiiiiisssssss do it in the ice block class handling blocks on top
-		if (push && blocksBelow[DOWN] != null && (blocksBelow[DOWN] as Cathy1Block).Type == Cathy1Block.BlockType.Ice)
+		if (push && blocksBelow[DOWN] != null && (blocksBelow[DOWN] as Cathy1Block).TypeName == "Ice")
 		{
 			if (BlockManager.GetBlockNear(Position + (target - origin)) == null)
 				Push(target - origin);

@@ -10,17 +10,11 @@ using UnityEngine;
 public interface IBlockFactory
 {
 
-    int BlockTypeCount
-    {
-        get;
-    }
-
-    List<string> BlockTypeNames
+    string[] BlockTypeNames
     {
         get;
     }
 
     Sprite IconForType(string name);
-    IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, int blockTypeIndex, GameObject parent = null);
     IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string blockTypeName, GameObject parent = null);
 }

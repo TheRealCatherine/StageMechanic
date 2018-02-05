@@ -73,7 +73,7 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Cracked(2 Steps)");
+            BlockManager.CreateBlockAtCursor("Cathy1 Internal", "Cracked (2 Steps)");
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))

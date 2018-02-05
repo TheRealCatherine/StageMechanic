@@ -236,6 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738f3a49433f91d449d9a7276d3c1491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 371f1027919f2564e8292981bdb35056, type: 3}
+  EdgeEffect: {fileID: 0}
+  EdgeEffectScale: 1
+  EdgeEffectDuration: 0.1
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
@@ -244,9 +248,10 @@ MonoBehaviour:
   BlockDownRight: 
   BlockDownForward: 
   BlockDownBack: 
-  _physicsEnabled: 0
+  _gravityEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  TypeOfBlock: Monster
   MoveProbability: 0.005

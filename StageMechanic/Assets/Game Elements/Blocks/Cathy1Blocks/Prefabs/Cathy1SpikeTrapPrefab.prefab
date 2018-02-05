@@ -221,6 +221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897ca7cf84483714796ac2aa6687507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: df22269abc6203043ad0846225b35287, type: 3}
+  EdgeEffect: {fileID: 0}
+  EdgeEffectScale: 1
+  EdgeEffectDuration: 0.1
   _motionState: 0
   BelowCount: 0
   AboveCount: 0
@@ -229,11 +233,12 @@ MonoBehaviour:
   BlockDownRight: 
   BlockDownForward: 
   BlockDownBack: 
-  _physicsEnabled: 0
+  _gravityEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  TypeOfBlock: Spike Trap
   ArmedStateMaterial: {fileID: 2100000, guid: 1b7cd7403e5b020469a1af3a29bf96dc, type: 2}
   TriggeredStateMaterial: {fileID: 2100000, guid: 476c8b7430d61ab4a80a7fa5c7a8acd4,
     type: 2}

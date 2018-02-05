@@ -183,7 +183,7 @@ public class BlockEditDialog : MonoBehaviour {
         bool prev = (CnInputManager.GetAxis("joystick 1 X axis") < 0f && period > InputManager.JoystickThrottleRate);
         if (next)
         {
-            List<string> types = BlockManager.Instance.BlockFactories[0].BlockTypeNames;
+            List<string> types = new List<string>(BlockManager.Instance.BlockFactories[0].BlockTypeNames);
             int index = types.IndexOf(CurrentBlock.TypeName);
             if (++index >= types.Count)
                 index = 0;
@@ -195,7 +195,7 @@ public class BlockEditDialog : MonoBehaviour {
         }
         else if (prev)
         {
-            List<string> types = BlockManager.Instance.BlockFactories[0].BlockTypeNames;
+            List<string> types = new List<string>(BlockManager.Instance.BlockFactories[0].BlockTypeNames);
             int index = types.IndexOf(CurrentBlock.TypeName);
             if (--index <= 0 )
                 index = types.Count-1;

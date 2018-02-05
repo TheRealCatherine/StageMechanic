@@ -7,8 +7,7 @@
 using System.Collections;
 
 public class Cathy1IceBlock : Cathy1Block
-{
-    public sealed override BlockType Type { get; } = BlockType.Ice;
+{ 
 
     protected override void OnPlayerEnter(PlayerMovementEvent ev)
     {

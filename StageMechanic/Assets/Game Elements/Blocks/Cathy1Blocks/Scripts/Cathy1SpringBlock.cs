@@ -11,7 +11,6 @@ using UnityEngine;
 
 public class Cathy1SpringBlock : Cathy1Block
 {
-    public sealed override BlockType Type { get; } = BlockType.Spring;
     private const float DEFAULT_DELAY = 0.75f;
     private const float DEFAULT_DISTANCE = 8f;
     public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);

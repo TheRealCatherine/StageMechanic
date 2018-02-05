@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45013174449f0b841a26d49677404812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 0e6d092fed1b8b448a3708f1a23b21fa, type: 3}
   EdgeEffect: {fileID: 0}
   EdgeEffectScale: 1
   EdgeEffectDuration: 0.1
@@ -164,10 +165,11 @@ MonoBehaviour:
   BlockDownRight: 
   BlockDownForward: 
   BlockDownBack: 
-  _physicsEnabled: 0
+  _gravityEnabled: 0
   Material1: {fileID: 0}
   Material2: {fileID: 0}
   Material3: {fileID: 0}
   Material4: {fileID: 0}
+  TypeOfBlock: Spring
   Distance: {x: 0, y: 5, z: 0}
   Delay: 0.55

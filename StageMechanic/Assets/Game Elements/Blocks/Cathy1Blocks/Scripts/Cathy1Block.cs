@@ -15,30 +15,6 @@ public class Cathy1Block : AbstractBlock
 	public Material Material3;
 	public Material Material4;
 
-	/// <summary>
-	/// Used internally by Cathy1 blocks and game rules to ensure correctness.
-	/// </summary>
-	public enum BlockType
-	{
-		Basic = 0,          //Typical block
-		Immobile,       //Basic blocks that cannot normally be moved by the player
-		Crack2,         //Can step on twice
-		Crack1,         //Can step on once
-		Heavy,          //Similar to Basic but slower to move
-		SpikeTrap,      //Spike Trap
-		Ice,            //Teleport variation, moves charcter along top of block
-		Bomb1,          //Bomb with short timing
-		Bomb2,          //Bomb with long timing
-		Spring,         //Teleport variation, moves character up along edge
-		Random,         //Not a fixed type, one of a selectable subset
-		Monster,        //Teleport variation, moves character down from edge
-		Vortex,         //Vortex trap
-		Goal            //Level completion zone
-	}
-
-    BlockType _blockType = BlockType.Basic;
-    public virtual BlockType Type { get { return _blockType; } }
-
 
 	/**
 	 * An Item associated with this Block, for example powerups
@@ -110,11 +86,12 @@ public class Cathy1Block : AbstractBlock
 		}
 	}
 
+	public string TypeOfBlock="Basic";
 	public override string TypeName
 	{
 		get
 		{
-			return Cathy1BlockFactory.NameForType(Type);
+			return TypeOfBlock;
 		}
 		set
 		{

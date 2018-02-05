@@ -28,7 +28,6 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
     private const float DEFAULT_TRIGGER_TIME = 1.2f;
     private const float DEFAULT_ANIMATION_SCALE = 2;
 
-    public sealed override BlockType Type { get; } = BlockType.SpikeTrap;
     public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
     public sealed override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
 

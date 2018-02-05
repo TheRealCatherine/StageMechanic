@@ -255,7 +255,7 @@ public class BlockManager : MonoBehaviour
         List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>();
         foreach (AbstractBlockFactory factory in BlockFactories)
         {
-            List<string> blockNames = factory.BlockTypeNames;
+            string[] blockNames = factory.BlockTypeNames;
             foreach (string name in blockNames)
             {
                 ret.Add(new KeyValuePair<string, string>("Cathy1 Internal", name));

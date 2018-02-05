@@ -16,7 +16,7 @@ public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         AbstractBlockFactory factory = BlockManager.Instance.BlockFactories[0];
-        List<string> types = factory.BlockTypeNames;
+        string[] types = factory.BlockTypeNames;
         int count = 0;
         foreach(string name in types)
         {
