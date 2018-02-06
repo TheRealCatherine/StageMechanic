@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class Cathy1MysteryBlock : Cathy1Block
 {
+	public AudioClip RevealSound;
     public float Delay = DEFAULT_DELAY;
     public const float DEFAULT_DELAY = 0.05f;
 
@@ -53,7 +54,8 @@ public class Cathy1MysteryBlock : Cathy1Block
         if (statename == "Idle" || statename == "Walk" || statename == "Center")
         {
             _started = true;
-            GetComponent<AudioSource>()?.Play();
+			if (RevealSound != null)
+				AudioEffectsManager.PlaySound(this, RevealSound);
             yield return new WaitForSeconds(Delay);
             System.Random rnd = new System.Random();
             int index = rnd.Next(PossibleTypes.Length);

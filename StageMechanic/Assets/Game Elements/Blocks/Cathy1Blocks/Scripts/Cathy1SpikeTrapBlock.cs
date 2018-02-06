@@ -17,77 +17,80 @@ using UnityEngine;
 /// </summary>
 public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 {
-    public Material ArmedStateMaterial;
-    public Material TriggeredStateMaterial;
-    public Material ActiveStateMaterial;
-    public Material DisarmedStateMaterial;
+	public Material ArmedStateMaterial;
+	public Material TriggeredStateMaterial;
+	public Material ActiveStateMaterial;
+	public Material DisarmedStateMaterial;
 
-    public ParticleSystem Animation;
-    public float AnimationScale = DEFAULT_ANIMATION_SCALE;
+	public ParticleSystem Animation;
+	public AudioClip TriggeredSound;
+	public float AnimationScale = DEFAULT_ANIMATION_SCALE;
 
-    private const float DEFAULT_TRIGGER_TIME = 1.2f;
-    private const float DEFAULT_ANIMATION_SCALE = 2;
+	private const float DEFAULT_TRIGGER_TIME = 1.2f;
+	private const float DEFAULT_ANIMATION_SCALE = 2;
 
-    public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
-    public sealed override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
+	public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
+	public sealed override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
 
-    [SerializeField]
-    private Vector3 _epicenterOffset;
-    public override Vector3 Epicenter
-    {
-        get
-        {
-            return base.Epicenter + _epicenterOffset;
-        }
+	[SerializeField]
+	private Vector3 _epicenterOffset;
+	public override Vector3 Epicenter
+	{
+		get
+		{
+			return base.Epicenter + _epicenterOffset;
+		}
 
-        set
-        {
-            base.Epicenter = value + _epicenterOffset;
-        }
-    }
+		set
+		{
+			base.Epicenter = value + _epicenterOffset;
+		}
+	}
 
-    internal override IEnumerator HandleStep()
-    {
-        yield return new WaitForSeconds(TriggerTime);
-        VisualEffectsManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
-        GetComponent<AudioSource>().Play();
-        foreach(AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position+Vector3.up, radius:0.25f)) {
-            player.TakeDamage(float.PositiveInfinity);
-        }
-        Renderer rend = GetComponent<Renderer>();
-        rend.material = DisarmedStateMaterial;
-        IsArmed = false;
-    }
+	internal override IEnumerator HandleStep()
+	{
+		yield return new WaitForSeconds(TriggerTime);
+		if(Animation != null)
+			VisualEffectsManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
+		if(TriggeredSound != null)
+			AudioEffectsManager.PlaySound(this,TriggeredSound);
+		foreach(AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position+Vector3.up, radius:0.25f)) {
+			player.TakeDamage(float.PositiveInfinity);
+		}
+		//Renderer rend = GetComponent<Renderer>();
+		//rend.material = DisarmedStateMaterial;
+		IsArmed = false;
+	}
 
-    public override Dictionary<string, DefaultValue> DefaultProperties
-    {
-        get
-        {
-            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)",   new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_TRIGGER_TIME.ToString() } );
-            ret.Add("Animation Scale",          new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_ANIMATION_SCALE.ToString() } );
-            return ret;
-        }
-    }
+	public override Dictionary<string, DefaultValue> DefaultProperties
+	{
+		get
+		{
+			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+			ret.Add("Trigger Time (seconds)",   new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_TRIGGER_TIME.ToString() } );
+			ret.Add("Animation Scale",          new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_ANIMATION_SCALE.ToString() } );
+			return ret;
+		}
+	}
 
-    public override Dictionary<string, string> Properties
-    {
-        get
-        {
-            Dictionary<string, string> ret = base.Properties;
-            if (TriggerTime != DEFAULT_TRIGGER_TIME)
-                ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
-            if (AnimationScale != DEFAULT_ANIMATION_SCALE)
-                ret.Add("Animation Scale", AnimationScale.ToString());
-            return ret;
-        }
-        set
-        {
-            base.Properties = value;
-            if (value.ContainsKey("Trigger Time (seconds)"))
-                TriggerTime = float.Parse(value["Trigger Time (seconds)"]);
-            if (value.ContainsKey("Animation Scale"))
-                AnimationScale = float.Parse(value["Animation Scale"]);
-        }
-    }
+	public override Dictionary<string, string> Properties
+	{
+		get
+		{
+			Dictionary<string, string> ret = base.Properties;
+			if (TriggerTime != DEFAULT_TRIGGER_TIME)
+				ret.Add("Trigger Time (seconds)", TriggerTime.ToString());
+			if (AnimationScale != DEFAULT_ANIMATION_SCALE)
+				ret.Add("Animation Scale", AnimationScale.ToString());
+			return ret;
+		}
+		set
+		{
+			base.Properties = value;
+			if (value.ContainsKey("Trigger Time (seconds)"))
+				TriggerTime = float.Parse(value["Trigger Time (seconds)"]);
+			if (value.ContainsKey("Animation Scale"))
+				AnimationScale = float.Parse(value["Animation Scale"]);
+		}
+	}
 }

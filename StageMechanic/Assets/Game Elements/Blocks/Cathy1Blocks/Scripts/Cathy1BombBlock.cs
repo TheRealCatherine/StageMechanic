@@ -95,7 +95,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
 	private void DoExplosion()
 	{
-		AudioEffectsManager.PlaySound(this, ExplosionSound);
+		if(ExplosionSound != null)
+			AudioEffectsManager.PlaySound(this, ExplosionSound);
 		foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Epicenter + Vector3.up, radius: 0.25f))
 		{
 			player.TakeDamage(float.PositiveInfinity);
@@ -129,7 +130,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 	internal override IEnumerator HandleStep()
 	{
 		GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
-		VisualEffectsManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime, _epicenterOffset);
+		if(ExplosionAnimation != null && ExplosionAnimationScale>0)
+			VisualEffectsManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime, _epicenterOffset);
 		yield return new WaitForSeconds(TriggerTime);
 		DoExplosion();
 	}
@@ -139,7 +141,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 		if (IsTriggered)
 			return;
 		IsTriggered = true;
-		VisualEffectsManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, 0.1f, _epicenterOffset);
+		if (ExplosionAnimation != null)
+			VisualEffectsManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, 0.1f, _epicenterOffset);
 		DoExplosion();
 	}
 

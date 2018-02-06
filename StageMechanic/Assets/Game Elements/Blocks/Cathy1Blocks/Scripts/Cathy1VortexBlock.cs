@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
 {
-
+	public AudioClip ActivatedSound;
     public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Vortex;
     public sealed override float TriggerTime { get; set; } = 0f;
 
@@ -18,7 +18,8 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
         IsTriggered = true;
         if(TriggerTime>0)
             yield return new WaitForSeconds(TriggerTime);
-        GetComponent<AudioSource>().Play();
+		if (ActivatedSound != null)
+			AudioEffectsManager.PlaySound(this, ActivatedSound);
         foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
         {
             player.TakeDamage(float.PositiveInfinity);

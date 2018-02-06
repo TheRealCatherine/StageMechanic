@@ -11,115 +11,116 @@ using UnityEngine;
 public class Cathy1GoalBlock : Cathy1Block
 {
 
-    public AudioClip Applause;
-    public string NextStageFilename;
-    public string NextStageStartPos;
-    public bool MustNotFall = false;
+	public AudioClip Applause;
+	public string NextStageFilename;
+	public string NextStageStartPos;
+	public bool MustNotFall = false;
 
-    public override void Awake()
-    {
-        base.Awake();
-        //Make block immobile
-        WeightFactor = 0f;
-    }
+	public override void Awake()
+	{
+		base.Awake();
+		//Make block immobile
+		WeightFactor = 0f;
+	}
 
-    bool _hasPlayedSound = false;
-    virtual internal void HandlePlayer(PlayerMovementEvent ev)
-    {
-        if (ev.Location != PlayerMovementEvent.EventLocation.Top)
-            return;
-        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
-        if (statename == "Idle" || statename == "Walk" || statename == "Center")
-        {
-            if (!_hasPlayedSound)
-            {
-                GetComponent<AudioSource>().PlayOneShot(Applause);
-                _hasPlayedSound = true;
-            }
+	bool _hasPlayedSound = false;
+	virtual internal void HandlePlayer(PlayerMovementEvent ev)
+	{
+		if (ev.Location != PlayerMovementEvent.EventLocation.Top)
+			return;
+		string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
+		if (statename == "Idle" || statename == "Walk" || statename == "Center")
+		{
+			if (!_hasPlayedSound)
+			{
+				if (Applause != null)
+					AudioEffectsManager.PlaySound(this, Applause);
+				_hasPlayedSound = true;
+			}
 
-            if (Input.anyKey)
-            {
-                if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir"))
-                {
-                    Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
-                    Debug.Log("loading " + location.ToString());
-                    BlockManager.Instance.TogglePlayMode();
-                    Serializer.BlocksFromJson(location,startPlayMode:true);
-                }
-                else if(string.IsNullOrWhiteSpace(NextStageFilename)) {
-                    Debug.Log("No next level specified");
-                }
-                else if(!PlayerPrefs.HasKey("LastLoadDir"))
-                {
-                    Debug.Log("Unknown file location");
-                }
-            }
-        }
-    }
+			if (Input.anyKey)
+			{
+				if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir"))
+				{
+					Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
+					Debug.Log("loading " + location.ToString());
+					BlockManager.Instance.TogglePlayMode();
+					Serializer.BlocksFromJson(location,startPlayMode:true);
+				}
+				else if(string.IsNullOrWhiteSpace(NextStageFilename)) {
+					Debug.Log("No next level specified");
+				}
+				else if(!PlayerPrefs.HasKey("LastLoadDir"))
+				{
+					Debug.Log("Unknown file location");
+				}
+			}
+		}
+	}
 
-    protected override void OnPlayerEnter(PlayerMovementEvent ev)
-    {
-        base.OnPlayerEnter(ev);
-        HandlePlayer(ev);
-    }
+	protected override void OnPlayerEnter(PlayerMovementEvent ev)
+	{
+		base.OnPlayerEnter(ev);
+		HandlePlayer(ev);
+	}
 
-    protected override void OnPlayerStay(PlayerMovementEvent ev)
-    {
-        base.OnPlayerStay(ev);
-        HandlePlayer(ev);
-    }
+	protected override void OnPlayerStay(PlayerMovementEvent ev)
+	{
+		base.OnPlayerStay(ev);
+		HandlePlayer(ev);
+	}
 
-    protected override void OnPlayerLeave(PlayerMovementEvent ev)
-    {
-        base.OnPlayerLeave(ev);
-        _hasPlayedSound = false;
-    }
+	protected override void OnPlayerLeave(PlayerMovementEvent ev)
+	{
+		base.OnPlayerLeave(ev);
+		_hasPlayedSound = false;
+	}
 
-    protected override void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState)
-    {
-        base.OnMotionStateChanged(newState, oldState);
-        if (MustNotFall && (newState == BlockMotionState.Hovering || newState == BlockMotionState.Falling))
-        {
-            PlayerManager.DestroyAllPlayers();
-            UIManager.ShowSinglePlayerDeathDialog();
-        }
+	protected override void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState)
+	{
+		base.OnMotionStateChanged(newState, oldState);
+		if (MustNotFall && (newState == BlockMotionState.Hovering || newState == BlockMotionState.Falling))
+		{
+			PlayerManager.DestroyAllPlayers();
+			UIManager.ShowSinglePlayerDeathDialog();
+		}
 
-    }
+	}
 
-    public override Dictionary<string, DefaultValue> DefaultProperties
-    {
-        get
-        {
-            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-            ret.Add("Next Stage Filename",                  new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
-            ret.Add("Next Stage Start Block Override",      new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
-            ret.Add("Must Not Fall",                        new DefaultValue { TypeInfo = typeof(bool),     Value = "False" });
-            return ret;
-        }
-    }
+	public override Dictionary<string, DefaultValue> DefaultProperties
+	{
+		get
+		{
+			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+			ret.Add("Next Stage Filename",                  new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
+			ret.Add("Next Stage Start Block Override",      new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
+			ret.Add("Must Not Fall",                        new DefaultValue { TypeInfo = typeof(bool),     Value = "False" });
+			return ret;
+		}
+	}
 
-    public override Dictionary<string, string> Properties
-    {
-        get
-        {
-            Dictionary<string, string> ret = base.Properties;
-            if (!string.IsNullOrEmpty(NextStageFilename) && !string.IsNullOrWhiteSpace(NextStageFilename))
-                ret.Add("Next Stage Filename", NextStageFilename);
-            if (!string.IsNullOrEmpty(NextStageStartPos) && !string.IsNullOrWhiteSpace(NextStageStartPos))
-                ret.Add("Next Stage Start Block Override", NextStageStartPos);
-            if (MustNotFall)
-                ret.Add("Must Not Fall", true.ToString());
-            return ret;
-        }
-        set
-        {
-            base.Properties = value;
-            if (value.ContainsKey("Next Stage Filename"))
-                NextStageFilename = value["Next Stage Filename"];
-            if (value.ContainsKey("Next Stage Start Block Override"))
-                NextStageStartPos = value["Next Stage Start Block Override"];
-            if (value.ContainsKey("Must Not Fall"))
-                MustNotFall = bool.Parse(value["Must Not Fall"]);
-        }
-    }
+	public override Dictionary<string, string> Properties
+	{
+		get
+		{
+			Dictionary<string, string> ret = base.Properties;
+			if (!string.IsNullOrEmpty(NextStageFilename) && !string.IsNullOrWhiteSpace(NextStageFilename))
+				ret.Add("Next Stage Filename", NextStageFilename);
+			if (!string.IsNullOrEmpty(NextStageStartPos) && !string.IsNullOrWhiteSpace(NextStageStartPos))
+				ret.Add("Next Stage Start Block Override", NextStageStartPos);
+			if (MustNotFall)
+				ret.Add("Must Not Fall", true.ToString());
+			return ret;
+		}
+		set
+		{
+			base.Properties = value;
+			if (value.ContainsKey("Next Stage Filename"))
+				NextStageFilename = value["Next Stage Filename"];
+			if (value.ContainsKey("Next Stage Start Block Override"))
+				NextStageStartPos = value["Next Stage Start Block Override"];
+			if (value.ContainsKey("Must Not Fall"))
+				MustNotFall = bool.Parse(value["Must Not Fall"]);
+		}
+	}
 }
