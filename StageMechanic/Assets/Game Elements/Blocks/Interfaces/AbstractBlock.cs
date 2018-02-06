@@ -329,10 +329,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
 	public float PullWeight(Vector3 direction, int distance = 1)
 	{
-		IBlock neighbor = BlockManager.GetBlockNear(Position + direction);
+		if (WeightFactor == 0)
+			return 0;
 		float weight = WeightFactor;
+		IBlock neighbor = BlockManager.GetBlockNear(Position + direction);
 		if (neighbor != null)
-			weight = Math.Max(weight, neighbor.PullWeight(direction,distance));
+		{
+			if (neighbor.WeightFactor == 0)
+				return 0;
+			weight = Math.Max(weight, neighbor.PullWeight(direction, distance));
+		}
 		return weight;
 	}
 
@@ -357,10 +363,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
 	public float PushWeight(Vector3 direction, int distance = 1)
 	{
-		IBlock neighbor = BlockManager.GetBlockNear(Position + direction);
+		if (WeightFactor == 0)
+			return 0;
 		float weight = WeightFactor;
+		IBlock neighbor = BlockManager.GetBlockNear(Position + direction);
 		if (neighbor != null)
+		{
+			if (neighbor.WeightFactor == 0)
+				return 0;
 			weight = Math.Max(weight, neighbor.PushWeight(direction, distance));
+		}
 		return weight;
 	}
 
