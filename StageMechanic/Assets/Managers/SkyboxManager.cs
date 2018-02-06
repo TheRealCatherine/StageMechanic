@@ -25,24 +25,11 @@ public class SkyboxManager : MonoBehaviour {
             index = 0;
         RenderSettings.skybox = Instance.Skyboxes[index];
         PlayerPrefs.SetInt("SkyboxIndex", index);
-        if(Instance.Skyboxes[index].GetTag("ChromaKey",false,"Nothing") != "Nothing" || Instance.Skyboxes[index].name.Contains("Chroma"))
-        {
-            Debug.Assert(Instance.MainCamera != null);
-            //cam.clearFlags = CameraClearFlags.Skybox;
-            //if (Instance.Skyboxes[index].name.Contains("Blue"))
-            //    cam.backgroundColor = new Color(0, 71, 187);
-            //else
-            Instance.MainCamera.backgroundColor = Color.green;
-            Instance.MainCamera.clearFlags = CameraClearFlags.SolidColor;
-        }
-        else
-        {
-            Debug.Assert(Instance.MainCamera != null);
-            Instance.MainCamera.clearFlags = CameraClearFlags.Skybox;
-            Instance.MainCamera.backgroundColor = Color.black;
-            DynamicGI.UpdateEnvironment();
+        Debug.Assert(Instance.MainCamera != null);
+        Instance.MainCamera.clearFlags = CameraClearFlags.Skybox;
+        Instance.MainCamera.backgroundColor = Color.black;
+        DynamicGI.UpdateEnvironment();
 
-        }
         LogController.Log("Set Background " + index);
     }
 
