@@ -37,6 +37,16 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
 	public BombSize Size = BombSize.Small;
 
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.SmallBombIdle != null);
+		Model1 = theme.SmallBombIdle;
+		Model2 = theme.SmallBombTriggered;
+		ExplosionAnimation = theme.SmallBombExplosion;
+		//TODO bomb.ExplosionAnimationOffset = theme.SmallBombExplosionOffset;
+		FuseSound = theme.SmallBombFuseSound;
+	}
+
 	/// <summary>
 	/// This class is used for both Bomb1 and Bomb2 types
 	/// Setting to a different type should throw an exception

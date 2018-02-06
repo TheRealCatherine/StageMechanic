@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[CreateAssetMenu(fileName ="Cathy1 Block Theme", menuName ="Cathy1 Block Theme")]
+[CreateAssetMenu(fileName ="Cathy1BlockTheme",menuName ="Cathy1BlockTheme")]
 public class Cathy1BlockTheme : AbstractBlockTheme
 {
 	[Header("Normal Block")]

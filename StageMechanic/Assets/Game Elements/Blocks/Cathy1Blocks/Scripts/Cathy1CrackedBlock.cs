@@ -38,14 +38,14 @@ public class Cathy1CrackedBlock : Cathy1Block {
             
             GetComponent<AudioSource>().PlayOneShot(Crack);
             yield return new WaitForSeconds(0.35f);
-            rend.material = Material2;
+            //TODOrend.material = Material2;
         }
         else if(StepsRemaining == 1)
         {
             
             GetComponent<AudioSource>().PlayOneShot(Crack);
             yield return new WaitForSeconds(0.75f);
-            rend.material = Material1;
+            //TODOrend.material = Material1;
         }
         else
         {

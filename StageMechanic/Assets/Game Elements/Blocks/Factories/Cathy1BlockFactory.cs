@@ -13,6 +13,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 {
 	public Cathy1Block[] Blocks;
 	private Dictionary<string, Cathy1Block> _prefabs = new Dictionary<string, Cathy1Block>();
+	public Cathy1BlockTheme CurrentTheme;
 
 	private void Awake()
 	{
@@ -61,6 +62,8 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 		block.transform.parent = parent.transform;
 		if (!string.IsNullOrWhiteSpace(oldName))
 			block.Name = oldName;
+		if (CurrentTheme != null)
+			block.ApplyTheme(CurrentTheme);
 		return block;
 	}
 }

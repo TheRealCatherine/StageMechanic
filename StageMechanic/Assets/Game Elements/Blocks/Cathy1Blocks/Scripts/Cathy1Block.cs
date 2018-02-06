@@ -10,11 +10,52 @@ using UnityEngine;
 
 public class Cathy1Block : AbstractBlock
 {
-	public Material Material1;
-	public Material Material2;
-	public Material Material3;
-	public Material Material4;
+	public MeshRenderer Model1;
+	public MeshRenderer Model2;
+	public MeshRenderer Model3;
+	public MeshRenderer Model4;
 
+	public MeshRenderer CurrentModel;
+	public int CurrentModelNumber;
+
+	public void ShowModel(int number)
+	{
+		Destroy(CurrentModel);
+		switch (number) {
+			default:
+			case 1:
+				CurrentModel = Instantiate(Model1,gameObject.transform);
+				CurrentModelNumber = 1;
+				break;
+			case 2:
+				CurrentModel = Instantiate(Model2, gameObject.transform);
+				CurrentModelNumber = 2;
+				break;
+			case 3:
+				CurrentModel = Instantiate(Model3, gameObject.transform);
+				CurrentModelNumber = 3;
+				break;
+			case 4:
+				CurrentModel = Instantiate(Model4, gameObject.transform);
+				CurrentModelNumber = 4;
+				break;
+		}
+	}
+
+	public virtual void ApplyTheme( Cathy1BlockTheme theme )
+	{
+		Debug.Assert(theme.BasicBlock1 != null);
+		Model1 = theme.BasicBlock1;
+		Model2 = theme.BasicBlock2;
+		Model3 = theme.BasicBlock3;
+		Model4 = theme.BasicBlock4;
+	}
+
+	internal override void Start()
+	{
+		base.Start();
+		ShowModel(1);
+	}
 
 	/**
 	 * An Item associated with this Block, for example powerups
@@ -107,7 +148,7 @@ public class Cathy1Block : AbstractBlock
 		get
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-			//TODO material number
+			ret.Add("Model Variant", new DefaultValue { TypeInfo = typeof(int), Value = "1" });
 			return ret;
 		}
 	}
@@ -121,13 +162,15 @@ public class Cathy1Block : AbstractBlock
 		get
 		{
 			Dictionary<string, string> ret = base.Properties;
-			//TODO the material number
+			if (CurrentModelNumber > 1)
+				ret.Add("Model Variant", CurrentModelNumber.ToString());
 			return ret;
 		}
 		set
 		{
 			base.Properties = value;
-			//TODO
+			if (value.ContainsKey("Model Variant"))
+				ShowModel(int.Parse(value["Model Variant"]));
 		}
 	}
 
