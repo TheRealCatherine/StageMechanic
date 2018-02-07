@@ -4,9 +4,16 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
- 
- public class Cathy1ImmobileBlock : Cathy1Block {
 
+using UnityEngine;
+
+public class Cathy1ImmobileBlock : Cathy1Block {
+
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.Immobile != null);
+		Model1 = theme.Immobile;
+	}
 
 	public override void Awake () {
         base.Awake();

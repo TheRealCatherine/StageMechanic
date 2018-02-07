@@ -58,6 +58,7 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	[Header("Ice")]
 	public MeshRenderer Ice;
 	public ParticleSystem RandomIceEffect;  //Optional
+	public Vector3 IceEffectOffset;
 	public Sprite IceIcon; //Optional
 
 	[Header("Immobile")]

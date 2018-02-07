@@ -17,13 +17,11 @@ using UnityEngine;
 /// </summary>
 public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 {
-	public Material ArmedStateMaterial;
-	public Material TriggeredStateMaterial;
-	public Material ActiveStateMaterial;
-	public Material DisarmedStateMaterial;
-
-	public ParticleSystem Animation;
-	public AudioClip TriggeredSound;
+	public ParticleSystem RandomEffect;
+	public ParticleSystem ActiveEffect;
+	public Vector3 EffectOffset;
+	public AudioClip WarningSound;
+	public AudioClip ActivatedSound;
 	public float AnimationScale = DEFAULT_ANIMATION_SCALE;
 
 	private const float DEFAULT_TRIGGER_TIME = 1.2f;
@@ -31,6 +29,22 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 
 	public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
 	public sealed override float TriggerTime { get; set; } = DEFAULT_TRIGGER_TIME;
+
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.TrapArmed != null);
+		Debug.Assert(theme.TrapDisarmed != null);
+		Model1 = theme.TrapArmed;
+		Model2 = theme.TrapDisarmed;
+		Model3 = theme.TrapWarning;
+		Model4 = theme.TrapActive;
+
+		RandomEffect = theme.TrapRandomEffect;
+		ActiveEffect = theme.TrapActiveEffect;
+		EffectOffset = theme.TrapEffectOffset;
+		WarningSound = theme.TrapWarningSound;
+		ActivatedSound = theme.TrapActivatedSound;
+	}
 
 	[SerializeField]
 	private Vector3 _epicenterOffset;
@@ -50,10 +64,10 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 	internal override IEnumerator HandleStep()
 	{
 		yield return new WaitForSeconds(TriggerTime);
-		if(Animation != null)
-			VisualEffectsManager.PlayEffect(this, Animation, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
-		if(TriggeredSound != null)
-			AudioEffectsManager.PlaySound(this,TriggeredSound);
+		if(ActiveEffect != null)
+			VisualEffectsManager.PlayEffect(this, ActiveEffect, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
+		if(ActivatedSound != null)
+			AudioEffectsManager.PlaySound(this,ActivatedSound);
 		foreach(AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position+Vector3.up, radius:0.25f)) {
 			player.TakeDamage(float.PositiveInfinity);
 		}

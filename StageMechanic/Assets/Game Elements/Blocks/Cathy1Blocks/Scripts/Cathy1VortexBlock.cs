@@ -9,17 +9,35 @@ using UnityEngine;
 
 public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
 {
-	public AudioClip ActivatedSound;
-    public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Vortex;
+	public AudioClip IdleSound;
+	public AudioClip ActiveSound;
+	public ParticleSystem RandomEffect;
+	public ParticleSystem ActiveEffect;
+	public Vector3 EffectOffset;
+
+	public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Vortex;
     public sealed override float TriggerTime { get; set; } = 0f;
 
-    internal override IEnumerator HandleStep()
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.IdleVortex != null);
+		Model1 = theme.IdleVortex;
+		Model2 = theme.ActiveVortex;
+
+		IdleSound = theme.IdleVortexSound;
+		ActiveSound = theme.ActiveVortexSound;
+		RandomEffect = theme.RandomVortexEffect;
+		ActiveEffect = theme.ActiveVortexEffect;
+		EffectOffset = theme.VortexEffectOffset;
+	}
+
+	internal override IEnumerator HandleStep()
     {
         IsTriggered = true;
         if(TriggerTime>0)
             yield return new WaitForSeconds(TriggerTime);
-		if (ActivatedSound != null)
-			AudioEffectsManager.PlaySound(this, ActivatedSound);
+		if (ActiveSound != null)
+			AudioEffectsManager.PlaySound(this, ActiveSound);
         foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
         {
             player.TakeDamage(float.PositiveInfinity);

@@ -12,81 +12,89 @@ using UnityEngine;
 public class Cathy1MysteryBlock : Cathy1Block
 {
 	public AudioClip RevealSound;
-    public float Delay = DEFAULT_DELAY;
-    public const float DEFAULT_DELAY = 0.05f;
+	public float Delay = DEFAULT_DELAY;
+	public const float DEFAULT_DELAY = 0.05f;
 
-    public readonly string[] PossibleTypes = {
-        "Basic",
-        "Immobile",
-        "Cracked (2 Steps)",
-        "Cracked (1 Step)",
-        "Heavy",
-        "Spike Trap",
-        "Ice",
-        "Small Bomb",
-        "Large Bomb",
-        "Spring",
-        "Mystery",
-        "Monster",
-        "Vortex"};
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.IdleMystery != null);
+		Model1 = theme.IdleMystery;
+		Model2 = theme.RevealingMystery;
+		RevealSound = theme.MysteryRevealSound;
+	}
 
-    protected override void OnPlayerEnter(PlayerMovementEvent ev)
-    {
-        base.OnPlayerEnter(ev);
-        StartCoroutine(HandlePlayer(ev));
-    }
+	public readonly string[] PossibleTypes = {
+		"Basic",
+		"Immobile",
+		"Cracked (2 Steps)",
+		"Cracked (1 Step)",
+		"Heavy",
+		"Spike Trap",
+		"Ice",
+		"Small Bomb",
+		"Large Bomb",
+		"Spring",
+		"Mystery",
+		"Monster",
+		"Vortex"};
 
-    //TODO OnPlayerEnter for some reason was not sufficient here, need to figure out why
-    //and then probably remove this
-    protected override void OnPlayerStay(PlayerMovementEvent ev)
-    {
-        base.OnPlayerStay(ev);
-        StartCoroutine(HandlePlayer(ev));
-    }
+	protected override void OnPlayerEnter(PlayerMovementEvent ev)
+	{
+		base.OnPlayerEnter(ev);
+		StartCoroutine(HandlePlayer(ev));
+	}
+
+	//TODO OnPlayerEnter for some reason was not sufficient here, need to figure out why
+	//and then probably remove this
+	protected override void OnPlayerStay(PlayerMovementEvent ev)
+	{
+		base.OnPlayerStay(ev);
+		StartCoroutine(HandlePlayer(ev));
+	}
 
 
-    bool _started = false;
-    virtual internal IEnumerator HandlePlayer(PlayerMovementEvent ev)
-    {
-        if (ev.Location != PlayerMovementEvent.EventLocation.Top || _started)
-            yield break;
-        string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
-        if (statename == "Idle" || statename == "Walk" || statename == "Center")
-        {
-            _started = true;
+	bool _started = false;
+	virtual internal IEnumerator HandlePlayer(PlayerMovementEvent ev)
+	{
+		if (ev.Location != PlayerMovementEvent.EventLocation.Top || _started)
+			yield break;
+		string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
+		if (statename == "Idle" || statename == "Walk" || statename == "Center")
+		{
+			_started = true;
 			if (RevealSound != null)
 				AudioEffectsManager.PlaySound(this, RevealSound);
-            yield return new WaitForSeconds(Delay);
-            System.Random rnd = new System.Random();
-            int index = rnd.Next(PossibleTypes.Length);
-            BlockManager.CreateBlockAt(Position, "Cathy1 Internal", PossibleTypes[index]);
-        }
-    }
+			yield return new WaitForSeconds(Delay);
+			System.Random rnd = new System.Random();
+			int index = rnd.Next(PossibleTypes.Length);
+			BlockManager.CreateBlockAt(Position, "Cathy1 Internal", PossibleTypes[index]);
+		}
+	}
 
-    public override Dictionary<string, DefaultValue> DefaultProperties
-    {
-        get
-        {
-            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-            ret.Add("Trigger Time (seconds)", new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_DELAY.ToString() });
-            return ret;
-        }
-    }
+	public override Dictionary<string, DefaultValue> DefaultProperties
+	{
+		get
+		{
+			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+			ret.Add("Trigger Time (seconds)", new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_DELAY.ToString() });
+			return ret;
+		}
+	}
 
-    public override Dictionary<string, string> Properties
-    {
-        get
-        {
-            Dictionary<string, string> ret = base.Properties;
-            if (Delay != DEFAULT_DELAY)
-                ret.Add("Trigger Time (seconds)", Delay.ToString());
-            return ret;
-        }
-        set
-        {
-            base.Properties = value;
-            if (value.ContainsKey("Trigger Time (seconds)"))
-                Delay = float.Parse(value["Trigger Time (seconds)"]);
-        }
-    }
+	public override Dictionary<string, string> Properties
+	{
+		get
+		{
+			Dictionary<string, string> ret = base.Properties;
+			if (Delay != DEFAULT_DELAY)
+				ret.Add("Trigger Time (seconds)", Delay.ToString());
+			return ret;
+		}
+		set
+		{
+			base.Properties = value;
+			if (value.ContainsKey("Trigger Time (seconds)"))
+				Delay = float.Parse(value["Trigger Time (seconds)"]);
+		}
+	}
 }

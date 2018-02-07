@@ -10,11 +10,23 @@ using UnityEngine;
 
 public class Cathy1GoalBlock : Cathy1Block
 {
-
+	public ParticleSystem IdleEffect;
+	public ParticleSystem ActiveEffect;
+	public Vector3 EffectOffset;
 	public AudioClip Applause;
 	public string NextStageFilename;
 	public string NextStageStartPos;
 	public bool MustNotFall = false;
+
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.IdleGoal != null);
+		Model1 = theme.IdleGoal;
+		Model2 = theme.ActiveGoal;
+		IdleEffect = theme.IdleGoalEffect;
+		ActiveEffect = theme.ActiveGoalEffect;
+		EffectOffset = theme.GoalEffectsOffset;
+	}
 
 	public override void Awake()
 	{
