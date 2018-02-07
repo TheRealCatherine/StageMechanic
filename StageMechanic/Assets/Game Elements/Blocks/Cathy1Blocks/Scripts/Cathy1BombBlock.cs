@@ -154,7 +154,8 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
 	internal override IEnumerator HandleStep()
 	{
-		GetComponent<AudioSource>()?.PlayOneShot(FuseSound);
+		ShowModel(2);
+		AudioEffectsManager.PlaySound(this, FuseSound);
 		if(ExplosionAnimation != null && ExplosionAnimationScale>0)
 			VisualEffectsManager.PlayEffect(this, ExplosionAnimation, ExplosionAnimationScale, TriggerTime, _epicenterOffset);
 		yield return new WaitForSeconds(TriggerTime);

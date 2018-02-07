@@ -23,7 +23,8 @@ MonoBehaviour:
   BasicBlockIcon: {fileID: 0}
   SmallBombIdle: {fileID: 23777467582375588, guid: a25736b63599cd846870b1b76676530f,
     type: 2}
-  SmallBombTriggered: {fileID: 0}
+  SmallBombTriggered: {fileID: 23777467582375588, guid: 595c0b501461815429c828ad72feb615,
+    type: 2}
   SmallBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   SmallBombExplosionOffset: {x: 0, y: 0, z: 0}
   SmallBombFuseSound: {fileID: 0}
@@ -31,7 +32,8 @@ MonoBehaviour:
   SmallBombIcon: {fileID: 0}
   LargeBombIdle: {fileID: 23406145447220530, guid: 673fcf7832ffa7b43b909b9ba39ec825,
     type: 2}
-  LargeBombTriggered: {fileID: 0}
+  LargeBombTriggered: {fileID: 23406145447220530, guid: 612e70bc7516e8e4397587ac1b16286d,
+    type: 2}
   LargeBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   LargeBombExplosionOffset: {x: 0, y: 0, z: 0}
   LargeBombFuseSound: {fileID: 0}

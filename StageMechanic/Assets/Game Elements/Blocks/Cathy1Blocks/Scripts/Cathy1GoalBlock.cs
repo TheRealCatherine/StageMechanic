@@ -73,18 +73,21 @@ public class Cathy1GoalBlock : Cathy1Block
 	protected override void OnPlayerEnter(PlayerMovementEvent ev)
 	{
 		base.OnPlayerEnter(ev);
+		ShowModel(2);
 		HandlePlayer(ev);
 	}
 
 	protected override void OnPlayerStay(PlayerMovementEvent ev)
 	{
 		base.OnPlayerStay(ev);
+		ShowModel(2);
 		HandlePlayer(ev);
 	}
 
 	protected override void OnPlayerLeave(PlayerMovementEvent ev)
 	{
 		base.OnPlayerLeave(ev);
+		ShowModel(1);
 		_hasPlayedSound = false;
 	}
 

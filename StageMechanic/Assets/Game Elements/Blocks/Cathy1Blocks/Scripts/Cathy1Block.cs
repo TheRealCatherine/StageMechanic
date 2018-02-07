@@ -16,10 +16,12 @@ public class Cathy1Block : AbstractBlock
 	public MeshRenderer Model4;
 
 	public MeshRenderer CurrentModel;
-	public int CurrentModelNumber;
+	public int CurrentModelNumber=0;
 
 	public void ShowModel(int number)
 	{
+		if (CurrentModelNumber == number && CurrentModel != null)
+			return;
 		Destroy(CurrentModel);
 		switch (number) {
 			default:

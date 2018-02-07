@@ -24,7 +24,7 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 	public AudioClip ActivatedSound;
 	public float AnimationScale = DEFAULT_ANIMATION_SCALE;
 
-	private const float DEFAULT_TRIGGER_TIME = 1.2f;
+	private const float DEFAULT_TRIGGER_TIME = 0.7f;
 	private const float DEFAULT_ANIMATION_SCALE = 2;
 
 	public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Spike;
@@ -68,11 +68,14 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 			VisualEffectsManager.PlayEffect(this, ActiveEffect, 7f, TriggerTime, new Vector3(0f, 3f, 0f), Quaternion.Euler(0, 180, 90));
 		if(ActivatedSound != null)
 			AudioEffectsManager.PlaySound(this,ActivatedSound);
+		if (Model4 != null)
+			ShowModel(4);
+		yield return new WaitForEndOfFrame();
 		foreach(AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position+Vector3.up, radius:0.25f)) {
 			player.TakeDamage(float.PositiveInfinity);
 		}
-		//Renderer rend = GetComponent<Renderer>();
-		//rend.material = DisarmedStateMaterial;
+		if (Model2 != null)
+			ShowModel(2);
 		IsArmed = false;
 	}
 
