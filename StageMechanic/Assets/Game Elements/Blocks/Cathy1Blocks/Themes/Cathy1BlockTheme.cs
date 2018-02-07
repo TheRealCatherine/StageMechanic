@@ -118,7 +118,6 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	[Header("Vortex")]
 	public MeshRenderer IdleVortex;
 	public MeshRenderer ActiveVortex; //Optional
-	public AudioClip IdleVortexSound; //Optional
 	public AudioClip ActiveVortexSound; //Optional
 	public ParticleSystem RandomVortexEffect; //Optional
 	public ParticleSystem ActiveVortexEffect; //Optional

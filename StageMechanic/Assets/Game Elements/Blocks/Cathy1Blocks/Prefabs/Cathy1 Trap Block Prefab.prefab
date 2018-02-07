@@ -100,11 +100,10 @@ MonoBehaviour:
   CurrentModel: {fileID: 0}
   CurrentModelNumber: 0
   TypeOfBlock: Spike Trap
-  ArmedStateMaterial: {fileID: 0}
-  TriggeredStateMaterial: {fileID: 0}
-  ActiveStateMaterial: {fileID: 0}
-  DisarmedStateMaterial: {fileID: 0}
-  Animation: {fileID: 0}
-  TriggeredSound: {fileID: 0}
+  RandomEffect: {fileID: 0}
+  ActiveEffect: {fileID: 0}
+  EffectOffset: {x: 0, y: 0, z: 0}
+  WarningSound: {fileID: 0}
+  ActivatedSound: {fileID: 0}
   AnimationScale: 1
   _epicenterOffset: {x: 0, y: 0, z: 0}

@@ -100,6 +100,9 @@ MonoBehaviour:
   CurrentModel: {fileID: 0}
   CurrentModelNumber: 0
   TypeOfBlock: Goal
+  IdleEffect: {fileID: 0}
+  ActiveEffect: {fileID: 0}
+  EffectOffset: {x: 0, y: 0, z: 0}
   Applause: {fileID: 8300000, guid: 974aed704e566b74c86050068f943614, type: 3}
   NextStageFilename: 
   NextStageStartPos: 

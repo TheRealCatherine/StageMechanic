@@ -51,7 +51,8 @@ MonoBehaviour:
   HeavyCracksIcon: {fileID: 0}
   GroupedBlockIcon: {fileID: 0}
   IdleGoal: {fileID: 23906867883044482, guid: 70bfc3fc19b49704f8345c9b25ee7f45, type: 2}
-  ActiveGoal: {fileID: 0}
+  ActiveGoal: {fileID: 23906867883044482, guid: 87a6ce6222d56f24c9ce61746735e016,
+    type: 2}
   IdleGoalEffect: {fileID: 0}
   ActiveGoalEffect: {fileID: 0}
   GoalEffectsOffset: {x: 0, y: 0, z: 0}
@@ -97,7 +98,7 @@ MonoBehaviour:
   TrapActive: {fileID: 23328800861084872, guid: d870929128b0f394ebcc3732c84b4032,
     type: 2}
   TrapRandomEffect: {fileID: 0}
-  TrapActiveEffect: {fileID: 0}
+  TrapActiveEffect: {fileID: 19800000, guid: b2e1927a9cfbd4c03a114b0166c00dce, type: 2}
   TrapEffectOffset: {x: 0, y: 0, z: 0}
   TrapWarningSound: {fileID: 0}
   TrapActivatedSound: {fileID: 0}
@@ -112,8 +113,8 @@ MonoBehaviour:
   IdleVortex: {fileID: 23128270146585074, guid: fe5dd64498cea5541a473642df9018f0,
     type: 2}
   ActiveVortex: {fileID: 0}
-  IdleVortexSound: {fileID: 0}
-  ActiveVortexSound: {fileID: 0}
+  IdleVortexSound: {fileID: 8300000, guid: ea2ccf83054dec443bec6e524db7c527, type: 3}
+  ActiveVortexSound: {fileID: 8300000, guid: c6a04df0a6c990e4d96821ef721bd9d5, type: 3}
   RandomVortexEffect: {fileID: 0}
   ActiveVortexEffect: {fileID: 0}
   VortexEffectOffset: {x: 0, y: 0, z: 0}

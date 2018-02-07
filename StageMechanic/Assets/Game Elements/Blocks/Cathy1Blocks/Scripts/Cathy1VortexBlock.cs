@@ -9,14 +9,13 @@ using UnityEngine;
 
 public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
 {
-	public AudioClip IdleSound;
 	public AudioClip ActiveSound;
 	public ParticleSystem RandomEffect;
 	public ParticleSystem ActiveEffect;
 	public Vector3 EffectOffset;
 
 	public sealed override TrapBlockType TrapType { get; } = TrapBlockType.Vortex;
-    public sealed override float TriggerTime { get; set; } = 0f;
+	public sealed override float TriggerTime { get; set; } = 0f;
 
 	public override void ApplyTheme(Cathy1BlockTheme theme)
 	{
@@ -24,7 +23,6 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
 		Model1 = theme.IdleVortex;
 		Model2 = theme.ActiveVortex;
 
-		IdleSound = theme.IdleVortexSound;
 		ActiveSound = theme.ActiveVortexSound;
 		RandomEffect = theme.RandomVortexEffect;
 		ActiveEffect = theme.ActiveVortexEffect;
@@ -32,36 +30,36 @@ public class Cathy1VortexBlock : Cathy1AbstractTrapBlock
 	}
 
 	internal override IEnumerator HandleStep()
-    {
-        IsTriggered = true;
-        if(TriggerTime>0)
-            yield return new WaitForSeconds(TriggerTime);
+	{
+		IsTriggered = true;
+		if(TriggerTime>0)
+			yield return new WaitForSeconds(TriggerTime);
 		if (ActiveSound != null)
 			AudioEffectsManager.PlaySound(this, ActiveSound);
-        foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
-        {
-            player.TakeDamage(float.PositiveInfinity);
-        }
-        IsArmed = true;
-        IsTriggered = false;
-    }
+		foreach (AbstractPlayerCharacter player in PlayerManager.GetPlayersNear(Position + Vector3.up, radius: 0.25f))
+		{
+			player.TakeDamage(float.PositiveInfinity);
+		}
+		IsArmed = true;
+		IsTriggered = false;
+	}
 
-    public override void Awake()
-    {
-        base.Awake();
-        TriggerTime = 0f;
-    }
+	public override void Awake()
+	{
+		base.Awake();
+		TriggerTime = 0f;
+	}
 
-    internal override void Update()
-    {
-        base.Update();
-        if (!BlockManager.PlayMode)
-            return;
-        IBlock onTop = BlockManager.GetBlockNear(transform.position + Vector3.up);
-        if (onTop != null) {
-            GetComponent<AudioSource>()?.Play();
-            BlockManager.DestroyBlock(onTop);
-        }
+	internal override void Update()
+	{
+		base.Update();
+		if (!BlockManager.PlayMode)
+			return;
+		IBlock onTop = BlockManager.GetBlockNear(transform.position + Vector3.up);
+		if (onTop != null) {
+			GetComponent<AudioSource>()?.Play();
+			BlockManager.DestroyBlock(onTop);
+		}
 
-    }
+	}
 }
