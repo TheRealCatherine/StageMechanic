@@ -98,6 +98,7 @@ MonoBehaviour:
   Model3: {fileID: 0}
   Model4: {fileID: 0}
   CurrentModel: {fileID: 0}
+  CurrentModelNumber: 0
   TypeOfBlock: Small Bomb
   ArmedStateMaterial: {fileID: 0}
   TriggeredStateMaterial: {fileID: 0}
@@ -107,5 +108,6 @@ MonoBehaviour:
   ExplosionSound: {fileID: 0}
   ExplosionAnimation: {fileID: 0}
   ExplosionAnimationScale: 2
+  ExplosionAnimationOffset: {x: 0, y: 0, z: 0}
   Size: 0
   _epicenterOffset: {x: 0, y: 0, z: 0}

@@ -21,6 +21,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
 	public ParticleSystem ExplosionAnimation;
 	public float ExplosionAnimationScale = 2f;
+	public Vector3 ExplosionAnimationOffset;
 
 	private const float SMALL_BOMB_DEFAULT_FUSE_TIME = 1.5f;
 	private const float LARGE_BOMB_DEFAULT_FUSE_TIME = 1.5f;
@@ -39,12 +40,26 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
 	public override void ApplyTheme(Cathy1BlockTheme theme)
 	{
-		Debug.Assert(theme.SmallBombIdle != null);
-		Model1 = theme.SmallBombIdle;
-		Model2 = theme.SmallBombTriggered;
-		ExplosionAnimation = theme.SmallBombExplosion;
-		//TODO bomb.ExplosionAnimationOffset = theme.SmallBombExplosionOffset;
-		FuseSound = theme.SmallBombFuseSound;
+		if (Size == BombSize.Small)
+		{
+			Debug.Assert(theme.SmallBombIdle != null);
+			Model1 = theme.SmallBombIdle;
+			Model2 = theme.SmallBombTriggered;
+			ExplosionAnimation = theme.SmallBombExplosion;
+			ExplosionAnimationOffset = theme.SmallBombExplosionOffset;
+			FuseSound = theme.SmallBombFuseSound;
+			ExplosionSound = theme.SmallBombExplosionSound;
+		}
+		else
+		{
+			Debug.Assert(theme.LargeBombIdle != null);
+			Model1 = theme.LargeBombIdle;
+			Model2 = theme.LargeBombTriggered;
+			ExplosionAnimation = theme.LargeBombExplosion;
+			ExplosionAnimationOffset = theme.LargeBombExplosionOffset;
+			FuseSound = theme.LargeBombFuseSound;
+			ExplosionSound = theme.LargeBombExplosionSound;
+		}
 	}
 
 	/// <summary>

@@ -28,15 +28,24 @@ public class Cathy1Block : AbstractBlock
 				CurrentModelNumber = 1;
 				break;
 			case 2:
-				CurrentModel = Instantiate(Model2, gameObject.transform);
+				if(Model2 != null)
+					CurrentModel = Instantiate(Model2, gameObject.transform);
+				else
+					CurrentModel = Instantiate(Model1, gameObject.transform);
 				CurrentModelNumber = 2;
 				break;
 			case 3:
-				CurrentModel = Instantiate(Model3, gameObject.transform);
+				if (Model3 != null)
+					CurrentModel = Instantiate(Model3, gameObject.transform);
+				else
+					CurrentModel = Instantiate(Model1, gameObject.transform);
 				CurrentModelNumber = 3;
 				break;
 			case 4:
-				CurrentModel = Instantiate(Model4, gameObject.transform);
+				if (Model4 != null)
+					CurrentModel = Instantiate(Model4, gameObject.transform);
+				else
+					CurrentModel = Instantiate(Model1, gameObject.transform);
 				CurrentModelNumber = 4;
 				break;
 		}

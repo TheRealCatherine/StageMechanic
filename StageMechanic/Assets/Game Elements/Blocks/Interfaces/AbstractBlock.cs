@@ -61,7 +61,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	{
 		get
 		{
-			return transform.position;
+			if(gameObject != null)
+				return transform.position;
+			return new Vector3(float.NaN, float.NaN, float.NaN);
 		}
 		set
 		{
@@ -802,6 +804,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	public virtual void OnPlayerMovement(IPlayerCharacter player, PlayerMovementEvent.EventType type)
 	{
 		Debug.Assert(player != null);
+		if (gameObject == null)
+			return;
 		PlayerMovementEvent ev = new PlayerMovementEvent();
 		ev.Type = type;
 		ev.Player = player;

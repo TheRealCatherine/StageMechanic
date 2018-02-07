@@ -11,93 +11,120 @@ using UnityEngine;
 
 public class Cathy1CrackedBlock : Cathy1Block {
 
-    public int StepsRemaining = 2;
-    public AudioClip Crack;
-    public AudioClip Collapse;
+	public int StepsRemaining = 2;
+	public AudioClip Crack;
+	public AudioClip Collapse;
+	public ParticleSystem Dust;
+	public Vector3 DustOffset;
 
-    private enum State
-    {
-        NoPlayer = 0,
-        PlayerEnter,
-        PlayerStand,
-        PlayerLeave
-    }
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.LightCracks != null);
+		Debug.Assert(theme.HeavyCracks != null);
+		Model1 = theme.HeavyCracks;
+		Model2 = theme.LightCracks;
 
-    private State CurrentState = State.NoPlayer;
+		Dust = theme.DisintigrationDust;
+		DustOffset = theme.DustOffset;
+		Crack = theme.CrackSound;
+		Collapse = theme.DisintigrateSound;
+	}
 
-    private IEnumerator HandleStep()
-    {
-        CurrentState = State.PlayerEnter;
-        yield return new WaitForSeconds(0.35f);
-        --StepsRemaining;
-        CurrentState = State.PlayerStand;
 
-        Renderer rend = GetComponent<Renderer>();
-        if(StepsRemaining >= 2)
-        {
-            
-            GetComponent<AudioSource>().PlayOneShot(Crack);
-            yield return new WaitForSeconds(0.35f);
-            //TODOrend.material = Material2;
-        }
-        else if(StepsRemaining == 1)
-        {
-            
-            GetComponent<AudioSource>().PlayOneShot(Crack);
-            yield return new WaitForSeconds(0.75f);
-            //TODOrend.material = Material1;
-        }
-        else
-        {
-            GetComponent<AudioSource>().PlayOneShot(Collapse);
-            yield return new WaitForSeconds(0.55f);
-            BlockManager.DestroyBlock(this);
-        }
-            
-    }
+	//TODO use new player event handling
+	private enum State
+	{
+		NoPlayer = 0,
+		PlayerEnter,
+		PlayerStand,
+		PlayerLeave
+	}
 
-    internal override void Update()
-    {
-        base.Update();
-        if (!BlockManager.PlayMode)
-            return;
-        Vector3 player = PlayerManager.Player1Location();
-        if (player != transform.position + Vector3.up || PlayerManager.PlayerStateName() != "Idle") {
-            if (CurrentState != State.NoPlayer)
-                CurrentState = State.PlayerLeave;
-            CurrentState = State.NoPlayer;
-            return;
-        }
+	private State CurrentState = State.NoPlayer;
 
-        if (CurrentState == State.PlayerStand)
-            return;
-        else if (CurrentState == State.NoPlayer)
-            StartCoroutine(HandleStep());
-    }
 
-    public override Dictionary<string, DefaultValue> DefaultProperties
-    {
-        get
-        {
-            Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-            ret.Add("Steps Remaining", new DefaultValue { TypeInfo = typeof(int), Value = StepsRemaining.ToString() });
-            return ret;
-        }
-    }
 
-    public override Dictionary<string, string> Properties
-    {
-        get
-        {
-            Dictionary<string, string> ret = base.Properties;
-            ret.Add("Steps Remaining", StepsRemaining.ToString());
-            return ret;
-        }
-        set
-        {
-            base.Properties = value;
-            if (value.ContainsKey("Steps Remaining"))
-                StepsRemaining = int.Parse(value["Steps Remaining"]);
-        }
-    }
+	private IEnumerator HandleStep()
+	{
+		CurrentState = State.PlayerEnter;
+		yield return new WaitForSeconds(0.35f);
+		--StepsRemaining;
+		CurrentState = State.PlayerStand;
+
+		if(StepsRemaining >= 2)
+		{
+			
+			GetComponent<AudioSource>().PlayOneShot(Crack);
+			yield return new WaitForSeconds(0.35f);
+			ShowModel(2);
+		}
+		else if(StepsRemaining == 1)
+		{
+			
+			GetComponent<AudioSource>().PlayOneShot(Crack);
+			yield return new WaitForSeconds(0.75f);
+			ShowModel(1);
+		}
+		else
+		{
+			GetComponent<AudioSource>().PlayOneShot(Collapse);
+			yield return new WaitForSeconds(0.55f);
+			BlockManager.DestroyBlock(this);
+		}
+			
+	}
+
+	internal override void Start()
+	{
+		base.Start();
+		if (StepsRemaining >= 2)
+			ShowModel(2);
+		else
+			ShowModel(1);
+	}
+
+	internal override void Update()
+	{
+		base.Update();
+		if (!BlockManager.PlayMode)
+			return;
+		Vector3 player = PlayerManager.Player1Location();
+		if (player != transform.position + Vector3.up || PlayerManager.PlayerStateName() != "Idle") {
+			if (CurrentState != State.NoPlayer)
+				CurrentState = State.PlayerLeave;
+			CurrentState = State.NoPlayer;
+			return;
+		}
+
+		if (CurrentState == State.PlayerStand)
+			return;
+		else if (CurrentState == State.NoPlayer)
+			StartCoroutine(HandleStep());
+	}
+
+	public override Dictionary<string, DefaultValue> DefaultProperties
+	{
+		get
+		{
+			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+			ret.Add("Steps Remaining", new DefaultValue { TypeInfo = typeof(int), Value = StepsRemaining.ToString() });
+			return ret;
+		}
+	}
+
+	public override Dictionary<string, string> Properties
+	{
+		get
+		{
+			Dictionary<string, string> ret = base.Properties;
+			ret.Add("Steps Remaining", StepsRemaining.ToString());
+			return ret;
+		}
+		set
+		{
+			base.Properties = value;
+			if (value.ContainsKey("Steps Remaining"))
+				StepsRemaining = int.Parse(value["Steps Remaining"]);
+		}
+	}
 }
