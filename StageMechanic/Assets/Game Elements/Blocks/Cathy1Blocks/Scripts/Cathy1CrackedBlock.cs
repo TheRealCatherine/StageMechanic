@@ -53,21 +53,20 @@ public class Cathy1CrackedBlock : Cathy1Block {
 
 		if(StepsRemaining >= 2)
 		{
-			
-			GetComponent<AudioSource>().PlayOneShot(Crack);
+			AudioEffectsManager.PlaySound(this, Crack);
 			yield return new WaitForSeconds(0.35f);
 			ShowModel(2);
 		}
 		else if(StepsRemaining == 1)
 		{
-			
-			GetComponent<AudioSource>().PlayOneShot(Crack);
+
+			AudioEffectsManager.PlaySound(this, Crack);
 			yield return new WaitForSeconds(0.75f);
 			ShowModel(1);
 		}
 		else
 		{
-			GetComponent<AudioSource>().PlayOneShot(Collapse);
+			AudioEffectsManager.PlaySound(this, Collapse);
 			yield return new WaitForSeconds(0.55f);
 			BlockManager.DestroyBlock(this);
 		}
