@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
     public AudioClip StartupSound;
     public Camera MainCamera;
     public GameObject SettingsWindow;
+	public GameObject CreditsDialog;
 
     private void OnEnable()
     {
@@ -209,5 +210,15 @@ public class MainMenu : MonoBehaviour
 	public void OnNetworkLoadClicked()
 	{
 		UIManager.ShowNetworkLoadDialog();
+	}
+
+	public void OnShowCreditsClicked()
+	{
+		CreditsDialog.SetActive(true);
+	}
+
+	public void OnDismissCreditsClicked()
+	{
+		CreditsDialog.SetActive(false);
 	}
 }
