@@ -205,4 +205,9 @@ public class MainMenu : MonoBehaviour
         else
             CameraPerspectiveButton.image.color = Color.white;
     }
+
+	public void OnNetworkLoadClicked()
+	{
+		UIManager.ShowNetworkLoadDialog();
+	}
 }
