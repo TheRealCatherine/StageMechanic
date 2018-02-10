@@ -111,6 +111,12 @@ public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable, I
 		set;
 	}
 
+	float DensityFactor
+	{
+		get;
+		set;
+	}
+
 	/// <summary>
 	/// A list of items associated with this block. Typically
 	/// destroying or moving the block will destroy or move

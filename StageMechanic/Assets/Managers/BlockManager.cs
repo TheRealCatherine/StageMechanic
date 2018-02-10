@@ -105,7 +105,7 @@ public class BlockManager : MonoBehaviour
 			if (PlayMode)
 				return PlayerManager.Player(0)?.GameObject?.GetComponent<Cathy1PlayerCharacter>()?.CurrentBlock?.GameObject?.GetComponent<AbstractBlock>();
 			else
-				return GetBlockNear(Cursor.transform.position)?.GameObject?.GetComponent<AbstractBlock>();
+				return GetBlockNear(Cursor.transform.position,0.01f,0.0f)?.GameObject?.GetComponent<AbstractBlock>();
 		}
 		set
 		{
@@ -337,18 +337,38 @@ public class BlockManager : MonoBehaviour
 		}
 	}
 
-	public static AbstractBlock GetBlockAt(Vector3 position, float radius = 0.01f)
+	public static AbstractBlock GetBlockAt(Vector3 position, float radius = 0.01f, float minDensity = 1f)
 	{
-
-		return Utility.GetGameObjectAt<AbstractBlock>(position, radius);
+		AbstractBlock ret = Utility.GetGameObjectAt<AbstractBlock>(position, radius);
+		if (ret) {
+			if (ret.DensityFactor >= minDensity)
+				return ret;
+			foreach(AbstractBlock block in GetBlocksNear(position,radius))
+			{
+				if (block.DensityFactor >= minDensity)
+					return block;
+			}
+		}
+		return null;
 	}
 
-	public static AbstractBlock GetBlockNear(Vector3 position, float radius = 0.01f)
+	public static AbstractBlock GetBlockNear(Vector3 position, float radius = 0.01f, float minDensity = 1f)
 	{
-		return Utility.GetGameObjectNear<AbstractBlock>(position, radius);
+		AbstractBlock ret = Utility.GetGameObjectNear<AbstractBlock>(position, radius);
+		if (ret)
+		{
+			if (ret.DensityFactor >= minDensity)
+				return ret;
+			foreach (AbstractBlock block in GetBlocksNear(position, radius))
+			{
+				if (block.DensityFactor >= minDensity)
+					return block;
+			}
+		}
+		return null;
 	}
 
-	public static List<AbstractBlock> GetBlocskNear(Vector3 position, float radius = 0.01f)
+	public static List<AbstractBlock> GetBlocksNear(Vector3 position, float radius = 0.01f)
 	{
 		return Utility.GetGameObjectsNear<AbstractBlock>(position, radius);
 	}

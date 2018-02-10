@@ -129,7 +129,7 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 
 		if (_epicenterOffset == Vector3.zero)
 			gameObject.SetActive(false);
-		List<AbstractBlock> localBlocks = BlockManager.GetBlocskNear(Epicenter, DamageRadius.x);
+		List<AbstractBlock> localBlocks = BlockManager.GetBlocksNear(Epicenter, DamageRadius.x);
 		foreach (AbstractBlock block in localBlocks)
 		{
 			Cathy1Block c1b = block as Cathy1Block;

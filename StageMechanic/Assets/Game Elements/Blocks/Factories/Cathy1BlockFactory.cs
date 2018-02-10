@@ -48,7 +48,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 	{
 		string oldName = null;
 
-		IBlock oldBlock = BlockManager.GetBlockNear(globalPosition);
+		IBlock oldBlock = BlockManager.GetBlockNear(globalPosition,0.01f,0.0f);
 		if (oldBlock != null)
 		{
 			oldName = oldBlock.Name;

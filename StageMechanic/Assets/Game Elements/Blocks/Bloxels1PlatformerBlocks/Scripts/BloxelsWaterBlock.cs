@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BloxelsWaterBlock : AbstractBloxelsBlock
 {
+	public override void Awake()
+	{
+		base.Awake();
+		DensityFactor = 0.0f;
+	}
 
 	public override string TypeName
 	{

@@ -203,6 +203,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	/// </summary>
 	public float GravityFactor { get; set; } = 1.0f;
 
+	public float DensityFactor { get; set; } = 1.0f;
+
 	[SerializeField]
 	private BlockMotionState _motionState = BlockMotionState.Unknown;
 	public BlockMotionState MotionState
