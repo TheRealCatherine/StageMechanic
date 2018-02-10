@@ -526,14 +526,21 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		{
 			if (FacingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			{
-				IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
+				AbstractBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
 				if (blockInWay != null)
 				{
-					IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
-					IBlock blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up);
-					if (oneBlockUp == null && blockAbove == null)
+					if (blockInWay.GetComponent<Rigidbody>().isKinematic)
 					{
-						Climb(direction + Vector3.up);
+						Walk(direction);
+					}
+					else
+					{
+						IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
+						IBlock blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up);
+						if (oneBlockUp == null && blockAbove == null)
+						{
+							Climb(direction + Vector3.up);
+						}
 					}
 				}
 				else
