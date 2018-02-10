@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0844968001e532d428474f3b609df787, type: 2}
+  - {fileID: 2100000, guid: dbf38bb58af9b754cbce917291dab26d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 6c674145ff092b44e898a115fe5c3d59, type: 3}
+  Palette: 
   EdgeEffect: {fileID: 0}
   EdgeEffectScale: 1
   EdgeEffectDuration: 0.1
