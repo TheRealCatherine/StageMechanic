@@ -431,8 +431,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 	{
 		if (CurrentMoveState == State.Idle || CurrentMoveState == State.Fall)
 		{
-			AbstractBlock down = BlockManager.GetBlockNear(transform.position + Vector3.down);
-			if (down == null || down.GetComponent<Rigidbody>().isKinematic)
+			if (BlockManager.GetBlockNear(transform.position + Vector3.down) == null)
 			{
 				CurrentMoveState = State.Fall;
 				base.ApplyGravity(factor, acceleration);
@@ -526,21 +525,14 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		{
 			if (FacingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			{
-				AbstractBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
+				IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
 				if (blockInWay != null)
 				{
-					if (blockInWay.GetComponent<Rigidbody>().isKinematic)
+					IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
+					IBlock blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up);
+					if (oneBlockUp == null && blockAbove == null)
 					{
-						Walk(direction);
-					}
-					else
-					{
-						IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
-						IBlock blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up);
-						if (oneBlockUp == null && blockAbove == null)
-						{
-							Climb(direction + Vector3.up);
-						}
+						Climb(direction + Vector3.up);
 					}
 				}
 				else
