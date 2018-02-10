@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BloxelsGroundBlock : AbstractBloxelsBlock
+public class BloxelsEnemyBlock : AbstractBloxelsBlock
 {
 
 	public override string TypeName
 	{
 		get
 		{
-			return "Ground";
+			return "Enemy";
 		}
 
 		set

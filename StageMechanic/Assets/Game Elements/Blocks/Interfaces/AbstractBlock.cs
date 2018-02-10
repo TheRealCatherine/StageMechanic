@@ -19,6 +19,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	const float PUSH_PULL_MOVE_TIME_BASE = 0.25f;
 
 	public Sprite Icon;
+	public string Palette;
 	public ParticleSystem EdgeEffect;
 	public float EdgeEffectScale = 1f;
 	public float EdgeEffectDuration = 0.1f;

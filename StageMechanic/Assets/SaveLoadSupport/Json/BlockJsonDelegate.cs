@@ -28,6 +28,7 @@ public class BlockJsonDelegate {
 
 	internal string _name = null;
 	internal string _type = null;
+	internal string _palette = null;
 	internal Vector3 _pos;
     internal Dictionary<string, string> _properties;
 
@@ -58,11 +59,15 @@ public class BlockJsonDelegate {
     {
         get
         {
-            return "Cathy1 Internal";
+			AbstractBlock abfab = _block as AbstractBlock;
+			if (abfab != null)
+				return abfab.Palette;
+			else
+				return "Unknown";
         }
         set
         {
-
+			_palette = value;
         }
     }
 
@@ -126,7 +131,7 @@ public class BlockJsonDelegate {
         //else
         Quaternion rotation = Quaternion.identity;
         //TODO support different block factories
-        IBlock newBlock = BlockManager.CreateBlockAt(_pos, "Cathy1 Internal", _type);
+        IBlock newBlock = BlockManager.CreateBlockAt(_pos, _palette, _type);
 		newBlock.Name = _name;
         newBlock.Properties = _properties;
 	}

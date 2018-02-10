@@ -431,7 +431,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 	{
 		if (CurrentMoveState == State.Idle || CurrentMoveState == State.Fall)
 		{
-			if (BlockManager.GetBlockNear(transform.position + Vector3.down) == null)
+			AbstractBlock down = BlockManager.GetBlockNear(transform.position + Vector3.down);
+			if (down == null || down.GetComponent<Rigidbody>().isKinematic)
 			{
 				CurrentMoveState = State.Fall;
 				base.ApplyGravity(factor, acceleration);

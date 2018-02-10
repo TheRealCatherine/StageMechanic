@@ -31,6 +31,14 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 		}
 	}
 
+	public override string Name
+	{
+		get
+		{
+			return "Cathy1 Internal";
+		}
+	}
+
 	public override Sprite IconForType(string name)
 	{
 		return _prefabs[name].Icon;
