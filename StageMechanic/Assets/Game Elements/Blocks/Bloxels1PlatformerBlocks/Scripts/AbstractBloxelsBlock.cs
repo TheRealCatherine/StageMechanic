@@ -4,13 +4,18 @@ using System.Collections;
 public abstract class AbstractBloxelsBlock : AbstractBlock
 {
 
-	MeshRenderer Placeholder;
-	MeshRenderer StaticMesh;
+	public MeshRenderer Placeholder;
+	public MeshRenderer StaticMesh;
+
+	protected MeshRenderer PlaceholderInstance;
+	protected MeshRenderer StaticMeshInstance;
 
 	public override void Awake()
 	{
 		base.Awake();
 		GravityFactor = 0;
+		PlaceholderInstance = Instantiate(Placeholder, transform);
+		StaticMeshInstance = Instantiate(StaticMesh, transform);
 	}
 
 	internal override void Update()
@@ -20,13 +25,13 @@ public abstract class AbstractBloxelsBlock : AbstractBlock
 		{
 			if (BlockManager.PlayMode)
 			{
-				StaticMesh.gameObject.SetActive(true);
-				Placeholder.gameObject.SetActive(false);
+				StaticMeshInstance.gameObject.SetActive(true);
+				PlaceholderInstance.gameObject.SetActive(false);
 			}
 			else
 			{
-				StaticMesh.gameObject.SetActive(false);
-				Placeholder.gameObject.SetActive(true);
+				StaticMeshInstance.gameObject.SetActive(false);
+				PlaceholderInstance.gameObject.SetActive(true);
 			}
 		}
 	}
