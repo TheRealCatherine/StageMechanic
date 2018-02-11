@@ -14,8 +14,13 @@ public abstract class AbstractBloxelsBlock : AbstractBlock
 	{
 		base.Awake();
 		GravityFactor = 0;
-		PlaceholderInstance = Instantiate(Placeholder, transform);
-		StaticMeshInstance = Instantiate(StaticMesh, transform);
+		if(Placeholder != null)
+			PlaceholderInstance = Instantiate(Placeholder, transform);
+		if (StaticMesh != null)
+		{
+			StaticMeshInstance = Instantiate(StaticMesh, transform);
+			StaticMeshInstance.gameObject.SetActive(false);
+		}
 	}
 
 	internal override void Update()
