@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace UnityEngine.PostProcessing
 {
+    using UnityObject = Object;
+
     public sealed class MaterialFactory : IDisposable
     {
         Dictionary<string, Material> m_Materials;

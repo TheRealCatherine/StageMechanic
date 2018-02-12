@@ -10,12 +10,12 @@ using UnityEngine;
 
 public class Cathy1Block : AbstractBlock
 {
-	public MeshRenderer Model1;
-	public MeshRenderer Model2;
-	public MeshRenderer Model3;
-	public MeshRenderer Model4;
+	public GameObject Model1;
+	public GameObject Model2;
+	public GameObject Model3;
+	public GameObject Model4;
 
-	public MeshRenderer CurrentModel;
+	public GameObject CurrentModel;
 	public int CurrentModelNumber=0;
 
 	public void ShowModel(int number)
@@ -65,7 +65,8 @@ public class Cathy1Block : AbstractBlock
 	internal override void Start()
 	{
 		base.Start();
-		ShowModel(1);
+		if(CurrentModelNumber == 0)
+			ShowModel(1);
 	}
 
 	/**
@@ -181,7 +182,10 @@ public class Cathy1Block : AbstractBlock
 		{
 			base.Properties = value;
 			if (value.ContainsKey("Model Variant"))
+			{
 				ShowModel(int.Parse(value["Model Variant"]));
+				Debug.Log(int.Parse(value["Model Variant"]));
+			}
 		}
 	}
 

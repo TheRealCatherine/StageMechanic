@@ -3,8 +3,8 @@ using UnityEngine.PostProcessing;
 
 namespace UnityEditor.PostProcessing
 {
-    using Settings = VignetteModel.Settings;
     using VignetteMode = VignetteModel.Mode;
+    using Settings = VignetteModel.Settings;
 
     [PostProcessingModelEditor(typeof(VignetteModel))]
     public class VignetteModelEditor : PostProcessingModelEditor

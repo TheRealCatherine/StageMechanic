@@ -2,8 +2,8 @@ using UnityEngine.Rendering;
 
 namespace UnityEngine.PostProcessing
 {
-    using SSRReflectionBlendType = ScreenSpaceReflectionModel.SSRReflectionBlendType;
     using SSRResolution = ScreenSpaceReflectionModel.SSRResolution;
+    using SSRReflectionBlendType = ScreenSpaceReflectionModel.SSRReflectionBlendType;
 
     public sealed class ScreenSpaceReflectionComponent : PostProcessingComponentCommandBuffer<ScreenSpaceReflectionModel>
     {

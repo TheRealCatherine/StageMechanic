@@ -5,15 +5,15 @@ using System.Collections;
 public class Cathy1BlockTheme : AbstractBlockTheme
 {
 	[Header("Normal Block")]
-	public MeshRenderer BasicBlock1;
-	public MeshRenderer BasicBlock2; //Optional
-	public MeshRenderer BasicBlock3; //Optional
-	public MeshRenderer BasicBlock4; //Optional
+	public GameObject BasicBlock1;
+	public GameObject BasicBlock2; //Optional
+	public GameObject BasicBlock3; //Optional
+	public GameObject BasicBlock4; //Optional
 	public Sprite BasicBlockIcon;  //Optional
 
 	[Header("Small Bomb")]
-	public MeshRenderer SmallBombIdle;
-	public MeshRenderer SmallBombTriggered; //Optional
+	public GameObject SmallBombIdle;
+	public GameObject SmallBombTriggered; //Optional
 	public ParticleSystem SmallBombExplosion; //Optional
 	public Vector3 SmallBombExplosionOffset; //Optional
 	public AudioClip SmallBombFuseSound; //Optional
@@ -21,8 +21,8 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public Sprite SmallBombIcon; //Optional
 
 	[Header("Large Bomb")]
-	public MeshRenderer LargeBombIdle;
-	public MeshRenderer LargeBombTriggered; //Optional
+	public GameObject LargeBombIdle;
+	public GameObject LargeBombTriggered; //Optional
 	public ParticleSystem LargeBombExplosion; //Optional
 	public Vector3 LargeBombExplosionOffset; //Optional
 	public AudioClip LargeBombFuseSound; //Optional
@@ -30,8 +30,8 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public Sprite LargeBombIcon; //Optional
 
 	[Header("Cracked")]
-	public MeshRenderer LightCracks;
-	public MeshRenderer HeavyCracks;
+	public GameObject LightCracks;
+	public GameObject HeavyCracks;
 	public ParticleSystem DisintigrationDust; //Optional
 	public Vector3 DustOffset; //Optional
 	public AudioClip CrackSound; //Optional
@@ -44,31 +44,31 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public Sprite GroupedBlockIcon; //Optional
 
 	[Header("Goal")]
-	public MeshRenderer IdleGoal;
-	public MeshRenderer ActiveGoal; //Optional
+	public GameObject IdleGoal;
+	public GameObject ActiveGoal; //Optional
 	public ParticleSystem IdleGoalEffect; //Optional
 	public ParticleSystem ActiveGoalEffect; //Optional
 	public Vector3 GoalEffectsOffset; //Optional
 	public Sprite GoalIcon; //Optional
 
 	[Header("Heavy")]
-	public MeshRenderer Heavy;
+	public GameObject Heavy;
 	public Sprite HeavyIcon; //Optional
 
 	[Header("Ice")]
-	public MeshRenderer Ice;
+	public GameObject Ice;
 	public ParticleSystem RandomIceEffect;  //Optional
 	public Vector3 IceEffectOffset;
 	public Sprite IceIcon; //Optional
 
 	[Header("Immobile")]
-	public MeshRenderer Immobile;
+	public GameObject Immobile;
 	public Sprite ImmobileIcon; //Optional
 
 	[Header("Laser")]
-	public MeshRenderer IdleLaser;
-	public MeshRenderer ActiveLaser; //Optional
-	public MeshRenderer DisabledLaser; //Optional
+	public GameObject IdleLaser;
+	public GameObject ActiveLaser; //Optional
+	public GameObject DisabledLaser; //Optional
 	public ParticleSystem LaserEffect; //Optional
 	public Vector3 LaserEffectOffset; //Optional
 	public AudioClip LaserWarningSound; //Optional
@@ -77,9 +77,9 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public Sprite LaserIcon; //Optional
 
 	[Header("Monster")]
-	public MeshRenderer ActiveMonster;
-	public MeshRenderer MovingMonster; //Optional
-	public MeshRenderer DisarmedMonster; //Optional (default: BasicBlock1)
+	public GameObject ActiveMonster;
+	public GameObject MovingMonster; //Optional
+	public GameObject DisarmedMonster; //Optional (default: BasicBlock1)
 	public AudioClip RandomMonsterSound; //Optional
 	public AudioClip MoveMonsterSound; //Optional
 	public AudioClip DisarmMonsterSound; //Optional
@@ -90,16 +90,16 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public Sprite MonsterIcon; //Optional
 
 	[Header("Mystery")]
-	public MeshRenderer IdleMystery;
-	public MeshRenderer RevealingMystery; //Optional
+	public GameObject IdleMystery;
+	public GameObject RevealingMystery; //Optional
 	public AudioClip MysteryRevealSound; //Optional
 	public Sprite MysteryIcon; //Optional
 
 	[Header("spike Trap")]
-	public MeshRenderer TrapArmed;
-	public MeshRenderer TrapDisarmed;
-	public MeshRenderer TrapWarning; //Optional
-	public MeshRenderer TrapActive; //Optional
+	public GameObject TrapArmed;
+	public GameObject TrapDisarmed;
+	public GameObject TrapWarning; //Optional
+	public GameObject TrapActive; //Optional
 	public ParticleSystem TrapRandomEffect; //Optional
 	public ParticleSystem TrapActiveEffect; //Optional
 	public Vector3 TrapEffectOffset; //Optional
@@ -108,16 +108,16 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public Sprite TrapIcon; //Optional
 
 	[Header("Spring")]
-	public MeshRenderer IdleSpring;
-	public MeshRenderer ActiveSpring; //Optional
+	public GameObject IdleSpring;
+	public GameObject ActiveSpring; //Optional
 	public AudioClip SpringSound; //Optional
 	public ParticleSystem SpringEffect; //Optional
 	public Vector3 SpringEffectOffset; //Optional
 	public Sprite SpringIcon; //Optional
 
 	[Header("Vortex")]
-	public MeshRenderer IdleVortex;
-	public MeshRenderer ActiveVortex; //Optional
+	public GameObject IdleVortex;
+	public GameObject ActiveVortex; //Optional
 	public AudioClip ActiveVortexSound; //Optional
 	public ParticleSystem RandomVortexEffect; //Optional
 	public ParticleSystem ActiveVortexEffect; //Optional
