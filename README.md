@@ -2,7 +2,7 @@
 
 ## Scope of project
 
-We are creating a game engine that allows one to create, share, and play block-based games including both block-pushing games such as Catherine, Robo5, and Pushmo as well as simple block-based platform games such as Bloxels.
+We are creating a game engine that allows one to create, share, and play block-based games including both block-pushing games in the spirit of Catherine, Robo5, and Pushmo as well as simple block-based platform games in the spirit of Bloxels.
 
 ## Target audences
 
