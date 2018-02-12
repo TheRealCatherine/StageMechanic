@@ -127,7 +127,7 @@ Below are resources for those new to game design and devleopment as well as thos
 * [Launch Trailer](https://www.youtube.com/watch?v=2S96oOPK1Ck)
 * [Complete Walkthrough](https://www.youtube.com/playlist?list=PL5387035B13092571)
 
-##### Pushmo Resources
+#### Pushmo Resources
 
 * [Pushmo World Launch Trailer](https://www.youtube.com/watch?v=Vm7qYpklhNg)
 * [Pushmo World Complete Walkthrough](https://www.youtube.com/playlist?list=PLYpDU5ElRBflOhN0lC_wS13aNEVynhS99)
