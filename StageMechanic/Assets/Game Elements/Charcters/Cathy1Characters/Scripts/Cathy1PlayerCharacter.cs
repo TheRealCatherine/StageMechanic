@@ -58,7 +58,12 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		SidleMove,
 		Slide,
 		PushPull,
-		Fall
+		ActivateItem,
+		TakeDamage,
+		Fall,
+		Win,
+		Loose,
+		Tie
 	}
 	private State _currentState = State.Idle;
 	public State CurrentMoveState
