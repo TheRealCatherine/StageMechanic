@@ -45,6 +45,5 @@ public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
 				return;
 			}
 		}
-       
     }
 }

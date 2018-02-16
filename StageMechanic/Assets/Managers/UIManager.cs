@@ -30,6 +30,8 @@ public class UIManager : MonoBehaviour
 	public Dpad FurtherCloserButtons;
 	public Dpad DirectionButtons;
 
+	public GameObject BlockThemeDialog;
+
 	public GameObject UndoButton;
 	//TODO Singleton flame war
 	public static UIManager Instance;
@@ -53,7 +55,8 @@ public class UIManager : MonoBehaviour
 				|| FileBrowser.IsOpen
 				|| Instance.MainMenu.isActiveAndEnabled
 				|| Instance.NetworkLoadDialog.isActiveAndEnabled
-				|| Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey;
+				|| Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey
+				|| Instance.BlockThemeDialog.activeInHierarchy;
 		}
 	}
 

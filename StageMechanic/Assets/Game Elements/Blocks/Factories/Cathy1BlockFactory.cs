@@ -13,6 +13,9 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 {
 	public Cathy1Block[] Blocks;
 	private Dictionary<string, Cathy1Block> _prefabs = new Dictionary<string, Cathy1Block>();
+
+	public Cathy1BlockTheme[] Themes;
+
 	public Cathy1BlockTheme CurrentTheme;
 
 	private void Awake()
@@ -73,5 +76,22 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 		if (CurrentTheme != null)
 			block.ApplyTheme(CurrentTheme);
 		return block;
+	}
+
+	public void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		CurrentTheme = theme;
+		foreach(IBlock block in BlockManager.BlockCache)
+		{
+			Cathy1Block cb = block as Cathy1Block;
+			if (cb != null)
+			{
+				int modelNumber = cb.CurrentModelNumber;
+				Destroy(cb.CurrentModel);
+				cb.CurrentModel = null;
+				cb.ApplyTheme(theme);
+				cb.ShowModel(modelNumber);
+			}
+		}
 	}
 }

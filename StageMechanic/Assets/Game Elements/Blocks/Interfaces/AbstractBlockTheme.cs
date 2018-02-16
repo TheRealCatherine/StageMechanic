@@ -4,6 +4,7 @@ using System.Collections;
 public abstract class AbstractBlockTheme : ScriptableObject
 {
 	public string Name;
+	public Sprite Icon;
 
 	[Header("Content Warnings")]
 	public bool Alcohol;
