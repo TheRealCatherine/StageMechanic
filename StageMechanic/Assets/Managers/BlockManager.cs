@@ -321,6 +321,7 @@ public class BlockManager : MonoBehaviour
 		RotatableFloors.Add(ActiveFloor);
 		Cursor = CursorPrefab;
 		Cursor.transform.SetParent(Stage.transform, false);
+		Cursor.SetActive(true);
 		GetAllBlockTypes(); //Cache all palettes and block types
 	}
 	#endregion
