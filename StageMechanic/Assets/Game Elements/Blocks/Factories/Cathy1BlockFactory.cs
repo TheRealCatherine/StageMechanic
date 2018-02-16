@@ -44,6 +44,68 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 
 	public override Sprite IconForType(string name)
 	{
+		if(CurrentTheme == null)
+			return _prefabs[name].Icon;
+		switch (name)
+		{
+			case "Basic":
+				if (CurrentTheme.BasicBlockIcon != null)
+					return CurrentTheme.BasicBlockIcon;
+				break;
+			case "Small Bomb":
+				if (CurrentTheme.SmallBombIcon != null)
+					return CurrentTheme.SmallBombIcon;
+				break;
+			case "Large Bomb":
+				if (CurrentTheme.LargeBombIcon != null)
+					return CurrentTheme.LargeBombIcon;
+				break;
+			case "Cracked (1 Step)":
+				if (CurrentTheme.HeavyCracksIcon != null)
+					return CurrentTheme.HeavyCracksIcon;
+				break;
+			case "Cracked (2 Steps)":
+				if (CurrentTheme.LightCracksIcon != null)
+					return CurrentTheme.LightCracksIcon;
+				break;
+			case "Goal":
+				if (CurrentTheme.GoalIcon != null)
+					return CurrentTheme.GoalIcon;
+				break;
+			case "Heavy":
+				if (CurrentTheme.HeavyIcon != null)
+					return CurrentTheme.HeavyIcon;
+				break;
+			case "Ice":
+				if (CurrentTheme.IceIcon != null)
+					return CurrentTheme.IceIcon;
+				break;
+			case "Immobile":
+				if (CurrentTheme.Immobile != null)
+					return CurrentTheme.ImmobileIcon;
+				break;
+			case "Monster":
+				if (CurrentTheme.MonsterIcon != null)
+					return CurrentTheme.MonsterIcon;
+				break;
+			case "Mystery":
+				if (CurrentTheme.MysteryIcon != null)
+					return CurrentTheme.MysteryIcon;
+				break;
+			case "Spike Trap":
+				if (CurrentTheme.TrapIcon != null)
+					return CurrentTheme.TrapIcon;
+				break;
+			case "Spring":
+				if (CurrentTheme.SpringIcon != null)
+					return CurrentTheme.SpringIcon;
+				break;
+			case "Vortex":
+				if (CurrentTheme.VortexIcon != null)
+					return CurrentTheme.VortexIcon;
+				break;
+		}
+
 		return _prefabs[name].Icon;
 	}
 

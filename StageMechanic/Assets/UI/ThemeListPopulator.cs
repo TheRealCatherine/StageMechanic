@@ -9,6 +9,7 @@ public class ThemeListPopulator : MonoBehaviour {
 	//TODO make this generic
 	public Cathy1BlockFactory Cathy1BlockFactory;
 	public Button ButtonPrefab;
+	public BlockTypeScrollBoxPopulator BlockList;
 
 	void Start()
 	{
@@ -36,6 +37,7 @@ public class ThemeListPopulator : MonoBehaviour {
 			if (theme.Name == clickedButton.GetComponentInChildren<Text>().text)
 			{
 				Cathy1BlockFactory.ApplyTheme(theme);
+				BlockList.Repopulate();
 				UIManager.Instance.BlockThemeDialog.SetActive(false);
 				return;
 			}

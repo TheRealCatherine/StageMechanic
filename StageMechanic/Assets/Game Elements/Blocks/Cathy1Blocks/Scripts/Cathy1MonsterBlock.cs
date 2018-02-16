@@ -73,23 +73,22 @@ public class Cathy1MonsterBlock : Cathy1Block
 	private IEnumerator HandleStep()
 	{
 		CurrentState = State.PlayerEnter;
-		GetComponent<AudioSource>().Play();
+		if (DisarmSound != null)
+			AudioEffectsManager.PlaySound(this, DisarmSound);
 		yield return new WaitForSeconds(0.15f);
 		if (hasPlayerTop())
 		{
 			CurrentState = State.PlayerStand;
 		}
-//        Renderer rend = GetComponent<Renderer>();
-//        rend.material = DisarmedStateMaterial;
+		ShowModel(3);
 		CurrentState = State.Disarmed;
-		//TODO disarm
-		BlockManager.CreateBlockAt(Position, "Cathy1 Internal", "Basic");
 	}
 
 	private IEnumerator HandleSidle()
 	{
 		CurrentState = State.PlayerEnter;
-		GetComponent<AudioSource>().Play();
+		if (DisarmSound != null)
+			AudioEffectsManager.PlaySound(this, DisarmSound);
 		yield return new WaitForSeconds(0.01f);
 		if (hasPlayerSidle())
 		{

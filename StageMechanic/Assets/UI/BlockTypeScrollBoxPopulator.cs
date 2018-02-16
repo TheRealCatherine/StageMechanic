@@ -10,11 +10,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
+public class BlockTypeScrollBoxPopulator : MonoBehaviour {
 
-    public Button ButtonPrefab;
+	public Button ButtonPrefab;
+
+	private List<Button> _buttonsCache = new List<Button>();
 
 	void Start () {
+		Populate();
+	}
+
+	void Populate()
+	{
 		foreach (AbstractBlockFactory factory in BlockManager.Instance.BlockFactories)
 		{
 			string[] types = factory.BlockTypeNames;
@@ -28,15 +35,16 @@ public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
 					newButton.GetComponentInChildren<Text>().text = name;
 					newButton.image.sprite = icon;
 					newButton.onClick.AddListener(OnBlockClicked);
+					_buttonsCache.Add(newButton);
 					++count;
 				}
 			}
 		}
 	}
 
-    void OnBlockClicked()
-    {
-        Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+	void OnBlockClicked()
+	{
+		Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
 		foreach(AbstractBlockFactory factory in BlockManager.Instance.BlockFactories)
 		{
 			if (Array.IndexOf(factory.BlockTypeNames, clickedButton.GetComponentInChildren<Text>().text) > -1)
@@ -45,5 +53,15 @@ public class ButtonTypleScrollBoxPopulator : MonoBehaviour {
 				return;
 			}
 		}
-    }
+	}
+
+	public void Repopulate()
+	{
+		foreach(Button button in _buttonsCache)
+		{
+			Destroy(button.gameObject);
+		}
+		_buttonsCache.Clear();
+		Populate();
+	}
 }

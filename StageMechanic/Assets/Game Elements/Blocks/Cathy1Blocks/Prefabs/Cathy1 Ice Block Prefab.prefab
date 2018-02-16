@@ -80,7 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd33438565c02e468c11a1911f487cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 711cc09f8e3ab3a4e8e217b0517644ea, type: 3}
+  Icon: {fileID: 21300000, guid: fdd52ef4a261cf547806813ae6d99f6d, type: 3}
+  Palette: 
   EdgeEffect: {fileID: 19800000, guid: bda064cbb7d5f114cbcfbf74b67a2a10, type: 2}
   EdgeEffectScale: 1
   EdgeEffectDuration: 0.1
@@ -100,3 +101,5 @@ MonoBehaviour:
   CurrentModel: {fileID: 0}
   CurrentModelNumber: 0
   TypeOfBlock: Ice
+  RandomEffect: {fileID: 0}
+  EffectOffset: {x: 0, y: 0, z: 0}

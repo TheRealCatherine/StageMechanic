@@ -35,7 +35,7 @@ MonoBehaviour:
     type: 2}
   BasicBlock4: {fileID: 1379498055161248, guid: f07be97da99cdcb458eac164403a342d,
     type: 2}
-  BasicBlockIcon: {fileID: 21300000, guid: ecd49880ec9858c498115f31e3248f18, type: 3}
+  BasicBlockIcon: {fileID: 21300000, guid: d9ecaacb2f9c65948b3e1e976d0a0491, type: 3}
   SmallBombIdle: {fileID: 1029159264107406, guid: 8f4a3d6a2b22bb041b7fba6f3fe0991b,
     type: 2}
   SmallBombTriggered: {fileID: 1029159264107406, guid: 069f3155da0cb9844ab89e36f53c9185,
@@ -45,7 +45,7 @@ MonoBehaviour:
   SmallBombFuseSound: {fileID: 0}
   SmallBombExplosionSound: {fileID: 8300000, guid: c82c8c1638eabc149aaa992a4b96dafe,
     type: 3}
-  SmallBombIcon: {fileID: 0}
+  SmallBombIcon: {fileID: 21300000, guid: 670815ffd3a3760418c15888dd6df68a, type: 3}
   LargeBombIdle: {fileID: 1365654018808716, guid: da341e58365ee5a49b8d0a44e4a382eb,
     type: 2}
   LargeBombTriggered: {fileID: 1365654018808716, guid: 9dbf7ca20c450a142a6fb48a89ce17bc,
@@ -55,7 +55,7 @@ MonoBehaviour:
   LargeBombFuseSound: {fileID: 0}
   LargeBombExplosionSound: {fileID: 8300000, guid: c82c8c1638eabc149aaa992a4b96dafe,
     type: 3}
-  LargeBombIcon: {fileID: 0}
+  LargeBombIcon: {fileID: 21300000, guid: 1019e7aac1f26bb45902d548da03115c, type: 3}
   LightCracks: {fileID: 1337161712413462, guid: dca66f90fe112d641b32cd8363194f6e,
     type: 2}
   HeavyCracks: {fileID: 1708649441904092, guid: bf9b513c2d1db5846b0e63012f2e8ee7,
@@ -64,23 +64,23 @@ MonoBehaviour:
   DustOffset: {x: 0, y: 0, z: 0}
   CrackSound: {fileID: 8300000, guid: 78fcd108e227fcf4ab168bef99ac47e7, type: 3}
   DisintigrateSound: {fileID: 8300000, guid: 3f09f277f1881704d9dd10c109d01722, type: 3}
-  LightCracksIcon: {fileID: 0}
-  HeavyCracksIcon: {fileID: 0}
+  LightCracksIcon: {fileID: 21300000, guid: 90ac461e7c05e3949aa87d8ecbf867aa, type: 3}
+  HeavyCracksIcon: {fileID: 21300000, guid: c2a9fe9e39026e04b813725724687120, type: 3}
   GroupedBlockIcon: {fileID: 0}
   IdleGoal: {fileID: 1833382687263064, guid: 539a81e5b22902a4ab7b31b1a7026ea6, type: 2}
   ActiveGoal: {fileID: 1833382687263064, guid: 965aab1473018bc4ca095a226b333e57, type: 2}
   IdleGoalEffect: {fileID: 0}
   ActiveGoalEffect: {fileID: 0}
   GoalEffectsOffset: {x: 0, y: 0, z: 0}
-  GoalIcon: {fileID: 0}
+  GoalIcon: {fileID: 21300000, guid: 7050e8bb3081e2447a6f33c093e7a416, type: 3}
   Heavy: {fileID: 1293386146860052, guid: 2126230bd91f9534b93fafb66d0deaca, type: 2}
-  HeavyIcon: {fileID: 0}
+  HeavyIcon: {fileID: 21300000, guid: bd5cae38484476d40b3e2d6242dfbb05, type: 3}
   Ice: {fileID: 1822384553159310, guid: d27716ae065c74b47ba676f6ce865b1d, type: 2}
   RandomIceEffect: {fileID: 0}
   IceEffectOffset: {x: 0, y: 0, z: 0}
-  IceIcon: {fileID: 0}
+  IceIcon: {fileID: 21300000, guid: fdd52ef4a261cf547806813ae6d99f6d, type: 3}
   Immobile: {fileID: 1685318039569804, guid: 726d2ef49cedc864aa49ab1c0705117a, type: 2}
-  ImmobileIcon: {fileID: 0}
+  ImmobileIcon: {fileID: 21300000, guid: 33c7892a27b823b4eb73029ebaad2959, type: 3}
   IdleLaser: {fileID: 1967815998340056, guid: b0faa238013735f419329ec6111ceff1, type: 2}
   ActiveLaser: {fileID: 0}
   DisabledLaser: {fileID: 0}
@@ -101,12 +101,12 @@ MonoBehaviour:
   MoveMonsterEffect: {fileID: 0}
   DisarmMonsterEffect: {fileID: 0}
   MonsterEffectOffset: {x: 0, y: 0, z: 0}
-  MonsterIcon: {fileID: 0}
+  MonsterIcon: {fileID: 21300000, guid: ba4c0fbbb39c16a4fad9dd7d4cc3fab1, type: 3}
   IdleMystery: {fileID: 1331446552570114, guid: 3554f3fbc580455489d6b0b5621004da,
     type: 2}
   RevealingMystery: {fileID: 0}
   MysteryRevealSound: {fileID: 8300000, guid: 8156fa3bee9819c47a5833e915184423, type: 3}
-  MysteryIcon: {fileID: 0}
+  MysteryIcon: {fileID: 21300000, guid: 74a2f0a230302024da2d97c9fba1b15d, type: 3}
   TrapArmed: {fileID: 1693886272620554, guid: c9379582ab10dae448fd2dd14414b5d8, type: 2}
   TrapDisarmed: {fileID: 1693886272620554, guid: 1251e4148308e214c8ad49f2cda8f40e,
     type: 2}
@@ -117,17 +117,17 @@ MonoBehaviour:
   TrapEffectOffset: {x: 0, y: 0, z: 0}
   TrapWarningSound: {fileID: 0}
   TrapActivatedSound: {fileID: 0}
-  TrapIcon: {fileID: 0}
+  TrapIcon: {fileID: 21300000, guid: 761f649c533edf549b35eae4be2afad9, type: 3}
   IdleSpring: {fileID: 1067447580527712, guid: 6463c1f091dc71b49a75ffadfce01be9, type: 2}
   ActiveSpring: {fileID: 0}
   SpringSound: {fileID: 0}
   SpringEffect: {fileID: 0}
   SpringEffectOffset: {x: 0, y: 0, z: 0}
-  SpringIcon: {fileID: 0}
+  SpringIcon: {fileID: 21300000, guid: fd17df9d5116d7c4d9503cdb5ae1f8b1, type: 3}
   IdleVortex: {fileID: 1514157806592902, guid: cb04b032a6a8e1449a2e1207c803d663, type: 2}
   ActiveVortex: {fileID: 0}
   ActiveVortexSound: {fileID: 8300000, guid: c6a04df0a6c990e4d96821ef721bd9d5, type: 3}
   RandomVortexEffect: {fileID: 0}
   ActiveVortexEffect: {fileID: 0}
   VortexEffectOffset: {x: 0, y: 0, z: 0}
-  VortexIcon: {fileID: 0}
+  VortexIcon: {fileID: 21300000, guid: 2f265b26fcc767c40ae0e41370665d26, type: 3}
