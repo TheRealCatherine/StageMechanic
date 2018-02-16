@@ -27,16 +27,16 @@ MonoBehaviour:
   FantasyViolence: 0
   IntenseViolence: 0
   SexualViolence: 0
-  BasicBlock1: {fileID: 1482426122128112, guid: b47d097a1ecec6e4f967106442249041,
+  BasicBlock1: {fileID: 1466463661440950, guid: c52ed471b6f345241b3ba1edb3dfa8df,
     type: 2}
-  BasicBlock2: {fileID: 1260311472108446, guid: 9746839ef704e114ea1fbf279ad6ce6b,
+  BasicBlock2: {fileID: 1738485573247966, guid: 9746839ef704e114ea1fbf279ad6ce6b,
     type: 2}
-  BasicBlock3: {fileID: 1780333341240894, guid: ec9ebc34290d353418ba2f43bd63d651,
+  BasicBlock3: {fileID: 1049411261833434, guid: ec9ebc34290d353418ba2f43bd63d651,
     type: 2}
-  BasicBlock4: {fileID: 1204615179800346, guid: c52ed471b6f345241b3ba1edb3dfa8df,
+  BasicBlock4: {fileID: 1466463661440950, guid: c52ed471b6f345241b3ba1edb3dfa8df,
     type: 2}
   BasicBlockIcon: {fileID: 21300000, guid: b5e24376adb814f448d05de471091f4a, type: 3}
-  SmallBombIdle: {fileID: 1538289363875086, guid: 596ee5436f367a74480d2b95103c5278,
+  SmallBombIdle: {fileID: 1928014526931168, guid: 596ee5436f367a74480d2b95103c5278,
     type: 2}
   SmallBombTriggered: {fileID: 0}
   SmallBombExplosion: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   SmallBombFuseSound: {fileID: 0}
   SmallBombExplosionSound: {fileID: 0}
   SmallBombIcon: {fileID: 21300000, guid: bbb4c274cf296274990d11f53dfda177, type: 3}
-  LargeBombIdle: {fileID: 1769557469113878, guid: 8023a1970e1fd654a866afaee64e5cd1,
+  LargeBombIdle: {fileID: 1934708089302226, guid: 6e9e2ec8ea1c4f442847328d3d20235c,
     type: 2}
   LargeBombTriggered: {fileID: 0}
   LargeBombExplosion: {fileID: 0}
@@ -52,9 +52,9 @@ MonoBehaviour:
   LargeBombFuseSound: {fileID: 0}
   LargeBombExplosionSound: {fileID: 0}
   LargeBombIcon: {fileID: 21300000, guid: f82168063e6dd7d43852c5b906094ae2, type: 3}
-  LightCracks: {fileID: 1617305874520054, guid: ff0133b649c6da74cb9dcfa9af27b12a,
+  LightCracks: {fileID: 1715206925462852, guid: ff0133b649c6da74cb9dcfa9af27b12a,
     type: 2}
-  HeavyCracks: {fileID: 1286194955713930, guid: 0acda4abbd45928408d8c0b58ad7221e,
+  HeavyCracks: {fileID: 1413273618333728, guid: 0acda4abbd45928408d8c0b58ad7221e,
     type: 2}
   DisintigrationDust: {fileID: 0}
   DustOffset: {x: 0, y: 0, z: 0}
@@ -63,33 +63,35 @@ MonoBehaviour:
   LightCracksIcon: {fileID: 21300000, guid: 361a1db598332694eb3ddddfe47212f8, type: 3}
   HeavyCracksIcon: {fileID: 21300000, guid: 366a84c22015bcb44a06ff3c0384cc36, type: 3}
   GroupedBlockIcon: {fileID: 0}
-  IdleGoal: {fileID: 1683409138125576, guid: 24c9c0e421f989146b2a56dbb014235d, type: 2}
+  IdleGoal: {fileID: 1512096499181720, guid: 24c9c0e421f989146b2a56dbb014235d, type: 2}
   ActiveGoal: {fileID: 0}
   IdleGoalEffect: {fileID: 0}
   ActiveGoalEffect: {fileID: 0}
   GoalEffectsOffset: {x: 0, y: 0, z: 0}
   GoalIcon: {fileID: 21300000, guid: 1c1c927fe0acb4d4cbe4648f313b108d, type: 3}
-  Heavy: {fileID: 1615448380104592, guid: 42d1d552f444f6d4a9d2e48118f92520, type: 2}
+  Heavy: {fileID: 1970634350927850, guid: 42d1d552f444f6d4a9d2e48118f92520, type: 2}
   HeavyIcon: {fileID: 21300000, guid: eb21d52b10e5de745b39066ada984004, type: 3}
-  Ice: {fileID: 1189275292836682, guid: 09ea264630259d24d9df2a4814cd7a57, type: 2}
+  Ice: {fileID: 1752417544577468, guid: 09ea264630259d24d9df2a4814cd7a57, type: 2}
   RandomIceEffect: {fileID: 0}
   IceEffectOffset: {x: 0, y: 0, z: 0}
   IceIcon: {fileID: 21300000, guid: e87827a1251eb7840866ca32fa7343c2, type: 3}
-  Immobile: {fileID: 1617039621454608, guid: 0ddf25933cc2f0a499f521b9e5457809, type: 2}
+  Immobile: {fileID: 1081111090039372, guid: 0ddf25933cc2f0a499f521b9e5457809, type: 2}
   ImmobileIcon: {fileID: 21300000, guid: 2eddab649fd595144a18113700036d3a, type: 3}
-  IdleLaser: {fileID: 1339598142051766, guid: b237f30dfc862604cb4d3c0fb8b7486b, type: 2}
+  IdleLaser: {fileID: 1588913007122922, guid: b237f30dfc862604cb4d3c0fb8b7486b, type: 2}
   ActiveLaser: {fileID: 0}
   DisabledLaser: {fileID: 0}
-  LaserEffect: {fileID: 0}
+  LaserEffect: {fileID: 198791669883805994, guid: 6030382a736e45748b2bd7d453f425c3,
+    type: 2}
   LaserEffectOffset: {x: 0, y: 0, z: 0}
   LaserWarningSound: {fileID: 0}
   LaserFireSound: {fileID: 0}
   DisablingLaserSound: {fileID: 0}
   LaserIcon: {fileID: 21300000, guid: e741d2e1ac396fc44b60f05b3eaac3d8, type: 3}
-  ActiveMonster: {fileID: 1382851329459950, guid: 6d6764fb963b5a64088cf0a170d6cc70,
+  ActiveMonster: {fileID: 1460605985050940, guid: 6d6764fb963b5a64088cf0a170d6cc70,
     type: 2}
   MovingMonster: {fileID: 0}
-  DisarmedMonster: {fileID: 0}
+  DisarmedMonster: {fileID: 1738485573247966, guid: 9746839ef704e114ea1fbf279ad6ce6b,
+    type: 2}
   RandomMonsterSound: {fileID: 0}
   MoveMonsterSound: {fileID: 0}
   DisarmMonsterSound: {fileID: 0}
@@ -98,13 +100,13 @@ MonoBehaviour:
   DisarmMonsterEffect: {fileID: 0}
   MonsterEffectOffset: {x: 0, y: 0, z: 0}
   MonsterIcon: {fileID: 21300000, guid: 7d4b766ebe1ec024ca3c35d155c9ec2b, type: 3}
-  IdleMystery: {fileID: 1927554185582402, guid: 64a01c353a2457e4184b64a494b59b5d,
+  IdleMystery: {fileID: 1562923182443802, guid: 64a01c353a2457e4184b64a494b59b5d,
     type: 2}
   RevealingMystery: {fileID: 0}
   MysteryRevealSound: {fileID: 0}
   MysteryIcon: {fileID: 21300000, guid: 3156d0c3840180441b5c93c9869180a3, type: 3}
-  TrapArmed: {fileID: 1335354172615904, guid: 3a8974356b11ea245add8ab46e9b8030, type: 2}
-  TrapDisarmed: {fileID: 1688846755502230, guid: ad0d8ca5392c0f343a1527fea473aa5a,
+  TrapArmed: {fileID: 1999506561133792, guid: 3a8974356b11ea245add8ab46e9b8030, type: 2}
+  TrapDisarmed: {fileID: 1318647043165324, guid: ad0d8ca5392c0f343a1527fea473aa5a,
     type: 2}
   TrapWarning: {fileID: 0}
   TrapActive: {fileID: 0}
@@ -114,13 +116,13 @@ MonoBehaviour:
   TrapWarningSound: {fileID: 0}
   TrapActivatedSound: {fileID: 0}
   TrapIcon: {fileID: 21300000, guid: f668c1aee911a1d41b2d6d6e04ededf0, type: 3}
-  IdleSpring: {fileID: 1858414726153482, guid: fdffd970f7309f846bdb80f7a72e1a46, type: 2}
+  IdleSpring: {fileID: 1028960127944066, guid: fdffd970f7309f846bdb80f7a72e1a46, type: 2}
   ActiveSpring: {fileID: 0}
   SpringSound: {fileID: 0}
   SpringEffect: {fileID: 0}
   SpringEffectOffset: {x: 0, y: 0, z: 0}
   SpringIcon: {fileID: 21300000, guid: 0ab55bb61dc67d34d91f9f1c4f2f85ff, type: 3}
-  IdleVortex: {fileID: 1326159324859788, guid: 8a6464b47c47db347ac112fefecf7a2e, type: 2}
+  IdleVortex: {fileID: 1133364212541424, guid: 8a6464b47c47db347ac112fefecf7a2e, type: 2}
   ActiveVortex: {fileID: 0}
   ActiveVortexSound: {fileID: 0}
   RandomVortexEffect: {fileID: 0}
