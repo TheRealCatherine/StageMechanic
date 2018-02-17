@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
 	public Camera MainCamera;
 	public GameObject SettingsWindow;
 	public GameObject CreditsDialog;
+	public Text FlavorTextBox;
 
 	private void OnEnable()
 	{
@@ -44,6 +45,9 @@ public class MainMenu : MonoBehaviour
 		{
 			SaveButton.gameObject.SetActive(true);
 		}
+
+		FlavorTextBox.text = FlavorText.Entries[Random.Range(0, FlavorText.Entries.Length - 1)];
+
 		if (StartupSound != null)
 			GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
 	}
