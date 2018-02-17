@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4367636826507098}
   - component: {fileID: 65596532242444746}
   - component: {fileID: 54033997339104180}
-  - component: {fileID: 114582920525508810}
+  - component: {fileID: 114455609108888170}
   m_Layer: 0
   m_Name: Cathy1 Laser Block Prefab
   m_TagString: Untagged
@@ -69,7 +69,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114582920525508810
+--- !u!114 &114455609108888170
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -77,10 +77,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1620753784027936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f962aa4fb6329da4cb2bbe7a5a4d307e, type: 3}
+  m_Script: {fileID: 11500000, guid: 89915fd128f72624e89105d946fe5aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: d5416f3111fae8b42837a5fb8566a75a, type: 3}
+  Palette: 
   EdgeEffect: {fileID: 19800000, guid: bda064cbb7d5f114cbcfbf74b67a2a10, type: 2}
   EdgeEffectScale: 1
   EdgeEffectDuration: 0.1
@@ -100,3 +101,4 @@ MonoBehaviour:
   CurrentModel: {fileID: 0}
   CurrentModelNumber: 0
   TypeOfBlock: Laser
+  LaserEffect: {fileID: 0}
