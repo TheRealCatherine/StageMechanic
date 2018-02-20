@@ -46,6 +46,8 @@ public class MainMenu : MonoBehaviour
 			SaveButton.gameObject.SetActive(true);
 		}
 
+		Debug.Assert(FlavorText.Entries != null);
+		Debug.Assert(FlavorText.Entries.Length > 1);
 		FlavorTextBox.text = FlavorText.Entries[Random.Range(0, FlavorText.Entries.Length - 1)];
 
 		if (StartupSound != null)
