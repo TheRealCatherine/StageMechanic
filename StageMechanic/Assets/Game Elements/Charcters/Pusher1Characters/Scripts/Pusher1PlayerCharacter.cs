@@ -91,9 +91,20 @@ public class Pusher1PlayerCharacter : Cathy1PlayerCharacter {
 		//TODO make this one movement
 		bool moved = false;
 		if (direction == FacingDirection)
-			moved = blockInQuestion.Push(direction, 1);
+		{
+			if (BlockManager.BlockGroupNumber(blockInQuestion) > -1)
+				moved = BlockManager.PushGroup(BlockManager.BlockGroupNumber(blockInQuestion), direction, 1);
+			else
+				moved = blockInQuestion.Push(direction, 1);
+		}
 		else
-			moved = blockInQuestion.Pull(direction, 1);
+		{
+
+			if (BlockManager.BlockGroupNumber(blockInQuestion) > -1)
+				moved = BlockManager.PullGroup(BlockManager.BlockGroupNumber(blockInQuestion), direction, 1);
+			else
+				moved = blockInQuestion.Pull(direction, 1);
+		}
 		if (moved)
 		{
 			if (EffortSounds.Length > 0)
