@@ -645,7 +645,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		return expectedTime;
 	}
 
-	public float PushPull(Vector3 direction)
+	public virtual float PushPull(Vector3 direction)
 	{
 		if (direction == Vector3.zero)
 			return 0f;

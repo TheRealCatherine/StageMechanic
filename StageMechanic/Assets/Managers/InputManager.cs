@@ -339,15 +339,19 @@ public class InputManager : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition1"))
 		{
-			EventManager.Instance.CreatePlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			EventManager.Instance.CreateCathy1PlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
 		}
 		else if (Input.GetKeyDown(KeyCode.O) || CnInputManager.GetButtonDown("StartPosition2"))
 		{
-			EventManager.Instance.CreatePlayerStartLocation(1, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			EventManager.Instance.CreateCathy1PlayerStartLocation(1, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
 		}
 		else if (Input.GetKeyDown(KeyCode.T) || CnInputManager.GetButtonDown("StartPosition3"))
 		{
-			EventManager.Instance.CreatePlayerStartLocation(2, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			EventManager.Instance.CreateCathy1PlayerStartLocation(2, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+		}
+		else if(CnInputManager.GetButtonDown("StartPosition4"))
+		{
+			EventManager.Instance.CreatePusherPlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
 		}
 
 		// Buttons for setting items
