@@ -461,21 +461,21 @@ public class BlockManager : MonoBehaviour
 		return -1;
 	}
 
-	/*public static bool CanMoveGroup(int groupNumber, Vector3 direction, int distance = 1)
+	public static bool CanPushGroup(int groupNumber, Vector3 direction, int distance = 1)
 	{
 		Debug.Assert(groupNumber >= 0);
 		Debug.Assert(blockGroups.ContainsKey(groupNumber));
 		foreach (IBlock block in BlockGroup(groupNumber))
 		{
-			if (!block.CanBeMoved(direction, distance))
+			if (!block.CanBePushed(direction, distance))
 				return false;
 		}
 		return true;
 	}
 
-	public static bool MoveGroup(int groupNumber, Vector3 direction, int distance = 1)
+	public static bool PushGroup(int groupNumber, Vector3 direction, int distance = 1)
 	{
-		if (!CanMoveGroup(groupNumber, direction, distance))
+		if (!CanPushGroup(groupNumber, direction, distance))
 			return false;
 
 		foreach (IBlock block in BlockGroup(groupNumber))
@@ -485,33 +485,58 @@ public class BlockManager : MonoBehaviour
 			if (neighbor != null)
 			{
 				if (BlockGroupNumber(neighbor) < 0)
-					neighbor.Move(direction, distance);
+					neighbor.Push(direction, distance);
 				else if (BlockGroupNumber(neighbor) != groupNumber)
-					MoveGroup(BlockGroupNumber(neighbor), direction, distance);
+					PushGroup(BlockGroupNumber(neighbor), direction, distance);
 			}
 			AbstractBlock ab = block.GameObject?.GetComponent<AbstractBlock>();
 			if (ab == null)
 				block.Position += direction;
 			else
-				ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.MoveWeight(direction, distance), false));
+				ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.PushWeight(direction, distance), true));
 
 		}
 		return true;
 	}
 
-	public static bool CanBeMoved(IBlock block, Vector3 direction, int distance = 1)
+	public static bool CanPullGroup(int groupNumber, Vector3 direction, int distance = 1)
 	{
-		if (BlockGroupNumber(block) < 0)
-			return block.CanBeMoved(direction, distance);
-		return CanMoveGroup(BlockGroupNumber(block), direction, distance);
+		Debug.Assert(groupNumber >= 0);
+		Debug.Assert(blockGroups.ContainsKey(groupNumber));
+		foreach (IBlock block in BlockGroup(groupNumber))
+		{
+			if (!block.CanBePulled(direction, distance))
+				return false;
+		}
+		return true;
 	}
 
-	public static bool Move(IBlock block, Vector3 direction, int distance = 1, bool push = false)
+	public static bool PullGroup(int groupNumber, Vector3 direction, int distance = 1)
 	{
-		if (BlockGroupNumber(block) < 0)
-			return block.Move(direction, distance, push);
-		return MoveGroup(BlockGroupNumber(block), direction, distance);
-	}*/
+		if (!CanPullGroup(groupNumber, direction, distance))
+			return false;
+
+		foreach (IBlock block in BlockGroup(groupNumber))
+		{
+
+			IBlock neighbor = GetBlockAt(block.Position + direction);
+			if (neighbor != null)
+			{
+				if (BlockGroupNumber(neighbor) < 0)
+					neighbor.Pull(direction, distance);
+				else if (BlockGroupNumber(neighbor) != groupNumber)
+					PullGroup(BlockGroupNumber(neighbor), direction, distance);
+			}
+			AbstractBlock ab = block.GameObject?.GetComponent<AbstractBlock>();
+			if (ab == null)
+				block.Position += direction;
+			else
+				ab.StartCoroutine(ab.AnimateMove(ab.Position, ab.Position + direction, 0.2f * ab.PullWeight(direction, distance), false));
+
+		}
+		return true;
+	}
+
 	#endregion
 
 	//TODO Move these to some kind of Platform Manager
