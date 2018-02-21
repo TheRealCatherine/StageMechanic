@@ -9,6 +9,54 @@ public class Pusher1PlayerCharacter : Cathy1PlayerCharacter {
 		
 	}
 
+	public override Dictionary<string, string[]> SuggestedInputs
+	{
+		get {
+			Dictionary<string, string[]> ret = base.SuggestedInputs;
+			ret.Add("Jump", ret["Item"]);
+			ret.Remove("Item");
+			return ret;
+		}
+	}
+
+	public override float ApplyInput(List<string> inputNames, Dictionary<string, string> parameters = null)
+	{
+		if (CurrentMoveState != State.Idle && CurrentMoveState != State.Sidle)
+			return 0f;
+		if (Position.y % 1 != 0)
+			return 0f;
+
+		float expectedTime = 0f;
+		bool pushpull = false;
+		if (inputNames.Contains("Grab"))
+		{
+			pushpull = true;
+		}
+		if (inputNames.Contains("Up"))
+		{
+			return QueueMove(Vector3.forward, pushpull);
+		}
+		else if (inputNames.Contains("Down"))
+		{
+			return QueueMove(Vector3.back, pushpull);
+		}
+		else if (inputNames.Contains("Left"))
+		{
+			return QueueMove(Vector3.left, pushpull);
+		}
+		else if (inputNames.Contains("Right"))
+		{
+			return QueueMove(Vector3.right, pushpull);
+		}
+		else if(inputNames.Contains("Jump"))
+		{
+			Boingy(CurrentLocation + FacingDirection + FacingDirection + Vector3.up);
+			return 1f;
+		}
+
+		return expectedTime;
+	}
+
 	public override float PushPull(Vector3 direction)
 	{
 		if (direction == Vector3.zero)
