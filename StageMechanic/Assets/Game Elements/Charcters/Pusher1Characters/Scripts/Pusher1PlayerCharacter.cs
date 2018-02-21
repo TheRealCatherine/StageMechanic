@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Pusher1PlayerCharacter : Cathy1PlayerCharacter {
 
+	public override void Sidle(Vector3 direction)
+	{
+		
+	}
+
 	public override float PushPull(Vector3 direction)
 	{
 		if (direction == Vector3.zero)
@@ -24,8 +29,14 @@ public class Pusher1PlayerCharacter : Cathy1PlayerCharacter {
 				return 0f;
 		}
 
-		//TODO no sideways movement
-		IBlock blockInQuestion = BlockManager.GetBlockAt(transform.position + FacingDirection);
+		if (FacingDirection != direction)
+		{
+			IBlock nextFloor = BlockManager.GetBlockNear(transform.position + direction + Vector3.down);
+			if (nextFloor == null)
+				return 0f;
+		}
+
+			IBlock blockInQuestion = BlockManager.GetBlockAt(transform.position + FacingDirection);
 		if (blockInQuestion == null)
 			return 0f;
 		Serializer.RecordUndo();

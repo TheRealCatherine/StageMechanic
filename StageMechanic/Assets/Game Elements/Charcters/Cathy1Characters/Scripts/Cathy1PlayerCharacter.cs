@@ -369,7 +369,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		}
 	}
 
-	public void Sidle(Vector3 direction)
+	public virtual void Sidle(Vector3 direction)
 	{
 		StartCoroutine(SidleTo(CurrentLocation + direction));
 	}
