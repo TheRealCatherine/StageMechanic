@@ -282,21 +282,27 @@ public class InputManager : MonoBehaviour
 
 		else if(Input.GetKeyDown(KeyCode.F6)) {
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(1);
+			(BlockManager.ActiveBlock as PushPullGameboardBlock)?.ShowVariation(1);
+			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(1);
 			return true;
 		}
 		else if (Input.GetKeyDown(KeyCode.F7))
 		{
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(2);
+			(BlockManager.ActiveBlock as PushPullGameboardBlock)?.ShowVariation(2);
+			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(2);
 			return true;
 		}
 		else if (Input.GetKeyDown(KeyCode.F8))
 		{
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(3);
+			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(3);
 			return true;
 		}
 		else if (Input.GetKeyDown(KeyCode.F9))
 		{
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(4);
+			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(4);
 			return true;
 		}
 

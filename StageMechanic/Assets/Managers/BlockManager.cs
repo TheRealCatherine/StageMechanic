@@ -198,7 +198,16 @@ public class BlockManager : MonoBehaviour
 		}
 		else if(palette == "Bloxels Internal")
 		{
-			AbstractBloxelsBlock block = Instance.BlockFactories[1].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
+			AbstractBloxelsBlock block = Instance.BlockFactories[2].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
+			block.Palette = palette;
+			block.gameObject.layer = Instance.Stage.gameObject.layer;
+			BlockCache.Add(block);
+			Serializer.AutoSave();
+			return block;
+		}
+		else if(palette =="PushPull Internal")
+		{
+			AbstractPushPullBlock block = Instance.BlockFactories[1].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractPushPullBlock;
 			block.Palette = palette;
 			block.gameObject.layer = Instance.Stage.gameObject.layer;
 			BlockCache.Add(block);
