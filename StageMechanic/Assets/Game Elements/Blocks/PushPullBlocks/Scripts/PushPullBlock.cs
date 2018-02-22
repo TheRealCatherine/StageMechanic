@@ -20,6 +20,21 @@ public class PushPullBlock : AbstractPushPullBlock {
 		}
 	}
 
+	public override void Awake()
+	{
+		base.Awake();
+		BlockManager.AddBlockToGroup(this,0);
+	}
+
+	internal override void OnBlockGroupChanged(int newGroup)
+	{
+		base.OnBlockGroupChanged(newGroup);
+		if (newGroup >= 0)
+			ShowVariation(newGroup);
+		else
+			Destroy(gameObject);
+	}
+
 	public void ShowVariation(int variation)
 	{
 		if (variation < 1)
@@ -31,7 +46,6 @@ public class PushPullBlock : AbstractPushPullBlock {
 		Debug.Assert(Variations.Length >= variation);
 		CurrentModel = Instantiate(Variations[variation-1], transform);
 		CurrentVariation = variation;
-		BlockManager.AddBlockToGroup(this,variation);
 	}
 
 	public override void ApplyTheme(PushPullBlockTheme theme)

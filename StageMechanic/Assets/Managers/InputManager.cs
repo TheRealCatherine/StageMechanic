@@ -283,26 +283,22 @@ public class InputManager : MonoBehaviour
 		else if(Input.GetKeyDown(KeyCode.F6)) {
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(1);
 			(BlockManager.ActiveBlock as PushPullGameboardBlock)?.ShowVariation(1);
-			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(1);
 			return true;
 		}
 		else if (Input.GetKeyDown(KeyCode.F7))
 		{
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(2);
 			(BlockManager.ActiveBlock as PushPullGameboardBlock)?.ShowVariation(2);
-			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(2);
 			return true;
 		}
 		else if (Input.GetKeyDown(KeyCode.F8))
 		{
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(3);
-			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(3);
 			return true;
 		}
 		else if (Input.GetKeyDown(KeyCode.F9))
 		{
 			(BlockManager.ActiveBlock as Cathy1Block)?.ShowModel(4);
-			(BlockManager.ActiveBlock as PushPullBlock)?.ShowVariation(4);
 			return true;
 		}
 
@@ -396,6 +392,47 @@ public class InputManager : MonoBehaviour
 			if (BlockManager.ActiveBlock != null)
 				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 2);
 		}
+		else if (Input.GetKeyDown(KeyCode.Keypad3))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 3);
+		}
+		else if (Input.GetKeyDown(KeyCode.Keypad4))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 4);
+		}
+		else if (Input.GetKeyDown(KeyCode.Keypad5))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 5);
+		}
+		else if (Input.GetKeyDown(KeyCode.Keypad6))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 6);
+		}
+		else if (Input.GetKeyDown(KeyCode.Keypad7))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 7);
+		}
+		else if (Input.GetKeyDown(KeyCode.Keypad8))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 8);
+		}
+		else if (Input.GetKeyDown(KeyCode.Keypad9))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, 9);
+		}
+		else if (Input.GetKeyDown(KeyCode.KeypadPeriod))
+		{
+			if (BlockManager.ActiveBlock != null)
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock, -1);
+		}
+
 		return false;
 	}
 

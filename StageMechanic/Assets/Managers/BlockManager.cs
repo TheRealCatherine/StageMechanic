@@ -430,14 +430,6 @@ public class BlockManager : MonoBehaviour
 				blockGroups[groupNumber] = new List<IBlock>();
 			blockGroups[groupNumber].Add(block);
 			blockToGroupMapping[block] = groupNumber;
-			cakeslice.Outline outline = block.GameObject.GetComponent<cakeslice.Outline>();
-			if (outline == null)
-				outline = block.GameObject.GetComponentInChildren<cakeslice.Outline>();
-			if (outline != null)
-			{
-				outline.enabled = true;
-				outline.color = groupNumber;
-			}
 		}
 		else if (!blockToGroupMapping.ContainsKey(block))
 		{
@@ -447,15 +439,8 @@ public class BlockManager : MonoBehaviour
 			if (blockGroups[groupNumber] == null)
 				blockGroups[groupNumber] = new List<IBlock>();
 			blockGroups[groupNumber].Add(block);
-			cakeslice.Outline outline = block.GameObject.GetComponent<cakeslice.Outline>();
-			if (outline == null)
-				outline = block.GameObject.GetComponentInChildren<cakeslice.Outline>();
-			if (outline != null)
-			{
-				outline.enabled = true;
-				outline.color = groupNumber;
-			}
 		}
+		(block as AbstractBlock)?.OnBlockGroupChanged(groupNumber);
 	}
 
 	public static void RemoveBlockFromGroup(IBlock block)

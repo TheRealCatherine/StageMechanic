@@ -803,6 +803,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
 	protected virtual void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState) { }
 
+	#region Block event handling
+	internal virtual void OnBlockGroupChanged(int newGroup) { }
+	#endregion
+
 	#region Player movement event handling
 	public virtual void OnPlayerMovement(IPlayerCharacter player, PlayerMovementEvent.EventType type)
 	{
