@@ -2448,7 +2448,7 @@ Prefab:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.size
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
@@ -2761,6 +2761,11 @@ Prefab:
       propertyPath: Clips.Array.data[15]
       value: 
       objectReference: {fileID: 8300000, guid: b0c120ad3a4a7ab40a6756180044f2a2, type: 3}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[16]
+      value: 
+      objectReference: {fileID: 8300000, guid: 25297a4f815f2974986053e3191118ff, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
   m_IsPrefabParent: 0
