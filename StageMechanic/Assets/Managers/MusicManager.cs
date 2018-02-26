@@ -20,8 +20,7 @@ public class MusicManager : MonoBehaviour {
         if (PlayerPrefs.HasKey("MusicTrackIndex"))
             PlayTrack(PlayerPrefs.GetInt("MusicTrackIndex"));
         else
-            PlayTrack(11);
-            //PlayRandomTrack();
+            PlayTrack(0);
 	}
 	
 	public static void VolumeUp()
