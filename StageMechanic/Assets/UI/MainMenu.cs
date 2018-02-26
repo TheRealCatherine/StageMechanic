@@ -58,7 +58,8 @@ public class MainMenu : MonoBehaviour
 	{
 		if(!BlockManager.PlayMode)
 		{
-			BlockManager.Cursor?.SetActive(true);
+			if (BlockManager.Cursor && BlockManager.Cursor.gameObject) //prevent crash while quiting
+				BlockManager.Cursor?.SetActive(true);
 		}
 		TogglePlayModeButton.gameObject.SetActive(true);
 	}
