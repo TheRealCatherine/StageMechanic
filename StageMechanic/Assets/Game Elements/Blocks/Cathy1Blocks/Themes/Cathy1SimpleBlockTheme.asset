@@ -43,7 +43,7 @@ MonoBehaviour:
   SmallBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   SmallBombExplosionOffset: {x: 0, y: 0, z: 0}
   SmallBombFuseSound: {fileID: 0}
-  SmallBombExplosionSound: {fileID: 8300000, guid: c82c8c1638eabc149aaa992a4b96dafe,
+  SmallBombExplosionSound: {fileID: 8300000, guid: 8a553ddef46eb9548b587974eabec723,
     type: 3}
   SmallBombIcon: {fileID: 21300000, guid: 670815ffd3a3760418c15888dd6df68a, type: 3}
   LargeBombIdle: {fileID: 1365654018808716, guid: 673fcf7832ffa7b43b909b9ba39ec825,
@@ -53,7 +53,7 @@ MonoBehaviour:
   LargeBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   LargeBombExplosionOffset: {x: 0, y: 0, z: 0}
   LargeBombFuseSound: {fileID: 0}
-  LargeBombExplosionSound: {fileID: 8300000, guid: c82c8c1638eabc149aaa992a4b96dafe,
+  LargeBombExplosionSound: {fileID: 8300000, guid: fcd1469b1021ac2438c40f6fb7d3268d,
     type: 3}
   LargeBombIcon: {fileID: 21300000, guid: 1019e7aac1f26bb45902d548da03115c, type: 3}
   LightCracks: {fileID: 1337161712413462, guid: 9d2d75f0e47c3714eace0f365b1ca647,
@@ -62,8 +62,8 @@ MonoBehaviour:
     type: 2}
   DisintigrationDust: {fileID: 0}
   DustOffset: {x: 0, y: 0, z: 0}
-  CrackSound: {fileID: 8300000, guid: 78fcd108e227fcf4ab168bef99ac47e7, type: 3}
-  DisintigrateSound: {fileID: 8300000, guid: 3f09f277f1881704d9dd10c109d01722, type: 3}
+  CrackSound: {fileID: 8300000, guid: d620da6e122579d459d53ef5e7fdba6f, type: 3}
+  DisintigrateSound: {fileID: 8300000, guid: 7ed8ecf091ce6bd48bfc24109786e85d, type: 3}
   LightCracksIcon: {fileID: 21300000, guid: 90ac461e7c05e3949aa87d8ecbf867aa, type: 3}
   HeavyCracksIcon: {fileID: 21300000, guid: c2a9fe9e39026e04b813725724687120, type: 3}
   GroupedBlockIcon: {fileID: 0}
@@ -72,6 +72,7 @@ MonoBehaviour:
   IdleGoalEffect: {fileID: 0}
   ActiveGoalEffect: {fileID: 0}
   GoalEffectsOffset: {x: 0, y: 0, z: 0}
+  GoalSound: {fileID: 8300000, guid: d3f6907dac036194db3f9d2200538eb6, type: 3}
   GoalIcon: {fileID: 21300000, guid: 7050e8bb3081e2447a6f33c093e7a416, type: 3}
   Heavy: {fileID: 1293386146860052, guid: 184c74b6110da2241b2e1c58e72da499, type: 2}
   HeavyIcon: {fileID: 21300000, guid: bd5cae38484476d40b3e2d6242dfbb05, type: 3}
@@ -96,7 +97,7 @@ MonoBehaviour:
   DisarmedMonster: {fileID: 0}
   RandomMonsterSound: {fileID: 8300000, guid: c4b7931e1dde81b478a4f76369b7ae59, type: 3}
   MoveMonsterSound: {fileID: 0}
-  DisarmMonsterSound: {fileID: 0}
+  DisarmMonsterSound: {fileID: 8300000, guid: 9bb43bf6071702347b0a76fd6bb03bac, type: 3}
   RandomMonsterEffect: {fileID: 0}
   MoveMonsterEffect: {fileID: 0}
   DisarmMonsterEffect: {fileID: 0}

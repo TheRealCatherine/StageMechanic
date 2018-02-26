@@ -49,6 +49,7 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public ParticleSystem IdleGoalEffect; //Optional
 	public ParticleSystem ActiveGoalEffect; //Optional
 	public Vector3 GoalEffectsOffset; //Optional
+	public AudioClip GoalSound; //Optional
 	public Sprite GoalIcon; //Optional
 
 	[Header("Heavy")]
