@@ -21,8 +21,7 @@ public class AudioEffectsManager : MonoBehaviour {
 	{
 		//AudioSource.PlayClipAtPoint(clip, position, volume);
 		//TODO figure out why the above is OMFG quiet AF
-		if(MainCamera.isPlaying) //TODO no way to check if paused built into Unity
-			MainCamera.PlayOneShot(clip, volume);
+		MainCamera.PlayOneShot(clip, volume);
 		yield return new WaitForSeconds(clip.length);
 	}
 
