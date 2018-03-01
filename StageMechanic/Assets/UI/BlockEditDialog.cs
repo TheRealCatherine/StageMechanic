@@ -142,7 +142,7 @@ public class BlockEditDialog : MonoBehaviour {
         if (CurrentBlock != null)
         {
             //TODO make this generic
-            Sprite icon = BlockManager.Instance.BlockFactories[0].IconForType(CurrentBlock.TypeName);
+            Sprite icon = BlockManager.Instance.BlockFactories[BlockManager.BlockFactoryIndex((CurrentBlock as AbstractBlock).Palette)].IconForType(CurrentBlock.TypeName);
             BlockButton.image.sprite = icon;
             BlockButton.GetComponentInChildren<Text>().text = CurrentBlock.TypeName;
             NameField.text = CurrentBlock.Name;

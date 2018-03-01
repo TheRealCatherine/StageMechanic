@@ -183,11 +183,12 @@ public class BlockManager : MonoBehaviour
 	/// <param name="palette"></param>
 	/// <param name="type"></param>
 	/// <returns></returns>
+	/// TODO don't hardcode block factories here
 	public static IBlock CreateBlockAt(Vector3 position, string palette, string type)
 	{
 		Debug.Assert(Instance != null);
 		Debug.Assert(Cursor != null);
-		if (palette == "Cathy1 Internal")
+		if (palette == "Cathy1 Internal" || palette == "Cathy Internal")
 		{
 			Cathy1Block block = Instance.BlockFactories[0].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
 			block.Palette = palette;
@@ -198,7 +199,7 @@ public class BlockManager : MonoBehaviour
 		}
 		else if(palette == "Bloxels Internal")
 		{
-			AbstractBloxelsBlock block = Instance.BlockFactories[2].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
+			AbstractBloxelsBlock block = Instance.BlockFactories[3].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
 			block.Palette = palette;
 			block.gameObject.layer = Instance.Stage.gameObject.layer;
 			BlockCache.Add(block);
@@ -214,7 +215,34 @@ public class BlockManager : MonoBehaviour
 			Serializer.AutoSave();
 			return block;
 		}
+		else if(palette == "BoxGirl Internal")
+		{
+			AbstractBlock block = Instance.BlockFactories[2].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBlock;
+			block.Palette = palette;
+			block.gameObject.layer = Instance.Stage.gameObject.layer;
+			BlockCache.Add(block);
+			Serializer.AutoSave();
+			return block;
+		}
 		return null;
+	}
+
+	//TODO don't hardcode these
+	public static int BlockFactoryIndex(string palette)
+	{
+		switch(palette)
+		{
+			case "Cathy1 Internal":
+			case "Cathy Internal":
+			default:
+				return 0;
+			case "Bloxels Internal":
+				return 3;
+			case "PushPull Internal":
+				return 1;
+			case "BoxGirl Internal":
+				return 2;
+		}
 	}
 
 	/// <summary>

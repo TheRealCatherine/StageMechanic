@@ -2468,7 +2468,7 @@ Prefab:
     - target: {fileID: 114964328166331634, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: BlockFactories.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4625271195422440, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2685,7 +2685,7 @@ Prefab:
         type: 2}
       propertyPath: BlockFactories.Array.data[2]
       value: 
-      objectReference: {fileID: 969504320}
+      objectReference: {fileID: 727588394}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.data[0]
@@ -2766,6 +2766,11 @@ Prefab:
       propertyPath: Clips.Array.data[16]
       value: 
       objectReference: {fileID: 8300000, guid: 25297a4f815f2974986053e3191118ff, type: 3}
+    - target: {fileID: 114964328166331634, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: BlockFactories.Array.data[3]
+      value: 
+      objectReference: {fileID: 969504320}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
   m_IsPrefabParent: 0
@@ -7716,6 +7721,49 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 715074425}
+--- !u!1 &727588392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 727588393}
+  - component: {fileID: 727588394}
+  m_Layer: 0
+  m_Name: BoxGirl Block Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &727588393
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 727588392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1758530827}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &727588394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 727588392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121492abbfc55f04dabf39fe8d107bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blocks:
+  - {fileID: 114572739685377730, guid: aa06a2d3ff818d44591a4b49bf79e3ec, type: 2}
+  CurrentTheme: {fileID: 11400000, guid: 8fe8c315f67eff84e82ded850929fd95, type: 2}
 --- !u!1 &733781734
 GameObject:
   m_ObjectHideFlags: 0
