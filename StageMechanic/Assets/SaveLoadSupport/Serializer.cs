@@ -357,7 +357,7 @@ public static class Serializer
     }
 
 
-    public static void BlocksFromJson(Uri path, bool startPlayMode = false)
+    public static void BlocksFromJson(Uri path, bool startPlayMode = false, string[] startPositionOverrides = null)
     {
         LogController.Log("Loading from " + path.ToString());
         StageCollection deserializedCollection = new StageCollection(BlockManager.Instance);
@@ -365,6 +365,20 @@ public static class Serializer
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
         Stream fs = webClient.OpenRead(path);
         HandleLoad(fs, true);
+		if(startPositionOverrides != null)
+		{
+			for(int i=0;i<startPositionOverrides.Length;++i)
+			{
+				IBlock startBlock = null;
+				foreach(IBlock block in BlockManager.BlockCache)
+				{
+					if (block.Name == startPositionOverrides[i])
+						startBlock = block;
+				}
+				if (startBlock != null)
+					EventManager.Instance.CreateCathy1PlayerStartLocation(i, startBlock.Position, startBlock.Rotation);
+			}
+		}
         RecordStartState();
         if (startPlayMode || PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
         {

@@ -38,7 +38,13 @@ public class BoxGirlDoorBlock : Cathy1GoalBlock {
 					Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
 					Debug.Log("loading " + location.ToString());
 					BlockManager.Instance.TogglePlayMode();
-					Serializer.BlocksFromJson(location, startPlayMode: true);
+					string[] startPos = null;
+					if (!string.IsNullOrWhiteSpace(NextStageStartPos))
+					{
+						startPos = new string[1];
+						startPos[0] = NextStageStartPos;
+					}
+					Serializer.BlocksFromJson(location, startPlayMode: true, startPositionOverrides: startPos);
 				}
 				else if (string.IsNullOrWhiteSpace(NextStageFilename))
 				{

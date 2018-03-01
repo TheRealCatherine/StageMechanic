@@ -14,7 +14,7 @@
                     },
                     "Blocks": [
                         {
-                            "Name": "883b09a1-0e75-4195-aaa8-ececc9fd7d01",
+                            "Name": "door",
                             "Palette": "BoxGirl Internal",
                             "Type": "Door",
                             "Position": {
@@ -34,6 +34,10 @@
                                 {
                                     "Key": "Next Stage Filename",
                                     "Value": "2.json"
+                                },
+                                {
+                                    "Key": "Next Stage Start Block Override",
+                                    "Value": "door"
                                 }
                             ]
                         },
@@ -105,7 +109,7 @@
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "0a179acd-a180-48f3-a6a1-6b402f888ce3",
+                            "Name": "3cffc496-b1cf-4638-88d3-d5aa8e64d8e6",
                             "Palette": "Cathy Internal",
                             "Type": "Player Start",
                             "Position": {
