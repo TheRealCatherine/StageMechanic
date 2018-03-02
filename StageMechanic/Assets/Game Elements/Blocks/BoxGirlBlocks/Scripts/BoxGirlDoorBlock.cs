@@ -7,6 +7,8 @@ public class BoxGirlDoorBlock : Cathy1GoalBlock {
 	public AudioClip DoorOpenSound;
 	public AudioClip DoorCloseSound;
 
+	public GameObject DoorInstance;
+
 	public virtual void ApplyTheme(BoxGirlBlockTheme theme)
 	{
 		Debug.Assert(theme.DoorBlock != null);
