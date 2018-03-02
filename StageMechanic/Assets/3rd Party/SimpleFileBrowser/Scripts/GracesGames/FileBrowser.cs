@@ -8,8 +8,8 @@ using UnityEngine;
 namespace GracesGames.SimpleFileBrowser.Scripts
 {
 
-    // Enum used to define save and load mode
-    public enum FileBrowserMode {
+	// Enum used to define save and load mode
+	public enum FileBrowserMode {
 		Save,
 		Load
 	}

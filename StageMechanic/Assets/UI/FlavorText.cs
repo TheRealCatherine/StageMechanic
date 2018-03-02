@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public static class FlavorText
+﻿public static class FlavorText
 {
 	public static string[] Entries = new string[25];
 

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace GracesGames.SimpleFileBrowser.Scripts.UI
 {
 
-    public class LandscapeUserInterface : UserInterface {
+	public class LandscapeUserInterface : UserInterface {
 
         protected override void SetupParents() {
             // Find directories parent to group directory buttons

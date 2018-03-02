@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// This interface is used for objects that have a name assigned
 /// to the object. The name may be unique or non-unique depending
 /// on the implementation. Commonly this be a random GUID unless

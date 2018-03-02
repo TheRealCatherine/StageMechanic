@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BloxelsStoryBlock : AbstractBloxelsBlock
+﻿public class BloxelsStoryBlock : AbstractBloxelsBlock
 {
 	public override void Awake()
 	{

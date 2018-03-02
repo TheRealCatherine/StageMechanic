@@ -4,7 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
- public class PlayerMovementEvent
+public class PlayerMovementEvent
 {
     public enum EventType
     {

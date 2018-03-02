@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BloxelsCoinBlock : AbstractBloxelsBlock
+﻿public class BloxelsCoinBlock : AbstractBloxelsBlock
 {
 	public override void Awake()
 	{

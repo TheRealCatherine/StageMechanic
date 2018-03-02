@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BloxelsEnemyBlock : AbstractBloxelsBlock
+﻿public class BloxelsEnemyBlock : AbstractBloxelsBlock
 {
 
 	public override string TypeName

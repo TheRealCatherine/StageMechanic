@@ -5,9 +5,9 @@ using UnityEngine.UI;
 namespace GracesGames.Common.Scripts
 {
 
-    // Utilities class defining re-usable methods
+	// Utilities class defining re-usable methods
 
-    public class Utilities : MonoBehaviour {
+	public class Utilities : MonoBehaviour {
 
 		// Finds and returns a game object by name or prints an error and return null
 		public static GameObject FindGameObjectOrError(string objectName) {

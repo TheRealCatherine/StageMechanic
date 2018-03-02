@@ -4,8 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
- using CnControls;
-using System;
+using CnControls;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

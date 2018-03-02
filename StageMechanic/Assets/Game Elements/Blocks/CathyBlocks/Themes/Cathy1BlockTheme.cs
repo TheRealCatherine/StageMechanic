@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [CreateAssetMenu(fileName ="Cathy1BlockTheme",menuName ="Cathy1BlockTheme")]
 public class Cathy1BlockTheme : AbstractBlockTheme

@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 namespace GracesGames.SimpleFileBrowser.Scripts
 {
-    // Demo class to illustrate the usage of the FileBrowser script
-    // Able to save and load files containing serialized data (e.g. text)
-    public class DemoCaller : MonoBehaviour {
+	// Demo class to illustrate the usage of the FileBrowser script
+	// Able to save and load files containing serialized data (e.g. text)
+	public class DemoCaller : MonoBehaviour {
 
 		// Use the file browser prefab
 		public GameObject FileBrowserPrefab;

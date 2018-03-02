@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Rendering;
-using System.Collections.Generic;
 
 /// <summary>
 /// Creates and maintains a command buffer to set up the textures used in the glowing object image effect.

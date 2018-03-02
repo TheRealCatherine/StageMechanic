@@ -8,9 +8,9 @@ using UnityEngine.UI;
 namespace GracesGames.SimpleFileBrowser.Scripts.UI
 {
 
-    // The UI used in the File Browser. 
+	// The UI used in the File Browser. 
 
-    public abstract class UserInterface : MonoBehaviour {
+	public abstract class UserInterface : MonoBehaviour {
 
 		// Dimension used to set the scale of the UI
 		[Range(0.1f, 1.0f)] public float UserInterfaceScale = 1f;
