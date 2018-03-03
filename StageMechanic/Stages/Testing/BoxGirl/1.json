@@ -42,70 +42,6 @@
                             ]
                         },
                         {
-                            "Name": "fe099eb9-4121-42cc-bdd9-330ccd95112e",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 1,
-                                "y": 1,
-                                "z": 0
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "1cd65e8e-6b21-40f6-b8f0-02b82053777e",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 2,
-                                "y": 1,
-                                "z": 0
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "95dedfb4-c8d8-43c2-af56-084fe861bbaa",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 3,
-                                "y": 1,
-                                "z": 0
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "ba4cd66c-8803-4b1a-aed9-830c1cc77552",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 4,
-                                "y": 1,
-                                "z": 0
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                }
-                            ]
-                        },
-                        {
                             "Name": "b21c3430-b5cf-4960-8d9a-230969a2786a",
                             "Palette": "Cathy1 Internal",
                             "Type": "Immobile",
@@ -226,6 +162,58 @@
                             ]
                         },
                         {
+                            "Name": "19f16d69-6273-45b4-b3ec-993075c3e19a",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 10,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "b8cdb90b-9a82-435c-bac9-f1ba77de3464",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 17,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Falling"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "116d713c-1b3c-4f68-8bea-f3065406e8b6",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 7,
+                                "y": 13,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Falling"
+                                }
+                            ]
+                        },
+                        {
                             "Name": "170afe20-a2a3-42a6-865c-035947db16ec",
                             "Palette": "Cathy1 Internal",
                             "Type": "Immobile",
@@ -246,22 +234,110 @@
                             ]
                         },
                         {
-                            "Name": "19f16d69-6273-45b4-b3ec-993075c3e19a",
+                            "Name": "fe099eb9-4121-42cc-bdd9-330ccd95112e",
                             "Palette": "Cathy1 Internal",
-                            "Type": "Immobile",
+                            "Type": "Cracked (1 Step)",
                             "Position": {
-                                "x": 10,
-                                "y": 2,
+                                "x": 1,
+                                "y": 1,
                                 "z": 0
                             },
                             "Properties": [
                                 {
                                     "Key": "Motion State",
-                                    "Value": "Edged"
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Steps Remaining",
+                                    "Value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "1cd65e8e-6b21-40f6-b8f0-02b82053777e",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Cracked (1 Step)",
+                            "Position": {
+                                "x": 2,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Steps Remaining",
+                                    "Value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "95dedfb4-c8d8-43c2-af56-084fe861bbaa",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Cracked (1 Step)",
+                            "Position": {
+                                "x": 3,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Steps Remaining",
+                                    "Value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "ba4cd66c-8803-4b1a-aed9-830c1cc77552",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Cracked (1 Step)",
+                            "Position": {
+                                "x": 4,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Steps Remaining",
+                                    "Value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "door3",
+                            "Palette": "BoxGirl Internal",
+                            "Type": "Door",
+                            "Position": {
+                                "x": -3,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
                                 },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "2.json"
+                                },
+                                {
+                                    "Key": "Next Stage Start Block Override",
+                                    "Value": "door2"
                                 }
                             ]
                         },
@@ -292,17 +368,65 @@
                                     "Value": "door"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "door4",
+                            "Palette": "BoxGirl Internal",
+                            "Type": "Door",
+                            "Position": {
+                                "x": -5,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "3.json"
+                                },
+                                {
+                                    "Key": "Next Stage Start Block Override",
+                                    "Value": "door2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "eac6f102-e0a4-4569-a24f-098ba0f799d3",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Spike Trap",
+                            "Position": {
+                                "x": -4,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "1e4bb814-f8c0-49f9-a8a5-e89db4e4bf94",
+                            "Name": "9882ac73-d6d9-4ea0-9969-e05fc263bb70",
                             "Palette": "Cathy Internal",
                             "Type": "Player Start",
                             "Position": {
-                                "x": 4,
-                                "y": 1.5,
+                                "x": 10,
+                                "y": 3.5,
                                 "z": 0
                             },
                             "Properties": [

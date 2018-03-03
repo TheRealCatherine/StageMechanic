@@ -328,10 +328,271 @@
                                     "Value": "door2"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "b9fb76ee-8a57-4a84-a599-e52031dffeae",
+                            "Palette": "Bloxels Internal",
+                            "Type": "Ground",
+                            "Position": {
+                                "x": 3,
+                                "y": 5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Gravity Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "962b3de2-0603-4022-974b-f335475c88b0",
+                            "Palette": "Bloxels Internal",
+                            "Type": "Ground",
+                            "Position": {
+                                "x": 2,
+                                "y": 5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Gravity Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "7d1e82c1-2eef-498a-8f6b-b21d4a6c41aa",
+                            "Palette": "Bloxels Internal",
+                            "Type": "Ground",
+                            "Position": {
+                                "x": 1,
+                                "y": 5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Gravity Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "6f50f9b5-2074-4c06-a02d-42dda37eefc6",
+                            "Palette": "Bloxels Internal",
+                            "Type": "Ground",
+                            "Position": {
+                                "x": 0,
+                                "y": 5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Gravity Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "3bc5d5cc-98e4-4ed9-a564-462a8b02e3c4",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Goal",
+                            "Position": {
+                                "x": 3,
+                                "y": 6,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "door2",
+                            "Palette": "BoxGirl Internal",
+                            "Type": "Door",
+                            "Position": {
+                                "x": -1,
+                                "y": 5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Gravity Factor",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "1.json"
+                                },
+                                {
+                                    "Key": "Next Stage Start Block Override",
+                                    "Value": "door4"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e801cb89-e37a-457f-9d41-6785d2798b30",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Vortex",
+                            "Position": {
+                                "x": 1,
+                                "y": 9,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Falling"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "b4759863-c6d5-4854-8853-a572cb15baf4",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Vortex",
+                            "Position": {
+                                "x": 1,
+                                "y": 14,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Falling"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "fb3565f9-e551-4285-9c7a-5272ebccbdce",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Vortex",
+                            "Position": {
+                                "x": 1,
+                                "y": 21,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Falling"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "830714b2-8ddf-4487-b815-71865551e807",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Vortex",
+                            "Position": {
+                                "x": 1,
+                                "y": 27,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Falling"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "c3c1aaf4-4157-4977-961d-aa5b83a3f632",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Vortex",
+                            "Position": {
+                                "x": 0,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "398478f6-38e5-405f-b333-5ae5a4f3adc7",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Vortex",
+                            "Position": {
+                                "x": 1,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "9be41195-d8c8-473b-8797-d864082c421d",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Ice",
+                            "Position": {
+                                "x": -1,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
-                    "Events": [ ]
+                    "Events": [
+                        {
+                            "Name": "b312d946-e9f7-4918-829c-e6667a3b0cb5",
+                            "Palette": "Cathy Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": -5,
+                                "y": 5.5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "PlayerNumber",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

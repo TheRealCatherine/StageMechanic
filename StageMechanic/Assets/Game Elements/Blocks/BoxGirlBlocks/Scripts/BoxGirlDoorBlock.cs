@@ -28,7 +28,7 @@ public class BoxGirlDoorBlock : Cathy1GoalBlock {
 		string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
 		if (statename == "Idle" || statename == "Walk" || statename == "Center")
 		{
-			if (Input.GetKey(KeyCode.UpArrow))
+			if (Input.GetKeyDown(KeyCode.UpArrow))
 			{
 				if (DoorOpenSound != null)
 					AudioEffectsManager.PlaySound(this, DoorOpenSound);

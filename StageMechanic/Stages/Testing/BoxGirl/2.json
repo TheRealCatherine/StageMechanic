@@ -120,12 +120,124 @@
                                     "Value": "0"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "88ae244d-aa18-4bdc-a898-7838cfb57abd",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": -5,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "7785fce2-f34a-44fc-bec2-3c5fb59df84a",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -4,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "df2843e7-d829-487e-a15f-fb08a61de5ef",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -3,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "cd8bebb4-5986-4a79-8a98-3d14c4bdfc63",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -2,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "828378d2-87ec-4b7a-95fc-3d75a34b8e3a",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Small Bomb",
+                            "Position": {
+                                "x": -1,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "door2",
+                            "Palette": "BoxGirl Internal",
+                            "Type": "Door",
+                            "Position": {
+                                "x": -6,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Next Stage Filename",
+                                    "Value": "1.json"
+                                },
+                                {
+                                    "Key": "Next Stage Start Block Override",
+                                    "Value": "door3"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "17c8fad8-3647-4dc9-b500-c4a455e3eeb7",
+                            "Name": "78384b9d-8e4c-427e-9071-0303f14c89bd",
                             "Palette": "Cathy Internal",
                             "Type": "Player Start",
                             "Position": {
