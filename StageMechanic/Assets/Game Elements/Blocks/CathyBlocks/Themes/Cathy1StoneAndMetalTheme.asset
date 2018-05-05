@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469a63e574c1aa84cb688371e32b38ea, type: 3}
+  m_Name: Cathy1StoneAndMetalTheme
+  m_EditorClassIdentifier: 
+  Name: Stone And Metal
+  Icon: {fileID: 21300000, guid: 7ce10fb91f9de7544bc202f40eb422a6, type: 3}
+  Alcohol: 0
+  Drugs: 0
+  Sexuality: 0
+  IntenseSexuality: 0
+  Gambling: 0
+  MatureLanguage: 0
+  MatureHumor: 0
+  Blood: 0
+  Gore: 0
+  ComicMiscief: 0
+  CartoonViolence: 0
+  FantasyViolence: 0
+  IntenseViolence: 0
+  SexualViolence: 0
+  BasicBlock1: {fileID: 100000, guid: a420cb4d5d6e97a47bb17ef2d4b4c9de, type: 3}
+  BasicBlock2: {fileID: 100000, guid: 39e2f8a96d9e69846a16bb877f786aa8, type: 3}
+  BasicBlock3: {fileID: 1397500408130860, guid: abdcdf9e27de88d4e8f8fcb2f9542f7f,
+    type: 2}
+  BasicBlock4: {fileID: 1673515781029008, guid: 6a3ce2c8a8b645748af2f72d562f31d8,
+    type: 2}
+  BasicBlockIcon: {fileID: 21300000, guid: d9ecaacb2f9c65948b3e1e976d0a0491, type: 3}
+  SmallBombIdle: {fileID: 1029159264107406, guid: a25736b63599cd846870b1b76676530f,
+    type: 2}
+  SmallBombTriggered: {fileID: 1029159264107406, guid: 595c0b501461815429c828ad72feb615,
+    type: 2}
+  SmallBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
+  SmallBombExplosionOffset: {x: 0, y: 0, z: 0}
+  SmallBombFuseSound: {fileID: 0}
+  SmallBombExplosionSound: {fileID: 8300000, guid: 8a553ddef46eb9548b587974eabec723,
+    type: 3}
+  SmallBombIcon: {fileID: 21300000, guid: 670815ffd3a3760418c15888dd6df68a, type: 3}
+  LargeBombIdle: {fileID: 1365654018808716, guid: 673fcf7832ffa7b43b909b9ba39ec825,
+    type: 2}
+  LargeBombTriggered: {fileID: 1365654018808716, guid: 612e70bc7516e8e4397587ac1b16286d,
+    type: 2}
+  LargeBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
+  LargeBombExplosionOffset: {x: 0, y: 0, z: 0}
+  LargeBombFuseSound: {fileID: 0}
+  LargeBombExplosionSound: {fileID: 8300000, guid: fcd1469b1021ac2438c40f6fb7d3268d,
+    type: 3}
+  LargeBombIcon: {fileID: 21300000, guid: 1019e7aac1f26bb45902d548da03115c, type: 3}
+  LightCracks: {fileID: 1337161712413462, guid: 9d2d75f0e47c3714eace0f365b1ca647,
+    type: 2}
+  HeavyCracks: {fileID: 1708649441904092, guid: 934a5671b4b065a429861a5ad63daa9f,
+    type: 2}
+  DisintigrationDust: {fileID: 0}
+  DustOffset: {x: 0, y: 0, z: 0}
+  CrackSound: {fileID: 8300000, guid: d620da6e122579d459d53ef5e7fdba6f, type: 3}
+  DisintigrateSound: {fileID: 8300000, guid: 7ed8ecf091ce6bd48bfc24109786e85d, type: 3}
+  LightCracksIcon: {fileID: 21300000, guid: 90ac461e7c05e3949aa87d8ecbf867aa, type: 3}
+  HeavyCracksIcon: {fileID: 21300000, guid: c2a9fe9e39026e04b813725724687120, type: 3}
+  GroupedBlockIcon: {fileID: 0}
+  IdleGoal: {fileID: 1833382687263064, guid: 70bfc3fc19b49704f8345c9b25ee7f45, type: 2}
+  ActiveGoal: {fileID: 1833382687263064, guid: 87a6ce6222d56f24c9ce61746735e016, type: 2}
+  IdleGoalEffect: {fileID: 0}
+  ActiveGoalEffect: {fileID: 0}
+  GoalEffectsOffset: {x: 0, y: 0, z: 0}
+  GoalSound: {fileID: 8300000, guid: d3f6907dac036194db3f9d2200538eb6, type: 3}
+  GoalIcon: {fileID: 21300000, guid: 7050e8bb3081e2447a6f33c093e7a416, type: 3}
+  Heavy: {fileID: 1293386146860052, guid: 184c74b6110da2241b2e1c58e72da499, type: 2}
+  HeavyIcon: {fileID: 21300000, guid: bd5cae38484476d40b3e2d6242dfbb05, type: 3}
+  Ice: {fileID: 1822384553159310, guid: 97093f5c06acf7145a2593c4666f0512, type: 2}
+  RandomIceEffect: {fileID: 0}
+  IceEffectOffset: {x: 0, y: 0, z: 0}
+  IceIcon: {fileID: 21300000, guid: fdd52ef4a261cf547806813ae6d99f6d, type: 3}
+  Immobile: {fileID: 1685318039569804, guid: 27c49ac752babe540b157ff5ba76828a, type: 2}
+  ImmobileIcon: {fileID: 21300000, guid: 33c7892a27b823b4eb73029ebaad2959, type: 3}
+  IdleLaser: {fileID: 1967815998340056, guid: d6571e90522ac0e41a732467091935ee, type: 2}
+  ActiveLaser: {fileID: 0}
+  DisabledLaser: {fileID: 0}
+  LaserEffect: {fileID: 0}
+  LaserEffectOffset: {x: 0, y: 0, z: 0}
+  LaserWarningSound: {fileID: 0}
+  LaserFireSound: {fileID: 0}
+  DisablingLaserSound: {fileID: 0}
+  LaserIcon: {fileID: 21300000, guid: e741d2e1ac396fc44b60f05b3eaac3d8, type: 3}
+  ActiveMonster: {fileID: 1416263869443658, guid: bea27be3e8f5e85488472eaad8335682,
+    type: 2}
+  MovingMonster: {fileID: 0}
+  DisarmedMonster: {fileID: 0}
+  RandomMonsterSound: {fileID: 8300000, guid: c4b7931e1dde81b478a4f76369b7ae59, type: 3}
+  MoveMonsterSound: {fileID: 0}
+  DisarmMonsterSound: {fileID: 8300000, guid: 9bb43bf6071702347b0a76fd6bb03bac, type: 3}
+  RandomMonsterEffect: {fileID: 0}
+  MoveMonsterEffect: {fileID: 0}
+  DisarmMonsterEffect: {fileID: 0}
+  MonsterEffectOffset: {x: 0, y: 0, z: 0}
+  MonsterIcon: {fileID: 21300000, guid: ba4c0fbbb39c16a4fad9dd7d4cc3fab1, type: 3}
+  IdleMystery: {fileID: 1331446552570114, guid: 16adceb35d20a1849b37e9ef31f1bd88,
+    type: 2}
+  RevealingMystery: {fileID: 0}
+  MysteryRevealSound: {fileID: 8300000, guid: 8156fa3bee9819c47a5833e915184423, type: 3}
+  MysteryIcon: {fileID: 21300000, guid: 74a2f0a230302024da2d97c9fba1b15d, type: 3}
+  TrapArmed: {fileID: 1693886272620554, guid: 6f8bcfdcbfa93d24fa9b4eafbb1ace1d, type: 2}
+  TrapDisarmed: {fileID: 1693886272620554, guid: 97f638769c241244a92e13513f21da37,
+    type: 2}
+  TrapWarning: {fileID: 0}
+  TrapActive: {fileID: 1693886272620554, guid: d870929128b0f394ebcc3732c84b4032, type: 2}
+  TrapRandomEffect: {fileID: 0}
+  TrapActiveEffect: {fileID: 19800000, guid: b2e1927a9cfbd4c03a114b0166c00dce, type: 2}
+  TrapEffectOffset: {x: 0, y: 0, z: 0}
+  TrapWarningSound: {fileID: 0}
+  TrapActivatedSound: {fileID: 0}
+  TrapIcon: {fileID: 21300000, guid: 761f649c533edf549b35eae4be2afad9, type: 3}
+  IdleSpring: {fileID: 1067447580527712, guid: dabea631362b7014a8b9dc543c8149c0, type: 2}
+  ActiveSpring: {fileID: 0}
+  SpringSound: {fileID: 0}
+  SpringEffect: {fileID: 0}
+  SpringEffectOffset: {x: 0, y: 0, z: 0}
+  SpringIcon: {fileID: 21300000, guid: fd17df9d5116d7c4d9503cdb5ae1f8b1, type: 3}
+  IdleVortex: {fileID: 1514157806592902, guid: fe5dd64498cea5541a473642df9018f0, type: 2}
+  ActiveVortex: {fileID: 0}
+  ActiveVortexSound: {fileID: 8300000, guid: c6a04df0a6c990e4d96821ef721bd9d5, type: 3}
+  RandomVortexEffect: {fileID: 0}
+  ActiveVortexEffect: {fileID: 0}
+  VortexEffectOffset: {x: 0, y: 0, z: 0}
+  VortexIcon: {fileID: 21300000, guid: 2f265b26fcc767c40ae0e41370665d26, type: 3}
