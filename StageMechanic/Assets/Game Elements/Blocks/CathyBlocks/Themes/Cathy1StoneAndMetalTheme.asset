@@ -34,20 +34,18 @@ MonoBehaviour:
   BasicBlock4: {fileID: 1673515781029008, guid: 6a3ce2c8a8b645748af2f72d562f31d8,
     type: 2}
   BasicBlockIcon: {fileID: 21300000, guid: d9ecaacb2f9c65948b3e1e976d0a0491, type: 3}
-  SmallBombIdle: {fileID: 1029159264107406, guid: a25736b63599cd846870b1b76676530f,
+  SmallBombIdle: {fileID: 1534006336018390, guid: b8a24ead6f6267f47b51ab586fc85141,
     type: 2}
-  SmallBombTriggered: {fileID: 1029159264107406, guid: 595c0b501461815429c828ad72feb615,
-    type: 2}
+  SmallBombTriggered: {fileID: 0}
   SmallBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   SmallBombExplosionOffset: {x: 0, y: 0, z: 0}
   SmallBombFuseSound: {fileID: 0}
   SmallBombExplosionSound: {fileID: 8300000, guid: 8a553ddef46eb9548b587974eabec723,
     type: 3}
   SmallBombIcon: {fileID: 21300000, guid: 670815ffd3a3760418c15888dd6df68a, type: 3}
-  LargeBombIdle: {fileID: 1365654018808716, guid: 673fcf7832ffa7b43b909b9ba39ec825,
+  LargeBombIdle: {fileID: 1403881419513156, guid: 96ce47c46838a844f9cd9f8c63405483,
     type: 2}
-  LargeBombTriggered: {fileID: 1365654018808716, guid: 612e70bc7516e8e4397587ac1b16286d,
-    type: 2}
+  LargeBombTriggered: {fileID: 0}
   LargeBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   LargeBombExplosionOffset: {x: 0, y: 0, z: 0}
   LargeBombFuseSound: {fileID: 0}
@@ -72,9 +70,9 @@ MonoBehaviour:
   GoalEffectsOffset: {x: 0, y: 0, z: 0}
   GoalSound: {fileID: 8300000, guid: d3f6907dac036194db3f9d2200538eb6, type: 3}
   GoalIcon: {fileID: 21300000, guid: 7050e8bb3081e2447a6f33c093e7a416, type: 3}
-  Heavy: {fileID: 1293386146860052, guid: 184c74b6110da2241b2e1c58e72da499, type: 2}
+  Heavy: {fileID: 1880534891797454, guid: f8dcc80cbb3b7804890f26b54818447f, type: 2}
   HeavyIcon: {fileID: 21300000, guid: bd5cae38484476d40b3e2d6242dfbb05, type: 3}
-  Ice: {fileID: 1822384553159310, guid: 97093f5c06acf7145a2593c4666f0512, type: 2}
+  Ice: {fileID: 1578333559604744, guid: 0ffe6658ab6e44a4a92d6ec89025f1f6, type: 2}
   RandomIceEffect: {fileID: 0}
   IceEffectOffset: {x: 0, y: 0, z: 0}
   IceIcon: {fileID: 21300000, guid: fdd52ef4a261cf547806813ae6d99f6d, type: 3}
