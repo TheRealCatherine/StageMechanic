@@ -22,6 +22,12 @@ public class MusicManager : MonoBehaviour {
         else
             PlayTrack(0);
 	}
+
+	public static float Volume()
+	{
+		Debug.Assert(Instance.Player != null);
+		return Instance.Player.volume;
+	}
 	
 	public static void VolumeUp()
     {

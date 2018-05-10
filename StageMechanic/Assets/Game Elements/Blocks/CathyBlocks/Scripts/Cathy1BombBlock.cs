@@ -93,11 +93,13 @@ public class Cathy1BombBlock : Cathy1AbstractTrapBlock
 		{
 			DamageRadius = new Vector3(SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS, SMALL_BOMB_DEFAULT_RADIUS);
 			TriggerTime = SMALL_BOMB_DEFAULT_FUSE_TIME;
+			ExplosionAnimationScale = SMALL_BOMB_DEFAULT_ANIMATION_SCALE;
 		}
 		else
 		{
 			DamageRadius = new Vector3(LARGE_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS, LARGE_BOMB_DEFAULT_RADIUS);
 			TriggerTime = LARGE_BOMB_DEFAULT_FUSE_TIME;
+			ExplosionAnimationScale = LARGE_BOMB_DEFAULT_ANIMATION_SCALE;
 		}
 
 	}

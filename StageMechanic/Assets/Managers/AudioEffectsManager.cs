@@ -19,8 +19,11 @@ public class AudioEffectsManager : MonoBehaviour {
 
 	private IEnumerator _soundHelper(AudioClip clip, Vector3 position, float volume)
 	{
-		//AudioSource.PlayClipAtPoint(clip, position, volume);
 		//TODO figure out why the above is OMFG quiet AF
+		//AudioSource.PlayClipAtPoint(clip, position, volume);
+
+		//Volume of sound clip is relative to overall volume
+		volume *= MusicManager.Volume();
 		MainCamera.PlayOneShot(clip, volume);
 		yield return new WaitForSeconds(clip.length);
 	}
