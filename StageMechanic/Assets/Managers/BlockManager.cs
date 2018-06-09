@@ -301,6 +301,8 @@ public class BlockManager : MonoBehaviour
 		List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>();
 		foreach (AbstractBlockFactory factory in BlockFactories)
 		{
+			if (factory == null)
+				continue;
 			string[] blockNames = factory.BlockTypeNames;
 			foreach (string name in blockNames)
 			{
