@@ -132,3 +132,6 @@ Below are resources for those new to game design and devleopment as well as thos
 * [Pushmo World Launch Trailer](https://www.youtube.com/watch?v=Vm7qYpklhNg)
 * [Pushmo World Complete Walkthrough](https://www.youtube.com/playlist?list=PLYpDU5ElRBflOhN0lC_wS13aNEVynhS99)
 
+
+ # Join the team 
+ Do you want to collaborate? Join the project at https://crowdforge.io/projects/420
