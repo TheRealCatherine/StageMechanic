@@ -21,6 +21,11 @@ public class BoxGirlDoorBlock : Cathy1GoalBlock {
 		DoorCloseSound = theme.DoorCloseSound;
 	}
 
+	public override void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		//Do nothing
+	}
+
 	internal override void HandlePlayer(PlayerMovementEvent ev)
 	{
 		if (ev.Location != PlayerMovementEvent.EventLocation.Top)
