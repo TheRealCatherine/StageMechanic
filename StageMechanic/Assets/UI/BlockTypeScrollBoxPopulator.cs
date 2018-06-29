@@ -16,6 +16,7 @@ public class BlockTypeScrollBoxPopulator : MonoBehaviour {
 	public Text FactoryLabelPrefab;
 
 	private List<Button> _buttonsCache = new List<Button>();
+	private List<Text> _labelsCache = new List<Text>();
 
 	void Start () {
 		Populate();
@@ -27,6 +28,7 @@ public class BlockTypeScrollBoxPopulator : MonoBehaviour {
 		{
 			Text label = Instantiate(FactoryLabelPrefab, transform) as Text;
 			label.text = factory.DisplayName;
+			_labelsCache.Add(label);
 
 			string[] types = factory.BlockTypeNames;
 			int count = 0;
@@ -65,7 +67,12 @@ public class BlockTypeScrollBoxPopulator : MonoBehaviour {
 		{
 			Destroy(button.gameObject);
 		}
+		foreach(Text label in _labelsCache)
+		{
+			Destroy(label.gameObject);
+		}
 		_buttonsCache.Clear();
+		_labelsCache.Clear();
 		Populate();
 	}
 }
