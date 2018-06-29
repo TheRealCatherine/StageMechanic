@@ -39,18 +39,20 @@ MonoBehaviour:
   SmallBombIdle: {fileID: 1928014526931168, guid: 596ee5436f367a74480d2b95103c5278,
     type: 2}
   SmallBombTriggered: {fileID: 0}
-  SmallBombExplosion: {fileID: 0}
+  SmallBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   SmallBombExplosionOffset: {x: 0, y: 0, z: 0}
   SmallBombFuseSound: {fileID: 0}
-  SmallBombExplosionSound: {fileID: 0}
+  SmallBombExplosionSound: {fileID: 8300000, guid: 8a553ddef46eb9548b587974eabec723,
+    type: 3}
   SmallBombIcon: {fileID: 21300000, guid: bbb4c274cf296274990d11f53dfda177, type: 3}
   LargeBombIdle: {fileID: 1934708089302226, guid: 6e9e2ec8ea1c4f442847328d3d20235c,
     type: 2}
   LargeBombTriggered: {fileID: 0}
-  LargeBombExplosion: {fileID: 0}
+  LargeBombExplosion: {fileID: 19800006, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 2}
   LargeBombExplosionOffset: {x: 0, y: 0, z: 0}
   LargeBombFuseSound: {fileID: 0}
-  LargeBombExplosionSound: {fileID: 0}
+  LargeBombExplosionSound: {fileID: 8300000, guid: fcd1469b1021ac2438c40f6fb7d3268d,
+    type: 3}
   LargeBombIcon: {fileID: 21300000, guid: f82168063e6dd7d43852c5b906094ae2, type: 3}
   LightCracks: {fileID: 1715206925462852, guid: ff0133b649c6da74cb9dcfa9af27b12a,
     type: 2}
@@ -58,8 +60,8 @@ MonoBehaviour:
     type: 2}
   DisintigrationDust: {fileID: 0}
   DustOffset: {x: 0, y: 0, z: 0}
-  CrackSound: {fileID: 0}
-  DisintigrateSound: {fileID: 0}
+  CrackSound: {fileID: 8300000, guid: d620da6e122579d459d53ef5e7fdba6f, type: 3}
+  DisintigrateSound: {fileID: 8300000, guid: 7ed8ecf091ce6bd48bfc24109786e85d, type: 3}
   LightCracksIcon: {fileID: 21300000, guid: 361a1db598332694eb3ddddfe47212f8, type: 3}
   HeavyCracksIcon: {fileID: 21300000, guid: 366a84c22015bcb44a06ff3c0384cc36, type: 3}
   GroupedBlockIcon: {fileID: 0}
@@ -68,6 +70,7 @@ MonoBehaviour:
   IdleGoalEffect: {fileID: 0}
   ActiveGoalEffect: {fileID: 0}
   GoalEffectsOffset: {x: 0, y: 0, z: 0}
+  GoalSound: {fileID: 8300000, guid: d3f6907dac036194db3f9d2200538eb6, type: 3}
   GoalIcon: {fileID: 21300000, guid: 1c1c927fe0acb4d4cbe4648f313b108d, type: 3}
   Heavy: {fileID: 1970634350927850, guid: 42d1d552f444f6d4a9d2e48118f92520, type: 2}
   HeavyIcon: {fileID: 21300000, guid: eb21d52b10e5de745b39066ada984004, type: 3}
@@ -94,7 +97,7 @@ MonoBehaviour:
     type: 2}
   RandomMonsterSound: {fileID: 0}
   MoveMonsterSound: {fileID: 0}
-  DisarmMonsterSound: {fileID: 0}
+  DisarmMonsterSound: {fileID: 8300000, guid: 9bb43bf6071702347b0a76fd6bb03bac, type: 3}
   RandomMonsterEffect: {fileID: 0}
   MoveMonsterEffect: {fileID: 0}
   DisarmMonsterEffect: {fileID: 0}
@@ -111,7 +114,7 @@ MonoBehaviour:
   TrapWarning: {fileID: 0}
   TrapActive: {fileID: 0}
   TrapRandomEffect: {fileID: 0}
-  TrapActiveEffect: {fileID: 0}
+  TrapActiveEffect: {fileID: 19800000, guid: b2e1927a9cfbd4c03a114b0166c00dce, type: 2}
   TrapEffectOffset: {x: 0, y: 0, z: 0}
   TrapWarningSound: {fileID: 0}
   TrapActivatedSound: {fileID: 0}
