@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public class BlockTypeScrollBoxPopulator : MonoBehaviour {
 
 	public Button ButtonPrefab;
+	public Text FactoryLabelPrefab;
 
 	private List<Button> _buttonsCache = new List<Button>();
 
@@ -24,6 +25,9 @@ public class BlockTypeScrollBoxPopulator : MonoBehaviour {
 	{
 		foreach (AbstractBlockFactory factory in BlockManager.Instance.BlockFactories)
 		{
+			Text label = Instantiate(FactoryLabelPrefab, transform) as Text;
+			label.text = factory.DisplayName;
+
 			string[] types = factory.BlockTypeNames;
 			int count = 0;
 			foreach (string name in types)
