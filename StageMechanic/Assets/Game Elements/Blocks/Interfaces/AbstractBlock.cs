@@ -867,6 +867,10 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			period = 0;
 			if (!BlockManager.PlayMode && !UIManager.IsAnyInputDialogOpen)
 			{
+				//Only allowing clicking blocks in the non-UI part of the screen to prevent clicking both the UI and the block
+				float x = VisualEffectsManager.Instance.PostProcessor.GetComponent<Camera>().WorldToScreenPoint(Position).x;
+				if (x < 100 || Screen.width -  x < 300)
+					return;
 				if (BlockManager.ActiveBlock == this)
 					UIManager.ShowBlockEditDialog(this);
 				BlockManager.Cursor.transform.position = Position;
