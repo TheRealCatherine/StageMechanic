@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
 	public GameObject SettingsWindow;
 	public GameObject CreditsDialog;
 	public Text FlavorTextBox;
+	public Text CurrentTrackName;
 
 	private void OnEnable()
 	{
@@ -52,6 +53,8 @@ public class MainMenu : MonoBehaviour
 
 		if (StartupSound != null)
 			GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
+
+		UpdateTrackName();
 	}
 
 	private void OnDisable()
@@ -138,26 +141,42 @@ public class MainMenu : MonoBehaviour
 	public void OnPlayPauseButtonClicked()
 	{
 		MusicManager.TogglePause();
+		UpdateTrackName();
 	}
 	public void OnNextTrackButtonClicked()
 	{
 		MusicManager.PlayNextTrack();
+		UpdateTrackName();
 	}
 	public void OnPrevTrackButtonClicked()
 	{
 		MusicManager.PlayPreviousTrack();
+		UpdateTrackName();
 	}
 	public void OnVolumeUpButtonClicked()
 	{
 		MusicManager.VolumeUp();
+		UpdateTrackName();
 	}
 	public void OnVolumeDownButtonClicked()
 	{
 		MusicManager.VolumeDown();
+		UpdateTrackName();
 	}
 	public void OnCycleBackgroundButtonClicked()
 	{
 		SkyboxManager.NextSkybox();
+		UpdateTrackName();
+	}
+
+	private void UpdateTrackName()
+	{
+		if (MusicManager.IsPaused())
+			CurrentTrackName.text = "Paused";
+		else if (string.IsNullOrWhiteSpace(MusicManager.TrackName()))
+			CurrentTrackName.text = "Unknown Title";
+		else
+			CurrentTrackName.text = MusicManager.TrackName();
 	}
 
 	public void OnFogValueChanged(bool value)

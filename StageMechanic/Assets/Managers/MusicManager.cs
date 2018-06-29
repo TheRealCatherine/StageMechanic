@@ -14,13 +14,20 @@ public class MusicManager : MonoBehaviour {
     private static MusicManager Instance;
     private static int CurrentIndex;
 
-    void Start () {
+	//Using Awake instead of Start so that label on menu is updated during proram load
+    void Awake () {
         Instance = this;
         Player.volume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
         if (PlayerPrefs.HasKey("MusicTrackIndex"))
             PlayTrack(PlayerPrefs.GetInt("MusicTrackIndex"));
         else
             PlayTrack(0);
+	}
+
+	public static string TrackName()
+	{
+		Debug.Assert(Instance.Player != null);
+		return Instance.Player.clip.name;
 	}
 
 	public static float Volume()
@@ -58,6 +65,11 @@ public class MusicManager : MonoBehaviour {
         PlayerPrefs.SetInt("MusicPaused", 0);
         LogController.Log("Playing " + (CurrentIndex + 1) + ": " + Instance.Clips[CurrentIndex].name);
     }
+
+	public static bool IsPaused()
+	{
+		return (PlayerPrefs.GetInt("MusicPaused", 0) == 1);
+	}
 
     public static void TogglePause()
     {
