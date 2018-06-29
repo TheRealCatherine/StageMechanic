@@ -710,7 +710,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 					Sidle(direction);
 				}
 			}
-			return 0.35f;
+			return 0.25f * blockInQuestion.WeightFactor;
 		}
 		return 0f;
 	}
