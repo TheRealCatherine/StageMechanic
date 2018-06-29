@@ -748,7 +748,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		if (BlockManager.PlayMode)
 		{
 			rb.constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
-			transform.Rotate(0f, 0f, 5f);
+			transform.Rotate(0f, 0f, 2f);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
 			{
@@ -756,7 +756,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				_gravityDirty = true;
 				yield break;
 			}
-			transform.Rotate(0f, 0f, -10f);
+			transform.Rotate(0f, 0f, -5f);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
 			{
@@ -772,7 +772,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				_gravityDirty = true;
 				yield break;
 			}
-			transform.Rotate(0f, 0f, -5f);
+			transform.Rotate(0f, 0f, -2f);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
 			{
