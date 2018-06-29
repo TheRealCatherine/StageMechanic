@@ -12,6 +12,14 @@ public class PushPullBlockFactory : AbstractBlockFactory
 		}
 	}
 
+	public override string DisplayName
+	{
+		get
+		{
+			return "PushPull";
+		}
+	}
+
 	public AbstractPushPullBlock[] Blocks;
 	private Dictionary<string, AbstractPushPullBlock> _prefabs = new Dictionary<string, AbstractPushPullBlock>();
 	public PushPullBlockTheme CurrentTheme;

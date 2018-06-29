@@ -12,6 +12,14 @@ public class BoxGirlBlockFactory : AbstractBlockFactory
 		}
 	}
 
+	public override string DisplayName
+	{
+		get
+		{
+			return "Boxgril";
+		}
+	}
+
 	public AbstractBlock[] Blocks;
 	private Dictionary<string, AbstractBlock> _prefabs = new Dictionary<string, AbstractBlock>();
 	public BoxGirlBlockTheme CurrentTheme;

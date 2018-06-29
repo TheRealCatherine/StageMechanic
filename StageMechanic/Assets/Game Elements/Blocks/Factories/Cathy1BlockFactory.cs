@@ -41,6 +41,14 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 		}
 	}
 
+	public override string DisplayName
+	{
+		get
+		{
+			return "RoboCathy";
+		}
+	}
+
 	public override Sprite IconForType(string name)
 	{
 		if(CurrentTheme == null)

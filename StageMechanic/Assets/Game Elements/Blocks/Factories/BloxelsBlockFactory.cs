@@ -12,6 +12,14 @@ public class BloxelsBlockFactory : AbstractBlockFactory
 		}
 	}
 
+	public override string DisplayName
+	{
+		get
+		{
+			return "Boxxyzzy";
+		}
+	}
+
 	public AbstractBloxelsBlock[] Blocks;
 	private Dictionary<string, AbstractBloxelsBlock> _prefabs = new Dictionary<string, AbstractBloxelsBlock>();
 	public AbstractBlockTheme CurrentTheme;
