@@ -62,6 +62,7 @@ public class EventManager : MonoBehaviour {
 		}
 
 		PlayerManager.Instance.Prefabs[playerNumber] = Cathy1Players[playerNumber];
+		PlayerManager.ShowPlaceholders();
 	}
 
 	public void CreatePusherPlayerStartLocation(int playerNumber, Vector3 pos, Quaternion rotation)

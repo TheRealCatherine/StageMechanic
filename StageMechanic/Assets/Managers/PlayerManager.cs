@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour {
 
     public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
     public static List<IPlayerCharacter> Avatars { get; set; } = new List<IPlayerCharacter>();
+	public static List<GameObject> EditModePlaceholders { get; set; } = new List<GameObject>();
     internal static PlayerManager Instance;
 
     internal static bool _playMode = false;
@@ -71,13 +72,14 @@ public class PlayerManager : MonoBehaviour {
 
     public static void ShowAllPlayers(bool show = true)
     {
-        foreach (IPlayerCharacter player in Avatars)
+		HidePlaceholders();
+		foreach (IPlayerCharacter player in Avatars)
         {
             player.GameObject.SetActive(show);
         }
-    }
-    
-    public static void HideAllPlayers()
+	}
+
+	public static void HideAllPlayers()
     {
         ShowAllPlayers(false);
     }
@@ -90,13 +92,41 @@ public class PlayerManager : MonoBehaviour {
         Avatars.Clear();
     }
 
-    public static void InstantiateAllPlayers()
+	public static void ShowPlaceholders()
+	{
+		for (int i = 0; i < PlayerStartLocations.Count; ++i)
+		{
+			if (EditModePlaceholders.Count <=i)
+			{
+				GameObject placeholder = Instantiate(BlockManager.Instance.StartLocationIndicator, PlayerStartLocations[i].Position, Quaternion.Euler(0, 180, 0)) as GameObject;
+				EditModePlaceholders.Add(placeholder);
+			}
+			EditModePlaceholders[i].SetActive(true);
+			EditModePlaceholders[i].transform.position = PlayerStartLocations[i].Position;
+		}
+	}
+
+	public static void HidePlaceholders()
+	{
+		for (int i = 0; i < PlayerStartLocations.Count; ++i)
+		{
+			if (EditModePlaceholders.Count <= i)
+			{
+				GameObject placeholder = Instantiate(BlockManager.Instance.StartLocationIndicator, PlayerStartLocations[i].Position, Quaternion.Euler(0, 180, 0)) as GameObject;
+				EditModePlaceholders.Add(placeholder);
+			}
+			EditModePlaceholders[i].SetActive(false);
+		}
+	}
+
+	public static void InstantiateAllPlayers()
     {
         Debug.Assert(PlayerStartLocations != null);
         if (PlayerStartLocations.Count == 0)
             return;
         if (PlayerStartLocations.Count > 0)
         {
+			HidePlaceholders();
             if (Avatars.Count == 0)
                 Avatars.Add(Instantiate(Instance.Prefabs[0], PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
             else
