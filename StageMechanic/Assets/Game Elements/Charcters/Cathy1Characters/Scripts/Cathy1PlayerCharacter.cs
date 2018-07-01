@@ -419,7 +419,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
 	private void Update()
 	{
-		ApplyGravity();        
+		ApplyGravity();
+		if (CurrentMoveState == State.Idle && BlockManager.GetBlockNear(transform.position, radius: 0.25f))
+			TakeDamage(float.PositiveInfinity, "Squished");
 	}
 
 	public override bool TakeDamage(float unused, string alsoNotUsed )
@@ -530,7 +532,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		{
 			if (FacingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			{
-				IBlock blockInWay = BlockManager.GetBlockAt(transform.position + direction);
+				IBlock blockInWay = BlockManager.GetBlockNear(transform.position + direction,radius:0.25f);
 				if (blockInWay != null)
 				{
 					IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
@@ -667,7 +669,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		//Don't allow pull if there is a block in your way
 		if(direction == ReverseDirection(FacingDirection))
 		{
-			IBlock blockInWay = BlockManager.GetBlockAt(transform.position + ReverseDirection(FacingDirection));
+			IBlock blockInWay = BlockManager.GetBlockNear(transform.position + ReverseDirection(FacingDirection),radius:0.25f);
 			if (blockInWay != null)
 				return 0f;
 		}
@@ -713,7 +715,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 					Sidle(direction);
 				}
 			}
-			return 0.25f * blockInQuestion.WeightFactor;
+			//TODO the idea here is to lock user input for longer for heavy blocks but this isn't really the right calculation
+			return 0.3f * blockInQuestion.WeightFactor;
 		}
 		return 0f;
 	}
