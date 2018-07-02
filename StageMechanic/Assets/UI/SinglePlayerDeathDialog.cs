@@ -34,8 +34,8 @@ public class SinglePlayerDeathDialog : MonoBehaviour {
             UndoLasMoveButton.interactable = false;
         AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1);
         gameObject.SetActive(true);
-        if (deathRattle != null)
-            GetComponent<AudioSource>()?.PlayOneShot(deathRattle);
+		if (deathRattle != null)
+			AudioEffectsManager.PlaySound(deathRattle);
     }
 
     void OnAutoPlayChecked(bool value)
