@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
 	public ButtonMappingDialog ButtonMappingDialog;
 	public NetworkLoadDialog NetworkLoadDialog;
 
+	public Button TogglePlayModeButton;
+	public Button MainmenuButton;
+
 	public MainMenu MainMenu;
 	public ScrollRect BlockTypesList;
 	public ScrollRect PlayerStartPositionsList;
@@ -92,6 +95,12 @@ public class UIManager : MonoBehaviour
 		PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.ActiveBlock != null);
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
 		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
+
+		//TODO quick fix for Prototype 2 to keep people from doing things with the death dialog open
+		if (MainmenuButton != null)
+			MainmenuButton.gameObject.SetActive(!SinglePlayerDeathDialog.gameObject.activeInHierarchy);
+		if(TogglePlayModeButton != null)
+		TogglePlayModeButton.gameObject.SetActive(!SinglePlayerDeathDialog.gameObject.activeInHierarchy);
 	}
 
 	public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)
