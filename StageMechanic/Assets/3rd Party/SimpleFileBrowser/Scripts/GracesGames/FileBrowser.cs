@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 namespace GracesGames.SimpleFileBrowser.Scripts
 {
@@ -307,6 +308,15 @@ namespace GracesGames.SimpleFileBrowser.Scripts
 				files = ApplyFileSearchFilter(files);
 			}
 
+			// Implement natural sorting order (like displayed by Windows Explorer) to make the listing more intuitive
+			Array.Sort(files, delegate (string file1, string file2)
+			{
+				string natural1 = Regex.Replace(file1, "[0-9]+", match => match.Value.PadLeft(10, '0'));
+				string natural2 = Regex.Replace(file2, "[0-9]+", match => match.Value.PadLeft(10, '0'));
+
+				return natural1.CompareTo(natural2);
+			});
+
 			// For each file in the current directory, create a FileButton and hook up the FileClick method
 			foreach (string file in files) {
 				// Hide files (no button) with incompatible file extensions when enabled
@@ -403,3 +413,4 @@ namespace GracesGames.SimpleFileBrowser.Scripts
 		}
 	}
 }
+
