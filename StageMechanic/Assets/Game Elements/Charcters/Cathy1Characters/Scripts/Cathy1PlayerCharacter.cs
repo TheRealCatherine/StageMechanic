@@ -118,17 +118,17 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
 	public void PlayDieSound()
 	{
-		GetComponent<AudioSource>().PlayOneShot(DieSound);
+		AudioEffectsManager.PlaySound(DieSound);
 	}
 
 	public void PlayGameOverSound()
 	{
-		GetComponent<AudioSource>().PlayOneShot(GameOverSound);
+		AudioEffectsManager.PlaySound(GameOverSound);
 	}
 
 	public void PlayThudSound()
 	{
-		GetComponent<AudioSource>().PlayOneShot(ThudSound);
+		AudioEffectsManager.PlaySound(ThudSound);
 	}
 
 	public GameObject Character { get; set; }
@@ -215,7 +215,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		CurrentMoveState = State.Walk;
 		_player.GetComponent<Animator>().SetBool("walking", true);
 		yield return new WaitForEndOfFrame();
-		GetComponent<AudioSource>().PlayOneShot(WalkSound);
+		AudioEffectsManager.PlaySound(WalkSound);
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		IBlock oldBlock = CurrentBlock;
@@ -247,7 +247,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		CurrentMoveState = State.PushPull;
 		_player.GetComponent<Animator>().SetBool("walking", true);
 		yield return new WaitForEndOfFrame();
-		GetComponent<AudioSource>().PlayOneShot(WalkSound);
+		AudioEffectsManager.PlaySound(WalkSound);
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		IBlock oldBlock = CurrentBlock;
@@ -282,7 +282,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		{
 			CurrentMoveState = State.Aproach;
 			_player.GetComponent<Animator>().SetBool("walking", true);
-			GetComponent<AudioSource>().PlayOneShot(JumpSound);
+			AudioEffectsManager.PlaySound(JumpSound);
 			Vector3 firstPart = origin + new Vector3(offset.x / 4, 0f, offset.z / 4);
 			float firstPartTime = WalkTime * 0.25f;
 			while (journey <= firstPartTime)
@@ -321,7 +321,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
 			yield return null;
 		}
-		GetComponent<AudioSource>().PlayOneShot(LandSound);
+		AudioEffectsManager.PlaySound(LandSound);
 		_player.GetComponent<Animator>().SetBool("walking", false);
 		yield return new WaitForEndOfFrame();
 		CurrentMoveState = State.Idle;
@@ -700,7 +700,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			if (EffortSounds.Length > 0)
 			{
 				int gruntDex = rng.Next(EffortSounds.Length);
-				GetComponent<AudioSource>().PlayOneShot(EffortSounds[gruntDex]);
+				AudioEffectsManager.PlaySound(EffortSounds[gruntDex]);
 			}
 			if (FacingDirection != direction)
 			{
