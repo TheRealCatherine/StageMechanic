@@ -414,7 +414,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		UpdateNeighborsCache();
 		SetGravityEnabledByMotionState();
 		//TODO NotLikeThiiiiiiisssssss do it in the ice block class handling blocks on top
-		if (push && blocksBelow[DOWN] != null && (blocksBelow[DOWN] as Cathy1Block).TypeName == "Ice")
+		if (push && (blocksBelow[DOWN] as Cathy1Block) != null && (blocksBelow[DOWN] as Cathy1Block).TypeName == "Ice")
 		{
 			if (BlockManager.GetBlockNear(Position + (target - origin)) == null)
 				Push(target - origin);
