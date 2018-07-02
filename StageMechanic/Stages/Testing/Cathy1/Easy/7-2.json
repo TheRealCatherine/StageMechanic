@@ -1293,7 +1293,7 @@
                             "Properties": [
                                 {
                                     "Key": "Motion State",
-                                    "Value": "Falling"
+                                    "Value": "Edged"
                                 }
                             ]
                         },
@@ -3136,12 +3136,60 @@
                                     "Value": "7-3.json"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "e2f4139e-f164-466d-9dc8-e4423875c936",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -4,
+                                "y": 10,
+                                "z": 7
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "c06f33c0-c163-4631-a189-4616673dbdd5",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 4,
+                                "y": 10,
+                                "z": 7
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "25b3f6c8-e11b-435f-962f-f2348ed005fb",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 11,
+                                "z": 7
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "ed73e143-23dc-4055-afa1-e70fbacba221",
+                            "Name": "9cb84054-d2cb-4025-acf0-80b5de251337",
                             "Palette": "Cathy Internal",
                             "Type": "Player Start",
                             "Position": {
