@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
 		DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.ActiveBlock != null);
 		PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.ActiveBlock != null);
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled);
-		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0);
+		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
 	}
 
 	public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)

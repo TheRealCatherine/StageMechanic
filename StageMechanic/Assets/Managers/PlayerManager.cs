@@ -199,8 +199,9 @@ public class PlayerManager : MonoBehaviour {
 
     public static void SetPlayer1FacingDirection(Vector3 direction)
     {
-        Debug.Assert(Avatars.Count > 0 && Avatars[0] != null);
-        Avatars[0].FacingDirection = direction;
+		//TODO this should be an assert but it fails when undoing from the death dialog, this is a temporaty fix for Prototype 2
+        if(Avatars.Count > 0 && Avatars[0] != null && Avatars[0].GameObject != null && Avatars[0].GameObject.activeInHierarchy)
+			Avatars[0].FacingDirection = direction;
     }
 
     public static string PlayerStateName( int playerNumber = 0 )
@@ -223,7 +224,8 @@ public class PlayerManager : MonoBehaviour {
 
     public static void SetPlayer1State(int state)
     {
-        if (Avatars.Count > 0 && Avatars[0] != null)
+		//TODO this should be an assert but it fails when undoing from the death dialog, this is a temporaty fix for Prototype 2
+		if (Avatars.Count > 0 && Avatars[0] != null && Avatars[0].GameObject != null && Avatars[0].GameObject.activeInHierarchy)
             Avatars[0].CurrentStateIndex = state;
     }
 
