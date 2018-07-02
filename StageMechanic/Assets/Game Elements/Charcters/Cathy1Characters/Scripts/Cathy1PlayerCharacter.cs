@@ -9,7 +9,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
+public class Cathy1PlayerCharacter : AbstractPlayerCharacter
+{
 
 	public GameObject Player1Prefab;
 	public RuntimeAnimatorController Player1AnimationController;
@@ -94,8 +95,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		}
 	}
 
-	public IBlock CurrentBlock {
-		get {
+	public IBlock CurrentBlock
+	{
+		get
+		{
 			if (CurrentMoveState == State.Sidle || CurrentMoveState == State.SidleMove)
 				return BlockManager.GetBlockNear(Position + FacingDirection);
 			return BlockManager.GetBlockNear(Position + Vector3.down);
@@ -118,17 +121,17 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
 	public void PlayDieSound()
 	{
-		GetComponent<AudioSource>().PlayOneShot(DieSound);
+		AudioEffectsManager.PlaySound(DieSound);
 	}
 
 	public void PlayGameOverSound()
 	{
-		GetComponent<AudioSource>().PlayOneShot(GameOverSound);
+		AudioEffectsManager.PlaySound(GameOverSound);
 	}
 
 	public void PlayThudSound()
 	{
-		GetComponent<AudioSource>().PlayOneShot(ThudSound);
+		AudioEffectsManager.PlaySound(ThudSound);
 	}
 
 	public GameObject Character { get; set; }
@@ -150,7 +153,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 	{
 		get
 		{
-			List <string> states = new List<string>();
+			List<string> states = new List<string>();
 			foreach (State state in Enum.GetValues(typeof(State)))
 				states.Add(state.ToString());
 			return states;
@@ -181,7 +184,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
 	public void Teleport(Vector3 location)
 	{
-		if(CurrentLocation != location)
+		if (CurrentLocation != location)
 			CurrentLocation = location;
 	}
 
@@ -206,7 +209,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
 	public void SlideForward()
 	{
-		if(BlockManager.GetBlockAt(transform.position + FacingDirection) == null)
+		if (BlockManager.GetBlockAt(transform.position + FacingDirection) == null)
 			StartCoroutine(SlideTo(transform.position + FacingDirection));
 	}
 
@@ -215,7 +218,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		CurrentMoveState = State.Walk;
 		_player.GetComponent<Animator>().SetBool("walking", true);
 		yield return new WaitForEndOfFrame();
-		GetComponent<AudioSource>().PlayOneShot(WalkSound);
+		AudioEffectsManager.PlaySound(WalkSound);
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		IBlock oldBlock = CurrentBlock;
@@ -228,7 +231,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			yield return null;
 		}
 		AbstractBlock oab = (oldBlock as AbstractBlock);
-		if(oab != null && oab.gameObject != null)
+		if (oab != null && oab.gameObject != null)
 			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
 		yield return new WaitForEndOfFrame();
 		_player.GetComponent<Animator>().SetBool("walking", false);
@@ -247,7 +250,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		CurrentMoveState = State.PushPull;
 		_player.GetComponent<Animator>().SetBool("walking", true);
 		yield return new WaitForEndOfFrame();
-		GetComponent<AudioSource>().PlayOneShot(WalkSound);
+		AudioEffectsManager.PlaySound(WalkSound);
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		IBlock oldBlock = CurrentBlock;
@@ -282,7 +285,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		{
 			CurrentMoveState = State.Aproach;
 			_player.GetComponent<Animator>().SetBool("walking", true);
-			GetComponent<AudioSource>().PlayOneShot(JumpSound);
+			AudioEffectsManager.PlaySound(JumpSound);
 			Vector3 firstPart = origin + new Vector3(offset.x / 4, 0f, offset.z / 4);
 			float firstPartTime = WalkTime * 0.25f;
 			while (journey <= firstPartTime)
@@ -297,12 +300,12 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			_player.GetComponent<Animator>().SetBool("walking", false);
 		}
 		AbstractBlock oab = oldBlock as AbstractBlock;
-		if(oab != null && oab.gameObject != null)
+		if (oab != null && oab.gameObject != null)
 			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
 		CurrentMoveState = State.Climb;
 		yield return new WaitForEndOfFrame();
 		_player.GetComponent<Animator>().SetBool("climbing", true);
-		
+
 		yield return new WaitForEndOfFrame();
 		_player.GetComponent<Animator>().SetBool("climbing", false);
 
@@ -321,7 +324,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 
 			yield return null;
 		}
-		GetComponent<AudioSource>().PlayOneShot(LandSound);
+		AudioEffectsManager.PlaySound(LandSound);
 		_player.GetComponent<Animator>().SetBool("walking", false);
 		yield return new WaitForEndOfFrame();
 		CurrentMoveState = State.Idle;
@@ -410,8 +413,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 	}
 
 	// Use this for initialization
-	void Start () {
-		_player=Instantiate(Player1Prefab, transform.position-new Vector3(0f,HEIGHT_ADJUST,0f), transform.rotation, gameObject.transform);
+	void Start()
+	{
+		_player = Instantiate(Player1Prefab, transform.position - new Vector3(0f, HEIGHT_ADJUST, 0f), transform.rotation, gameObject.transform);
 		_player.transform.RotateAround(transform.position, transform.up, 180f);
 		_player.GetComponent<Animator>().runtimeAnimatorController = Player1AnimationController;
 		_player.GetComponent<Animator>().avatar = Player1Avatar;
@@ -424,7 +428,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			TakeDamage(float.PositiveInfinity, "Squished");
 	}
 
-	public override bool TakeDamage(float unused, string alsoNotUsed )
+	public override bool TakeDamage(float unused, string alsoNotUsed)
 	{
 
 		if (!UIManager.IsSinglePlayerDeathDialogOpen)
@@ -462,11 +466,13 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		return false;
 	}
 
-	public override bool Face(Vector3 direction) {
+	public override bool Face(Vector3 direction)
+	{
 		if (FacingDirection == direction)
 			return false;
 		float degrees = 0f;
-		if (FacingDirection == Vector3.back) {
+		if (FacingDirection == Vector3.back)
+		{
 			if (direction == Vector3.left)
 				degrees = 90f;
 			else if (direction == Vector3.right)
@@ -474,7 +480,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			else if (direction == Vector3.forward)
 				degrees = 180f;
 		}
-		else if (FacingDirection == Vector3.forward) {
+		else if (FacingDirection == Vector3.forward)
+		{
 			if (direction == Vector3.left)
 				degrees = -90f;
 			else if (direction == Vector3.right)
@@ -482,7 +489,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			else if (direction == Vector3.back)
 				degrees = 180f;
 		}
-		else if (FacingDirection == Vector3.left) {
+		else if (FacingDirection == Vector3.left)
+		{
 			if (direction == Vector3.forward)
 				degrees = 90f;
 			else if (direction == Vector3.right)
@@ -490,7 +498,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			else if (direction == Vector3.back)
 				degrees = -90f;
 		}
-		else if (FacingDirection == Vector3.right) {
+		else if (FacingDirection == Vector3.right)
+		{
 			if (direction == Vector3.left)
 				degrees = 180f;
 			else if (direction == Vector3.back)
@@ -503,11 +512,12 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		return true;
 	}
 
-	public override bool TurnAround() {
+	public override bool TurnAround()
+	{
 		return Face(-FacingDirection);
 	}
 
-	public static Vector3 ReverseDirection( Vector3 direction )
+	public static Vector3 ReverseDirection(Vector3 direction)
 	{
 		if (direction == Vector3.left)
 			return Vector3.right;
@@ -524,7 +534,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 	public float QueueMove(Vector3 direction, bool pushpull = false)
 	{
 		float expectedTime = 0f;
-		if(pushpull)
+		if (pushpull)
 		{
 			return PushPull(direction);
 		}
@@ -532,7 +542,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 		{
 			if (FacingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			{
-				IBlock blockInWay = BlockManager.GetBlockNear(transform.position + direction,radius:0.25f);
+				IBlock blockInWay = BlockManager.GetBlockNear(transform.position + direction, radius: 0.25f);
 				if (blockInWay != null)
 				{
 					IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
@@ -575,10 +585,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 				expectedTime = 0.2f;
 			}
 		}
-		else if(CurrentMoveState == State.Sidle)
+		else if (CurrentMoveState == State.Sidle)
 		{
 			IBlock attemptedGrab = null;
-			if(direction == Vector3.right || direction == Vector3.left)
+			if (direction == Vector3.right || direction == Vector3.left)
 			{
 				Vector3 originalDirection = direction;
 				if (FacingDirection == Vector3.forward) { }
@@ -589,14 +599,14 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 					else
 						direction = Vector3.left;
 				}
-				else if(FacingDirection == Vector3.right)
+				else if (FacingDirection == Vector3.right)
 				{
 					if (direction == Vector3.left)
 						direction = Vector3.forward;
 					else
 						direction = Vector3.back;
 				}
-				else if(FacingDirection == Vector3.left)
+				else if (FacingDirection == Vector3.left)
 				{
 					if (direction == Vector3.left)
 						direction = Vector3.back;
@@ -610,12 +620,12 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 					attemptedGrab = BlockManager.GetBlockAt(transform.position + direction + FacingDirection);
 					if (attemptedGrab != null)
 					{
-						if(BlockManager.GetBlockAt(transform.position + direction + Vector3.up) == null)
+						if (BlockManager.GetBlockAt(transform.position + direction + Vector3.up) == null)
 							Sidle(direction);
 					}
 					else
 					{
-						if (BlockManager.GetBlockAt(transform.position + direction +FacingDirection + Vector3.up) == null)
+						if (BlockManager.GetBlockAt(transform.position + direction + FacingDirection + Vector3.up) == null)
 						{
 							Sidle(FacingDirection + direction);
 							if (originalDirection == Vector3.left)
@@ -632,16 +642,16 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 					expectedTime = 0.2f;
 				}
 			}
-			else if(direction == Vector3.forward)
+			else if (direction == Vector3.forward)
 			{
 				attemptedGrab = BlockManager.GetBlockAt(transform.position + Vector3.up + FacingDirection);
-				if(attemptedGrab == null)
+				if (attemptedGrab == null)
 				{
 					Climb(FacingDirection + Vector3.up);
 					expectedTime = 0.35f;
 				}
 			}
-			else if(direction == Vector3.back)
+			else if (direction == Vector3.back)
 			{
 				CurrentMoveState = State.Fall;
 				expectedTime = 0.1f;
@@ -654,28 +664,28 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 	{
 		if (direction == Vector3.zero)
 			return 0f;
-		
+
 		if (CurrentMoveState == State.Sidle)
 		{
 			if (BlockManager.GetBlockAt(transform.position + Vector3.down) == null)
 				return 0f;
 			CurrentMoveState = State.Fall;
 		}
-			
+
 
 		if (direction != FacingDirection && direction != ReverseDirection(FacingDirection))
 			return 0f;
 
 		//Don't allow pull if there is a block in your way
-		if(direction == ReverseDirection(FacingDirection))
+		if (direction == ReverseDirection(FacingDirection))
 		{
-			IBlock blockInWay = BlockManager.GetBlockNear(transform.position + ReverseDirection(FacingDirection),radius:0.25f);
+			IBlock blockInWay = BlockManager.GetBlockNear(transform.position + ReverseDirection(FacingDirection), radius: 0.25f);
 			if (blockInWay != null)
 				return 0f;
 		}
 
 		//TODO no sideways movement
-		IBlock blockInQuestion = BlockManager.GetBlockAt (transform.position+FacingDirection);
+		IBlock blockInQuestion = BlockManager.GetBlockAt(transform.position + FacingDirection);
 		if (blockInQuestion == null)
 			return 0f;
 		Serializer.RecordUndo();
@@ -700,7 +710,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter {
 			if (EffortSounds.Length > 0)
 			{
 				int gruntDex = rng.Next(EffortSounds.Length);
-				GetComponent<AudioSource>().PlayOneShot(EffortSounds[gruntDex]);
+				AudioEffectsManager.PlaySound(EffortSounds[gruntDex]);
 			}
 			if (FacingDirection != direction)
 			{
