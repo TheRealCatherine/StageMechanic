@@ -198,25 +198,7 @@ public class BlockManager : MonoBehaviour
 		}
 		else if(palette == "Bloxels Internal")
 		{
-			AbstractBloxelsBlock block = Instance.BlockFactories[3].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
-			block.Palette = palette;
-			block.gameObject.layer = Instance.Stage.gameObject.layer;
-			BlockCache.Add(block);
-			Serializer.AutoSave();
-			return block;
-		}
-		else if(palette =="PushPull Internal")
-		{
-			AbstractPushPullBlock block = Instance.BlockFactories[1].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractPushPullBlock;
-			block.Palette = palette;
-			block.gameObject.layer = Instance.Stage.gameObject.layer;
-			BlockCache.Add(block);
-			Serializer.AutoSave();
-			return block;
-		}
-		else if(palette == "BoxGirl Internal")
-		{
-			AbstractBlock block = Instance.BlockFactories[2].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBlock;
+			AbstractBloxelsBlock block = Instance.BlockFactories[1].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
 			block.Palette = palette;
 			block.gameObject.layer = Instance.Stage.gameObject.layer;
 			BlockCache.Add(block);
@@ -301,10 +283,11 @@ public class BlockManager : MonoBehaviour
 		List<KeyValuePair<string, string>> ret = new List<KeyValuePair<string, string>>();
 		foreach (AbstractBlockFactory factory in BlockFactories)
 		{
+			Debug.Assert(factory != null);
 			string[] blockNames = factory.BlockTypeNames;
 			foreach (string name in blockNames)
 			{
-				ret.Add(new KeyValuePair<string, string>("Cathy1 Internal", name));
+				ret.Add(new KeyValuePair<string, string>(factory.Name, name));
 			}
 		}
 		BlockTypeCache = ret;

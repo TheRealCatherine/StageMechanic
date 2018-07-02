@@ -2460,7 +2460,7 @@ Prefab:
     - target: {fileID: 114964328166331634, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: BlockFactories.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4625271195422440, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2633,7 +2633,7 @@ Prefab:
         type: 2}
       propertyPath: BlockFactories.Array.data[1]
       value: 
-      objectReference: {fileID: 1243880480}
+      objectReference: {fileID: 969504320}
     - target: {fileID: 114135714659944348, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Camera
@@ -2677,7 +2677,7 @@ Prefab:
         type: 2}
       propertyPath: BlockFactories.Array.data[2]
       value: 
-      objectReference: {fileID: 727588394}
+      objectReference: {fileID: 969504320}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.data[0]
@@ -7890,49 +7890,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 715074425}
---- !u!1 &727588392
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 727588393}
-  - component: {fileID: 727588394}
-  m_Layer: 0
-  m_Name: BoxGirl Block Factory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &727588393
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 727588392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1758530827}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &727588394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 727588392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 121492abbfc55f04dabf39fe8d107bfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Blocks:
-  - {fileID: 114572739685377730, guid: aa06a2d3ff818d44591a4b49bf79e3ec, type: 2}
-  CurrentTheme: {fileID: 11400000, guid: 8fe8c315f67eff84e82ded850929fd95, type: 2}
 --- !u!1 &733781734
 GameObject:
   m_ObjectHideFlags: 0
@@ -8994,6 +8951,11 @@ Prefab:
       propertyPath: Themes.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4408721821948828, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9072,6 +9034,47 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 806d18d9a195e2a4f8b7b33c7442c7ce,
         type: 2}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[1]
+      value: 
+      objectReference: {fileID: 114096555584123916, guid: 23c8f07516d082449a9bd5dc75ce7e2d,
+        type: 2}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
   m_IsPrefabParent: 0
@@ -13950,51 +13953,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1240118394}
---- !u!1 &1243880478
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1243880479}
-  - component: {fileID: 1243880480}
-  m_Layer: 0
-  m_Name: PushPull Block Factory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1243880479
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1243880478}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1758530827}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1243880480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1243880478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b639eca9f971044583b8a7bd98a09eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Blocks:
-  - {fileID: 114866001394488598, guid: 39799a815e0ea0946a3adee4fa91414b, type: 2}
-  - {fileID: 114927355513262456, guid: 18e3f596a6fb2cb42b3e0485a4f99aa2, type: 2}
-  - {fileID: 114524142189613204, guid: 84f84f53e1ce9ca4595fb3cdbb5f4c2f, type: 2}
-  CurrentTheme: {fileID: 11400000, guid: 45a1a9f630beada48a2aacb2ebdc1832, type: 2}
 --- !u!1 &1245876207
 GameObject:
   m_ObjectHideFlags: 0
@@ -18760,11 +18718,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1757997872}
---- !u!4 &1758530827 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4300203236584302, guid: c702a19f99f09d84784952184e9c1adf,
-    type: 2}
-  m_PrefabInternal: {fileID: 843254799}
 --- !u!1 &1766668033
 GameObject:
   m_ObjectHideFlags: 0
