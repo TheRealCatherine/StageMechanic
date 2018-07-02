@@ -58,6 +58,7 @@ public class PlayerManager : MonoBehaviour {
     {
         DestroyAllPlayers();
         PlayerStartLocations.Clear();
+		DestroyAllPlaceholders();
     }
 
     public static void OnUndoStart()
@@ -91,6 +92,15 @@ public class PlayerManager : MonoBehaviour {
         }
         Avatars.Clear();
     }
+
+	public static void DestroyAllPlaceholders()
+	{
+		foreach (GameObject placeholder in EditModePlaceholders)
+		{
+			Destroy(placeholder);
+		}
+		EditModePlaceholders.Clear();
+	}
 
 	public static void ShowPlaceholders()
 	{
