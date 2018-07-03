@@ -10,7 +10,7 @@
                     "Position": {
                         "x": 0,
                         "y": 0,
-                        "z": 3
+                        "z": 0
                     },
                     "Blocks": [
                         {
@@ -22,7 +22,12 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "916dc8f0-1bd9-4c35-bb49-cc051481c376",
@@ -33,7 +38,12 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "8389e7b8-0efc-44d1-9240-0876ac9d9ca8",
@@ -44,7 +54,12 @@
                                 "y": 1,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "f327d872-acca-4e98-81ac-275f1d4d6bc4",
@@ -55,7 +70,12 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "df8791a5-77d6-4d37-be1a-53fd9e270c8a",
@@ -66,7 +86,12 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "579b81de-1dfb-4839-a648-d6b08210a058",
@@ -77,7 +102,12 @@
                                 "y": 2,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "211d13d2-6519-4afc-afaa-ca06a2c7c361",
@@ -88,7 +118,12 @@
                                 "y": 3,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "af3ea5b6-e9eb-4f92-8c81-aa740a7d8f9c",
@@ -99,7 +134,12 @@
                                 "y": 3,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "6cf86b56-b7b4-476f-8d24-7a22a12b4a43",
@@ -110,7 +150,12 @@
                                 "y": 3,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "04cd2ac3-b50d-4fcc-87b5-cfa5c5117742",
@@ -121,7 +166,12 @@
                                 "y": 4,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "84f09b24-844c-432e-abc6-9f1f6ff6675b",
@@ -132,7 +182,12 @@
                                 "y": 4,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "3dda0aa0-f0ae-4669-9173-8523866d7735",
@@ -143,7 +198,12 @@
                                 "y": 4,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "18fb62d0-97b2-4536-b5fa-4219ebd4a815",
@@ -154,7 +214,12 @@
                                 "y": 5,
                                 "z": 0
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "73cefbc1-8e4e-4421-97b0-ab4f8aa84d58",
@@ -165,18 +230,12 @@
                                 "y": 5,
                                 "z": 0
                             },
-                            "Properties": [ ]
-                        },
-                        {
-                            "Name": "3106be3d-e152-4ae5-aa70-ac88b53313ff",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 1,
-                                "y": 5,
-                                "z": 0
-                            },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "2f56fab8-ab90-4d63-8b93-0b0aa4e83e00",
@@ -188,6 +247,10 @@
                                 "z": 1
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -203,7 +266,12 @@
                                 "y": 6,
                                 "z": 1
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "3c59d633-692c-4b97-b08b-464a83ba8684",
@@ -214,7 +282,12 @@
                                 "y": 6,
                                 "z": 1
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "e67c8afe-de7b-4b35-a11e-a4ad88f03c5f",
@@ -225,7 +298,12 @@
                                 "y": 7,
                                 "z": 1
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "810012f5-d4d1-4d9c-ad9e-42d4ff75a942",
@@ -236,7 +314,12 @@
                                 "y": 7,
                                 "z": 1
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "f53d9b0a-df18-4cf8-9876-fc5d61773b9d",
@@ -247,7 +330,12 @@
                                 "y": 7,
                                 "z": 1
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "9f3b3d2a-fc45-4942-b6a2-09138d82a2af",
@@ -258,7 +346,12 @@
                                 "y": 8,
                                 "z": 1
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "6492cc5b-c6e9-4d3e-bf5c-c6dd231eae62",
@@ -269,7 +362,12 @@
                                 "y": 8,
                                 "z": 1
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "e0e02468-a239-48dd-a7bc-3eef08653f4b",
@@ -281,6 +379,10 @@
                                 "z": 2
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -298,6 +400,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -314,6 +420,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -328,7 +438,12 @@
                                 "y": 9,
                                 "z": 2
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "329a776c-247c-4920-ad92-e0caf187047a",
@@ -339,7 +454,12 @@
                                 "y": 10,
                                 "z": 2
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "39a91b4d-c318-4a99-aec9-be3f580b640f",
@@ -350,7 +470,12 @@
                                 "y": 10,
                                 "z": 2
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "0092ec10-6f49-40a4-9720-0dbc0dad5f95",
@@ -361,7 +486,12 @@
                                 "y": 10,
                                 "z": 2
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "e7b0c632-73b2-45a9-98bd-713e82a10073",
@@ -373,6 +503,10 @@
                                 "z": 1
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -390,6 +524,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -405,6 +543,10 @@
                                 "z": 3
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -422,6 +564,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -437,6 +583,10 @@
                                 "z": 3
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -454,6 +604,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -469,6 +623,10 @@
                                 "z": 3
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -486,6 +644,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -501,6 +663,10 @@
                                 "z": 2
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -518,6 +684,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -532,7 +702,12 @@
                                 "y": 13,
                                 "z": 3
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "71838333-0756-4429-aa36-e3b3f447b0a7",
@@ -543,7 +718,12 @@
                                 "y": 13,
                                 "z": 3
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "200e2d3b-46f0-4a84-a4da-cc0142a05e65",
@@ -554,7 +734,12 @@
                                 "y": 13,
                                 "z": 3
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "c99c8bfe-2a3b-4176-85bd-ed32cceb6c86",
@@ -566,6 +751,10 @@
                                 "z": 3
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -583,6 +772,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -598,6 +791,10 @@
                                 "z": 4
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -615,6 +812,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -630,6 +831,10 @@
                                 "z": 4
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -647,6 +852,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -662,6 +871,10 @@
                                 "z": 4
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -679,6 +892,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -694,6 +911,10 @@
                                 "z": 4
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -711,6 +932,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -726,6 +951,10 @@
                                 "z": 4
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -743,6 +972,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -758,6 +991,10 @@
                                 "z": 4
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -775,6 +1012,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -790,6 +1031,10 @@
                                 "z": 4
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -807,6 +1052,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -823,6 +1072,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -837,7 +1090,12 @@
                                 "y": 17,
                                 "z": 5
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "d08c6732-1170-4cb8-91ec-fab58092e5fc",
@@ -848,7 +1106,12 @@
                                 "y": 17,
                                 "z": 5
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "b1718c7b-7c79-43e6-a45a-132c56843601",
@@ -859,7 +1122,12 @@
                                 "y": 17,
                                 "z": 5
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "28a91e69-bd83-43e6-9a58-b165512cacad",
@@ -870,7 +1138,12 @@
                                 "y": 18,
                                 "z": 5
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "173a3b2d-8a89-4a96-bcd8-b20dbca5c513",
@@ -881,7 +1154,12 @@
                                 "y": 18,
                                 "z": 5
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "c1edbb85-0253-46c1-8455-9d132180a725",
@@ -892,7 +1170,12 @@
                                 "y": 18,
                                 "z": 5
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "e56d7277-a778-4338-9026-e2678a02b993",
@@ -903,7 +1186,12 @@
                                 "y": 19,
                                 "z": 6
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "72798478-59a9-4cd3-91c1-d2c8fb96125a",
@@ -914,7 +1202,12 @@
                                 "y": 19,
                                 "z": 6
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "cc433aa2-3127-4f16-96f8-b5f671325ca8",
@@ -925,7 +1218,12 @@
                                 "y": 19,
                                 "z": 6
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                }
+                            ]
                         },
                         {
                             "Name": "710fd675-9cca-49ed-8aed-7550a2d28ea3",
@@ -936,7 +1234,12 @@
                                 "y": 20,
                                 "z": 6
                             },
-                            "Properties": [ ]
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
                         },
                         {
                             "Name": "e3d9df12-d605-4afc-a2f9-0ca7e5b62ca5",
@@ -948,6 +1251,10 @@
                                 "z": 6
                             },
                             "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
                                 {
                                     "Key": "Weight Factor",
                                     "Value": "0"
@@ -969,6 +1276,10 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
                                 }
@@ -985,8 +1296,28 @@
                             },
                             "Properties": [
                                 {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
                                     "Key": "Weight Factor",
                                     "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "3106be3d-e152-4ae5-aa70-ac88b53313ff",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 5,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
                                 }
                             ]
                         }
@@ -994,8 +1325,8 @@
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "7084d302-5051-4329-9f3c-1f3f49b09dbe",
-                            "Palette": "Cathy1 Internal",
+                            "Name": "93f7bdd1-1a3b-4d46-9954-285f97dc917b",
+                            "Palette": "Cathy Internal",
                             "Type": "Player Start",
                             "Position": {
                                 "x": 1,
