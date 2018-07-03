@@ -68,13 +68,34 @@ public class CameraController : MonoBehaviour
             Vector3 player1pos = PlayerManager.Player1Location();
             if(player1pos != new Vector3(-255,-255,-255))
             {
+                //TODO make a function to calculate these instead of hardcoding values
                 float xPos = 0f;
-                if (player1pos.x > 6f)
+                if (player1pos.x > 36f)
+                    xPos = 38f;
+                else if (player1pos.x > 30f)
+                    xPos = 32f;
+                else if (player1pos.x > 24f)
+                    xPos = 26f;
+                else if (player1pos.x > 18f)
+                    xPos = 20f;
+                else if (player1pos.x > 12f)
+                    xPos = 14f;
+                else if (player1pos.x > 6f)
                     xPos = 8f;
+                else if (player1pos.x < -36f)
+                    xPos = -38f;
+                else if (player1pos.x < -30f)
+                    xPos = -32f;
+                else if (player1pos.x < -24f)
+                    xPos = -26f;
+                else if (player1pos.x < -18f)
+                    xPos = -20f;
+                else if (player1pos.x < -12f)
+                    xPos = -14f;
                 else if (player1pos.x < -6f)
                     xPos = -8f;
 
-                if(LazyScroll && (transform.position.y > player1pos.y +4f || transform.position.y < player1pos.y))
+                if (LazyScroll && (transform.position.y > player1pos.y +4f || transform.position.y < player1pos.y))
                     StartCoroutine(AnimateMove(transform.position, new Vector3(xPos, player1pos.y + 3f, player1pos.z - 7f + zoom),0.2f));
                 else
                     StartCoroutine(AnimateMove(transform.position, new Vector3(xPos, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f));
