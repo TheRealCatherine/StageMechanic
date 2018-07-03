@@ -125,10 +125,15 @@ public class MainMenu : MonoBehaviour
 
 	public void OnCreateClicked()
 	{
-		gameObject.SetActive(false);
-		if (BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode();
-		BlockManager.Clear();
+		if (BlockManager.BlockCount == 0) {
+			gameObject.SetActive(false);
+			if (BlockManager.PlayMode)
+				BlockManager.Instance.TogglePlayMode();
+			BlockManager.Clear();
+		} else {
+			gameObject.SetActive(false);
+			UIManager.ShowCreateEditLevelDialog();
+		}
 	}
 
 	public void OnQuitClicked()

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
 	public BlockInfoBoxController BlockInfoBox;
 	public SinglePlayerDeathDialog SinglePlayerDeathDialog;
+	public CreateEditLevelDialog CreateEditLevelDialog;
 	public ButtonMappingDialog ButtonMappingDialog;
 	public NetworkLoadDialog NetworkLoadDialog;
 
@@ -47,6 +48,15 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	public static bool IsCreateEditLevelDialogOpen
+	{
+		get
+		{
+			Debug.Assert(Instance != null);
+			return Instance.CreateEditLevelDialog.gameObject.activeInHierarchy;
+		}
+	}
+
 	public static bool IsAnyInputDialogOpen
 	{
 		get
@@ -54,6 +64,7 @@ public class UIManager : MonoBehaviour
 			Debug.Assert(Instance != null);
 			return IsBlockEditDialogOpen 
 				|| IsSinglePlayerDeathDialogOpen
+				|| IsCreateEditLevelDialogOpen
 				|| Instance.BlockEditDialog.isActiveAndEnabled
 				|| FileBrowser.IsOpen
 				|| Instance.MainMenu.isActiveAndEnabled
@@ -101,6 +112,12 @@ public class UIManager : MonoBehaviour
 			MainmenuButton.gameObject.SetActive(!SinglePlayerDeathDialog.gameObject.activeInHierarchy);
 		if(TogglePlayModeButton != null)
 		TogglePlayModeButton.gameObject.SetActive(!SinglePlayerDeathDialog.gameObject.activeInHierarchy);
+	}
+
+	public static void ShowCreateEditLevelDialog()
+	{
+		Debug.Assert(Instance != null);
+		Instance.CreateEditLevelDialog.Show();
 	}
 
 	public static void ShowSinglePlayerDeathDialog(AudioClip deathRattle = null)
