@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 	public Button SaveButton;
 	public Toggle AutoPlay;
 	public Toggle FogToggle;
+	public Toggle DestructivePlayMode;
 	public Toggle VisiblePlatformToggle;
 	public Toggle CameraEffectsToggle;
 	public Toggle MotionDebugToggle;
@@ -32,6 +33,7 @@ public class MainMenu : MonoBehaviour
 		BlockManager.Cursor?.SetActive(false);
 		AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
 		FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
+		DestructivePlayMode.isOn = (PlayerPrefs.GetInt("DestructivePlayMode", 1) == 1);
 		CameraEffectsToggle.isOn = (PlayerPrefs.GetInt("PostProcessing", 1) == 1);
 		MotionDebugToggle.isOn = (PlayerPrefs.GetInt("MotionDebug", 0) == 1);
 		MotionDebugToggle.gameObject.SetActive(CameraEffectsToggle.isOn);
@@ -184,6 +186,12 @@ public class MainMenu : MonoBehaviour
 		if (BlockManager.PlayMode || !value)
 			Fog.gameObject.SetActive(value);
 		PlayerPrefs.SetInt("Fog", value ? 1 : 0);
+		PlayerPrefs.Save();
+	}
+
+	public void OnDestructivePlaymodeChanged(bool value)
+	{
+		PlayerPrefs.SetInt("DestructivePlayMode", value ? 1 : 0);
 		PlayerPrefs.Save();
 	}
 

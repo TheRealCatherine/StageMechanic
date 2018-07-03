@@ -59,11 +59,24 @@ public class BlockManager : MonoBehaviour
 			Serializer.RecordStartState();
 			VisualEffectsManager.EnableFog(PlayerPrefs.GetInt("Fog", 1) == 1);
 		}
-		else
+		else 
 		{
 			//Reset blocks to their pre-PlayMode state
-			if (Serializer.HasStartState())
-				Serializer.ReloadStartState();
+			if (PlayerPrefs.GetInt("DestructivePlayMode", 1) != 1) 
+			{
+				if (Serializer.HasStartState())
+					Serializer.ReloadStartState();
+			} else {
+				Vector3 pos = PlayerManager.Player1Location();
+				if (pos.x == -255 && pos.y == -255 && pos.z == -255) {
+					// No player found
+				} else {
+					pos.y -= 0.5f;
+					EventManager.Instance.CreateCathy1PlayerStartLocation(0, 
+						pos,
+						Quaternion.Euler(0, 180, 0));
+				}	
+			}
 			//UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
 			VisualEffectsManager.EnableFog(false);
 		}
