@@ -18,7 +18,15 @@ public class FloorIsLava : Platform
     // Update is called once per frame
     void Update()
     {
+		int count = PlayerManager.PlayerCount();
+		for(int i=0;i<count;++i)
+		{
+			IPlayerCharacter player = PlayerManager.Player(i);
+			Debug.Assert(player != null);
+			if (player.Position.y < transform.position.y)
+				player.TakeDamage(float.PositiveInfinity, "Bottomless Pit");
 
+		}
     }
 
     void OnCollisionEnter(Collision collision)
