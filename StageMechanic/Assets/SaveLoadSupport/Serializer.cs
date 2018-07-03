@@ -349,7 +349,7 @@ public static class Serializer
 
 	public static void AutoSave()
 	{
-		if (!BlockManager.PlayMode && !string.IsNullOrWhiteSpace(LastAccessedFileName))
+		if (!BlockManager.PlayMode && !string.IsNullOrWhiteSpace(LastAccessedFileName) && PlayerPrefs.GetInt("DestructivePlayMode", 0) != 1)
 		{
 			SaveFileUsingPath(LastAccessedFileName.Replace(".json", "_autosave.json"));
 			LogController.Log("Autosaved");

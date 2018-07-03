@@ -62,7 +62,7 @@ public class BlockManager : MonoBehaviour
 		else 
 		{
 			//Reset blocks to their pre-PlayMode state
-			if (PlayerPrefs.GetInt("DestructivePlayMode", 1) != 1) 
+			if (PlayerPrefs.GetInt("DestructivePlayMode", 0) != 1) 
 			{
 				if (Serializer.HasStartState())
 					Serializer.ReloadStartState();

@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
 		BlockManager.Cursor?.SetActive(false);
 		AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
 		FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
-		DestructivePlayMode.isOn = (PlayerPrefs.GetInt("DestructivePlayMode", 1) == 1);
+		DestructivePlayMode.isOn = (PlayerPrefs.GetInt("DestructivePlayMode", 0) == 1);
 		CameraEffectsToggle.isOn = (PlayerPrefs.GetInt("PostProcessing", 1) == 1);
 		MotionDebugToggle.isOn = (PlayerPrefs.GetInt("MotionDebug", 0) == 1);
 		MotionDebugToggle.gameObject.SetActive(CameraEffectsToggle.isOn);
