@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour
 	public Button ToggleTouchScreenButton;
 	public Button CameraPerspectiveButton;
 	public Button SettingsButton;
+	public Button PlayButton;
 	public AudioClip StartupSound;
 	public Camera MainCamera;
 	public GameObject SettingsWindow;
@@ -48,6 +49,10 @@ public class MainMenu : MonoBehaviour
 		{
 			SaveButton.gameObject.SetActive(true);
 		}
+		if (BlockManager.BlockCount == 0)
+			PlayButton.gameObject.SetActive(false);
+		else
+			PlayButton.gameObject.SetActive(true);
 
 		Debug.Assert(FlavorText.Entries != null);
 		Debug.Assert(FlavorText.Entries.Length > 1);
@@ -259,5 +264,12 @@ public class MainMenu : MonoBehaviour
 	public void OnDismissCreditsClicked()
 	{
 		CreditsDialog.SetActive(false);
+	}
+
+	public void OnPlayClicked()
+	{
+		gameObject.SetActive(false);
+		if (!BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
 	}
 }

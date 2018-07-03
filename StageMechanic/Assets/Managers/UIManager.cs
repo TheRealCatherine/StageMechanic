@@ -109,9 +109,9 @@ public class UIManager : MonoBehaviour
 
 		//TODO quick fix for Prototype 2 to keep people from doing things with the death dialog open
 		if (MainmenuButton != null)
-			MainmenuButton.gameObject.SetActive(!SinglePlayerDeathDialog.gameObject.activeInHierarchy);
+			MainmenuButton.gameObject.SetActive(!IsAnyInputDialogOpen);
 		if(TogglePlayModeButton != null)
-		TogglePlayModeButton.gameObject.SetActive(!SinglePlayerDeathDialog.gameObject.activeInHierarchy);
+			TogglePlayModeButton.gameObject.SetActive(!IsAnyInputDialogOpen);
 	}
 
 	public static void ShowCreateEditLevelDialog()
