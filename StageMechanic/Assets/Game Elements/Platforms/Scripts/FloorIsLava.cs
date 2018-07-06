@@ -18,6 +18,7 @@ public class FloorIsLava : Platform
     // Update is called once per frame
     void Update()
     {
+	if (BlockManager.PlayMode) {
 		int count = PlayerManager.PlayerCount();
 		for(int i=0;i<count;++i)
 		{
@@ -27,6 +28,7 @@ public class FloorIsLava : Platform
 				player.TakeDamage(float.PositiveInfinity, "Bottomless Pit");
 
 		}
+	}
     }
 
     void OnCollisionEnter(Collision collision)
