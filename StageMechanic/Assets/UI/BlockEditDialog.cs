@@ -155,22 +155,31 @@ public class BlockEditDialog : MonoBehaviour {
                 addedFields.Add(label.gameObject);
                 label.text = property.Key;
 
-                InputField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform) as InputField;
-                addedFields.Add(stringField.gameObject);
-                stringField.placeholder.GetComponent<Text>().text = property.Value.Value;
-                SinglePropertyWithDefault holder = stringField.GetComponent<SinglePropertyWithDefault>();
-                Debug.Assert(holder != null);
-                holder.PropertyName = property.Key;
-                holder.PropertyType = property.Value.TypeInfo;
-                holder.PropertyDefaultValue = property.Value.Value;
+				//TODO support other types of properties
+				InputField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform) as InputField;
+				if (property.Value.TypeInfo == typeof(MultilinePlaintext))
+				{
+					stringField.lineType = InputField.LineType.MultiLineNewline;
+				}
+				else
+				{
+					stringField.lineType = InputField.LineType.SingleLine;
+				}
 
-                foreach (KeyValuePair<string, string> setProperty in CurrentBlock.Properties)
-                {
-                    if (setProperty.Key == property.Key)
-                        stringField.text = setProperty.Value;
-                }
+				addedFields.Add(stringField.gameObject);
+				stringField.placeholder.GetComponent<Text>().text = property.Value.Value;
+				SinglePropertyWithDefault holder = stringField.GetComponent<SinglePropertyWithDefault>();
+				Debug.Assert(holder != null);
+				holder.PropertyName = property.Key;
+				holder.PropertyType = property.Value.TypeInfo;
+				holder.PropertyDefaultValue = property.Value.Value;
 
-            }
+				foreach (KeyValuePair<string, string> setProperty in CurrentBlock.Properties)
+				{
+					if (setProperty.Key == property.Key)
+						stringField.text = setProperty.Value;
+				}
+			}
 
         }
     }
