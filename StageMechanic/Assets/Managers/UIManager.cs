@@ -36,6 +36,12 @@ public class UIManager : MonoBehaviour
 
 	public GameObject BlockThemeDialog;
 
+	public GameObject ScoreBox;
+	public Text Player1Score;
+	public Text Player2Score;
+	public Text Player3Score;
+	public Text Player4Score;
+
 	public GameObject UndoButton;
 	//TODO Singleton flame war
 	public static UIManager Instance;
@@ -112,6 +118,61 @@ public class UIManager : MonoBehaviour
 			MainmenuButton.gameObject.SetActive(!IsAnyInputDialogOpen);
 		if(TogglePlayModeButton != null)
 			TogglePlayModeButton.gameObject.SetActive(!IsAnyInputDialogOpen);
+
+		UpdateScoreBox();
+	}
+
+	//TODO clean this up, don't hardcode 4 players
+	public void UpdateScoreBox()
+	{
+		if(!BlockManager.PlayMode)
+		{
+			ScoreBox.SetActive(false);
+			return;
+		}
+		ScoreBox.SetActive(true);
+
+		AbstractPlayerCharacter player1 = PlayerManager.Player(0) as AbstractPlayerCharacter;
+		AbstractPlayerCharacter player2 = PlayerManager.Player(1) as AbstractPlayerCharacter;
+		AbstractPlayerCharacter player3 = PlayerManager.Player(2) as AbstractPlayerCharacter;
+		AbstractPlayerCharacter player4 = PlayerManager.Player(3) as AbstractPlayerCharacter;
+		if (player1 == null || player1.Score == 0)
+		{
+			Player1Score.gameObject.SetActive(false);
+		}
+		else if(player1 != null)
+		{
+			Player1Score.gameObject.SetActive(true);
+			Player1Score.text = player1.Score.ToString();
+		}
+		if (player2 == null || player2.Score == 0)
+		{
+			Player2Score.gameObject.SetActive(false);
+		}
+		else if (player2 != null)
+		{
+			Player2Score.gameObject.SetActive(true);
+			Player2Score.text = player2.Score.ToString();
+		}
+		if (player3 == null || player3.Score == 0)
+		{
+			Player3Score.gameObject.SetActive(false);
+		}
+		else if (player3 != null)
+		{
+			Player3Score.gameObject.SetActive(true);
+			Player3Score.text = player3.Score.ToString();
+		}
+		if (player4 == null || player4.Score == 0)
+		{
+			Player4Score.gameObject.SetActive(false);
+		}
+		else if (player4 != null)
+		{
+			Player4Score.gameObject.SetActive(true);
+			Player4Score.text = player4.Score.ToString();
+		}
+		ScoreBox.SetActive(Player1Score.isActiveAndEnabled || Player2Score.isActiveAndEnabled || Player3Score.isActiveAndEnabled || Player4Score.isActiveAndEnabled);
 	}
 
 	public static void ShowCreateEditLevelDialog()
