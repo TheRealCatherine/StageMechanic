@@ -23,8 +23,8 @@ public class FloorIsLava : Platform
 		for(int i=0;i<count;++i)
 		{
 			IPlayerCharacter player = PlayerManager.Player(i);
-			Debug.Assert(player != null);
-			if (player.Position.y < transform.position.y)
+			//Debug.Assert(player != null); //TODO why is this sometimes null
+			if (player != null && player.GameObject != null && player.Position.y < transform.position.y)
 				player.TakeDamage(float.PositiveInfinity, "Bottomless Pit");
 
 		}
