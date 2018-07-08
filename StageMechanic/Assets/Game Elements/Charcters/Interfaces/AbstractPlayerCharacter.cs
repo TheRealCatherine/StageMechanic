@@ -89,6 +89,18 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
 		}
     }
 
+	/// <summary>
+	/// Convenience method for setting a single property
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="value"></param>
+	public void SetProperty(string name, string value)
+	{
+		Dictionary<string, string> dict = new Dictionary<string, string>(1);
+		dict.Add(name, value);
+		Properties = dict;
+	}
+
     public virtual bool ApplyGravity(float factor = 1f, float acceleration = 0f)
     {
         Position -= new Vector3(0f, factor, 0f);
