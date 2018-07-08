@@ -65,13 +65,28 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
         }
     }
 
-    public Dictionary<string, string> Properties
+	/// <summary>
+	/// Lets go ahead and assume all AbstractPlayerCharacters can have an int-based score.
+	/// When possible, this should be accessed as a Property to ensure extensibility
+	/// though initial implementations can use this to speed up production.
+	/// </summary>
+	public int Score
+	{
+		get; set;
+	}
+
+    public virtual Dictionary<string, string> Properties
     {
         get
         {
-            return new Dictionary<string, string>();
+			Dictionary<string, string> ret = new Dictionary<string, string>();
+			ret.Add("Score", Score.ToString());
+			return ret;
         }
-        set { }
+        set {
+			if(value.ContainsKey("Score"))
+				Score = int.Parse("Score");
+		}
     }
 
     public virtual bool ApplyGravity(float factor = 1f, float acceleration = 0f)
