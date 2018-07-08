@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4495705357022778}
   - component: {fileID: 33135659866008572}
   - component: {fileID: 23205854488057266}
+  - component: {fileID: 114368835892010692}
   m_Layer: 0
   m_Name: Gold Coin Prefab
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1563681474890990}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.5, y: 12.5, z: 12.532406}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,3 +84,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563681474890990}
   m_Mesh: {fileID: 4300000, guid: c4a2c29437967814084f527119082903, type: 3}
+--- !u!114 &114368835892010692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563681474890990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad2b745701fb2147b6421eda69a187a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
