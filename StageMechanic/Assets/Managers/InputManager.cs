@@ -166,39 +166,39 @@ public class InputManager : MonoBehaviour
 
 		else if(Input.GetKeyDown(KeyCode.Keypad1) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/1-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/1-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad2) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/2-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/2-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad3) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/3-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/3-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad4) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/4-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/4-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad5) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/5-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/5-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad6) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/6-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/6-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad7) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/7-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/7-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad8) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/8-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/8-1.json"));
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad9) && ctrlDown)
 		{
-			Serializer.LoadFileUsingHTTP(new Uri("http://raw.githubusercontent.com/TheRealCatherine/StageMechanic/master/StageMechanic/Stages/Testing/Cathy1/Easy/9-1.json"));
+			Serializer.LoadFileUsingHTTP(new Uri("https://gitlab.com/youreperfectstudio/StageMechanic/raw/master/StageMechanic/Stages/Testing/Cathy1/Easy/9-1.json"));
 		}
 
 		//Manually move the platform
