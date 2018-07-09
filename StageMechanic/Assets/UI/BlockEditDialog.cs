@@ -21,7 +21,7 @@ public class BlockEditDialog : MonoBehaviour {
     public InputField PosZField;
 
     public Button OKButton;
-    public Button ApplyButton;
+   // public Button ApplyButton;
     public Button CancelButton;
     public Button ApplyToTypeButton;
 
@@ -34,7 +34,7 @@ public class BlockEditDialog : MonoBehaviour {
     void Start()
     {
         CancelButton.onClick.AddListener(Hide);
-        ApplyButton.onClick.AddListener(Apply);
+        //ApplyButton.onClick.AddListener(Apply);
         OKButton.onClick.AddListener(Accept);
         ApplyToTypeButton.onClick.AddListener(ApplyToType);
     }
