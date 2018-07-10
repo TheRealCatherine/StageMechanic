@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BloxelsEnemyBlock : AbstractBloxelsBlock
 {
-	private bool _pushing = false;
-	private bool _moveLeft = false;
+	private bool _pushing = false; // Needed for co routine
+	private bool _moveLeft = false; // Current facing direction
 
 	private const string	PROPNAME_MOVELEFT = "Start facing left";
 	private const string	PROPNAME_STEPDELAY = "Step delay (in seconds)";
 
 	private const float	DEFAULT_STEPDELAY = 1.0f;
-	private const int	DEFAULT_MOVELEFT = 1;
+	private const bool	DEFAULT_MOVELEFT = true;
 
 	private float		_stepDelayProperty = DEFAULT_STEPDELAY;
-	private int		_moveLeftProperty  = DEFAULT_MOVELEFT;
+	private bool		_moveLeftProperty  = DEFAULT_MOVELEFT;
 
 	public override string TypeName
 	{
@@ -29,22 +29,14 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 		}
 	}
 
-	public void SetInitDirection()
+	internal override void OnGameModeChange( GameManager.GameMode oldMode, GameManager.GameMode newMode )
 	{
-		_moveLeft = ((_moveLeftProperty == 0)?false:true);
-		Debug.Log("SetInitDirection Called moveLeft " + _moveLeft);
-		StaticMeshInstance.gameObject.transform.RotateAround(transform.position, transform.up, _moveLeft?90f:-90f);
-	}
-
-	public IEnumerator MoveEnemy(Vector3 direction) 
-	{
-		if (!_pushing) {
-			_pushing = true;
-			Push(direction, 1);
-			yield return new WaitForEndOfFrame();
-			yield return new WaitForSeconds(_stepDelayProperty);
-			_pushing = false;
+		base.OnGameModeChange(oldMode, newMode);
+		if (newMode == GameManager.GameMode.Play) {
+			_moveLeft = _moveLeftProperty;
+			StaticMeshInstance.gameObject.transform.RotateAround(transform.position, transform.up, _moveLeft?90f:-90f);
 		}
+		
 	}
 
 	internal override void Update()
@@ -71,6 +63,19 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 		}
 	}
 
+	// Move the block on step in the given direction
+	public IEnumerator MoveEnemy(Vector3 direction) 
+	{
+		if (!_pushing) {
+			_pushing = true;
+			Push(direction, 1);
+			yield return new WaitForEndOfFrame();
+			yield return new WaitForSeconds(_stepDelayProperty);
+			_pushing = false;
+		}
+	}
+
+	// Switch the direction. Called when hitting a block or when there is no further support in the current direction
 	public void ChangeDirection() {
 		_moveLeft = !_moveLeft;
 		StaticMeshInstance.gameObject.transform.RotateAround(transform.position, transform.up, 180f);
@@ -99,7 +104,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 		get
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-			ret.Add(PROPNAME_MOVELEFT,   new DefaultValue { TypeInfo = typeof(int), Value = DEFAULT_MOVELEFT.ToString() } );
+			ret.Add(PROPNAME_MOVELEFT,   new DefaultValue { TypeInfo = typeof(bool), Value = DEFAULT_MOVELEFT.ToString() } );
 			ret.Add(PROPNAME_STEPDELAY,  new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_STEPDELAY.ToString() } );
 			return ret;
 		}
@@ -118,9 +123,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 		{
 			base.Properties = value;
 			if (value.ContainsKey(PROPNAME_MOVELEFT)) {
-				_moveLeftProperty = int.Parse(value[PROPNAME_MOVELEFT]);
-				Debug.Log("Move Left has been set to " + _moveLeftProperty);
-				SetInitDirection();
+				_moveLeftProperty = bool.Parse(value[PROPNAME_MOVELEFT]);
 			}
 			if (value.ContainsKey(PROPNAME_STEPDELAY)) {
 				_stepDelayProperty = float.Parse(value[PROPNAME_STEPDELAY]);
