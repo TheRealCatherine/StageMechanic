@@ -18,15 +18,14 @@ public abstract class AbstractBloxelsBlock : AbstractBlock
 		if (StaticMesh != null)
 		{
 			StaticMeshInstance = Instantiate(StaticMesh, transform);
-			StaticMeshInstance.gameObject.SetActive(false);
 		}
+		SetMeshByMode();
 	}
 
-	internal override void Update()
+	private void SetMeshByMode()
 	{
-		base.Update();
-
 		GameManager.GameMode currentMode = (BlockManager.PlayMode ? GameManager.GameMode.Play : GameManager.GameMode.StageEdit);
+
 		if (Placeholder != null && StaticMesh != null)
 		{
 			if (currentMode == GameManager.GameMode.StageEdit)
@@ -40,7 +39,12 @@ public abstract class AbstractBloxelsBlock : AbstractBlock
 				PlaceholderInstance.gameObject.SetActive(false);
 			}
 		}
+	}
 
+	internal override void Update()
+	{
+		base.Update();
+		SetMeshByMode();
 		if (BlockManager.PlayMode && _lastMode != GameManager.GameMode.Play)
 		{
 			OnGameModeChange(_lastMode, GameManager.GameMode.Play);

@@ -48,6 +48,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 	{
 		base.Awake();
 		GravityFactor = 1;
+		StaticMeshInstance.gameObject.transform.RotateAround(transform.position, transform.up, _moveLeft ? 90f : -90f);
 	}
 
 	internal override void OnGameModeChange( GameManager.GameMode oldMode, GameManager.GameMode newMode )
@@ -88,7 +89,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 	// Move the block on step in the given direction
 	public IEnumerator MoveEnemy(Vector3 direction) 
 	{
-		if (!_pushing) {
+		if (!IsMoving) {
 			_pushing = true;
 			Push(direction, 1);
 			yield return new WaitForEndOfFrame();
@@ -99,16 +100,14 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 
 	// Switch the direction. Called when hitting a block or when there is no further support in the current direction
 	public void ChangeDirection() {
-		if(IsMoving)
-			return;
 		_moveLeft = !_moveLeft;
 		Quaternion rotation = StaticMeshInstance.gameObject.transform.rotation;
 		float currentRot = rotation.eulerAngles.y;
-		if (currentRot > 90 || currentRot < 0)
+		if (!_moveLeft)
 			rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, 90, rotation.eulerAngles.z);
 		else
 			rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, -90, rotation.eulerAngles.z);
-		StartCoroutine(RotateLinearInterp(StaticMeshInstance.gameObject,rotation, 0.5f));
+		StartCoroutine(RotateLinearInterp(StaticMeshInstance.gameObject,rotation, 0.25f));
 	}
 
 	/// <summary>
