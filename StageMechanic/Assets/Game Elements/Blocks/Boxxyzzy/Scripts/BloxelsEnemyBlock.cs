@@ -5,6 +5,7 @@ using UnityEngine;
 public class BloxelsEnemyBlock : AbstractBloxelsBlock
 {
 	private bool _pushing = false; // Needed for co routine
+	private bool _rotating = false; // Needed for co routine
 	private bool _moveLeft = false; // Current facing direction
 
 	private const string	PROPNAME_MOVELEFT = "Start facing left";
@@ -26,6 +27,20 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 		set
 		{
 			throw new System.NotImplementedException();
+		}
+	}
+
+	/// <summary>
+	/// This property should return true if the block is in the middle of any kind of movement. The base class implementation
+	/// returns true if the block is currently rotating or changing its position. If you extend this class and add other
+	/// movements you may want to override this property to ensure moving and rotating don't happen while your custom
+	/// movements are taking place.
+	/// </summary>
+	public virtual bool IsMoving
+	{
+		get
+		{
+			return _pushing || _rotating;
 		}
 	}
 
@@ -58,7 +73,8 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 					ChangeDirection();
 					return;
 				}
-				StartCoroutine(MoveEnemy(direction));	
+				if(!IsMoving)
+					StartCoroutine(MoveEnemy(direction));	
 			}
 		}
 	}
@@ -77,11 +93,46 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 
 	// Switch the direction. Called when hitting a block or when there is no further support in the current direction
 	public void ChangeDirection() {
+		if(IsMoving)
+			return;
 		_moveLeft = !_moveLeft;
-		StaticMeshInstance.gameObject.transform.RotateAround(transform.position, transform.up, 180f);
-		
+		Quaternion rotation = StaticMeshInstance.gameObject.transform.rotation;
+		float currentRot = rotation.eulerAngles.y;
+		if (currentRot > 90 || currentRot < 0)
+			rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, 90, rotation.eulerAngles.z);
+		else
+			rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, -90, rotation.eulerAngles.z);
+		StartCoroutine(RotateLinearInterp(StaticMeshInstance.gameObject,rotation, 0.5f));
 	}
-	
+
+	/// <summary>
+	/// Co-routine for turning the enemy around. If there is a chance your enemy could be otherwise moving when
+	/// you call this, check the IsMoving property to ensure you don't rotate in the middle of some other movment
+	/// (unless of course that is what you want)
+	/// </summary>
+	/// <param name="obj">Usually this will be StaticMeshInstance.gameObject</param>
+	/// <param name="newRotation"></param>
+	/// <param name="duration"></param>
+	/// <returns></returns>
+	protected IEnumerator RotateLinearInterp(GameObject obj, Quaternion newRotation, float duration)
+	{
+		if (_rotating)
+			yield break;
+		_rotating = true;
+
+		Quaternion currentRot = obj.transform.rotation;
+
+		float counter = 0;
+		while (counter < duration)
+		{
+			counter += Time.deltaTime;
+			obj.transform.rotation = Quaternion.Lerp(currentRot, newRotation, counter / duration);
+			yield return null;
+		}
+		_rotating = false;
+	}
+
+
 	public override void ApplyTheme(AbstractBlockTheme theme)
 	{
 		throw new System.NotImplementedException();
