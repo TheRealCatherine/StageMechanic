@@ -44,6 +44,12 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 		}
 	}
 
+	public override void Awake()
+	{
+		base.Awake();
+		GravityFactor = 1;
+	}
+
 	internal override void OnGameModeChange( GameManager.GameMode oldMode, GameManager.GameMode newMode )
 	{
 		base.OnGameModeChange(oldMode, newMode);
