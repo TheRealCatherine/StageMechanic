@@ -10,11 +10,14 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 
 	private const string	PROPNAME_MOVELEFT = "Start facing left";
 	private const string	PROPNAME_STEPDELAY = "Step delay (in seconds)";
+	private const string	PROPNAME_TURNSPEED = "Turn duration (in seconds)";
 
 	private const float	DEFAULT_STEPDELAY = 1.0f;
+	private const float	DEFAULT_TURNSPEED = 0.25f;
 	private const bool	DEFAULT_MOVELEFT = true;
 
 	private float		_stepDelayProperty = DEFAULT_STEPDELAY;
+	private float		_turnSpeedProperty = DEFAULT_TURNSPEED;
 	private bool		_moveLeftProperty  = DEFAULT_MOVELEFT;
 
 	public override string TypeName
@@ -48,7 +51,6 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 	{
 		base.Awake();
 		GravityFactor = 1;
-		StaticMeshInstance.gameObject.transform.RotateAround(transform.position, transform.up, _moveLeft ? 90f : -90f);
 	}
 
 	internal override void OnGameModeChange( GameManager.GameMode oldMode, GameManager.GameMode newMode )
@@ -107,7 +109,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 			rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, 90, rotation.eulerAngles.z);
 		else
 			rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, -90, rotation.eulerAngles.z);
-		StartCoroutine(RotateLinearInterp(StaticMeshInstance.gameObject,rotation, 0.25f));
+		StartCoroutine(RotateLinearInterp(StaticMeshInstance.gameObject,rotation, _turnSpeedProperty));
 	}
 
 	/// <summary>
@@ -162,6 +164,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
 			ret.Add(PROPNAME_MOVELEFT,   new DefaultValue { TypeInfo = typeof(bool), Value = DEFAULT_MOVELEFT.ToString() } );
 			ret.Add(PROPNAME_STEPDELAY,  new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_STEPDELAY.ToString() } );
+			ret.Add(PROPNAME_TURNSPEED,  new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_TURNSPEED.ToString() } );
 			return ret;
 		}
 	}
@@ -173,6 +176,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 			Dictionary<string, string> ret = base.Properties;
 			ret.Add(PROPNAME_MOVELEFT, _moveLeftProperty.ToString());
 			ret.Add(PROPNAME_STEPDELAY, _stepDelayProperty.ToString());
+			ret.Add(PROPNAME_TURNSPEED, _turnSpeedProperty.ToString());
 			return ret;
 		}
 		set
@@ -183,6 +187,9 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 			}
 			if (value.ContainsKey(PROPNAME_STEPDELAY)) {
 				_stepDelayProperty = float.Parse(value[PROPNAME_STEPDELAY]);
+			}
+			if (value.ContainsKey(PROPNAME_TURNSPEED)) {
+				_turnSpeedProperty = float.Parse(value[PROPNAME_TURNSPEED]);
 			}
 		}
 	}
