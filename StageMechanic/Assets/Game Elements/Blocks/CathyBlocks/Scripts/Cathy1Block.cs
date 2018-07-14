@@ -17,6 +17,11 @@ public class Cathy1Block : AbstractBlock
 	public GameObject CurrentModel;
 	public int CurrentModelNumber=0;
 
+	public void ShowRandomModel()
+	{
+		ShowModel(Random.Range(1, 4));
+	}
+
 	public void ShowModel(int number)
 	{
 		if (CurrentModelNumber == number && CurrentModel != null)

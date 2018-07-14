@@ -144,6 +144,12 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 			block.Name = oldName;
 		if (CurrentTheme != null)
 			block.ApplyTheme(CurrentTheme);
+		// Randomize which model is shown for Basic blocks
+		// This adds an extra step for each basic block
+		// when loading/undoing so we might need to add a 
+		// state to serializer to let us skip this step
+		if (type == "Basic")
+			block.ShowRandomModel();
 		return block;
 	}
 
