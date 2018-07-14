@@ -39,15 +39,20 @@ public class CameraController : MonoBehaviour
         {
             offset = new Vector3(10, Cursor.transform.position.y, 5);
         }
-        else if (direction == Vector3.left)
+        else if (direction == Vector3.right)
         {
             offset = new Vector3(5, Cursor.transform.position.y, 10);
         }
+		else if(direction == Vector3.up)
+		{
+			offset = new Vector3(0, Cursor.transform.position.y+10, 0);
+		}
         if (BlockManager.ActiveBlock != null)
             transform.LookAt(BlockManager.ActiveBlock.Position);
         else
             transform.LookAt(new Vector3(BlockManager.ActiveFloor.transform.position.x,0, BlockManager.ActiveFloor.transform.position.z));
     }
+
 
     public void ResetZoom()
     {

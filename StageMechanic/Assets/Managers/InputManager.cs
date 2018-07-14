@@ -602,9 +602,17 @@ public class InputManager : MonoBehaviour
 		//Fast cursor movement
 		if (Input.GetKeyDown(KeyCode.PageUp))
 		{
-			if(BlockManager.Cursor.transform.position.y < 60000f)
-				BlockManager.Cursor.transform.position += new Vector3(0, 10, 0);
-			return true;
+			if (altDown)
+			{
+				Camera.RotateAroundPlatform(Vector3.up);
+			}
+			else
+			{
+				if (BlockManager.Cursor.transform.position.y < 60000f)
+					BlockManager.Cursor.transform.position += new Vector3(0, 10, 0);
+				return true;
+			}
+			return false;
 		}
 		else if (Input.GetKeyDown(KeyCode.PageDown))
 		{
