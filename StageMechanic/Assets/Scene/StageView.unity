@@ -3002,7 +3002,7 @@ Prefab:
         type: 2}
       propertyPath: Clips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 64b96d53cfa76ce4b91ee8c6e2277e6d, type: 3}
+      objectReference: {fileID: 8300000, guid: 4b9326f49cdcf3f4bbb36df88f1cc9bc, type: 3}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.data[1]
@@ -20088,7 +20088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.52761406}
-  m_AnchoredPosition: {x: 558.3, y: 182}
+  m_AnchoredPosition: {x: 558.3, y: 293}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737829413
@@ -23891,11 +23891,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Developer build
+  m_Text: 'Preview build
 
-    July 12, 2018
+    for HCPL
 
-    Happy 1 Month Anniversary!'
+    ComicCon 2018
+
+'
 --- !u!222 &2001928057
 CanvasRenderer:
   m_ObjectHideFlags: 0
