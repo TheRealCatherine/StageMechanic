@@ -24,18 +24,11 @@ public class Cathy1MysteryBlock : Cathy1Block
 
 	public readonly string[] PossibleTypes = {
 		"Basic",
-		"Immobile",
 		"Cracked (2 Steps)",
-		"Cracked (1 Step)",
 		"Heavy",
-		"Spike Trap",
-		"Ice",
 		"Small Bomb",
-		"Large Bomb",
 		"Spring",
-		"Mystery",
-		"Monster",
-		"Vortex"};
+		"Monster"};
 
 	protected override void OnPlayerEnter(PlayerMovementEvent ev)
 	{
