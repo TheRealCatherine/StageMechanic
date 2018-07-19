@@ -191,6 +191,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	public IEnumerator SlideTo(Vector3 location)
 	{
 		CurrentMoveState = State.Slide;
+		_player.GetComponent<Animator>().SetBool("walking", false);
+		_player.GetComponent<Animator>().SetBool("sidling", true);
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		while (journey <= WalkTime)
@@ -203,6 +205,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		}
 		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 		CurrentMoveState = State.Idle;
+		_player.GetComponent<Animator>().SetBool("sidling", false);
 		ApplyGravity();
 		yield return null;
 	}
@@ -248,7 +251,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	public IEnumerator PushPullTo(Vector3 location)
 	{
 		CurrentMoveState = State.PushPull;
-		_player.GetComponent<Animator>().SetBool("walking", true);
+		_player.GetComponent<Animator>().SetBool("sidling", true);
 		yield return new WaitForEndOfFrame();
 		AudioEffectsManager.PlaySound(WalkSound);
 		float journey = 0f;
@@ -264,7 +267,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		}
 	   (oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
 		yield return new WaitForEndOfFrame();
-		_player.GetComponent<Animator>().SetBool("walking", false);
+		_player.GetComponent<Animator>().SetBool("sidling", false);
 		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 		CurrentMoveState = State.Idle;
 		yield return null;
@@ -281,6 +284,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		Vector3 origin = CurrentLocation;
 		Vector3 offset = (location - CurrentLocation);
 		IBlock oldBlock = CurrentBlock;
+		_player.GetComponent<Animator>().SetBool("sidling", false);
 		if (CurrentMoveState != State.Sidle && CurrentMoveState != State.SidleMove)
 		{
 			CurrentMoveState = State.Aproach;
@@ -341,6 +345,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	{
 		if (CurrentMoveState == State.Idle)
 		{
+			_player.GetComponent<Animator>().SetBool("sidling", true);
 			CurrentMoveState = State.Aproach;
 			yield return new WaitForEndOfFrame();
 			CurrentMoveState = State.Climb;
@@ -353,6 +358,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		}
 		else
 		{
+			_player.GetComponent<Animator>().SetBool("sidling", true);
 			CurrentMoveState = State.SidleMove;
 			yield return new WaitForEndOfFrame();
 			float journey = 0f;
@@ -380,6 +386,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	private IEnumerator BoingyTo(Vector3 location)
 	{
 		CurrentMoveState = State.Idle;
+		_player.GetComponent<Animator>().SetBool("sidling", true);
 		yield return new WaitForEndOfFrame();
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
@@ -393,6 +400,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			yield return null;
 		}
 		yield return new WaitForEndOfFrame();
+		_player.GetComponent<Animator>().SetBool("sidling", false);
 		CurrentMoveState = State.Fall;
 		yield return null;
 	}
