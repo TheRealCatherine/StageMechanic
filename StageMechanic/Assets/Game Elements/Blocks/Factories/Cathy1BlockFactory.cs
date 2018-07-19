@@ -45,7 +45,7 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 	{
 		get
 		{
-			return "RoboCathy";
+			return "Cat5";
 		}
 	}
 
