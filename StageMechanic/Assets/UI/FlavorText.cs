@@ -6,14 +6,11 @@
 	static FlavorText()
 	{
 		Entries[0] =
-			"This place is gonna set you free\n"  +
-			"My love's the only love you need\n" +
-			"Do you feel it like I feel it?\n" +
+			"Never give up on what you really want to do.\n" + 
+			"The person with big dreams is more powerful\n" +
+			"than one with all the facts.\n" +
 			"\n" +
-			"Hold my hand, we'll get there someday\n" +
-			"Nothing's set in stone until the end\n" +
-			"\n" +
-			"--Amy Macdonald";
+			"–- Albert Einstein";
 
 		Entries[1] =
 			"The quest for certainty blocks the search for meaning.\n" +
@@ -37,9 +34,10 @@
 			"--Iyanla Vanzant";
 
 		Entries[5] =
-			"A lot of times when you play... you get this adrenalin that blocks pain.\n" +
+			"Winning doesn’t always mean being first. Winning means you’re doing\n" +
+			"better than you’ve done before.\n" +
 			"\n" +
-			"--Venus Williams";
+			"--Bonnie Blair";
 
 		Entries[6] =
 			"Whenever a toddler sees a pile of blocks, he wants to tear it down.\n" +
@@ -47,9 +45,9 @@
 			"--J. J. Abrams";
 
 		Entries[7] =
-			"Hell is paved with great granite blocks hewn from the hearts of those who said, I can do no other.\n" +
+			"You’re braver than you believe, and stronger than you seem, and smarter than you think.\n" +
 			"\n" +
-			"--Heywood Broun";
+			"--A.A. Milne/Christopher Robin";
 
 		Entries[8] =
 			"Look at kids playing with blocks. I think it's in everyone's DNA to want to be a builder.\n" +
@@ -74,9 +72,9 @@
 			"--Lucretius";
 
 		Entries[12] =
-			"God can be realized through all paths. All religions are true. The important thing is to reach the roof. You can reach it by stone stairs or by wooden stairs or by bamboo steps or by a rope. You can also climb up by a bamboo pole.\n" +
+			"Don’t just read the easy stuff. You may be entertained by it, but you will never grow from it.\n" +
 			"\n" +
-			"--Ramakrishna";
+			"--Jim Rohn";
 
 		Entries[13] =
 			"Nothing is built on stone; all is built on sand, but we must build as if the sand were stone.\n" +
@@ -104,9 +102,9 @@
 			"--Robert Plant";
 
 		Entries[18] =
-			"I've always seen modeling as a stepping stone.\n" +
+			"Why fit in when you were born to stand out?\n" +
 			"\n" +
-			"--Tyra Banks";
+			"--Dr. Seuss";
 
 		Entries[19] =
 			"Stone walls do not a prison make, nor iron bars a cage.\n" +
@@ -124,14 +122,14 @@
 			"--Andy Goldsworthy";
 
 		Entries[22] =
-			"Stone walls confine a tinker; cold iron binds a witch; but a musician's music can never be fettered, for it lives first in her heart and mind.\n" +
+			"Nothing is particularly hard if you break it down into small jobs.\n" +
 			"\n" +
-			"--Charles de Lint";
+			"--Henry Ford";
 
 		Entries[23] =
-			"It's frightening and unnerving to watch a stone melt.\n" +
+			"You must be the change you wish to see in the world.\n" +
 			"\n" +
-			"--Andy Goldsworthy";
+			"--Mahatma Gandhi";
 
 		Entries[24] =
 			"Anger is as a stone cast into a wasp's nest.\n" +
