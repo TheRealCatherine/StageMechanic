@@ -191,8 +191,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	public IEnumerator SlideTo(Vector3 location)
 	{
 		CurrentMoveState = State.Slide;
-		_player.GetComponent<Animator>().SetBool("walking", false);
-		_player.GetComponent<Animator>().SetBool("sidling", true);
+		_player.GetComponent<Animator>().SetBool("sliding", true);
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		while (journey <= WalkTime)
@@ -205,8 +204,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		}
 		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 		CurrentMoveState = State.Idle;
-		_player.GetComponent<Animator>().SetBool("sidling", false);
 		ApplyGravity();
+		yield return new WaitForEndOfFrame();
+		_player.GetComponent<Animator>().SetBool("sliding", false);
 		yield return null;
 	}
 
