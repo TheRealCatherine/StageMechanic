@@ -19,7 +19,7 @@ MonoBehaviour:
     PoseToolPivotMode:
       valueInternal: 0
     PoseToolMode:
-      valueInternal: 1
+      valueInternal: 0
     PoseMirrorMode:
       valueInternal: 0
     ConfigMode:
@@ -29,15 +29,15 @@ MonoBehaviour:
     ConfigToolMode:
       valueInternal: 2
     OpenedClipIndex:
-      valueInternal: 0
+      valueInternal: 1
     SelectedFrame:
-      valueInternal: 12
+      valueInternal: 10
     TimelineViewMode:
       valueInternal: 0
     FramesScrollPosition:
-      valueInternal: -11.797462
+      valueInternal: -40
     FramesZoom:
-      valueInternal: 0.53703177
+      valueInternal: 0.4365158
     PropertiesScrollPosition:
       valueInternal: 155
     PropertiesZoom:
@@ -228,12 +228,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -244,6 +238,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -251,6 +263,7 @@ MonoBehaviour:
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -263,12 +276,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -279,6 +286,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -293,12 +318,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -316,12 +349,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -332,6 +359,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -369,6 +414,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -378,6 +427,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -394,6 +447,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -432,12 +491,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -448,6 +501,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -456,6 +527,7 @@ MonoBehaviour:
       valueInternal: 0
     RotationModePerClip:
     - valueInternal: 0
+    - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
         valueInternal: 0.000000081460335
@@ -463,6 +535,10 @@ MonoBehaviour:
         valueInternal: 0.000000081460335
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.000000081460335
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.000000081460335
@@ -477,12 +553,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: -0.00000004371139
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.00000004371139
+          KeyList: []
     - CurrentValue:
         valueInternal: 3.621977e-15
       ReferencePoseValue:
         valueInternal: 3.621977e-15
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 3.621977e-15
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 3.621977e-15
@@ -497,12 +581,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -520,12 +612,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 100
           KeyList: []
-    - CurrentValue:
-        valueInternal: 100
-      ReferencePoseValue:
-        valueInternal: 100
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 100
@@ -536,6 +622,24 @@ MonoBehaviour:
         valueInternal: 100
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 100
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 100
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 100
+      ReferencePoseValue:
+        valueInternal: 100
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 100
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 100
@@ -573,6 +677,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -582,6 +690,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -598,6 +710,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -632,6 +750,38 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -702,6 +852,38 @@ MonoBehaviour:
               valueInternal: 0
             OutTangentMode:
               valueInternal: 0
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.003
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.003
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.003
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
@@ -740,9 +922,42 @@ MonoBehaviour:
               valueInternal: 0
             OutTangentMode:
               valueInternal: 0
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -783,12 +998,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -827,6 +1036,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -897,12 +1208,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -948,12 +1323,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -964,6 +1333,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -1001,6 +1388,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -1010,6 +1401,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1026,6 +1421,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -1064,12 +1465,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: -0.00059999997
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.00059999997
+          KeyList: []
     - CurrentValue:
         valueInternal: -0.00060000014
       ReferencePoseValue:
         valueInternal: -0.00060000014
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.00060000014
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: -0.00060000014
@@ -1084,9 +1493,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -1127,6 +1541,38 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
@@ -1165,12 +1611,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 1
       ReferencePoseValue:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -1241,12 +1751,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.00000004371139
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.00000004371139
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.00000004371139
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1292,12 +1866,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -1308,6 +1876,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -1345,6 +1931,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -1354,6 +1944,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1370,6 +1964,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -1408,12 +2008,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0014999999
       ReferencePoseValue:
         valueInternal: 0.0014999999
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0014999999
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0014999999
@@ -1428,9 +2036,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -1471,12 +2084,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1515,6 +2122,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1585,12 +2294,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1636,12 +2409,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -1652,6 +2419,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -1689,6 +2474,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -1698,6 +2487,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1714,6 +2507,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -1752,12 +2551,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.00089999987
       ReferencePoseValue:
         valueInternal: 0.00089999987
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.00089999987
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.00089999987
@@ -1772,9 +2579,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -1815,12 +2627,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1859,6 +2665,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1929,12 +2837,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -1980,12 +2952,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -1996,6 +2962,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2033,6 +3017,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -2042,6 +3030,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2058,6 +3050,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -2096,12 +3094,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.000001
       ReferencePoseValue:
         valueInternal: 0.000001
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.000001
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.000001
@@ -2116,9 +3122,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -2131,12 +3142,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2147,6 +3152,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2161,12 +3184,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2184,12 +3215,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2200,6 +3225,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2237,6 +3280,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -2246,6 +3293,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2262,6 +3313,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -2300,12 +3357,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0.00059999997
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.00059999997
+          KeyList: []
     - CurrentValue:
         valueInternal: -0.00060000014
       ReferencePoseValue:
         valueInternal: -0.00060000014
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.00060000014
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: -0.00060000014
@@ -2320,9 +3385,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -2363,6 +3433,38 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
@@ -2401,12 +3503,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 1
       ReferencePoseValue:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2477,12 +3643,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.00000004371139
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.00000004371139
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.00000004371139
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2528,12 +3758,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2544,6 +3768,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2581,6 +3823,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -2590,6 +3836,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2606,6 +3856,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -2644,12 +3900,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0014999999
       ReferencePoseValue:
         valueInternal: 0.0014999999
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0014999999
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0014999999
@@ -2664,9 +3928,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -2707,12 +3976,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2751,6 +4014,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2821,12 +4186,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2872,12 +4301,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2888,6 +4311,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -2925,6 +4366,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -2934,6 +4379,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -2950,6 +4399,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -2988,12 +4443,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.00089999987
       ReferencePoseValue:
         valueInternal: 0.00089999987
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.00089999987
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.00089999987
@@ -3008,9 +4471,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -3051,12 +4519,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3095,6 +4557,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3165,12 +4729,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3216,12 +4844,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -3232,6 +4854,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -3269,6 +4909,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -3278,6 +4922,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3294,6 +4942,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -3332,12 +4986,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.000001
       ReferencePoseValue:
         valueInternal: 0.000001
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.000001
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.000001
@@ -3352,9 +5014,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -3367,12 +5034,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3383,6 +5044,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3397,12 +5076,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3420,12 +5107,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -3436,6 +5117,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -3473,6 +5172,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -3482,6 +5185,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3498,6 +5205,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -3536,12 +5249,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0008999997
       ReferencePoseValue:
         valueInternal: 0.0008999997
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0008999997
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0008999997
@@ -3556,9 +5277,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -3599,12 +5325,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3643,6 +5363,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3713,12 +5535,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3764,12 +5650,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -3780,6 +5660,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -3817,6 +5715,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -3826,6 +5728,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -3842,6 +5748,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -3880,12 +5792,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0014999998
       ReferencePoseValue:
         valueInternal: 0.0014999998
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0014999998
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0014999998
@@ -3900,9 +5820,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -3943,6 +5868,38 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
@@ -3981,12 +5938,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: -0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4057,12 +6078,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4108,12 +6193,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -4124,6 +6203,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -4161,6 +6258,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -4170,6 +6271,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4186,6 +6291,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -4224,12 +6335,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0000010001659
       ReferencePoseValue:
         valueInternal: 0.0000010001659
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0000010001659
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0000010001659
@@ -4244,9 +6363,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -4259,12 +6383,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4275,6 +6393,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4289,12 +6425,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4312,12 +6456,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -4328,6 +6466,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -4365,6 +6521,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -4374,6 +6534,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4390,6 +6554,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -4428,12 +6598,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: -0.0008999999
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.0008999999
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0006
       ReferencePoseValue:
         valueInternal: 0.0006
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0006
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0006
@@ -4448,13 +6626,18 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
     - valueInternal: 0
+    - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
-        valueInternal: 0.44244248
+        valueInternal: 0.38495705
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
@@ -4491,8 +6674,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.38495705
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.43810138
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.43810138
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 20
+            Value:
+              valueInternal: 0.26095358
+            InTangent:
+              valueInternal: -0.014171824
+            OutTangent:
+              valueInternal: 0.014171824
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: 0.4424426
+        valueInternal: 0.38495708
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
@@ -4529,8 +6758,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.38495708
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.43810144
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.43810144
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 20
+            Value:
+              valueInternal: 0.26095358
+            InTangent:
+              valueInternal: -0.0141718285
+            OutTangent:
+              valueInternal: 0.0141718285
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: 0.55158395
+        valueInternal: 0.5856851
       ReferencePoseValue:
         valueInternal: 0.7071068
       PoseValueList: []
@@ -4567,8 +6842,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.5856851
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.5550385
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.5550385
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 20
+            Value:
+              valueInternal: 0.6571938
+            InTangent:
+              valueInternal: 0.008172422
+            OutTangent:
+              valueInternal: -0.008172422
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: 0.551584
+        valueInternal: 0.58568496
       ReferencePoseValue:
         valueInternal: 0.7071067
       PoseValueList: []
@@ -4605,8 +6926,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.58568496
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.55503845
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.55503845
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 20
+            Value:
+              valueInternal: 0.65719354
+            InTangent:
+              valueInternal: 0.008172407
+            OutTangent:
+              valueInternal: -0.008172407
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: 0
+        valueInternal: 9.976682
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
@@ -4643,6 +7010,52 @@ MonoBehaviour:
               valueInternal: 0
             OutTangentMode:
               valueInternal: 0
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 9.976682
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 66.511215
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 20
+            Value:
+              valueInternal: 33.255608
+            InTangent:
+              valueInternal: 2.6604486
+            OutTangent:
+              valueInternal: 2.6604486
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
     LocalScaleSelected:
       valueInternal: 0
     LocalScaleChannelList:
@@ -4656,12 +7069,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -4672,6 +7079,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -4709,6 +7134,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -4718,6 +7147,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4734,6 +7167,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -4772,12 +7211,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0008999999
       ReferencePoseValue:
         valueInternal: 0.0008999999
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0008999999
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0008999999
@@ -4792,9 +7239,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -4835,12 +7287,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4879,6 +7325,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -4949,12 +7497,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5000,12 +7612,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5016,6 +7622,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5053,6 +7677,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -5062,6 +7690,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5078,6 +7710,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -5116,12 +7754,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0014999999
       ReferencePoseValue:
         valueInternal: 0.0014999999
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0014999999
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0014999999
@@ -5136,9 +7782,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -5179,12 +7830,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5223,6 +7868,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5293,12 +8040,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5344,12 +8155,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5360,6 +8165,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5397,6 +8220,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -5406,6 +8233,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5422,6 +8253,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -5460,12 +8297,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0000009998679
       ReferencePoseValue:
         valueInternal: 0.0000009998679
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0000009998679
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0000009998679
@@ -5480,9 +8325,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -5495,12 +8345,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5511,6 +8355,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5525,12 +8387,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5548,12 +8418,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5564,6 +8428,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5601,6 +8483,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -5610,6 +8496,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5626,6 +8516,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -5664,12 +8560,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0.0008999999
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0008999999
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0006
       ReferencePoseValue:
         valueInternal: 0.0006
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0006
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0006
@@ -5684,13 +8588,18 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
     - valueInternal: 0
+    - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
-        valueInternal: 0.46402153
+        valueInternal: 0.35032594
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
@@ -5727,8 +8636,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.35032594
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.46045095
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.46045095
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 5
+            Value:
+              valueInternal: 0.28247112
+            InTangent:
+              valueInternal: -0.0142383855
+            OutTangent:
+              valueInternal: 0.0142383855
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: -0.464022
+        valueInternal: -0.35032588
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
@@ -5765,8 +8720,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.35032588
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: -0.46045095
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: -0.46045095
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 5
+            Value:
+              valueInternal: -0.28247106
+            InTangent:
+              valueInternal: 0.01423839
+            OutTangent:
+              valueInternal: -0.01423839
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: -0.5335579
+        valueInternal: -0.6056912
       ReferencePoseValue:
         valueInternal: -0.7071068
       PoseValueList: []
@@ -5803,8 +8804,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.6056912
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: -0.5366424
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: -0.5366424
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 5
+            Value:
+              valueInternal: -0.64823645
+            InTangent:
+              valueInternal: -0.008927526
+            OutTangent:
+              valueInternal: 0.008927526
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: 0.5335576
+        valueInternal: 0.6056911
       ReferencePoseValue:
         valueInternal: 0.7071067
       PoseValueList: []
@@ -5841,8 +8888,54 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.6056911
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0.5366423
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0.5366423
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 5
+            Value:
+              valueInternal: 0.6482363
+            InTangent:
+              valueInternal: 0.008927517
+            OutTangent:
+              valueInternal: -0.008927517
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
-        valueInternal: 0
+        valueInternal: 47.197113
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
@@ -5879,6 +8972,52 @@ MonoBehaviour:
               valueInternal: 0
             OutTangentMode:
               valueInternal: 0
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 47.197113
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 68.339714
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 5
+            Value:
+              valueInternal: 34.169857
+            InTangent:
+              valueInternal: 2.7335885
+            OutTangent:
+              valueInternal: 2.7335885
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
     LocalScaleSelected:
       valueInternal: 0
     LocalScaleChannelList:
@@ -5892,12 +9031,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5908,6 +9041,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -5945,6 +9096,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -5954,6 +9109,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -5970,6 +9129,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -6008,12 +9173,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0008999999
       ReferencePoseValue:
         valueInternal: 0.0008999999
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0008999999
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0008999999
@@ -6028,9 +9201,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -6071,12 +9249,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6115,6 +9287,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6185,12 +9459,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6236,12 +9574,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -6252,6 +9584,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -6289,6 +9639,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -6298,6 +9652,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6314,6 +9672,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -6352,12 +9716,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0014999999
       ReferencePoseValue:
         valueInternal: 0.0014999999
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0014999999
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0014999999
@@ -6372,9 +9744,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -6415,12 +9792,6 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6459,6 +9830,108 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6529,12 +10002,76 @@ MonoBehaviour:
               valueInternal: 4
             OutTangentMode:
               valueInternal: 4
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 1
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 1
+            InTangentMode:
+              valueInternal: 4
+            OutTangentMode:
+              valueInternal: 4
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList:
+          - Frame:
+              valueInternal: 0
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
+          - Frame:
+              valueInternal: 25
+            Value:
+              valueInternal: 0
+            InTangent:
+              valueInternal: 0
+            OutTangent:
+              valueInternal: 0
+            BrokenTangents:
+              valueInternal: 0
+            InTangentMode:
+              valueInternal: 0
+            OutTangentMode:
+              valueInternal: 0
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6580,12 +10117,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -6596,6 +10127,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -6633,6 +10182,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -6642,6 +10195,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6658,6 +10215,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -6696,12 +10259,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     - CurrentValue:
         valueInternal: 0.0000009998679
       ReferencePoseValue:
         valueInternal: 0.0000009998679
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.0000009998679
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.0000009998679
@@ -6716,9 +10287,14 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     LocalRotationSelected:
       valueInternal: 0
     RotationModePerClip:
+    - valueInternal: 0
     - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
@@ -6731,12 +10307,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6747,6 +10317,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6761,12 +10349,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6784,12 +10380,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
-    - CurrentValue:
-        valueInternal: 1
-      ReferencePoseValue:
-        valueInternal: 1
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -6800,6 +10390,24 @@ MonoBehaviour:
         valueInternal: 1
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 1
+      ReferencePoseValue:
+        valueInternal: 1
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 1
@@ -6837,6 +10445,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -6846,6 +10458,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6862,6 +10478,12 @@ MonoBehaviour:
           Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
           Length: 0
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal:
@@ -6900,12 +10522,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
-    - CurrentValue:
-        valueInternal: 0
-      ReferencePoseValue:
-        valueInternal: 0
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6916,6 +10532,24 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 0
+      ReferencePoseValue:
+        valueInternal: 0
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6924,6 +10558,7 @@ MonoBehaviour:
       valueInternal: 0
     RotationModePerClip:
     - valueInternal: 0
+    - valueInternal: 0
     LocalRotationChannelList:
     - CurrentValue:
         valueInternal: 0.000000081460335
@@ -6931,6 +10566,10 @@ MonoBehaviour:
         valueInternal: 0.000000081460335
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0.000000081460335
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0.000000081460335
@@ -6945,12 +10584,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: -0.00000004371139
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: -0.00000004371139
+          KeyList: []
     - CurrentValue:
         valueInternal: 3.621977e-15
       ReferencePoseValue:
         valueInternal: 3.621977e-15
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 3.621977e-15
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 3.621977e-15
@@ -6965,12 +10612,20 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 1
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 1
+          KeyList: []
     - CurrentValue:
         valueInternal: 0
       ReferencePoseValue:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -6988,12 +10643,6 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 100
           KeyList: []
-    - CurrentValue:
-        valueInternal: 100
-      ReferencePoseValue:
-        valueInternal: 100
-      PoseValueList: []
-      ChannelPerClipList:
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 100
@@ -7004,6 +10653,24 @@ MonoBehaviour:
         valueInternal: 100
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 100
+          KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 100
+          KeyList: []
+    - CurrentValue:
+        valueInternal: 100
+      ReferencePoseValue:
+        valueInternal: 100
+      PoseValueList: []
+      ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 100
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 100
@@ -7041,6 +10708,10 @@ MonoBehaviour:
         - CurrentOriginalValue:
             valueInternal: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
     IkPoleRotationSelected:
       valueInternal: 0
     IkPoleRotationChannel:
@@ -7050,6 +10721,10 @@ MonoBehaviour:
         valueInternal: 0
       PoseValueList: []
       ChannelPerClipList:
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal: 0
+          KeyList: []
       - LayerList:
         - CurrentOriginalValue:
             valueInternal: 0
@@ -7072,6 +10747,12 @@ MonoBehaviour:
               Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
               Length: 0
           KeyList: []
+      - LayerList:
+        - CurrentOriginalValue:
+            valueInternal:
+              Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+              Length: 0
+          KeyList: []
     CustomPropertyList: []
   PoseList: []
   ClipList:
@@ -7082,6 +10763,41 @@ MonoBehaviour:
         valueInternal: 60
       Loop:
         valueInternal: 1
+      RootMotion:
+        Translation:
+          valueInternal: 0
+        Rotation:
+          valueInternal: 0
+        AnimatedObject:
+          valueInternal:
+            Address: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+            Length: 0
+    LayerList: []
+    SelectedLayerIndex:
+      valueInternal: 0
+    SampledRootMotionMultiplier:
+      valueInternal: 0
+    Playback:
+      StartFrame:
+        valueInternal: 0
+      EndFrame:
+        valueInternal: 25
+      Speed:
+        valueInternal: 1
+      Loop:
+        valueInternal: 1
+      RootMotion:
+        valueInternal: 1
+      PlayFromBeginning:
+        valueInternal: 0
+    EventList: []
+  - Settings:
+      Name:
+        valueInternal: SidleMove
+      Framerate:
+        valueInternal: 60
+      Loop:
+        valueInternal: 0
       RootMotion:
         Translation:
           valueInternal: 0

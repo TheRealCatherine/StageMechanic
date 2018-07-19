@@ -358,7 +358,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		}
 		else
 		{
-			_player.GetComponent<Animator>().SetBool("sidling", true);
+			_player.GetComponent<Animator>().SetBool("sidleMoving", true);
 			CurrentMoveState = State.SidleMove;
 			yield return new WaitForEndOfFrame();
 			float journey = 0f;
@@ -373,6 +373,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 				yield return null;
 			}
 			yield return new WaitForEndOfFrame();
+			_player.GetComponent<Animator>().SetBool("sidleMoving", false);
 			CurrentMoveState = State.Sidle;
 			yield return null;
 		}
