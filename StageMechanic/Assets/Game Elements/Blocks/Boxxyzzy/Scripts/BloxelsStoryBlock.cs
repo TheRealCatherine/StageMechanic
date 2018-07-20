@@ -12,7 +12,7 @@ public class BloxelsStoryBlock : AbstractBloxelsBlock
 	private const string	PROPNAME_TEXT_SIZE = "Size";
 	private const string 	PROPNAME_TEXT_COLOR = "Color (#rrggbb)";
 
-	private const string	DEFAULT_TEXT = "Text here";
+	private const string	DEFAULT_TEXT = "Press Enter to edit text";
 	private const int	DEFAULT_TEXT_SIZE = 0;
 	private const string 	DEFAULT_TEXT_COLOR = "#ffffff";
 

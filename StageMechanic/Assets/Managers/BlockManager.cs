@@ -211,16 +211,7 @@ public class BlockManager : MonoBehaviour
 		}
 		else if(palette == "Bloxels Internal")
 		{
-			AbstractBloxelsBlock block = Instance.BlockFactories[2].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
-			block.Palette = palette;
-			block.gameObject.layer = Instance.Stage.gameObject.layer;
-			BlockCache.Add(block);
-			Serializer.AutoSave();
-			return block;
-		}
-		else if(palette == "BoxGirl Internal")
-		{
-			AbstractBlock block = Instance.BlockFactories[1].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBlock;
+			AbstractBloxelsBlock block = Instance.BlockFactories[1].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
 			block.Palette = palette;
 			block.gameObject.layer = Instance.Stage.gameObject.layer;
 			BlockCache.Add(block);
@@ -240,8 +231,6 @@ public class BlockManager : MonoBehaviour
 			default:
 				return 0;
 			case "Bloxels Internal":
-				return 2;
-			case "BoxGirl Internal":
 				return 1;
 		}
 	}
