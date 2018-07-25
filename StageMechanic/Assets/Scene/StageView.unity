@@ -6234,9 +6234,9 @@ RectTransform:
   m_Father: {fileID: 753571536}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 154.1, y: -344.4072}
   m_SizeDelta: {x: 288.2, y: 56.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459679885
@@ -7425,9 +7425,9 @@ RectTransform:
   m_Father: {fileID: 753571536}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 90, y: -240.17145}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &590829909
@@ -9079,12 +9079,12 @@ GameObject:
   - component: {fileID: 753571538}
   - component: {fileID: 753571537}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &753571536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12901,9 +12901,9 @@ RectTransform:
   m_Father: {fileID: 753571536}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 90, y: -73.04286}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085509318
@@ -13841,9 +13841,9 @@ RectTransform:
   m_Father: {fileID: 753571536}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 154.1, y: -189.27858}
   m_SizeDelta: {x: 288.2, y: 60.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144401868
@@ -16204,9 +16204,9 @@ RectTransform:
   m_Father: {fileID: 753571536}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 154.1, y: -285.56433}
   m_SizeDelta: {x: 288.2, y: 49.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1280073187
@@ -18275,9 +18275,9 @@ RectTransform:
   m_Father: {fileID: 753571536}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 162.95, y: -31.3}
   m_SizeDelta: {x: 305.9, y: 42.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507306050
@@ -19787,20 +19787,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1611626307}
---- !u!114 &1613721077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 837176835, guid: 448d62fcada76fd4ab5702190add98fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GeneralStates:
-    PreviewObject:
-      valueInternal: {fileID: 0}
 --- !u!1 &1622357858
 GameObject:
   m_ObjectHideFlags: 0
@@ -20631,7 +20617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.52761406}
-  m_AnchoredPosition: {x: 558.3, y: 212}
+  m_AnchoredPosition: {x: 544, y: 284}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737829413
@@ -21856,9 +21842,9 @@ RectTransform:
   m_Father: {fileID: 753571536}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 154.1, y: -123.435715}
   m_SizeDelta: {x: 288.2, y: 59.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1849583033
@@ -22018,7 +22004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.80500007, y: 0.51375407}
-  m_AnchoredPosition: {x: 178, y: 161}
+  m_AnchoredPosition: {x: 176, y: 205}
   m_SizeDelta: {x: 21.5, y: 99.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1867175837
@@ -23079,7 +23065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "\u0389\u0389\u038A\u0389\u0389\u038A\u0389\u0389\u0389\u038A\u0389\u0389\u038A\u038A\u0389\u038A\u0389\u0389\u0389\u0389\u0389\u038A\u0389\u038A\u0389\u0389\u0389\u0389\u038A\u038A\u038A\u0389\u038A\u0389\u0389\u0389\u0389\u038A\u038A\u038A\u0389\u0389\u038A\u038A\u0389\u038A\u038A": {
-    fileID: 1613721077}
+    fileID: 0}
 --- !u!4 &1919178803
 Transform:
   m_ObjectHideFlags: 11
@@ -24508,13 +24494,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Developer Preview Build
+  m_Text: 'Developer Preview
 
-    Hancock County Library
-
-    ComicCon 2018
-
-'
+    August 2018'
 --- !u!222 &2001928057
 CanvasRenderer:
   m_ObjectHideFlags: 0
