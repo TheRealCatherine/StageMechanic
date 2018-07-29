@@ -31,8 +31,9 @@ public class UIManager : MonoBehaviour
 	public SimpleButton GrabButton;
 	public SimpleButton SetStartPosButton;
 	public SimpleButton DeleteBlockButton;
-	public Dpad FurtherCloserButtons;
 	public Dpad DirectionButtons;
+
+	public GameObject CursorControls;
 
 	public GameObject BlockThemeDialog;
 
@@ -98,14 +99,15 @@ public class UIManager : MonoBehaviour
 	private void Update()
 	{
 		if (ShowOnscreenControlls && !MainMenu.gameObject.activeInHierarchy) {
-			DirectionButtons.gameObject.SetActive(true);
-			FurtherCloserButtons.gameObject.SetActive(!BlockManager.PlayMode);
+
+			DirectionButtons.gameObject.SetActive(BlockManager.PlayMode);
+			CursorControls.gameObject.SetActive(!BlockManager.PlayMode);
 			GrabButton.gameObject.SetActive(BlockManager.PlayMode);
 		}
 		else
 		{
 			DirectionButtons.gameObject.SetActive(false);
-			FurtherCloserButtons.gameObject.SetActive(false);
+			CursorControls.gameObject.SetActive(false);
 			GrabButton.gameObject.SetActive(false);
 		}
 		DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.ActiveBlock != null);
