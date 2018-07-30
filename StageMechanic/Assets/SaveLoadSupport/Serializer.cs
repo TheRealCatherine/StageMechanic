@@ -40,7 +40,7 @@ public static class Serializer
 	public static int MaxUndoLevels = 99;
 	private static List<UndoState> _undoStates = new List<UndoState>();
 	private static List<UndoState> _redoStates = new List<UndoState>();
-	private static string _startState;
+	private static byte[] _startState = null;
 	private static string _lastCheckpointState;
 
 	private static bool _undoEnabled = true;
@@ -106,7 +106,7 @@ public static class Serializer
 
 	public static bool HasStartState()
 	{
-		return !string.IsNullOrWhiteSpace(_startState);
+		return _startState != null;
 	}
 
 	public static void ClearStartState()
@@ -116,15 +116,15 @@ public static class Serializer
 
 	public static void RecordStartState()
 	{
-		_startState = BlocksToCondensedJson();
+		_startState = BlocksToBinaryStream();
 	}
 
 	public static void ReloadStartState()
 	{
-		if (!string.IsNullOrWhiteSpace(_startState))
+		if (_startState != null)
 		{
 			BlockManager.Clear();
-			BlocksFromJson(_startState);
+			BlocksFromBinaryStream(_startState);
 		}
 	}
 
