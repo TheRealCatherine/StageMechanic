@@ -519,6 +519,7 @@ public static class Serializer
 
 			if (UseBinaryFiles)
 			{
+				BlockManager.Clear();
 				BlocksFromBinaryStream(File.ReadAllBytes(path));
 			}
 			else
