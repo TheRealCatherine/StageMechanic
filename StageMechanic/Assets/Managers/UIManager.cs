@@ -98,7 +98,7 @@ public class UIManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (ShowOnscreenControlls && !MainMenu.gameObject.activeInHierarchy) {
+		if (ShowOnscreenControlls && !MainMenu.gameObject.activeInHierarchy && !IsAnyInputDialogOpen) {
 
 			DirectionButtons.gameObject.SetActive(BlockManager.PlayMode);
 			CursorControls.gameObject.SetActive(!BlockManager.PlayMode);

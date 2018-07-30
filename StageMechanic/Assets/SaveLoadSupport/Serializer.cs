@@ -359,12 +359,21 @@ public static class Serializer
 
 	public static void BlocksFromJson(Uri path, bool startPlayMode = false, string[] startPositionOverrides = null)
 	{
-		LogController.Log("Loading from " + path.ToString());
 		StageCollection deserializedCollection = new StageCollection(BlockManager.Instance);
-		WebClient webClient = new WebClient();
-		ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-		Stream fs = webClient.OpenRead(path);
-		HandleLoad(fs, true);
+		if (Application.platform != RuntimePlatform.Android)
+		{
+			LogController.Log("Loading from " + path.ToString());
+			WebClient webClient = new WebClient();
+			ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
+			Stream fs = webClient.OpenRead(path);
+			HandleLoad(fs, true);
+		}
+		else
+		{
+			LogController.Log("Loading from " + path.Host + path.PathAndQuery + path.Fragment);
+			Stream fs = File.OpenRead(path.Host + path.PathAndQuery + path.Fragment);
+			HandleLoad(fs, true);
+		}
 		if(startPositionOverrides != null)
 		{
 			for(int i=0;i<startPositionOverrides.Length;++i)
