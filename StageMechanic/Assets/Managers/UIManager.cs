@@ -43,7 +43,10 @@ public class UIManager : MonoBehaviour
 	public Text Player3Score;
 	public Text Player4Score;
 
+	public Toggle BinaryFormat;
+
 	public GameObject UndoButton;
+
 	//TODO Singleton flame war
 	public static UIManager Instance;
 	public static bool IsSinglePlayerDeathDialogOpen
@@ -245,7 +248,10 @@ public class UIManager : MonoBehaviour
 		fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
 		fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastSaveDir"));
-		fileBrowserScript.SaveFilePanel(Instance, "SaveFileUsingPath", "MyLevels", "json");
+		if(Serializer.UseBinaryFiles)
+			fileBrowserScript.SaveFilePanel(Instance, "SaveFileUsingPath", "MyLevels", "bin");
+		else
+			fileBrowserScript.SaveFilePanel(Instance, "SaveFileUsingPath", "MyLevels", "json");
 	}
 	private void SaveFileUsingPath(string path) { Serializer.SaveFileUsingPath(path); }
 
@@ -256,8 +262,10 @@ public class UIManager : MonoBehaviour
 		fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
 		fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastLoadDir"));
-
-		fileBrowserScript.OpenFilePanel(Instance, "LoadFileUsingPath", "json");
+		if(Serializer.UseBinaryFiles)
+			fileBrowserScript.OpenFilePanel(Instance, "LoadFileUsingPath", "bin");
+		else
+			fileBrowserScript.OpenFilePanel(Instance, "LoadFileUsingPath", "json");
 	}
 	private void LoadFileUsingPath(string path) { Serializer.LoadFileUsingLocalPath(path); }
 

@@ -78,6 +78,17 @@ public static class Serializer
 	}
 
 	/// <summary>
+	/// Workaround for https://issuetracker.unity3d.com/issues/system-dot-configuration-dot-configurationerrorsexception-failed-to-load-configuration-section-for-datacontractserializer
+	/// </summary>
+	public static bool UseBinaryFiles
+	{
+		get
+		{
+			return (Application.platform == RuntimePlatform.Android) || UIManager.Instance.BinaryFormat.isOn;
+		}
+	}
+
+	/// <summary>
 	/// Used for auto-saving and saving while creating stages as
 	/// well as reloading a level from a file.
 	/// </summary>
@@ -449,15 +460,32 @@ public static class Serializer
 			Uri location = new Uri("file:///" + path);
 			string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
 			PlayerPrefs.SetString("LastSaveDir", directory);
-			string json = BlocksToPrettyJson();
-			//TODO this probably can throw an exception?
-			if (!string.IsNullOrWhiteSpace(json))
-				System.IO.File.WriteAllText(path, json);
-			if (!path.Contains("_autosave."))
+
+			if (UseBinaryFiles)
 			{
-				LastAccessedFileName = path;
-				File.Delete(path.Replace(".json", "_autosave.json"));
-				LogController.Log("Saved & Autosave");
+				byte[] data = BlocksToBinaryStream();
+				//TODO this probably can throw an exception?
+				if (data != null && data.Length > 0)
+					System.IO.File.WriteAllBytes(path, data);
+				if (!path.Contains("_autosave."))
+				{
+					LastAccessedFileName = path;
+					File.Delete(path.Replace(".bin", "_autosave.bin"));
+					LogController.Log("Saved & Autosave");
+				}
+			}
+			else
+			{
+				string json = BlocksToPrettyJson();
+				//TODO this probably can throw an exception?
+				if (!string.IsNullOrWhiteSpace(json))
+					System.IO.File.WriteAllText(path, json);
+				if (!path.Contains("_autosave."))
+				{
+					LastAccessedFileName = path;
+					File.Delete(path.Replace(".json", "_autosave.json"));
+					LogController.Log("Saved & Autosave");
+				}
 			}
 		}
 		else
@@ -488,7 +516,15 @@ public static class Serializer
 			Uri location = new Uri("file:///" + path);
 			string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
 			PlayerPrefs.SetString("LastLoadDir", directory);
-			BlocksFromJson(location);
+
+			if (UseBinaryFiles)
+			{
+				BlocksFromBinaryStream(File.ReadAllBytes(path));
+			}
+			else
+			{
+				BlocksFromJson(location);
+			}
 			if (path.Contains("_autosave"))
 			{
 				LastAccessedFileName = string.Empty;

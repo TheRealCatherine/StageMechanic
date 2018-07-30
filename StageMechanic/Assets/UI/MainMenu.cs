@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
 	public Button CameraPerspectiveButton;
 	public Button SettingsButton;
 	public Button PlayButton;
+	public Button LoadURLButton;
 	public AudioClip StartupSound;
 	public Camera MainCamera;
 	public GameObject SettingsWindow;
@@ -60,6 +61,9 @@ public class MainMenu : MonoBehaviour
 
 		if (StartupSound != null)
 			GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
+
+		if (Application.platform == RuntimePlatform.Android)
+			LoadURLButton.gameObject.SetActive(false);
 
 		UpdateTrackName();
 	}
