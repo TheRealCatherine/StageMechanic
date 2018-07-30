@@ -66,19 +66,28 @@ public class VisualEffectsManager : MonoBehaviour {
     
     public static void EnableFog(bool show)
     {
+		if (Application.platform == RuntimePlatform.Android)
+			show = false;
+
         Instance?.Fog?.gameObject.SetActive(show);
 		Instance?.Clouds.gameObject.SetActive(show);
     }
 
     public static void EnablePostProcessing(bool process)
     {
-        Instance.MainStageProcessLayer.enabled = process;
+		if (Application.platform == RuntimePlatform.Android)
+			process = false;
+
+		Instance.MainStageProcessLayer.enabled = process;
         Instance.PostProcessor.enabled = process;
     }
 
     public static void EnableMotionDebug(bool show)
     {
-        if (show)
+		if (Application.platform == RuntimePlatform.Android)
+			show = false;
+
+		if (show)
             Instance.PostProcessor.profile = Instance.MotionDebutProfile;
         else
             Instance.PostProcessor.profile = Instance.DefaultProfile;
