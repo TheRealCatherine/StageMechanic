@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Cathy1GoalBlock : Cathy1Block
@@ -26,6 +27,7 @@ public class Cathy1GoalBlock : Cathy1Block
 		IdleEffect = theme.IdleGoalEffect;
 		ActiveEffect = theme.ActiveGoalEffect;
 		EffectOffset = theme.GoalEffectsOffset;
+		Applause = theme.GoalSound;
 	}
 
 	public override void Awake()
@@ -57,6 +59,15 @@ public class Cathy1GoalBlock : Cathy1Block
 					Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
 					Debug.Log("loading " + location.ToString());
 					BlockManager.Instance.TogglePlayMode();
+					if (Serializer.UseBinaryFiles)
+					{
+						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
+						loc.Replace(".json", ".bin");
+						if(Application.platform == RuntimePlatform.Android)
+							Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc));
+						else
+							Serializer.BlocksFromBinaryStream(File.ReadAllBytes(loc));
+					}
 					Serializer.BlocksFromJson(location,startPlayMode:true);
 				}
 				else if(string.IsNullOrWhiteSpace(NextStageFilename)) {

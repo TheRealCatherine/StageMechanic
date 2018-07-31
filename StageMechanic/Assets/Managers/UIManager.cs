@@ -97,6 +97,7 @@ public class UIManager : MonoBehaviour
 	{
 		Instance = this;
 		ShowOnscreenControlls = Input.touchSupported;
+		BetterStreamingAssets.Initialize();
 	}
 
 	private void Update()

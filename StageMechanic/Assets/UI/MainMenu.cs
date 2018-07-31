@@ -293,11 +293,11 @@ public class MainMenu : MonoBehaviour
 
 	public void OnOpenCat5Clicked()
 	{
-		string file = Application.streamingAssetsPath + "/Cat5/" + Cat5Level.options[Cat5Level.value].text;
+		string file;
 		if (Application.platform == RuntimePlatform.Android)
-			file += ".bin";
+			file = "/Cat5/" + Cat5Level.options[Cat5Level.value].text + ".bin";
 		else
-			file += ".json";
+			file = Application.streamingAssetsPath + "/Cat5/" + Cat5Level.options[Cat5Level.value].text + ".json";
 		LevelSelectPanel.SetActive(false);
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);
@@ -307,11 +307,11 @@ public class MainMenu : MonoBehaviour
 
 	public void OnOpenPrincessClicked()
 	{
-		string file = Application.streamingAssetsPath + "/Princess/" + PrincessLevel.options[Cat5Level.value].text;
+		string file;
 		if (Application.platform == RuntimePlatform.Android)
-			file += ".bin";
+			file = "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".bin";
 		else
-			file += ".json";
+			file = Application.streamingAssetsPath + "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".json";
 		LevelSelectPanel.SetActive(false);
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);

@@ -514,13 +514,34 @@ public static class Serializer
 		if (!string.IsNullOrWhiteSpace(path))
 		{
 			Uri location = new Uri("file:///" + path);
-			string directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
+			string directory;
+			if (Application.platform == RuntimePlatform.Android)
+			{
+				int index = path.LastIndexOf("/");
+				if (index > 0)
+					directory = path.Substring(0, index + 1);
+				else
+					directory = "";
+			}
+				
+			else
+				directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
 			PlayerPrefs.SetString("LastLoadDir", directory);
 
 			if (UseBinaryFiles)
 			{
 				BlockManager.Clear();
-				BlocksFromBinaryStream(File.ReadAllBytes(path));
+				if(Application.platform == RuntimePlatform.Android)
+				{
+					if(!BetterStreamingAssets.FileExists(path))
+					{
+						LogController.Log("Streaming asset not found: " + path);
+						return;
+					}
+					BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(path));
+				}
+				else
+					BlocksFromBinaryStream(File.ReadAllBytes(path));
 			}
 			else
 			{
@@ -538,6 +559,8 @@ public static class Serializer
 		{
 			LogController.Log("Invalid path");
 		}
+
+		GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
 	}
 
 	public static void ReloadCurrentLevel()
