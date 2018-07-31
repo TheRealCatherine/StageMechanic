@@ -30,6 +30,10 @@ public class MainMenu : MonoBehaviour
 	public Text FlavorTextBox;
 	public Text CurrentTrackName;
 
+	public Dropdown Cat5Level;
+	public Dropdown PrincessLevel;
+	public GameObject LevelSelectPanel;
+
 	private void OnEnable()
 	{
 		BlockManager.Cursor?.SetActive(false);
@@ -272,6 +276,44 @@ public class MainMenu : MonoBehaviour
 
 	public void OnPlayClicked()
 	{
+		gameObject.SetActive(false);
+		if (!BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
+	}
+
+	public void OnShowLevelSelectClicked()
+	{
+		LevelSelectPanel.SetActive(true);
+	}
+
+	public void OnCloseLevelSelectClicked()
+	{
+		LevelSelectPanel.SetActive(false);
+	}
+
+	public void OnOpenCat5Clicked()
+	{
+		string file = Application.streamingAssetsPath + "/Cat5/" + Cat5Level.options[Cat5Level.value].text;
+		if (Application.platform == RuntimePlatform.Android)
+			file += ".bin";
+		else
+			file += ".json";
+		LevelSelectPanel.SetActive(false);
+		Serializer.LoadFileUsingLocalPath(file);
+		gameObject.SetActive(false);
+		if (!BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
+	}
+
+	public void OnOpenPrincessClicked()
+	{
+		string file = Application.streamingAssetsPath + "/Princess/" + PrincessLevel.options[Cat5Level.value].text;
+		if (Application.platform == RuntimePlatform.Android)
+			file += ".bin";
+		else
+			file += ".json";
+		LevelSelectPanel.SetActive(false);
+		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);
 		if (!BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
