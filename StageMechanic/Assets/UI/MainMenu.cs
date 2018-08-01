@@ -293,6 +293,8 @@ public class MainMenu : MonoBehaviour
 
 	public void OnOpenCat5Clicked()
 	{
+		if (BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
 		string file;
 		if (Application.platform == RuntimePlatform.Android)
 			file = "/Cat5/" + Cat5Level.options[Cat5Level.value].text + ".bin";
@@ -307,6 +309,8 @@ public class MainMenu : MonoBehaviour
 
 	public void OnOpenPrincessClicked()
 	{
+		if (BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
 		string file;
 		if (Application.platform == RuntimePlatform.Android)
 			file = "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".bin";
