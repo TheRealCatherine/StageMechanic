@@ -66,7 +66,7 @@ public class VisualEffectsManager : MonoBehaviour {
     
     public static void EnableFog(bool show)
     {
-		if (Application.platform == RuntimePlatform.Android)
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WebGLPlayer)
 			show = false;
 
         Instance?.Fog?.gameObject.SetActive(show);
@@ -75,7 +75,7 @@ public class VisualEffectsManager : MonoBehaviour {
 
     public static void EnablePostProcessing(bool process)
     {
-		if (Application.platform == RuntimePlatform.Android)
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WebGLPlayer)
 			process = false;
 
 		Instance.MainStageProcessLayer.enabled = process;
@@ -84,7 +84,7 @@ public class VisualEffectsManager : MonoBehaviour {
 
     public static void EnableMotionDebug(bool show)
     {
-		if (Application.platform == RuntimePlatform.Android)
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WebGLPlayer)
 			show = false;
 
 		if (show)

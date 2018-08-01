@@ -303,7 +303,7 @@ public class MainMenu : MonoBehaviour
 		LevelSelectPanel.SetActive(false);
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);
-		if (!BlockManager.PlayMode)
+		if ((!BlockManager.PlayMode) && (Application.platform != RuntimePlatform.WebGLPlayer))
 			BlockManager.Instance.TogglePlayMode();
 	}
 
@@ -319,7 +319,8 @@ public class MainMenu : MonoBehaviour
 		LevelSelectPanel.SetActive(false);
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);
-		if (!BlockManager.PlayMode)
+
+		if ((!BlockManager.PlayMode) && (Application.platform != RuntimePlatform.WebGLPlayer))
 			BlockManager.Instance.TogglePlayMode();
 	}
 }

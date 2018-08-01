@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (ShowOnscreenControlls && !IsAnyInputDialogOpen) {
+		if (ShowOnscreenControlls && !IsAnyInputDialogOpen && Application.platform != RuntimePlatform.WebGLPlayer) {
 
 			DirectionButtons.gameObject.SetActive(BlockManager.PlayMode);
 			CursorControls.gameObject.SetActive(!BlockManager.PlayMode);

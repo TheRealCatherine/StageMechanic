@@ -5,6 +5,7 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -500,6 +501,7 @@ public static class Serializer
 		if (path.IsAbsoluteUri && (path.Scheme == Uri.UriSchemeHttp || path.Scheme == Uri.UriSchemeHttps))
 		{
 			BlocksFromJson(path);
+			GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
 		}
 		else
 		{
@@ -507,13 +509,52 @@ public static class Serializer
 		}
 	}
 
+	public static void LoadBinaryFileUsingHTTP(Uri path)
+	{
+		//TODO ensure file is valid
+		if (path.IsAbsoluteUri && (path.Scheme == Uri.UriSchemeHttp || path.Scheme == Uri.UriSchemeHttps))
+		{
+			BlockManager.Instance.StartCoroutine(LoadBinaryNetworkHelper(path));
+		}
+		else
+		{
+			LogController.Log("Invalid path");
+		}
+	}
+
+	public static IEnumerator LoadBinaryNetworkHelper(Uri path)
+	{
+		using (WWW loader = new WWW(path.ToString().Replace(".json", ".bin")))
+		{
+			BlockManager.Clear();
+			yield return loader;
+	
+			BlocksFromBinaryStream(loader.bytes);
+			yield return new WaitForEndOfFrame();
+			GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
+		}
+	}
+
+	//TODO
+	public static IEnumerator LoadJsonNetworkHelper(Uri path)
+	{
+		using (WWW loader = new WWW(path.ToString().Replace(".bin", ".json")))
+		{
+			BlockManager.Clear();
+			yield return loader;
+			BlocksFromBinaryStream(loader.bytes);
+			GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
+		}
+	}
+
+
 	// Loads a file using a path
 	public static void LoadFileUsingLocalPath(string path)
 	{
 		//TODO ensure file is valid
 		if (!string.IsNullOrWhiteSpace(path))
 		{
-			Uri location = new Uri("file:///" + path);
+			Uri location = new Uri((Application.platform == RuntimePlatform.WebGLPlayer?"":"file:///") + path);
 			string directory;
 			if (Application.platform == RuntimePlatform.Android)
 			{
@@ -523,7 +564,11 @@ public static class Serializer
 				else
 					directory = "";
 			}
-				
+			else if(Application.platform == RuntimePlatform.WebGLPlayer)
+			{
+				BlockManager.Instance.StartCoroutine(LoadBinaryNetworkHelper(location));
+				return;
+			}
 			else
 				directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
 			PlayerPrefs.SetString("LastLoadDir", directory);
