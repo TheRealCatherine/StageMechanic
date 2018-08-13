@@ -2140,12 +2140,44 @@
                                     "Value": "10"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "0dc632e6-3169-46dc-bf29-e5b3023ea521",
+                            "Palette": "Bloxels Internal",
+                            "Type": "Story",
+                            "Position": {
+                                "x": 3,
+                                "y": 9,
+                                "z": 3
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Gravity Factor",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Text",
+                                    "Value": "These dark blocks\n can't be moved"
+                                },
+                                {
+                                    "Key": "Color (#rrggbb)",
+                                    "Value": "#ffffff"
+                                },
+                                {
+                                    "Key": "Size",
+                                    "Value": "6"
+                                }
+                            ]
                         }
                     ],
                     "Items": null,
                     "Events": [
                         {
-                            "Name": "ec2ed3d1-fbce-462e-be89-225515a10749",
+                            "Name": "7aeb89a8-4e6e-41cd-94f3-98828fc42b7a",
                             "Palette": "Cathy Internal",
                             "Type": "Player Start",
                             "Position": {
