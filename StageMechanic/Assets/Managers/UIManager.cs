@@ -93,6 +93,23 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// For supporting issue #128: https://gitlab.com/youreperfectstudio/StageMechanic/issues/128
+	/// intended for use until we move to proper Cinemachine intelligent camera movement
+	/// </summary>
+	public static bool MinimizePanning
+	{
+		get
+		{
+			return (PlayerPrefs.GetInt("MinimizePanning", 1) == 1);
+		}
+		set
+		{
+			Debug.Assert(Instance != null);
+			Instance.MainMenu.OnMinimizePanningChecked(value);
+		}
+	}
+
 	private void Start()
 	{
 		Instance = this;

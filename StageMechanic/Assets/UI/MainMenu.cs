@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
 	public Toggle VisiblePlatformToggle;
 	public Toggle CameraEffectsToggle;
 	public Toggle MotionDebugToggle;
+	public Toggle MinimizePanning;
 	public ParticleSystem Fog;
 	public TogglePlayMode TogglePlayModeButton;
 	public Button ToggleTouchScreenButton;
@@ -37,6 +38,7 @@ public class MainMenu : MonoBehaviour
 	private void OnEnable()
 	{
 		BlockManager.Cursor?.SetActive(false);
+		MinimizePanning.isOn = (PlayerPrefs.GetInt("MinimizePanning", 1) == 1);
 		AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
 		FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
 		DestructivePlayMode.isOn = (PlayerPrefs.GetInt("DestructivePlayMode", 0) == 1);
@@ -98,6 +100,12 @@ public class MainMenu : MonoBehaviour
 	public void OnAutoPlayChecked(bool value)
 	{
 		PlayerPrefs.SetInt("AutoPlayOnLoad", value ? 1 : 0);
+		PlayerPrefs.Save();
+	}
+
+	public void OnMinimizePanningChecked(bool value)
+	{
+		PlayerPrefs.SetInt("MinimizePanning", value ? 1 : 0);
 		PlayerPrefs.Save();
 	}
 
