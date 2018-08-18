@@ -1,0 +1,35 @@
+
+Thanks for your interest in StageMechanic - an Open Source block-pushing game platform from You're Perfect Studio.
+
+The latest version can be obtained from: https://gamejolt.com/games/StageMechanic/357305
+
+===
+What are these files?
+===
+
+These are a first version of tutorial levels for StageMechanic to help people learn to use Play Mode with existing levels. Of course, learning the different block behavious will be helpful in Create Mode too!
+
+In the Desktop or Mobile versions of StageMechanic simply click Load and select the Tutorial1 file to get started. Note the .json files are desktop and the .bin files are for mobile.
+
+Unfortunately there is no way to load files on the WebGL "Lite" version of StageMechanic yet.
+
+These files will be included in future versions of StageMechanic on all platforms, including the Lite version.
+
+
+===
+Why are there separate Mobile and Desktop files?
+===
+
+Due to a known bug in Unity, the game engine that provides the lower level parts of StageMechanic, reading .json files is not functioning on Android devices.
+
+Please visit: https://issuetracker.unity3d.com/issues/system-dot-configuration-dot-configurationerrorsexception-failed-to-load-configuration-section-for-datacontractserializer
+
+and 'vote' for this bug so that we can support .json save files on all platforms.
+
+===
+Why not use .bin on all platforms?
+===
+
+We try to do everything as open as we can. We want our users to know that we are not storing any personal information in their save files. With the .json files anyone can read it and see what is going on. With .bin files, all the information is encoded in an unreadable format.
+
+--Catherine @ You're Perfect Studio
