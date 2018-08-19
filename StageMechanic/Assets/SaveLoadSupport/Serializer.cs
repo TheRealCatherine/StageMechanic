@@ -399,6 +399,7 @@ public static class Serializer
 					EventManager.Instance.CreateCathy1PlayerStartLocation(i, startBlock.Position, startBlock.Rotation);
 			}
 		}
+		BlockManager.ResetCursor();
 		RecordStartState();
 		if (startPlayMode || PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
 		{
@@ -415,6 +416,7 @@ public static class Serializer
 		DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());
 		deserializedCollection = ser.ReadObject(stream) as StageCollection;
 		stream.Close();
+		BlockManager.ResetCursor();
 		LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
 	}
 
@@ -424,6 +426,7 @@ public static class Serializer
 			BlockManager.Clear();
 		BinaryFormatter formatter = new BinaryFormatter();
 		StageCollectionBinaryDelegate deserializedCollection = formatter.Deserialize(stream) as StageCollectionBinaryDelegate;
+		BlockManager.ResetCursor();
 		stream.Close();
 	}
 
@@ -559,7 +562,7 @@ public static class Serializer
 		{
 			LogController.Log("Invalid path");
 		}
-
+		BlockManager.ResetCursor();
 		GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
 	}
 
