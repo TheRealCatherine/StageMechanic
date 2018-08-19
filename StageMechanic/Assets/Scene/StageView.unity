@@ -16968,7 +16968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1177129182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25435,7 +25435,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Minimize Panning
+  m_Text: Follow Camera
 --- !u!222 &1778098588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30542,7 +30542,7 @@ GameObject:
   - component: {fileID: 2083209280}
   - component: {fileID: 2083209281}
   m_Layer: 5
-  m_Name: Minimize Panneing
+  m_Name: Follow Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
