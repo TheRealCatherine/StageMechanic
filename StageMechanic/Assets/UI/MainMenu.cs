@@ -233,7 +233,17 @@ public class MainMenu : MonoBehaviour
 
 	public void OnInputsClicked()
 	{
+		if (BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
 		UIManager.ToggleButtonMappingDialog();
+
+		string file;
+		if (Application.platform == RuntimePlatform.Android)
+			file = "/InputConfig.bin";
+		else
+			file = Application.streamingAssetsPath + "/InputConfig.json";
+		Serializer.LoadFileUsingLocalPath(file);
+
 		if (!BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
 		gameObject.SetActive(false);
