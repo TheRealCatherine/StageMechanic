@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
 	public Text FlavorTextBox;
 	public Text CurrentTrackName;
 
+	public Dropdown TutorialLevel;
 	public Dropdown Cat5Level;
 	public Dropdown PrincessLevel;
 	public GameObject LevelSelectPanel;
@@ -306,6 +307,22 @@ public class MainMenu : MonoBehaviour
 	public void OnCloseLevelSelectClicked()
 	{
 		LevelSelectPanel.SetActive(false);
+	}
+
+	public void OnOpenTutorialClicked()
+	{
+		if (BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
+		string file;
+		if (Application.platform == RuntimePlatform.Android)
+			file = "/Tutorial/Tutorial" + TutorialLevel.options[TutorialLevel.value].text + ".bin";
+		else
+			file = Application.streamingAssetsPath + "/Tutorial/Tutorial" + TutorialLevel.options[TutorialLevel.value].text + ".json";
+		LevelSelectPanel.SetActive(false);
+		Serializer.LoadFileUsingLocalPath(file);
+		gameObject.SetActive(false);
+		if (!BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
 	}
 
 	public void OnOpenCat5Clicked()
