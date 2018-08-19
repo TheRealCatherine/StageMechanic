@@ -27261,7 +27261,7 @@ MonoBehaviour:
   VisiblePlatformToggle: {fileID: 0}
   CameraEffectsToggle: {fileID: 2457845}
   MotionDebugToggle: {fileID: 1319440084}
-  MinimizePanning: {fileID: 0}
+  MinimizePanning: {fileID: 2083209281}
   Fog: {fileID: 11914990}
   TogglePlayModeButton: {fileID: 1277004316}
   ToggleTouchScreenButton: {fileID: 558150532}
@@ -30542,7 +30542,7 @@ GameObject:
   - component: {fileID: 2083209280}
   - component: {fileID: 2083209281}
   m_Layer: 5
-  m_Name: Post Processing Toggle (1)
+  m_Name: Minimize Panneing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30614,7 +30614,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1909245435}
         m_MethodName: OnMinimizePanningChecked
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

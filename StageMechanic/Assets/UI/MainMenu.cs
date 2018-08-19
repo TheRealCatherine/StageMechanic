@@ -105,8 +105,7 @@ public class MainMenu : MonoBehaviour
 
 	public void OnMinimizePanningChecked(bool value)
 	{
-		PlayerPrefs.SetInt("MinimizePanning", value ? 1 : 0);
-		PlayerPrefs.Save();
+		UIManager.MinimizePanning = value;
 	}
 
 	public void OnPlatformVisibleChecked(bool value)

@@ -105,8 +105,8 @@ public class UIManager : MonoBehaviour
 		}
 		set
 		{
-			Debug.Assert(Instance != null);
-			Instance.MainMenu.OnMinimizePanningChecked(value);
+			PlayerPrefs.SetInt("MinimizePanning", value ? 1 : 0);
+			PlayerPrefs.Save();
 		}
 	}
 
