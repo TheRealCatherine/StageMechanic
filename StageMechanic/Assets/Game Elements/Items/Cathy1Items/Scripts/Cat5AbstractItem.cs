@@ -7,19 +7,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cathy1AbstractEvent : MonoBehaviour, IEvent
+public class Cat5AbstractItem : MonoBehaviour, IItem
 {
 
-    public enum EventType
+    public enum ItemType
     {
-        Custom,
         PlayerStart,
         Goal,
         Checkpoint,
-        EnemySpawn
+        EnemySpawn,
+		StageSectionSpawnTrigger,
+		StageSectionDropTrigger,
+		StoryTrigger,
+		BossStateTrigger,
+		Coins,
+		SpecialCollectable,
+		CreateBlocks,
+		EnemyRemoval,
+		OneUp,
+		RemoveEnemies,
+		RemoveSpecialBlocks,
+		XFactor,
+		Stopwatch,
+		ItemSteal,
+		ItemRandomizer,
+		Frisbee
     }
 
-    public virtual EventType Type { get; set; }
+    public virtual ItemType Type { get; set; }
 
     public string Name
     {
@@ -40,39 +55,17 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
         {
             switch (Type)
             {
-                case EventType.PlayerStart:
+                case ItemType.PlayerStart:
                     return "Player Start";
-                case EventType.Goal:
+                case ItemType.Goal:
                     return "Goal";
-                case EventType.Checkpoint:
+                case ItemType.Checkpoint:
                     return "Checkpoint";
-                case EventType.EnemySpawn:
+                case ItemType.EnemySpawn:
                     return "Enemy Spawn";
-                case EventType.Custom:
+                case ItemType.Custom:
                 default:
                     return "Custom";
-            }
-        }
-        set
-        {
-            switch (value)
-            {
-                case "Player Start":
-                    Type = EventType.PlayerStart;
-                    break;
-                case "Goal":
-                    Type = EventType.Goal;
-                    break;
-                case "Checkpoint":
-                    Type = EventType.Checkpoint;
-                    break;
-                case "Enemy Spawn":
-                    Type = EventType.EnemySpawn;
-                    break;
-                case "Custom":
-                default:
-                    Type = EventType.Custom;
-                    break;
             }
         }
     }
@@ -107,7 +100,24 @@ public class Cathy1AbstractEvent : MonoBehaviour, IEvent
 
     public EventLocationAffinity LocationAffinity { get; set; }
 
-    virtual public EventJsonDelegate GetJsonDelegate()
+	public bool Collectable
+	{
+		get
+		{
+			throw new System.NotImplementedException();
+		}
+
+		set
+		{
+			throw new System.NotImplementedException();
+		}
+	}
+
+	public long Score { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+	public Dictionary<string, DefaultValue> DefaultProperties => throw new System.NotImplementedException();
+
+	virtual public EventJsonDelegate GetJsonDelegate()
     {
         return new EventJsonDelegate(this);
     }

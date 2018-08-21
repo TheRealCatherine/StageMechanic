@@ -1,49 +1,46 @@
 ﻿/*  
- * Copyright (C) Catherine. All rights reserved.  
+ * Copyright (C) 2018 You're Perfect Studio. All rights reserved.  
  * Licensed under the BSD 3-Clause License.
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 
-public interface IItem
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum ItemLocationAffinity
 {
+	BlockRelative = 0,		//The item will move when the block associated with it moves
+	WorldPosition			//The item is not associated 
+}
 
-    /// <summary>
-    /// A human-readable identifier for the item. Typically implementations
-    /// will auto-generate a guid in the case the user has not given a different
-    /// name to the item. 
-    /// </summary>
-    /// <exception cref="ItemNameException">
-    /// May throw a BlockNameException if the caller tries to set an invalid name.
-    /// There is no inherent requirement for Names to be unique, however certain
-    /// implementations may choose to impose this or other requirements on naming.
-    /// </exception>
-    string Name
-    {
-        get;
-        set;
-    }
-
+public interface IItem : IPositionable, INameable, IPropertyable
+{
     /// <summary>
     /// A string representation of the type of item. Note that this is
-    /// used in save files and other places as well as UI. Setting this value
-    /// should change the type of the item to the specified type.
+    /// used in save files and other places as well as UI. 
     /// </summary>
-    /// <exception cref="ItemTypeExcpetion">
-    /// May throw a ItemTypeException if the caller tries to set an invalid
-    /// item type. Implentations may instead choose to handle this situation
-    /// by setting the type to a default value or creating a new item type.
-    /// </exception>
     string TypeName
     {
         get;
-        set;
     }
 
-    /// <summary>
-    /// Determines if the player can collect this item or if it should remain
-    /// after the player makes contact with it.
-    /// </summary>
+	/// <summary>
+	/// Defines if an event should "stick to" a block (ie move with it
+	/// like an item) or should be stuck to a given coordinate.
+	/// </summary>
+	EventLocationAffinity LocationAffinity
+	{
+		get;
+		set;
+	}
+
+	EventJsonDelegate GetJsonDelegate();
+
+	/// <summary>
+	/// Determines if the player can collect this item or if it should remain
+	/// after the player makes contact with it.
+	/// </summary>
 	bool Collectable { get; set; }
 
     /// <summary>

@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour {
 
-	public Cathy1EventFactory Cathy1EventFactory;
+	public Cat5ItemFactory Cathy1EventFactory;
 	public static List<Cathy1AbstractEvent> EventList = new List<Cathy1AbstractEvent>();
 	public static EventManager Instance;
 	public GameObject Stage;
