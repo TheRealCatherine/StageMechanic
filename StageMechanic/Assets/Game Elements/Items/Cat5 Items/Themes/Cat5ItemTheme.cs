@@ -3,126 +3,102 @@
 [CreateAssetMenu(fileName ="Cat5ItemTheme",menuName ="Cat5ItemTheme")]
 public class Cat5ItemTheme : AbstractBlockTheme
 {
-	/*
-	[Header("Normal Block")]
-	public GameObject BasicBlock1;
-	public GameObject BasicBlock2; //Optional
-	public GameObject BasicBlock3; //Optional
-	public GameObject BasicBlock4; //Optional
-	public Sprite BasicBlockIcon;  //Optional
-
-	[Header("Small Bomb")]
-	public GameObject SmallBombIdle;
-	public GameObject SmallBombTriggered; //Optional
-	public ParticleSystem SmallBombExplosion; //Optional
-	public Vector3 SmallBombExplosionOffset; //Optional
-	public AudioClip SmallBombFuseSound; //Optional
-	public AudioClip SmallBombExplosionSound; //Optional
-	public Sprite SmallBombIcon; //Optional
-
-	[Header("Large Bomb")]
-	public GameObject LargeBombIdle;
-	public GameObject LargeBombTriggered; //Optional
-	public ParticleSystem LargeBombExplosion; //Optional
-	public Vector3 LargeBombExplosionOffset; //Optional
-	public AudioClip LargeBombFuseSound; //Optional
-	public AudioClip LargeBombExplosionSound; //Optional
-	public Sprite LargeBombIcon; //Optional
-
-	[Header("Cracked")]
-	public GameObject LightCracks;
-	public GameObject HeavyCracks;
-	public ParticleSystem DisintigrationDust; //Optional
-	public Vector3 DustOffset; //Optional
-	public AudioClip CrackSound; //Optional
-	public AudioClip DisintigrateSound; //Optional
-	public Sprite LightCracksIcon; //Optional
-	public Sprite HeavyCracksIcon; //Optional
-
-	[Header("Grouped Blocks")]
-	//TODO
-	public Sprite GroupedBlockIcon; //Optional
+	[Header("Player Start")]
+	public GameObject PlayerStartPlaceholder;
+	public GameObject PlayerStartObject;
+	public Sprite PlayerStartIcon;
 
 	[Header("Goal")]
-	public GameObject IdleGoal;
-	public GameObject ActiveGoal; //Optional
-	public ParticleSystem IdleGoalEffect; //Optional
-	public ParticleSystem ActiveGoalEffect; //Optional
-	public Vector3 GoalEffectsOffset; //Optional
-	public AudioClip GoalSound; //Optional
-	public Sprite GoalIcon; //Optional
+	public GameObject GoalPlaceholder;
+	public GameObject GoalObject;
+	public Sprite GoalIcon;
 
-	[Header("Heavy")]
-	public GameObject Heavy;
-	public Sprite HeavyIcon; //Optional
+	[Header("Checkpoint")]
+	public GameObject CheckpointPlaceholder;
+	public GameObject CheckpointObject;
+	public Sprite CheckpointIcon;
 
-	[Header("Ice")]
-	public GameObject Ice;
-	public ParticleSystem RandomIceEffect;  //Optional
-	public Vector3 IceEffectOffset;
-	public Sprite IceIcon; //Optional
+	[Header("Enemy Spawn")]
+	public GameObject EnemySpawnPlaceholder;
+	public GameObject EnemySpawnObject;
+	public Sprite EnemySpawnIcon;
 
-	[Header("Immobile")]
-	public GameObject Immobile;
-	public Sprite ImmobileIcon; //Optional
+	[Header("Section Spawn")]
+	public GameObject SectionSpawnPlaceholder;
+	public GameObject SectionSpawnObject;
+	public Sprite SectionSpawnIcon;
 
-	[Header("Laser")]
-	public GameObject IdleLaser;
-	public GameObject ActiveLaser; //Optional
-	public GameObject DisabledLaser; //Optional
-	public ParticleSystem LaserEffect; //Optional
-	public Vector3 LaserEffectOffset; //Optional
-	public AudioClip LaserWarningSound; //Optional
-	public AudioClip LaserFireSound; //Optional (note: I'm afirin' ma layzar)
-	public AudioClip DisablingLaserSound; //Optional
-	public Sprite LaserIcon; //Optional
+	[Header("Platform Move")]
+	public GameObject PlatformMovePlaceholder;
+	public GameObject PlatformMoveObject;
+	public Sprite PlatformMoveIcon;
 
-	[Header("Monster")]
-	public GameObject ActiveMonster;
-	public GameObject MovingMonster; //Optional
-	public GameObject DisarmedMonster; //Optional (default: BasicBlock1)
-	public AudioClip RandomMonsterSound; //Optional
-	public AudioClip MoveMonsterSound; //Optional
-	public AudioClip DisarmMonsterSound; //Optional
-	public ParticleSystem RandomMonsterEffect; //Optional
-	public ParticleSystem MoveMonsterEffect; //Optional
-	public ParticleSystem DisarmMonsterEffect; //Optional
-	public Vector3 MonsterEffectOffset; //Optional
-	public Sprite MonsterIcon; //Optional
+	[Header("Story")]
+	public GameObject StoryPlaceholder;
+	public GameObject StoryObject;
+	public Sprite StoryIcon;
 
-	[Header("Mystery")]
-	public GameObject IdleMystery;
-	public GameObject RevealingMystery; //Optional
-	public AudioClip MysteryRevealSound; //Optional
-	public Sprite MysteryIcon; //Optional
+	[Header("Boss State")]
+	public GameObject BossStatePlaceholder;
+	public GameObject BossStateObject;
+	public Sprite BossStateIcon;
 
-	[Header("spike Trap")]
-	public GameObject TrapArmed;
-	public GameObject TrapDisarmed;
-	public GameObject TrapWarning; //Optional
-	public GameObject TrapActive; //Optional
-	public ParticleSystem TrapRandomEffect; //Optional
-	public ParticleSystem TrapActiveEffect; //Optional
-	public Vector3 TrapEffectOffset; //Optional
-	public AudioClip TrapWarningSound; //Optional
-	public AudioClip TrapActivatedSound; //Optional
-	public Sprite TrapIcon; //Optional
+	[Header("Coin")]
+	public GameObject CoinPlaceholder;
+	public GameObject CoinObject;
+	public Sprite CoinIcon;
 
-	[Header("Spring")]
-	public GameObject IdleSpring;
-	public GameObject ActiveSpring; //Optional
-	public AudioClip SpringSound; //Optional
-	public ParticleSystem SpringEffect; //Optional
-	public Vector3 SpringEffectOffset; //Optional
-	public Sprite SpringIcon; //Optional
+	[Header("Special Collectable")]
+	public GameObject SpecialCollectablePlaceholder;
+	public GameObject SpecialCollectableObject1;
+	public GameObject SpecialCollectableObject2;
+	public GameObject SpecialCollectableObject3;
+	public Sprite SepcialCollectableIcon;
 
-	[Header("Vortex")]
-	public GameObject IdleVortex;
-	public GameObject ActiveVortex; //Optional
-	public AudioClip ActiveVortexSound; //Optional
-	public ParticleSystem RandomVortexEffect; //Optional
-	public ParticleSystem ActiveVortexEffect; //Optional
-	public Vector3 VortexEffectOffset; //Optional
-	public Sprite VortexIcon; //Optional
-	*/
+	[Header("Create Blocks")]
+	public GameObject CreateBlocksPlaceholder;
+	public GameObject CreateBasicBlockObject;
+	public GameObject CreateImmobileBlockObject;
+	public GameObject CreateFloorBlocksObject;
+	public Sprite CreateBlocksIcon;
+
+	[Header("Enemy Removal")]
+	public GameObject EnemyRemovalPlaceholder;
+	public GameObject EnemyRemovalObject;
+	public GameObject EnemyRemovalIcon;
+
+	[Header("1 Up")]
+	public GameObject OneUpPlaceholder;
+	public GameObject OneUpObject;
+	public GameObject OneUpIcon;
+
+	[Header("X-Factor")]
+	public GameObject XFactorPlaceholder;
+	public GameObject XFactorObject;
+	public GameObject XFactorIcon;
+
+	[Header("Special Block Remover")]
+	public GameObject SpecialBlockRemoverPlaceholder;
+	public GameObject SpecialBlockRemoverObject;
+	public GameObject specialBlockRemoverIcon;
+
+	[Header("Stopwatch")]
+	public GameObject StopwatchPlaceholder;
+	public GameObject StopwatchObject;
+	public GameObject StopwatchIcon;
+
+	[Header("Item Steal")]
+	public GameObject ItemStealPlaceholder;
+	public GameObject ItemStelObject;
+	public GameObject ItemStealIcon;
+
+	[Header("Item Randomizer")]
+	public GameObject ItemRandomizerPlaceholder;
+	public GameObject ItemRandomizerObject;
+	public GameObject ItemRandomizerIcon;
+
+	[Header("Frisbee")]
+	public GameObject FrisbeePlaceholder;
+	public GameObject FrisbeeObject;
+	public GameObject FrisbeeIcon;
 }
