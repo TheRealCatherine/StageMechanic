@@ -8,7 +8,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IItem : IPositionable, INameable, IPropertyable
+public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 {
     /// <summary>
     /// A string representation of the type of item. Note that this is
