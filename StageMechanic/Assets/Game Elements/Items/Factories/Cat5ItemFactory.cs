@@ -56,23 +56,23 @@ public class Cat5ItemFactory : AbstractItemFactory {
 		{
 			case "Player Start":
 				if (CurrentTheme.PlayerStartIcon != null)
-					return CurrentTheme.PlayerStartIcon
+					return CurrentTheme.PlayerStartIcon;
 				break;
 			case "Goal":
 				if (CurrentTheme.GoalIcon != null)
-					return CurrentTheme.GoalIcon
+					return CurrentTheme.GoalIcon;
 				break;
 			case "Checkpoint":
 				if (CurrentTheme.CheckpointIcon != null)
-					return CurrentTheme.CheckpointIcon
+					return CurrentTheme.CheckpointIcon;
 				break;
 			case "Enemy Spawn":
 				if (CurrentTheme.EnemySpawnIcon != null)
-					return CurrentTheme.EnemySpawnIcon
+					return CurrentTheme.EnemySpawnIcon;
 				break;
 			case "Stage Section Spawn Trigger":
 				if (CurrentTheme.SectionSpawnIcon != null)
-					return CurrentTheme.SectionSpawnIcon
+					return CurrentTheme.SectionSpawnIcon;
 				break;
 			case "Platform Move Trigger":
 				if (CurrentTheme.PlatformMoveIcon != null)
@@ -80,7 +80,7 @@ public class Cat5ItemFactory : AbstractItemFactory {
 				break;
 			case "Story Trigger":
 				if (CurrentTheme.StoryIcon != null)
-					return CurrentTheme.StoryIcon
+					return CurrentTheme.StoryIcon;
 				break;
 			case "Boss State Trigger":
 				if (CurrentTheme.BossStateIcon != null)
@@ -92,7 +92,7 @@ public class Cat5ItemFactory : AbstractItemFactory {
 				break;
 			case "Special Collectable":
 				if (CurrentTheme.SpecialCollectableIcon != null)
-					return CurrentTheme.SpecialCollectableIcon
+					return CurrentTheme.SpecialCollectableIcon;
 				break;
 			case "Create Blocks":
 				if (CurrentTheme.CreateBlocksIcon != null)
@@ -138,37 +138,48 @@ public class Cat5ItemFactory : AbstractItemFactory {
 	{
 		string oldName = null;
 
-		IBlock oldBlock = BlockManager.GetBlockNear(globalPosition, 0.01f, 0.0f);
-		if (oldBlock != null)
+		IItem oldItem = ItemManager.GetItemNear(globalPosition, 0.01f);
+		if (oldItem != null)
 		{
-			oldName = oldBlock.Name;
-			BlockManager.DestroyBlock(oldBlock);
+			oldName = oldItem.Name;
+			ItemManager.DestroyItem(oldItem);
 		}
 
 		if (parent == null)
 			parent = BlockManager.Instance.Stage;
 
-		GameObject newBlock = null;
+		GameObject newItem = null;
 
-		Cathy1Block prefab = _prefabs[type];
+		Cat5AbstractItem prefab = _prefabs[type];
 		Debug.Assert(prefab != null);
-		newBlock = Instantiate(prefab, globalPosition, globalRotation, parent.transform).gameObject;
+		newItem = Instantiate(prefab, globalPosition, globalRotation, parent.transform).gameObject;
 
-		Debug.Assert(newBlock != null);
-		Cathy1Block block = newBlock.GetComponent<Cathy1Block>();
-		Debug.Assert(block != null);
-		block.transform.parent = parent.transform;
+		Debug.Assert(newItem != null);
+		Cat5AbstractItem item = newItem.GetComponent<Cat5AbstractItem>();
+		Debug.Assert(item != null);
+		item.transform.parent = parent.transform;
 		if (!string.IsNullOrWhiteSpace(oldName))
-			block.Name = oldName;
+			item.Name = oldName;
 		if (CurrentTheme != null)
-			block.ApplyTheme(CurrentTheme);
-		// Randomize which model is shown for Basic blocks
-		// This adds an extra step for each basic block
-		// when loading/undoing so we might need to add a 
-		// state to serializer to let us skip this step
-		if (type == "Basic")
-			block.ShowRandomModel();
-		return block;
+			item.ApplyTheme(CurrentTheme);
+		return item;
+	}
+
+	public void ApplyTheme(Cat5ItemTheme theme)
+	{
+		CurrentTheme = theme;
+		foreach (IItem item in ItemManager.ItemCache)
+		{
+			Cat5AbstractItem cb = item as Cat5AbstractItem;
+			if (cb != null)
+			{
+				int modelNumber = cb.CurrentModelNumber;
+				Destroy(cb.CurrentModel);
+				cb.CurrentModel = null;
+				cb.ApplyTheme(theme);
+				cb.ShowModel(modelNumber);
+			}
+		}
 	}
 
 }

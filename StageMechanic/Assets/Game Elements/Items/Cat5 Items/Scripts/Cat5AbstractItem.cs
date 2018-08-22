@@ -59,13 +59,8 @@ public abstract class Cat5AbstractItem : AbstractItem
 		}
 	}
 
-	public virtual void ApplyTheme(Cathy1BlockTheme theme)
+	public virtual void ApplyTheme(Cat5ItemTheme theme)
 	{
-		Debug.Assert(theme.BasicBlock1 != null);
-		Model1 = theme.BasicBlock1;
-		Model2 = theme.BasicBlock2;
-		Model3 = theme.BasicBlock3;
-		Model4 = theme.BasicBlock4;
 	}
 
 	internal virtual void Start()
