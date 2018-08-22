@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class Cat5ItemFactory : AbstractItemFactory {
 
-	public enum ItemType
+	/*public enum ItemType
 	{
 		PlayerStart,
 		Goal,
@@ -33,12 +33,13 @@ public class Cat5ItemFactory : AbstractItemFactory {
 		ItemSteal,
 		ItemRandomizer,
 		Frisbee
-	}
+	}*/
+
 	public Cat5AbstractItem[] Items;
 	private Dictionary<string, Cat5AbstractItem> _prefabs = new Dictionary<string, Cat5AbstractItem>();
 
-	public Cathy1BlockTheme[] Themes;
-	public Cathy1BlockTheme CurrentTheme;
+	public Cat5ItemTheme[] Themes;
+	public Cat5ItemTheme CurrentTheme;
 
 	private void Awake()
 	{
