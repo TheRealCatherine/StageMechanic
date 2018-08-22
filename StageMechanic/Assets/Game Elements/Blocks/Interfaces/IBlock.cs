@@ -121,19 +121,11 @@ public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable, I
 	/// destroying or moving the block will destroy or move
 	/// associated items.
 	/// </summary>
-	List<GameObject> Items
+	List<IItem> Items
 	{
 		get;
 		set;
 	}
-
-	List<IEvent> Events
-	{
-		get;
-		set;
-	}
-
-
 
 	/// <summary>
 	/// Create and return a new JSON delegate for this Block

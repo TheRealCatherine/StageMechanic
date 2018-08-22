@@ -8,12 +8,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemLocationAffinity
-{
-	BlockRelative = 0,		//The item will move when the block associated with it moves
-	WorldPosition			//The item is not associated 
-}
-
 public interface IItem : IPositionable, INameable, IPropertyable
 {
     /// <summary>
@@ -26,16 +20,27 @@ public interface IItem : IPositionable, INameable, IPropertyable
     }
 
 	/// <summary>
-	/// Defines if an event should "stick to" a block (ie move with it
-	/// like an item) or should be stuck to a given coordinate.
+	/// Items may be owned by a block. In this case their position should be relative to the block
+	/// (ie it should move with the block)
+	/// <quote>"When I move, you move. Just like that" --Ludacris</quote>
 	/// </summary>
-	EventLocationAffinity LocationAffinity
+	IBlock OwningBlock
 	{
 		get;
 		set;
 	}
 
-	EventJsonDelegate GetJsonDelegate();
+	/// <summary>
+	/// Should return the underlying gameobject in the scene associated with this block.
+	/// Callers should check for null as there is no strict requirement for all items
+	/// to have in-scene components.
+	/// </summary>
+	GameObject GameObject
+	{
+		get;
+	}
+
+	ItemJsonDelegate GetJsonDelegate();
 
 	/// <summary>
 	/// Determines if the player can collect this item or if it should remain
@@ -44,9 +49,26 @@ public interface IItem : IPositionable, INameable, IPropertyable
 	bool Collectable { get; set; }
 
     /// <summary>
-    /// How much score should the player gain or lose by collecting this item?
+    /// How much score should the player gain or lose by making contact this item?
     /// </summary>
-    long Score { get; set; }
+    int Score { get; set; }
 
+	/// <summary>
+	/// Method to be called when a player makes contact with this item
+	/// </summary>
+	/// <param name="player"></param>
+	void OnPlayerContact(IPlayerCharacter player);
 
+	/// <summary>
+	/// Method to be called when an enemy makes contact with this item
+	/// </summary>
+	/// <param name="enemy"></param>
+	void OnEnemyContact(INonPlayerCharacter enemy);
+
+	/// <summary>
+	/// Method to be called when the owning block (if any) is being destroyed
+	/// This could be used, for example, to reparent or clone the item before
+	/// the block's destrctor destroys it also.
+	/// </summary>
+	void OnBlockDestroyed();
 }
