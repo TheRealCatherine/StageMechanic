@@ -75,12 +75,10 @@ public class Cathy1Block : AbstractBlock
 
 	/**
 	 * An Item associated with this Block, for example powerups
-	 * coins, as well as start/end markers. Note that setting
-	 * an item does not cause the block type to change to custom
-	 * and the block will take ownership of the item (ie the
-	 * item will be destoryed when the block is.
+	 * coins, as well as start/end markers. The block will take ownership of the item
+	 * (ie the item will be destoryed when the block is. and will move with the block)
 	 */
-	public GameObject FirstItem
+	public IItem FirstItem
 	{
 		get
 		{
@@ -96,50 +94,13 @@ public class Cathy1Block : AbstractBlock
 				return;
 			}
 			if (Items == null)
-				Items = new List<GameObject>();
+				Items = new List<IItem>();
 			if (Items.Count < 1)
 				Items.Add(value);
 			else
 				Items[0] = value;
 			if (Items[0] != null)
-				Items[0].transform.parent = transform;
-		}
-	}
-
-	/// <summary>
-	/// The first event associated with this block. In Cathy1 style
-	/// there is only ever one event on any given block, so this is
-	/// a convenience method for Events[0].
-	/// </summary>
-	public Cathy1AbstractEvent FirstEvent
-	{
-		get
-		{
-			if (Events != null && Events.Count > 0)
-				return Events[0] as Cathy1AbstractEvent;
-			return null;
-		}
-		set
-		{
-			if (value == null && Items != null && Events.Count == 1)
-			{
-				Events = null;
-				return;
-			}
-			if (Events == null)
-				Events = new List<IEvent>();
-			if (Events.Count < 1)
-				Events.Add(value);
-			else
-				Events[0] = value;
-			if (Events[0] != null)
-			{
-				Cathy1AbstractEvent ev = Events[0] as Cathy1AbstractEvent;
-				if(ev)
-				{
-					ev.transform.parent = transform;
-				}
-			}
+				Items[0].OwningBlock = this;
 		}
 	}
 

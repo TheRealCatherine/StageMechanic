@@ -11,6 +11,29 @@ using UnityEngine;
 
 public class Cat5ItemFactory : AbstractItemFactory {
 
+	public enum ItemType
+	{
+		PlayerStart,
+		Goal,
+		Checkpoint,
+		EnemySpawn,
+		StageSectionSpawnTrigger,
+		StageSectionDropTrigger,
+		StoryTrigger,
+		BossStateTrigger,
+		Coins,
+		SpecialCollectable,
+		CreateBlocks,
+		EnemyRemoval,
+		OneUp,
+		RemoveEnemies,
+		RemoveSpecialBlocks,
+		XFactor,
+		Stopwatch,
+		ItemSteal,
+		ItemRandomizer,
+		Frisbee
+	}
 	public Cat5AbstractItem[] Items;
 	private Dictionary<string, Cat5AbstractItem> _prefabs = new Dictionary<string, Cat5AbstractItem>();
 

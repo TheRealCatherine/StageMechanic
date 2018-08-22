@@ -146,6 +146,10 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		throw new HierarchyException("Items do not yet support children");
 	}
 
+	public void AddChild(IHierarchical child)
+	{
+		throw new HierarchyException("Items do not yet support children");
+	}
 
 	public virtual Dictionary<string, DefaultValue> DefaultProperties
 	{
@@ -183,7 +187,6 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 				Score = int.Parse(value["Score"]);
 		}
 	}
-	#endregion
 
 	public virtual bool Collectable
 	{
@@ -196,15 +199,38 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		get;
 		set;
 	} = 0;
+	#endregion
 
-	public void AddChild(IHierarchical child)
+	#region constructors/destructors
+	/// <summary>
+	/// Sets the name to a random GUID
+	/// Called when this object is created in the scene. If overriding
+	/// you may wish to call this base class in order to have the name
+	/// set to a random GUID.
+	/// </summary>
+	protected virtual void Awake()
 	{
-		throw new System.NotImplementedException();
+		name = System.Guid.NewGuid().ToString();
 	}
+	#endregion
+
+
 
 	public ItemJsonDelegate GetJsonDelegate()
 	{
 		return new ItemJsonDelegate(this);
+	}
+
+
+	#region colliders and triggers
+	public void OnCollisionEnter(Collision collision)
+	{
+		//TODO destory item if a block is in the same location
+		//TODO call OnPlayeContact or OnEnemyContact
+	}
+
+	public void OnCollisionExit(Collision collision)
+	{
 	}
 
 	public virtual void OnBlockDestroyed()
@@ -218,5 +244,5 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	public virtual void OnPlayerContact(IPlayerCharacter player)
 	{
 	}
-
+	#endregion
 }

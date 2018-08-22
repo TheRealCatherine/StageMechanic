@@ -7,134 +7,120 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cat5AbstractItem : MonoBehaviour, IItem
+public abstract class Cat5AbstractItem : AbstractItem
 {
 
-    public enum ItemType
-    {
-        PlayerStart,
-        Goal,
-        Checkpoint,
-        EnemySpawn,
-		StageSectionSpawnTrigger,
-		StageSectionDropTrigger,
-		StoryTrigger,
-		BossStateTrigger,
-		Coins,
-		SpecialCollectable,
-		CreateBlocks,
-		EnemyRemoval,
-		OneUp,
-		RemoveEnemies,
-		RemoveSpecialBlocks,
-		XFactor,
-		Stopwatch,
-		ItemSteal,
-		ItemRandomizer,
-		Frisbee
-    }
+	public GameObject Model1;
+	public GameObject Model2;
+	public GameObject Model3;
+	public GameObject Model4;
 
-    public virtual ItemType Type { get; set; }
+	public GameObject CurrentModel;
+	public int CurrentModelNumber = 0;
 
-    public string Name
-    {
-        get
-        {
-            return name;
-        }
-
-        set
-        {
-            name = value;
-        }
-    }
-
-    public virtual string TypeName
-    {
-        get
-        {
-            switch (Type)
-            {
-                case ItemType.PlayerStart:
-                    return "Player Start";
-                case ItemType.Goal:
-                    return "Goal";
-                case ItemType.Checkpoint:
-                    return "Checkpoint";
-                case ItemType.EnemySpawn:
-                    return "Enemy Spawn";
-                case ItemType.Custom:
-                default:
-                    return "Custom";
-            }
-        }
-    }
-
-    public Vector3 Position
-    {
-        get
-        {
-            return transform.position;
-        }
-        set
-        {
-            transform.position = value;
-        }
-    }
-
-    public virtual Dictionary<string, string> Properties
-    {
-        get
-        {
-            Dictionary<string, string> ret = new Dictionary<string, string>();
-
-            return ret;
-        }
-        set
-        {
-        
-            //base.Properties = value;
-            //TODO
-        }
-    }
-
-    public EventLocationAffinity LocationAffinity { get; set; }
-
-	public bool Collectable
+	public void ShowRandomModel()
 	{
-		get
-		{
-			throw new System.NotImplementedException();
-		}
+		ShowModel(Random.Range(1, 4));
+	}
 
-		set
+	public void ShowModel(int number)
+	{
+		if (CurrentModelNumber == number && CurrentModel != null)
+			return;
+		Destroy(CurrentModel);
+		switch (number)
 		{
-			throw new System.NotImplementedException();
+			default:
+			case 1:
+				CurrentModel = Instantiate(Model1, gameObject.transform);
+				CurrentModelNumber = 1;
+				break;
+			case 2:
+				if (Model2 != null)
+					CurrentModel = Instantiate(Model2, gameObject.transform);
+				else
+					CurrentModel = Instantiate(Model1, gameObject.transform);
+				CurrentModelNumber = 2;
+				break;
+			case 3:
+				if (Model3 != null)
+					CurrentModel = Instantiate(Model3, gameObject.transform);
+				else
+					CurrentModel = Instantiate(Model1, gameObject.transform);
+				CurrentModelNumber = 3;
+				break;
+			case 4:
+				if (Model4 != null)
+					CurrentModel = Instantiate(Model4, gameObject.transform);
+				else
+					CurrentModel = Instantiate(Model1, gameObject.transform);
+				CurrentModelNumber = 4;
+				break;
 		}
 	}
 
-	public long Score { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+	public virtual void ApplyTheme(Cathy1BlockTheme theme)
+	{
+		Debug.Assert(theme.BasicBlock1 != null);
+		Model1 = theme.BasicBlock1;
+		Model2 = theme.BasicBlock2;
+		Model3 = theme.BasicBlock3;
+		Model4 = theme.BasicBlock4;
+	}
 
-	public Dictionary<string, DefaultValue> DefaultProperties => throw new System.NotImplementedException();
+	internal virtual void Start()
+	{
+		if (CurrentModelNumber == 0)
+			ShowModel(1);
+	}
 
-	virtual public EventJsonDelegate GetJsonDelegate()
-    {
-        return new EventJsonDelegate(this);
-    }
+	public string TypeOfItem = "Unknown";
+	public override string TypeName
+	{
+		get
+		{
+			return TypeOfItem;
+		}
+		set
+		{
 
-    public EventBinaryDelegate GetBinaryDelegate()
-    {
-        return new EventBinaryDelegate(this);
-    }
+		}
+	}
 
-    /// <summary>
-    /// Sets the name to a random GUID
-    /// Called when this object is created in the scene. If overriding
-    /// you may wish to call this base class in order to have the name
-    /// set to a random GUID.
-    /// </summary>
-    public virtual void Awake()
-    {
-        name = System.Guid.NewGuid().ToString();
-    }
+	/// <summary>
+	/// The recognized properties for this item, includes base class properties
+	/// </summary>
+	public override Dictionary<string, DefaultValue> DefaultProperties
+	{
+		get
+		{
+			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+			ret.Add("Model Variant", new DefaultValue { TypeInfo = typeof(int), Value = "1" });
+			return ret;
+		}
+	}
+
+	/// <summary>
+	/// The list of properties associated with this item.
+	/// Includes bass-class properties.
+	/// </summary>
+	public override Dictionary<string, string> Properties
+	{
+		get
+		{
+			Dictionary<string, string> ret = base.Properties;
+			if (CurrentModelNumber > 1)
+				ret.Add("Model Variant", CurrentModelNumber.ToString());
+			return ret;
+		}
+		set
+		{
+			base.Properties = value;
+			if (value.ContainsKey("Model Variant"))
+			{
+				ShowModel(int.Parse(value["Model Variant"]));
+				Debug.Log(int.Parse(value["Model Variant"]));
+			}
+		}
+	}
 }
