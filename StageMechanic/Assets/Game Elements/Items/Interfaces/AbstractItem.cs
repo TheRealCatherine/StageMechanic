@@ -4,12 +4,8 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
@@ -145,6 +141,12 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 	}
 
+	public void RemoveChild(IHierarchical child)
+	{
+		throw new HierarchyException("Items do not yet support children");
+	}
+
+
 	public virtual Dictionary<string, DefaultValue> DefaultProperties
 	{
 		get
@@ -183,42 +185,38 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	}
 	#endregion
 
-	public string TypeName
+	public virtual bool Collectable
 	{
-		get
-		{
-			throw new NotImplementedException();
-		}
+		get;
+		set;
+	} = true;
+
+	public virtual int Score
+	{
+		get;
+		set;
+	} = 0;
+
+	public void AddChild(IHierarchical child)
+	{
+		throw new System.NotImplementedException();
 	}
-
-
-
-	public bool Collectable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-	public int Score { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-	public Vector3 Position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-	public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-	public Dictionary<string, DefaultValue> DefaultProperties => throw new NotImplementedException();
-
-	public Dictionary<string, string> Properties { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 	public ItemJsonDelegate GetJsonDelegate()
 	{
-		throw new NotImplementedException();
+		return new ItemJsonDelegate(this);
 	}
 
-	public void OnBlockDestroyed()
+	public virtual void OnBlockDestroyed()
 	{
-		throw new NotImplementedException();
 	}
 
-	public void OnEnemyContact(INonPlayerCharacter enemy)
+	public virtual void OnEnemyContact(INonPlayerCharacter enemy)
 	{
-		throw new NotImplementedException();
 	}
 
-	public void OnPlayerContact(IPlayerCharacter player)
+	public virtual void OnPlayerContact(IPlayerCharacter player)
 	{
-		throw new NotImplementedException();
 	}
+
 }

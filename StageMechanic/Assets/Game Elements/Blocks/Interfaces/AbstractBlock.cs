@@ -107,10 +107,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	/// List of items associated with this block. These will moved to be child elements of the block.
 	/// This property may be null, so check this when calling.
 	/// </summary>
-	public virtual List<GameObject> Items { get; set; }
-
-	public virtual List<IEvent> Events { get; set; }
-
+	public virtual List<IItem> Items { get; set; }
 
 	public virtual IHierarchical Parent
 	{
