@@ -53,7 +53,7 @@ public class Cat5ItemTheme : AbstractBlockTheme
 	public GameObject SpecialCollectableObject1;
 	public GameObject SpecialCollectableObject2;
 	public GameObject SpecialCollectableObject3;
-	public Sprite SepcialCollectableIcon;
+	public Sprite SpecialCollectableIcon;
 
 	[Header("Create Blocks")]
 	public GameObject CreateBlocksPlaceholder;
@@ -65,40 +65,40 @@ public class Cat5ItemTheme : AbstractBlockTheme
 	[Header("Enemy Removal")]
 	public GameObject EnemyRemovalPlaceholder;
 	public GameObject EnemyRemovalObject;
-	public GameObject EnemyRemovalIcon;
+	public Sprite EnemyRemovalIcon;
 
 	[Header("1 Up")]
 	public GameObject OneUpPlaceholder;
 	public GameObject OneUpObject;
-	public GameObject OneUpIcon;
+	public Sprite OneUpIcon;
 
 	[Header("X-Factor")]
 	public GameObject XFactorPlaceholder;
 	public GameObject XFactorObject;
-	public GameObject XFactorIcon;
+	public Sprite XFactorIcon;
 
 	[Header("Special Block Remover")]
 	public GameObject SpecialBlockRemoverPlaceholder;
 	public GameObject SpecialBlockRemoverObject;
-	public GameObject specialBlockRemoverIcon;
+	public Sprite SpecialBlockRemoverIcon;
 
 	[Header("Stopwatch")]
 	public GameObject StopwatchPlaceholder;
 	public GameObject StopwatchObject;
-	public GameObject StopwatchIcon;
+	public Sprite StopwatchIcon;
 
 	[Header("Item Steal")]
 	public GameObject ItemStealPlaceholder;
 	public GameObject ItemStelObject;
-	public GameObject ItemStealIcon;
+	public Sprite ItemStealIcon;
 
 	[Header("Item Randomizer")]
 	public GameObject ItemRandomizerPlaceholder;
 	public GameObject ItemRandomizerObject;
-	public GameObject ItemRandomizerIcon;
+	public Sprite ItemRandomizerIcon;
 
 	[Header("Frisbee")]
 	public GameObject FrisbeePlaceholder;
 	public GameObject FrisbeeObject;
-	public GameObject FrisbeeIcon;
+	public Sprite FrisbeeIcon;
 }

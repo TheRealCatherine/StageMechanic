@@ -11,30 +11,6 @@ using UnityEngine;
 
 public class Cat5ItemFactory : AbstractItemFactory {
 
-	/*public enum ItemType
-	{
-		PlayerStart,
-		Goal,
-		Checkpoint,
-		EnemySpawn,
-		StageSectionSpawnTrigger,
-		StageSectionDropTrigger,
-		StoryTrigger,
-		BossStateTrigger,
-		Coins,
-		SpecialCollectable,
-		CreateBlocks,
-		EnemyRemoval,
-		OneUp,
-		RemoveEnemies,
-		RemoveSpecialBlocks,
-		XFactor,
-		Stopwatch,
-		ItemSteal,
-		ItemRandomizer,
-		Frisbee
-	}*/
-
 	public Cat5AbstractItem[] Items;
 	private Dictionary<string, Cat5AbstractItem> _prefabs = new Dictionary<string, Cat5AbstractItem>();
 
@@ -78,187 +54,121 @@ public class Cat5ItemFactory : AbstractItemFactory {
 			return _prefabs[name].Icon;
 		switch (name)
 		{
-			case "Basic":
-				if (CurrentTheme.BasicBlockIcon != null)
-					return CurrentTheme.BasicBlockIcon;
-				break;
-			case "Small Bomb":
-				if (CurrentTheme.SmallBombIcon != null)
-					return CurrentTheme.SmallBombIcon;
-				break;
-			case "Large Bomb":
-				if (CurrentTheme.LargeBombIcon != null)
-					return CurrentTheme.LargeBombIcon;
-				break;
-			case "Cracked (1 Step)":
-				if (CurrentTheme.HeavyCracksIcon != null)
-					return CurrentTheme.HeavyCracksIcon;
-				break;
-			case "Cracked (2 Steps)":
-				if (CurrentTheme.LightCracksIcon != null)
-					return CurrentTheme.LightCracksIcon;
+			case "Player Start":
+				if (CurrentTheme.PlayerStartIcon != null)
+					return CurrentTheme.PlayerStartIcon
 				break;
 			case "Goal":
 				if (CurrentTheme.GoalIcon != null)
-					return CurrentTheme.GoalIcon;
+					return CurrentTheme.GoalIcon
 				break;
-			case "Heavy":
-				if (CurrentTheme.HeavyIcon != null)
-					return CurrentTheme.HeavyIcon;
+			case "Checkpoint":
+				if (CurrentTheme.CheckpointIcon != null)
+					return CurrentTheme.CheckpointIcon
 				break;
-			case "Ice":
-				if (CurrentTheme.IceIcon != null)
-					return CurrentTheme.IceIcon;
+			case "Enemy Spawn":
+				if (CurrentTheme.EnemySpawnIcon != null)
+					return CurrentTheme.EnemySpawnIcon
 				break;
-			case "Immobile":
-				if (CurrentTheme.Immobile != null)
-					return CurrentTheme.ImmobileIcon;
+			case "Stage Section Spawn Trigger":
+				if (CurrentTheme.SectionSpawnIcon != null)
+					return CurrentTheme.SectionSpawnIcon
 				break;
-			case "Monster":
-				if (CurrentTheme.MonsterIcon != null)
-					return CurrentTheme.MonsterIcon;
+			case "Platform Move Trigger":
+				if (CurrentTheme.PlatformMoveIcon != null)
+					return CurrentTheme.PlatformMoveIcon;
 				break;
-			case "Mystery":
-				if (CurrentTheme.MysteryIcon != null)
-					return CurrentTheme.MysteryIcon;
+			case "Story Trigger":
+				if (CurrentTheme.StoryIcon != null)
+					return CurrentTheme.StoryIcon
 				break;
-			case "Spike Trap":
-				if (CurrentTheme.TrapIcon != null)
-					return CurrentTheme.TrapIcon;
+			case "Boss State Trigger":
+				if (CurrentTheme.BossStateIcon != null)
+					return CurrentTheme.BossStateIcon;
 				break;
-			case "Spring":
-				if (CurrentTheme.SpringIcon != null)
-					return CurrentTheme.SpringIcon;
+			case "Coin":
+				if (CurrentTheme.CoinIcon != null)
+					return CurrentTheme.CoinIcon;
 				break;
-			case "Vortex":
-				if (CurrentTheme.VortexIcon != null)
-					return CurrentTheme.VortexIcon;
+			case "Special Collectable":
+				if (CurrentTheme.SpecialCollectableIcon != null)
+					return CurrentTheme.SpecialCollectableIcon
+				break;
+			case "Create Blocks":
+				if (CurrentTheme.CreateBlocksIcon != null)
+					return CurrentTheme.CreateBlocksIcon;
+				break;
+			case "Remove Enemies":
+				if (CurrentTheme.EnemyRemovalIcon != null)
+					return CurrentTheme.EnemyRemovalIcon;
+				break;
+			case "1-Up":
+				if (CurrentTheme.OneUpIcon != null)
+					return CurrentTheme.OneUpIcon;
+				break;
+			case "Remove Special Blocks":
+				if (CurrentTheme.SpecialBlockRemoverIcon != null)
+					return CurrentTheme.SpecialBlockRemoverIcon;
+				break;
+			case "X-Factor":
+				if (CurrentTheme.XFactorIcon != null)
+					return CurrentTheme.XFactorIcon;
+				break;
+			case "Stopwatch":
+				if (CurrentTheme.StopwatchIcon != null)
+					return CurrentTheme.StopwatchIcon;
+				break;
+			case "Item Stealer":
+				if (CurrentTheme.ItemStealIcon != null)
+					return CurrentTheme.ItemStealIcon;
+				break;
+			case "Item Randomizer":
+				if (CurrentTheme.ItemRandomizerIcon != null)
+					return CurrentTheme.ItemRandomizerIcon;
+				break;
+			case "Frisbee":
+				if (CurrentTheme.FrisbeeIcon != null)
+					return CurrentTheme.FrisbeeIcon;
 				break;
 		}
-
 		return _prefabs[name].Icon;
 	}
 
-	public string[] ItemTypeNames => throw new NotImplementedException();
-
-	public Cathy1AbstractEvent CreateEvent(Vector3 globalPosition, Quaternion globalRotation, Cathy1AbstractEvent.EventType type, Cathy1Block parent = null)
+	public override IItem CreateItem(Vector3 globalPosition, Quaternion globalRotation, string type, GameObject parent)
 	{
-		string oldName = String.Empty;
+		string oldName = null;
 
-		GameObject[] collidedGameObjects =
-			Physics.OverlapSphere(globalPosition, 0.1f)
-				.Except(new[] { GetComponent<BoxCollider>() })
-				.Select(c => c.gameObject)
-				.ToArray();
-
-
-		foreach (GameObject obj in collidedGameObjects)
+		IBlock oldBlock = BlockManager.GetBlockNear(globalPosition, 0.01f, 0.0f);
+		if (oldBlock != null)
 		{
-			Cathy1Block bl = obj.GetComponent<Cathy1Block>();
-			// In this case the event is being created at the same location that
-			// a block currently exists. Instead the system will create the event
-			// as being located above the block by one unit and will make the event
-			// a child of the block.
-			if (bl != null)
-			{
-				if (parent == null)
-					parent = bl;
-				globalPosition = bl.Position + new Vector3(0, 0.5f, 0);
-				globalRotation = bl.Rotation;
-			}
-
-			Cathy1AbstractEvent oldEvent = obj.GetComponent<Cathy1AbstractEvent>();
-			if(oldEvent != null) {
-				oldName = oldEvent.Name;
-				Destroy(oldEvent);
-			}
-
+			oldName = oldBlock.Name;
+			BlockManager.DestroyBlock(oldBlock);
 		}
 
-		GameObject newEvent = null;
+		if (parent == null)
+			parent = BlockManager.Instance.Stage;
 
-		switch (type)
-		{
-			case Cathy1AbstractEvent.EventType.PlayerStart:
-				newEvent = Instantiate(PlayerStartPrefab, globalPosition, globalRotation, parent.transform);
-				break;
-			case Cathy1AbstractEvent.EventType.Goal:
-				newEvent = Instantiate(PlayerGoalPrefab, globalPosition, globalRotation, parent.transform);
-				break;
-			//TODO checkpoint, cutom, enemies
-			
-		}
+		GameObject newBlock = null;
 
-		Debug.Assert(newEvent != null);
-		Cathy1AbstractEvent ev = newEvent.GetComponent<Cathy1AbstractEvent>();
-		Debug.Assert(ev != null);
-		//TODO some kind of Parent property in Event
-		if (parent != null)
-		{
-			ev.transform.parent = parent.transform;
-			Cathy1Block bl = parent as Cathy1Block;
-			if(bl != null)
-			{
-				bl.FirstEvent = ev;
-			}
-		}
-		if (oldName != String.Empty)
-			ev.Name = oldName;
-		return ev;
+		Cathy1Block prefab = _prefabs[type];
+		Debug.Assert(prefab != null);
+		newBlock = Instantiate(prefab, globalPosition, globalRotation, parent.transform).gameObject;
+
+		Debug.Assert(newBlock != null);
+		Cathy1Block block = newBlock.GetComponent<Cathy1Block>();
+		Debug.Assert(block != null);
+		block.transform.parent = parent.transform;
+		if (!string.IsNullOrWhiteSpace(oldName))
+			block.Name = oldName;
+		if (CurrentTheme != null)
+			block.ApplyTheme(CurrentTheme);
+		// Randomize which model is shown for Basic blocks
+		// This adds an extra step for each basic block
+		// when loading/undoing so we might need to add a 
+		// state to serializer to let us skip this step
+		if (type == "Basic")
+			block.ShowRandomModel();
+		return block;
 	}
 
-	public IEvent CreateEvent(Vector3 globalPosition, Quaternion globalRotation, int eventTypeIndex, GameObject parent = null)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public IEvent CreateEvent(Vector3 globalPosition, Quaternion globalRotation, string eventTypeName, GameObject parent = null)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public IEvent CreateEvent(int eventTypeIndex, IBlock parent)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public IEvent CreateEvent(string eventTypeName, IBlock parent)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public IItem CreateItem(Vector3 globalPosition, Quaternion globalRotation, string itemTypeName, GameObject parent = null)
-	{
-		throw new NotImplementedException();
-	}
-
-	public IItem CreateItemt(string eventTypeName, IBlock parent)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Sprite IconForType(string name)
-	{
-		throw new NotImplementedException();
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-	public override IItem CreateItem(Vector3 globalPosition, Quaternion globalRotation, string itemTypeName, GameObject parent = null)
-	{
-		throw new NotImplementedException();
-	}
-
-	public override IItem CreateItem(string eventTypeName, IBlock parent)
-	{
-		throw new NotImplementedException();
-	}
 }
