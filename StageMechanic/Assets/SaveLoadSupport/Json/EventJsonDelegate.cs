@@ -12,7 +12,7 @@ using UnityEngine;
 [Serializable]
 [DataContract(Name="Event")]
 public class EventJsonDelegate {
-	public IEvent Event { get; set; }
+	public IItem Event { get; set; }
 
 	internal string _name = null;
 	internal string _type = null;
@@ -20,7 +20,7 @@ public class EventJsonDelegate {
 	internal string _palette = null;
 	internal Dictionary<string, string> _properties;
 
-	public EventJsonDelegate( IEvent eventToSerialize )
+	public EventJsonDelegate( IItem eventToSerialize )
 	{
 		Event = eventToSerialize;
 	}
@@ -49,7 +49,7 @@ public class EventJsonDelegate {
 		{
 			Debug.Assert(Event != null);
 			Cathy1PlayerStartLocation loc = Event as Cathy1PlayerStartLocation;
-			if (loc)
+			if (loc != null)
 				return loc.Palette;
 			return "Cathy1 Internal";
 		}

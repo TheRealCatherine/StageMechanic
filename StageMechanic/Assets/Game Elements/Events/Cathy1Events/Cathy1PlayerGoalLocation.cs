@@ -5,9 +5,9 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 
-public class Cathy1PlayerGoalLocation : Cathy1AbstractEvent {
+public class Cathy1PlayerGoalLocation : Cat5AbstractItem {
 
-    public override void Awake()
+  /*  public override void Awake()
     {
         base.Awake();
         Type = EventType.Goal;
@@ -18,5 +18,5 @@ public class Cathy1PlayerGoalLocation : Cathy1AbstractEvent {
 	
 	void Update () {
 		
-	}
+	}*/
 }

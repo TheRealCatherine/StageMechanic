@@ -21,16 +21,16 @@ public class EventBinaryDelegate
 	public string[] PropertyValues;
 	public string Palette;
 
-	public EventBinaryDelegate(Cathy1AbstractEvent ev) {
+	public EventBinaryDelegate(Cat5AbstractItem ev) {
 		PositionX = ev.Position.x;
 		PositionY = ev.Position.y;
 		PositionZ = ev.Position.z;
 		Dictionary<string, string> properties = ev.Properties;
 		PropertyKeys = properties.Keys.ToArray();
 		PropertyValues = properties.Values.ToArray();
-		Cathy1PlayerStartLocation loc = ev as Cathy1PlayerStartLocation;
-		if (loc != null)
-			Palette = loc.Palette;
+		//Cathy1PlayerStartLocation loc = ev as Cathy1PlayerStartLocation;
+		//if (loc != null)
+		//	Palette = loc.Palette;
 	}
 
 	[OnDeserialized]

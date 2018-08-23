@@ -7,8 +7,8 @@
 using System;
 using System.Collections.Generic;
 
-public class Cathy1PlayerStartLocation : Cathy1AbstractEvent, IPlayerEventExtension {
-	public int PlayerNumber;
+public class Cathy1PlayerStartLocation : Cat5AbstractItem {
+/*	public int PlayerNumber;
 
 	int IPlayerEventExtension.PlayerNumber
 	{
@@ -47,5 +47,5 @@ public class Cathy1PlayerStartLocation : Cathy1AbstractEvent, IPlayerEventExtens
 			//base.Properties = value;
 			//TODO
 		}
-	}
+	}*/
 }

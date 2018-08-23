@@ -152,6 +152,7 @@ public class BlockManager : MonoBehaviour
 		blockToGroupMapping.Clear();
 		PlayerManager.Clear();
 		EventManager.Clear();
+		ItemManager.Clear();
 		Serializer.ClearUndoStates();
 		Serializer.LastAccessedFileName = null;
 
@@ -209,7 +210,7 @@ public class BlockManager : MonoBehaviour
 	{
 		Debug.Assert(Instance != null);
 		Debug.Assert(Cursor != null);
-		if (palette == "Cathy1 Internal" || palette == "Cathy Internal")
+		if (palette == "Cathy1 Internal" || palette == "Cathy Internal" || palette == "Cat5 Internal")
 		{
 			Cathy1Block block = Instance.BlockFactories[0].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as Cathy1Block;
 			block.Palette = palette;
@@ -218,7 +219,7 @@ public class BlockManager : MonoBehaviour
 			Serializer.AutoSave();
 			return block;
 		}
-		else if(palette == "Bloxels Internal")
+		else if(palette == "Bloxels Internal" || palette == "Boxxyzzy Internal")
 		{
 			AbstractBloxelsBlock block = Instance.BlockFactories[1].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractBloxelsBlock;
 			block.Palette = palette;
@@ -227,7 +228,7 @@ public class BlockManager : MonoBehaviour
 			Serializer.AutoSave();
 			return block;
 		}
-		else if(palette =="PushPull Internal")
+		else if(palette =="PushPull Internal" || palette == "MoarBlox Internal")
 		{
 			AbstractPushPullBlock block = Instance.BlockFactories[2].CreateBlock(position, Cursor.transform.rotation, type, ActiveFloor) as AbstractPushPullBlock;
 			block.Palette = palette;
@@ -255,11 +256,14 @@ public class BlockManager : MonoBehaviour
 		{
 			case "Cathy1 Internal":
 			case "Cathy Internal":
+			case "Cat5 Internal":
 			default:
 				return 0;
 			case "Bloxels Internal":
+			case "Boxxyzzy Internal":
 				return 1;
 			case "PushPull Internal":
+			case "MoarBlox Internal":
 				return 2;
 			case "BoxGirl Internal":
 				return 3;
