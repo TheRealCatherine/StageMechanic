@@ -13,6 +13,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 {
 	public Sprite Icon;
 	public string Palette;
+	public GameManager.GameMode CurrentMode = GameManager.GameMode.Initialize;
 
 
 	#region Interface property implementations
@@ -214,7 +215,16 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	}
 	#endregion
 
-
+	internal virtual void Update()
+	{
+		GameManager.GameMode newMode = (BlockManager.PlayMode ? GameManager.GameMode.Play : GameManager.GameMode.StageEdit);
+		if(newMode != CurrentMode)
+		{
+			GameManager.GameMode oldMode = CurrentMode;
+			CurrentMode = newMode;
+			OnGameModeChanged(newMode, oldMode);
+		}
+	}
 
 	public ItemJsonDelegate GetJsonDelegate()
 	{
@@ -247,6 +257,10 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	}
 
 	public virtual void OnPlayerContact(IPlayerCharacter player)
+	{
+	}
+
+	public virtual void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
 	{
 	}
 	#endregion

@@ -71,4 +71,12 @@ public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 	/// the block's destrctor destroys it also.
 	/// </summary>
 	void OnBlockDestroyed();
+
+	/// <summary>
+	/// Method to be called whenever the game mode changes, for example when switching
+	/// between play mode and create mode
+	/// </summary>
+	/// <param name="newMode"></param>
+	/// <param name="oldMode"></param>
+	void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode);
 }

@@ -9,6 +9,7 @@ public class GameManager
 {
 	public enum GameMode
 	{
+		Initialize,
 		StageEdit,
 		TextureEdit,
 		Play

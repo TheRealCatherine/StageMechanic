@@ -27,7 +27,8 @@ public abstract class Cat5AbstractItem : AbstractItem
 	{
 		if (CurrentModelNumber == number && CurrentModel != null)
 			return;
-		Destroy(CurrentModel);
+		if(CurrentModel != null)
+			Destroy(CurrentModel);
 		switch (number)
 		{
 			default:
@@ -38,22 +39,16 @@ public abstract class Cat5AbstractItem : AbstractItem
 			case 2:
 				if (Model2 != null)
 					CurrentModel = Instantiate(Model2, gameObject.transform);
-				else
-					CurrentModel = Instantiate(Model1, gameObject.transform);
 				CurrentModelNumber = 2;
 				break;
 			case 3:
 				if (Model3 != null)
 					CurrentModel = Instantiate(Model3, gameObject.transform);
-				else
-					CurrentModel = Instantiate(Model1, gameObject.transform);
 				CurrentModelNumber = 3;
 				break;
 			case 4:
 				if (Model4 != null)
 					CurrentModel = Instantiate(Model4, gameObject.transform);
-				else
-					CurrentModel = Instantiate(Model1, gameObject.transform);
 				CurrentModelNumber = 4;
 				break;
 		}
@@ -117,5 +112,13 @@ public abstract class Cat5AbstractItem : AbstractItem
 				Debug.Log(int.Parse(value["Model Variant"]));
 			}
 		}
+	}
+
+	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
+	{
+		if (newMode == GameManager.GameMode.StageEdit)
+			ShowModel(1);
+		else if (newMode == GameManager.GameMode.Play)
+			ShowModel(2);
 	}
 }

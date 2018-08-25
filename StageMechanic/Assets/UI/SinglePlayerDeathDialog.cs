@@ -46,14 +46,16 @@ public class SinglePlayerDeathDialog : MonoBehaviour {
     void OnRestartFromBeginningClicked()
     {
         Serializer.ReloadStartState();
-        PlayerManager.InstantiateAllPlayers();
+		//TODO(ItemManager)
+		//PlayerManager.InstantiateAllPlayers();
         gameObject.SetActive(false);
     }
 
     void OnUndoLastMoveClicked()
     {
         gameObject.SetActive(false);
-        PlayerManager.InstantiateAllPlayers();
+		//TODO(ItemManager)
+		//PlayerManager.InstantiateAllPlayers();
         Serializer.Undo();
     }
 

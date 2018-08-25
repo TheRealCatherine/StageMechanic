@@ -13,9 +13,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public GameObject[] Prefabs = new GameObject[4];
 
-    public static List<Cathy1PlayerStartLocation> PlayerStartLocations { get; set; } = new List<Cathy1PlayerStartLocation>();
     public static List<IPlayerCharacter> Avatars { get; set; } = new List<IPlayerCharacter>();
-	public static List<GameObject> EditModePlaceholders { get; set; } = new List<GameObject>();
     internal static PlayerManager Instance;
 
     internal static bool _playMode = false;
@@ -30,7 +28,6 @@ public class PlayerManager : MonoBehaviour {
             _playMode = value;
             if(_playMode)
             {
-                InstantiateAllPlayers();
             }
             else
             {
@@ -43,7 +40,8 @@ public class PlayerManager : MonoBehaviour {
     {
         if (Avatars != null && Avatars.Count > 0)
             return Avatars.Count;
-        return PlayerStartLocations.Count;
+		//TODO(ItemManager)
+		return -1;
     }
 
     public static IPlayerCharacter Player(int playerNumber = 0)
@@ -57,8 +55,6 @@ public class PlayerManager : MonoBehaviour {
     public static void Clear()
     {
         DestroyAllPlayers();
-        PlayerStartLocations.Clear();
-		DestroyAllPlaceholders();
     }
 
     public static void OnUndoStart()
@@ -68,12 +64,10 @@ public class PlayerManager : MonoBehaviour {
 
     public static void OnUndoFinish()
     {
-        InstantiateAllPlayers();
     }
 
     public static void ShowAllPlayers(bool show = true)
     {
-		HidePlaceholders();
 		foreach (IPlayerCharacter player in Avatars)
         {
             player.GameObject.SetActive(show);
@@ -93,78 +87,16 @@ public class PlayerManager : MonoBehaviour {
         Avatars.Clear();
     }
 
-	public static void DestroyAllPlaceholders()
-	{
-		foreach (GameObject placeholder in EditModePlaceholders)
-		{
-			Destroy(placeholder);
-		}
-		EditModePlaceholders.Clear();
-	}
 
-	public static void ShowPlaceholders()
-	{
-		for (int i = 0; i < PlayerStartLocations.Count; ++i)
-		{
-			if (EditModePlaceholders.Count <=i)
-			{
-				GameObject placeholder = Instantiate(BlockManager.Instance.StartLocationIndicator, PlayerStartLocations[i].Position, Quaternion.Euler(0, 180, 0)) as GameObject;
-				EditModePlaceholders.Add(placeholder);
-			}
-			EditModePlaceholders[i].SetActive(true);
-			EditModePlaceholders[i].transform.position = PlayerStartLocations[i].Position;
-		}
-	}
-
-	public static void HidePlaceholders()
-	{
-		for (int i = 0; i < PlayerStartLocations.Count; ++i)
-		{
-			if (EditModePlaceholders.Count <= i)
-			{
-				GameObject placeholder = Instantiate(BlockManager.Instance.StartLocationIndicator, PlayerStartLocations[i].Position, Quaternion.Euler(0, 180, 0)) as GameObject;
-				EditModePlaceholders.Add(placeholder);
-			}
-			EditModePlaceholders[i].SetActive(false);
-		}
-	}
-
-	public static void InstantiateAllPlayers()
+	public static void InstantiatePlayer( int playerNumber, Vector3 location, GameObject avatarPrefab )
     {
-        Debug.Assert(PlayerStartLocations != null);
-        if (PlayerStartLocations.Count == 0)
-            return;
-        if (PlayerStartLocations.Count > 0)
-        {
-			HidePlaceholders();
-            if (Avatars.Count == 0)
-                Avatars.Add(Instantiate(Instance.Prefabs[0], PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
-            else
-                Avatars[0] = Instantiate(Instance.Prefabs[0], PlayerStartLocations[0].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[0].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
-            Debug.Log("Spawning player 1 at " + PlayerStartLocations[0].transform.position);
-            Avatars[0].GameObject.layer = BlockManager.Instance.Stage.layer;
-            LoadKeybindings(0);
-        }
-        if (PlayerStartLocations.Count > 1)
-        {
-            if (Avatars.Count == 1)
-                Avatars.Add(Instantiate(Instance.Prefabs[1], PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
-            else
-                Avatars[1] = Instantiate(Instance.Prefabs[1], PlayerStartLocations[1].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[1].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
-            Debug.Log("Spawning player 2 at " + PlayerStartLocations[1].transform.position);
-            Avatars[1].GameObject.layer = BlockManager.Instance.Stage.layer;
-            LoadKeybindings(1);
-        }
-        if (PlayerStartLocations.Count > 2)
-        {
-            if (Avatars.Count == 2)
-                Avatars.Add(Instantiate(Instance.Prefabs[2], PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
-            else
-                Avatars[1] = Instantiate(Instance.Prefabs[2], PlayerStartLocations[2].transform.position + new Vector3(0f, 0.5f, 0f), PlayerStartLocations[2].transform.rotation, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
-            Debug.Log("Spawning player 3 at " + PlayerStartLocations[2].transform.position);
-            Avatars[2].GameObject.layer = BlockManager.Instance.Stage.layer;
-            LoadKeybindings(2);
-        }
+		if (Avatars.Count == 0)
+			Avatars.Add(Instantiate(avatarPrefab, location, Quaternion.identity, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
+		else
+			Avatars[0] = Instantiate(avatarPrefab, location, Quaternion.identity, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
+        Debug.Log("Spawning player 1 at " + location);
+        Avatars[0].GameObject.layer = BlockManager.Instance.Stage.layer;
+        LoadKeybindings(0);
     }
 
 

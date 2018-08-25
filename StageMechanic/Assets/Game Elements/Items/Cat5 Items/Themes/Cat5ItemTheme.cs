@@ -6,6 +6,7 @@ public class Cat5ItemTheme : AbstractItemTheme
 	[Header("Player Start")]
 	public GameObject PlayerStartPlaceholder;
 	public GameObject PlayerStartObject;
+	public GameObject PlayerAvatar;
 	public Sprite PlayerStartIcon;
 
 	[Header("Goal")]

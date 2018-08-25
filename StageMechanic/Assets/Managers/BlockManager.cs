@@ -87,10 +87,12 @@ public class BlockManager : MonoBehaviour
 
 	public static void ResetCursor()
 	{
-		if (PlayerManager.PlayerStartLocations != null && PlayerManager.PlayerStartLocations.Count > 0)
+		/*if (PlayerManager.PlayerStartLocations != null && PlayerManager.PlayerStartLocations.Count > 0)
 			Cursor.transform.position = PlayerManager.PlayerStartLocations[0].Position - new Vector3(0f,0.5f,0f);
-		else
-			Cursor.transform.position = new Vector3(0, 1, 0);
+		else*/
+		//TODO(ItemManager)
+
+		Cursor.transform.position = new Vector3(0, 1, 0);
 	}
 
 	#region BlockAccounting
