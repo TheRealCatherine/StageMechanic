@@ -2983,7 +2983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &179590154
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4235,6 +4235,11 @@ Prefab:
       propertyPath: BinaryFormat
       value: 
       objectReference: {fileID: 1893210582}
+    - target: {fileID: 114704978017189584, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: ItemTypesList
+      value: 
+      objectReference: {fileID: 179590157}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
   m_IsPrefabAsset: 0
@@ -9280,6 +9285,16 @@ Prefab:
     - target: {fileID: 4234574757825582, guid: dd54f37b2df9c6047a52a394c63e9026, type: 2}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 54216377347738386, guid: dd54f37b2df9c6047a52a394c63e9026,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65587287809565212, guid: dd54f37b2df9c6047a52a394c63e9026,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd54f37b2df9c6047a52a394c63e9026, type: 2}

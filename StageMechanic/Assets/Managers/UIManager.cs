@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
 	public MainMenu MainMenu;
 	public ScrollRect BlockTypesList;
+	public ScrollRect ItemTypesList;
 	public ScrollRect PlayerStartPositionsList;
 	public BlockEditDialog BlockEditDialog;
 	public GameObject FileBrowserPrefab;
@@ -134,6 +135,7 @@ public class UIManager : MonoBehaviour
 		DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.ActiveBlock != null);
 		PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.ActiveBlock != null);
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
+		ItemTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
 		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
 
 		//TODO quick fix for Prototype 2 to keep people from doing things with the death dialog open
