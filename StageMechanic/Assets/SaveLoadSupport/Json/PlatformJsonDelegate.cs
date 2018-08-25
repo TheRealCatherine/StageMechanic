@@ -104,11 +104,11 @@ public class PlatformJsonDelegate
         {
             Debug.Assert(_platform != null);
             List<EventJsonDelegate> ret = new List<EventJsonDelegate>();
-            foreach (IEvent ev in EventManager.EventList)
+            /*foreach (IEvent ev in EventManager.EventList)
             {
                 if (ev != null)
                     ret.Add(ev.GetJsonDelegate());
-            }
+            }*/
             return ret;
         }
         set

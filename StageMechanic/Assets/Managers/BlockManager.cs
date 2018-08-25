@@ -72,9 +72,7 @@ public class BlockManager : MonoBehaviour
 					// No player found
 				} else {
 					pos.y -= 0.5f;
-					EventManager.Instance.CreateCathy1PlayerStartLocation(0, 
-						pos,
-						Quaternion.Euler(0, 180, 0));
+					ItemManager.CreateItemAt(pos, "Cat5", "Player Start");
 				}	
 			}
 			//UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
@@ -151,7 +149,6 @@ public class BlockManager : MonoBehaviour
 		blockGroups.Clear();
 		blockToGroupMapping.Clear();
 		PlayerManager.Clear();
-		EventManager.Clear();
 		ItemManager.Clear();
 		Serializer.ClearUndoStates();
 		Serializer.LastAccessedFileName = null;
@@ -171,7 +168,7 @@ public class BlockManager : MonoBehaviour
 			Destroy(block.GameObject);
 		}
 		BlockCache.Clear();
-		EventManager.Clear();
+		ItemManager.Clear();
 	}
 
 	/// <summary>

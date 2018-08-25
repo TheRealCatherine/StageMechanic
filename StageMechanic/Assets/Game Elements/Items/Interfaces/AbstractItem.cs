@@ -221,6 +221,11 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		return new ItemJsonDelegate(this);
 	}
 
+	public ItemBinaryDelegate GetBinaryDelegate()
+	{
+		return new ItemBinaryDelegate(this);
+	}
+
 
 	#region colliders and triggers
 	public void OnCollisionEnter(Collision collision)

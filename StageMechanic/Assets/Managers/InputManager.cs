@@ -341,19 +341,23 @@ public class InputManager : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition1"))
 		{
-			EventManager.Instance.CreateCathy1PlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			//TODO(ItemManager)
+			//EventManager.Instance.CreateCathy1PlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
 		}
 		else if (Input.GetKeyDown(KeyCode.O) || CnInputManager.GetButtonDown("StartPosition2"))
 		{
-			EventManager.Instance.CreateCathy1PlayerStartLocation(1, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			//TODO(ItemManager)
+			//EventManager.Instance.CreateCathy1PlayerStartLocation(1, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
 		}
 		else if (Input.GetKeyDown(KeyCode.T) || CnInputManager.GetButtonDown("StartPosition3"))
 		{
-			EventManager.Instance.CreateCathy1PlayerStartLocation(2, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			//TODO(ItemManager)
+			//EventManager.Instance.CreateCathy1PlayerStartLocation(2, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
 		}
 		else if(CnInputManager.GetButtonDown("StartPosition4"))
 		{
-			EventManager.Instance.CreatePusherPlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			//TODO(ItemManager)
+			//EventManager.Instance.CreatePusherPlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
 		}
 
 		// Buttons for setting items
@@ -363,7 +367,8 @@ public class InputManager : MonoBehaviour
 			{
 				//TODO use a method of BlockManager to do this
 				Cathy1Block block = BlockManager.ActiveBlock.GetComponent<Cathy1Block>();
-				block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+				//TODO(ItemManager)
+				//block.FirstItem = Instantiate(BlockManager.Instance.StartLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
 				return true;
 			}
 		}
@@ -373,7 +378,8 @@ public class InputManager : MonoBehaviour
 			{
 				//TODO use a method of BlockManager to do this
 				Cathy1Block block = BlockManager.ActiveBlock.GetComponent<Cathy1Block>();
-				block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
+				//TODO(ItemManager)
+				//block.FirstItem = Instantiate(BlockManager.Instance.GoalLocationIndicator, BlockManager.Cursor.transform.position + new Vector3(0, 0.5F, 0), Quaternion.Euler(0, 180, 0)) as GameObject;
 				return true;
 			}
 		}

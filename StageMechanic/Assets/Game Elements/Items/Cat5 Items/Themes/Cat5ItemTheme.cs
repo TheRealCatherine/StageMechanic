@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName ="Cat5ItemTheme",menuName ="Cat5ItemTheme")]
-public class Cat5ItemTheme : AbstractBlockTheme
+[CreateAssetMenu(fileName ="Cat5ItemTheme",menuName ="Cat5 Item Theme")]
+public class Cat5ItemTheme : AbstractItemTheme
 {
 	[Header("Player Start")]
 	public GameObject PlayerStartPlaceholder;

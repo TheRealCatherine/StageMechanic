@@ -118,6 +118,9 @@ public class ItemJsonDelegate
 		int playerNumber = 0;
 		if (_properties.ContainsKey("PlayerNumber"))
 			playerNumber = int.Parse(_properties["PlayerNumber"]);
-		PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(_palette, playerNumber, _pos, rotation);
+		//TODO(ItemManager)
+		ItemManager.CreateItemAt(_pos, "Cat5", "Player Start");
+		//TODO player number
+		//PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(_palette, playerNumber, _pos, rotation);
 	}
 }

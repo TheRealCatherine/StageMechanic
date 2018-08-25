@@ -11,7 +11,7 @@ using System.Runtime.Serialization;
 using UnityEngine;
 
 [Serializable]
-public class EventBinaryDelegate
+public class ItemBinaryDelegate
 {
 
 	public float PositionX;
@@ -21,7 +21,7 @@ public class EventBinaryDelegate
 	public string[] PropertyValues;
 	public string Palette;
 
-	public EventBinaryDelegate(Cat5AbstractItem ev) {
+	public ItemBinaryDelegate(AbstractItem ev) {
 		PositionX = ev.Position.x;
 		PositionY = ev.Position.y;
 		PositionZ = ev.Position.z;

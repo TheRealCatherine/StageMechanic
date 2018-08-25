@@ -175,4 +175,18 @@ public class ItemManager : MonoBehaviour
 
 	#endregion
 
+
+	#region Monobehavior implementations
+
+	private void Awake()
+	{
+		Instance = this;
+	}
+
+	private void Start()
+	{
+		//GetAllItemTypes(); //Cache all palettes and block types
+	}
+	#endregion
+
 }

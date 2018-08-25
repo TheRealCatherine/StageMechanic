@@ -396,7 +396,7 @@ public static class Serializer
 						startBlock = block;
 				}
 				if (startBlock != null)
-					EventManager.Instance.CreateCathy1PlayerStartLocation(i, startBlock.Position, startBlock.Rotation);
+					ItemManager.CreateItemAt(startBlock.Position, "Cat5", "Player Start");
 			}
 		}
 		BlockManager.ResetCursor();

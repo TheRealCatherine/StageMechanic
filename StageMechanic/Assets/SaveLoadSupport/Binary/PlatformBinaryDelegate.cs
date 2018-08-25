@@ -12,7 +12,7 @@ using UnityEngine;
 public class PlatformBinaryDelegate
 {
     public List<BlockBinaryDelegate> Blocks = new List<BlockBinaryDelegate>();
-    public List<EventBinaryDelegate> Events = new List<EventBinaryDelegate>();
+    public List<ItemBinaryDelegate> Items = new List<ItemBinaryDelegate>();
 
     public PlatformBinaryDelegate(GameObject platform)
     {
@@ -21,10 +21,10 @@ public class PlatformBinaryDelegate
             if (child != null)
                 Blocks.Add((child as AbstractBlock).GetBinaryDelegate());
         }
-        foreach (IEvent ev in EventManager.EventList)
+        foreach (IItem child in ItemManager.ItemCache)
         {
-            if (ev != null)
-                Events.Add((ev as Cathy1AbstractEvent).GetBinaryDelegate());
+            if (child != null)
+                Items.Add((child as AbstractItem).GetBinaryDelegate());
         }
     }
 }

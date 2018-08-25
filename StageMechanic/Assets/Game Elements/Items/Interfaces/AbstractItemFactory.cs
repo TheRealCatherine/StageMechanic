@@ -12,5 +12,15 @@ public abstract class AbstractItemFactory : MonoBehaviour, IItemFactory
 	public abstract Sprite IconForType(string name);
 
 	public abstract IItem CreateItem(Vector3 globalPosition, Quaternion globalRotation, string itemTypeName, GameObject parent = null);
-	public abstract IItem CreateItem(string eventTypeName, IBlock parent);
+
+	/// <summary>
+	/// Convenience method that adds an item to a block
+	/// </summary>
+	/// <param name="itemTypeName"></param>
+	/// <param name="parent"></param>
+	/// <returns></returns>
+	public IItem CreateItem(string itemTypeName, IBlock parent)
+	{
+		return CreateItem(parent.Position + Vector3.up, parent.Rotation, itemTypeName, parent.GameObject);
+	}
 }
