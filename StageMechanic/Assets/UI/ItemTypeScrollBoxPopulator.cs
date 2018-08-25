@@ -52,11 +52,11 @@ public class ItemTypeScrollBoxPopulator : MonoBehaviour {
 	void OnBlockClicked()
 	{
 		Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-		foreach(AbstractBlockFactory factory in BlockManager.Instance.BlockFactories)
+		foreach(AbstractItemFactory factory in ItemManager.Instance.ItemFactories)
 		{
-			if (Array.IndexOf(factory.BlockTypeNames, clickedButton.GetComponentInChildren<Text>().text) > -1)
+			if (Array.IndexOf(factory.ItemTypeNames, clickedButton.GetComponentInChildren<Text>().text) > -1)
 			{
-				BlockManager.CreateBlockAtCursor(factory.Name, clickedButton.GetComponentInChildren<Text>().text);
+				ItemManager.CreateItemAtCursor(factory.Name, clickedButton.GetComponentInChildren<Text>().text);
 				return;
 			}
 		}
