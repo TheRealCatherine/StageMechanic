@@ -21,6 +21,7 @@ public class ItemBinaryDelegate
 	public string[] PropertyValues;
 	public string Palette;
 	public string TypeName;
+	public string Name;
 
 	public ItemBinaryDelegate(AbstractItem ev) {
 		PositionX = ev.Position.x;
@@ -31,6 +32,7 @@ public class ItemBinaryDelegate
 		PropertyValues = properties.Values.ToArray();
 		Palette = ev.Palette;
 		TypeName = ev.TypeName;
+		Name = ev.Name;
 	}
 
 	[OnDeserialized]
@@ -41,8 +43,10 @@ public class ItemBinaryDelegate
 		{
 			properties.Add(PropertyKeys[i], PropertyValues[i]);
 		}
-		Quaternion rotation = Quaternion.identity;
-		ItemManager.CreateItemAt(new Vector3(PositionX, PositionY, PositionZ), Palette, TypeName);
+		IItem newItem = ItemManager.CreateItemAt(new Vector3(PositionX, PositionY, PositionZ), Palette, TypeName);
+		newItem.Name = Name;
+		if (properties != null && properties.Count > 0)
+			newItem.Properties = properties;
 	}
 }
 

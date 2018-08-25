@@ -1,0 +1,100 @@
+{
+    "Name": "Stage Collection",
+    "Version": "1.0 Cathy1",
+    "Stages": [
+        {
+            "Name": "Stage",
+            "Platforms": [
+                {
+                    "Name": "Platform",
+                    "Position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "Blocks": [
+                        {
+                            "Name": "e7ddbc92-f2f5-4fc1-bbba-0a8fc78276f8",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "d588ec5b-523c-4ebc-89b6-0ab9adadddec",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 5,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        }
+                    ],
+                    "Items": [
+                        {
+                            "Name": "33472aae-90cc-457d-b91d-be707f720d2b",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": 5,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                },
+                                {
+                                    "Key": "Player Number",
+                                    "Value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e335e1ef-fa0f-4d9a-a2d0-b180f8d0172c",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 2,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        }
+                    ],
+                    "Events": [ ]
+                }
+            ]
+        }
+    ]
+}

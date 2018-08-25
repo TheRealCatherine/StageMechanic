@@ -49,10 +49,9 @@ public class ItemJsonDelegate
 		get
 		{
 			Debug.Assert(Item != null);
-			//TODO(ItemManager)
-			//Cathy1PlayerStartLocation loc = Item as Cathy1PlayerStartLocation;
-			//if (loc != null)
-			//	return loc.Palette;
+			AbstractItem ai = (Item as AbstractItem);
+			if (ai != null)
+				return ai.Palette;
 			return "Item Palette Error";
 		}
 		set
@@ -103,25 +102,15 @@ public class ItemJsonDelegate
 		}
 	}
 
-	//Big TODO
 	[OnDeserialized()]
 	internal void OnDeserialedMethod(StreamingContext context)
 	{
 		Debug.Assert(_name != null);
 		Debug.Assert(_type != null);
-
-		Quaternion rotation = Quaternion.identity;
-		//TODO support different block factories
-		//IEvent newEvent = PlayerManager.Instance.GetComponent<EventManager>().GetComponent<Cathy1EventFactory>().CreateEvent(_pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart);
-		//newEvent.Name = _name;
-		//newEvent.Properties = _properties;
-
-		int playerNumber = 0;
-		if (_properties.ContainsKey("PlayerNumber"))
-			playerNumber = int.Parse(_properties["PlayerNumber"]);
-		//TODO(ItemManager)
-		ItemManager.CreateItemAt(_pos, "Cat5", "Player Start");
-		//TODO player number
-		//PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(_palette, playerNumber, _pos, rotation);
+		Debug.Assert(_palette != null);
+		IItem newItem = ItemManager.CreateItemAt(_pos, _palette, _type);
+		newItem.Name = _name;
+		if (_properties != null && _properties.Count > 0)
+			newItem.Properties = _properties;
 	}
 }

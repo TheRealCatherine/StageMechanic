@@ -85,19 +85,31 @@ public class PlatformJsonDelegate
     }
 
     [DataMember(Name = "Items", Order = 20)]
-    public List<EventJsonDelegate> Items
+    public List<ItemJsonDelegate> Items
     {
-        get
-        {
-            return null;
-        }
-        set
-        {
+		get
+		{
+			Debug.Assert(_platform != null);
+			List<ItemJsonDelegate> ret = new List<ItemJsonDelegate>();
+			foreach (IItem child in ItemManager.ItemCache)
+			{
+				ret.Add(child.GetJsonDelegate());
+			}
+			return ret;
+		}
+		set
+		{
+			Debug.Assert(_platform != null);
+			foreach (ItemJsonDelegate del in value)
+			{
+				//TODO do this in a Deserialzed method but #NotLikeThiiiiiissssss
+				if (del != null && del.Item != null && del.Item.GameObject != null)
+					del.Item.GameObject.transform.parent = _platform.transform;
+			}
+		}
+	}
 
-        }
-    }
-
-    [DataMember(Name = "Events", Order = 30)]
+	[DataMember(Name = "Events", Order = 30)]
     public List<EventJsonDelegate> Events
     {
         get
