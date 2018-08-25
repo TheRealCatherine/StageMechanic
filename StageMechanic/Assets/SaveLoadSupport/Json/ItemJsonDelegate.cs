@@ -49,9 +49,10 @@ public class ItemJsonDelegate
 		get
 		{
 			Debug.Assert(Item != null);
-			Cathy1PlayerStartLocation loc = Item as Cathy1PlayerStartLocation;
-			if (loc != null)
-				return loc.Palette;
+			//TODO(ItemManager)
+			//Cathy1PlayerStartLocation loc = Item as Cathy1PlayerStartLocation;
+			//if (loc != null)
+			//	return loc.Palette;
 			return "Item Palette Error";
 		}
 		set

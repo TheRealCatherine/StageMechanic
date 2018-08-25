@@ -48,9 +48,10 @@ public class EventJsonDelegate {
 		get
 		{
 			Debug.Assert(Event != null);
-			Cathy1PlayerStartLocation loc = Event as Cathy1PlayerStartLocation;
-			if (loc != null)
-				return loc.Palette;
+			//TODO(ItemManager)
+			//Cathy1PlayerStartLocation loc = Event as Cathy1PlayerStartLocation;
+			//if (loc != null)
+			//	return loc.Palette;
 			return "Cathy1 Internal";
 		}
 		set

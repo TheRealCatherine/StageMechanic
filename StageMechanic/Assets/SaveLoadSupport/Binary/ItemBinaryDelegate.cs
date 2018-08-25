@@ -20,6 +20,7 @@ public class ItemBinaryDelegate
 	public string[] PropertyKeys;
 	public string[] PropertyValues;
 	public string Palette;
+	public string TypeName;
 
 	public ItemBinaryDelegate(AbstractItem ev) {
 		PositionX = ev.Position.x;
@@ -28,9 +29,8 @@ public class ItemBinaryDelegate
 		Dictionary<string, string> properties = ev.Properties;
 		PropertyKeys = properties.Keys.ToArray();
 		PropertyValues = properties.Values.ToArray();
-		//Cathy1PlayerStartLocation loc = ev as Cathy1PlayerStartLocation;
-		//if (loc != null)
-		//	Palette = loc.Palette;
+		Palette = ev.Palette;
+		TypeName = ev.TypeName;
 	}
 
 	[OnDeserialized]
@@ -42,13 +42,7 @@ public class ItemBinaryDelegate
 			properties.Add(PropertyKeys[i], PropertyValues[i]);
 		}
 		Quaternion rotation = Quaternion.identity;
-		int playerNumber = 0;
-		if (properties.ContainsKey("PlayerNumber"))
-			playerNumber = int.Parse(properties["PlayerNumber"]);
-		//TODO(ItemManager)
-		ItemManager.CreateItemAt(new Vector3(PositionX, PositionY, PositionZ), "Cat5", "Player Start");
-		//PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(Palette,playerNumber, new Vector3(PositionX, PositionY, PositionZ), rotation);
+		ItemManager.CreateItemAt(new Vector3(PositionX, PositionY, PositionZ), Palette, TypeName);
 	}
-
 }
 
