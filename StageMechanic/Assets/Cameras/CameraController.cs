@@ -119,16 +119,16 @@ public class CameraController : MonoBehaviour
 
     IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
     {
-		if (origin.y == float.NaN || target.y == float.NaN )
-			yield break;
-
         float journey = 0f;
         while (journey <= duration)
         {
             journey = journey + Time.deltaTime;
             float percent = Mathf.Clamp01(journey / duration);
 
-            transform.position = Vector3.Lerp(origin, target, percent);
+			if (origin.y == float.NaN || target.y == float.NaN)
+				yield break;
+
+			transform.position = Vector3.Lerp(origin, target, percent);
 
             yield return null;
         }
