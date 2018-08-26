@@ -41,14 +41,12 @@ public class EventBinaryDelegate
 		{
 			properties.Add(PropertyKeys[i], PropertyValues[i]);
 		}
-		Quaternion rotation = Quaternion.identity;
+
 		int playerNumber = 0;
 		if (properties.ContainsKey("PlayerNumber"))
 			playerNumber = int.Parse(properties["PlayerNumber"]);
-		//TODO(ItemManager)
-		ItemManager.CreateItemAt(new Vector3(PositionX, PositionY, PositionZ), "Cat5", "Player Start");
-		//PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(Palette,playerNumber, new Vector3(PositionX, PositionY, PositionZ), rotation);
+		IItem newItem = ItemManager.CreateItemAt(new Vector3(PositionX, PositionY+0.5f, PositionZ), "Cat5 Internal", "Player Start");
+		(newItem as Cat5PlayerStart).PlayerNumber = playerNumber;
 	}
-
 }
 

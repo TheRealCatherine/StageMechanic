@@ -13,8 +13,9 @@ public class PlatformBinaryDelegate
 {
     public List<BlockBinaryDelegate> Blocks = new List<BlockBinaryDelegate>();
     public List<ItemBinaryDelegate> Items = new List<ItemBinaryDelegate>();
+	public List<EventBinaryDelegate> Events = new List<EventBinaryDelegate>();
 
-    public PlatformBinaryDelegate(GameObject platform)
+	public PlatformBinaryDelegate(GameObject platform)
     {
         foreach (IBlock child in BlockManager.BlockCache)
         {
