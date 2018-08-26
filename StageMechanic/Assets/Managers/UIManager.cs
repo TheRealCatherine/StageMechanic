@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
 	public MainMenu MainMenu;
 	public ScrollRect BlockTypesList;
 	public ScrollRect ItemTypesList;
-	public ScrollRect PlayerStartPositionsList;
 	public BlockEditDialog BlockEditDialog;
 	public GameObject FileBrowserPrefab;
 
@@ -133,7 +132,6 @@ public class UIManager : MonoBehaviour
 			GrabButton.gameObject.SetActive(false);
 		}
 		DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.ActiveBlock != null);
-		PlayerStartPositionsList.gameObject.SetActive(!BlockManager.PlayMode && !MainMenu.isActiveAndEnabled && BlockManager.ActiveBlock != null);
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
 		ItemTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
 		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
