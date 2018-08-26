@@ -2625,7 +2625,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4437946050479458, guid: 0bea0f0e81fafe141b0b4cafd73274c9, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bea0f0e81fafe141b0b4cafd73274c9, type: 2}
@@ -12384,7 +12384,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4050354938408578, guid: 9aa6319075f8543419cfc72c7b5d1df9, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aa6319075f8543419cfc72c7b5d1df9, type: 2}
@@ -14936,7 +14936,7 @@ RectTransform:
   - {fileID: 743947888}
   - {fileID: 1893942553}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19282,7 +19282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0015869141}
+  m_AnchoredPosition: {x: 0, y: 0.0014648438}
   m_SizeDelta: {x: 0, y: -0.23999023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1271506033
@@ -23288,7 +23288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -84.600006, y: -0.00012207031}
+  m_AnchoredPosition: {x: -84.600006, y: 0}
   m_SizeDelta: {x: 164.15, y: -704.9866}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1525216589
@@ -28818,7 +28818,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1919381028
 GameObject:
@@ -30365,9 +30365,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Developer Preview
+  m_Text: 'Prototype 3
 
-    August 2018'
+    September 2018'
 --- !u!222 &2001928057
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32296,7 +32296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 9.985168, y: -4.999878}
+  m_AnchoredPosition: {x: 9.985168, y: -5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090771536
