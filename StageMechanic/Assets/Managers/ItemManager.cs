@@ -141,6 +141,9 @@ public class ItemManager : MonoBehaviour
 		if (palette == "Cathy1 Internal" || palette == "Cathy Internal" || palette == "Cat5 Internal")
 		{
 			GameObject parent = BlockManager.ActiveFloor;
+			AbstractBlock oldBlock = BlockManager.GetBlockNear(position);
+			if (oldBlock != null)
+				BlockManager.DestroyBlock(oldBlock);
 			AbstractBlock blockBelow = BlockManager.GetBlockNear(position + Vector3.down);
 			if (blockBelow != null)
 				parent = blockBelow.GameObject;

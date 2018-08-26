@@ -258,6 +258,11 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		//TODO call OnPlayeContact or OnEnemyContact
 	}
 
+	public void OnDestroy()
+	{
+		ItemManager.ItemCache.Remove(this);
+	}
+
 	public void OnCollisionExit(Collision collision)
 	{
 	}

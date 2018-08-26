@@ -4115,7 +4115,8 @@ Prefab:
       propertyPath: ItemTypesList
       value: 
       objectReference: {fileID: 179590157}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114849282999989606, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &255898422
@@ -23280,7 +23281,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -84.600006, y: -0.00012594982}
+  m_AnchoredPosition: {x: -84.600006, y: -0.00012207031}
   m_SizeDelta: {x: 164.15, y: -704.9866}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1525216589
