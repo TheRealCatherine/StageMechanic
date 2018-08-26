@@ -131,9 +131,13 @@ public class UIManager : MonoBehaviour
 			CursorControls.gameObject.SetActive(false);
 			GrabButton.gameObject.SetActive(false);
 		}
+		if (!BlockManager.PlayMode && !IsAnyInputDialogOpen)
+			ItemTypesList.gameObject.SetActive(BlockManager.GetBlockNear(BlockManager.Cursor.transform.position + Vector3.down) != null);
+		else
+			ItemTypesList.gameObject.SetActive(false);
 		DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.ActiveBlock != null);
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
-		ItemTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
+	
 		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
 
 		//TODO quick fix for Prototype 2 to keep people from doing things with the death dialog open
