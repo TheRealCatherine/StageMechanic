@@ -107,7 +107,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 		set
 		{
-			//TODO if null should parent to the stage
+			if(value == null)
+				GameObject.transform.SetParent(BlockManager.ActiveFloor?.transform, true); 
 			GameObject.transform.SetParent(value?.GameObject?.transform,true);
 		}
 	}
@@ -123,7 +124,9 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		{
 			IBlock block = value as IBlock;
 			if (block == null)
-				throw new HierarchyException("Item parents must be blocks");
+			{
+				OwningBlock = null;
+			}
 			else
 				OwningBlock = block;
 		}

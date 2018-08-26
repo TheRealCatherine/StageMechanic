@@ -140,7 +140,14 @@ public class ItemManager : MonoBehaviour
 		Debug.Assert(BlockManager.Cursor != null);
 		if (palette == "Cathy1 Internal" || palette == "Cathy Internal" || palette == "Cat5 Internal")
 		{
-			Cat5AbstractItem item = Instance.ItemFactories[0].CreateItem(position, BlockManager.Cursor.transform.rotation, type, BlockManager.ActiveFloor) as Cat5AbstractItem;
+			GameObject parent = BlockManager.ActiveFloor;
+			AbstractBlock blockBelow = BlockManager.GetBlockNear(position + Vector3.down);
+			if (blockBelow != null)
+				parent = blockBelow.GameObject;
+
+			AbstractItem item = Instance.ItemFactories[0].CreateItem(position, BlockManager.Cursor.transform.rotation, type, parent) as AbstractItem;
+			if (blockBelow != null)
+				item.OwningBlock = blockBelow;
 			item.Palette = palette;
 			item.gameObject.layer = BlockManager.Instance.Stage.gameObject.layer;
 			ItemCache.Add(item);
