@@ -25,12 +25,12 @@ public class ItemManager : MonoBehaviour
 		return Utility.GetGameObjectNear<AbstractItem>(position, radius);
 	}
 
-	public static List<AbstractItem> GetBlocksNear(Vector3 position, float radius = 0.01f)
+	public static List<AbstractItem> GetItemsNear(Vector3 position, float radius = 0.01f)
 	{
 		return Utility.GetGameObjectsNear<AbstractItem>(position, radius);
 	}
 
-	public static List<IItem> GetBlocksOfType(string type = null)
+	public static List<IItem> GetItemsOfType(string type = null)
 	{
 		List<IItem> ret = new List<IItem>();
 		foreach (Transform child in BlockManager.ActiveFloor.transform)

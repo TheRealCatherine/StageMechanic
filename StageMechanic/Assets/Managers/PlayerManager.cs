@@ -11,8 +11,6 @@ public class PlayerManager : MonoBehaviour {
 
     public GameObject Stage;
 
-	public GameObject[] Prefabs = new GameObject[4];
-
     public static List<IPlayerCharacter> Avatars { get; set; } = new List<IPlayerCharacter>();
     internal static PlayerManager Instance;
 
@@ -38,10 +36,10 @@ public class PlayerManager : MonoBehaviour {
 
     public static int PlayerCount()
     {
-        if (Avatars != null && Avatars.Count > 0)
-            return Avatars.Count;
-		//TODO(ItemManager)
-		return -1;
+		if (Avatars != null && Avatars.Count > 0)
+			return Avatars.Count;
+		else
+			return ItemManager.GetItemsOfType("Player Start").Count;
     }
 
     public static IPlayerCharacter Player(int playerNumber = 0)
@@ -90,11 +88,11 @@ public class PlayerManager : MonoBehaviour {
 
 	public static void InstantiatePlayer( int playerNumber, Vector3 location, GameObject avatarPrefab )
     {
-		if (Avatars.Count == 0)
-			Avatars.Add(Instantiate(avatarPrefab, location, Quaternion.identity, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>());
-		else
-			Avatars[0] = Instantiate(avatarPrefab, location, Quaternion.identity, Instance.Stage.transform).GetComponent<Cathy1PlayerCharacter>();
-        Debug.Log("Spawning player 1 at " + location);
+		Debug.Log("Spawning player 1 at " + location);
+		//TODO support multiplayer
+		if (Avatars.Count > 0)
+			DestroyAllPlayers();
+		Avatars.Add(Instantiate(avatarPrefab, location, Quaternion.identity, Instance.Stage.transform).GetComponent<IPlayerCharacter>());
         Avatars[0].GameObject.layer = BlockManager.Instance.Stage.layer;
         LoadKeybindings(0);
     }
@@ -103,14 +101,6 @@ public class PlayerManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Instance = this;
-	}
-
-	private void Awake()
-	{
-		Prefabs[0] = null;
-		Prefabs[1] = null;
-		Prefabs[2] = null;
-		Prefabs[3] = null;
 	}
 
 	public static Vector3 Player1Location()
