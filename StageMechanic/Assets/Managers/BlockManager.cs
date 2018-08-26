@@ -398,6 +398,10 @@ public class BlockManager : MonoBehaviour
 				Destroy(ActiveBlock.gameObject);
 			Serializer.AutoSave();
 		}
+		else if(ItemManager.ActiveItem != null)
+		{
+			ItemManager.DestroyItem(ItemManager.ActiveItem);
+		}
 	}
 
 	public static AbstractBlock GetBlockAt(Vector3 position, float radius = 0.01f, float minDensity = 1f)
