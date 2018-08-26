@@ -75,6 +75,11 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
 		get; set;
 	}
 
+	public IItem Item
+	{
+		get; set;
+	}
+
     public virtual Dictionary<string, string> Properties
     {
         get
@@ -179,4 +184,12 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
         }
         return true;
     }
+
+	public virtual bool UseItem()
+	{
+		if (Item == null)
+			return false;
+		Item.OnPlayerActivate(this);
+		return true;
+	}
 }

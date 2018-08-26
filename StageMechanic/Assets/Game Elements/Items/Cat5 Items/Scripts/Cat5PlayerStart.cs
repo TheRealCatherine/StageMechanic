@@ -11,6 +11,33 @@ public class Cat5PlayerStart : Cat5AbstractItem {
 
 	public int PlayerNumber = 1;
 
+	public override bool Usable
+	{
+		get
+		{
+			return false;
+		}
+
+		set
+		{
+			base.Usable = value;
+		}
+	}
+
+	public override bool Collectable
+	{
+		get
+		{
+			return false;
+		}
+
+		set
+		{
+			base.Collectable = value;
+		}
+	}
+
+
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
 		Debug.Assert(theme.PlayerStartPlaceholder != null);

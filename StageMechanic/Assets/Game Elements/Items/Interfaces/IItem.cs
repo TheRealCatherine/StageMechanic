@@ -49,6 +49,11 @@ public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 	bool Collectable { get; set; }
 
 	/// <summary>
+	/// Determines if the player can use this item from inventory
+	/// </summary>
+	bool Usable { get; set; }
+
+	/// <summary>
 	/// Determines if this should be treated as a normal item, or if this is
 	/// a special locaion.
 	/// </summary>
@@ -58,6 +63,12 @@ public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
     /// How much score should the player gain or lose by making contact this item?
     /// </summary>
     int Score { get; set; }
+
+	/// <summary>
+	/// Method to be called when a player activates the item from their inventory
+	/// </summary>
+	/// <param name="player"></param>
+	void OnPlayerActivate(IPlayerCharacter player);
 
 	/// <summary>
 	/// Method to be called when a player makes contact with this item

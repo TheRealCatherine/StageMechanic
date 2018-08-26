@@ -8,6 +8,19 @@ using UnityEngine;
 
 public class Cat5Coin : Cat5AbstractItem {
 
+	public override bool Usable
+	{
+		get
+		{
+			return false;
+		}
+
+		set
+		{
+			base.Usable = value;
+		}
+	}
+
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
 		Debug.Assert(theme.CoinPlaceholder != null);

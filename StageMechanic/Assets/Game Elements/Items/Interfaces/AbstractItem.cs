@@ -162,6 +162,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
 			ret.Add("Owning Block", new DefaultValue { TypeInfo = typeof(string), Value = "" });
 			ret.Add("Collectable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
+			ret.Add("Usable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
 			ret.Add("Trigger", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
 			ret.Add("Score", new DefaultValue { TypeInfo = typeof(int), Value = "0" });
 			return ret;
@@ -177,6 +178,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 				ret.Add("Owning Block", OwningBlock.Name);
 			if (Collectable != true)
 				ret.Add("Collectable", "False");
+			if (Usable != true)
+				ret.Add("Usable", "False");
 			if (Trigger != false)
 				ret.Add("Trigger", "True");
 			if (Score != 0)
@@ -190,6 +193,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 				OwningBlock = GameObject.Find(value["Owning Block"]).GetComponent<IBlock>();
 			if (value.ContainsKey("Collectable"))
 				Collectable = bool.Parse(value["Collectable"]);
+			if (value.ContainsKey("Usable"))
+				Usable = bool.Parse(value["Usable"]);
 			if (value.ContainsKey("Trigger"))
 				Trigger = bool.Parse(value["Trigger"]);
 			if (value.ContainsKey("Score"))
@@ -198,6 +203,12 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	}
 
 	public virtual bool Collectable
+	{
+		get;
+		set;
+	} = true;
+
+	public virtual bool Usable
 	{
 		get;
 		set;
@@ -283,10 +294,23 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		if(asPlayer != null)
 		{
 			OnPlayerContact(asPlayer);
+			//TODO support non-collectable usable items
 			if (Collectable)
-				ItemManager.DestroyItem(this);
+			{
+				if (Usable)
+				{
+					OwningBlock = null;
+					GameObject.transform.SetParent(asPlayer.GameObject.transform);
+					asPlayer.Item = this;
+				}
+			}
 			return;
 		}
+	}
+
+	public virtual void OnPlayerActivate(IPlayerCharacter player)
+	{
+		ItemManager.DestroyItem(this);
 	}
 
 	public virtual void OnBlockDestroyed()

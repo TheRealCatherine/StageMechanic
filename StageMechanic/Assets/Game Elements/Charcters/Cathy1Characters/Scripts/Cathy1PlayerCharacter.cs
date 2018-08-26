@@ -769,6 +769,12 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		{
 			return QueueMove(Vector3.right, pushpull);
 		}
+		else if(inputNames.Contains("Item"))
+		{
+			if (UseItem())
+				return 0.8f;
+			return 0f;
+		}
 
 		return expectedTime;
 	}

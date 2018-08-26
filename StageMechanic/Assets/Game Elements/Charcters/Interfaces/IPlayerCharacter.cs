@@ -17,6 +17,10 @@ public interface IPlayerCharacter {
 
     Vector3 FacingDirection { get; set; }
 
+	int Score { get; set; }
+
+	IItem Item { get; set; }
+
     List<string> StateNames { get; }
 
     int CurrentStateIndex { get; set; }
@@ -42,4 +46,6 @@ public interface IPlayerCharacter {
     bool TurnRight();
 
     bool TakeDamage(float amount = float.PositiveInfinity, string type = null);
+
+	bool UseItem();
 }
