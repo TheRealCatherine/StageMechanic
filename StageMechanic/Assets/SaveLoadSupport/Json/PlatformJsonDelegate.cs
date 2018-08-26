@@ -100,11 +100,14 @@ public class PlatformJsonDelegate
 		set
 		{
 			Debug.Assert(_platform != null);
-			foreach (ItemJsonDelegate del in value)
+			if (value != null)
 			{
-				//TODO do this in a Deserialzed method but #NotLikeThiiiiiissssss
-				if (del != null && del.Item != null && del.Item.GameObject != null)
-					del.Item.GameObject.transform.parent = _platform.transform;
+				foreach (ItemJsonDelegate del in value)
+				{
+					//TODO do this in a Deserialzed method but #NotLikeThiiiiiissssss
+					if (del != null && del.Item != null && del.Item.GameObject != null)
+						del.Item.GameObject.transform.parent = _platform.transform;
+				}
 			}
 		}
 	}
@@ -116,11 +119,6 @@ public class PlatformJsonDelegate
         {
             Debug.Assert(_platform != null);
             List<EventJsonDelegate> ret = new List<EventJsonDelegate>();
-            /*foreach (IEvent ev in EventManager.EventList)
-            {
-                if (ev != null)
-                    ret.Add(ev.GetJsonDelegate());
-            }*/
             return ret;
         }
         set

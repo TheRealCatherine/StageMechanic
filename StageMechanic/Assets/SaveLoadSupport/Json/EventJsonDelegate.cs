@@ -107,21 +107,12 @@ public class EventJsonDelegate {
 	{
 		Debug.Assert(_name != null);
 		Debug.Assert(_type != null);
-
-		//if (_properties.ContainsKey("Rotation"))
-		//Quaternion rotation = Utility.StringToQuaternion(value["Rotation"]);
-		//else
-		Quaternion rotation = Quaternion.identity;
-		//TODO support different block factories
-		//IEvent newEvent = PlayerManager.Instance.GetComponent<EventManager>().GetComponent<Cathy1EventFactory>().CreateEvent(_pos, rotation, Cathy1AbstractEvent.EventType.PlayerStart);
-		//newEvent.Name = _name;
-		//newEvent.Properties = _properties;
-
+		
 		int playerNumber = 0;
 		if (_properties.ContainsKey("PlayerNumber"))
 			playerNumber = int.Parse(_properties["PlayerNumber"]);
-		ItemManager.CreateItemAt(_pos, "Cat5", "Player Start");
-		//TODO player number
-		//PlayerManager.Instance.GetComponent<EventManager>().CreatePlayerStartLocation(_palette,playerNumber, _pos, rotation);
+		IItem newItem = ItemManager.CreateItemAt(_pos+new Vector3(0,0.5f,0), "Cat5 Internal", "Player Start");
+		newItem.Name = _name;
+		(newItem as Cat5PlayerStart).PlayerNumber = playerNumber;
 	}
 }
