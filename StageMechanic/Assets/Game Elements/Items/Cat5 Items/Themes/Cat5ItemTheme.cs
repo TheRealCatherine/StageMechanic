@@ -56,12 +56,15 @@ public class Cat5ItemTheme : AbstractItemTheme
 	public GameObject SpecialCollectableObject3;
 	public Sprite SpecialCollectableIcon;
 
-	[Header("Create Blocks")]
-	public GameObject CreateBlocksPlaceholder;
+	[Header("Create Basic Blocks")]
+	public GameObject CreateBasicBlocksPlaceholder;
 	public GameObject CreateBasicBlockObject;
+	public Sprite CreateBasicBlocksIcon;
+
+	[Header("Create Immobile Blocks")]
+	public GameObject CreateImmobileBlocksPlaceholder;
 	public GameObject CreateImmobileBlockObject;
-	public GameObject CreateFloorBlocksObject;
-	public Sprite CreateBlocksIcon;
+	public Sprite CreateImmobileBlocksIcon;
 
 	[Header("Enemy Removal")]
 	public GameObject EnemyRemovalPlaceholder;

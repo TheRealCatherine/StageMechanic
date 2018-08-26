@@ -94,9 +94,13 @@ public class Cat5ItemFactory : AbstractItemFactory {
 				if (CurrentTheme.SpecialCollectableIcon != null)
 					return CurrentTheme.SpecialCollectableIcon;
 				break;
-			case "Create Blocks":
-				if (CurrentTheme.CreateBlocksIcon != null)
-					return CurrentTheme.CreateBlocksIcon;
+			case "Create Basic Blocks":
+				if (CurrentTheme.CreateBasicBlocksIcon != null)
+					return CurrentTheme.CreateBasicBlocksIcon;
+				break;
+			case "Create Immobile Blocks":
+				if (CurrentTheme.CreateImmobileBlocksIcon != null)
+					return CurrentTheme.CreateImmobileBlocksIcon;
 				break;
 			case "Remove Enemies":
 				if (CurrentTheme.EnemyRemovalIcon != null)

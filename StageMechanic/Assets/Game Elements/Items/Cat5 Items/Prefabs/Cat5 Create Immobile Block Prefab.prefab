@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65587287809565212}
   - component: {fileID: 114302612947263146}
   m_Layer: 0
-  m_Name: Cat5 Create Basic Block Prefab
+  m_Name: Cat5 Create Immobile Block Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,6 +88,6 @@ MonoBehaviour:
   Model4: {fileID: 0}
   CurrentModel: {fileID: 0}
   CurrentModelNumber: 0
-  TypeOfItem: Create Basic Blocks
+  TypeOfItem: Create Immobile Blocks
   BlockPalette: Cat5 Internal
-  BlockType: Basic
+  BlockType: Immobile

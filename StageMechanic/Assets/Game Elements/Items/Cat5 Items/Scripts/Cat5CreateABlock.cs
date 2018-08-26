@@ -14,11 +14,18 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
-		Debug.Assert(theme.CreateBlocksPlaceholder != null);
-		Model1 = theme.CreateBlocksPlaceholder;
-		Model2 = theme.CreateBasicBlockObject;
-		Model3 = theme.CreateImmobileBlockObject;
-		Model4 = theme.CreateFloorBlocksObject;
+		if (BlockType == "Basic")
+		{
+			Debug.Assert(theme.CreateBasicBlocksPlaceholder != null);
+			Model1 = theme.CreateBasicBlocksPlaceholder;
+			Model2 = theme.CreateBasicBlockObject;
+		}
+		else
+		{
+			Debug.Assert(theme.CreateImmobileBlocksPlaceholder != null);
+			Model1 = theme.CreateImmobileBlocksPlaceholder;
+			Model2 = theme.CreateImmobileBlockObject;
+		}
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties
@@ -56,5 +63,13 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
 		BlockManager.CreateBlockAt(player.Position + player.FacingDirection, BlockPalette, BlockType);
+	}
+
+	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
+	{
+		if (newMode == GameManager.GameMode.StageEdit)
+			ShowModel(1);
+		else if (newMode == GameManager.GameMode.Play)
+			ShowModel(2);
 	}
 }
