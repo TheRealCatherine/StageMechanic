@@ -90,11 +90,12 @@ public class PlayerManager : MonoBehaviour {
     {
 		Debug.Log("Spawning player 1 at " + location);
 		//TODO support multiplayer
-		if (Avatars.Count > 0)
-			DestroyAllPlayers();
-		Avatars.Add(Instantiate(avatarPrefab, location, Quaternion.identity, Instance.Stage.transform).GetComponent<IPlayerCharacter>());
-        Avatars[0].GameObject.layer = BlockManager.Instance.Stage.layer;
-        LoadKeybindings(0);
+		if (Avatars.Count == 0)
+		{
+			Avatars.Add(Instantiate(avatarPrefab, location, Quaternion.identity, Instance.Stage.transform).GetComponent<IPlayerCharacter>());
+			Avatars[0].GameObject.layer = BlockManager.Instance.Stage.layer;
+			LoadKeybindings(0);
+		}
     }
 
 
@@ -105,7 +106,7 @@ public class PlayerManager : MonoBehaviour {
 
 	/// <summary>
 	/// If Player 1 is instantiated, returns their position otherwise
-	/// returns a vector3 consisting of float.NaN
+	/// returns a vector
 	/// </summary>
 	/// <returns></returns>
 	public static Vector3 Player1Location()
@@ -125,8 +126,7 @@ public class PlayerManager : MonoBehaviour {
 
     public static void SetPlayer1FacingDirection(Vector3 direction)
     {
-		//TODO this should be an assert but it fails when undoing from the death dialog, this is a temporaty fix for Prototype 2
-        if(Avatars.Count > 0 && Avatars[0] != null && Avatars[0].GameObject != null && Avatars[0].GameObject.activeInHierarchy)
+        if(Avatars.Count > 0 && Avatars[0] != null && Avatars[0].GameObject != null)
 			Avatars[0].FacingDirection = direction;
     }
 
@@ -150,8 +150,7 @@ public class PlayerManager : MonoBehaviour {
 
     public static void SetPlayer1State(int state)
     {
-		//TODO this should be an assert but it fails when undoing from the death dialog, this is a temporaty fix for Prototype 2
-		if (Avatars.Count > 0 && Avatars[0] != null && Avatars[0].GameObject != null && Avatars[0].GameObject.activeInHierarchy)
+		if (Avatars.Count > 0 && Avatars[0] != null && Avatars[0].GameObject != null)
             Avatars[0].CurrentStateIndex = state;
     }
 

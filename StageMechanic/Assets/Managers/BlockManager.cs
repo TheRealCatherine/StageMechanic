@@ -49,6 +49,7 @@ public class BlockManager : MonoBehaviour
 	/// </summary>
 	/// TODO Combine this with the PlayMode property and move it to GameManager class
 	/// TODO change the way the button mapping box behaves
+	/// TODO use GameManager class
 	public void TogglePlayMode()
 	{
 		PlayMode = !PlayMode;
@@ -68,14 +69,14 @@ public class BlockManager : MonoBehaviour
 					Serializer.ReloadStartState();
 			} else {
 				Vector3 pos = PlayerManager.Player1Location();
-				if (pos.x == -255 && pos.y == -255 && pos.z == -255) {
+				if (pos.x == float.NaN || pos.y == float.NaN || pos.z == float.NaN) {
 					// No player found
 				} else {
 					pos.y -= 0.5f;
-					ItemManager.CreateItemAt(pos, "Cat5", "Player Start");
+					//TODO support multiplayer
+					ItemManager.CreateItemAt(pos, "Cat5 Internal", "Player Start");
 				}	
 			}
-			//UIManager.Instance.BlockInfoBox.gameObject.SetActive(true);
 			VisualEffectsManager.EnableFog(false);
 			ResetCursor();
 		}
