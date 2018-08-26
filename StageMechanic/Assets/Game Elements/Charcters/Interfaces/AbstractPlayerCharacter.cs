@@ -190,6 +190,11 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
 		if (Item == null)
 			return false;
 		Item.OnPlayerActivate(this);
+		if(--Item.Uses < 1)
+		{
+			ItemManager.DestroyItem(Item);
+			Item = null;
+		}
 		return true;
 	}
 }

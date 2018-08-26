@@ -11,16 +11,16 @@ public class Cat5PlayerStart : Cat5AbstractItem {
 
 	public int PlayerNumber = 1;
 
-	public override bool Usable
+	public override int Uses
 	{
 		get
 		{
-			return false;
+			return 0;
 		}
 
 		set
 		{
-			base.Usable = value;
+			base.Uses = value;
 		}
 	}
 

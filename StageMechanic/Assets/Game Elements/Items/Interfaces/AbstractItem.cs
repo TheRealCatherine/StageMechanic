@@ -11,7 +11,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public abstract class AbstractItem : MonoBehaviour, IItem
 {
-	public Sprite Icon;
 	public string Palette;
 	public GameManager.GameMode CurrentMode = GameManager.GameMode.Initialize;
 
@@ -162,7 +161,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
 			ret.Add("Owning Block", new DefaultValue { TypeInfo = typeof(string), Value = "" });
 			ret.Add("Collectable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
-			ret.Add("Usable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
+			ret.Add("Uses", new DefaultValue { TypeInfo = typeof(int), Value = "1" });
 			ret.Add("Trigger", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
 			ret.Add("Score", new DefaultValue { TypeInfo = typeof(int), Value = "0" });
 			return ret;
@@ -178,8 +177,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 				ret.Add("Owning Block", OwningBlock.Name);
 			if (Collectable != true)
 				ret.Add("Collectable", "False");
-			if (Usable != true)
-				ret.Add("Usable", "False");
+			if (Uses != 1)
+				ret.Add("Uses", Uses.ToString());
 			if (Trigger != false)
 				ret.Add("Trigger", "True");
 			if (Score != 0)
@@ -193,12 +192,20 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 				OwningBlock = GameObject.Find(value["Owning Block"]).GetComponent<IBlock>();
 			if (value.ContainsKey("Collectable"))
 				Collectable = bool.Parse(value["Collectable"]);
-			if (value.ContainsKey("Usable"))
-				Usable = bool.Parse(value["Usable"]);
+			if (value.ContainsKey("Uses"))
+				Uses = int.Parse(value["Uses"]);
 			if (value.ContainsKey("Trigger"))
 				Trigger = bool.Parse(value["Trigger"]);
 			if (value.ContainsKey("Score"))
 				Score = int.Parse(value["Score"]);
+		}
+	}
+
+	public Sprite Icon
+	{
+		get
+		{
+			return ItemManager.Instance.ItemFactories[ItemManager.ItemFactoryIndex(Palette)].IconForType(TypeName);
 		}
 	}
 
@@ -208,11 +215,11 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		set;
 	} = true;
 
-	public virtual bool Usable
+	public virtual int Uses
 	{
 		get;
 		set;
-	} = true;
+	} = 1;
 
 	public virtual bool Trigger
 	{
@@ -297,11 +304,16 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			//TODO support non-collectable usable items
 			if (Collectable)
 			{
-				if (Usable)
+				if (Uses > 0)
 				{
 					OwningBlock = null;
 					GameObject.transform.SetParent(asPlayer.GameObject.transform);
 					asPlayer.Item = this;
+					GameObject.SetActive(false);
+				}
+				else
+				{
+					ItemManager.DestroyItem(this);
 				}
 			}
 			return;
@@ -310,7 +322,6 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 
 	public virtual void OnPlayerActivate(IPlayerCharacter player)
 	{
-		ItemManager.DestroyItem(this);
 	}
 
 	public virtual void OnBlockDestroyed()

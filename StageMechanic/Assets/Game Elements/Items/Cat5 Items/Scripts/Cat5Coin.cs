@@ -8,16 +8,16 @@ using UnityEngine;
 
 public class Cat5Coin : Cat5AbstractItem {
 
-	public override bool Usable
+	public override int Uses
 	{
 		get
 		{
-			return false;
+			return 0;
 		}
 
 		set
 		{
-			base.Usable = value;
+			base.Uses = value;
 		}
 	}
 

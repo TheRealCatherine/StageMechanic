@@ -19,7 +19,6 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
-		Debug.Log("Activate");
-		base.OnPlayerActivate(player);
+		BlockManager.CreateBlockAt(player.Position + player.FacingDirection, "Cathy1 Internal", "Basic");
 	}
 }

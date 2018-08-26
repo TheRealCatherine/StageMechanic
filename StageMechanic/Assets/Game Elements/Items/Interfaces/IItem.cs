@@ -42,6 +42,8 @@ public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 
 	ItemJsonDelegate GetJsonDelegate();
 
+	Sprite Icon { get; }
+
 	/// <summary>
 	/// Determines if the player can collect this item or if it should remain
 	/// after the player makes contact with it.
@@ -49,9 +51,9 @@ public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 	bool Collectable { get; set; }
 
 	/// <summary>
-	/// Determines if the player can use this item from inventory
+	/// Number of times item can be used
 	/// </summary>
-	bool Usable { get; set; }
+	int Uses { get; set; }
 
 	/// <summary>
 	/// Determines if this should be treated as a normal item, or if this is

@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
 	public Toggle BinaryFormat;
 
 	public GameObject UndoButton;
+	public Button Player1ItemButton;
 
 	//TODO Singleton flame war
 	public static UIManager Instance;
@@ -139,6 +140,8 @@ public class UIManager : MonoBehaviour
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
 	
 		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
+		Player1ItemButton.image.sprite = PlayerManager.Player(0)?.Item?.Icon;
+		Player1ItemButton.gameObject.SetActive(BlockManager.PlayMode && PlayerManager.Player(0) != null && PlayerManager.Player(0).Item != null && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
 
 		//TODO quick fix for Prototype 2 to keep people from doing things with the death dialog open
 		if (MainmenuButton != null)
