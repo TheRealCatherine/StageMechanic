@@ -119,6 +119,9 @@ public class CameraController : MonoBehaviour
 
     IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
     {
+		if (origin.y == float.NaN || target.y == float.NaN )
+			yield break;
+
         float journey = 0f;
         while (journey <= duration)
         {
