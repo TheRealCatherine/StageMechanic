@@ -6,19 +6,15 @@
  */
 using System.Collections;
 using UnityEngine;
-using UnityEngine.PostProcessing;
 using UnityEngine.Rendering.PostProcessing;
 
 public class VisualEffectsManager : MonoBehaviour {
 
     public static VisualEffectsManager Instance;
-    public PostProcessingBehaviour PostProcessor;
-    public PostProcessingProfile DefaultProfile;
-    public PostProcessingProfile MotionDebutProfile;
     public PostProcessLayer MainStageProcessLayer;
     public ParticleSystem Fog;
 	public GameObject Clouds;
-
+	public Camera Camera;
 
     private void Awake()
     {
@@ -28,7 +24,6 @@ public class VisualEffectsManager : MonoBehaviour {
     private void Start()
     {
         EnablePostProcessing(PlayerPrefs.GetInt("PostProcessing", 1) == 1);
-        EnableMotionDebug(PlayerPrefs.GetInt("MotionDebug", 0) == 1);
     }
 
     private IEnumerator _particleAnimationHelper(Vector3 position, ParticleSystem animationPrefab, float scale, float duration, Quaternion rotation)
@@ -79,17 +74,5 @@ public class VisualEffectsManager : MonoBehaviour {
 			process = false;
 
 		Instance.MainStageProcessLayer.enabled = process;
-        Instance.PostProcessor.enabled = process;
-    }
-
-    public static void EnableMotionDebug(bool show)
-    {
-		if (Application.platform == RuntimePlatform.Android)
-			show = false;
-
-		if (show)
-            Instance.PostProcessor.profile = Instance.MotionDebutProfile;
-        else
-            Instance.PostProcessor.profile = Instance.DefaultProfile;
     }
 }
