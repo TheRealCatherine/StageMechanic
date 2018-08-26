@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -86,8 +86,8 @@ MonoBehaviour:
   LaserEffect: {fileID: 198791669883805994, guid: 6030382a736e45748b2bd7d453f425c3,
     type: 2}
   LaserEffectOffset: {x: 0, y: 0, z: 0}
-  LaserWarningSound: {fileID: 0}
-  LaserFireSound: {fileID: 0}
+  LaserWarningSound: {fileID: 8300000, guid: f1949564f841eb246b000c808c1a51f2, type: 3}
+  LaserFireSound: {fileID: 8300000, guid: ad0850322fe8c3b44876aac79d2f4270, type: 3}
   DisablingLaserSound: {fileID: 0}
   LaserIcon: {fileID: 21300000, guid: e741d2e1ac396fc44b60f05b3eaac3d8, type: 3}
   ActiveMonster: {fileID: 1460605985050940, guid: 6d6764fb963b5a64088cf0a170d6cc70,
@@ -127,7 +127,7 @@ MonoBehaviour:
   SpringIcon: {fileID: 21300000, guid: 0ab55bb61dc67d34d91f9f1c4f2f85ff, type: 3}
   IdleVortex: {fileID: 1133364212541424, guid: 8a6464b47c47db347ac112fefecf7a2e, type: 2}
   ActiveVortex: {fileID: 0}
-  ActiveVortexSound: {fileID: 0}
+  ActiveVortexSound: {fileID: 8300000, guid: 10175e9188556dc418b39634e6d58666, type: 3}
   RandomVortexEffect: {fileID: 0}
   ActiveVortexEffect: {fileID: 0}
   VortexEffectOffset: {x: 0, y: 0, z: 0}
