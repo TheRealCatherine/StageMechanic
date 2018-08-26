@@ -69,7 +69,7 @@ public class BlockManager : MonoBehaviour
 					Serializer.ReloadStartState();
 			} else {
 				Vector3 pos = PlayerManager.Player1Location();
-				if (pos.x == float.NaN || pos.y == float.NaN || pos.z == float.NaN) {
+				if (!pos.IsValid()) {
 					// No player found
 				} else {
 					pos.y -= 0.5f;

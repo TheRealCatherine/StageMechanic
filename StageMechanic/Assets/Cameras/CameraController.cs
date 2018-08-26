@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
 
 			if (UIManager.MinimizePanning)
 			{
-				if (player1pos != new Vector3(float.NaN, float.NaN, float.NaN))
+				if (player1pos.IsValid())
 				{
 					//TODO make a function to calculate these instead of hardcoding values
 					float xPos = 0f;
@@ -124,11 +124,9 @@ public class CameraController : MonoBehaviour
         {
             journey = journey + Time.deltaTime;
             float percent = Mathf.Clamp01(journey / duration);
-
-			if (origin.y == float.NaN || target.y == float.NaN)
-				yield break;
-
-			transform.position = Vector3.Lerp(origin, target, percent);
+			
+			if(origin.IsValid() && target.IsValid())
+				transform.position = Vector3.Lerp(origin, target, percent);
 
             yield return null;
         }

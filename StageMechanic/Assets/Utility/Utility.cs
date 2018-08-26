@@ -59,6 +59,11 @@ public static class Utility
         return new Vector3((float)Math.Round(vector.x, places), (float)Math.Round(vector.y, places), (float)Math.Round(vector.z, places));
     }
 
+	public static bool IsValid(this Vector3 vector)
+	{
+		return !(float.IsNaN(vector.x) || float.IsNaN(vector.y) || float.IsNaN(vector.z));
+	}
+
     public static void AddIfNotNull<T>(this IList<T> list, T value)
     {
         if ((object)value != null)
