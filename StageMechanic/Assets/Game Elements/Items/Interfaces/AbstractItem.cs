@@ -159,6 +159,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
 			ret.Add("Owning Block", new DefaultValue { TypeInfo = typeof(string), Value = "" });
 			ret.Add("Collectable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
+			ret.Add("Trigger", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
 			ret.Add("Score", new DefaultValue { TypeInfo = typeof(int), Value = "0" });
 			return ret;
 		}
@@ -173,6 +174,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 				ret.Add("Owning Block", OwningBlock.Name);
 			if (Collectable != true)
 				ret.Add("Collectable", "False");
+			if (Trigger != false)
+				ret.Add("Trigger", "True");
 			if (Score != 0)
 				ret.Add("Score", Score.ToString());
 			return ret;
@@ -184,6 +187,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 				OwningBlock = GameObject.Find(value["Owning Block"]).GetComponent<IBlock>();
 			if (value.ContainsKey("Collectable"))
 				Collectable = bool.Parse(value["Collectable"]);
+			if (value.ContainsKey("Trigger"))
+				Trigger = bool.Parse(value["Trigger"]);
 			if (value.ContainsKey("Score"))
 				Score = int.Parse(value["Score"]);
 		}
@@ -194,6 +199,12 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		get;
 		set;
 	} = true;
+
+	public virtual bool Trigger
+	{
+		get;
+		set;
+	} = false;
 
 	public virtual int Score
 	{
@@ -246,6 +257,28 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 
 	public void OnCollisionExit(Collision collision)
 	{
+	}
+
+	public void OnTriggerEnter(Collider other)
+	{
+		if (!Trigger)
+		{
+			IBlock asBlock = other.GetComponent<IBlock>();
+			if (asBlock != null)
+			{
+				ItemManager.DestroyItem(this);
+				return;
+			}
+		}
+
+		IPlayerCharacter asPlayer = other.GetComponent<IPlayerCharacter>();
+		if(asPlayer != null)
+		{
+			OnPlayerContact(asPlayer);
+			if (Collectable)
+				ItemManager.DestroyItem(this);
+			return;
+		}
 	}
 
 	public virtual void OnBlockDestroyed()

@@ -10,14 +10,14 @@ using UnityEngine;
 
 public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 {
-    /// <summary>
-    /// A string representation of the type of item. Note that this is
-    /// used in save files and other places as well as UI. 
-    /// </summary>
-    string TypeName
-    {
-        get;
-    }
+	/// <summary>
+	/// A string representation of the type of item. Note that this is
+	/// used in save files and other places as well as UI. 
+	/// </summary>
+	string TypeName
+	{
+		get;
+	}
 
 	/// <summary>
 	/// Items may be owned by a block. In this case their position should be relative to the block
@@ -47,6 +47,12 @@ public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 	/// after the player makes contact with it.
 	/// </summary>
 	bool Collectable { get; set; }
+
+	/// <summary>
+	/// Determines if this should be treated as a normal item, or if this is
+	/// a special locaion.
+	/// </summary>
+	bool Trigger { get; set; }
 
     /// <summary>
     /// How much score should the player gain or lose by making contact this item?
