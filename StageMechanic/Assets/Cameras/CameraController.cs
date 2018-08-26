@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
 
 			if (UIManager.MinimizePanning)
 			{
-				if (player1pos != new Vector3(-255, -255, -255))
+				if (player1pos != new Vector3(float.NaN, float.NaN, float.NaN))
 				{
 					//TODO make a function to calculate these instead of hardcoding values
 					float xPos = 0f;

@@ -103,14 +103,18 @@ public class PlayerManager : MonoBehaviour {
         Instance = this;
 	}
 
+	/// <summary>
+	/// If Player 1 is instantiated, returns their position otherwise
+	/// returns a vector3 consisting of float.NaN
+	/// </summary>
+	/// <returns></returns>
 	public static Vector3 Player1Location()
     {
         if(Avatars.Count>0 && Avatars[0] != null)
         {
             return Avatars[0].GameObject.transform.position;
         }
-        //TODO not do it this way
-        return new Vector3(-255, -255, -255);
+        return new Vector3(float.NaN, float.NaN, float.NaN);
     }
 
     public static Vector3 Player1FacingDirection()
