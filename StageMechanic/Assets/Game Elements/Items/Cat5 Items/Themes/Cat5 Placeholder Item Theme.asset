@@ -75,9 +75,11 @@ MonoBehaviour:
     type: 2}
   CreateImmobileBlocksIcon: {fileID: 21300000, guid: 2eddab649fd595144a18113700036d3a,
     type: 3}
-  EnemyRemovalPlaceholder: {fileID: 0}
-  EnemyRemovalObject: {fileID: 0}
-  EnemyRemovalIcon: {fileID: 0}
+  EnemyRemovalPlaceholder: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba,
+    type: 2}
+  EnemyRemovalObject: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba,
+    type: 2}
+  EnemyRemovalIcon: {fileID: 21300000, guid: bd5a47d8b521e5b4b806ef8f3199ec8e, type: 3}
   OneUpPlaceholder: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba,
     type: 2}
   OneUpObject: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba,
@@ -88,10 +90,10 @@ MonoBehaviour:
   XFactorObject: {fileID: 1911291460579398, guid: 738408a7145f67546bb3c2b8f75b5440,
     type: 2}
   XFactorIcon: {fileID: 21300000, guid: 813b99752d8dd134abfebf33e4ffa346, type: 3}
-  SpecialBlockRemoverPlaceholder: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba,
-    type: 2}
-  SpecialBlockRemoverObject: {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba,
-    type: 2}
+  SpecialBlockRemoverPlaceholder: {fileID: 100002, guid: 6a7ad401077b44b4493e6c666c341c69,
+    type: 3}
+  SpecialBlockRemoverObject: {fileID: 100002, guid: 6a7ad401077b44b4493e6c666c341c69,
+    type: 3}
   SpecialBlockRemoverIcon: {fileID: 21300000, guid: 019ff3e6ca645c24491a0d14ae1e9b97,
     type: 3}
   StopwatchPlaceholder: {fileID: 0}

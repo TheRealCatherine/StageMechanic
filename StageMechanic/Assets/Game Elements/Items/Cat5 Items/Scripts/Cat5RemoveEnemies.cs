@@ -7,15 +7,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cat5TurnBlocksBasic : Cat5AbstractItem {
+public class Cat5RemoveEnemies : Cat5AbstractItem {
 
 	public float Radius = 10f;
 
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
-		Debug.Assert(theme.SpecialBlockRemoverPlaceholder != null);
-		Model1 = theme.SpecialBlockRemoverPlaceholder;
-		Model2 = theme.SpecialBlockRemoverObject;
+		Debug.Assert(theme.EnemyRemovalPlaceholder != null);
+		Model1 = theme.EnemyRemovalPlaceholder;
+		Model2 = theme.EnemyRemovalObject;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties
@@ -51,14 +51,12 @@ public class Cat5TurnBlocksBasic : Cat5AbstractItem {
 		List<Vector3> locations = new List<Vector3>();
 		foreach(AbstractBlock block in BlockManager.BlockCache)
 		{
-			if (block.Position.y < (player.Position.y + 10))
-			{
-				if(block.TypeName != "Basic" && block.TypeName != "Goal" && block.DensityFactor >= 0.7f && block.GetComponent<BloxelsEnemyBlock>() == null)
-					locations.Add(block.Position);
-			}
+			if((block.GetComponent<BloxelsEnemyBlock>() != null || block.GetComponent<Cathy1Enemy>() != null)
+				&& block.Position.y < (player.Position.y+10))
+				locations.Add(block.Position);
 		}
-		foreach(Vector3 pos in locations)
-			BlockManager.CreateBlockAt(pos, "Cat5 Internal", "Basic");
+		foreach (Vector3 pos in locations)
+			BlockManager.DestroyBlock(BlockManager.GetBlockNear(pos));
 	}
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
