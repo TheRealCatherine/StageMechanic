@@ -31,6 +31,16 @@ public interface IItem : IPositionable, INameable, IPropertyable, IHierarchical
 	}
 
 	/// <summary>
+	/// Items may be owned by a player. In this case their local position should be 0,0,0
+	/// relative to the player and the item should be deactivated in the scene.
+	/// </summary>
+	IPlayerCharacter OwningPlayer
+	{
+		get;
+		set;
+	}
+
+	/// <summary>
 	/// Should return the underlying gameobject in the scene associated with this block.
 	/// Callers should check for null as there is no strict requirement for all items
 	/// to have in-scene components.

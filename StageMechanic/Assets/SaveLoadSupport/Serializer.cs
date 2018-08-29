@@ -5,6 +5,7 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -20,6 +21,15 @@ using UnityEngine;
 
 public static class Serializer
 {
+	public enum State
+	{
+		Idle = 0,
+		Serializing,
+		Deserializing
+	}
+
+	public static State CurrentState = State.Idle;
+
 	public struct UndoState
 	{
 		public enum DataType
@@ -240,14 +250,41 @@ public static class Serializer
 		else if (state.Type == UndoState.DataType.Binary)
 			BlocksFromBinaryStream(state.BlockState);
 
-		PlayerManager.SetPlayer1State(state.PlayerStateIndex);
-		PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
-		PlayerManager.SetPlayer1Location(state.PlayerPosition);
-		PlayerManager.ShowAllPlayers();
+		BlockManager.Instance.StartCoroutine(RestoreUndoHelper(state));
 	}
+
+	/// <summary>
+	/// Used to set the player location, facing direction, etc after an undo.
+	/// Needed because the player spawn is part of the player spawn item and
+	/// happens automatically. This will try to restore the player every
+	/// frame for 420 frames before giving up.
+	/// </summary>
+	/// <param name="state"></param>
+	/// <returns></returns>
+	private static IEnumerator RestoreUndoHelper(UndoState state)
+	{
+		int frameCount = 420;
+		IPlayerCharacter player = PlayerManager.Player(0);
+		while (player == null && --frameCount > 0)
+		{
+			yield return new WaitForEndOfFrame();
+			player = PlayerManager.Player(0);
+		}
+		if (player == null)
+		{
+			LogController.Log("Could not restore player");
+		}
+		PlayerManager.SetPlayer1Location(state.PlayerPosition);
+		PlayerManager.SetPlayer1FacingDirection(state.PlayerFacingDirection);
+		PlayerManager.SetPlayer1State(state.PlayerStateIndex);
+		PlayerManager.ShowAllPlayers();
+		yield return null;
+	}
+
 
 	public static string BlocksToPrettyJson()
 	{
+		CurrentState = State.Serializing;
 		string output = "";
 		StageJsonDelegate stage = new StageJsonDelegate(BlockManager.Instance);
 		StageCollection collection = new StageCollection(stage);
@@ -269,13 +306,16 @@ public static class Serializer
 		}
 		finally
 		{
+			CurrentState = State.Idle;
 			Thread.CurrentThread.CurrentCulture = currentCulture;
 		}
+		CurrentState = State.Idle;
 		return output;
 	}
 
 	public static string BlocksToCondensedJson()
 	{
+		CurrentState = State.Serializing;
 		string output = "";
 		StageJsonDelegate stage = new StageJsonDelegate(BlockManager.Instance);
 		StageCollection collection = new StageCollection(stage);
@@ -297,14 +337,16 @@ public static class Serializer
 		}
 		finally
 		{
+			CurrentState = State.Idle;
 			Thread.CurrentThread.CurrentCulture = currentCulture;
 		}
-
+		CurrentState = State.Idle;
 		return output;
 	}
 
 	public static byte[] BlocksToCondensedJsonStream()
 	{
+		CurrentState = State.Serializing;
 		StageJsonDelegate stage = new StageJsonDelegate(BlockManager.Instance);
 		StageCollection collection = new StageCollection(stage);
 		CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
@@ -326,12 +368,15 @@ public static class Serializer
 		finally
 		{
 			Thread.CurrentThread.CurrentCulture = currentCulture;
+			CurrentState = State.Idle;
 		}
+		CurrentState = State.Idle;
 		return null;
 	}
 
 	public static byte[] BlocksToBinaryStream()
 	{
+		CurrentState = State.Serializing;
 		StageBinaryDelegate stage = new StageBinaryDelegate();
 		StageCollectionBinaryDelegate collection = new StageCollectionBinaryDelegate(stage);
 
@@ -345,8 +390,10 @@ public static class Serializer
 		}
 		catch (System.Exception exception)
 		{
+			CurrentState = State.Idle;
 			LogController.Log(exception.ToString());
 		}
+		CurrentState = State.Idle;
 		return null;
 	}
 
@@ -370,6 +417,7 @@ public static class Serializer
 
 	public static void BlocksFromJson(Uri path, bool startPlayMode = false, string[] startPositionOverrides = null)
 	{
+		CurrentState = State.Deserializing;
 		StageCollection deserializedCollection = new StageCollection(BlockManager.Instance);
 		if (Application.platform != RuntimePlatform.Android)
 		{
@@ -406,10 +454,12 @@ public static class Serializer
 			if (!BlockManager.PlayMode)
 				BlockManager.Instance.TogglePlayMode();
 		}
+		CurrentState = State.Idle;
 	}
 
 	public static void HandleLoad(Stream stream, bool clearFirst = true)
 	{
+		CurrentState = State.Deserializing;
 		if (clearFirst)
 			BlockManager.Clear();
 		StageCollection deserializedCollection = new StageCollection(BlockManager.Instance);
@@ -418,16 +468,19 @@ public static class Serializer
 		stream.Close();
 		BlockManager.ResetCursor();
 		LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
+		CurrentState = State.Idle;
 	}
 
 	public static void HandleBinaryLoad(Stream stream, bool clearFirst = true)
 	{
+		CurrentState = State.Deserializing;
 		if (clearFirst)
 			BlockManager.Clear();
 		BinaryFormatter formatter = new BinaryFormatter();
 		StageCollectionBinaryDelegate deserializedCollection = formatter.Deserialize(stream) as StageCollectionBinaryDelegate;
 		BlockManager.ResetCursor();
 		stream.Close();
+		CurrentState = State.Idle;
 	}
 
 

@@ -19,7 +19,7 @@ public class FloorIsLava : Platform
     void Update()
     {
 	if (BlockManager.PlayMode) {
-		int count = PlayerManager.PlayerCount();
+		int count = PlayerManager.PlayerCount;
 		for(int i=0;i<count;++i)
 		{
 			IPlayerCharacter player = PlayerManager.Player(i);

@@ -141,10 +141,14 @@ public class ItemManager : MonoBehaviour
 		if (palette == "Cathy1 Internal" || palette == "Cathy Internal" || palette == "Cat5 Internal")
 		{
 			GameObject parent = BlockManager.ActiveFloor;
+			AbstractBlock blockBelow = null;
+
+			// If we are loading a level or undo state the item is likely to me moved
+			// and/or reparented during unserialization, so skip this step.
 			AbstractBlock oldBlock = BlockManager.GetBlockNear(position);
 			if (oldBlock != null)
 				BlockManager.DestroyBlock(oldBlock);
-			AbstractBlock blockBelow = BlockManager.GetBlockNear(position + Vector3.down);
+			blockBelow = BlockManager.GetBlockNear(position + Vector3.down);
 			if (blockBelow != null)
 				parent = blockBelow.GameObject;
 
@@ -178,6 +182,11 @@ public class ItemManager : MonoBehaviour
 	/// <param name="block"></param>
 	public static void DestroyItem(IItem item)
 	{
+		for (int i = 0; i < PlayerManager.PlayerCount; ++i)
+		{
+			if (PlayerManager.Player(i)?.Item == item)
+				PlayerManager.Player(i).Item = null;
+		}
 		ItemCache.Remove(item);
 		item.GameObject.SetActive(false);
 		Destroy(item.GameObject);

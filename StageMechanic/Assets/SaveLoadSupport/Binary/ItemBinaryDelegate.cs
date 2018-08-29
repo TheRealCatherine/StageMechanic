@@ -24,9 +24,18 @@ public class ItemBinaryDelegate
 	public string Name;
 
 	public ItemBinaryDelegate(AbstractItem ev) {
-		PositionX = ev.Position.x;
-		PositionY = ev.Position.y;
-		PositionZ = ev.Position.z;
+		if (ev.OwningPlayer != null)
+		{
+			PositionX = -255;
+			PositionY = -255;
+			PositionZ = -255;
+		}
+		else
+		{
+			PositionX = ev.Position.x;
+			PositionY = ev.Position.y;
+			PositionZ = ev.Position.z;
+		}
 		Dictionary<string, string> properties = ev.Properties;
 		PropertyKeys = properties.Keys.ToArray();
 		PropertyValues = properties.Values.ToArray();

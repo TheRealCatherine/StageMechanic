@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -112,11 +113,45 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 	}
 
+	/// <summary>
+	/// Sets the given player as the parent of this item
+	/// </summary>
+	public IPlayerCharacter OwningPlayer
+	{
+		get
+		{
+			return GameObject?.transform.parent?.GetComponent<IPlayerCharacter>();
+		}
+		set
+		{
+			if (value == null)
+			{
+				GameObject?.transform.SetParent(BlockManager.ActiveFloor?.transform, true);
+				GameObject?.SetActive(true);
+				for (int i = 0; i < PlayerManager.PlayerCount; ++i)
+				{
+					if (PlayerManager.Player(i)?.Item?.Name == Name)
+						PlayerManager.Player(i).Item = null;
+				}
+				return;
+			}
+			GameObject.transform.SetParent(value?.GameObject?.transform, true);
+			GameObject.transform.localPosition = Vector3.zero;
+			GameObject.SetActive(false);
+			value.Item = this;
+		}
+	}
+
 	public virtual IHierarchical Parent
 	{
 		get
 		{
-			return OwningBlock as IHierarchical;
+			if (OwningBlock != null)
+				return OwningBlock as IHierarchical;
+			else if (OwningPlayer != null)
+				return OwningPlayer as IHierarchical;
+			else
+				return null;
 		}
 
 		set
@@ -125,6 +160,11 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			if (block == null)
 			{
 				OwningBlock = null;
+				IPlayerCharacter player = value as IPlayerCharacter;
+				if (player == null)
+					OwningPlayer = null;
+				else
+					OwningPlayer = value as IPlayerCharacter;
 			}
 			else
 				OwningBlock = block;
@@ -160,6 +200,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		{
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
 			ret.Add("Owning Block", new DefaultValue { TypeInfo = typeof(string), Value = "" });
+			ret.Add("Owning Player", new DefaultValue { TypeInfo = typeof(string), Value = "" });
 			ret.Add("Collectable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
 			ret.Add("Uses", new DefaultValue { TypeInfo = typeof(int), Value = "1" });
 			ret.Add("Trigger", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
@@ -175,6 +216,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			Dictionary<string, string> ret = new Dictionary<string, string>();
 			if (OwningBlock != null)
 				ret.Add("Owning Block", OwningBlock.Name);
+			if (OwningPlayer != null)
+				ret.Add("Owning Player", OwningPlayer.Name);
 			if (Collectable != true)
 				ret.Add("Collectable", "False");
 			if (Uses != 1)
@@ -189,7 +232,9 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		{
 			//    Rotation = Utility.StringToQuaternion(value["Rotation"]);*/
 			if (value.ContainsKey("Owning Block"))
-				OwningBlock = GameObject.Find(value["Owning Block"]).GetComponent<IBlock>();
+				StartCoroutine(UnserializeHelper(value["Owning Block"]));
+			if (value.ContainsKey("Owning Player"))
+				StartCoroutine(UnserializeHelper(value["Owning Player"]));
 			if (value.ContainsKey("Collectable"))
 				Collectable = bool.Parse(value["Collectable"]);
 			if (value.ContainsKey("Uses"))
@@ -199,6 +244,33 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			if (value.ContainsKey("Score"))
 				Score = int.Parse(value["Score"]);
 		}
+	}
+
+	/// <summary>
+	/// Ensure owning block/player has been created when deserializing.
+	/// </summary>
+	/// <param name="owningBlockName"></param>
+	/// <returns></returns>
+	private IEnumerator UnserializeHelper(string owningObjectName)
+	{
+		if(string.IsNullOrWhiteSpace(owningObjectName))
+			yield break;
+		GameObject owningObject = GameObject.Find(owningObjectName);
+		IBlock block = owningObject?.GetComponent<IBlock>();
+		IPlayerCharacter player = owningObject?.GetComponent<IPlayerCharacter>();
+		int frameCount = 420;
+		while (block == null && player == null && --frameCount > 0)
+		{
+			yield return new WaitForEndOfFrame();
+			owningObject = GameObject.Find(owningObjectName);
+			block = owningObject?.GetComponent<IBlock>();
+			player = owningObject?.GetComponent<IPlayerCharacter>();
+		}
+		if(block == null && player == null)
+			LogController.Log("Can't find item owniner: " + owningObjectName);
+		OwningBlock = block;
+		OwningPlayer = player;
+		yield break;
 	}
 
 	public Sprite Icon
@@ -290,7 +362,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		if (!Trigger)
 		{
 			IBlock asBlock = other.GetComponent<IBlock>();
-			if (asBlock != null)
+			if (asBlock != null && Serializer.CurrentState != Serializer.State.Deserializing)
 			{
 				ItemManager.DestroyItem(this);
 				return;

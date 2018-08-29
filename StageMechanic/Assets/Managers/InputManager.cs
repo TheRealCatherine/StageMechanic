@@ -493,7 +493,7 @@ public class InputManager : MonoBehaviour
 			axees.Add("joystick 1 8th axis -");
 
 		bool usedAtLeastOne = false;
-		for (int playerNumber = 0; playerNumber < PlayerManager.PlayerCount(); ++playerNumber)
+		for (int playerNumber = 0; playerNumber < PlayerManager.PlayerCount; ++playerNumber)
 		{
 			Dictionary<string, string[]> possible = PlayerManager.PlayerInputOptions(playerNumber);
 			if (possible != null)

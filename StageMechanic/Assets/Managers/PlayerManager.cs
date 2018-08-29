@@ -34,12 +34,15 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    public static int PlayerCount()
+    public static int PlayerCount
     {
-		if (Avatars != null && Avatars.Count > 0)
-			return Avatars.Count;
-		else
-			return ItemManager.GetItemsOfType("Player Start").Count;
+		get
+		{
+			if (Avatars != null && Avatars.Count > 0)
+				return Avatars.Count;
+			else
+				return ItemManager.GetItemsOfType("Player Start").Count;
+		}
     }
 
     public static IPlayerCharacter Player(int playerNumber = 0)
