@@ -50,11 +50,14 @@ public class Cat5ItemTheme : AbstractItemTheme
 	public Sprite CoinIcon;
 
 	[Header("Special Collectable")]
-	public GameObject SpecialCollectablePlaceholder;
 	public GameObject SpecialCollectableObject1;
 	public GameObject SpecialCollectableObject2;
 	public GameObject SpecialCollectableObject3;
-	public Sprite SpecialCollectableIcon;
+	public GameObject SpecialCollectableObject4;
+	public Sprite SpecialCollectableIcon1;
+	public Sprite SpecialCollectableIcon2;
+	public Sprite SpecialCollectableIcon3;
+	public Sprite SpecialCollectableIcon4;
 
 	[Header("Create Basic Blocks")]
 	public GameObject CreateBasicBlocksPlaceholder;

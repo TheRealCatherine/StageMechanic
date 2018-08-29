@@ -60,6 +60,8 @@ public class Cat5ExtraContinue : Cat5AbstractItem {
 
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
+		base.OnPlayerContact(player);
+		(player as AbstractPlayerCharacter).Score += 5000;
 	}
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)

@@ -90,9 +90,21 @@ public class Cat5ItemFactory : AbstractItemFactory {
 				if (CurrentTheme.CoinIcon != null)
 					return CurrentTheme.CoinIcon;
 				break;
-			case "Special Collectable":
-				if (CurrentTheme.SpecialCollectableIcon != null)
-					return CurrentTheme.SpecialCollectableIcon;
+			case "Special Collectable 1":
+				if (CurrentTheme.SpecialCollectableIcon1 != null)
+					return CurrentTheme.SpecialCollectableIcon1;
+				break;
+			case "Special Collectable 2":
+				if (CurrentTheme.SpecialCollectableIcon1 != null)
+					return CurrentTheme.SpecialCollectableIcon2;
+				break;
+			case "Special Collectable 3":
+				if (CurrentTheme.SpecialCollectableIcon1 != null)
+					return CurrentTheme.SpecialCollectableIcon3;
+				break;
+			case "Special Collectable 4":
+				if (CurrentTheme.SpecialCollectableIcon1 != null)
+					return CurrentTheme.SpecialCollectableIcon4;
 				break;
 			case "Create Basic Blocks":
 				if (CurrentTheme.CreateBasicBlocksIcon != null)
