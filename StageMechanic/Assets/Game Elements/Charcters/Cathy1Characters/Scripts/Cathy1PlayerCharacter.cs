@@ -554,6 +554,25 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			if (FacingDirection == direction || direction == Vector3.up || direction == Vector3.down)
 			{
 				IBlock blockInWay = BlockManager.GetBlockNear(transform.position + direction, radius: 0.25f);
+				if (MaxClimbHeight >= 2 && blockInWay == null)
+				{
+					IBlock potentialBlock = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
+					IBlock blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up);
+					if (blockAbove == null && potentialBlock != null)
+					{
+						IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up + Vector3.up);
+						blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up + Vector3.up);
+						if (oneBlockUp == null && blockAbove == null)
+						{
+							if (potentialBlock.MotionState == BlockMotionState.Grounded || potentialBlock.MotionState == BlockMotionState.Edged)
+							{
+								Climb(direction + Vector3.up + Vector3.up);
+								return 0.35f;
+							}
+						}
+					}
+				}
+
 				if (blockInWay != null)
 				{
 					IBlock oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up);
