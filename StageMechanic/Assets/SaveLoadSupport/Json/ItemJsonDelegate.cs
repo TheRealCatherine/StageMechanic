@@ -80,6 +80,8 @@ public class ItemJsonDelegate
 		get
 		{
 			Debug.Assert(Item != null);
+			if (Item.OwningPlayer != null)
+				return new Vector3(-255, -255, -255);
 			return Item.Position;
 		}
 		set
