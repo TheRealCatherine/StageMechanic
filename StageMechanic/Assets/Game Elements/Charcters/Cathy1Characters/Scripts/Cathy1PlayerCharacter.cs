@@ -31,6 +31,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	public float WalkTime { get; set; } = 0.15f;
 	public float Granularity { get; set; } = 1.0f;
 	public float ClimbSpeed { get; set; } = 0.05f;
+	public int MaxClimbHeight { get; set; } = 1;
+
 	private static System.Random rng = new System.Random();
 
 	public override Vector3 FacingDirection
@@ -560,6 +562,16 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 					{
 						if (blockInWay.MotionState == BlockMotionState.Grounded || blockInWay.MotionState == BlockMotionState.Edged)
 							Climb(direction + Vector3.up);
+					}
+					else if(MaxClimbHeight >= 2 && blockAbove == null)
+					{
+						oneBlockUp = BlockManager.GetBlockAt(transform.position + direction + Vector3.up + Vector3.up);
+						blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up + Vector3.up);
+						if (oneBlockUp == null && blockAbove == null)
+						{
+							if (blockInWay.MotionState == BlockMotionState.Grounded || blockInWay.MotionState == BlockMotionState.Edged)
+								Climb(direction + Vector3.up + Vector3.up);
+						}
 					}
 				}
 				else
