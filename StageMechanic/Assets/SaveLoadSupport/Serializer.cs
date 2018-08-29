@@ -45,6 +45,7 @@ public static class Serializer
 		public Vector3 PlayerFacingDirection;
 		public int PlayerStateIndex;
 		public float PlatformYPosition;
+		public int[] PlayerScores;
 	}
 
 	public static int MaxUndoLevels = 99;
@@ -185,9 +186,10 @@ public static class Serializer
 				PlayerPosition = PlayerManager.Player1Location(),
 				PlayerFacingDirection = PlayerManager.Player1FacingDirection(),
 				PlayerStateIndex = PlayerManager.PlayerState(),
-				PlatformYPosition = BlockManager.ActiveFloor.transform.position.y
+				PlatformYPosition = BlockManager.ActiveFloor.transform.position.y,
+				PlayerScores = new int[GameManager.PlayerScores.Length]
 			};
-
+			Array.Copy(GameManager.PlayerScores, state.PlayerScores, GameManager.PlayerScores.Length);
 			return state;
 		}
 		catch (Exception e)
@@ -249,7 +251,7 @@ public static class Serializer
 			BlocksFromJsonStream(state.BlockState);
 		else if (state.Type == UndoState.DataType.Binary)
 			BlocksFromBinaryStream(state.BlockState);
-
+		GameManager.PlayerScores = state.PlayerScores;
 		BlockManager.Instance.StartCoroutine(RestoreUndoHelper(state));
 	}
 
