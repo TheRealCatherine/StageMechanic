@@ -33,6 +33,28 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	public float ClimbSpeed { get; set; } = 0.05f;
 	public int MaxClimbHeight { get; set; } = 1;
 
+	public int HighestStepChain = 0;
+	private float _highestPosition = float.NaN;
+	public float HighestPosition
+	{
+		get
+		{
+			return _highestPosition;
+		}
+		set
+		{
+			if (float.IsNaN(_highestPosition))
+				_highestPosition = value;
+			float newHighest = Math.Max(_highestPosition, value);
+			if (newHighest == _highestPosition)
+				return;
+			int steps = (int)Math.Round(newHighest - _highestPosition);
+			Score += ((10*(steps+1)*(steps/2)) + (Math.Min(30,++HighestStepChain)*10));
+			_highestPosition = newHighest;
+			
+		}
+	}
+
 	private static System.Random rng = new System.Random();
 
 	public override Vector3 FacingDirection
@@ -334,6 +356,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		_player.GetComponent<Animator>().SetBool("walking", false);
 		yield return new WaitForEndOfFrame();
 		CurrentMoveState = State.Idle;
+		HighestPosition = transform.position.y;
 		yield return null;
 	}
 

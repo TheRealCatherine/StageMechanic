@@ -34,7 +34,7 @@
 			if (player != null)
 			{
 				//TODO access via AbstractBlock.Properties
-				player.Score += 100;
+				player.Score += 1000;
 				BlockManager.DestroyBlock(this);
 				return;
 			}

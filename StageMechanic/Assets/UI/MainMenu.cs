@@ -123,6 +123,7 @@ public class MainMenu : MonoBehaviour
 
 	public void OnLoadAndEditClicked()
 	{
+		GameManager.PlayerScores[0] = 0;
 		gameObject.SetActive(false);
 		if (BlockManager.PlayMode)
 		{
@@ -133,6 +134,7 @@ public class MainMenu : MonoBehaviour
 
 	public void OnCreateClicked()
 	{
+		GameManager.PlayerScores[0] = 0;
 		if (BlockManager.BlockCount == 0) {
 			gameObject.SetActive(false);
 			if (BlockManager.PlayMode)
@@ -267,6 +269,7 @@ public class MainMenu : MonoBehaviour
 	public void OnNetworkLoadClicked()
 	{
 		UIManager.ShowNetworkLoadDialog();
+		GameManager.PlayerScores[0] = 0;
 	}
 
 	public void OnShowCreditsClicked()
@@ -284,11 +287,13 @@ public class MainMenu : MonoBehaviour
 		gameObject.SetActive(false);
 		if (!BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
+		GameManager.PlayerScores[0] = 0;
 	}
 
 	public void OnShowLevelSelectClicked()
 	{
 		LevelSelectPanel.SetActive(true);
+		GameManager.PlayerScores[0] = 0;
 	}
 
 	public void OnCloseLevelSelectClicked()
@@ -298,6 +303,7 @@ public class MainMenu : MonoBehaviour
 
 	public void OnOpenTutorialClicked()
 	{
+		GameManager.PlayerScores[0] = 0;
 		if (BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
 		string file;

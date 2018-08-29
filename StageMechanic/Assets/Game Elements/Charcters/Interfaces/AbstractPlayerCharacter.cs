@@ -72,7 +72,14 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
 	/// </summary>
 	public int Score
 	{
-		get; set;
+		get
+		{
+			return GameManager.PlayerScores[0];
+		}
+		set
+		{
+			GameManager.PlayerScores[0] = value;
+		}
 	}
 
 	public IItem Item

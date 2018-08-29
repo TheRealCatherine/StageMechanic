@@ -39,5 +39,7 @@ public class GameManager
 		else
 			CurrentGameMode = _lastGameMode;
 	}
+
+	public static int[] PlayerScores = new int[4];
 }
 

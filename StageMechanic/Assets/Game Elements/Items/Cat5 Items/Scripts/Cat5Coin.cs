@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Cat5Coin : Cat5AbstractItem {
 
+	public int value = 1000;
+
 	public override int Uses
 	{
 		get
@@ -31,6 +33,6 @@ public class Cat5Coin : Cat5AbstractItem {
 	public override void OnPlayerContact(IPlayerCharacter player)
 	{
 		base.OnPlayerContact(player);
-		(player as AbstractPlayerCharacter).Score += 100;
+		(player as AbstractPlayerCharacter).Score += value;
 	}
 }
