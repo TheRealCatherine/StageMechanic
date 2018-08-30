@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114528964357980718}
   - component: {fileID: 114626124517242874}
   m_Layer: 5
-  m_Name: BlockButtonPrefab
+  m_Name: BlockButtonPrefabMobile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ RectTransform:
   m_GameObject: {fileID: 1473066685206040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7097061, y: 1.7097061, z: 1.7097061}
   m_Children:
   - {fileID: 224956550784369292}
   m_Father: {fileID: 0}
@@ -178,7 +178,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 64, y: 64}
+  m_SizeDelta: {x: 88.96399, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224956550784369292
 RectTransform:
@@ -195,6 +195,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.40000153, y: -26.813}
-  m_SizeDelta: {x: 65.4, y: 53.625}
+  m_AnchoredPosition: {x: 0.0000076293945, y: -10}
+  m_SizeDelta: {x: -0.000076294, y: 26.8}
   m_Pivot: {x: 0.5, y: 0.5}
