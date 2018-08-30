@@ -37,6 +37,19 @@ public class Cat5PlayerStart : Cat5AbstractItem {
 		}
 	}
 
+	public override bool Trigger
+	{
+		get
+		{
+			return true;
+		}
+
+		set
+		{
+			base.Trigger = value;
+		}
+	}
+
 
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
