@@ -62,7 +62,7 @@ public class Cathy1GoalBlock : Cathy1Block
 					if (Serializer.UseBinaryFiles)
 					{
 						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
-						loc.Replace(".json", ".bin");
+						loc = loc.Replace(".json", ".bin");
 						if(Application.platform == RuntimePlatform.Android)
 							Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc));
 						else
@@ -105,7 +105,7 @@ public class Cathy1GoalBlock : Cathy1Block
 	protected override void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState)
 	{
 		base.OnMotionStateChanged(newState, oldState);
-		if (MustNotFall && (newState == BlockMotionState.Hovering || newState == BlockMotionState.Falling))
+		if (MustNotFall && newState == BlockMotionState.Falling)
 		{
 			PlayerManager.DestroyAllPlayers();
 			UIManager.ShowSinglePlayerDeathDialog();
