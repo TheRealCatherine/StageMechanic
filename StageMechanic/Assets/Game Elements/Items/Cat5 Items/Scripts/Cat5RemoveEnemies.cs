@@ -10,12 +10,14 @@ using UnityEngine;
 public class Cat5RemoveEnemies : Cat5AbstractItem {
 
 	public float Radius = 10f;
+	private ParticleSystem Animation;
 
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
 		Debug.Assert(theme.EnemyRemovalPlaceholder != null);
 		Model1 = theme.EnemyRemovalPlaceholder;
 		Model2 = theme.EnemyRemovalObject;
+		Animation = theme.EnemyRemovalAnimation;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties
@@ -56,7 +58,11 @@ public class Cat5RemoveEnemies : Cat5AbstractItem {
 				locations.Add(block.Position);
 		}
 		foreach (Vector3 pos in locations)
+		{
+			if (Animation != null)
+				VisualEffectsManager.PlayEffect(BlockManager.GetBlockNear(pos), Animation, 1, 0.5f);
 			BlockManager.DestroyBlock(BlockManager.GetBlockNear(pos));
+		}
 	}
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)

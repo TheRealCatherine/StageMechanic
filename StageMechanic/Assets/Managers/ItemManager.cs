@@ -186,10 +186,22 @@ public class ItemManager : MonoBehaviour
 				PlayerManager.Player(i).Item = null;
 		}
 		ItemCache.Remove(item);
-		item.GameObject.SetActive(false);
-		Destroy(item.GameObject);
+		item.GameObject?.SetActive(false);
+		if(item.GameObject != null)
+			Destroy(item.GameObject);
 	}
 
+	public static void DelayedDestroyItem(IItem item, float seconds)
+	{
+		Instance.StartCoroutine(TheFinalCountdown(item, seconds));
+	}
+
+	private static IEnumerator TheFinalCountdown(IItem item, float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		//TODO right now this is the only thing that does this but we need to figure out good way
+		(PlayerManager.Player(0) as Cathy1PlayerCharacter).MaxClimbHeight = 1;
+	}
 	#endregion
 
 

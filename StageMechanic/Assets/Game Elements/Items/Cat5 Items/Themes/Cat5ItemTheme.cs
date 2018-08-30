@@ -62,6 +62,7 @@ public class Cat5ItemTheme : AbstractItemTheme
 	[Header("Create Basic Blocks")]
 	public GameObject CreateBasicBlocksPlaceholder;
 	public GameObject CreateBasicBlockObject;
+	public ParticleSystem CreateBlockAnimation;
 	public Sprite CreateBasicBlocksIcon;
 
 	[Header("Create Immobile Blocks")]
@@ -72,6 +73,7 @@ public class Cat5ItemTheme : AbstractItemTheme
 	[Header("Enemy Removal")]
 	public GameObject EnemyRemovalPlaceholder;
 	public GameObject EnemyRemovalObject;
+	public ParticleSystem EnemyRemovalAnimation;
 	public Sprite EnemyRemovalIcon;
 
 	[Header("1 Up")]
@@ -82,11 +84,14 @@ public class Cat5ItemTheme : AbstractItemTheme
 	[Header("X-Factor")]
 	public GameObject XFactorPlaceholder;
 	public GameObject XFactorObject;
+	public AudioClip XFactorActiveAudio;
+	public ParticleSystem XFactorActiveAnimation;
 	public Sprite XFactorIcon;
 
 	[Header("Special Block Remover")]
 	public GameObject SpecialBlockRemoverPlaceholder;
 	public GameObject SpecialBlockRemoverObject;
+	public ParticleSystem SpecialBlockRemoverAnimation;
 	public Sprite SpecialBlockRemoverIcon;
 
 	[Header("Stopwatch")]

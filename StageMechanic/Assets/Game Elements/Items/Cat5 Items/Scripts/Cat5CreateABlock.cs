@@ -11,6 +11,7 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 
 	public string BlockPalette = "Cat5 Internal";
 	public string BlockType = "Basic";
+	private ParticleSystem Animation;
 
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
@@ -26,6 +27,7 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 			Model1 = theme.CreateImmobileBlocksPlaceholder;
 			Model2 = theme.CreateImmobileBlockObject;
 		}
+		Animation = theme.CreateBlockAnimation;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties
@@ -63,6 +65,8 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
 		BlockManager.CreateBlockAt(player.Position + player.FacingDirection, BlockPalette, BlockType);
+		if (Animation != null)
+			VisualEffectsManager.PlayEffect(BlockManager.GetBlockNear(player.Position + player.FacingDirection), Animation, 1, 1f);
 	}
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)

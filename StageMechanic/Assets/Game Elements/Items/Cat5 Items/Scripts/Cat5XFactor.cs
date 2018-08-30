@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +12,16 @@ public class Cat5XFactor : Cat5AbstractItem {
 
 	public int MaxClimbHeight = 2;
 	public float Duration = 15f;
+	private AudioClip Sound;
+	private ParticleSystem Animation;
 
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
 		Debug.Assert(theme.XFactorPlaceholder != null);
 		Model1 = theme.XFactorPlaceholder;
 		Model2 = theme.XFactorObject;
+		Sound = theme.XFactorActiveAudio;
+		Animation = theme.XFactorActiveAnimation;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties
@@ -53,7 +58,12 @@ public class Cat5XFactor : Cat5AbstractItem {
 
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
+		if (Sound != null)
+			AudioEffectsManager.PlaySound(Sound);
+		if (Animation != null)
+			VisualEffectsManager.PlayEffect(player, Animation, 1, 15);
 		(player as Cathy1PlayerCharacter).MaxClimbHeight = MaxClimbHeight;
+		ItemManager.DelayedDestroyItem(this, Duration);
 	}
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)

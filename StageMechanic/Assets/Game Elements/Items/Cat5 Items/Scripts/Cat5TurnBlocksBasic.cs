@@ -10,12 +10,14 @@ using UnityEngine;
 public class Cat5TurnBlocksBasic : Cat5AbstractItem {
 
 	public float Radius = 10f;
+	private ParticleSystem Animation;
 
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
 		Debug.Assert(theme.SpecialBlockRemoverPlaceholder != null);
 		Model1 = theme.SpecialBlockRemoverPlaceholder;
 		Model2 = theme.SpecialBlockRemoverObject;
+		Animation = theme.SpecialBlockRemoverAnimation;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties
@@ -57,8 +59,12 @@ public class Cat5TurnBlocksBasic : Cat5AbstractItem {
 					locations.Add(block.Position);
 			}
 		}
-		foreach(Vector3 pos in locations)
+		foreach (Vector3 pos in locations)
+		{
 			BlockManager.CreateBlockAt(pos, "Cat5 Internal", "Basic");
+			if (Animation != null)
+				VisualEffectsManager.PlayEffect(BlockManager.GetBlockNear(pos), Animation, 2, 1.5f);
+		}
 	}
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)

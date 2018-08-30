@@ -109,7 +109,6 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		{
 			if (value != null && GameObject?.transform.parent != null && value.Name == GameObject?.transform.parent.name)
 				return;
-			Debug.Log(value.Name);
 			if(value == null)
 				GameObject.transform.SetParent(BlockManager.ActiveFloor?.transform, true); 
 			else
@@ -346,7 +345,6 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	{
 		return new ItemBinaryDelegate(this);
 	}
-
 
 	#region colliders and triggers
 	public void OnCollisionEnter(Collision collision)
