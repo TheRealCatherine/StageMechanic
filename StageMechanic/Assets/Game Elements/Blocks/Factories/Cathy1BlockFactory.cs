@@ -119,6 +119,9 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 	public override IBlock CreateBlock(Vector3 globalPosition, Quaternion globalRotation, string type, GameObject parent)
 	{
 		string oldName = null;
+		IItem item = ItemManager.GetItemNear(globalPosition + Vector3.up);
+		if (item != null)
+			item.OwningBlock = null;
 
 		IBlock oldBlock = BlockManager.GetBlockNear(globalPosition,0.01f,0.0f);
 		if (oldBlock != null)
@@ -150,6 +153,8 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 		// state to serializer to let us skip this step
 		if (type == "Basic")
 			block.ShowRandomModel();
+		if (item != null)
+			item.OwningBlock = block;
 		return block;
 	}
 
