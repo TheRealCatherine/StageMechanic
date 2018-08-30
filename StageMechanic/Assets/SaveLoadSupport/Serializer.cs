@@ -208,11 +208,12 @@ public static class Serializer
 			return;
 		if (_undoStates.Count > 0)
 		{
+			LogController.Log("Undo Started");
 			RecordRedo();
 			UndoState state = _undoStates[_undoStates.Count - 1];
 			RestoreUndoState(state);
 			_undoStates.RemoveAt(_undoStates.Count - 1);
-			LogController.Log("Undo");
+			LogController.Log("Undo Complete");
 		}
 		else
 			LogController.Log("No undos left");
@@ -409,7 +410,7 @@ public static class Serializer
 
 	public static void AutoSave()
 	{
-		if (!BlockManager.PlayMode && !string.IsNullOrWhiteSpace(LastAccessedFileName) && PlayerPrefs.GetInt("DestructivePlayMode", 0) != 1)
+		if (CurrentState == State.Idle && !BlockManager.PlayMode && !string.IsNullOrWhiteSpace(LastAccessedFileName) && PlayerPrefs.GetInt("DestructivePlayMode", 0) != 1)
 		{
 			SaveFileUsingPath(LastAccessedFileName.Replace(".json", "_autosave.json"));
 			LogController.Log("Autosaved");

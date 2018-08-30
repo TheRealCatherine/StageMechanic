@@ -107,9 +107,13 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 		set
 		{
+			if (value != null && GameObject?.transform.parent != null && value.Name == GameObject?.transform.parent.name)
+				return;
+			Debug.Log(value.Name);
 			if(value == null)
 				GameObject.transform.SetParent(BlockManager.ActiveFloor?.transform, true); 
-			GameObject.transform.SetParent(value?.GameObject?.transform,true);
+			else
+				GameObject.transform.SetParent(value?.GameObject?.transform,true);
 		}
 	}
 
@@ -126,12 +130,15 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		{
 			if (value == null)
 			{
-				GameObject?.transform.SetParent(BlockManager.ActiveFloor?.transform, true);
-				GameObject?.SetActive(true);
-				for (int i = 0; i < PlayerManager.PlayerCount; ++i)
-				{
-					if (PlayerManager.Player(i)?.Item?.Name == Name)
-						PlayerManager.Player(i).Item = null;
+				//Player drops item
+				if (OwningPlayer != null) { 
+					GameObject?.transform.SetParent(BlockManager.ActiveFloor?.transform, true);
+					GameObject?.SetActive(true);
+					for (int i = 0; i < PlayerManager.PlayerCount; ++i)
+					{
+						if (PlayerManager.Player(i)?.Item?.Name == Name)
+							PlayerManager.Player(i).Item = null;
+					}
 				}
 				return;
 			}

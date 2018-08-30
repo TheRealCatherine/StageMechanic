@@ -109,7 +109,6 @@ public abstract class Cat5AbstractItem : AbstractItem
 			if (value.ContainsKey("Model Variant"))
 			{
 				ShowModel(int.Parse(value["Model Variant"]));
-				Debug.Log(int.Parse(value["Model Variant"]));
 			}
 		}
 	}

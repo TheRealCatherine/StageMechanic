@@ -143,16 +143,14 @@ public class ItemManager : MonoBehaviour
 			GameObject parent = BlockManager.ActiveFloor;
 			AbstractBlock blockBelow = null;
 
-			// If we are loading a level or undo state the item is likely to me moved
-			// and/or reparented during unserialization, so skip this step.
 			AbstractBlock oldBlock = BlockManager.GetBlockNear(position);
-			if (oldBlock != null)
-				BlockManager.DestroyBlock(oldBlock);
+			//if (oldBlock != null)
+			//	BlockManager.DestroyBlock(oldBlock);
 			blockBelow = BlockManager.GetBlockNear(position + Vector3.down);
 			if (blockBelow != null)
 				parent = blockBelow.GameObject;
 
-			AbstractItem item = Instance.ItemFactories[0].CreateItem(position, BlockManager.Cursor.transform.rotation, type, parent) as AbstractItem;
+			AbstractItem item = Instance.ItemFactories[0].CreateItem(position, BlockManager.Cursor.transform.rotation, type, null) as AbstractItem;
 			if (blockBelow != null)
 				item.OwningBlock = blockBelow;
 			item.Palette = palette;
