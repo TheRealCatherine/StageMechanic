@@ -866,7 +866,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			{
 				//Only allowing clicking blocks in the non-UI part of the screen to prevent clicking both the UI and the block
 				float x = VisualEffectsManager.Instance.Camera.WorldToScreenPoint(Position).x;
-				if (x < 300 || Screen.width -  x < 300) //TODO don't hardcode width of UI elements
+				if (x < 220 || Screen.width -  x < 320) //TODO don't hardcode width of UI elements
 					return;
 				if (BlockManager.ActiveBlock == this)
 					UIManager.ShowBlockEditDialog(this);
