@@ -5,6 +5,7 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock
@@ -215,4 +216,38 @@ public abstract class Cathy1AbstractTrapBlock : Cathy1Block, ITrapBlock
         base.OnPlayerStay(ev);
         HandlePlayer(ev);
     }
+
+	public override Dictionary<string, DefaultValue> DefaultProperties
+	{
+		get
+		{
+			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
+			ret.Add("Triggered", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
+			ret.Add("Armed", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
+			return ret;
+		}
+	}
+
+	public override Dictionary<string, string> Properties
+	{
+		get
+		{
+			Dictionary<string, string> ret = base.Properties;
+			if (IsTriggered != false)
+				ret.Add("Triggered", IsTriggered.ToString());
+			if (IsArmed != true)
+				ret.Add("Armed", IsTriggered.ToString());
+
+			return ret;
+		}
+		set
+		{
+			base.Properties = value;
+			if (value.ContainsKey("Triggered"))
+				IsTriggered = bool.Parse(value["Triggered"]);
+			if (value.ContainsKey("Armed"))
+				IsArmed = bool.Parse(value["Armed"]);
+		}
+	}
+
 }
