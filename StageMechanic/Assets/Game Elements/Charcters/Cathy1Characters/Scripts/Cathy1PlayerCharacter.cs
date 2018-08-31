@@ -488,6 +488,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			}
 			else
 			{
+				_player.GetComponent<Animator>().SetBool("sidling", false);
+				_player.GetComponent<Animator>().SetBool("walking", false);
+				_player.GetComponent<Animator>().SetBool("sidleMoving", false);
+				_player.GetComponent<Animator>().SetBool("sliding", false);
 				CurrentMoveState = State.Idle;
 				return false;
 			}
