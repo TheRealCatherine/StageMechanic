@@ -39,7 +39,9 @@ public class ItemTypeScrollBoxPopulator : MonoBehaviour {
 				if (icon != null)
 				{
 					Button newButton = Instantiate(ButtonPrefab, transform) as Button;
-					newButton.GetComponentInChildren<Text>().text = name;
+					newButton.GetComponent<SinglePropertyWithDefault>().PropertyName = name;
+					newButton.GetComponent<SinglePropertyWithDefault>().PropertyDefaultValue = factory.Name;
+					//newButton.GetComponentInChildren<Text>().text = name;
 					newButton.image.sprite = icon;
 					newButton.onClick.AddListener(OnBlockClicked);
 					_buttonsCache.Add(newButton);
@@ -52,14 +54,7 @@ public class ItemTypeScrollBoxPopulator : MonoBehaviour {
 	void OnBlockClicked()
 	{
 		Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-		foreach(AbstractItemFactory factory in ItemManager.Instance.ItemFactories)
-		{
-			if (Array.IndexOf(factory.ItemTypeNames, clickedButton.GetComponentInChildren<Text>().text) > -1)
-			{
-				ItemManager.CreateItemAtCursor(factory.Name, clickedButton.GetComponentInChildren<Text>().text);
-				return;
-			}
-		}
+		ItemManager.CreateItemAtCursor(clickedButton.GetComponent<SinglePropertyWithDefault>().PropertyDefaultValue, clickedButton.GetComponent<SinglePropertyWithDefault>().PropertyName);
 	}
 
 	public void Repopulate()

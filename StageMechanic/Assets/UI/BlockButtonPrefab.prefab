@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222612495588198372}
   - component: {fileID: 114528964357980718}
   - component: {fileID: 114626124517242874}
+  - component: {fileID: 114657423672169826}
   m_Layer: 5
   m_Name: BlockButtonPrefab
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6415094, g: 0.43876824, b: 0.4693342, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -78,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Basic
+  m_Text: 
 --- !u!114 &114528964357980718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,6 +148,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114657423672169826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473066685206040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101ba8f7e5d699b4185d384a2e3bbbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PropertyName: 
+  PropertyDefaultValue: 
 --- !u!222 &222612495588198372
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -195,6 +209,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.40000153, y: -26.813}
-  m_SizeDelta: {x: 65.4, y: 53.625}
+  m_AnchoredPosition: {x: 0.000038146973, y: -0.0002632141}
+  m_SizeDelta: {x: -0.000022888, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
