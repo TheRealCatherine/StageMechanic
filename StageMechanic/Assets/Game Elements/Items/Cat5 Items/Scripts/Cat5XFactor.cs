@@ -59,7 +59,7 @@ public class Cat5XFactor : Cat5AbstractItem {
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
 		if (Sound != null)
-			AudioEffectsManager.PlaySound(Sound);
+			AudioEffectsManager.PlaySound(Sound,0.25f);
 		if (Animation != null)
 			VisualEffectsManager.PlayEffect(player, Animation, 1, 15);
 		(player as Cathy1PlayerCharacter).MaxClimbHeight = MaxClimbHeight;
