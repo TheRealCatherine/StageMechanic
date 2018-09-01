@@ -27,8 +27,8 @@ public class UIManager : MonoBehaviour
 	public ScrollRect MobileBlockTypesList;
 	public ScrollRect MobileItemTypesList;
 
-	public BlockEditDialog BlockEditDialog;
-	public ItemEditDialog ItemEditDialog;
+	public PropertiesDialog BlockEditDialog;
+	public PropertiesDialog ItemEditDialog;
 	public GameObject FileBrowserPrefab;
 
 	public bool ShowOnscreenControlls;
