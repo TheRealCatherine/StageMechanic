@@ -20,6 +20,7 @@ public class BlockManager : MonoBehaviour
 	public GameObject GoalLocationIndicator;            //These
 	public AbstractBlockFactory[] BlockFactories;
 	private List<KeyValuePair<string, string>> BlockTypeCache;
+	private static Vector3 LastCursorPostion = new Vector3(float.NaN, float.NaN, float.NaN);
 
 
 
@@ -55,6 +56,7 @@ public class BlockManager : MonoBehaviour
 		PlayMode = !PlayMode;
 		if (PlayMode)
 		{
+			LastCursorPostion = Cursor.transform.position;
 			LogController.Log("Start!");
 			UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
 			Serializer.RecordStartState();
@@ -88,12 +90,19 @@ public class BlockManager : MonoBehaviour
 
 	public static void ResetCursor()
 	{
-		/*if (PlayerManager.PlayerStartLocations != null && PlayerManager.PlayerStartLocations.Count > 0)
-			Cursor.transform.position = PlayerManager.PlayerStartLocations[0].Position - new Vector3(0f,0.5f,0f);
-		else*/
-		//TODO(ItemManager)
-
 		Cursor.transform.position = new Vector3(0, 1, 0);
+		if (LastCursorPostion.IsValid())
+		{
+			Cursor.transform.position = LastCursorPostion;
+		}
+		else
+		{
+			foreach(IItem item in ItemManager.ItemCache)
+			{
+				if (item.TypeName == "Player Start")
+					Cursor.transform.position = item.Position;
+			}
+		}
 	}
 
 	#region BlockAccounting
