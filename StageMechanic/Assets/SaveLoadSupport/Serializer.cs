@@ -504,11 +504,11 @@ public static class Serializer
 		HandleLoad(stream, false);
 	}
 
-	public static void BlocksFromBinaryStream(byte[] bytes)
+	public static void BlocksFromBinaryStream(byte[] bytes, bool clearFirst = false)
 	{
 		MemoryStream stream = new MemoryStream(bytes);
 		stream.Position = 0;
-		HandleBinaryLoad(stream, false);
+		HandleBinaryLoad(stream, clearFirst);
 	}
 
 	// Saves a file with the textToSave using a path
