@@ -374,25 +374,37 @@
                             ]
                         }
                     ],
-                    "Items": null,
-                    "Events": [
+                    "Items": [
                         {
                             "Name": "0533f725-4882-471f-9983-e1dc172794f7",
-                            "Palette": "Cathy Internal",
+                            "Palette": "Cat5 Internal",
                             "Type": "Player Start",
                             "Position": {
                                 "x": 0,
-                                "y": 1.5,
+                                "y": 2,
                                 "z": 0
                             },
                             "Properties": [
                                 {
-                                    "Key": "PlayerNumber",
+                                    "Key": "Owning Block",
+                                    "Value": "d17f833f-c5c4-410a-8a8d-a7792f3aa185"
+                                },
+                                {
+                                    "Key": "Collectable",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Uses",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Trigger",
+                                    "Value": "True"
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "Events": [ ]
                 }
             ]
         }

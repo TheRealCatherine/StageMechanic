@@ -222,6 +222,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Edged"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         },
@@ -374,6 +378,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Edged"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
                                 }
                             ]
                         },
@@ -510,6 +518,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
                                 }
                             ]
                         },
@@ -610,46 +622,6 @@
                                 {
                                     "Key": "Model Variant",
                                     "Value": "3"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "4da04dad-fc57-4a9d-9fb8-dfe47af6c512",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 3,
-                                "y": 6,
-                                "z": 3
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "2bbd3d80-6aac-4a89-9f66-ca1d32615a04",
-                            "Palette": "Cathy1 Internal",
-                            "Type": "Basic",
-                            "Position": {
-                                "x": 4,
-                                "y": 6,
-                                "z": 3
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
                                 }
                             ]
                         },
@@ -772,27 +744,1251 @@
                                     "Value": "3"
                                 }
                             ]
+                        },
+                        {
+                            "Name": "bcff20e2-6657-48f8-b29e-6f52c0799c05",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 1,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "db537fe6-1a3e-4b0b-8471-119979c387d2",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e959bdbd-78b3-49d7-892e-3876386a56f5",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "fb5bf877-db55-4174-a18d-30c02d00cb19",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 1,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "286f8e0f-af09-404c-879e-af5c6be3b855",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 1,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "807a9d91-79c0-4d96-b820-fd16d8c7a23a",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 2,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e9739d86-4e25-464e-865b-e8e721bf3a53",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 2,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "9a85aae8-3d12-41a6-b7fc-319a424c242e",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 2,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "79e17847-ffde-4722-9eef-d22c14e39e36",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 2,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "a966e7f4-3593-4c85-adcd-d71b958b40a2",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 2,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "43a479c3-27e2-4aaa-8e37-1f26a8b85986",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 3,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e283525c-55db-47b1-afb9-6df75a774727",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 3,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "78b40eda-8fc1-4d55-b6bc-4cb2be57a3e7",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 3,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "ea9c1fc5-d712-4ce0-a165-69a1f539efc4",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 3,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "04dbd656-cc23-4e49-ad9b-5e6b0267b73f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 3,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "b09415c4-48fe-4b7a-811c-6595cd9b35d1",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 3,
+                                "y": 4,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "de724419-d6d3-41f7-b609-d2c9c5e74e11",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 2,
+                                "y": 4,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "bc9141f7-8f85-4462-8d35-81a6688deae4",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 4,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "9a7c9359-da32-49d9-837d-c5824fe9d869",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 0,
+                                "y": 4,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "4c3150b2-00ba-4d7d-b859-3b4ec7b1add7",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": -1,
+                                "y": 4,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "56ad44a8-01bd-42e2-8517-5df10a67aa42",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 5,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "12030798-6a7f-442f-8700-5319cff5c630",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 5,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "69c5845b-c8fb-4a37-9d43-2c71c9062e4f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 5,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "527d8c7b-8656-468f-9ff6-0a29074077fb",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 5,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "b4779904-2e0e-4afd-bb44-c1149b95ea2e",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": -1,
+                                "y": 5,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e711dc4f-f7f5-4d6a-8e45-135cca6464fd",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": -1,
+                                "y": 6,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "77057731-df30-46ac-a5e9-6b9475b2e3dd",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 6,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "0cd08eee-bffc-4688-9889-e5176b390aea",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 6,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "366ab2fb-31ab-44ff-b2a4-3006f1c40f90",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 6,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "a98ee17e-eaee-4fc9-8845-1e6ee5e912ca",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 6,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "80aa5419-26b9-47c3-b73c-a35da9db6dc7",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 6,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Edged"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "87d1ec13-ccb8-4fce-a342-944a4a0ee6f7",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 7,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e75041cc-239b-4b9c-91bc-a768b61e5db6",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 7,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "4400cf43-e6c9-4674-af69-984ba8c85edf",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 7,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "0315387d-08d2-40a4-b486-75e299b31271",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 7,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "35a51a89-9710-47f9-8bde-2c6779821d66",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 7,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "45b5518a-011a-4f23-b62d-883e30bbfd39",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": -1,
+                                "y": 7,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "21e27638-d45a-4e70-ae0c-0598a0c4baeb",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": -1,
+                                "y": 8,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "4e7f66ea-4a7c-4f84-93d2-31cc370d1d60",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 8,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "ac438b29-06d6-4ae9-b712-f8c416c01308",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 8,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e47d8e1f-d0bd-4210-98d1-96d512a9de18",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 8,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "1f9729bc-6a1f-4def-8f56-8ef65fbb0c2f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 8,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "571345a4-e173-42d4-814a-2fb46cb51871",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 8,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "f642fc3a-73b5-4cd1-88d3-d853ca292762",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "bb78c73b-f835-4150-887a-78faa7d0f1d8",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "46963716-66c0-475c-89ca-09e27deecc1f",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "6d2523fc-c107-4f5e-a94f-c94601c89819",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e88fca50-89fb-4f01-947f-ea67b16be5d5",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "39537a5a-2f73-478b-8d7c-1b3d2e167c6b",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": -1,
+                                "y": 9,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e19f2249-9632-4750-b1dc-ca889c87d632",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": -1,
+                                "y": 10,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "7d5908d2-8213-49bd-a5b8-0117e69a72ac",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 0,
+                                "y": 10,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "5deb6d43-a71c-492e-8d28-7955f815243c",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 1,
+                                "y": 10,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "57f36f7a-5f23-4b42-86d8-cec7e1cfdfbb",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 2,
+                                "y": 10,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "31101c4c-f8e9-4592-9579-9fc510549d04",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 3,
+                                "y": 10,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "5453c7bc-c918-413b-b87f-ad56fe577874",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Immobile",
+                            "Position": {
+                                "x": 4,
+                                "y": 10,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "c56d5af0-b893-4f45-aa69-bebf86daf648",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Goal",
+                            "Position": {
+                                "x": -1,
+                                "y": 11,
+                                "z": 4
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Weight Factor",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "4da04dad-fc57-4a9d-9fb8-dfe47af6c512",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Spike Trap",
+                            "Position": {
+                                "x": 3,
+                                "y": 6,
+                                "z": 3
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Animation Scale",
+                                    "Value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "2bbd3d80-6aac-4a89-9f66-ca1d32615a04",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Cracked (2 Steps)",
+                            "Position": {
+                                "x": 4,
+                                "y": 6,
+                                "z": 3
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                },
+                                {
+                                    "Key": "Steps Remaining",
+                                    "Value": "2"
+                                }
+                            ]
                         }
                     ],
-                    "Items": null,
-                    "Events": [
+                    "Items": [
                         {
                             "Name": "ad73fabe-90a5-4247-a904-be43347e7e53",
-                            "Palette": "Cathy Internal",
+                            "Palette": "Cat5 Internal",
                             "Type": "Player Start",
                             "Position": {
                                 "x": 1,
-                                "y": 2.5,
+                                "y": 3,
                                 "z": 1
                             },
                             "Properties": [
                                 {
-                                    "Key": "PlayerNumber",
+                                    "Key": "Owning Block",
+                                    "Value": "0b8fe10a-b38c-46e9-aa34-32703668e68e"
+                                },
+                                {
+                                    "Key": "Collectable",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Trigger",
+                                    "Value": "True"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "c99829b6-a53d-4ab5-9603-ee8a282a799a",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -1,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "4f20ecfc-80a0-4595-a61a-65db91e68311"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "d8fb00ca-80ba-4e39-ae1e-f1940427245e",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Remove Special Blocks",
+                            "Position": {
+                                "x": -1,
+                                "y": 5,
+                                "z": 3
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "230d308d-2d12-4323-bcec-d0275f5ca2f5"
+                                },
+                                {
+                                    "Key": "Radius",
+                                    "Value": "10"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "6908032f-2853-4f45-b1b7-821f218a16fb",
+                            "Palette": "Cat5 Internal",
+                            "Type": "X-Factor",
+                            "Position": {
+                                "x": 1,
+                                "y": 7,
+                                "z": 3
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "9bd2e0d4-4c48-4820-bda7-69f5c158aa6d"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "80ecb448-2fb9-46fc-8506-476e20305159",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -1,
+                                "y": 3,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "df3305ac-74bc-4fad-b8df-5f48ced37524"
+                                },
+                                {
+                                    "Key": "Uses",
                                     "Value": "0"
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "Events": [ ]
                 }
             ]
         }

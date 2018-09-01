@@ -2034,46 +2034,6 @@
                             ]
                         },
                         {
-                            "Name": "3ec7f4d0-e2f9-48c3-9aea-9337ab7b5ba7",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
-                            "Position": {
-                                "x": 4,
-                                "y": 4,
-                                "z": 0
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Gravity Factor",
-                                    "Value": "0"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "b0ffdaa2-38f1-4093-867b-9f04ef692708",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
-                            "Position": {
-                                "x": 0,
-                                "y": 4,
-                                "z": 1
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Gravity Factor",
-                                    "Value": "0"
-                                }
-                            ]
-                        },
-                        {
                             "Name": "e4a90df1-fa6e-4887-a098-4083b2b16b78",
                             "Palette": "Cathy1 Internal",
                             "Type": "Ice",
@@ -3722,26 +3682,6 @@
                             ]
                         },
                         {
-                            "Name": "f9038f3f-51c2-40db-b5aa-f4d502f16f5c",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
-                            "Position": {
-                                "x": -6,
-                                "y": 23,
-                                "z": 9
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Gravity Factor",
-                                    "Value": "0"
-                                }
-                            ]
-                        },
-                        {
                             "Name": "71ffdd3e-2a56-4aa1-acc4-1b973bc298ad",
                             "Palette": "Cathy1 Internal",
                             "Type": "Ice",
@@ -3802,26 +3742,6 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Edged"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "57162675-9ed6-4edf-90e4-17fa32844938",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
-                            "Position": {
-                                "x": 8,
-                                "y": 23,
-                                "z": 9
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Gravity Factor",
-                                    "Value": "0"
                                 }
                             ]
                         },
@@ -4708,10 +4628,80 @@
                                     "Value": "3"
                                 }
                             ]
+                        }
+                    ],
+                    "Items": [
+                        {
+                            "Name": "6e88e77c-687b-403e-adef-af75d8858e23",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Player Start",
+                            "Position": {
+                                "x": 0,
+                                "y": 4,
+                                "z": -2
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "7321704e-c3ed-443b-b93c-116363619be9"
+                                },
+                                {
+                                    "Key": "Collectable",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Trigger",
+                                    "Value": "True"
+                                }
+                            ]
                         },
                         {
-                            "Name": "e73a1769-b4a1-4b26-ab4b-751186c77fde",
-                            "Palette": "Bloxels Internal",
+                            "Name": "a6241de6-e70c-48b0-a535-8d128e09a3e8",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 4,
+                                "y": 4,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "8fbfe733-f1a0-4114-bd72-0cf94d3a2b58"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "381f8896-1838-4369-a2ce-1b13f3d09add",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 0,
+                                "y": 4,
+                                "z": 1
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "a1403215-4134-4e6d-893a-f94e074193a1"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "b2601512-9988-4285-98e0-875a9b3c0fcc",
+                            "Palette": "Cat5 Internal",
                             "Type": "Coin",
                             "Position": {
                                 "x": 0,
@@ -4720,19 +4710,19 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
+                                    "Key": "Owning Block",
+                                    "Value": "3ecc9b6f-9914-44b5-8749-ca4799e1806e"
                                 },
                                 {
-                                    "Key": "Gravity Factor",
+                                    "Key": "Uses",
                                     "Value": "0"
                                 }
                             ]
                         },
                         {
-                            "Name": "84071042-23d2-41e0-abd0-ff508290d8b9",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
+                            "Name": "7b30d614-c534-46c2-8815-a54ac0931c80",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Remove Enemies",
                             "Position": {
                                 "x": -2,
                                 "y": 15,
@@ -4740,18 +4730,78 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
+                                    "Key": "Owning Block",
+                                    "Value": "23da4a4c-cea6-4ec7-af5a-257be2912c55"
                                 },
                                 {
-                                    "Key": "Gravity Factor",
+                                    "Key": "Radius",
+                                    "Value": "10"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "eb23a745-5a47-4700-a0ae-2322312029bd",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -1,
+                                "y": 16,
+                                "z": 7
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "64f587a6-5372-4f20-9322-bffca6c5816d"
+                                },
+                                {
+                                    "Key": "Uses",
                                     "Value": "0"
                                 }
                             ]
                         },
                         {
-                            "Name": "f1f3d4d9-15af-4571-8278-136fc7d6b5c1",
-                            "Palette": "Bloxels Internal",
+                            "Name": "0eccc8e4-3366-4f6f-9526-fdf8922bbdee",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -6,
+                                "y": 23,
+                                "z": 9
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "2f7c983a-a8cd-4ed0-b12f-2f74c5496b1e"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "9c998bd4-b9a8-438c-b43e-77f6d432d99b",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 8,
+                                "y": 23,
+                                "z": 9
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "0104fbd6-95ed-44f1-8cc6-7e3d13337e06"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "aa75c129-42a2-491e-8ccf-eec7c5b4b22c",
+                            "Palette": "Cat5 Internal",
                             "Type": "Coin",
                             "Position": {
                                 "x": -1,
@@ -4760,35 +4810,17 @@
                             },
                             "Properties": [
                                 {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
+                                    "Key": "Owning Block",
+                                    "Value": "f6fe850b-ba83-487a-b25e-4e53b95d090f"
                                 },
                                 {
-                                    "Key": "Gravity Factor",
+                                    "Key": "Uses",
                                     "Value": "0"
                                 }
                             ]
                         }
                     ],
-                    "Items": null,
-                    "Events": [
-                        {
-                            "Name": "6e88e77c-687b-403e-adef-af75d8858e23",
-                            "Palette": "Cathy Internal",
-                            "Type": "Player Start",
-                            "Position": {
-                                "x": 0,
-                                "y": 3.5,
-                                "z": -2
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "PlayerNumber",
-                                    "Value": "0"
-                                }
-                            ]
-                        }
-                    ]
+                    "Events": [ ]
                 }
             ]
         }

@@ -88,6 +88,15 @@ public class BlockManager : MonoBehaviour
 
 	}
 
+	public static IEnumerator DelayTogglePlayMode(float seconds=0.25f)
+	{
+		yield return new WaitForSeconds(seconds);
+		while (Serializer.CurrentState == Serializer.State.Deserializing)
+			yield return new WaitForEndOfFrame();
+
+		Instance.TogglePlayMode();
+	}
+
 	public static void ResetCursor()
 	{
 		Cursor.transform.position = new Vector3(0, 1, 0);

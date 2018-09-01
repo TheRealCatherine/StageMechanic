@@ -68,6 +68,7 @@ public class Cathy1GoalBlock : Cathy1Block
 						else
 							Serializer.BlocksFromBinaryStream(File.ReadAllBytes(loc), true);
 					}
+					BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(0.5f));
 					Serializer.BlocksFromJson(location,startPlayMode:true);
 				}
 				else if(string.IsNullOrWhiteSpace(NextStageFilename)) {

@@ -106,6 +106,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
                                 }
                             ]
                         },
@@ -902,6 +906,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Edged"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         },
@@ -2258,6 +2266,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
                                 }
                             ]
                         },
@@ -2654,6 +2666,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         },
@@ -3010,6 +3026,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
                                 }
                             ]
                         },
@@ -3606,6 +3626,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Edged"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "3"
                                 }
                             ]
                         },
@@ -4422,6 +4446,10 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         },
@@ -4590,26 +4618,6 @@
                                 {
                                     "Key": "Turn duration (in seconds)",
                                     "Value": "0.25"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "0bdfccb3-b311-4029-b283-311bab29384c",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
-                            "Position": {
-                                "x": -2,
-                                "y": 36,
-                                "z": 22
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Gravity Factor",
-                                    "Value": "0"
                                 }
                             ]
                         },
@@ -5418,25 +5426,293 @@
                             ]
                         }
                     ],
-                    "Items": null,
-                    "Events": [
+                    "Items": [
                         {
                             "Name": "5beea56e-0194-4c67-b11f-3c2cdcf9bb9e",
-                            "Palette": "Cathy Internal",
+                            "Palette": "Cat5 Internal",
                             "Type": "Player Start",
                             "Position": {
                                 "x": 1,
-                                "y": 11.5,
+                                "y": 12,
                                 "z": 10
                             },
                             "Properties": [
                                 {
-                                    "Key": "PlayerNumber",
+                                    "Key": "Owning Block",
+                                    "Value": "907330fa-d68e-4720-8616-f7c9e336cd5f"
+                                },
+                                {
+                                    "Key": "Collectable",
+                                    "Value": "False"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Key": "Trigger",
+                                    "Value": "True"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "5a0366e3-df4f-4fd8-b33b-431e08e43c47",
+                            "Palette": "Cat5 Internal",
+                            "Type": "X-Factor",
+                            "Position": {
+                                "x": -2,
+                                "y": 16,
+                                "z": 14
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "85bbc6c3-0efc-4adb-ba3b-03faa55f6575"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "8585b54e-5d6b-4cc4-b6ef-8e03b060e234",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 0,
+                                "y": 20,
+                                "z": 16
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "a71f4d4a-4071-4354-a55f-b86a3cc9c2d6"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "51424c9a-1b45-4a3f-a8fa-46bbc37fb01f",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 1,
+                                "y": 21,
+                                "z": 16
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "a7872534-2416-4775-b1e6-044e27c77774"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "635e1e21-58f4-4e86-b70d-95e407904557",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 2,
+                                "y": 22,
+                                "z": 16
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "f755773f-936b-4038-9c48-a84912207e82"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "457c16c4-24c3-404b-908e-d4471f237318",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 2,
+                                "y": 23,
+                                "z": 17
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "92ee9e1e-de7c-4cc7-bb28-973786d16864"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "fc82f91d-a30e-46c3-8876-4f06d73f51c0",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 1,
+                                "y": 30,
+                                "z": 20
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "a6684b0e-6fad-47b7-844c-52913ae7bf10"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "bc06b345-0768-4082-a9cb-e243bcf90dc4",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 0,
+                                "y": 30,
+                                "z": 20
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "9695ef1e-5c1d-4a0c-905b-fa9e41afd378"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "8220d6fd-d794-4c9d-b9f5-3b6337b31c64",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -1,
+                                "y": 30,
+                                "z": 20
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "958018b6-46f6-4855-9f66-e098c9920e8b"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "20f87981-4b4c-49ae-a6c0-625f2011e745",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -4,
+                                "y": 34,
+                                "z": 21
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "a3a965ca-cf7b-4460-bab2-ec9511f91090"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "0c226110-fb77-415f-af9b-fe8d9b6b6fa5",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 4,
+                                "y": 34,
+                                "z": 21
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "d60d3db9-d8dd-4a35-a5a7-080622e72d7f"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "bf7809b4-2727-4c9a-8c7c-f560e82ab1d2",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Remove Enemies",
+                            "Position": {
+                                "x": 0,
+                                "y": 34,
+                                "z": 21
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "d050f4b4-94f5-481d-81ba-14db798b7e6c"
+                                },
+                                {
+                                    "Key": "Radius",
+                                    "Value": "10"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "e9311bd0-9e2e-49f7-a0b8-c7189f6d89c9",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -2,
+                                "y": 36,
+                                "z": 22
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "01fbf508-e900-4f66-a295-e2a96516583f"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "d1d68c5d-098e-4ac8-a9db-805f39872882",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -3,
+                                "y": 46,
+                                "z": 29
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "06f71ea7-eca7-490a-87f5-a3476310831c"
+                                },
+                                {
+                                    "Key": "Uses",
                                     "Value": "0"
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "Events": [ ]
                 }
             ]
         }
