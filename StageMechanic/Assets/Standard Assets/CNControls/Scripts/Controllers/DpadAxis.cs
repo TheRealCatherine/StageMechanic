@@ -19,13 +19,16 @@ namespace CnControls
         private void OnEnable()
         {
             _virtualAxis = _virtualAxis ?? new VirtualAxis(AxisName);
-            LastFingerId = -1;
+			_virtualAxis.Value = 0f;
+			LastFingerId = -1;
 
-            CnInputManager.RegisterVirtualAxis(_virtualAxis);
+			CnInputManager.RegisterVirtualAxis(_virtualAxis);
         }
 
         private void OnDisable()
         {
+			_virtualAxis.Value = 0f;
+			LastFingerId = -1;
             CnInputManager.UnregisterVirtualAxis(_virtualAxis);
         }
 
