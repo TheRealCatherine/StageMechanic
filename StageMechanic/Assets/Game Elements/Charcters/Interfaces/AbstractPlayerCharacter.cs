@@ -46,10 +46,10 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
         get
         {
             Dictionary<string, string[]> ret = new Dictionary<string, string[]>();
-            ret.Add("Up", new string[] { "up", "joystick 1 7th axis +", "joystick 1 Y axis +" });
-            ret.Add("Down", new string[] { "down", "joystick 1 7th axis -", "joystick 1 Y axis -" });
-            ret.Add("Left", new string[] { "left", "joystick 1 6th axis -", "joystick 1 X axis -" });
-            ret.Add("Right", new string[] { "right", "joystick 1 6th axis +", "joystick 1 X axis +" });
+            ret.Add("Up", new string[] { "w", "up", "joystick 1 7th axis +", "joystick 1 Y axis +" });
+            ret.Add("Down", new string[] { "s", "down", "joystick 1 7th axis -", "joystick 1 Y axis -" });
+            ret.Add("Left", new string[] { "a", "left", "joystick 1 6th axis -", "joystick 1 X axis -" });
+            ret.Add("Right", new string[] { "d", "right", "joystick 1 6th axis +", "joystick 1 X axis +" });
             ret.Add("Grab", new string[] { "left shift", "right shift", "joystick 1 button 0", "Grab" });
             ret.Add("Item", new string[] { "space", "joystick 1 button 1" });
             return ret;
