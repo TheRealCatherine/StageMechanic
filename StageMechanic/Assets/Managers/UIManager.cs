@@ -134,6 +134,9 @@ public class UIManager : MonoBehaviour
 
 	private void Update()
 	{
+		if (IsAnyInputDialogOpen)
+			TooltipDisplay.gameObject.SetActive(false);
+
 		if (ShowOnscreenControlls && !IsAnyInputDialogOpen) {
 
 			DirectionButtons.gameObject.SetActive(BlockManager.PlayMode);

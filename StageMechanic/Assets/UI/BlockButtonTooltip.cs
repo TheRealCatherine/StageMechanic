@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class BlockButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	bool _mouseOver = false;
 
