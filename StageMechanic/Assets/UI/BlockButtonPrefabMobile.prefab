@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222612495588198372}
   - component: {fileID: 114528964357980718}
   - component: {fileID: 114626124517242874}
+  - component: {fileID: 114982704994029680}
   m_Layer: 5
   m_Name: BlockButtonPrefabMobile
   m_TagString: Untagged
@@ -147,6 +148,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114982704994029680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473066685206040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101ba8f7e5d699b4185d384a2e3bbbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PropertyName: 
+  PropertyDefaultValue: 
 --- !u!222 &222612495588198372
 CanvasRenderer:
   m_ObjectHideFlags: 1

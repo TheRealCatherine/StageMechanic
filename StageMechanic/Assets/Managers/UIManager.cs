@@ -24,6 +24,9 @@ public class UIManager : MonoBehaviour
 	public MainMenu MainMenu;
 	public ScrollRect BlockTypesList;
 	public ScrollRect ItemTypesList;
+	public ScrollRect MobileBlockTypesList;
+	public ScrollRect MobileItemTypesList;
+
 	public BlockEditDialog BlockEditDialog;
 	public ItemEditDialog ItemEditDialog;
 	public GameObject FileBrowserPrefab;
@@ -150,9 +153,16 @@ public class UIManager : MonoBehaviour
 			GrabButton.gameObject.SetActive(false);
 		}
 		if (!BlockManager.PlayMode && !IsAnyInputDialogOpen)
-			ItemTypesList.gameObject.SetActive(BlockManager.GetBlockNear(BlockManager.Cursor.transform.position + Vector3.down) != null);
-		else
+		{
+			if(ShowOnscreenControlls)
+				MobileItemTypesList.gameObject.SetActive(BlockManager.GetBlockNear(BlockManager.Cursor.transform.position + Vector3.down) != null);
+			else
+				ItemTypesList.gameObject.SetActive(BlockManager.GetBlockNear(BlockManager.Cursor.transform.position + Vector3.down) != null);
+		}
+		else {
 			ItemTypesList.gameObject.SetActive(false);
+			MobileItemTypesList.gameObject.SetActive(false);
+		}
 
 		if (!IsAnyInputDialogOpen && !BlockManager.PlayMode) {
 			AbstractBlock currentBlock = BlockManager.ActiveBlock;
@@ -174,8 +184,9 @@ public class UIManager : MonoBehaviour
 			PropertiesButton.gameObject.SetActive(false);
 		}
 
-		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
-	
+		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen && !ShowOnscreenControlls);
+		MobileBlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen && ShowOnscreenControlls);
+
 		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
 		Player1ItemButton.image.sprite = PlayerManager.Player(0)?.Item?.Icon;
 		Player1ItemButton.gameObject.SetActive(BlockManager.PlayMode && PlayerManager.Player(0) != null && PlayerManager.Player(0).Item != null && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
