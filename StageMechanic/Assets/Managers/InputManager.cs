@@ -347,23 +347,22 @@ public class InputManager : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.B) || CnInputManager.GetButtonDown("StartPosition1"))
 		{
-			//TODO(ItemManager)
-			//EventManager.Instance.CreateCathy1PlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			ItemManager.CreateItemAt(BlockManager.Cursor.transform.position, "Cat5 Internal", "Player Start");
 		}
 		else if (Input.GetKeyDown(KeyCode.O) || CnInputManager.GetButtonDown("StartPosition2"))
 		{
-			//TODO(ItemManager)
-			//EventManager.Instance.CreateCathy1PlayerStartLocation(1, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			Cat5PlayerStart player = ItemManager.CreateItemAt(BlockManager.Cursor.transform.position, "Cat5 Internal", "Player Start") as Cat5PlayerStart;
+			player.PlayerNumber = 2;
 		}
 		else if (Input.GetKeyDown(KeyCode.T) || CnInputManager.GetButtonDown("StartPosition3"))
 		{
-			//TODO(ItemManager)
-			//EventManager.Instance.CreateCathy1PlayerStartLocation(2, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			Cat5PlayerStart player = ItemManager.CreateItemAt(BlockManager.Cursor.transform.position, "Cat5 Internal", "Player Start") as Cat5PlayerStart;
+			player.PlayerNumber = 3;
 		}
 		else if(CnInputManager.GetButtonDown("StartPosition4"))
 		{
-			//TODO(ItemManager)
-			//EventManager.Instance.CreatePusherPlayerStartLocation(0, BlockManager.Cursor.transform.position, BlockManager.Cursor.transform.rotation);
+			Cat5PlayerStart player = ItemManager.CreateItemAt(BlockManager.Cursor.transform.position, "Cat5 Internal", "Player Start") as Cat5PlayerStart;
+			player.PlayerNumber = 4;
 		}
 
 		// Buttons for setting items

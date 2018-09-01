@@ -9,7 +9,21 @@ using UnityEngine;
 
 public class Cat5PlayerStart : Cat5AbstractItem {
 
-	public int PlayerNumber = 1;
+	private int _playerNumber = 1;
+	public int PlayerNumber
+	{
+
+		get
+		{
+			return _playerNumber;
+		}
+		set
+		{
+			_playerNumber = value;
+			ApplyTheme(_currentTheme);
+		}
+	}
+		
 
 	public override int Uses
 	{
@@ -50,13 +64,33 @@ public class Cat5PlayerStart : Cat5AbstractItem {
 		}
 	}
 
-
+	private Cat5ItemTheme _currentTheme;
 	public override void ApplyTheme(Cat5ItemTheme theme)
 	{
-		Debug.Assert(theme.PlayerStartPlaceholder != null);
-		Model1 = theme.PlayerStartPlaceholder;
-		Model2 = theme.PlayerStartObject;
-		Model3 = theme.PlayerAvatar;
+		if (theme == null)
+			return;
+		_currentTheme = theme;
+		if (PlayerNumber == 1 || PlayerNumber > 3)
+		{
+			Debug.Assert(theme.PlayerStartPlaceholder != null);
+			Model1 = theme.PlayerStartPlaceholder;
+			Model2 = theme.PlayerStartObject;
+			Model3 = theme.PlayerAvatar;
+		}
+		else if (PlayerNumber == 2)
+		{
+			Debug.Assert(theme.Player2StartPlaceholder != null);
+			Model1 = theme.Player2StartPlaceholder;
+			Model2 = theme.Player2StartObject;
+			Model3 = theme.Player2Avatar;
+		}
+		else if (PlayerNumber == 3)
+		{
+			Debug.Assert(theme.Player3StartPlaceholder != null);
+			Model1 = theme.Player3StartPlaceholder;
+			Model2 = theme.Player3StartObject;
+			Model3 = theme.Player3Avatar;
+		}
 	}
 
 	/// <summary>

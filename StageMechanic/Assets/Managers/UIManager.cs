@@ -163,6 +163,11 @@ public class UIManager : MonoBehaviour
 				PropertiesButton.gameObject.SetActive(false);
 			}
 		}
+		else
+		{
+			DeleteBlockButton.gameObject.SetActive(false);
+			PropertiesButton.gameObject.SetActive(false);
+		}
 
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
 	
