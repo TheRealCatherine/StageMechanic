@@ -247,61 +247,12 @@ Prefab:
       propertyPath: MainCamera
       value: 
       objectReference: {fileID: 223191236}
-    - target: {fileID: 224792744546607412, guid: e7d913beadda84f41aa5116b3a588ce5,
+    - target: {fileID: 224591843677919222, guid: e7d913beadda84f41aa5116b3a588ce5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
-      objectReference: {fileID: 0}
-    - target: {fileID: 224792744546607412, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -165.59998
-      objectReference: {fileID: 0}
-    - target: {fileID: 114950907391779940, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299762478791026, guid: e7d913beadda84f41aa5116b3a588ce5, type: 2}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224792744546607412, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -1688.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 224792744546607412, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: -846.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114311869323904648, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: ButtonPrefab
-      value: 
-      objectReference: {fileID: 114626124517242874, guid: 43501020b321520459b982b1a9f48304,
-        type: 2}
-    - target: {fileID: 114311869323904648, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: FactoryLabelPrefab
-      value: 
-      objectReference: {fileID: 114098347599259072, guid: 5ec53c3bf41505c4a88d3ed8f219dacd,
-        type: 2}
-    - target: {fileID: 114221376214365034, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: ButtonPrefab
-      value: 
-      objectReference: {fileID: 114626124517242874, guid: 43501020b321520459b982b1a9f48304,
-        type: 2}
-    - target: {fileID: 114221376214365034, guid: e7d913beadda84f41aa5116b3a588ce5,
-        type: 2}
-      propertyPath: FactoryLabelPrefab
-      value: 
-      objectReference: {fileID: 114098347599259072, guid: 5ec53c3bf41505c4a88d3ed8f219dacd,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 114871264244419282, guid: e7d913beadda84f41aa5116b3a588ce5, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7d913beadda84f41aa5116b3a588ce5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &172363640
