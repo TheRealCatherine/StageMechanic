@@ -50,6 +50,8 @@ public class UIManager : MonoBehaviour
 	public GameObject UndoButton;
 	public Button Player1ItemButton;
 
+	public TooltipDisplay TooltipDisplay;
+
 	//TODO Singleton flame war
 	public static UIManager Instance;
 	public static bool IsSinglePlayerDeathDialogOpen

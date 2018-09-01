@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114528964357980718}
   - component: {fileID: 114626124517242874}
   - component: {fileID: 114657423672169826}
+  - component: {fileID: 114658881785127404}
   m_Layer: 5
   m_Name: BlockButtonPrefab
   m_TagString: Untagged
@@ -161,6 +162,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PropertyName: 
   PropertyDefaultValue: 
+--- !u!114 &114658881785127404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473066685206040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ca2a96912215f45bf4872a0d63f48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222612495588198372
 CanvasRenderer:
   m_ObjectHideFlags: 1
