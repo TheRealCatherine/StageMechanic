@@ -25,12 +25,14 @@ public class UIManager : MonoBehaviour
 	public ScrollRect BlockTypesList;
 	public ScrollRect ItemTypesList;
 	public BlockEditDialog BlockEditDialog;
+	public ItemEditDialog ItemEditDialog;
 	public GameObject FileBrowserPrefab;
 
 	public bool ShowOnscreenControlls;
 	public SimpleButton GrabButton;
 	public SimpleButton SetStartPosButton;
 	public SimpleButton DeleteBlockButton;
+	public SimpleButton PropertiesButton;
 	public Dpad DirectionButtons;
 
 	public GameObject CursorControls;
@@ -77,6 +79,7 @@ public class UIManager : MonoBehaviour
 				|| IsSinglePlayerDeathDialogOpen
 				|| IsCreateEditLevelDialogOpen
 				|| Instance.BlockEditDialog.isActiveAndEnabled
+				|| Instance.ItemEditDialog.isActiveAndEnabled
 				|| FileBrowser.IsOpen
 				|| Instance.MainMenu.isActiveAndEnabled
 				|| Instance.NetworkLoadDialog.isActiveAndEnabled
@@ -91,6 +94,15 @@ public class UIManager : MonoBehaviour
 		{
 			Debug.Assert(Instance != null);
 			return Instance.BlockEditDialog.isActiveAndEnabled;
+		}
+	}
+
+	public static bool IsItemEditDialogOpen
+	{
+		get
+		{
+			Debug.Assert(Instance != null);
+			return Instance.ItemEditDialog.isActiveAndEnabled;
 		}
 	}
 
@@ -136,7 +148,22 @@ public class UIManager : MonoBehaviour
 			ItemTypesList.gameObject.SetActive(BlockManager.GetBlockNear(BlockManager.Cursor.transform.position + Vector3.down) != null);
 		else
 			ItemTypesList.gameObject.SetActive(false);
-		DeleteBlockButton.gameObject.SetActive(!MainMenu.isActiveAndEnabled && !BlockManager.PlayMode && BlockManager.ActiveBlock != null);
+
+		if (!IsAnyInputDialogOpen && !BlockManager.PlayMode) {
+			AbstractBlock currentBlock = BlockManager.ActiveBlock;
+			IItem currentItem = ItemManager.ActiveItem;
+			if (currentBlock != null || currentItem != null)
+			{
+				DeleteBlockButton.gameObject.SetActive(true);
+				PropertiesButton.gameObject.SetActive(true);
+			}
+			else
+			{
+				DeleteBlockButton.gameObject.SetActive(false);
+				PropertiesButton.gameObject.SetActive(false);
+			}
+		}
+
 		BlockTypesList.gameObject.SetActive(!BlockManager.PlayMode && !IsAnyInputDialogOpen);
 	
 		UndoButton.SetActive(BlockManager.PlayMode && Serializer.AvailableUndoCount > 0 && (!SinglePlayerDeathDialog.gameObject.activeInHierarchy));
@@ -254,6 +281,12 @@ public class UIManager : MonoBehaviour
 	{
 		Instance.BlockInfoBox.gameObject.SetActive(false);
 		Instance.BlockEditDialog.Show(block);
+	}
+
+	public static void ShowItemEditDialog(IItem item = null)
+	{
+		Instance.BlockInfoBox.gameObject.SetActive(false);
+		Instance.ItemEditDialog.Show(item);
 	}
 
 	public static void ShowNetworkLoadDialog()

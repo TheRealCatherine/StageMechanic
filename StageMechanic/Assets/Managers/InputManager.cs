@@ -302,12 +302,18 @@ public class InputManager : MonoBehaviour
 			return true;
 		}
 
-		else if (Input.GetKeyDown(KeyCode.Return))
+		else if (Input.GetKeyDown(KeyCode.Return)
+			|| CnInputManager.GetButtonDown("Properties"))
 		{
 			IBlock block = BlockManager.ActiveBlock;
 			if(block != null)
 			{
 				UIManager.ShowBlockEditDialog(block);
+			}
+			IItem item = ItemManager.GetItemNear(BlockManager.Cursor.transform.position);
+			if (item != null)
+			{
+				UIManager.ShowItemEditDialog(item);
 			}
 		}
 		else if (Input.GetKeyDown(KeyCode.LeftBracket)
