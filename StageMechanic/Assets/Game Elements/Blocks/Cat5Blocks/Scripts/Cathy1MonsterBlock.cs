@@ -98,6 +98,10 @@ public class Cathy1MonsterBlock : Cathy1Block
 
 	bool WouldHaveSupport(Vector3 position)
 	{
+		if(PlayerManager.GetPlayerNear(position) != null)
+		{
+			return false;
+		}
 		List<IBlock> supportingBlocks = new List<IBlock>();
 		supportingBlocks.Add(BlockManager.GetBlockAt(position + Vector3.down));
 		supportingBlocks.Add(BlockManager.GetBlockAt(position + Vector3.down + Vector3.back));
