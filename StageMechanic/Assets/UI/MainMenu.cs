@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -225,7 +226,6 @@ public class MainMenu : MonoBehaviour
 	{
 		if (BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
-		UIManager.ToggleButtonMappingDialog();
 
 		string file;
 		if (Application.platform == RuntimePlatform.Android)
@@ -233,9 +233,15 @@ public class MainMenu : MonoBehaviour
 		else
 			file = Application.streamingAssetsPath + "/InputConfig.json";
 		Serializer.LoadFileUsingLocalPath(file);
-
 		if (!BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
+		StartCoroutine(OnInputsClickedHelper());
+	}
+
+	private IEnumerator OnInputsClickedHelper()
+	{
+		yield return new WaitForSeconds(0.25f);
+		UIManager.ToggleButtonMappingDialog();
 		gameObject.SetActive(false);
 	}
 
