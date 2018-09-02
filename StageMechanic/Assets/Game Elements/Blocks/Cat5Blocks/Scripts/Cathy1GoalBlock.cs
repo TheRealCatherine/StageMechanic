@@ -63,9 +63,14 @@ public class Cathy1GoalBlock : Cathy1Block
 					{
 						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
 						loc = loc.Replace(".json", ".bin");
-						if (Application.platform == RuntimePlatform.Android)
+						if (Application.platform == RuntimePlatform.Android )
 						{
 							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(1.6f));
+							Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc), true);
+						}
+						if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+						{
+							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(1f));
 							Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc), true);
 						}
 						else
