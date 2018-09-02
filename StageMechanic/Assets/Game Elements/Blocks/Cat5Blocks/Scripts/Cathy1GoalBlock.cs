@@ -65,7 +65,7 @@ public class Cathy1GoalBlock : Cathy1Block
 						loc = loc.Replace(".json", ".bin");
 						if (Application.platform == RuntimePlatform.Android)
 						{
-							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(0.5f));
+							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(1.6f));
 							Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc), true);
 						}
 						else

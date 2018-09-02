@@ -90,11 +90,11 @@ public class BlockManager : MonoBehaviour
 
 	public static IEnumerator DelayTogglePlayMode(float seconds=0.25f)
 	{
+		if (PlayMode)
+			Instance.TogglePlayMode();
 		yield return new WaitForSeconds(seconds);
-		while (Serializer.CurrentState == Serializer.State.Deserializing)
-			yield return new WaitForEndOfFrame();
-
-		Instance.TogglePlayMode();
+		if (!PlayMode)
+			Instance.TogglePlayMode();
 	}
 
 	public static void ResetCursor()

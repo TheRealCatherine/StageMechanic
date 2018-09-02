@@ -95,7 +95,12 @@ public static class Serializer
 	{
 		get
 		{
-			return (Application.platform == RuntimePlatform.Android) || UIManager.Instance.BinaryFormat.isOn;
+			return (Application.platform == RuntimePlatform.Android) 
+				|| Application.platform == RuntimePlatform.WSAPlayerX64 
+				|| Application.platform == RuntimePlatform.WSAPlayerX86
+				|| Application.platform == RuntimePlatform.WSAPlayerARM
+				|| Application.platform == RuntimePlatform.OSXPlayer
+				|| UIManager.Instance.BinaryFormat.isOn;
 		}
 	}
 
@@ -506,9 +511,11 @@ public static class Serializer
 
 	public static void BlocksFromBinaryStream(byte[] bytes, bool clearFirst = false)
 	{
+		CurrentState = State.Deserializing;
 		MemoryStream stream = new MemoryStream(bytes);
 		stream.Position = 0;
 		HandleBinaryLoad(stream, clearFirst);
+		CurrentState = State.Idle;
 	}
 
 	// Saves a file with the textToSave using a path
