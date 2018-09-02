@@ -313,7 +313,7 @@ public class MainMenu : MonoBehaviour
 		if (BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
 		string file;
-		if (Application.platform == RuntimePlatform.Android)
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 			file = "/Tutorial/Tutorial" + TutorialLevel.options[TutorialLevel.value].text + ".bin";
 		else
 			file = Application.streamingAssetsPath + "/Tutorial/Tutorial" + TutorialLevel.options[TutorialLevel.value].text + ".json";
@@ -329,7 +329,7 @@ public class MainMenu : MonoBehaviour
 		if (BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
 		string file;
-		if (Application.platform == RuntimePlatform.Android)
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 			file = "/Cat5/" + Cat5Level.options[Cat5Level.value].text + ".bin";
 		else
 			file = Application.streamingAssetsPath + "/Cat5/" + Cat5Level.options[Cat5Level.value].text + ".json";
@@ -345,7 +345,7 @@ public class MainMenu : MonoBehaviour
 		if (BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
 		string file;
-		if (Application.platform == RuntimePlatform.Android)
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 			file = "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".bin";
 		else
 			file = Application.streamingAssetsPath + "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".json";

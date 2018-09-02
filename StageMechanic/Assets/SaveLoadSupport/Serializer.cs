@@ -100,6 +100,7 @@ public static class Serializer
 				|| Application.platform == RuntimePlatform.WSAPlayerX86
 				|| Application.platform == RuntimePlatform.WSAPlayerARM
 				|| Application.platform == RuntimePlatform.OSXPlayer
+				|| Application.platform == RuntimePlatform.OSXEditor
 				|| UIManager.Instance.BinaryFormat.isOn;
 		}
 	}
@@ -597,7 +598,7 @@ public static class Serializer
 			if (UseBinaryFiles)
 			{
 				BlockManager.Clear();
-				if(Application.platform == RuntimePlatform.Android)
+				if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 				{
 					if(!BetterStreamingAssets.FileExists(path))
 					{
