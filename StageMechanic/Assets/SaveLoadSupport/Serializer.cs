@@ -590,9 +590,18 @@ public static class Serializer
 				else
 					directory = "";
 			}
-				
+			else if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+			{
+				int index = path.LastIndexOf("/");
+				if (index > 0)
+					directory = path.Substring(0, index + 1);
+				else
+					directory = "";
+			}
 			else
 				directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
+
+
 			PlayerPrefs.SetString("LastLoadDir", directory);
 
 			if (UseBinaryFiles)

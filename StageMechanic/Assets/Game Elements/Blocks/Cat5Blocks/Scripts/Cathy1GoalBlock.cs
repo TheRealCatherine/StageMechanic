@@ -70,7 +70,7 @@ public class Cathy1GoalBlock : Cathy1Block
 						}
 						if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 						{
-							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(1f));
+							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(0.5f));
 							Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc), true);
 						}
 						else
