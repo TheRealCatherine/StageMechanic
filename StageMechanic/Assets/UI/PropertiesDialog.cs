@@ -23,6 +23,8 @@ public class PropertiesDialog : MonoBehaviour {
 	public Text ListLabelPrefab;
 	public InputField ListStringFieldPrefab;
 
+	public AbstractPropertyField[] FieldTypes;
+
 	protected List<GameObject> addedFields = new List<GameObject>();
 	protected float period;
 
@@ -249,8 +251,19 @@ public class PropertiesDialog : MonoBehaviour {
 				addedFields.Add(label.gameObject);
 				label.text = property.Key;
 
-				//TODO support other types of properties
-				IPropertyField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
+				GameObject fieldPrefab = null;
+				foreach (IPropertyField type in FieldTypes)
+				{
+					if (property.Value.TypeInfo == type.FieldType)
+					{
+						fieldPrefab = type.GameObject;
+						break;
+					}
+				}
+				if (fieldPrefab == null)
+					fieldPrefab = ListStringFieldPrefab.gameObject;
+
+				IPropertyField stringField = Instantiate(fieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
 				addedFields.Add(stringField.GameObject);
 				stringField.Placeholder = property.Value.Value;
 				stringField.PropertyName = property.Key;
