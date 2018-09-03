@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114349723066545324}
   - component: {fileID: 114076571590972192}
   - component: {fileID: 114086519636934602}
+  - component: {fileID: 114768315797974336}
   m_Layer: 5
   m_Name: BlockEditDialogPropertyStringPrefab
   m_TagString: Untagged
@@ -233,6 +234,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114768315797974336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850637094961154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f5b184bda18a74e8a2c49693262418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222313353551761780
 CanvasRenderer:
   m_ObjectHideFlags: 1

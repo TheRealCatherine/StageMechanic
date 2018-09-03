@@ -33,9 +33,8 @@ public class ItemManager : MonoBehaviour
 	public static List<IItem> GetItemsOfType(string type = null)
 	{
 		List<IItem> ret = new List<IItem>();
-		foreach (Transform child in BlockManager.ActiveFloor.transform)
+		foreach (IItem item in ItemCache)
 		{
-			IItem item = child.gameObject.GetComponent<IItem>();
 			if (item != null && (type == null || item.TypeName == type))
 				ret.Add(item);
 		}

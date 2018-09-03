@@ -97,15 +97,12 @@ public class PropertiesDialog : MonoBehaviour {
 		Dictionary<string, string> properties = new Dictionary<string, string>();
 		foreach (GameObject obj in addedFields)
 		{
-			SinglePropertyWithDefault holder = obj.GetComponent<SinglePropertyWithDefault>();
-			if (holder != null)
+			IPropertyField prop = obj.GetComponent<IPropertyField>();
+			if (prop != null)
 			{
-				InputField field = holder.GetComponent<InputField>();
-				if (field != null)
-				{
-					if (!string.IsNullOrWhiteSpace(field.text))
-						properties.Add(holder.PropertyName, field.text);
-				}
+				string value = prop.Value;
+				if (!string.IsNullOrWhiteSpace(value))
+					properties.Add(prop.PropertyName, value);
 			}
 		}
 		if (properties.Count > 0)
@@ -128,15 +125,12 @@ public class PropertiesDialog : MonoBehaviour {
 		Dictionary<string, string> properties = new Dictionary<string, string>();
 		foreach (GameObject obj in addedFields)
 		{
-			SinglePropertyWithDefault holder = obj.GetComponent<SinglePropertyWithDefault>();
-			if (holder != null)
+			IPropertyField prop = obj.GetComponent<IPropertyField>();
+			if (prop != null)
 			{
-				InputField field = holder.GetComponent<InputField>();
-				if (field != null)
-				{
-					if (!string.IsNullOrWhiteSpace(field.text))
-						properties.Add(holder.PropertyName, field.text);
-				}
+				string value = prop.Value;
+				if (!string.IsNullOrWhiteSpace(value))
+					properties.Add(prop.PropertyName, value);
 			}
 		}
 		if (properties.Count > 0)
@@ -146,9 +140,15 @@ public class PropertiesDialog : MonoBehaviour {
 	public void ApplyToType()
 	{
 		if (CurrentBlock != null)
+		{
 			ApplyBlocksToType();
+			Hide();
+		}
 		else if (CurrentItem != null)
+		{
 			ApplyItemsToType();
+			Hide();
+		}
 		else
 			Hide();
 
@@ -170,15 +170,12 @@ public class PropertiesDialog : MonoBehaviour {
 		Dictionary<string, string> properties = new Dictionary<string, string>();
 		foreach (GameObject obj in addedFields)
 		{
-			SinglePropertyWithDefault holder = obj.GetComponent<SinglePropertyWithDefault>();
-			if (holder != null)
+			IPropertyField prop = obj.GetComponent<IPropertyField>();
+			if (prop != null)
 			{
-				InputField field = holder.GetComponent<InputField>();
-				if (field != null)
-				{
-					if (!string.IsNullOrWhiteSpace(field.text))
-						properties.Add(holder.PropertyName, field.text);
-				}
+				string value = prop.Value;
+				if (!string.IsNullOrWhiteSpace(value))
+					properties.Add(prop.PropertyName, value);
 			}
 		}
 		if (properties.Count > 0)
@@ -205,15 +202,12 @@ public class PropertiesDialog : MonoBehaviour {
 		Dictionary<string, string> properties = new Dictionary<string, string>();
 		foreach (GameObject obj in addedFields)
 		{
-			SinglePropertyWithDefault holder = obj.GetComponent<SinglePropertyWithDefault>();
-			if (holder != null)
+			IPropertyField prop = obj.GetComponent<IPropertyField>();
+			if (prop != null)
 			{
-				InputField field = holder.GetComponent<InputField>();
-				if (field != null)
-				{
-					if (!string.IsNullOrWhiteSpace(field.text))
-						properties.Add(holder.PropertyName, field.text);
-				}
+				string value = prop.Value;
+				if (!string.IsNullOrWhiteSpace(value))
+					properties.Add(prop.PropertyName, value);
 			}
 		}
 		if (properties.Count > 0)
@@ -256,31 +250,19 @@ public class PropertiesDialog : MonoBehaviour {
 				label.text = property.Key;
 
 				//TODO support other types of properties
-				InputField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform) as InputField;
-				if (property.Value.TypeInfo == typeof(MultilinePlaintext))
-				{
-					stringField.lineType = InputField.LineType.MultiLineNewline;
-				}
-				else
-				{
-					stringField.lineType = InputField.LineType.SingleLine;
-				}
-
-				addedFields.Add(stringField.gameObject);
-				stringField.placeholder.GetComponent<Text>().text = property.Value.Value;
-				SinglePropertyWithDefault holder = stringField.GetComponent<SinglePropertyWithDefault>();
-				Debug.Assert(holder != null);
-				holder.PropertyName = property.Key;
-				holder.PropertyType = property.Value.TypeInfo;
-				holder.PropertyDefaultValue = property.Value.Value;
+				IPropertyField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
+				addedFields.Add(stringField.GameObject);
+				stringField.Value = property.Value.Value;
+				stringField.Placeholder = property.Value.Value;
+				stringField.PropertyName = property.Key;
+				stringField.PropertyDefault = property.Value.Value;
 
 				foreach (KeyValuePair<string, string> setProperty in CurrentBlock.Properties)
 				{
 					if (setProperty.Key == property.Key)
-						stringField.text = setProperty.Value;
+						stringField.Value = setProperty.Value;
 				}
 			}
-
 		}
 	}
 	
@@ -303,28 +285,17 @@ public class PropertiesDialog : MonoBehaviour {
 				label.text = property.Key;
 
 				//TODO support other types of properties
-				InputField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform) as InputField;
-				if (property.Value.TypeInfo == typeof(MultilinePlaintext))
-				{
-					stringField.lineType = InputField.LineType.MultiLineNewline;
-				}
-				else
-				{
-					stringField.lineType = InputField.LineType.SingleLine;
-				}
-
-				addedFields.Add(stringField.gameObject);
-				stringField.placeholder.GetComponent<Text>().text = property.Value.Value;
-				SinglePropertyWithDefault holder = stringField.GetComponent<SinglePropertyWithDefault>();
-				Debug.Assert(holder != null);
-				holder.PropertyName = property.Key;
-				holder.PropertyType = property.Value.TypeInfo;
-				holder.PropertyDefaultValue = property.Value.Value;
+				IPropertyField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
+				addedFields.Add(stringField.GameObject);
+				stringField.Value = property.Value.Value;
+				stringField.Placeholder = property.Value.Value;
+				stringField.PropertyName = property.Key;
+				stringField.PropertyDefault = property.Value.Value;
 
 				foreach (KeyValuePair<string, string> setProperty in CurrentItem.Properties)
 				{
 					if (setProperty.Key == property.Key)
-						stringField.text = setProperty.Value;
+						stringField.Value = setProperty.Value;
 				}
 			}
 

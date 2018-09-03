@@ -43,8 +43,10 @@ public class VisualEffectsManager : MonoBehaviour {
 
         system.Play();
         yield return new WaitForSeconds(duration);
-        system.Stop();
-        Destroy(system.gameObject);
+		if(system != null)
+	        system.Stop();
+		if(system.gameObject != null)
+			Destroy(system.gameObject);
     }
 
     public static void PlayEffect(IBlock block, ParticleSystem animationPrefab, float scale = 1f, float duration = -1f, Vector3 offset = default(Vector3), Quaternion rotation = default(Quaternion))
