@@ -1,6 +1,7 @@
 ﻿using CnControls;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -248,7 +249,7 @@ public class PropertiesDialog : MonoBehaviour {
 			PosYField.text = CurrentBlock.Position.y.ToString();
 			PosZField.text = CurrentBlock.Position.z.ToString();
 
-			foreach (KeyValuePair<string, DefaultValue> property in CurrentBlock.DefaultProperties)
+			foreach (KeyValuePair<string, DefaultValue> property in CurrentBlock.DefaultProperties.Reverse())
 			{
 				Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text;
 				addedFields.Add(label.gameObject);
@@ -295,7 +296,7 @@ public class PropertiesDialog : MonoBehaviour {
 			PosYField.text = CurrentItem.Position.y.ToString();
 			PosZField.text = CurrentItem.Position.z.ToString();
 
-			foreach (KeyValuePair<string, DefaultValue> property in CurrentItem.DefaultProperties)
+			foreach (KeyValuePair<string, DefaultValue> property in CurrentItem.DefaultProperties.Reverse())
 			{
 				Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text;
 				addedFields.Add(label.gameObject);
