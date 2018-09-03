@@ -755,9 +755,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		IBlock blockInQuestion = BlockManager.GetBlockAt(transform.position + FacingDirection);
 		if (blockInQuestion == null)
 			return 0f;
-		Serializer.RecordUndo();
 		//TODO make this one movement
 		bool moved = false;
+		Serializer.RecordUndo();
 		if (direction == FacingDirection)
 		{
 			if (BlockManager.BlockGroupNumber(blockInQuestion) > -1)
@@ -795,6 +795,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			//TODO the idea here is to lock user input for longer for heavy blocks but this isn't really the right calculation
 			return 0.3f * blockInQuestion.WeightFactor;
 		}
+		Serializer.DeleteLastUndo();
 		return 0f;
 	}
 

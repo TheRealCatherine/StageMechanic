@@ -171,6 +171,14 @@ public static class Serializer
 			_redoStates.Clear();
 	}
 
+	public static void DeleteLastUndo()
+	{
+		if (_undoStates.Count > 0)
+		{
+			_undoStates.RemoveAt(_undoStates.Count - 1);
+		}
+	}
+
 	public static void RecordRedo()
 	{
 		if (!RedoEnabled)
