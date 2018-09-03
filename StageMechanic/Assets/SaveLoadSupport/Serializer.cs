@@ -609,12 +609,10 @@ public static class Serializer
 				BlockManager.Clear();
 				if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 				{
-					if(!BetterStreamingAssets.FileExists(path))
-					{
-						LogController.Log("Streaming asset not found: " + path);
-						return;
-					}
-					BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(path));
+					if(BetterStreamingAssets.FileExists(path))
+						BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(path));
+					else
+						BlocksFromBinaryStream(File.ReadAllBytes(path));
 				}
 				else
 					BlocksFromBinaryStream(File.ReadAllBytes(path));
