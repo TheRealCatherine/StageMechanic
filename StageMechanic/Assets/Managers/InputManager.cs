@@ -308,12 +308,12 @@ public class InputManager : MonoBehaviour
 			IBlock block = BlockManager.ActiveBlock;
 			if(block != null)
 			{
-				UIManager.ShowBlockEditDialog(block);
+				UIManager.ShowPropertyEditDialog(block);
 			}
 			IItem item = ItemManager.GetItemNear(BlockManager.Cursor.transform.position);
 			if (item != null)
 			{
-				UIManager.ShowItemEditDialog(item);
+				UIManager.ShowPropertyEditDialog(item);
 			}
 		}
 		else if (Input.GetKeyDown(KeyCode.LeftBracket)

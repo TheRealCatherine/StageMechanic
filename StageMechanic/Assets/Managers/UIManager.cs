@@ -27,8 +27,7 @@ public class UIManager : MonoBehaviour
 	public ScrollRect MobileBlockTypesList;
 	public ScrollRect MobileItemTypesList;
 
-	public PropertiesDialog BlockEditDialog;
-	public PropertiesDialog ItemEditDialog;
+	public PropertiesDialog PropertyEditDialog;
 	public GameObject FileBrowserPrefab;
 
 	public bool ShowOnscreenControlls;
@@ -83,8 +82,7 @@ public class UIManager : MonoBehaviour
 			return IsBlockEditDialogOpen 
 				|| IsSinglePlayerDeathDialogOpen
 				|| IsCreateEditLevelDialogOpen
-				|| Instance.BlockEditDialog.isActiveAndEnabled
-				|| Instance.ItemEditDialog.isActiveAndEnabled
+				|| Instance.PropertyEditDialog.isActiveAndEnabled
 				|| FileBrowser.IsOpen
 				|| Instance.MainMenu.isActiveAndEnabled
 				|| Instance.NetworkLoadDialog.isActiveAndEnabled
@@ -98,16 +96,7 @@ public class UIManager : MonoBehaviour
 		get
 		{
 			Debug.Assert(Instance != null);
-			return Instance.BlockEditDialog.isActiveAndEnabled;
-		}
-	}
-
-	public static bool IsItemEditDialogOpen
-	{
-		get
-		{
-			Debug.Assert(Instance != null);
-			return Instance.ItemEditDialog.isActiveAndEnabled;
+			return Instance.PropertyEditDialog.isActiveAndEnabled;
 		}
 	}
 
@@ -298,16 +287,16 @@ public class UIManager : MonoBehaviour
 		Instance.ButtonMappingDialog.gameObject.SetActive(!Instance.ButtonMappingDialog.gameObject.activeInHierarchy);
 	}
 
-	public static void ShowBlockEditDialog(IBlock block = null)
+	public static void ShowPropertyEditDialog(IBlock block)
 	{
 		Instance.BlockInfoBox.gameObject.SetActive(false);
-		Instance.BlockEditDialog.Show(block);
+		Instance.PropertyEditDialog.Show(block);
 	}
 
-	public static void ShowItemEditDialog(IItem item = null)
+	public static void ShowPropertyEditDialog(IItem item)
 	{
 		Instance.BlockInfoBox.gameObject.SetActive(false);
-		Instance.ItemEditDialog.Show(item);
+		Instance.PropertyEditDialog.Show(item);
 	}
 
 	public static void ShowNetworkLoadDialog()

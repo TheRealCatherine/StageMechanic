@@ -869,7 +869,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				if (x < 220 || Screen.width -  x < 250) //TODO don't hardcode width of UI elements
 					return;
 				if (BlockManager.ActiveBlock == this)
-					UIManager.ShowBlockEditDialog(this);
+					UIManager.ShowPropertyEditDialog(this);
 				BlockManager.Cursor.transform.position = Position;
 			}
 #if UNITY_EDITOR
