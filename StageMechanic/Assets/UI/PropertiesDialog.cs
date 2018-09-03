@@ -252,7 +252,6 @@ public class PropertiesDialog : MonoBehaviour {
 				//TODO support other types of properties
 				IPropertyField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
 				addedFields.Add(stringField.GameObject);
-				stringField.Value = property.Value.Value;
 				stringField.Placeholder = property.Value.Value;
 				stringField.PropertyName = property.Key;
 				stringField.PropertyDefault = property.Value.Value;
@@ -287,7 +286,6 @@ public class PropertiesDialog : MonoBehaviour {
 				//TODO support other types of properties
 				IPropertyField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
 				addedFields.Add(stringField.GameObject);
-				stringField.Value = property.Value.Value;
 				stringField.Placeholder = property.Value.Value;
 				stringField.PropertyName = property.Key;
 				stringField.PropertyDefault = property.Value.Value;
