@@ -371,7 +371,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		IBlock neighbor = BlockManager.GetBlockNear(Position + direction);
 		if (neighbor != null)
 		{
-			if (neighbor.WeightFactor == 0)
+			if (neighbor.PushWeight(direction, distance) == 0)
 				return 0;
 			weight = Math.Max(weight, neighbor.PushWeight(direction, distance));
 		}
