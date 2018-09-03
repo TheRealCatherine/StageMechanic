@@ -41,7 +41,8 @@ public class ItemTypeScrollBoxPopulator : MonoBehaviour {
 					Button newButton = Instantiate(ButtonPrefab, transform) as Button;
 					newButton.GetComponent<SinglePropertyWithDefault>().PropertyName = name;
 					newButton.GetComponent<SinglePropertyWithDefault>().PropertyDefaultValue = factory.Name;
-					//newButton.GetComponentInChildren<Text>().text = name;
+					if (UIManager.Instance.ShowOnscreenControlls)
+						newButton.GetComponentInChildren<Text>().text = name;
 					newButton.image.sprite = icon;
 					newButton.onClick.AddListener(OnBlockClicked);
 					_buttonsCache.Add(newButton);
