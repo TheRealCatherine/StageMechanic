@@ -636,7 +636,7 @@ public static class Serializer
 			LogController.Log("Invalid path");
 		}
 		BlockManager.ResetCursor();
-		GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
+		GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, blocking: true);
 	}
 
 	public static void ReloadCurrentLevel()

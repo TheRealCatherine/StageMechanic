@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour {
     public GameObject Stage;
 
     public static List<IPlayerCharacter> Avatars { get; set; } = new List<IPlayerCharacter>();
+	public static List<IItem> Inventory { get; set; } = new List<IItem>();
+
     internal static PlayerManager Instance;
 
     internal static bool _playMode = false;
@@ -71,8 +73,26 @@ public class PlayerManager : MonoBehaviour {
     {
 		foreach (IPlayerCharacter player in Avatars)
         {
+			if (!show) {
+				if (player.Item != null)
+				{
+					IItem item = player.Item;
+					ItemManager.ItemCache.Remove(item);
+					Inventory.Add(item);
+					item.GameObject.transform.parent = Instance.transform;
+				}
+			}
             player.GameObject.SetActive(show);
-        }
+			if (show)
+			{
+				if (Inventory.Count > 0 && Inventory[0] != null)
+				{
+					ItemManager.ItemCache.Add(Inventory[0]);
+					Inventory[0].OwningPlayer = player;
+					Inventory.Clear();
+				}
+			}
+		}
 	}
 
 	public static void HideAllPlayers()
@@ -83,7 +103,14 @@ public class PlayerManager : MonoBehaviour {
     public static void DestroyAllPlayers()
     {
         foreach (IPlayerCharacter player in Avatars) {
-            Destroy(player.GameObject);
+			if (player.Item != null)
+			{
+				IItem item = player.Item;
+				ItemManager.ItemCache.Remove(item);
+				Inventory.Add(item);
+				item.GameObject.transform.parent = Instance.transform;
+			}
+			Destroy(player.GameObject);
         }
         Avatars.Clear();
     }
@@ -99,11 +126,18 @@ public class PlayerManager : MonoBehaviour {
 			Avatars[0].GameObject.layer = BlockManager.Instance.Stage.layer;
 			LoadKeybindings(0);
 		}
-    }
+		if (Inventory.Count > 0 && Inventory[0] != null)
+		{
+			ItemManager.ItemCache.Add(Inventory[0]);
+			Inventory[0].OwningPlayer = Avatars[0];
+			Inventory.Clear();
+		}
+
+	}
 
 
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
         Instance = this;
 	}
 
