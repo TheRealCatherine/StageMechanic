@@ -4825,7 +4825,7 @@
                             "Properties": [
                                 {
                                     "Key": "Motion State",
-                                    "Value": "Grounded"
+                                    "Value": "Edged"
                                 },
                                 {
                                     "Key": "Model Variant",
@@ -6036,46 +6036,6 @@
                                     "Value": "Tutorial7.json"
                                 }
                             ]
-                        },
-                        {
-                            "Name": "8dac68c8-4963-42c7-9ee5-d7ad487d1b54",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
-                            "Position": {
-                                "x": -1,
-                                "y": 2,
-                                "z": 0
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Gravity Factor",
-                                    "Value": "0"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "df0812a8-4632-45cb-ac9c-df9957c4ca26",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Coin",
-                            "Position": {
-                                "x": 2,
-                                "y": 2,
-                                "z": 0
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Gravity Factor",
-                                    "Value": "0"
-                                }
-                            ]
                         }
                     ],
                     "Items": [
@@ -6304,6 +6264,46 @@
                                 {
                                     "Key": "Radius",
                                     "Value": "10"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "f8add5a8-2d7a-43d8-9566-b8e537741e2c",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": 2,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "8ef462ca-2464-4ca0-ade1-6f396d46cdda"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "f049743b-662d-4b24-9487-6ba92b778f92",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Coin",
+                            "Position": {
+                                "x": -1,
+                                "y": 2,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "87b0458c-0a8b-4d66-ba37-a6f01e044b68"
+                                },
+                                {
+                                    "Key": "Uses",
+                                    "Value": "0"
                                 }
                             ]
                         }
