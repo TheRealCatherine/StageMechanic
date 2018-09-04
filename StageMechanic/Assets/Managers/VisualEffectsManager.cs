@@ -81,7 +81,7 @@ public class VisualEffectsManager : MonoBehaviour {
 
 	public static void EnableFog(bool show)
     {
-		if (QualitySettings.activeColorSpace == ColorSpace.Gamma)
+		
 			show = false;
 
         Instance?.Fog?.gameObject.SetActive(show);
@@ -90,7 +90,7 @@ public class VisualEffectsManager : MonoBehaviour {
 
     public static void EnablePostProcessing(bool process)
     {
-		if (QualitySettings.activeColorSpace == ColorSpace.Gamma)
+		
 			process = false;
 
 		Instance.MainStageProcessLayer.enabled = process;
