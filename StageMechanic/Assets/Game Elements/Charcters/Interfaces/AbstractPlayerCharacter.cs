@@ -26,7 +26,9 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
     {
         get
         {
-            return transform.position;
+			if(gameObject != null)
+				return transform.position;
+			return new Vector3(float.NaN, float.NaN, float.NaN);
         }
         set
         {

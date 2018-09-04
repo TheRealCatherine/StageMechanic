@@ -416,13 +416,18 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		yield return new WaitForEndOfFrame();
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
-		while (journey <= WalkTime)
+		while (journey <= (WalkTime*4))
 		{
 			journey = journey + Time.deltaTime;
-			float percent = Mathf.Clamp01(journey / WalkTime);
+			float percent = Mathf.Clamp01(journey / (WalkTime*4));
 
 			Teleport(Vector3.Lerp(origin, location, percent));
-
+			AbstractBlock block = BlockManager.GetBlockNear(Utility.Round(Position, 1) + Vector3.up,0.25f);
+			if ( block != null)
+			{
+				transform.position = block.Position + Vector3.down;
+				break;
+			}
 			yield return null;
 		}
 		yield return new WaitForEndOfFrame();

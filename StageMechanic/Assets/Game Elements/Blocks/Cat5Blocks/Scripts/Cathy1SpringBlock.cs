@@ -14,8 +14,8 @@ public class Cathy1SpringBlock : Cathy1Block
 	public ParticleSystem Effect;
 	public Vector3 EffectOffset;
 
-	private const float DEFAULT_DELAY = 0.75f;
-	private const float DEFAULT_DISTANCE = 8f;
+	private const float DEFAULT_DELAY = 3f;
+	private const float DEFAULT_DISTANCE = 5f;
 	public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);
 	public float Delay = DEFAULT_DELAY;
 
@@ -52,7 +52,7 @@ public class Cathy1SpringBlock : Cathy1Block
 		if (statename == "Idle" || statename == "Walk" || statename == "Center")
 		{
 			waitPeriod = 0f;
-			PlayerManager.Player1BoingyTo(transform.position + Vector3.up + Distance);
+			PlayerManager.Player1BoingyTo(transform.position + Distance);
 		}
 	}
 
