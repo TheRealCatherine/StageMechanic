@@ -15,7 +15,7 @@ public class Cathy1SpringBlock : Cathy1Block
 	public Vector3 EffectOffset;
 
 	private const float DEFAULT_DELAY = 3f;
-	private const float DEFAULT_DISTANCE = 7f;
+	private const float DEFAULT_DISTANCE = 5f;
 	public Vector3 Distance = new Vector3(0f, DEFAULT_DISTANCE, 0f);
 	public float Delay = DEFAULT_DELAY;
 
