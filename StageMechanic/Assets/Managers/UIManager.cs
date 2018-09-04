@@ -108,7 +108,8 @@ public class UIManager : MonoBehaviour
 	{
 		get
 		{
-			return (PlayerPrefs.GetInt("MinimizePanning", 1) == 1);
+			return false;
+			//return (PlayerPrefs.GetInt("MinimizePanning", 0) == 1);
 		}
 		set
 		{
