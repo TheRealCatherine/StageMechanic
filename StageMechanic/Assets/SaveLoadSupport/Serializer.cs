@@ -103,6 +103,7 @@ public static class Serializer
 				|| Application.platform == RuntimePlatform.OSXEditor
 				|| Application.platform == RuntimePlatform.LinuxEditor
 				|| Application.platform == RuntimePlatform.LinuxPlayer
+				|| Application.platform == RuntimePlatform.WebGLPlayer
 				|| UIManager.Instance.BinaryFormat.isOn;
 		}
 	}
@@ -590,7 +591,7 @@ public static class Serializer
 		//TODO ensure file is valid
 		if (!string.IsNullOrWhiteSpace(path))
 		{
-			Uri location = new Uri("file:///" + path);
+			Uri location = new Uri((Application.platform == RuntimePlatform.WebGLPlayer ? "" : "file:///") + path);
 			string directory;
 			if (Application.platform == RuntimePlatform.Android)
 			{
@@ -607,6 +608,19 @@ public static class Serializer
 					directory = path.Substring(0, index + 1);
 				else
 					directory = "";
+			}
+			else if (Application.platform == RuntimePlatform.WebGLPlayer)
+			{
+				directory = location.ToString();
+				int index = directory.LastIndexOf("/");
+				if (index > 0)
+					directory = directory.Substring(0, index + 1);
+				else
+					directory = "";
+
+				PlayerPrefs.SetString("LastLoadDir", directory);
+				BlockManager.Instance.StartCoroutine(LoadBinaryNetworkHelper(location));
+				return;
 			}
 			else
 				directory = System.IO.Path.GetDirectoryName(location.AbsolutePath);
@@ -645,6 +659,45 @@ public static class Serializer
 		}
 		BlockManager.ResetCursor();
 		GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, blocking: true);
+	}
+
+	public static void LoadBinaryFileUsingHTTP(Uri path)
+	{
+		//TODO ensure file is valid
+		if (path.IsAbsoluteUri && (path.Scheme == Uri.UriSchemeHttp || path.Scheme == Uri.UriSchemeHttps))
+		{
+			BlockManager.Instance.StartCoroutine(LoadBinaryNetworkHelper(path));
+		}
+		else
+		{
+			LogController.Log("Invalid path");
+		}
+	}
+
+	public static IEnumerator LoadBinaryNetworkHelper(Uri path)
+	{
+		Debug.Log("loading " + path.ToString());
+		using (WWW loader = new WWW(path.ToString().Replace(".json", ".bin")))
+		{
+			BlockManager.Clear();
+			yield return loader;
+
+			BlocksFromBinaryStream(loader.bytes);
+			yield return new WaitForEndOfFrame();
+			GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
+		}
+	}
+
+	//TODO
+	public static IEnumerator LoadJsonNetworkHelper(Uri path)
+	{
+		using (WWW loader = new WWW(path.ToString().Replace(".bin", ".json")))
+		{
+			BlockManager.Clear();
+			yield return loader;
+			BlocksFromBinaryStream(loader.bytes);
+			GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized, blocking: true);
+		}
 	}
 
 	public static void ReloadCurrentLevel()
