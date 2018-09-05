@@ -697,10 +697,6 @@ public static class Serializer
 
 	private static IEnumerator LoadFromPastebinHelper(string key)
 	{
-		string json = BlocksToCondensedJson();
-		json = json.Replace("\"", "\\\"");
-		string data = "{\"language\": \"json\", \"title\": \"test\", \"public\": true, \"files\": [{\"name\": \"mystage.json\", \"content\": \"" + json + "\"}]}";
-
 		using (UnityWebRequest www = UnityWebRequest.Get("https://snippets.glot.io/snippets/"+key))
 		{
 			www.downloadHandler = new DownloadHandlerBuffer();
