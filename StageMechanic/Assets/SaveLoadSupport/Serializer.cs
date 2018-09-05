@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public static class Serializer
 {
@@ -645,6 +646,92 @@ public static class Serializer
 		}
 		BlockManager.ResetCursor();
 		GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, blocking: true);
+	}
+
+	public static void SaveToPastebin()
+	{
+		BlockManager.Instance.StartCoroutine(SaveToPastebinHelper());
+	}
+
+	public static void LoadFromPastebin(string key)
+	{
+		BlockManager.Instance.StartCoroutine(LoadFromPastebinHelper(key));
+	}
+
+	private static IEnumerator SaveToPastebinHelper()
+	{
+		string json = BlocksToCondensedJson();
+		json = json.Replace("\"", "\\\"");
+		string data = "{\"language\": \"json\", \"title\": \"test\", \"public\": true, \"files\": [{\"name\": \"mystage.json\", \"content\": \""+json+"\"}]}";
+
+		using (UnityWebRequest www = new UnityWebRequest("https://snippets.glot.io/snippets", "POST"))
+		{
+			www.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(data));
+			www.downloadHandler = new DownloadHandlerBuffer();
+			//TODO regenerate this and make it not in the public repository somehow
+			www.SetRequestHeader("Authorization", "Token 3832e929-129f-4ede-b5f8-9a4afab29681");
+			www.SetRequestHeader("Content-Type", "application/json");
+			www.chunkedTransfer = false;
+			yield return www.SendWebRequest();
+
+			if (www.isNetworkError)
+			{
+				Debug.Log("Network Error:" + www.error);
+				Debug.Log(www.downloadHandler.text);
+			}
+			else if (www.isHttpError)
+			{
+				Debug.Log("HTTP Error:" + www.error);
+				Debug.Log(www.downloadHandler.text);
+			}
+			else
+			{
+				// Show results as text
+				Debug.Log(www.downloadHandler.text);
+
+				// Or retrieve results as binary data
+				byte[] results = www.downloadHandler.data;
+			}
+		}
+	}
+
+	private static IEnumerator LoadFromPastebinHelper(string key)
+	{
+		string json = BlocksToCondensedJson();
+		json = json.Replace("\"", "\\\"");
+		string data = "{\"language\": \"json\", \"title\": \"test\", \"public\": true, \"files\": [{\"name\": \"mystage.json\", \"content\": \"" + json + "\"}]}";
+
+		using (UnityWebRequest www = UnityWebRequest.Get("https://snippets.glot.io/snippets/"+key))
+		{
+			www.downloadHandler = new DownloadHandlerBuffer();
+			www.SetRequestHeader("Content-Type", "application/json");
+			www.chunkedTransfer = false;
+			yield return www.SendWebRequest();
+
+			if (www.isNetworkError)
+			{
+				Debug.Log("Network Error:" + www.error);
+				Debug.Log(www.downloadHandler.text);
+			}
+			else if (www.isHttpError)
+			{
+				Debug.Log("HTTP Error:" + www.error);
+				Debug.Log(www.downloadHandler.text);
+			}
+			else
+			{
+				// Show results as text
+				Debug.Log(www.downloadHandler.text);
+
+				// Or retrieve results as binary data
+				byte[] results = www.downloadHandler.data;
+				string stripped = Encoding.UTF8.GetString(results);
+				stripped = stripped.Substring(stripped.IndexOf("\"content\":")+11);
+				stripped = stripped.Substring(0, stripped.Length-4);
+				stripped = stripped.Replace("\\\"", "\"");
+				BlocksFromJsonStream(Encoding.UTF8.GetBytes(stripped));
+			}
+		}
 	}
 
 	public static void ReloadCurrentLevel()

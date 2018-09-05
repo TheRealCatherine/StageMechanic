@@ -307,6 +307,11 @@ public class MainMenu : MonoBehaviour
 		LevelSelectPanel.SetActive(false);
 	}
 
+	public void OnShareClicked()
+	{
+		Serializer.SaveToPastebin();
+	}
+
 	public void OnOpenTutorialClicked()
 	{
 		GameManager.PlayerScores[0] = 0;

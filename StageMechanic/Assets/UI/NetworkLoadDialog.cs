@@ -17,19 +17,32 @@ public class NetworkLoadDialog : MonoBehaviour {
 
 	public void OnGoClicked()
 	{
-		Uri uriResult;
-		bool result = Uri.TryCreate(UrlInput.text, UriKind.Absolute, out uriResult)
-			&& (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-		if (result) {
-			Serializer.LoadFileUsingHTTP(uriResult);
-			gameObject.SetActive(false);
+		if (UrlInput.text.Contains("//") || UrlInput.text.Contains("."))
+		{
+			Uri uriResult;
+			bool result = Uri.TryCreate(UrlInput.text, UriKind.Absolute, out uriResult)
+				&& (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+			if (result)
+			{
+				Serializer.LoadFileUsingHTTP(uriResult);
+				gameObject.SetActive(false);
+			}
+			else
+			{
+				UrlInput.text = null;
+				UrlInput.placeholder.GetComponent<Text>().text = "Error...";
+			}
 		}
 		else
 		{
-			UrlInput.text = null;
-			UrlInput.placeholder.GetComponent<Text>().text = "Error...";
+			Serializer.LoadFromPastebin(UrlInput.text);
+			gameObject.SetActive(false);
 		}
+	}
 
+	private void OnDisable()
+	{
+		UrlInput.text = null;
 	}
 
 	public void OnCancelClicked()
