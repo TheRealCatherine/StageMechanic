@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 	public CreateEditLevelDialog CreateEditLevelDialog;
 	public ButtonMappingDialog ButtonMappingDialog;
 	public NetworkLoadDialog NetworkLoadDialog;
+	public NetworkLoadDialog NetworkStatusDialog;
 
 	public Button TogglePlayModeButton;
 	public Button MainmenuButton;
@@ -86,6 +87,7 @@ public class UIManager : MonoBehaviour
 				|| FileBrowser.IsOpen
 				|| Instance.MainMenu.isActiveAndEnabled
 				|| Instance.NetworkLoadDialog.isActiveAndEnabled
+				|| Instance.NetworkStatusDialog.isActiveAndEnabled
 				|| Instance.ButtonMappingDialog.CurrentState == ButtonMappingDialog.State.WaitingForKey
 				|| Instance.BlockThemeDialog.activeInHierarchy;
 		}
@@ -337,4 +339,22 @@ public class UIManager : MonoBehaviour
 	}
 	private void LoadFileUsingPath(string path) { Serializer.LoadFileUsingLocalPath(path); }
 
+	public static void ShowNetworkStatus(string status, bool showClose, string key=null)
+	{
+		Instance.MainMenu.gameObject.SetActive(false);
+		Instance.NetworkStatusDialog.gameObject.SetActive(true);
+		Instance.NetworkStatusDialog.Label.text = status;
+		Instance.NetworkStatusDialog.CancelButton.gameObject.SetActive(showClose);
+		if(string.IsNullOrWhiteSpace(key))
+		{
+			Instance.NetworkStatusDialog.UrlInput.gameObject.SetActive(false);
+			Instance.NetworkStatusDialog.CopyButton.gameObject.SetActive(false);
+		}
+		else
+		{
+			Instance.NetworkStatusDialog.UrlInput.gameObject.SetActive(true);
+			Instance.NetworkStatusDialog.UrlInput.text = key;
+			Instance.NetworkStatusDialog.CopyButton.gameObject.SetActive(true);
+		}
+	}
 }

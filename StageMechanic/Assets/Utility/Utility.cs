@@ -124,4 +124,12 @@ public static class Utility
         if (lhs.localPosition.y > rhs.localPosition.y) return 1;
         return 0;
     }
+
+	public static void CopyToClipboard(this string s)
+	{
+		TextEditor te = new TextEditor();
+		te.text = s;
+		te.SelectAll();
+		te.Copy();
+	}
 }

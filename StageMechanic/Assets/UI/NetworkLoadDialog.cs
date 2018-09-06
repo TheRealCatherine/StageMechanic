@@ -5,8 +5,10 @@ using UnityEngine.UI;
 public class NetworkLoadDialog : MonoBehaviour {
 
 	public InputField UrlInput;
+	public Text Label;
 	public Button GoButton;
 	public Button CancelButton;
+	public Button CopyButton;
 
 	void Update () {
 		if (string.IsNullOrEmpty(UrlInput.text))
@@ -49,5 +51,10 @@ public class NetworkLoadDialog : MonoBehaviour {
 	{
 		UIManager.ShowMainMenu();
 		gameObject.SetActive(false);
+	}
+
+	public void OnCopyClicked()
+	{
+		UrlInput.text.CopyToClipboard();
 	}
 }

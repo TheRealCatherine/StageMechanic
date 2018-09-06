@@ -660,9 +660,22 @@ public static class Serializer
 
 	private static IEnumerator SaveToPastebinHelper()
 	{
+		UIManager.ShowNetworkStatus("Saving to glot.io...", false);
+
 		string json = BlocksToCondensedJson();
 		json = json.Replace("\"", "\\\"");
-		string data = "{\"language\": \"json\", \"title\": \"test\", \"public\": true, \"files\": [{\"name\": \"mystage.json\", \"content\": \""+json+"\"}]}";
+
+		string filename = LastAccessedFileName.Replace("_autosave", "").Replace(".bin",".json").Replace(".json","");
+		if(filename.Contains("\\"))
+			filename = filename.Substring(filename.LastIndexOf("\\") + 1);
+
+		if (filename.Contains("/"))
+			filename = filename.Substring(filename.LastIndexOf("/") + 1);
+
+		if (string.IsNullOrWhiteSpace(filename))
+			filename = "Anonymous/Untitled";
+
+		string data = "{\"language\": \"json\", \"title\": \""+filename+"\", \"public\": true, \"files\": [{\"name\": \""+filename+".json\", \"content\": \""+json+"\"}]}";
 
 		using (UnityWebRequest www = new UnityWebRequest("https://snippets.glot.io/snippets", "POST"))
 		{
@@ -678,26 +691,28 @@ public static class Serializer
 			{
 				Debug.Log("Network Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
+				UIManager.ShowNetworkStatus("Load failed", true);
 			}
 			else if (www.isHttpError)
 			{
 				Debug.Log("HTTP Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
+				UIManager.ShowNetworkStatus("Load failed", true);
 			}
 			else
 			{
-				// Show results as text
-				Debug.Log(www.downloadHandler.text);
 
 				// Or retrieve results as binary data
 				byte[] results = www.downloadHandler.data;
+				string id = Encoding.UTF8.GetString(results).Substring(7,10);
+				UIManager.ShowNetworkStatus("Success! Your stage key is: ", true, id);
 			}
 		}
 	}
 
 	private static IEnumerator LoadFromPastebinHelper(string key)
 	{
-		using (UnityWebRequest www = UnityWebRequest.Get("https://snippets.glot.io/snippets/"+key))
+		using (UnityWebRequest www = UnityWebRequest.Get("https://snippets.glot.io/snippets/" + key.ToLower()))
 		{
 			www.downloadHandler = new DownloadHandlerBuffer();
 			www.SetRequestHeader("Content-Type", "application/json");
@@ -708,11 +723,14 @@ public static class Serializer
 			{
 				Debug.Log("Network Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
+				UIManager.ShowNetworkStatus("Save failed: " + www.downloadHandler.text, true);
+
 			}
 			else if (www.isHttpError)
 			{
 				Debug.Log("HTTP Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
+				UIManager.ShowNetworkStatus("Save failed: " + www.downloadHandler.text, true);
 			}
 			else
 			{
@@ -722,10 +740,12 @@ public static class Serializer
 				// Or retrieve results as binary data
 				byte[] results = www.downloadHandler.data;
 				string stripped = Encoding.UTF8.GetString(results);
-				stripped = stripped.Substring(stripped.IndexOf("\"content\":")+11);
-				stripped = stripped.Substring(0, stripped.Length-4);
+				stripped = stripped.Substring(stripped.IndexOf("\"content\":") + 11);
+				stripped = stripped.Substring(0, stripped.Length - 4);
 				stripped = stripped.Replace("\\\"", "\"");
 				BlocksFromJsonStream(Encoding.UTF8.GetBytes(stripped));
+
+				UIManager.ShowNetworkStatus("Ready to play!", true);
 			}
 		}
 	}
