@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -249,14 +250,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		IBlock oldBlock = CurrentBlock;
-		while (journey <= WalkTime)
-		{
-			journey = journey + Time.deltaTime;
-			float percent = Mathf.Clamp01(journey / WalkTime);
-			Teleport(Vector3.Lerp(origin, location, percent));
+		Tween tween = transform.DOMove(location,WalkTime);
+		yield return tween.WaitForCompletion();
 
-			yield return null;
-		}
+
 		AbstractBlock oab = (oldBlock as AbstractBlock);
 		if (oab != null && oab.gameObject != null)
 			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
@@ -632,6 +629,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 					{
 						if (nextFloor.MotionState == BlockMotionState.Grounded || nextFloor.MotionState == BlockMotionState.Edged)
 							Walk(direction);
+						expectedTime = WalkTime;
 					}
 					else
 					{
