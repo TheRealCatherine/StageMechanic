@@ -213,65 +213,64 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			CurrentLocation = location;
 	}
 
-	public IEnumerator SlideTo(Vector3 location)
+	public void SlideForward()
+	{
+		if (BlockManager.GetBlockAt(transform.position + FacingDirection) != null)
+			return;
+
+		Vector3 location = CurrentLocation + FacingDirection;
+		IBlock oldBlock = CurrentBlock;
+		transform.DOMove(location, WalkTime)
+			.OnStart(SlideStarted)
+			.OnComplete(() => SlideComplete(oldBlock));
+	}
+
+	private void SlideStarted()
 	{
 		CurrentMoveState = State.Slide;
 		_player.GetComponent<Animator>().SetBool("sliding", true);
-		float journey = 0f;
-		Vector3 origin = CurrentLocation;
+		//TODO slide sound
+	}
 
-		Tween tween = transform.DOMove(location, WalkTime);
-		yield return tween.WaitForCompletion();
-
-		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
-		CurrentMoveState = State.Idle;
-		ApplyGravity();
-		yield return new WaitForEndOfFrame();
+	private void SlideComplete(IBlock oldBlock)
+	{
 		_player.GetComponent<Animator>().SetBool("sliding", false);
-		yield return null;
-	}
-
-	public void SlideForward()
-	{
-		if (BlockManager.GetBlockAt(transform.position + FacingDirection) == null)
-			StartCoroutine(SlideTo(transform.position + FacingDirection));
-	}
-
-	public IEnumerator WalkTo(Vector3 location)
-	{
-		CurrentMoveState = State.Walk;
-		_player.GetComponent<Animator>().SetBool("walking", true);
-		yield return new WaitForEndOfFrame();
-		AudioEffectsManager.PlaySound(WalkSound);
-		float journey = 0f;
-		Vector3 origin = CurrentLocation;
-		IBlock oldBlock = CurrentBlock;
-		Tween tween = transform.DOMove(location,WalkTime);
-		yield return tween.WaitForCompletion();
-
-
+		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 		AbstractBlock oab = (oldBlock as AbstractBlock);
 		if (oab != null && oab.gameObject != null)
 			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
-		yield return new WaitForEndOfFrame();
-		_player.GetComponent<Animator>().SetBool("walking", false);
-		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 		CurrentMoveState = State.Idle;
-		yield return null;
 	}
+
 
 	public void Walk(Vector3 direction)
 	{
-		StartCoroutine(WalkTo(CurrentLocation + direction));
+		Vector3 location = CurrentLocation + direction;
+		IBlock oldBlock = CurrentBlock;
+		transform.DOMove(location, WalkTime)
+			.OnStart(WalkStarted)
+			.OnComplete(()=>WalkComplete(oldBlock));
+	}
+
+	private void WalkStarted()
+	{
+		CurrentMoveState = State.Walk;
+		_player.GetComponent<Animator>().SetBool("walking", true);
+		AudioEffectsManager.PlaySound(WalkSound);
+	}
+
+	private void WalkComplete(IBlock oldBlock)
+	{
+		_player.GetComponent<Animator>().SetBool("walking", false);
+		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
+		AbstractBlock oab = (oldBlock as AbstractBlock);
+		if (oab != null && oab.gameObject != null)
+			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
+		CurrentMoveState = State.Idle;
 	}
 
 	public IEnumerator PushPullTo(Vector3 location)
 	{
-		CurrentMoveState = State.PushPull;
-		_player.GetComponent<Animator>().SetBool("sidling", true);
-		yield return new WaitForEndOfFrame();
-		AudioEffectsManager.PlaySound(WalkSound);
-		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		IBlock oldBlock = CurrentBlock;
 
@@ -288,7 +287,28 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 
 	public void DoPushPull(Vector3 direction)
 	{
-		StartCoroutine(PushPullTo(CurrentLocation + direction));
+		Vector3 location = CurrentLocation + direction;
+		IBlock oldBlock = CurrentBlock;
+		transform.DOMove(location, WalkTime)
+			.OnStart(PushPullStarted)
+			.OnComplete(() => PushPullComplete(oldBlock));
+	}
+
+	private void PushPullStarted()
+	{
+		CurrentMoveState = State.PushPull;
+		_player.GetComponent<Animator>().SetBool("sidling", true);
+		AudioEffectsManager.PlaySound(WalkSound);
+	}
+
+	private void PushPullComplete(IBlock oldBlock)
+	{
+		_player.GetComponent<Animator>().SetBool("sidling", false);
+		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
+		AbstractBlock oab = (oldBlock as AbstractBlock);
+		if (oab != null && oab.gameObject != null)
+			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
+		CurrentMoveState = State.Idle;
 	}
 
 	public IEnumerator ClimbTo(Vector3 location)
