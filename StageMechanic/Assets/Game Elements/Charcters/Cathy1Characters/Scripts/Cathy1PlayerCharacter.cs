@@ -219,14 +219,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		_player.GetComponent<Animator>().SetBool("sliding", true);
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
-		while (journey <= WalkTime)
-		{
-			journey = journey + Time.deltaTime;
-			float percent = Mathf.Clamp01(journey / WalkTime);
-			Teleport(Vector3.Lerp(origin, location, percent));
 
-			yield return null;
-		}
+		Tween tween = transform.DOMove(location, WalkTime);
+		yield return tween.WaitForCompletion();
+
 		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 		CurrentMoveState = State.Idle;
 		ApplyGravity();
@@ -278,15 +274,11 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		float journey = 0f;
 		Vector3 origin = CurrentLocation;
 		IBlock oldBlock = CurrentBlock;
-		while (journey <= WalkTime)
-		{
-			journey = journey + Time.deltaTime;
-			float percent = Mathf.Clamp01(journey / WalkTime);
-			Teleport(Vector3.Lerp(origin, location, percent));
 
-			yield return null;
-		}
-	   (oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
+		Tween tween = transform.DOMove(location, WalkTime);
+		yield return tween.WaitForCompletion();
+
+		(oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
 		yield return new WaitForEndOfFrame();
 		_player.GetComponent<Animator>().SetBool("sidling", false);
 		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
@@ -305,6 +297,8 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		Vector3 origin = CurrentLocation;
 		Vector3 offset = (location - CurrentLocation);
 		IBlock oldBlock = CurrentBlock;
+		Tween tween;
+
 		_player.GetComponent<Animator>().SetBool("sidling", false);
 		if (CurrentMoveState != State.Sidle && CurrentMoveState != State.SidleMove)
 		{
@@ -313,15 +307,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			AudioEffectsManager.PlaySound(JumpSound);
 			Vector3 firstPart = origin + new Vector3(offset.x / 4, 0f, offset.z / 4);
 			float firstPartTime = WalkTime * 0.25f;
-			while (journey <= firstPartTime)
-			{
-				journey = journey + Time.deltaTime;
-				float percent = Mathf.Clamp01(journey / firstPartTime);
 
-				Teleport(Vector3.Lerp(origin, firstPart, percent));
-
-				yield return null;
-			}
+			tween = transform.DOMove(location, firstPartTime);
+			yield return tween.WaitForCompletion();
 			_player.GetComponent<Animator>().SetBool("walking", false);
 		}
 		AbstractBlock oab = oldBlock as AbstractBlock;
@@ -340,15 +328,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		journey = 0f;
 		origin = CurrentLocation;
 		float secondPartTime = WalkTime * 0.75f;
-		while (journey <= secondPartTime)
-		{
-			journey = journey + Time.deltaTime;
-			float percent = Mathf.Clamp01(journey / secondPartTime);
 
-			Teleport(Vector3.Lerp(origin, location, percent));
+		tween = transform.DOMove(location, secondPartTime);
+		yield return tween.WaitForCompletion();
 
-			yield return null;
-		}
 		AudioEffectsManager.PlaySound(LandSound);
 		_player.GetComponent<Animator>().SetBool("walking", false);
 		yield return new WaitForEndOfFrame();
@@ -385,15 +368,10 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			yield return new WaitForEndOfFrame();
 			float journey = 0f;
 			Vector3 origin = CurrentLocation;
-			while (journey <= WalkTime)
-			{
-				journey = journey + Time.deltaTime;
-				float percent = Mathf.Clamp01(journey / WalkTime);
 
-				Teleport(Vector3.Lerp(origin, location, percent));
+			Tween tween = transform.DOMove(location, WalkTime);
+			yield return tween.WaitForCompletion();
 
-				yield return null;
-			}
 			yield return new WaitForEndOfFrame();
 			_player.GetComponent<Animator>().SetBool("sidleMoving", false);
 			CurrentMoveState = State.Sidle;

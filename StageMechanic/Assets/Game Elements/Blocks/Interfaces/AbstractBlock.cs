@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -397,15 +398,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		GravityEnabled = false;
 		GetComponent<Rigidbody>().constraints = (RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY);
 
-		while (journey <= duration)
-		{
-			journey = journey + Time.deltaTime;
-			float percent = Mathf.Clamp01(journey / duration);
+		Tween tween = transform.DOMove(target, duration);
+		yield return tween.WaitForCompletion();
 
-			GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(origin, target, percent));
-
-			yield return null;
-		}
 		_gravityDirty = true;
 		MotionState = BlockMotionState.Grounded;
 		UpdateNeighborsCache();
