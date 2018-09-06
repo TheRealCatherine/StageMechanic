@@ -308,7 +308,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			Vector3 firstPart = origin + new Vector3(offset.x / 4, 0f, offset.z / 4);
 			float firstPartTime = WalkTime * 0.25f;
 
-			tween = transform.DOMove(location, firstPartTime);
+			tween = transform.DOMove(firstPart, firstPartTime);
 			yield return tween.WaitForCompletion();
 			_player.GetComponent<Animator>().SetBool("walking", false);
 		}
