@@ -422,15 +422,6 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		StartCoroutine(BoingyTo(location));
 	}
 
-	internal IEnumerator MoveToLocation()
-	{
-		while (true)
-		{
-			//Teleport(DesiredLocation);
-			//yield return new WaitForSeconds(0.05f);
-			//ApplyGravity();
-		}
-	}
 
 	// Use this for initialization
 	void Start()
