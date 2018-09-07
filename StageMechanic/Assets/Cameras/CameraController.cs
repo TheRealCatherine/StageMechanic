@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -103,32 +104,20 @@ public class CameraController : MonoBehaviour
 					else if (player1pos.x < -6f)
 						xPos = -8f;
 
-					StartCoroutine(AnimateMove(transform.position, new Vector3(xPos, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f));
+					if (player1pos.IsValid())
+						transform.DOMove(new Vector3(xPos, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f);
 				}
 			}
 			else
 			{
-				StartCoroutine(AnimateMove(transform.position, new Vector3(player1pos.x, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f));
+				if (player1pos.IsValid())
+					transform.DOMove(new Vector3(player1pos.x, player1pos.y + 3f, player1pos.z - 7f + zoom), 0.2f);
 			}
 
 		}
 		else {
-	        StartCoroutine(AnimateMove(transform.position, new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, Cursor.transform.position.z - 7f + zoom), 0.2f));
-        }
-    }
-
-    IEnumerator AnimateMove(Vector3 origin, Vector3 target, float duration)
-    {
-        float journey = 0f;
-        while (journey <= duration)
-        {
-            journey = journey + Time.deltaTime;
-            float percent = Mathf.Clamp01(journey / duration);
-			
-			if(origin.IsValid() && target.IsValid())
-				transform.position = Vector3.Lerp(origin, target, percent);
-
-            yield return null;
+			if (Cursor.transform.position.IsValid())
+				transform.DOMove(new Vector3(Cursor.transform.position.x + offset.x, Cursor.transform.position.y + offset.y, Cursor.transform.position.z - 7f + zoom), 0.2f);
         }
     }
 }
