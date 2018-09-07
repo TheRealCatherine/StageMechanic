@@ -50,9 +50,9 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 			if (newHighest == _highestPosition)
 				return;
 			int steps = (int)Math.Round(newHighest - _highestPosition);
-			Score += ((10*(steps+1)*(steps/2)) + (Math.Min(30,++HighestStepChain)*10));
+			Score += ((10 * (steps + 1) * (steps / 2)) + (Math.Min(30, ++HighestStepChain) * 10));
 			_highestPosition = newHighest;
-			
+
 		}
 	}
 
@@ -249,7 +249,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		IBlock oldBlock = CurrentBlock;
 		transform.DOMove(location, WalkTime)
 			.OnStart(WalkStarted)
-			.OnComplete(()=>WalkComplete(oldBlock));
+			.OnComplete(() => WalkComplete(oldBlock));
 	}
 
 	private void WalkStarted()
@@ -267,22 +267,6 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		if (oab != null && oab.gameObject != null)
 			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
 		CurrentMoveState = State.Idle;
-	}
-
-	public IEnumerator PushPullTo(Vector3 location)
-	{
-		Vector3 origin = CurrentLocation;
-		IBlock oldBlock = CurrentBlock;
-
-		Tween tween = transform.DOMove(location, WalkTime);
-		yield return tween.WaitForCompletion();
-
-		(oldBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
-		yield return new WaitForEndOfFrame();
-		_player.GetComponent<Animator>().SetBool("sidling", false);
-		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
-		CurrentMoveState = State.Idle;
-		yield return null;
 	}
 
 	public void DoPushPull(Vector3 direction)
@@ -311,60 +295,62 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		CurrentMoveState = State.Idle;
 	}
 
-	public IEnumerator ClimbTo(Vector3 location)
+	public void Climb(Vector3 direction)
 	{
-		float journey = 0f;
 		Vector3 origin = CurrentLocation;
+		Vector3 location = CurrentLocation + direction;
 		Vector3 offset = (location - CurrentLocation);
 		IBlock oldBlock = CurrentBlock;
-		Tween tween;
-
 		_player.GetComponent<Animator>().SetBool("sidling", false);
+
+		Sequence climbSequence = DOTween.Sequence();
+
 		if (CurrentMoveState != State.Sidle && CurrentMoveState != State.SidleMove)
 		{
-			CurrentMoveState = State.Aproach;
-			_player.GetComponent<Animator>().SetBool("walking", true);
-			AudioEffectsManager.PlaySound(JumpSound);
 			Vector3 firstPart = origin + new Vector3(offset.x / 4, 0f, offset.z / 4);
 			float firstPartTime = WalkTime * 0.25f;
-
-			tween = transform.DOMove(firstPart, firstPartTime);
-			yield return tween.WaitForCompletion();
-			_player.GetComponent<Animator>().SetBool("walking", false);
+			climbSequence.Append(transform.DOMove(firstPart, firstPartTime)
+				.OnStart(ApproachStarted)
+				.OnComplete(ApproachCompete));
 		}
+		float secondPartTime = WalkTime * 0.75f;
+
+		climbSequence.Append(transform.DOMove(location, secondPartTime)
+			.OnStart(ClimbStarted)
+			.OnComplete(() => ClimbComplete(oldBlock)));
+
+	}
+
+	private void ApproachStarted()
+	{
+		CurrentMoveState = State.Aproach;
+		_player.GetComponent<Animator>().SetBool("walking", true);
+		AudioEffectsManager.PlaySound(JumpSound);
+	}
+
+	private void ApproachCompete()
+	{
+		_player.GetComponent<Animator>().SetBool("walking", false);
+	}
+
+	private void ClimbStarted()
+	{
+		CurrentMoveState = State.Climb;
+		_player.GetComponent<Animator>().SetBool("climbing", true);
+
+	}
+
+	private void ClimbComplete(IBlock oldBlock)
+	{
+		AudioEffectsManager.PlaySound(LandSound);
 		AbstractBlock oab = oldBlock as AbstractBlock;
 		if (oab != null && oab.gameObject != null)
 			oab.OnPlayerMovement(this, PlayerMovementEvent.EventType.Leave);
-		CurrentMoveState = State.Climb;
-		yield return new WaitForEndOfFrame();
-		_player.GetComponent<Animator>().SetBool("climbing", true);
-
-		yield return new WaitForEndOfFrame();
 		_player.GetComponent<Animator>().SetBool("climbing", false);
-
-		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
-		yield return new WaitForEndOfFrame();
-		_player.GetComponent<Animator>().SetBool("walking", true);
-		journey = 0f;
-		origin = CurrentLocation;
-		float secondPartTime = WalkTime * 0.75f;
-
-		tween = transform.DOMove(location, secondPartTime);
-		yield return tween.WaitForCompletion();
-
-		AudioEffectsManager.PlaySound(LandSound);
 		_player.GetComponent<Animator>().SetBool("walking", false);
-		yield return new WaitForEndOfFrame();
 		CurrentMoveState = State.Idle;
-		HighestPosition = transform.position.y;
-		yield return null;
+		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 	}
-
-	public void Climb(Vector3 direction)
-	{
-		StartCoroutine(ClimbTo(CurrentLocation + direction));
-	}
-
 
 	public IEnumerator SidleTo(Vector3 location)
 	{
