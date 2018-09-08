@@ -88,8 +88,34 @@ public class Cathy1GoalBlock : Cathy1Block
 				}
 				else
 				{
-					BlockManager.Clear();
-					Serializer.BlocksFromJson(location, startPlayMode: true);
+					if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+					{
+						if (Application.platform == RuntimePlatform.Android)
+							BlockManager.Instance.TogglePlayMode(1f);
+						if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
+							BlockManager.Instance.TogglePlayMode(0.4f);
+
+						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
+						if (BetterStreamingAssets.FileExists(loc))
+						{
+							BlockManager.Instance.TogglePlayMode(0.4f);
+							Serializer.BlocksFromJsonStream(BetterStreamingAssets.ReadAllBytes(loc), true);
+						}
+						else
+						{
+							BlockManager.Instance.TogglePlayMode(0.4f);
+							//TODO test if webgl player uses \ or /
+							if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+								loc.Replace("/", "\\");
+							Serializer.BlocksFromJsonStream(File.ReadAllBytes(loc), true);
+						}
+
+					}
+					else
+					{
+						BlockManager.Clear();
+						Serializer.BlocksFromJson(location, startPlayMode: true);
+					}
 				}
 			}
 			else if (string.IsNullOrWhiteSpace(NextStageFilename)

@@ -335,51 +335,17 @@ public class MainMenu : MonoBehaviour
 
 	public void OnOpenTutorialClicked()
 	{
-		GameManager.PlayerScores[0] = 0;
-		if (BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode();
-		string file;
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
-			file = "/Tutorial/Tutorial" + TutorialLevel.options[TutorialLevel.value].text + ".bin";
-		else
-			file = Application.streamingAssetsPath + "/Tutorial/Tutorial" + TutorialLevel.options[TutorialLevel.value].text + ".json";
-		LevelSelectPanel.SetActive(false);
-		Serializer.LoadFileUsingLocalPath(file);
-		gameObject.SetActive(false);
-		if (!BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode(0.25f);
+		LoadBuiltinLevel("Tutorial", "Tutorial"+TutorialLevel.options[TutorialLevel.value].text);
 	}
 
 	public void OnOpenCat5Clicked()
 	{
-		if (BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode();
-		string file;
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
-			file = "/Cat5/" + Cat5Level.options[Cat5Level.value].text + ".bin";
-		else
-			file = Application.streamingAssetsPath + "/Cat5/" + Cat5Level.options[Cat5Level.value].text + ".json";
-		LevelSelectPanel.SetActive(false);
-		Serializer.LoadFileUsingLocalPath(file);
-		gameObject.SetActive(false);
-		if (!BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode(0.25f);
+		LoadBuiltinLevel("Cat5", Cat5Level.options[Cat5Level.value].text);
 	}
 
 	public void OnOpenPrincessClicked()
 	{
 		LoadBuiltinLevel("Princess", PrincessLevel.options[PrincessLevel.value].text);
-		/*
-		string file;
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
-			file = "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".bin";
-		else
-			file = Application.streamingAssetsPath + "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".json";
-		LevelSelectPanel.SetActive(false);
-		Serializer.LoadFileUsingLocalPath(file);
-		gameObject.SetActive(false);
-		if (!BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode(0.25f);*/
 	}
 
 	public void LoadBuiltinLevel(string folder, string level)
