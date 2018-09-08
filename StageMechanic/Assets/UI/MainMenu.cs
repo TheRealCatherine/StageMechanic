@@ -368,13 +368,32 @@ public class MainMenu : MonoBehaviour
 
 	public void OnOpenPrincessClicked()
 	{
-		if (BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode();
+		LoadBuiltinLevel("Princess", PrincessLevel.options[PrincessLevel.value].text);
+		/*
 		string file;
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 			file = "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".bin";
 		else
 			file = Application.streamingAssetsPath + "/Princess/" + PrincessLevel.options[PrincessLevel.value].text + ".json";
+		LevelSelectPanel.SetActive(false);
+		Serializer.LoadFileUsingLocalPath(file);
+		gameObject.SetActive(false);
+		if (!BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode(0.25f);*/
+	}
+
+	public void LoadBuiltinLevel(string folder, string level)
+	{
+		if (BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
+
+		string fileType = Serializer.UseBinaryFiles ? ".bin" : ".json";
+		string file;
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+			file = "/"+folder+"/" + level + fileType;
+		else
+			file = Application.streamingAssetsPath + "/"+folder+"/" + level + fileType;
+
 		LevelSelectPanel.SetActive(false);
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);

@@ -96,8 +96,7 @@ public static class Serializer
 	{
 		get
 		{
-			return (Application.platform == RuntimePlatform.Android) 
-				|| Application.platform == RuntimePlatform.WSAPlayerX64 
+			return Application.platform == RuntimePlatform.WSAPlayerX64 
 				|| Application.platform == RuntimePlatform.WSAPlayerX86
 				|| Application.platform == RuntimePlatform.WSAPlayerARM
 				|| Application.platform == RuntimePlatform.OSXPlayer
@@ -519,9 +518,11 @@ public static class Serializer
 
 	public static void BlocksFromJsonStream(byte[] bytes, bool clearFirst = false)
 	{
+		CurrentState = State.Deserializing;
 		MemoryStream stream = new MemoryStream(bytes);
 		stream.Position = 0;
 		HandleLoad(stream, clearFirst);
+		CurrentState = State.Idle;
 	}
 
 	public static void BlocksFromBinaryStream(byte[] bytes, bool clearFirst = false)
@@ -596,15 +597,7 @@ public static class Serializer
 		{
 			Uri location = new Uri((Application.platform == RuntimePlatform.WebGLPlayer ? "" : "file:///") + path);
 			string directory;
-			if (Application.platform == RuntimePlatform.Android)
-			{
-				int index = path.LastIndexOf("/");
-				if (index > 0)
-					directory = path.Substring(0, index + 1);
-				else
-					directory = "";
-			}
-			else if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+			if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
 			{
 				int index = path.LastIndexOf("/");
 				if (index > 0)
@@ -633,16 +626,15 @@ public static class Serializer
 
 			if (UseBinaryFiles)
 			{
-				BlockManager.Clear();
 				if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
 				{
 					if(BetterStreamingAssets.FileExists(path))
-						BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(path));
+						BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(path),true);
 					else
-						BlocksFromBinaryStream(File.ReadAllBytes(path));
+						BlocksFromBinaryStream(File.ReadAllBytes(path),true);
 				}
 				else
-					BlocksFromBinaryStream(File.ReadAllBytes(path));
+					BlocksFromBinaryStream(File.ReadAllBytes(path),true);
 
 				if (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1)
 				{
@@ -653,7 +645,22 @@ public static class Serializer
 			}
 			else
 			{
-				BlocksFromJson(location);
+				if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
+				{
+					if (BetterStreamingAssets.FileExists(path))
+						BlocksFromJsonStream(BetterStreamingAssets.ReadAllBytes(path),true);
+					else
+						BlocksFromJsonStream(File.ReadAllBytes(path),true);
+
+					if (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1)
+					{
+						if (!BlockManager.PlayMode)
+							BlockManager.Instance.TogglePlayMode(0.25f);
+					}
+					CurrentState = State.Idle;
+				}
+				else
+					BlocksFromJson(location);
 			}
 			if (path.Contains("_autosave"))
 			{
