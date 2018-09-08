@@ -330,7 +330,7 @@ public class UIManager : MonoBehaviour
 		GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, BlockManager.Instance.Stage.transform);
 		string LastLoadDir = PlayerPrefs.GetString("LastLoadDir");
 		if (LastLoadDir != null && LastLoadDir == "glot.io")
-			LastLoadDir = null;
+			LastLoadDir = "";
 		fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
 		fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, LastLoadDir);
