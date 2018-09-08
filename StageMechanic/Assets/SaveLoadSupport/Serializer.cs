@@ -711,7 +711,10 @@ public static class Serializer
 
 		string data = "{\"language\": \"json\", \"title\": \""+filename+"\", \"public\": true, \"files\": [{\"name\": \""+filename+".json\", \"content\": \""+json+"\"}]}";
 
-		using (UnityWebRequest www = new UnityWebRequest("https://snippets.glot.io/snippets", "POST"))
+		string url = (Application.platform == RuntimePlatform.WebGLPlayer? "http://cors.io/?" : "")+"https://snippets.glot.io/snippets";
+		//string url = (true ? "https://crossorigin.me/" : "") + "https://snippets.glot.io/snippets";
+
+		using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
 		{
 			www.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(data));
 			www.downloadHandler = new DownloadHandlerBuffer();

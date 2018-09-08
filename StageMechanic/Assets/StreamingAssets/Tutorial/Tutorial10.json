@@ -1878,34 +1878,6 @@
                             ]
                         },
                         {
-                            "Name": "5b3d9fa7-10ab-47a4-88fe-c39e28808c30",
-                            "Palette": "Bloxels Internal",
-                            "Type": "Enemy",
-                            "Position": {
-                                "x": -1,
-                                "y": 15,
-                                "z": 2
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Motion State",
-                                    "Value": "Grounded"
-                                },
-                                {
-                                    "Key": "Start facing left",
-                                    "Value": "True"
-                                },
-                                {
-                                    "Key": "Step delay (in seconds)",
-                                    "Value": "1"
-                                },
-                                {
-                                    "Key": "Turn duration (in seconds)",
-                                    "Value": "0.25"
-                                }
-                            ]
-                        },
-                        {
                             "Name": "a8d46c01-ce38-4780-bbc1-769d678c7990",
                             "Palette": "Cathy1 Internal",
                             "Type": "Immobile",
@@ -2128,14 +2100,6 @@
                                 {
                                     "Key": "Trigger",
                                     "Value": "True"
-                                },
-                                {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
-                                },
-                                {
-                                    "Key": "Player Number",
-                                    "Value": "1"
                                 }
                             ]
                         },
@@ -2152,10 +2116,6 @@
                                 {
                                     "Key": "Owning Block",
                                     "Value": "5171a4a0-fff0-4ed4-983a-bed98a5d3266"
-                                },
-                                {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
                                 }
                             ]
                         },
@@ -2176,10 +2136,6 @@
                                 {
                                     "Key": "Uses",
                                     "Value": "0"
-                                },
-                                {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
                                 }
                             ]
                         },
@@ -2200,34 +2156,6 @@
                                 {
                                     "Key": "Uses",
                                     "Value": "0"
-                                },
-                                {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
-                                }
-                            ]
-                        },
-                        {
-                            "Name": "c5a0e78f-e02d-403d-b9c0-8f5329f40124",
-                            "Palette": "Cat5 Internal",
-                            "Type": "Remove Enemies",
-                            "Position": {
-                                "x": -2,
-                                "y": 7,
-                                "z": 3
-                            },
-                            "Properties": [
-                                {
-                                    "Key": "Owning Block",
-                                    "Value": "ec5724d0-adf9-423f-98c8-be68ec06178f"
-                                },
-                                {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
-                                },
-                                {
-                                    "Key": "Radius",
-                                    "Value": "10"
                                 }
                             ]
                         },
@@ -2248,10 +2176,26 @@
                                 {
                                     "Key": "Uses",
                                     "Value": "0"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "ef00d85c-367a-4f48-bc46-4336367e7b5a",
+                            "Palette": "Cat5 Internal",
+                            "Type": "Create Immobile Blocks",
+                            "Position": {
+                                "x": -2,
+                                "y": 7,
+                                "z": 3
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Owning Block",
+                                    "Value": "ec5724d0-adf9-423f-98c8-be68ec06178f"
                                 },
                                 {
-                                    "Key": "Model Variant",
-                                    "Value": "2"
+                                    "Key": "Block Type",
+                                    "Value": "Immobile"
                                 }
                             ]
                         }

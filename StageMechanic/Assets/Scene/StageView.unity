@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16460511, g: 0.10818402, b: 0.22323462, a: 1}
+  m_IndirectSpecularColor: {r: 0.16487625, g: 0.10864479, b: 0.22398311, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4796,7 +4796,7 @@ Prefab:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
@@ -5134,12 +5134,12 @@ Prefab:
         type: 2}
       propertyPath: Clips.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 7345f5ff7a04b6144969b0a245898d8d, type: 3}
+      objectReference: {fileID: 8300000, guid: 1601ca491a618c441a2a8611a9a8b2db, type: 3}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: ad2416d159c094d4a9603a3845bbe6ce, type: 3}
+      objectReference: {fileID: 8300000, guid: 1601ca491a618c441a2a8611a9a8b2db, type: 3}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.data[4]
@@ -17228,7 +17228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1831, y: 954}
+  m_AnchoredPosition: {x: 1806, y: 81}
   m_SizeDelta: {x: 123.25, y: 76.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961216151
@@ -19109,7 +19109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1776, y: 400}
+  m_AnchoredPosition: {x: 1776, y: 246}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020394142
@@ -34319,6 +34319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveButton: {fileID: 364832808}
   SaveAsButton: {fileID: 1917939684}
+  LoadButton: {fileID: 1422859167}
   AutoPlay: {fileID: 1907448459}
   FogToggle: {fileID: 281083489}
   DestructivePlayMode: {fileID: 525677634}

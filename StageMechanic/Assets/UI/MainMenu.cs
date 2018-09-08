@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 {
 	public Button SaveButton;
 	public Button SaveAsButton;
+	public Button LoadButton;
 	public Toggle AutoPlay;
 	public Toggle FogToggle;
 	public Toggle DestructivePlayMode;
@@ -80,7 +81,13 @@ public class MainMenu : MonoBehaviour
 			SaveAsButton.gameObject.SetActive(true);
 			ShareButton.gameObject.SetActive(true);
 		}
-
+		if(Application.platform == RuntimePlatform.WebGLPlayer)
+		{
+			SaveAsButton.gameObject.SetActive(false);
+			SaveButton.gameObject.SetActive(false);
+			LoadButton.gameObject.SetActive(false);
+			InputsButton.gameObject.SetActive(false);
+		}
 		Debug.Assert(FlavorText.Entries != null);
 		Debug.Assert(FlavorText.Entries.Length > 1);
 		FlavorTextBox.text = FlavorText.Entries[Random.Range(0, FlavorText.Entries.Length - 1)];
