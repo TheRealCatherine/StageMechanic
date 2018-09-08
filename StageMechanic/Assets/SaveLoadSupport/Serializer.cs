@@ -470,10 +470,10 @@ public static class Serializer
 		}
 		BlockManager.ResetCursor();
 		RecordStartState();
-		if (startPlayMode || PlayerPrefs.GetInt("AutoPlayOnLoad", 0) == 1)
+		if (startPlayMode || PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1)
 		{
 			if (!BlockManager.PlayMode)
-				BlockManager.Instance.TogglePlayMode();
+				BlockManager.Instance.TogglePlayMode(0.25f);
 		}
 		CurrentState = State.Idle;
 	}
@@ -643,6 +643,13 @@ public static class Serializer
 				}
 				else
 					BlocksFromBinaryStream(File.ReadAllBytes(path));
+
+				if (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1)
+				{
+					if (!BlockManager.PlayMode)
+						BlockManager.Instance.TogglePlayMode(0.25f);
+				}
+				CurrentState = State.Idle;
 			}
 			else
 			{
@@ -766,7 +773,8 @@ public static class Serializer
 				stripped = stripped.Substring(0, stripped.Length - 4);
 				stripped = stripped.Replace("\\\"", "\"");
 				BlocksFromJsonStream(Encoding.UTF8.GetBytes(stripped),true);
-				BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode());
+				PlayerPrefs.SetString("LastLoadDir", "glot.io");
+				BlockManager.Instance.TogglePlayMode(0.4f);
 			}
 		}
 	}

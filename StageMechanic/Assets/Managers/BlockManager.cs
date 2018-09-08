@@ -51,8 +51,13 @@ public class BlockManager : MonoBehaviour
 	/// TODO Combine this with the PlayMode property and move it to GameManager class
 	/// TODO change the way the button mapping box behaves
 	/// TODO use GameManager class
-	public void TogglePlayMode()
+	public void TogglePlayMode(float delay = 0)
 	{
+		if(delay > 0)
+		{
+			StartCoroutine(DelayTogglePlayModeHelper(delay));
+			return;
+		}
 		PlayMode = !PlayMode;
 		if (PlayMode)
 		{
@@ -88,7 +93,7 @@ public class BlockManager : MonoBehaviour
 
 	}
 
-	public static IEnumerator DelayTogglePlayMode(float seconds=0.25f)
+	public IEnumerator DelayTogglePlayModeHelper(float seconds=0.25f)
 	{
 		UIManager.ShowNetworkStatus("Get ready!", true);
 		if (PlayMode)

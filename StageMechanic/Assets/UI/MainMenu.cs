@@ -347,7 +347,7 @@ public class MainMenu : MonoBehaviour
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);
 		if (!BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode();
+			BlockManager.Instance.TogglePlayMode(0.25f);
 	}
 
 	public void OnOpenCat5Clicked()
@@ -363,7 +363,7 @@ public class MainMenu : MonoBehaviour
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);
 		if (!BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode();
+			BlockManager.Instance.TogglePlayMode(0.25f);
 	}
 
 	public void OnOpenPrincessClicked()
@@ -379,6 +379,6 @@ public class MainMenu : MonoBehaviour
 		Serializer.LoadFileUsingLocalPath(file);
 		gameObject.SetActive(false);
 		if (!BlockManager.PlayMode)
-			BlockManager.Instance.TogglePlayMode();
+			BlockManager.Instance.TogglePlayMode(0.25f);
 	}
 }

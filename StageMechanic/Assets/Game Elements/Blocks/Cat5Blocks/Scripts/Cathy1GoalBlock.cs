@@ -38,6 +38,7 @@ public class Cathy1GoalBlock : Cathy1Block
 	}
 
 	bool _hasPlayedSound = false;
+	bool _hasShownDialog = false;
 	virtual internal void HandlePlayer(PlayerMovementEvent ev)
 	{
 		if (ev.Location != PlayerMovementEvent.EventLocation.Top)
@@ -51,41 +52,53 @@ public class Cathy1GoalBlock : Cathy1Block
 					AudioEffectsManager.PlaySound(this, Applause);
 				_hasPlayedSound = true;
 			}
-
-			if (Input.anyKey)
+			//TODO support glot.io level chaining
+			if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir") && PlayerPrefs.GetString("LastLoadDir") != "glot.io")
 			{
-				if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir"))
+				Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
+				BlockManager.Instance.TogglePlayMode();
+				if (Serializer.UseBinaryFiles)
 				{
-					Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
-					Debug.Log("loading " + location.ToString());
-					BlockManager.Instance.TogglePlayMode();
-					if (Serializer.UseBinaryFiles)
+					string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
+					loc = loc.Replace(".json", ".bin");
+					if (Application.platform == RuntimePlatform.WebGLPlayer)
 					{
-						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
-						loc = loc.Replace(".json", ".bin");
-						if (Application.platform == RuntimePlatform.WebGLPlayer)
-						{
-							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(1f));
-							BlockManager.Instance.StartCoroutine(Serializer.LoadBinaryNetworkHelper(new Uri(loc)));
-						}
-						if (Application.platform == RuntimePlatform.Android)
-							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(1f));
-						if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
-							BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode(0.4f));
-
-						if (BetterStreamingAssets.FileExists(loc))
-							Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc), true);
-						else
-							Serializer.BlocksFromBinaryStream(File.ReadAllBytes(loc), true);
+						BlockManager.Instance.TogglePlayMode(1f);
+						BlockManager.Instance.StartCoroutine(Serializer.LoadBinaryNetworkHelper(new Uri(loc)));
 					}
-					Serializer.BlocksFromJson(location,startPlayMode:true);
+					if (Application.platform == RuntimePlatform.Android)
+						BlockManager.Instance.TogglePlayMode(1f);
+					if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
+						BlockManager.Instance.TogglePlayMode(0.4f);
+
+
+					if (Application.platform != RuntimePlatform.WindowsEditor && Application.platform != RuntimePlatform.WindowsPlayer && BetterStreamingAssets.FileExists(loc))
+					{
+						BlockManager.Instance.TogglePlayMode(0.4f);
+						Serializer.BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(loc), true);
+					}
+					else
+					{
+						BlockManager.Instance.TogglePlayMode(0.4f);
+						//TODO test if webgl player uses \ or /
+						if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+							loc.Replace("/", "\\");
+						Serializer.BlocksFromBinaryStream(File.ReadAllBytes(loc), true);
+					}
 				}
-				else if(string.IsNullOrWhiteSpace(NextStageFilename)) {
-					Debug.Log("No next level specified");
-				}
-				else if(!PlayerPrefs.HasKey("LastLoadDir"))
+				else
 				{
-					Debug.Log("Unknown file location");
+					BlockManager.Clear();
+					Serializer.BlocksFromJson(location, startPlayMode: true);
+				}
+			}
+			else if (string.IsNullOrWhiteSpace(NextStageFilename)
+				||(!PlayerPrefs.HasKey("LastLoadDir"))
+				|| PlayerPrefs.GetString("LastLoadDir") == "glot.io")
+			{
+				if (!_hasShownDialog) {
+					_hasShownDialog = true;
+					UIManager.ShowNetworkStatus("Congratulation!", true);
 				}
 			}
 		}
@@ -128,9 +141,9 @@ public class Cathy1GoalBlock : Cathy1Block
 		get
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-			ret.Add("Next Stage Filename",                  new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
-			ret.Add("Next Stage Start Block Override",      new DefaultValue { TypeInfo = typeof(string),   Value = string.Empty });
-			ret.Add("Must Not Fall",                        new DefaultValue { TypeInfo = typeof(bool),     Value = "False" });
+			ret.Add("Next Stage Filename", new DefaultValue { TypeInfo = typeof(string), Value = string.Empty });
+			ret.Add("Next Stage Start Block Override", new DefaultValue { TypeInfo = typeof(string), Value = string.Empty });
+			ret.Add("Must Not Fall", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
 			return ret;
 		}
 	}

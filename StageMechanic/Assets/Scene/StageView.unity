@@ -4782,7 +4782,7 @@ Prefab:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.size
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4625271195422440, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
       propertyPath: m_LocalPosition.x
@@ -5046,6 +5046,11 @@ Prefab:
       propertyPath: NetworkStatusDialog
       value: 
       objectReference: {fileID: 123294365}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[15]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1601ca491a618c441a2a8611a9a8b2db, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
   m_IsPrefabAsset: 0
@@ -24655,7 +24660,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: v0.2.11
+  m_Text: Developer Build
 --- !u!222 &1382743717
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -328,10 +328,12 @@ public class UIManager : MonoBehaviour
 	public static void LoadFromJson()
 	{
 		GameObject fileBrowserObject = Instantiate(Instance.FileBrowserPrefab, BlockManager.Instance.Stage.transform);
-
+		string LastLoadDir = PlayerPrefs.GetString("LastLoadDir");
+		if (LastLoadDir != null && LastLoadDir == "glot.io")
+			LastLoadDir = null;
 		fileBrowserObject.name = "FileBrowser";
 		FileBrowser fileBrowserScript = fileBrowserObject.GetComponent<FileBrowser>();
-		fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, PlayerPrefs.GetString("LastLoadDir"));
+		fileBrowserScript.SetupFileBrowser(ViewMode.Landscape, LastLoadDir);
 		if(Serializer.UseBinaryFiles)
 			fileBrowserScript.OpenFilePanel(Instance, "LoadFileUsingPath", "bin");
 		else
