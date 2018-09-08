@@ -349,6 +349,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		_player.GetComponent<Animator>().SetBool("climbing", false);
 		_player.GetComponent<Animator>().SetBool("walking", false);
 		CurrentMoveState = State.Idle;
+		HighestPosition = transform.position.y;
 		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 	}
 
