@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: You're Perfect Studio
-  productName: Stage Mechanic
+  productName: Stage Mechanic Lite
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -49,7 +49,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 1
+  m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
@@ -153,7 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.YourePerfectStudio.StageMechanic
+    Android: com.YourePerfectStudio.StageMechanicLite
     Standalone: com.YourePerfectStudio.StageMechanic
   buildNumber: {}
   AndroidBundleVersionCode: 212
@@ -264,7 +264,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 70e379d56a5c20e4fb27c1f6ed98c6c5, type: 3}
+      m_Icon: {fileID: 2800000, guid: 06dd24c39f9985d468b4ee167cbf66b9, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
