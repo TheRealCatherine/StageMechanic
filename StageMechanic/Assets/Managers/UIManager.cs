@@ -110,7 +110,7 @@ public class UIManager : MonoBehaviour
 	{
 		get
 		{
-			return (PlayerPrefs.GetInt("MinimizePanning", 1) == 1);
+			return (PlayerPrefs.GetInt("MinimizePanning", 0) == 1);
 		}
 		set
 		{
@@ -262,10 +262,10 @@ public class UIManager : MonoBehaviour
 		Instance.ButtonMappingDialog.Refresh();
 	}
 
-	public static void ShowMainMenu()
+	public static void ShowMainMenu(bool show = true)
 	{
 		Debug.Assert(Instance != null);
-		Instance.MainMenu.gameObject.SetActive(true);
+		Instance.MainMenu.gameObject.SetActive(show);
 	}
 
 	public static void ToggleMainMenu()
@@ -356,5 +356,10 @@ public class UIManager : MonoBehaviour
 			Instance.NetworkStatusDialog.UrlInput.text = key;
 			Instance.NetworkStatusDialog.CopyButton.gameObject.SetActive(true);
 		}
+	}
+
+	public static void HideNetworkStatus()
+	{
+		Instance.NetworkStatusDialog.gameObject.SetActive(false);
 	}
 }

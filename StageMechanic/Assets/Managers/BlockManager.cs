@@ -90,11 +90,14 @@ public class BlockManager : MonoBehaviour
 
 	public static IEnumerator DelayTogglePlayMode(float seconds=0.25f)
 	{
+		UIManager.ShowNetworkStatus("Get ready!", true);
 		if (PlayMode)
 			Instance.TogglePlayMode();
 		yield return new WaitForSeconds(seconds);
 		if (!PlayMode)
 			Instance.TogglePlayMode();
+		UIManager.ShowMainMenu(false);
+		UIManager.HideNetworkStatus();
 	}
 
 	public static void ResetCursor()

@@ -479,6 +479,7 @@ public static class Serializer
 
 	public static void HandleLoad(Stream stream, bool clearFirst = true)
 	{
+		UIManager.ShowNetworkStatus("Setting the stage...", false);
 		CurrentState = State.Deserializing;
 		if (clearFirst)
 			BlockManager.Clear();
@@ -489,6 +490,7 @@ public static class Serializer
 		BlockManager.ResetCursor();
 		LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
 		CurrentState = State.Idle;
+		UIManager.HideNetworkStatus();
 	}
 
 	public static void HandleBinaryLoad(Stream stream, bool clearFirst = true)
@@ -514,11 +516,11 @@ public static class Serializer
 		HandleLoad(stream, false);
 	}
 
-	public static void BlocksFromJsonStream(byte[] bytes)
+	public static void BlocksFromJsonStream(byte[] bytes, bool clearFirst = false)
 	{
 		MemoryStream stream = new MemoryStream(bytes);
 		stream.Position = 0;
-		HandleLoad(stream, false);
+		HandleLoad(stream, clearFirst);
 	}
 
 	public static void BlocksFromBinaryStream(byte[] bytes, bool clearFirst = false)
@@ -660,7 +662,7 @@ public static class Serializer
 
 	private static IEnumerator SaveToPastebinHelper()
 	{
-		UIManager.ShowNetworkStatus("Saving to glot.io...", false);
+		UIManager.ShowNetworkStatus("Sharing to glot.io...", false);
 
 		string json = BlocksToCondensedJson();
 
@@ -695,13 +697,13 @@ public static class Serializer
 			{
 				Debug.Log("Network Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Save failed", true);
+				UIManager.ShowNetworkStatus("Share failed", true);
 			}
 			else if (www.isHttpError)
 			{
 				Debug.Log("HTTP Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Save failed", true);
+				UIManager.ShowNetworkStatus("Share failed", true);
 			}
 			else
 			{
@@ -716,6 +718,8 @@ public static class Serializer
 
 	private static IEnumerator LoadFromPastebinHelper(string key)
 	{
+		UIManager.ShowNetworkStatus("Fetching stage " + key + " from glot.io", false);
+
 		using (UnityWebRequest www = UnityWebRequest.Get("https://snippets.glot.io/snippets/" + key.ToLower()))
 		{
 			www.downloadHandler = new DownloadHandlerBuffer();
@@ -747,9 +751,8 @@ public static class Serializer
 				stripped = stripped.Substring(stripped.IndexOf("\"content\":") + 11);
 				stripped = stripped.Substring(0, stripped.Length - 4);
 				stripped = stripped.Replace("\\\"", "\"");
-				BlocksFromJsonStream(Encoding.UTF8.GetBytes(stripped));
-
-				UIManager.ShowNetworkStatus("Ready to play!", true);
+				BlocksFromJsonStream(Encoding.UTF8.GetBytes(stripped),true);
+				BlockManager.Instance.StartCoroutine(BlockManager.DelayTogglePlayMode());
 			}
 		}
 	}

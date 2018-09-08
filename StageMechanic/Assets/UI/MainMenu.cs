@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
 	private void OnEnable()
 	{
 		BlockManager.Cursor?.SetActive(false);
-		MinimizePanning.isOn = !(PlayerPrefs.GetInt("MinimizePanning", 1) == 1);
+		MinimizePanning.isOn = !UIManager.MinimizePanning;
 		AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
 		FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
 		DestructivePlayMode.isOn = (PlayerPrefs.GetInt("DestructivePlayMode", 0) == 1);
