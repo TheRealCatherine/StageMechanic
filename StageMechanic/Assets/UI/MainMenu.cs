@@ -67,8 +67,8 @@ public class MainMenu : MonoBehaviour
 		if (StartupSound != null)
 			GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
 
-		if (Application.platform == RuntimePlatform.Android)
-			LoadURLButton.gameObject.SetActive(false);
+		//if (Application.platform == RuntimePlatform.Android)
+		//	LoadURLButton.gameObject.SetActive(false);
 
 		UpdateTrackName();
 	}
