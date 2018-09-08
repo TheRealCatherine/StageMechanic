@@ -281,13 +281,13 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	private void PushPullStarted()
 	{
 		CurrentMoveState = State.PushPull;
-		_player.GetComponent<Animator>().SetBool("sidling", true);
+		_player.GetComponent<Animator>().SetBool("pushing", true);
 		AudioEffectsManager.PlaySound(WalkSound);
 	}
 
 	private void PushPullComplete(IBlock oldBlock)
 	{
-		_player.GetComponent<Animator>().SetBool("sidling", false);
+		_player.GetComponent<Animator>().SetBool("pushing", false);
 		(CurrentBlock as AbstractBlock)?.OnPlayerMovement(this, PlayerMovementEvent.EventType.Enter);
 		AbstractBlock oab = (oldBlock as AbstractBlock);
 		if (oab != null && oab.gameObject != null)
@@ -301,7 +301,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 		Vector3 location = CurrentLocation + direction;
 		Vector3 offset = (location - CurrentLocation);
 		IBlock oldBlock = CurrentBlock;
-		_player.GetComponent<Animator>().SetBool("sidling", false);
+		_player.GetComponent<Animator>().SetBool("hanging", false);
 
 		Sequence climbSequence = DOTween.Sequence();
 
@@ -356,7 +356,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 	{
 		if (CurrentMoveState == State.Idle)
 		{
-			_player.GetComponent<Animator>().SetBool("sidling", true);
+			_player.GetComponent<Animator>().SetBool("hanging", true);
 			CurrentMoveState = State.Aproach;
 			yield return new WaitForEndOfFrame();
 			CurrentMoveState = State.Climb;
@@ -469,6 +469,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 				_player.GetComponent<Animator>().SetBool("walking", false);
 				_player.GetComponent<Animator>().SetBool("sidleMoving", false);
 				_player.GetComponent<Animator>().SetBool("sliding", false);
+				_player.GetComponent<Animator>().SetBool("hanging", false);
 				CurrentMoveState = State.Idle;
 				return false;
 			}
