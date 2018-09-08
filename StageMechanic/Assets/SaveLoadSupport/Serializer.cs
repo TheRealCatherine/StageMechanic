@@ -663,15 +663,19 @@ public static class Serializer
 		UIManager.ShowNetworkStatus("Saving to glot.io...", false);
 
 		string json = BlocksToCondensedJson();
+
 		json = json.Replace("\"", "\\\"");
 
-		string filename = LastAccessedFileName.Replace("_autosave", "").Replace(".bin",".json").Replace(".json","");
-		if(filename.Contains("\\"))
-			filename = filename.Substring(filename.LastIndexOf("\\") + 1);
+		string filename = null;
+		if (LastAccessedFileName != null)
+		{
+			filename = LastAccessedFileName.Replace("_autosave", "").Replace(".bin", ".json").Replace(".json", "");
+			if (filename.Contains("\\"))
+				filename = filename.Substring(filename.LastIndexOf("\\") + 1);
 
-		if (filename.Contains("/"))
-			filename = filename.Substring(filename.LastIndexOf("/") + 1);
-
+			if (filename.Contains("/"))
+				filename = filename.Substring(filename.LastIndexOf("/") + 1);
+		}
 		if (string.IsNullOrWhiteSpace(filename))
 			filename = "Anonymous/Untitled";
 
@@ -691,13 +695,13 @@ public static class Serializer
 			{
 				Debug.Log("Network Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Load failed", true);
+				UIManager.ShowNetworkStatus("Save failed", true);
 			}
 			else if (www.isHttpError)
 			{
 				Debug.Log("HTTP Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Load failed", true);
+				UIManager.ShowNetworkStatus("Save failed", true);
 			}
 			else
 			{
@@ -723,14 +727,14 @@ public static class Serializer
 			{
 				Debug.Log("Network Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Save failed: " + www.downloadHandler.text, true);
+				UIManager.ShowNetworkStatus("Load failed: " + www.downloadHandler.text, true);
 
 			}
 			else if (www.isHttpError)
 			{
 				Debug.Log("HTTP Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Save failed: " + www.downloadHandler.text, true);
+				UIManager.ShowNetworkStatus("Load failed: " + www.downloadHandler.text, true);
 			}
 			else
 			{
