@@ -118,14 +118,14 @@
                             "Palette": "Cathy1 Internal",
                             "Type": "Basic",
                             "Position": {
-                                "x": -1,
+                                "x": 5,
                                 "y": 2,
                                 "z": 0
                             },
                             "Properties": [
                                 {
                                     "Key": "Motion State",
-                                    "Value": "Grounded"
+                                    "Value": "Edged"
                                 },
                                 {
                                     "Key": "Model Variant",
@@ -498,14 +498,14 @@
                             "Palette": "Cathy1 Internal",
                             "Type": "Basic",
                             "Position": {
-                                "x": 4,
+                                "x": 5,
                                 "y": 4,
                                 "z": 2
                             },
                             "Properties": [
                                 {
                                     "Key": "Motion State",
-                                    "Value": "Edged"
+                                    "Value": "Grounded"
                                 },
                                 {
                                     "Key": "Model Variant",
@@ -525,7 +525,7 @@
                             "Properties": [
                                 {
                                     "Key": "Motion State",
-                                    "Value": "Grounded"
+                                    "Value": "Edged"
                                 },
                                 {
                                     "Key": "Model Variant",
@@ -1386,6 +1386,14 @@
                                 {
                                     "Key": "Motion State",
                                     "Value": "Edged"
+                                },
+                                {
+                                    "Key": "Trigger Time (seconds)",
+                                    "Value": "0.75"
+                                },
+                                {
+                                    "Key": "Distance",
+                                    "Value": "10"
                                 }
                             ]
                         },
@@ -1874,7 +1882,7 @@
                             "Palette": "Bloxels Internal",
                             "Type": "Enemy",
                             "Position": {
-                                "x": -5,
+                                "x": -1,
                                 "y": 15,
                                 "z": 2
                             },
@@ -2120,6 +2128,14 @@
                                 {
                                     "Key": "Trigger",
                                     "Value": "True"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
+                                },
+                                {
+                                    "Key": "Player Number",
+                                    "Value": "1"
                                 }
                             ]
                         },
@@ -2136,6 +2152,10 @@
                                 {
                                     "Key": "Owning Block",
                                     "Value": "5171a4a0-fff0-4ed4-983a-bed98a5d3266"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         },
@@ -2156,6 +2176,10 @@
                                 {
                                     "Key": "Uses",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         },
@@ -2176,6 +2200,10 @@
                                 {
                                     "Key": "Uses",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         },
@@ -2192,6 +2220,10 @@
                                 {
                                     "Key": "Owning Block",
                                     "Value": "ec5724d0-adf9-423f-98c8-be68ec06178f"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 },
                                 {
                                     "Key": "Radius",
@@ -2216,6 +2248,10 @@
                                 {
                                     "Key": "Uses",
                                     "Value": "0"
+                                },
+                                {
+                                    "Key": "Model Variant",
+                                    "Value": "2"
                                 }
                             ]
                         }
