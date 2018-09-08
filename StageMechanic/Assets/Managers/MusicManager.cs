@@ -24,6 +24,14 @@ public class MusicManager : MonoBehaviour {
             PlayTrack(0);
 	}
 
+	public static int TrackCount
+	{
+		get
+		{
+			return Instance.Clips.Length;
+		}
+	}
+
 	public static string TrackName()
 	{
 		Debug.Assert(Instance.Player != null);

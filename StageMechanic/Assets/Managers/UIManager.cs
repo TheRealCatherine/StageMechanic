@@ -122,7 +122,7 @@ public class UIManager : MonoBehaviour
 	private void Start()
 	{
 		Instance = this;
-		ShowOnscreenControlls = Input.touchSupported;
+		ShowOnscreenControlls = (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer);
 		BetterStreamingAssets.Initialize();
 	}
 

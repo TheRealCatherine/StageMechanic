@@ -45,7 +45,7 @@ public class VisualEffectsManager : MonoBehaviour {
         yield return new WaitForSeconds(duration);
 		if(system != null)
 	        system.Stop();
-		if(system.gameObject != null)
+		if(system != null && system.gameObject != null)
 			Destroy(system.gameObject);
     }
 
@@ -81,7 +81,8 @@ public class VisualEffectsManager : MonoBehaviour {
 
 	public static void EnableFog(bool show)
     {
-		if (QualitySettings.activeColorSpace == ColorSpace.Gamma)
+		//If we are not in Linear color space or we don't have many music tracks, assume we are a light build
+		if (QualitySettings.activeColorSpace == ColorSpace.Gamma || MusicManager.TrackCount < 7)
 			show = false;
 
         Instance?.Fog?.gameObject.SetActive(show);
@@ -90,7 +91,8 @@ public class VisualEffectsManager : MonoBehaviour {
 
     public static void EnablePostProcessing(bool process)
     {
-		if (QualitySettings.activeColorSpace == ColorSpace.Gamma)
+		//If we are not in Linear color space or we don't have many music tracks, assume we are a light build
+		if (QualitySettings.activeColorSpace == ColorSpace.Gamma || MusicManager.TrackCount < 7)
 			process = false;
 
 		Instance.MainStageProcessLayer.enabled = process;

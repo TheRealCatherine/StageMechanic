@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 	public Button SaveButton;
+	public Button SaveAsButton;
 	public Toggle AutoPlay;
 	public Toggle FogToggle;
 	public Toggle DestructivePlayMode;
@@ -24,12 +25,16 @@ public class MainMenu : MonoBehaviour
 	public Button SettingsButton;
 	public Button PlayButton;
 	public Button LoadURLButton;
+	public Button ShareButton;
+	public Button InputsButton;
 	public AudioClip StartupSound;
 	public Camera MainCamera;
 	public GameObject SettingsWindow;
 	public GameObject CreditsDialog;
 	public Text FlavorTextBox;
 	public Text CurrentTrackName;
+	public Text LiteText;
+	public Text Version;
 
 	public Dropdown TutorialLevel;
 	public Dropdown Cat5Level;
@@ -45,7 +50,15 @@ public class MainMenu : MonoBehaviour
 		DestructivePlayMode.isOn = (PlayerPrefs.GetInt("DestructivePlayMode", 0) == 1);
 		CameraEffectsToggle.isOn = (PlayerPrefs.GetInt("PostProcessing", 1) == 1);
 		//VisiblePlatformToggle.isOn = (PlayerPrefs.GetInt("PlatformVisible", 1) == 1);
-		SaveButton.gameObject.SetActive(true);
+		Version.text = "v" + Application.version;
+		if (GameManager.IsLiteBuild)
+		{
+			SettingsButton.gameObject.SetActive(false);
+			LiteText.gameObject.SetActive(true);
+		}
+		if (Application.platform == RuntimePlatform.Android)
+			InputsButton.gameObject.SetActive(false);
+
 		TogglePlayModeButton.gameObject.SetActive(false);
 		if (string.IsNullOrWhiteSpace(Serializer.LastAccessedFileName))
 		{
@@ -56,9 +69,17 @@ public class MainMenu : MonoBehaviour
 			SaveButton.gameObject.SetActive(true);
 		}
 		if (BlockManager.BlockCount == 0)
+		{
 			PlayButton.gameObject.SetActive(false);
+			SaveAsButton.gameObject.SetActive(false);
+			ShareButton.gameObject.SetActive(false);
+		}
 		else
+		{
 			PlayButton.gameObject.SetActive(true);
+			SaveAsButton.gameObject.SetActive(true);
+			ShareButton.gameObject.SetActive(true);
+		}
 
 		Debug.Assert(FlavorText.Entries != null);
 		Debug.Assert(FlavorText.Entries.Length > 1);

@@ -12735,7 +12735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Save As
+  m_Text: Save File As
 --- !u!222 &708987807
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25615,7 +25615,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Save
+  m_Text: Save File
 --- !u!222 &1435156816
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34140,6 +34140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SaveButton: {fileID: 364832808}
+  SaveAsButton: {fileID: 1917939684}
   AutoPlay: {fileID: 1907448459}
   FogToggle: {fileID: 281083489}
   DestructivePlayMode: {fileID: 525677634}
@@ -34153,12 +34154,16 @@ MonoBehaviour:
   SettingsButton: {fileID: 13113229}
   PlayButton: {fileID: 2094699934}
   LoadURLButton: {fileID: 1644522098}
+  ShareButton: {fileID: 1962909630}
+  InputsButton: {fileID: 874355406}
   StartupSound: {fileID: 0}
   MainCamera: {fileID: 223191236}
   SettingsWindow: {fileID: 1744842006}
   CreditsDialog: {fileID: 1510906911}
   FlavorTextBox: {fileID: 617486326}
   CurrentTrackName: {fileID: 170802700}
+  LiteText: {fileID: 346865723}
+  Version: {fileID: 1382743716}
   TutorialLevel: {fileID: 451059102}
   Cat5Level: {fileID: 145576199}
   PrincessLevel: {fileID: 241227838}

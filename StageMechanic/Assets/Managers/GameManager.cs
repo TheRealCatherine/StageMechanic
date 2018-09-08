@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using UnityEngine;
 
 public class GameManager
 {
@@ -41,5 +41,13 @@ public class GameManager
 	}
 
 	public static int[] PlayerScores = new int[4];
+
+	public static bool IsLiteBuild
+	{
+		get
+		{
+			return Application.platform == RuntimePlatform.WebGLPlayer || QualitySettings.activeColorSpace == ColorSpace.Gamma || MusicManager.TrackCount < 7;
+		}
+	}
 }
 
