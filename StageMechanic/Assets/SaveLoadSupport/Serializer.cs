@@ -796,7 +796,7 @@ public static class Serializer
 			return;
 		}
 		lastSharedKey = Utility.RandomString(6);
-		GameJolt.API.DataStore.Set("/usercreated/stages/"+lastSharedKey, BlocksToPrettyJson(), true, SaveToGameJoltComplete);
+		GameJolt.API.DataStore.Set("/usercreated/stages/"+lastSharedKey, BlocksToCondensedJson(), true, SaveToGameJoltComplete);
 	}
 
 	public static void SaveToGameJoltComplete(bool status)

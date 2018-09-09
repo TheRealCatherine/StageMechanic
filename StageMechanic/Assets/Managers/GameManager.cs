@@ -46,7 +46,7 @@ public class GameManager
 	{
 		get
 		{
-			return Application.platform == RuntimePlatform.WebGLPlayer || QualitySettings.activeColorSpace == ColorSpace.Gamma || MusicManager.TrackCount < 7;
+			return Application.platform == RuntimePlatform.WebGLPlayer || QualitySettings.activeColorSpace == ColorSpace.Gamma;
 		}
 	}
 }

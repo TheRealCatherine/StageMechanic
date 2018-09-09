@@ -80,7 +80,7 @@ PlayerSettings:
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
   resizableWindow: 0
-  useMacAppStoreValidation: 1
+  useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
   gpuSkinning: 1
   graphicsJobs: 1
@@ -120,7 +120,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 0
-  bundleVersion: 0.2.13
+  bundleVersion: 0.2.17
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -156,7 +156,7 @@ PlayerSettings:
     Android: com.YourePerfectStudio.StageMechanic
     Standalone: com.YourePerfectStudio.StageMechanic
   buildNumber: {}
-  AndroidBundleVersionCode: 213
+  AndroidBundleVersionCode: 217
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 26
   AndroidPreferredInstallLocation: 1

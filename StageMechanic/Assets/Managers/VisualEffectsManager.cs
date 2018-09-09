@@ -82,7 +82,7 @@ public class VisualEffectsManager : MonoBehaviour {
 	public static void EnableFog(bool show)
     {
 		//If we are not in Linear color space or we don't have many music tracks, assume we are a light build
-		if (QualitySettings.activeColorSpace == ColorSpace.Gamma || MusicManager.TrackCount < 7)
+		if (GameManager.IsLiteBuild)
 			show = false;
 
         Instance?.Fog?.gameObject.SetActive(show);
@@ -92,7 +92,7 @@ public class VisualEffectsManager : MonoBehaviour {
     public static void EnablePostProcessing(bool process)
     {
 		//If we are not in Linear color space or we don't have many music tracks, assume we are a light build
-		if (QualitySettings.activeColorSpace == ColorSpace.Gamma || MusicManager.TrackCount < 7)
+		if (GameManager.IsLiteBuild)
 			process = false;
 
 		Instance.MainStageProcessLayer.enabled = process;

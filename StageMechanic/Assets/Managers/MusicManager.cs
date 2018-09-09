@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using System.Collections;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
@@ -14,14 +15,18 @@ public class MusicManager : MonoBehaviour {
     private static MusicManager Instance;
     private static int CurrentIndex;
 
+	private void Start()
+	{
+		Instance = this;
+	}
+
 	//Using Awake instead of Start so that label on menu is updated during proram load
-    void Awake () {
-        Instance = this;
+	void Awake () {
         Player.volume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
         if (PlayerPrefs.HasKey("MusicTrackIndex"))
-            PlayTrack(PlayerPrefs.GetInt("MusicTrackIndex"));
+            StartCoroutine(Play(PlayerPrefs.GetInt("MusicTrackIndex")));
         else
-            PlayTrack(0);
+			StartCoroutine(Play(0));
 	}
 
 	public static int TrackCount
@@ -98,6 +103,12 @@ public class MusicManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("MusicPaused", 0) == 0)
             Instance.Player.Play();
     }
+
+	public static IEnumerator Play(int number)
+	{
+		yield return new WaitForSeconds(1);
+		PlayTrack(number);
+	}
 
     public static void PlayTrack(int number = 0)
     {

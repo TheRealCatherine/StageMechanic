@@ -113,8 +113,8 @@ public class Cathy1GoalBlock : Cathy1Block
 					}
 					else
 					{
-						BlockManager.Clear();
-						Serializer.BlocksFromJson(location, startPlayMode: true);
+						BlockManager.Instance.TogglePlayMode(0.4f);
+						Serializer.LoadFileUsingLocalPath(location.LocalPath);
 					}
 				}
 			}

@@ -106,7 +106,12 @@ public class MainMenu : MonoBehaviour
 
 		//if (Application.platform == RuntimePlatform.Android)
 		//	LoadURLButton.gameObject.SetActive(false);
+		StartCoroutine(StartMusicThingy());
+	}
 
+	private IEnumerator StartMusicThingy()
+	{
+		yield return new WaitForSeconds(2f);
 		UpdateTrackName();
 	}
 
