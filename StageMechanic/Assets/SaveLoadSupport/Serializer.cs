@@ -786,6 +786,27 @@ public static class Serializer
 		}
 	}
 
+	public static void SaveToGameJolt()
+	{
+		GameJolt.API.DataStore.Set("test1", "worked", true);
+		GameJolt.API.DataStore.Set("test2", "worked", true);
+		BlockManager.Instance.StartCoroutine(Test());
+	}
+
+	private static IEnumerator Test()
+	{
+		yield return new WaitForSeconds(1);
+		GameJolt.API.DataStore.GetKeys(true, PrintResult);
+	}
+
+	private static void PrintResult(string[] results)
+	{
+		foreach(string result in results)
+		{
+			Debug.Log(result);
+		}
+	}
+
 	public static void LoadBinaryFileUsingHTTP(Uri path)
 	{
 		//TODO ensure file is valid

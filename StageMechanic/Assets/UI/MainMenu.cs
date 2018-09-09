@@ -330,7 +330,8 @@ public class MainMenu : MonoBehaviour
 
 	public void OnShareClicked()
 	{
-		Serializer.SaveToPastebin();
+		//Serializer.SaveToPastebin();
+		Serializer.SaveToGameJolt();
 	}
 
 	public void OnOpenTutorialClicked()
