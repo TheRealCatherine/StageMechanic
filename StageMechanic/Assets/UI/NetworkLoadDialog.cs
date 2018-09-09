@@ -11,7 +11,7 @@ public class NetworkLoadDialog : MonoBehaviour {
 	public Button CopyButton;
 
 	void Update () {
-		if (string.IsNullOrEmpty(UrlInput.text))
+		if (string.IsNullOrEmpty(UrlInput.text) || UrlInput.text.Length < 6)
 			GoButton.interactable = false;
 		else
 			GoButton.interactable = true;
@@ -37,7 +37,7 @@ public class NetworkLoadDialog : MonoBehaviour {
 		}
 		else
 		{
-			Serializer.LoadFromPastebin(UrlInput.text);
+			Serializer.LoadFromGameJolt(UrlInput.text);
 			gameObject.SetActive(false);
 		}
 	}

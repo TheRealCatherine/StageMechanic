@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class Utility
@@ -131,5 +132,13 @@ public static class Utility
 		te.text = s;
 		te.SelectAll();
 		te.Copy();
+	}
+
+	private static System.Random random = new System.Random();
+	public static string RandomString(int length)
+	{
+		const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		return new string(Enumerable.Repeat(chars, length)
+		  .Select(s => s[random.Next(s.Length)]).ToArray());
 	}
 }

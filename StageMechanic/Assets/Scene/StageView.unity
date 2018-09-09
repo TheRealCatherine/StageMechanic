@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022753041, g: 0.011158805, b: 0.040147122, a: 1}
+  m_IndirectSpecularColor: {r: 0.022842664, g: 0.011234282, b: 0.040441006, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3834,7 +3834,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4437946050479458, guid: 0bea0f0e81fafe141b0b4cafd73274c9, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bea0f0e81fafe141b0b4cafd73274c9, type: 2}
@@ -4828,7 +4828,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4625271195422440, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114750606410932294, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
@@ -7549,7 +7549,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4659442272981134, guid: 40f13cd145f324d4eaa297956ccfd96d, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40f13cd145f324d4eaa297956ccfd96d, type: 2}
@@ -8835,6 +8835,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458593416}
   m_CullTransparentMesh: 0
+--- !u!1001 &461797920
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481182, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a2e587034d846647b593aa159d7ed8d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &466071367
 GameObject:
   m_ObjectHideFlags: 0
@@ -11530,7 +11572,7 @@ RectTransform:
   - {fileID: 1390872299}
   - {fileID: 755103737}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14730,7 +14772,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Load From glot.io
+  m_Text: Load From Game Jolt
 --- !u!222 &804200496
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15066,7 +15108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4408721821948828, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
@@ -23835,7 +23877,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4580968789141668, guid: 52de1e9a37ad2f94bb4dff745bdb049e, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52de1e9a37ad2f94bb4dff745bdb049e, type: 2}
@@ -31246,7 +31288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Example: f4j9hqtv10'
+  m_Text: 'Example: 5MJZRY'
 --- !u!222 &1739622172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34160,6 +34202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveButton: {fileID: 364832808}
   SaveAsButton: {fileID: 1917939684}
+  LoadButton: {fileID: 1422859167}
   AutoPlay: {fileID: 1907448459}
   FogToggle: {fileID: 281083489}
   DestructivePlayMode: {fileID: 525677634}
@@ -34521,7 +34564,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1921166737
 GameObject:
@@ -35262,7 +35305,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4618431032745426, guid: bb9a5fc22c2989943b9c7345ae59eb7c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb9a5fc22c2989943b9c7345ae59eb7c, type: 2}
@@ -35751,7 +35794,7 @@ GameObject:
   - component: {fileID: 1962909631}
   - component: {fileID: 1962909630}
   m_Layer: 5
-  m_Name: SaveToPastebin
+  m_Name: SaveToGameJolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37155,7 +37198,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Share To glot.io
+  m_Text: Share To Game Jolt
 --- !u!222 &2032241161
 CanvasRenderer:
   m_ObjectHideFlags: 0

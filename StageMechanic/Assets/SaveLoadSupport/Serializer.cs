@@ -786,25 +786,43 @@ public static class Serializer
 		}
 	}
 
+	static string lastSharedKey;
 	public static void SaveToGameJolt()
 	{
-		GameJolt.API.DataStore.Set("test1", "worked", true);
-		GameJolt.API.DataStore.Set("test2", "worked", true);
-		BlockManager.Instance.StartCoroutine(Test());
-	}
-
-	private static IEnumerator Test()
-	{
-		yield return new WaitForSeconds(1);
-		GameJolt.API.DataStore.GetKeys(true, PrintResult);
-	}
-
-	private static void PrintResult(string[] results)
-	{
-		foreach(string result in results)
-		{
-			Debug.Log(result);
+		string data = BlocksToCondensedJson();
+		if (data.Length > 1000000)
+		{ //1MB limit accounting for unicode this should be ok for now
+			UIManager.ShowNetworkStatus("Level too big (we are working on this)", true);
+			return;
 		}
+		lastSharedKey = Utility.RandomString(6);
+		GameJolt.API.DataStore.Set("/usercreated/stages/"+lastSharedKey, BlocksToPrettyJson(), true, SaveToGameJoltComplete);
+	}
+
+	public static void SaveToGameJoltComplete(bool status)
+	{
+		if (status)
+			UIManager.ShowNetworkStatus("Success! Your stage key is:", true, lastSharedKey);
+		else
+			UIManager.ShowNetworkStatus("Share failed", true);
+		lastSharedKey = null;
+	}
+
+	public static void LoadFromGameJolt(string key)
+	{
+		GameJolt.API.DataStore.Get("/usercreated/stages/" + key, true, FetchFromGameJoltComplete);
+	}
+
+	private static void FetchFromGameJoltComplete(string results)
+	{
+		if (string.IsNullOrWhiteSpace(results))
+		{
+			UIManager.ShowNetworkStatus("Loading failed", true);
+			return;
+		}
+		BlockManager.Clear();
+		BlocksFromJson(results);
+		Debug.Log(results);
 	}
 
 	public static void LoadBinaryFileUsingHTTP(Uri path)
