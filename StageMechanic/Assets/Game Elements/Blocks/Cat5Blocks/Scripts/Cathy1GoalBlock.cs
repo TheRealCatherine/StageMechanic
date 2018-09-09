@@ -52,8 +52,8 @@ public class Cathy1GoalBlock : Cathy1Block
 					AudioEffectsManager.PlaySound(this, Applause);
 				_hasPlayedSound = true;
 			}
-			//TODO support glot.io level chaining
-			if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir") && PlayerPrefs.GetString("LastLoadDir") != "glot.io")
+			//TODO support game jolt level chaining
+			if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir") && !PlayerPrefs.GetString("LastLoadDir").StartsWith("#/"))
 			{
 				Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
 				BlockManager.Instance.TogglePlayMode();
@@ -120,7 +120,7 @@ public class Cathy1GoalBlock : Cathy1Block
 			}
 			else if (string.IsNullOrWhiteSpace(NextStageFilename)
 				||(!PlayerPrefs.HasKey("LastLoadDir"))
-				|| PlayerPrefs.GetString("LastLoadDir") == "glot.io")
+				|| PlayerPrefs.GetString("LastLoadDir").StartsWith("#/"))
 			{
 				if (!_hasShownDialog) {
 					_hasShownDialog = true;

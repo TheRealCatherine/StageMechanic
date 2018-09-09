@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 {
 	public Button SaveButton;
 	public Button SaveAsButton;
+	public Button QuitButton;
 	public Button LoadButton;
 	public Toggle AutoPlay;
 	public Toggle FogToggle;
@@ -93,6 +94,7 @@ public class MainMenu : MonoBehaviour
 			SaveButton.gameObject.SetActive(false);
 			LoadButton.gameObject.SetActive(false);
 			InputsButton.gameObject.SetActive(false);
+			QuitButton.gameObject.SetActive(false);
 		}
 
 		Debug.Assert(FlavorText.Entries != null);

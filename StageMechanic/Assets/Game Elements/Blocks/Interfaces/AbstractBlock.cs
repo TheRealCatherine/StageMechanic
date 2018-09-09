@@ -458,27 +458,33 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
 	protected void HardUpdateBlocksAbove()
 	{
-		blocksAbove[UP] = BlockManager.GetBlockAt(Position + Vector3.up);
-		blocksAbove[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, 1f));
-		blocksAbove[BACK] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, -1f));
-		blocksAbove[LEFT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(-1f, 0f, 0f));
-		blocksAbove[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(1f, 0f, 0f));
+		if (Position.IsValid())
+		{
+			blocksAbove[UP] = BlockManager.GetBlockAt(Position + Vector3.up);
+			blocksAbove[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, 1f));
+			blocksAbove[BACK] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(0f, 0f, -1f));
+			blocksAbove[LEFT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(-1f, 0f, 0f));
+			blocksAbove[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.up + new Vector3(1f, 0f, 0f));
+		}
 	}
 
 	protected void HardUpdateBlocksBelow()
 	{
-		blocksBelow[DOWN] = BlockManager.GetBlockNear(Position + Vector3.down);
-		blocksBelow[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, 1f));
-		blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, -1f));
-		blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(-1f, 0f, 0f));
-		blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(1f, 0f, 0f));
+		if (Position.IsValid())
+		{
+			blocksBelow[DOWN] = BlockManager.GetBlockNear(Position + Vector3.down);
+			blocksBelow[FORWARD] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, 1f));
+			blocksBelow[BACK] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(0f, 0f, -1f));
+			blocksBelow[LEFT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(-1f, 0f, 0f));
+			blocksBelow[RIGHT] = BlockManager.GetBlockNear(Position + Vector3.down + new Vector3(1f, 0f, 0f));
 #if UNITY_EDITOR
-		BlockDown = blocksBelow[DOWN]?.Name;
-		BlockDownBack = blocksBelow[BACK]?.Name;
-		BlockDownForward = blocksBelow[FORWARD]?.Name;
-		BlockDownLeft = blocksBelow[LEFT]?.Name;
-		BlockDownRight = blocksBelow[RIGHT]?.Name;
+			BlockDown = blocksBelow[DOWN]?.Name;
+			BlockDownBack = blocksBelow[BACK]?.Name;
+			BlockDownForward = blocksBelow[FORWARD]?.Name;
+			BlockDownLeft = blocksBelow[LEFT]?.Name;
+			BlockDownRight = blocksBelow[RIGHT]?.Name;
 #endif
+		}
 	}
 
 	public void UpdateNeighborCounts()

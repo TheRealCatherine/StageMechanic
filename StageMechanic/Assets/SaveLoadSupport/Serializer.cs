@@ -810,6 +810,7 @@ public static class Serializer
 
 	public static void LoadFromGameJolt(string key)
 	{
+		lastSharedKey = key;
 		GameJolt.API.DataStore.Get("/usercreated/stages/" + key, true, FetchFromGameJoltComplete);
 	}
 
@@ -822,7 +823,9 @@ public static class Serializer
 		}
 		BlockManager.Clear();
 		BlocksFromJson(results);
-		Debug.Log(results);
+		PlayerPrefs.SetString("LastLoadDir", "#/GameJolt/DataStore");
+		LastAccessedFileName = "/usercreated/stages/" + lastSharedKey;
+		lastSharedKey = null;
 	}
 
 	public static void LoadBinaryFileUsingHTTP(Uri path)
