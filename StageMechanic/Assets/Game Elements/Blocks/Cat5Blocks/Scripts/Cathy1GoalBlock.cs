@@ -68,7 +68,10 @@ public class Cathy1GoalBlock : Cathy1Block
 					}
 					if (Application.platform == RuntimePlatform.Android)
 						BlockManager.Instance.TogglePlayMode(1f);
-					if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
+					if (Application.platform == RuntimePlatform.OSXEditor
+						|| Application.platform == RuntimePlatform.OSXPlayer
+						|| Application.platform == RuntimePlatform.LinuxEditor
+						|| Application.platform == RuntimePlatform.LinuxPlayer)
 						BlockManager.Instance.TogglePlayMode(0.4f);
 
 
@@ -88,11 +91,18 @@ public class Cathy1GoalBlock : Cathy1Block
 				}
 				else
 				{
-					if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+					if (Application.platform == RuntimePlatform.Android
+						|| Application.platform == RuntimePlatform.OSXEditor
+						|| Application.platform == RuntimePlatform.OSXPlayer
+						|| Application.platform == RuntimePlatform.LinuxEditor
+						|| Application.platform == RuntimePlatform.LinuxPlayer)
 					{
 						if (Application.platform == RuntimePlatform.Android)
 							BlockManager.Instance.TogglePlayMode(1f);
-						if (Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
+						if (Application.platform == RuntimePlatform.OSXEditor
+							|| Application.platform == RuntimePlatform.OSXPlayer 
+							|| Application.platform == RuntimePlatform.LinuxEditor 
+							|| Application.platform == RuntimePlatform.LinuxPlayer)
 							BlockManager.Instance.TogglePlayMode(0.4f);
 
 						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;

@@ -377,7 +377,11 @@ public class MainMenu : MonoBehaviour
 
 		string fileType = Serializer.UseBinaryFiles ? ".bin" : ".json";
 		string file;
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+		if (Application.platform == RuntimePlatform.Android
+			|| Application.platform == RuntimePlatform.OSXEditor
+			|| Application.platform == RuntimePlatform.OSXPlayer
+			|| Application.platform == RuntimePlatform.LinuxEditor
+			|| Application.platform == RuntimePlatform.LinuxPlayer)
 			file = "/"+folder+"/" + level + fileType;
 		else
 			file = Application.streamingAssetsPath + "/"+folder+"/" + level + fileType;

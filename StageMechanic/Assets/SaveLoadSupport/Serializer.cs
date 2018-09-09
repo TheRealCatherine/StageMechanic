@@ -96,14 +96,7 @@ public static class Serializer
 	{
 		get
 		{
-			return Application.platform == RuntimePlatform.WSAPlayerX64 
-				|| Application.platform == RuntimePlatform.WSAPlayerX86
-				|| Application.platform == RuntimePlatform.WSAPlayerARM
-				|| Application.platform == RuntimePlatform.OSXPlayer
-				|| Application.platform == RuntimePlatform.OSXEditor
-				|| Application.platform == RuntimePlatform.LinuxEditor
-				|| Application.platform == RuntimePlatform.LinuxPlayer
-				|| Application.platform == RuntimePlatform.WebGLPlayer
+			return Application.platform == RuntimePlatform.WebGLPlayer
 				|| UIManager.Instance.BinaryFormat.isOn;
 		}
 	}
@@ -597,7 +590,11 @@ public static class Serializer
 		{
 			Uri location = new Uri((Application.platform == RuntimePlatform.WebGLPlayer ? "" : "file:///") + path);
 			string directory;
-			if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer)
+			if (Application.platform == RuntimePlatform.Android 
+				|| Application.platform == RuntimePlatform.OSXEditor
+				|| Application.platform == RuntimePlatform.OSXPlayer
+				|| Application.platform == RuntimePlatform.LinuxEditor
+				|| Application.platform == RuntimePlatform.LinuxPlayer)
 			{
 				int index = path.LastIndexOf("/");
 				if (index > 0)
@@ -626,7 +623,11 @@ public static class Serializer
 
 			if (UseBinaryFiles)
 			{
-				if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
+				if(Application.platform == RuntimePlatform.Android
+					|| Application.platform == RuntimePlatform.OSXEditor 
+					|| Application.platform == RuntimePlatform.OSXPlayer
+					|| Application.platform == RuntimePlatform.LinuxEditor
+					|| Application.platform == RuntimePlatform.LinuxPlayer)
 				{
 					if(BetterStreamingAssets.FileExists(path))
 						BlocksFromBinaryStream(BetterStreamingAssets.ReadAllBytes(path),true);
@@ -645,7 +646,11 @@ public static class Serializer
 			}
 			else
 			{
-				if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.LinuxPlayer)
+				if (Application.platform == RuntimePlatform.Android
+					|| Application.platform == RuntimePlatform.OSXEditor
+					|| Application.platform == RuntimePlatform.OSXPlayer
+					|| Application.platform == RuntimePlatform.LinuxEditor
+					|| Application.platform == RuntimePlatform.LinuxPlayer)
 				{
 					if (BetterStreamingAssets.FileExists(path))
 						BlocksFromJsonStream(BetterStreamingAssets.ReadAllBytes(path),true);
