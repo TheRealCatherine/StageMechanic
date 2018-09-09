@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022842664, g: 0.011234282, b: 0.040441006, a: 1}
+  m_IndirectSpecularColor: {r: 0.022753041, g: 0.011158805, b: 0.040147122, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4796,7 +4796,12 @@ Prefab:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Clips.Array.size
-      value: 16
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4625271195422440, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
       propertyPath: m_LocalPosition.x
@@ -5054,7 +5059,7 @@ Prefab:
         type: 2}
       propertyPath: Clips.Array.data[14]
       value: 
-      objectReference: {fileID: 8300000, guid: ad2416d159c094d4a9603a3845bbe6ce, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114704978017189584, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: NetworkStatusDialog
@@ -5064,7 +5069,122 @@ Prefab:
         type: 2}
       propertyPath: Clips.Array.data[15]
       value: 
-      objectReference: {fileID: 8300000, guid: 1601ca491a618c441a2a8611a9a8b2db, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 895faddb227cfd54b8c1da5c9d85345b, type: 3}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7345f5ff7a04b6144969b0a245898d8d, type: 3}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[9]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[10]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[11]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[12]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Clips.Array.data[13]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[10]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[11]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[9]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
   m_IsPrefabAsset: 0
@@ -15078,6 +15198,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Themes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4408721821948828, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15109,6 +15234,27 @@ Prefab:
     - target: {fileID: 4408721821948828, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Themes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d2bf08f024f4cf64ca22a6aef92cadc5,
+        type: 2}
+    - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Themes.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Themes.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Themes.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
@@ -32794,7 +32940,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1223919440879624, guid: 68c3d27a260911d4494f03cf47cd8060,
     type: 2}
   m_PrefabInternal: {fileID: 240614622}
---- !u!114 &1805545127
+--- !u!114 &1805545131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
