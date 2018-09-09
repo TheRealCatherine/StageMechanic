@@ -46,7 +46,7 @@ public class GameManager
 	{
 		get
 		{
-			return Application.platform == RuntimePlatform.WebGLPlayer || QualitySettings.activeColorSpace == ColorSpace.Gamma;
+			return Application.productName.Contains("Lite") ||  Application.platform == RuntimePlatform.WebGLPlayer || QualitySettings.activeColorSpace == ColorSpace.Gamma;
 		}
 	}
 }
