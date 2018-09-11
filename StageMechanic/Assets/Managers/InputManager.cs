@@ -800,6 +800,10 @@ public class InputManager : MonoBehaviour
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		if (scroll >= 0.005f || scroll <= -0.005f)
 		{
+			float x = Input.mousePosition.x;
+			if (x < 220 || Screen.width - x < 250) //TODO don't hardcode width of UI elements
+				return false;
+
 			Camera.zoom += scroll * scrollSpeed;
 			return true;
 		}

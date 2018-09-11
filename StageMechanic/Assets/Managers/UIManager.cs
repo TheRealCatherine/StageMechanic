@@ -377,4 +377,11 @@ public class UIManager : MonoBehaviour
 	{
 		Instance.NetworkStatusDialog.gameObject.SetActive(false);
 	}
+
+	public static IEnumerator OnInputsClickedHelper()
+	{
+		yield return new WaitForSeconds(0.25f);
+		if(!Instance.ButtonMappingDialog.gameObject.activeInHierarchy)
+			ToggleButtonMappingDialog();
+	}
 }

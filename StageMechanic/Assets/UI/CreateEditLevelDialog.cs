@@ -31,6 +31,8 @@ public class CreateEditLevelDialog : MonoBehaviour
 		if (BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
 		BlockManager.Clear();
+		if (!UIManager.Instance.ShowOnscreenControlls)
+			UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
 		gameObject.SetActive(false);
 	}
 
@@ -39,6 +41,8 @@ public class CreateEditLevelDialog : MonoBehaviour
 		Debug.Log("Edit clicked");
 		if (BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
+		if (!UIManager.Instance.ShowOnscreenControlls)
+			UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
 		gameObject.SetActive(false);
 	}
 

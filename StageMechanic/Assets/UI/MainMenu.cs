@@ -93,8 +93,10 @@ public class MainMenu : MonoBehaviour
 			SaveAsButton.gameObject.SetActive(false);
 			SaveButton.gameObject.SetActive(false);
 			LoadButton.gameObject.SetActive(false);
+			ShareButton.gameObject.SetActive(false);
 			InputsButton.gameObject.SetActive(false);
 			QuitButton.gameObject.SetActive(false);
+			LiteText.text = "Demo";
 		}
 
 		Debug.Assert(FlavorText.Entries != null);
@@ -179,9 +181,9 @@ public class MainMenu : MonoBehaviour
 	{
 		//TODO don't zero the score for this
 		GameManager.PlayerScores[0] = 0;
-		if(!UIManager.Instance.ShowOnscreenControlls)
-			UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
 		if (BlockManager.BlockCount == 0) {
+			if (!UIManager.Instance.ShowOnscreenControlls)
+				UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
 			gameObject.SetActive(false);
 			if (BlockManager.PlayMode)
 				BlockManager.Instance.TogglePlayMode();
@@ -280,13 +282,7 @@ public class MainMenu : MonoBehaviour
 		Serializer.LoadFileUsingLocalPath(file);
 		if (!BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
-		StartCoroutine(OnInputsClickedHelper());
-	}
-
-	private IEnumerator OnInputsClickedHelper()
-	{
-		yield return new WaitForSeconds(0.25f);
-		UIManager.ToggleButtonMappingDialog();
+		UIManager.Instance.StartCoroutine(UIManager.OnInputsClickedHelper());
 		gameObject.SetActive(false);
 	}
 
