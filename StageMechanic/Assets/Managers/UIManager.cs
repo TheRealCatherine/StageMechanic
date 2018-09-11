@@ -6,6 +6,7 @@
  */
 using CnControls;
 using GracesGames.SimpleFileBrowser.Scripts;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -358,6 +359,18 @@ public class UIManager : MonoBehaviour
 			Instance.NetworkStatusDialog.UrlInput.text = key;
 			Instance.NetworkStatusDialog.CopyButton.gameObject.SetActive(true);
 		}
+	}
+
+	public static void ShowMessage(string status, float delay = 3f)
+	{
+		ShowNetworkStatus(status, false);
+		Instance.StartCoroutine(ShowMessageHelper(delay));
+	}
+
+	private static IEnumerator ShowMessageHelper(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		Instance.NetworkStatusDialog.gameObject.SetActive(false);
 	}
 
 	public static void HideNetworkStatus()
