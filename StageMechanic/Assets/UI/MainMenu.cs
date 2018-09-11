@@ -92,9 +92,11 @@ public class MainMenu : MonoBehaviour
 		{
 			SaveAsButton.gameObject.SetActive(false);
 			SaveButton.gameObject.SetActive(false);
+			ShareButton.gameObject.SetActive(false);
 			LoadButton.gameObject.SetActive(false);
 			InputsButton.gameObject.SetActive(false);
 			QuitButton.gameObject.SetActive(false);
+			LiteText.text = "Demo";
 		}
 
 		Debug.Assert(FlavorText.Entries != null);

@@ -294,7 +294,6 @@ public static class Serializer
 		yield return null;
 	}
 
-
 	public static string BlocksToPrettyJson()
 	{
 		CurrentState = State.Serializing;
@@ -334,7 +333,6 @@ public static class Serializer
 		StageCollection collection = new StageCollection(stage);
 		CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
 		Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-
 		try
 		{
 			MemoryStream ms = new MemoryStream();
@@ -481,7 +479,7 @@ public static class Serializer
 		deserializedCollection = ser.ReadObject(stream) as StageCollection;
 		stream.Close();
 		BlockManager.ResetCursor();
-		LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
+		//LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
 		CurrentState = State.Idle;
 		UIManager.HideNetworkStatus();
 	}
@@ -828,6 +826,7 @@ public static class Serializer
 		}
 		BlockManager.Clear();
 		BlocksFromJson(results);
+		BlockManager.Instance.TogglePlayMode(0.25f);
 		PlayerPrefs.SetString("LastLoadDir", "#/GameJolt/DataStore");
 		LastAccessedFileName = "/usercreated/stages/" + lastSharedKey;
 		lastSharedKey = null;
