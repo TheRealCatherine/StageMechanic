@@ -480,8 +480,7 @@ public static class Serializer
 		DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedCollection.GetType());
 		deserializedCollection = ser.ReadObject(stream) as StageCollection;
 		stream.Close();
-		BlockManager.ResetCursor();
-		LogController.Log("Loaded " + deserializedCollection.Stages.Count + " stage(s)");
+		BlockManager.ResetCursor();		
 		CurrentState = State.Idle;
 		UIManager.HideNetworkStatus();
 	}
@@ -828,6 +827,7 @@ public static class Serializer
 		}
 		BlockManager.Clear();
 		BlocksFromJson(results);
+		BlockManager.Instance.TogglePlayMode(0.25f);
 		PlayerPrefs.SetString("LastLoadDir", "#/GameJolt/DataStore");
 		LastAccessedFileName = "/usercreated/stages/" + lastSharedKey;
 		lastSharedKey = null;

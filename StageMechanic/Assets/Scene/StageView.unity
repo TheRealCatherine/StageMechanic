@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022842664, g: 0.011234282, b: 0.040441006, a: 1}
+  m_IndirectSpecularColor: {r: 0.022753041, g: 0.011158805, b: 0.040147122, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27956,7 +27956,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1551715167}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1551715165}
+        m_MethodName: OnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1551715167
@@ -35085,7 +35096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54f7a688cd2a57408d40f7a1e8ce87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: https://discord.gg/TBU4MyE
+  URL: https://gamejolt.com/games/StageMechanic/357305
 --- !u!114 &1932934683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36044,7 +36055,7 @@ GameObject:
   - component: {fileID: 1990067936}
   - component: {fileID: 1990067935}
   m_Layer: 5
-  m_Name: Patreon (1)
+  m_Name: Twitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
