@@ -181,6 +181,8 @@ public class MainMenu : MonoBehaviour
 	{
 		GameManager.PlayerScores[0] = 0;
 		if (BlockManager.BlockCount == 0) {
+			if (!UIManager.Instance.ShowOnscreenControlls)
+				UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
 			gameObject.SetActive(false);
 			if (BlockManager.PlayMode)
 				BlockManager.Instance.TogglePlayMode();
@@ -279,14 +281,7 @@ public class MainMenu : MonoBehaviour
 		Serializer.LoadFileUsingLocalPath(file);
 		if (!BlockManager.PlayMode)
 			BlockManager.Instance.TogglePlayMode();
-		StartCoroutine(OnInputsClickedHelper());
-	}
-
-	private IEnumerator OnInputsClickedHelper()
-	{
-		yield return new WaitForSeconds(0.25f);
-		UIManager.ToggleButtonMappingDialog();
-		gameObject.SetActive(false);
+		UIManager.Instance.StartCoroutine(UIManager.OnInputsClickedHelper());
 	}
 
 	public void OnOnscreenControllsClicked()

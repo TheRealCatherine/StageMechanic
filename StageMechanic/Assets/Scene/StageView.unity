@@ -4801,7 +4801,7 @@ Prefab:
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Skyboxes.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4625271195422440, guid: 68c3d27a260911d4494f03cf47cd8060, type: 2}
       propertyPath: m_LocalPosition.x
@@ -5159,7 +5159,7 @@ Prefab:
         type: 2}
       propertyPath: Skyboxes.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Skyboxes.Array.data[7]
@@ -5183,6 +5183,11 @@ Prefab:
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 2}
       propertyPath: Skyboxes.Array.data[9]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 2}
+      propertyPath: Skyboxes.Array.data[1]
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15201,7 +15206,12 @@ Prefab:
     - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
         type: 2}
       propertyPath: Themes.Array.size
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4408721821948828, guid: c702a19f99f09d84784952184e9c1adf, type: 2}
       propertyPath: m_LocalPosition.x
@@ -15254,6 +15264,39 @@ Prefab:
     - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
         type: 2}
       propertyPath: Themes.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Themes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d2bf08f024f4cf64ca22a6aef92cadc5,
+        type: 2}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[2]
+      value: 
+      objectReference: {fileID: 114449502160132748, guid: d0643269473bd9f4e977647de9f8bb88,
+        type: 2}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[1]
+      value: 
+      objectReference: {fileID: 114014507029107966, guid: aff0fa2c112cad747acb3e8baf520283,
+        type: 2}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866827144793692, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 2}
+      propertyPath: Blocks.Array.data[4]
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []

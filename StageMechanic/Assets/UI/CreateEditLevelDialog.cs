@@ -7,38 +7,45 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreateEditLevelDialog : MonoBehaviour {
+public class CreateEditLevelDialog : MonoBehaviour
+{
 
-    public Button CreateNewButton;
-    public Button EditLevelButton;
+	public Button CreateNewButton;
+	public Button EditLevelButton;
 
-	void Start () {
-        CreateNewButton.onClick.AddListener(OnCreateNewButtonClicked);
-        EditLevelButton.onClick.AddListener(OnEditLevelClicked);
-    }
-	
-    public void Show()
-    {
-        //PlayerManager.DestroyAllPlayers();
-        gameObject.SetActive(true);
-    }
+	void Start()
+	{
+		CreateNewButton.onClick.AddListener(OnCreateNewButtonClicked);
+		EditLevelButton.onClick.AddListener(OnEditLevelClicked);
+	}
 
-    void OnCreateNewButtonClicked()
-    {
-	Debug.Log("Create clicked");
-	if (BlockManager.PlayMode)
-		BlockManager.Instance.TogglePlayMode();
-	BlockManager.Clear();
-        gameObject.SetActive(false);
-		
-    }
+	public void Show()
+	{
+		//PlayerManager.DestroyAllPlayers();
+		gameObject.SetActive(true);
+	}
 
-    void OnEditLevelClicked()
-    {
-	Debug.Log("Edit clicked");
-	if (BlockManager.PlayMode)
-		BlockManager.Instance.TogglePlayMode();
-        gameObject.SetActive(false);
-    }
+	void OnCreateNewButtonClicked()
+	{
+		Debug.Log("Create clicked");
+		if (BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
+		BlockManager.Clear();
+		if (!UIManager.Instance.ShowOnscreenControlls)
+			UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
+
+		gameObject.SetActive(false);
+
+	}
+
+	void OnEditLevelClicked()
+	{
+		Debug.Log("Edit clicked");
+		if (BlockManager.PlayMode)
+			BlockManager.Instance.TogglePlayMode();
+		if (!UIManager.Instance.ShowOnscreenControlls)
+			UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
+		gameObject.SetActive(false);
+	}
 
 }
