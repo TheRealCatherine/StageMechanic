@@ -89,16 +89,22 @@ public class EventJsonDelegate {
 	}
 
 	[DataMember(Name = "Properties", Order = 100)]
-	public Dictionary<string, string> Properties
+	public List<PropertyJsonDelegate> Properties
 	{
 		get
 		{
 			Debug.Assert(Event != null);
-			return Event.Properties;
+			List<PropertyJsonDelegate> properties = new List<PropertyJsonDelegate>();
+			foreach (KeyValuePair<string, string> item in Event.Properties)
+				properties.Add(new PropertyJsonDelegate(item));
+			return properties;
 		}
 		set
 		{
-			_properties = value;
+			Dictionary<string, string> properties = new Dictionary<string, string>();
+			foreach (PropertyJsonDelegate property in value)
+				properties.Add(property.Key, property.Value);
+			_properties = properties;
 		}
 	}
 

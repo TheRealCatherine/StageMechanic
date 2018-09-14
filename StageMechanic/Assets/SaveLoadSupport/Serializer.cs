@@ -337,6 +337,8 @@ public static class Serializer
 
 		try
 		{
+			
+
 			MemoryStream ms = new MemoryStream();
 			DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StageCollection));
 			XmlDictionaryWriter writer = JsonReaderWriterFactory.CreateJsonWriter(ms, Encoding.UTF8, true, false);
