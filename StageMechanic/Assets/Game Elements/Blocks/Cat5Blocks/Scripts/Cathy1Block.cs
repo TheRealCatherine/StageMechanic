@@ -57,6 +57,49 @@ public class Cathy1Block : AbstractBlock
 		}
 	}
 
+	internal override void OnBlockGroupChanged(int newGroup) {
+		Outline outline = CurrentModel.GetComponent<Outline>();
+		if (outline is null)
+			outline = CurrentModel.AddComponent<Outline>();
+		outline.OutlineMode = Outline.Mode.OutlineVisible;
+		outline.OutlineWidth = 5f;
+
+		switch(newGroup)
+		{
+			case 0:
+				outline.OutlineMode = Outline.Mode.OutlineHidden;
+				break;
+			case 1:
+				outline.OutlineColor = Color.red;
+				break;
+			case 2:
+				outline.OutlineColor = Color.blue;
+				break;
+			case 3:
+				outline.OutlineColor = Color.green;
+				break;
+			case 4:
+				outline.OutlineColor = Color.white;
+				break;
+			case 5:
+				outline.OutlineColor = Color.yellow;
+				break;
+			case 6:
+				outline.OutlineColor = Color.magenta;
+				break;
+			case 7:
+				outline.OutlineColor = Color.cyan;
+				break;
+			case 8:
+				outline.OutlineColor = Color.grey;
+				break;
+			case 9:
+			default:
+				outline.OutlineColor = Color.red;
+				break;
+		}
+	}
+
 	public virtual void ApplyTheme( Cathy1BlockTheme theme )
 	{
 		Debug.Assert(theme.BasicBlock1 != null);

@@ -4,7 +4,6 @@
 #if true && (UNITY_4_6 || UNITY_5 || UNITY_2017_1_OR_NEWER) // MODULE_MARKER
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening.Core;
 using DG.Tweening.Core.Enums;
 
@@ -33,7 +32,7 @@ namespace DG.Tweening
         /// <summary>Tweens an Graphic's color to the given value.
         /// Also stores the image as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOColor(this Graphic target, Color endValue, float duration)
+        public static Tweener DOColor(this UnityEngine.UI.Graphic target, Color endValue, float duration)
         {
             return DOTween.To(() => target.color, x => target.color = x, endValue, duration).SetTarget(target);
         }
@@ -41,7 +40,7 @@ namespace DG.Tweening
         /// <summary>Tweens an Graphic's alpha color to the given value.
         /// Also stores the image as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOFade(this Graphic target, float endValue, float duration)
+        public static Tweener DOFade(this UnityEngine.UI.Graphic target, float endValue, float duration)
         {
             return DOTween.ToAlpha(() => target.color, x => target.color = x, endValue, duration)
                 .SetTarget(target);
@@ -54,7 +53,7 @@ namespace DG.Tweening
         /// <summary>Tweens an Image's color to the given value.
         /// Also stores the image as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOColor(this Image target, Color endValue, float duration)
+        public static Tweener DOColor(this UnityEngine.UI.Image target, Color endValue, float duration)
         {
             return DOTween.To(() => target.color, x => target.color = x, endValue, duration).SetTarget(target);
         }
@@ -62,7 +61,7 @@ namespace DG.Tweening
         /// <summary>Tweens an Image's alpha color to the given value.
         /// Also stores the image as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOFade(this Image target, float endValue, float duration)
+        public static Tweener DOFade(this UnityEngine.UI.Image target, float endValue, float duration)
         {
             return DOTween.ToAlpha(() => target.color, x => target.color = x, endValue, duration)
                 .SetTarget(target);
@@ -71,7 +70,7 @@ namespace DG.Tweening
         /// <summary>Tweens an Image's fillAmount to the given value.
         /// Also stores the image as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach (0 to 1)</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOFillAmount(this Image target, float endValue, float duration)
+        public static Tweener DOFillAmount(this UnityEngine.UI.Image target, float endValue, float duration)
         {
             if (endValue > 1) endValue = 1;
             else if (endValue < 0) endValue = 0;
@@ -83,7 +82,7 @@ namespace DG.Tweening
         /// (NOTE 1: only uses the colors of the gradient, not the alphas - NOTE 2: creates a Sequence, not a Tweener).
         /// Also stores the image as the tween's target so it can be used for filtered operations</summary>
         /// <param name="gradient">The gradient to use</param><param name="duration">The duration of the tween</param>
-        public static Sequence DOGradientColor(this Image target, Gradient gradient, float duration)
+        public static Sequence DOGradientColor(this UnityEngine.UI.Image target, Gradient gradient, float duration)
         {
             Sequence s = DOTween.Sequence();
             GradientColorKey[] colors = gradient.colorKeys;
@@ -110,7 +109,7 @@ namespace DG.Tweening
         /// Also stores the LayoutElement as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
-        public static Tweener DOFlexibleSize(this LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
+        public static Tweener DOFlexibleSize(this UnityEngine.UI.LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
         {
             return DOTween.To(() => new Vector2(target.flexibleWidth, target.flexibleHeight), x => {
                     target.flexibleWidth = x.x;
@@ -123,7 +122,7 @@ namespace DG.Tweening
         /// Also stores the LayoutElement as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
-        public static Tweener DOMinSize(this LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
+        public static Tweener DOMinSize(this UnityEngine.UI.LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
         {
             return DOTween.To(() => new Vector2(target.minWidth, target.minHeight), x => {
                 target.minWidth = x.x;
@@ -136,7 +135,7 @@ namespace DG.Tweening
         /// Also stores the LayoutElement as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
-        public static Tweener DOPreferredSize(this LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
+        public static Tweener DOPreferredSize(this UnityEngine.UI.LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
         {
             return DOTween.To(() => new Vector2(target.preferredWidth, target.preferredHeight), x => {
                 target.preferredWidth = x.x;
@@ -152,7 +151,7 @@ namespace DG.Tweening
         /// <summary>Tweens a Outline's effectColor to the given value.
         /// Also stores the Outline as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOColor(this Outline target, Color endValue, float duration)
+        public static Tweener DOColor(this UnityEngine.UI.Outline target, Color endValue, float duration)
         {
             return DOTween.To(() => target.effectColor, x => target.effectColor = x, endValue, duration).SetTarget(target);
         }
@@ -160,7 +159,7 @@ namespace DG.Tweening
         /// <summary>Tweens a Outline's effectColor alpha to the given value.
         /// Also stores the Outline as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOFade(this Outline target, float endValue, float duration)
+        public static Tweener DOFade(this UnityEngine.UI.Outline target, float endValue, float duration)
         {
             return DOTween.ToAlpha(() => target.effectColor, x => target.effectColor = x, endValue, duration)
                 .SetTarget(target);
@@ -169,7 +168,7 @@ namespace DG.Tweening
         /// <summary>Tweens a Outline's effectDistance to the given value.
         /// Also stores the Outline as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOScale(this Outline target, Vector2 endValue, float duration)
+        public static Tweener DOScale(this UnityEngine.UI.Outline target, Vector2 endValue, float duration)
         {
             return DOTween.To(() => target.effectDistance, x => target.effectDistance = x, endValue, duration)
                 .SetTarget(target);
@@ -394,7 +393,7 @@ namespace DG.Tweening
         /// Also stores the ScrollRect as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
-        public static Tweener DONormalizedPos(this ScrollRect target, Vector2 endValue, float duration, bool snapping = false)
+        public static Tweener DONormalizedPos(this UnityEngine.UI.ScrollRect target, Vector2 endValue, float duration, bool snapping = false)
         {
             return DOTween.To(() => new Vector2(target.horizontalNormalizedPosition, target.verticalNormalizedPosition),
                 x => {
@@ -407,7 +406,7 @@ namespace DG.Tweening
         /// Also stores the ScrollRect as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
-        public static Tweener DOHorizontalNormalizedPos(this ScrollRect target, float endValue, float duration, bool snapping = false)
+        public static Tweener DOHorizontalNormalizedPos(this UnityEngine.UI.ScrollRect target, float endValue, float duration, bool snapping = false)
         {
             return DOTween.To(() => target.horizontalNormalizedPosition, x => target.horizontalNormalizedPosition = x, endValue, duration)
                 .SetOptions(snapping).SetTarget(target);
@@ -416,7 +415,7 @@ namespace DG.Tweening
         /// Also stores the ScrollRect as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
-        public static Tweener DOVerticalNormalizedPos(this ScrollRect target, float endValue, float duration, bool snapping = false)
+        public static Tweener DOVerticalNormalizedPos(this UnityEngine.UI.ScrollRect target, float endValue, float duration, bool snapping = false)
         {
             return DOTween.To(() => target.verticalNormalizedPosition, x => target.verticalNormalizedPosition = x, endValue, duration)
                 .SetOptions(snapping).SetTarget(target);
@@ -430,7 +429,7 @@ namespace DG.Tweening
         /// Also stores the Slider as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
-        public static Tweener DOValue(this Slider target, float endValue, float duration, bool snapping = false)
+        public static Tweener DOValue(this UnityEngine.UI.Slider target, float endValue, float duration, bool snapping = false)
         {
             return DOTween.To(() => target.value, x => target.value = x, endValue, duration)
                 .SetOptions(snapping).SetTarget(target);
@@ -443,7 +442,7 @@ namespace DG.Tweening
         /// <summary>Tweens a Text's color to the given value.
         /// Also stores the Text as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOColor(this Text target, Color endValue, float duration)
+        public static Tweener DOColor(this UnityEngine.UI.Text target, Color endValue, float duration)
         {
             return DOTween.To(() => target.color, x => target.color = x, endValue, duration).SetTarget(target);
         }
@@ -451,7 +450,7 @@ namespace DG.Tweening
         /// <summary>Tweens a Text's alpha color to the given value.
         /// Also stores the Text as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOFade(this Text target, float endValue, float duration)
+        public static Tweener DOFade(this UnityEngine.UI.Text target, float endValue, float duration)
         {
             return DOTween.ToAlpha(() => target.color, x => target.color = x, endValue, duration)
                 .SetTarget(target);
@@ -466,7 +465,7 @@ namespace DG.Tweening
         /// <param name="scrambleChars">A string containing the characters to use for scrambling.
         /// Use as many characters as possible (minimum 10) because DOTween uses a fast scramble mode which gives better results with more characters.
         /// Leave it to NULL (default) to use default ones</param>
-        public static Tweener DOText(this Text target, string endValue, float duration, bool richTextEnabled = true, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)
+        public static Tweener DOText(this UnityEngine.UI.Text target, string endValue, float duration, bool richTextEnabled = true, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)
         {
             return DOTween.To(() => target.text, x => target.text = x, endValue, duration)
                 .SetOptions(richTextEnabled, scrambleMode, scrambleChars)
@@ -484,7 +483,7 @@ namespace DG.Tweening
         /// instead than fight each other as multiple DOColor would do.
         /// Also stores the Graphic as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The value to tween to</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOBlendableColor(this Graphic target, Color endValue, float duration)
+        public static Tweener DOBlendableColor(this UnityEngine.UI.Graphic target, Color endValue, float duration)
         {
             endValue = endValue - target.color;
             Color to = new Color(0, 0, 0, 0);
@@ -505,7 +504,7 @@ namespace DG.Tweening
         /// instead than fight each other as multiple DOColor would do.
         /// Also stores the Image as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The value to tween to</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOBlendableColor(this Image target, Color endValue, float duration)
+        public static Tweener DOBlendableColor(this UnityEngine.UI.Image target, Color endValue, float duration)
         {
             endValue = endValue - target.color;
             Color to = new Color(0, 0, 0, 0);
@@ -526,7 +525,7 @@ namespace DG.Tweening
         /// instead than fight each other as multiple DOColor would do.
         /// Also stores the Text as the tween's target so it can be used for filtered operations</summary>
         /// <param name="endValue">The value to tween to</param><param name="duration">The duration of the tween</param>
-        public static Tweener DOBlendableColor(this Text target, Color endValue, float duration)
+        public static Tweener DOBlendableColor(this UnityEngine.UI.Text target, Color endValue, float duration)
         {
             endValue = endValue - target.color;
             Color to = new Color(0, 0, 0, 0);
