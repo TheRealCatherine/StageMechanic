@@ -55,6 +55,9 @@ public class Cathy1Block : AbstractBlock
 				CurrentModelNumber = 4;
 				break;
 		}
+		int blockGroup = BlockManager.BlockGroupNumber(this);
+		if (blockGroup != -1)
+			OnBlockGroupChanged(blockGroup);
 	}
 
 	internal override void OnBlockGroupChanged(int newGroup) {
