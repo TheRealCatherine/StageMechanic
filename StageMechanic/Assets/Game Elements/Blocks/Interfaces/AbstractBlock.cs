@@ -600,9 +600,43 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		if (BelowCount == 0 || NumberOfActualSupporters() == 0)
 		{
 			if (oldState != BlockMotionState.Falling)
-				MotionState = BlockMotionState.Hovering;
+			{
+				int group = BlockManager.BlockGroupNumber(this);
+				if (group != -1)
+				{
+					List<IBlock> blockGroup = BlockManager.BlockGroup(group);
+					int hovering = 1;
+					foreach (IBlock block in blockGroup)
+					{
+						if (block.MotionState == BlockMotionState.GroupHover || block.MotionState == BlockMotionState.Hovering || block.MotionState == BlockMotionState.Falling)
+							++hovering;
+					}
+					Debug.Log(hovering + " - " + blockGroup.Count);
+					if (hovering < blockGroup.Count)
+						MotionState = BlockMotionState.GroupHover;
+					else
+					{
+						MotionState = BlockMotionState.Hovering;
+						foreach (IBlock block in blockGroup)
+						{
+							if ((block as AbstractBlock) != this)
+							{
+								if (block.MotionState == BlockMotionState.GroupHover)
+								{
+									block.MotionState = BlockMotionState.Hovering;
+									(block as AbstractBlock).SetGravityEnabledByMotionState();
+								}
+							}
+						}
+					}
+				}
+				else
+					MotionState = BlockMotionState.Hovering;
+			}
 			else
+			{
 				MotionState = BlockMotionState.Falling;
+			}
 			if (MotionState != oldState)
 				OnMotionStateChanged(MotionState, oldState);
 			return;
@@ -695,7 +729,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	internal void SetGravityEnabledByMotionState()
 	{
 		SetMotionStateBySupport();
-		if (MotionState == BlockMotionState.Edged || MotionState == BlockMotionState.Grounded)
+
+		if (MotionState == BlockMotionState.Edged || MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.GroupHover)
 		{
 			GravityEnabled = false;
 		}
@@ -705,6 +740,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		}
 		else if (MotionState == BlockMotionState.Hovering)
 		{
+
 			if (!_startedHover)
 			{
 				_startedHover = true;

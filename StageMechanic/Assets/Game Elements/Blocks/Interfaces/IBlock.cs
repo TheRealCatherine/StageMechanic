@@ -17,6 +17,7 @@ public enum BlockMotionState
 	Moving,
 	Sliding,
 	Flying,
+	GroupHover,
 	Extended = 255
 }
 

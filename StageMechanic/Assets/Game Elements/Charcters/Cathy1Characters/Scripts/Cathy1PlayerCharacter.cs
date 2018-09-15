@@ -569,7 +569,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 						blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up + Vector3.up);
 						if (oneBlockUp == null && blockAbove == null)
 						{
-							if (potentialBlock.MotionState == BlockMotionState.Grounded || potentialBlock.MotionState == BlockMotionState.Edged)
+							if (potentialBlock.MotionState == BlockMotionState.Grounded || potentialBlock.MotionState == BlockMotionState.Edged || potentialBlock.MotionState == BlockMotionState.GroupHover)
 							{
 								Climb(direction + Vector3.up + Vector3.up);
 								return 0.35f;
@@ -584,7 +584,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 					IBlock blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up);
 					if (oneBlockUp == null && blockAbove == null)
 					{
-						if (blockInWay.MotionState == BlockMotionState.Grounded || blockInWay.MotionState == BlockMotionState.Edged)
+						if (blockInWay.MotionState == BlockMotionState.Grounded || blockInWay.MotionState == BlockMotionState.Edged || blockInWay.MotionState == BlockMotionState.GroupHover)
 							Climb(direction + Vector3.up);
 					}
 					else if(MaxClimbHeight >= 2 && blockAbove == null)
@@ -593,7 +593,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 						blockAbove = BlockManager.GetBlockAt(transform.position + Vector3.up + Vector3.up);
 						if (oneBlockUp == null && blockAbove == null)
 						{
-							if (blockInWay.MotionState == BlockMotionState.Grounded || blockInWay.MotionState == BlockMotionState.Edged)
+							if (blockInWay.MotionState == BlockMotionState.Grounded || blockInWay.MotionState == BlockMotionState.Edged || blockInWay.MotionState == BlockMotionState.GroupHover)
 								Climb(direction + Vector3.up + Vector3.up);
 						}
 					}
@@ -603,7 +603,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 					IBlock nextFloor = BlockManager.GetBlockAt(transform.position + direction + Vector3.down);
 					if (nextFloor != null)
 					{
-						if (nextFloor.MotionState == BlockMotionState.Grounded || nextFloor.MotionState == BlockMotionState.Edged)
+						if (nextFloor.MotionState == BlockMotionState.Grounded || nextFloor.MotionState == BlockMotionState.Edged || nextFloor.MotionState == BlockMotionState.GroupHover)
 							Walk(direction);
 						expectedTime = WalkTime;
 					}
@@ -612,7 +612,7 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 						IBlock stepDown = BlockManager.GetBlockAt(transform.position + direction + Vector3.down + Vector3.down);
 						if (stepDown != null)
 						{
-							if (stepDown.MotionState == BlockMotionState.Grounded || stepDown.MotionState == BlockMotionState.Edged)
+							if (stepDown.MotionState == BlockMotionState.Grounded || stepDown.MotionState == BlockMotionState.Edged || stepDown.MotionState == BlockMotionState.GroupHover)
 								Climb(direction + Vector3.down);
 						}
 						else
