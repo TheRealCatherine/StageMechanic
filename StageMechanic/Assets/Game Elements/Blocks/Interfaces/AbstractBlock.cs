@@ -599,39 +599,44 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		//If there is nothing below us we can dip out quick
 		if (BelowCount == 0 || NumberOfActualSupporters() == 0)
 		{
-			if (oldState != BlockMotionState.Falling)
+			int group = BlockManager.BlockGroupNumber(this);
+			if (group != -1)
 			{
-				int group = BlockManager.BlockGroupNumber(this);
-				if (group != -1)
+				List<IBlock> blockGroup = BlockManager.BlockGroup(group);
+				int hovering = 1;
+				foreach (IBlock block in blockGroup)
 				{
-					List<IBlock> blockGroup = BlockManager.BlockGroup(group);
-					int hovering = 1;
-					foreach (IBlock block in blockGroup)
-					{
-						if (block.MotionState == BlockMotionState.GroupHover || block.MotionState == BlockMotionState.Hovering || block.MotionState == BlockMotionState.Falling)
-							++hovering;
-					}
-					Debug.Log(hovering + " - " + blockGroup.Count);
-					if (hovering < blockGroup.Count)
-						MotionState = BlockMotionState.GroupHover;
-					else
+					if (block.MotionState == BlockMotionState.GroupHover || block.MotionState == BlockMotionState.Hovering || block.MotionState == BlockMotionState.Falling)
+						++hovering;
+				}
+				if (hovering < blockGroup.Count)
+					MotionState = BlockMotionState.GroupHover;
+				else
+				{
+					if (oldState != BlockMotionState.Falling)
 					{
 						MotionState = BlockMotionState.Hovering;
-						foreach (IBlock block in blockGroup)
+					}
+					else
+					{
+						MotionState = BlockMotionState.Falling;
+					}
+					foreach (IBlock block in blockGroup)
+					{
+						if ((block as AbstractBlock) != this)
 						{
-							if ((block as AbstractBlock) != this)
+							if (block.MotionState == BlockMotionState.GroupHover)
 							{
-								if (block.MotionState == BlockMotionState.GroupHover)
-								{
-									block.MotionState = BlockMotionState.Hovering;
-									(block as AbstractBlock).SetGravityEnabledByMotionState();
-								}
+								block.MotionState = BlockMotionState.Hovering;
+								(block as AbstractBlock).SetGravityEnabledByMotionState();
 							}
 						}
 					}
 				}
-				else
-					MotionState = BlockMotionState.Hovering;
+			}
+			else if (oldState != BlockMotionState.Falling)
+			{
+				MotionState = BlockMotionState.Hovering;
 			}
 			else
 			{
@@ -835,7 +840,22 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	}
 	#endregion
 
-	protected virtual void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState) { }
+	protected virtual void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState)
+	{
+		if ((oldState == BlockMotionState.Falling || oldState == BlockMotionState.Hovering) &&
+			newState == BlockMotionState.Grounded || newState == BlockMotionState.Edged)
+		{
+			int group = BlockManager.BlockGroupNumber(this);
+			if (group != -1)
+			{
+				foreach(IBlock block in BlockManager.BlockGroup(group))
+				{
+					if((block as AbstractBlock) != this)
+						(block as AbstractBlock).SetGravityEnabledByMotionState();
+				}
+			}
+		}
+	}
 
 	#region Block event handling
 	internal virtual void OnBlockGroupChanged(int newGroup) { }
