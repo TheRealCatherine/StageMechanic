@@ -4753,7 +4753,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Clips.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.size
@@ -5026,7 +5026,7 @@ PrefabInstance:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Clips.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: bcd6069159efaea43a4603f20cae3f69, type: 3}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Clips.Array.data[2]
       value: 
@@ -14658,7 +14658,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Load From Game Jolt
+  m_Text: Load from Cloud
 --- !u!222 &804200496
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20759,14 +20759,14 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1140130547}
   m_TextComponent: {fileID: 658957869}
   m_Placeholder: {fileID: 1739622171}
-  m_ContentType: 9
+  m_ContentType: 4
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 3
+  m_KeyboardType: 1
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterValidation: 3
+  m_CharacterLimit: 6
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -34017,7 +34017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1914096755
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36894,7 +36894,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Share To Game Jolt
+  m_Text: Share to Cloud
 --- !u!222 &2032241161
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -495,6 +495,7 @@ public class BlockManager : MonoBehaviour
 		Debug.Assert(block != null);
 		if (groupNumber < 0)
 		{
+			(block as AbstractBlock).OnBlockGroupChanged(-1);
 			if (blockToGroupMapping.ContainsKey(block))
 			{
 				blockGroups[blockToGroupMapping[block]].Remove(block);

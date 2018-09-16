@@ -69,6 +69,7 @@ public class Cathy1Block : AbstractBlock
 
 		switch(newGroup)
 		{
+			case -1:
 			case 0:
 				outline.OutlineMode = Outline.Mode.OutlineHidden;
 				break;

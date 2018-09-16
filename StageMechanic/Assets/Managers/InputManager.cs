@@ -391,7 +391,7 @@ public class InputManager : MonoBehaviour
 		else if(Input.GetKeyDown(KeyCode.Keypad0))
 		{
 			if(BlockManager.ActiveBlock != null)
-				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock,0);
+				BlockManager.AddBlockToGroup(BlockManager.ActiveBlock,-1);
 		}
 		else if (Input.GetKeyDown(KeyCode.Keypad1))
 		{
