@@ -351,7 +351,7 @@ public class BlockManager : MonoBehaviour
 		}
 	}
 
-	private List<KeyValuePair<string, string>> GetAllBlockTypes()
+	internal List<KeyValuePair<string, string>> GetAllBlockTypes()
 	{
 		if (BlockTypeCache != null)
 			return BlockTypeCache;

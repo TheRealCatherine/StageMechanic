@@ -940,17 +940,20 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			{
 				UserData.RegisterType<AbstractPlayerCharacter>();
 				UserData.RegisterType<AbstractBlock>();
-				UserData.RegisterType<BlockManager>();
+				UserData.RegisterProxyType<LuaProxy_BlockManager, BlockManager>(x=>new LuaProxy_BlockManager());
 				UserData.RegisterType<Vector3>();
+				UserData.RegisterType<Alert>();
 
 				Script script = new Script();
 				DynValue player = UserData.Create(ev.Player);
 				DynValue block = UserData.Create(this);
 				DynValue blockManager = UserData.Create(BlockManager.Instance);
+				DynValue alert = UserData.Create(new Alert());
 
 				script.Globals.Set("player", player);
 				script.Globals.Set("block", block);
 				script.Globals.Set("BlockManager", blockManager);
+				script.Globals.Set("Alert", alert);
 				DynValue result = script.DoString(ScriptOnPlayerEnter);
 				LogController.Log(result.ToPrintString());
 			}
