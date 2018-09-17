@@ -1,0 +1,43 @@
+{
+    "Name": "Stage Collection",
+    "Version": "1.0 Cathy1",
+    "Stages": [
+        {
+            "Name": "Stage",
+            "Platforms": [
+                {
+                    "Name": "Platform",
+                    "Position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "Blocks": [
+                        {
+                            "Name": "07d01a90-0de4-4ef1-8b4a-0ea7776d2185",
+                            "Palette": "Cathy1 Internal",
+                            "Type": "Basic",
+                            "Position": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 0
+                            },
+                            "Properties": [
+                                {
+                                    "Key": "Motion State",
+                                    "Value": "Grounded"
+                                },
+                                {
+                                    "Key": "OnCreated Script",
+                                    "Value": "return 42;"
+                                }
+                            ]
+                        }
+                    ],
+                    "Items": [ ],
+                    "Events": [ ]
+                }
+            ]
+        }
+    ]
+}

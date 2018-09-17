@@ -5,6 +5,7 @@
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
 using DG.Tweening;
+using MoonSharp.Interpreter;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	public ParticleSystem EdgeEffect;
 	public float EdgeEffectScale = 1f;
 	public float EdgeEffectDuration = 0.1f;
+
+	public string ScriptOnCreated;
 
 	#region Interface property implementations
 	/// <summary>
@@ -147,6 +150,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			ret.Add("Weight Factor",    new DefaultValue { TypeInfo = typeof(float),        Value = "1.0" });
 			ret.Add("Gravity Factor",   new DefaultValue { TypeInfo = typeof(float),        Value = "1.0" });
 			ret.Add("Block Group",      new DefaultValue { TypeInfo = typeof(int),          Value = "-1" });
+			ret.Add("OnCreated Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			return ret;
 		}
 	}
@@ -168,6 +172,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ret.Add("Gravity Factor", GravityFactor.ToString());
 			if (BlockManager.BlockGroupNumber(this) != -1)
 				ret.Add("Block Group", BlockManager.BlockGroupNumber(this).ToString());
+			if (!string.IsNullOrWhiteSpace(ScriptOnCreated))
+				ret.Add("OnCreated Script", ScriptOnCreated);
 			return ret;
 		}
 		set
@@ -183,6 +189,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
 			if (value.ContainsKey("Block Group"))
 				BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
+			if (value.ContainsKey("OnCreated Script"))
+				ScriptOnCreated = value["OnCreated Script"];
 		}
 	}
 
@@ -300,6 +308,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			GravityEnabled = false;
 		}
 		UpdateNeighborsCache();
+
+		RunScriptOnCreated();
+	}
+
+	protected virtual void RunScriptOnCreated()
+	{
+		if(!string.IsNullOrWhiteSpace(ScriptOnCreated))
+		{
+			LogController.Log(Script.RunString(ScriptOnCreated).ToPrintString());
+		}
 	}
 
 
