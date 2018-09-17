@@ -27,6 +27,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	public float EdgeEffectDuration = 0.1f;
 
 	public string ScriptOnCreated;
+	public string ScriptOnPlayerEnter;
 
 	#region Interface property implementations
 	/// <summary>
@@ -151,6 +152,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			ret.Add("Gravity Factor",   new DefaultValue { TypeInfo = typeof(float),        Value = "1.0" });
 			ret.Add("Block Group",      new DefaultValue { TypeInfo = typeof(int),          Value = "-1" });
 			ret.Add("OnCreated Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnPlayerEnter Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			return ret;
 		}
 	}
@@ -174,6 +176,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ret.Add("Block Group", BlockManager.BlockGroupNumber(this).ToString());
 			if (!string.IsNullOrWhiteSpace(ScriptOnCreated))
 				ret.Add("OnCreated Script", ScriptOnCreated);
+			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
+				ret.Add("OnPlayerEnter Script", ScriptOnPlayerEnter);
 			return ret;
 		}
 		set
@@ -191,6 +195,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
 			if (value.ContainsKey("OnCreated Script"))
 				ScriptOnCreated = value["OnCreated Script"];
+			if (value.ContainsKey("OnPlayerEnter Script"))
+				ScriptOnPlayerEnter = value["OnPlayerEnter Script"];
 		}
 	}
 
@@ -920,11 +926,24 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		}
 	}
 
-	protected virtual void OnPlayerEnter(PlayerMovementEvent ev) { }
+	protected virtual void OnPlayerEnter(PlayerMovementEvent ev) { RunScriptOnPlayerEnter(ev);  }
 	protected virtual void OnPlayerLeave(PlayerMovementEvent ev) { }
 	protected virtual void OnPlayerStay(PlayerMovementEvent ev) { }
 	protected virtual void OnPlayerUnknownMotion(PlayerMovementEvent ev) { }
 	#endregion
+
+	protected virtual void RunScriptOnPlayerEnter(PlayerMovementEvent ev)
+	{
+		if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
+		{
+			UserData.RegisterType<AbstractPlayerCharacter>();
+			Script script = new Script();
+			DynValue obj = UserData.Create(ev.Player);
+			script.Globals.Set("player", obj);
+			DynValue result = script.DoString(ScriptOnPlayerEnter);
+			LogController.Log(result.ToPrintString());
+		}
+	}
 
 	#region input handling
 	float period = 0.0f;

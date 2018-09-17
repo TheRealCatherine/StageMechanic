@@ -206,6 +206,7 @@ public class Cathy1Block : AbstractBlock
 	}
 
 	protected override void OnPlayerEnter(PlayerMovementEvent ev) {
+		base.OnPlayerEnter(ev);
 		if (ev.Location == PlayerMovementEvent.EventLocation.Bottom && MotionState == BlockMotionState.Falling)
 			CrushPlayer(ev.Player);
 	}
