@@ -10,7 +10,6 @@ public class BlockButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		Debug.Log(true);
 		_mouseOver = true;
 		string text = GetComponent<SinglePropertyWithDefault>().PropertyName;
 		if (!string.IsNullOrWhiteSpace(text))

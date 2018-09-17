@@ -58,6 +58,8 @@ Step 3: Download and install the latest Unity 2018:
 
 Step 4: Install git
 
+in VS Package Manager
+Install-Package MoonSharp
 
 ## Resources
 
