@@ -936,12 +936,40 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	{
 		if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
 		{
-			UserData.RegisterType<AbstractPlayerCharacter>();
-			Script script = new Script();
-			DynValue obj = UserData.Create(ev.Player);
-			script.Globals.Set("player", obj);
-			DynValue result = script.DoString(ScriptOnPlayerEnter);
-			LogController.Log(result.ToPrintString());
+			try
+			{
+				UserData.RegisterType<AbstractPlayerCharacter>();
+				UserData.RegisterType<AbstractBlock>();
+				UserData.RegisterType<BlockManager>();
+				UserData.RegisterType<Vector3>();
+
+				Script script = new Script();
+				DynValue player = UserData.Create(ev.Player);
+				DynValue block = UserData.Create(this);
+				DynValue blockManager = UserData.Create(BlockManager.Instance);
+
+				script.Globals.Set("player", player);
+				script.Globals.Set("block", block);
+				script.Globals.Set("BlockManager", blockManager);
+				DynValue result = script.DoString(ScriptOnPlayerEnter);
+				LogController.Log(result.ToPrintString());
+			}
+			catch (SyntaxErrorException ex)
+			{
+				Console.WriteLine("Syntax Error! {0}", ex.DecoratedMessage);
+			}
+			catch (InternalErrorException ex)
+			{
+				Console.WriteLine("An internal error occured! {0}", ex.DecoratedMessage);
+			}
+			catch (DynamicExpressionException ex)
+			{
+				Console.WriteLine("A dynamic expression error occured! {0}", ex.DecoratedMessage);
+			}
+			catch (ScriptRuntimeException ex)
+			{
+				Console.WriteLine("An error occured! {0}", ex.DecoratedMessage);
+			}
 		}
 	}
 

@@ -222,6 +222,11 @@ public class BlockManager : MonoBehaviour
 		return CreateBlockAt(Cursor.transform.position, type.Key, type.Value);
 	}
 
+	public static IBlock CreateBlockAt(float x, float y, float z, string palette, string type)
+	{
+		return CreateBlockAt(new Vector3(x, y, z), palette, type);
+	}
+
 	/// <summary>
 	/// Attempts to create a block of a given type from the given block palette at the specified position. Currently
 	/// only the "Cathy1 Internal" block palette is supported. If the palette is uknown or the block type
