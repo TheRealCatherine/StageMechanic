@@ -13,15 +13,29 @@ public class MultiLinePrefabButton : MonoBehaviour
 	{
 		Canvas mainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 		Editor = Instantiate(TextEditorPrefab, mainCanvas.transform);
-		Editor.GetComponentInChildren<InputField>().text = Display.text;
+		if (GameManager.IsLiteBuild)
+		{
+			Editor.GetComponentInChildren<InputField>().text = Display.text;
+			Editor.GetComponentInChildren<InputField>().gameObject.SetActive(true);
+			Editor.GetComponentInChildren<CodeEditor>().gameObject.SetActive(false);
+		}
+		else
+		{
+			Editor.GetComponentInChildren<CodeEditor>().mainInput.text = Display.text;
+			Editor.GetComponentInChildren<CodeEditor>().WriteEvent(Display.text);
+			Editor.GetComponentInChildren<CodeEditor>().gameObject.SetActive(true);
+			Editor.GetComponentInChildren<InputField>().gameObject.SetActive(false);
+		}
 	}
 
 	private void Update()
 	{
 		if (Editor != null)
 		{
-			Display.text = Editor.GetComponentInChildren<InputField>().text;
-
+			if(GameManager.IsLiteBuild)
+				Display.text = Editor.GetComponentInChildren<InputField>().text;
+			else
+				Display.text = Editor.GetComponentInChildren<CodeEditor>().mainText.text;
 			if (!Editor.activeInHierarchy)
 			{
 				Destroy(Editor);
