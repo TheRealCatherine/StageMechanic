@@ -1,4 +1,5 @@
 ﻿using MoonSharp.Interpreter;
+using MoonSharp.Interpreter.Platforms;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class LuaScriptingManager : MonoBehaviour
 
 	void Start()
     {
+		Script.GlobalOptions.Platform = new LimitedPlatformAccessor();
+
 		UserData.RegisterProxyType<LuaProxy_AbstractBlock, AbstractBlock>(r => new LuaProxy_AbstractBlock(r));
 		UserData.RegisterProxyType<LuaProxy_BlockManager, BlockManager>(_ => new LuaProxy_BlockManager());
 		UserData.RegisterType<AbstractPlayerCharacter>();
@@ -25,7 +28,7 @@ public class LuaScriptingManager : MonoBehaviour
 	{
 		get
 		{
-			Script script = new Script();
+			Script script = new Script(CoreModules.Preset_SoftSandbox);
 			DynValue blockManager = UserData.Create(BlockManager.Instance);
 			DynValue alert = UserData.Create(new Alert());
 			script.Globals.Set("BlockManager", blockManager);
