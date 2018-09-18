@@ -938,11 +938,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		{
 			try
 			{
+				UserData.RegisterProxyType<LuaProxy_AbstractBlock, AbstractBlock>(r => new LuaProxy_AbstractBlock(r));
+				UserData.RegisterProxyType<LuaProxy_BlockManager, BlockManager>(_ => new LuaProxy_BlockManager());
 				UserData.RegisterType<AbstractPlayerCharacter>();
-				UserData.RegisterType<AbstractBlock>();
-				UserData.RegisterProxyType<LuaProxy_BlockManager, BlockManager>(x=>new LuaProxy_BlockManager());
-				UserData.RegisterType<Vector3>();
 				UserData.RegisterType<Alert>();
+				LuaCustomConverters.RegisterAll();
 
 				Script script = new Script();
 				DynValue player = UserData.Create(ev.Player);
@@ -959,19 +959,19 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			}
 			catch (SyntaxErrorException ex)
 			{
-				Console.WriteLine("Syntax Error! {0}", ex.DecoratedMessage);
+				Debug.Log("Syntax Error! " + ex.DecoratedMessage);
 			}
 			catch (InternalErrorException ex)
 			{
-				Console.WriteLine("An internal error occured! {0}", ex.DecoratedMessage);
+				Debug.Log("An internal error occured! " + ex.DecoratedMessage);
 			}
 			catch (DynamicExpressionException ex)
 			{
-				Console.WriteLine("A dynamic expression error occured! {0}", ex.DecoratedMessage);
+				Debug.Log("A dynamic expression error occured! " + ex.DecoratedMessage);
 			}
 			catch (ScriptRuntimeException ex)
 			{
-				Console.WriteLine("An error occured! {0}", ex.DecoratedMessage);
+				Debug.Log("An error occured! " + ex.DecoratedMessage);
 			}
 		}
 	}

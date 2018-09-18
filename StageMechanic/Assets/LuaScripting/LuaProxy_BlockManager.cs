@@ -1,6 +1,7 @@
 ﻿using MoonSharp.Interpreter;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LuaProxy_BlockManager
@@ -21,12 +22,12 @@ public class LuaProxy_BlockManager
 		}
 	}
 
-	public IBlock At(float x, float y, float z)
+	public AbstractBlock At(float x, float y, float z)
 	{
 		return BlockManager.GetBlockNear(new Vector3(x, y, z), 0.1f, 0f);
 	}
 
-	public IBlock At(Vector3 position)
+	public AbstractBlock At(Vector3 position)
 	{
 		return BlockManager.GetBlockNear(position, 0.1f, 0f);
 	}
@@ -36,32 +37,32 @@ public class LuaProxy_BlockManager
 		BlockManager.Clear();
 	}
 
-	public IBlock Create(float x, float y, float z, string type = "Basic", string palette = "Cat5 Internal")
+	public AbstractBlock Create(float x, float y, float z, string type = "Basic", string palette = "Cat5 Internal")
 	{
-		return BlockManager.CreateBlockAt(x, y, z, palette, type);
+		return BlockManager.CreateBlockAt(x, y, z, palette, type) as AbstractBlock;
 	}
 
-	public IBlock Create(Vector3 position, string type = "Basic", string palette = "Cat5 Internal")
+	public AbstractBlock Create(Vector3 position, string type = "Basic", string palette = "Cat5 Internal")
 	{
-		return BlockManager.CreateBlockAt(position, palette, type);
+		return BlockManager.CreateBlockAt(position, palette, type) as AbstractBlock;
 	}
 
-	public void Destroy(IBlock block)
+	public void Destroy(AbstractBlock block)
 	{
 		BlockManager.DestroyBlock(block);
 	}
 
 	public bool Destroy(string blockName)
 	{
-		if (GameObject.Find(blockName).GetComponent<IBlock>() is IBlock block) {
+		if (GameObject.Find(blockName).GetComponent<AbstractBlock>() is AbstractBlock block) {
 			Destroy(block);
 			return true;
 		}
 		return false;	
 	}
 
-	public List<IBlock> GetAll(string type = null)
+	public List<AbstractBlock> GetAll(string type = null)
 	{
-		return BlockManager.GetBlocksOfType(type);
+		return BlockManager.GetBlocksOfType(type).Cast<AbstractBlock>().ToList();
 	}
 }
