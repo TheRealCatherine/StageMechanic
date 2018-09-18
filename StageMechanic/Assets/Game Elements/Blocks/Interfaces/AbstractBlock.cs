@@ -937,23 +937,12 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
 		{
 			try
-			{
-				UserData.RegisterProxyType<LuaProxy_AbstractBlock, AbstractBlock>(r => new LuaProxy_AbstractBlock(r));
-				UserData.RegisterProxyType<LuaProxy_BlockManager, BlockManager>(_ => new LuaProxy_BlockManager());
-				UserData.RegisterType<AbstractPlayerCharacter>();
-				UserData.RegisterType<Alert>();
-				LuaCustomConverters.RegisterAll();
-
-				Script script = new Script();
+			{ 
+				Script script = LuaScriptingManager.BaseScript;
 				DynValue player = UserData.Create(ev.Player);
 				DynValue block = UserData.Create(this);
-				DynValue blockManager = UserData.Create(BlockManager.Instance);
-				DynValue alert = UserData.Create(new Alert());
-
 				script.Globals.Set("player", player);
 				script.Globals.Set("block", block);
-				script.Globals.Set("BlockManager", blockManager);
-				script.Globals.Set("Alert", alert);
 				DynValue result = script.DoString(ScriptOnPlayerEnter);
 				LogController.Log(result.ToPrintString());
 			}
