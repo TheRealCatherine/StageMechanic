@@ -29,6 +29,7 @@ public class CodeEditor : MonoBehaviour {
 	public Color classColor;
 	public Color typeColor;
 	public Color functionColor;
+	public Color blacklistColor;
 	public Color commentColor;
 	public Color stringColor;
 	private int lineCount = 0;
@@ -114,6 +115,19 @@ public class CodeEditor : MonoBehaviour {
 		color = ColorUtility.ToHtmlStringRGB(functionColor);
 
 		foreach (Match m in functionMatches)
+		{
+			input = input.Insert(m.Index + delta, "<#" + color + ">");
+			delta += 9;
+			input = input.Insert(m.Index + m.Length + delta, "</color>");
+			delta += 8;
+		}
+
+		//string functions = @"\b(Color|Color32|Vector2|Vector3|GameObject|MonoBehaviour)\b";
+		MatchCollection blackListMatches = Regex.Matches(input, LuaScriptingManager.Blacklist, RegexOptions.None);
+		delta = 0;
+		color = ColorUtility.ToHtmlStringRGB(blacklistColor);
+
+		foreach (Match m in blackListMatches)
 		{
 			input = input.Insert(m.Index + delta, "<#" + color + ">");
 			delta += 9;
