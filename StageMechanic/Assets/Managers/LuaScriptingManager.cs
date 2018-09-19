@@ -39,6 +39,7 @@ public class LuaScriptingManager : MonoBehaviour
 
 		UserData.RegisterProxyType<LuaProxy_AbstractBlock, AbstractBlock>(r => new LuaProxy_AbstractBlock(r));
 		UserData.RegisterProxyType<LuaProxy_BlockManager, BlockManager>(_ => new LuaProxy_BlockManager());
+		UserData.RegisterProxyType<LuaProxy_ItemManager, ItemManager>(_ => new LuaProxy_ItemManager());
 		UserData.RegisterType<AbstractPlayerCharacter>();
 		UserData.RegisterType<Alert>();
 		LuaCustomConverters.RegisterAll();
@@ -50,8 +51,10 @@ public class LuaScriptingManager : MonoBehaviour
 		{
 			Script script = new Script(CoreModules.Preset_SoftSandbox);
 			DynValue blockManager = UserData.Create(BlockManager.Instance);
+			DynValue itemManager = UserData.Create(ItemManager.Instance);
 			DynValue alert = UserData.Create(new Alert());
 			script.Globals.Set("blockmanager", blockManager);
+			script.Globals.Set("itemmanager", itemManager);
 			script.Globals.Set("alert", alert);
 			return script;
 		}
