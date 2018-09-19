@@ -178,10 +178,29 @@ public class LuaProxy_AbstractBlock
 
 	public void Run(string code)
 	{
-		Script script = LuaScriptingManager.BaseScript;
-		DynValue block = UserData.Create(this);
-		script.Globals.Set("block", block);
-		DynValue function = script.DoString(code);
-		target.StartCoroutine(script.CreateCoroutine(function).Coroutine.AsUnityCoroutine());
+		try
+		{
+			Script script = LuaScriptingManager.BaseScript;
+			DynValue block = UserData.Create(this);
+			script.Globals.Set("block", block);
+			DynValue function = script.DoString(code);
+			target.StartCoroutine(script.CreateCoroutine(function).Coroutine.AsUnityCoroutine());
+		}
+		catch (SyntaxErrorException ex)
+		{
+			Debug.Log("Syntax Error! " + ex.DecoratedMessage);
+		}
+		catch (InternalErrorException ex)
+		{
+			Debug.Log("An internal error occured! " + ex.DecoratedMessage);
+		}
+		catch (DynamicExpressionException ex)
+		{
+			Debug.Log("A dynamic expression error occured! " + ex.DecoratedMessage);
+		}
+		catch (ScriptRuntimeException ex)
+		{
+			Debug.Log("An error occured! " + ex.DecoratedMessage);
+		}
 	}
 }

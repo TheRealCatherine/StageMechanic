@@ -943,6 +943,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				DynValue block = UserData.Create(this);
 				script.Globals.Set("player", player);
 				script.Globals.Set("block", block);
+				Debug.Log(ScriptOnPlayerEnter);
 				DynValue result = script.DoString(ScriptOnPlayerEnter);
 				LogController.Log(result.ToPrintString());
 			}

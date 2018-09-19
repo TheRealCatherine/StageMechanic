@@ -35,7 +35,7 @@ public class MultiLinePrefabButton : MonoBehaviour
 			if(GameManager.IsLiteBuild)
 				Display.text = Editor.GetComponentInChildren<InputField>().text;
 			else
-				Display.text = Editor.GetComponentInChildren<CodeEditor>().mainText.text;
+				Display.text = Editor.GetComponentInChildren<CodeEditor>().mainInput.text;
 			if (!Editor.activeInHierarchy)
 			{
 				Destroy(Editor);
