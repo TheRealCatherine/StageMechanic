@@ -38,9 +38,11 @@ public class LuaScriptingManager : MonoBehaviour
 		Script.GlobalOptions.Platform = new LimitedPlatformAccessor();
 
 		UserData.RegisterProxyType<LuaProxy_AbstractBlock, AbstractBlock>(r => new LuaProxy_AbstractBlock(r));
+		UserData.RegisterProxyType<LuaProxy_AbstractItem, AbstractItem>(r => new LuaProxy_AbstractItem(r));
 		UserData.RegisterProxyType<LuaProxy_BlockManager, BlockManager>(_ => new LuaProxy_BlockManager());
 		UserData.RegisterProxyType<LuaProxy_ItemManager, ItemManager>(_ => new LuaProxy_ItemManager());
 		UserData.RegisterType<AbstractPlayerCharacter>();
+		UserData.RegisterType<Sprite>();
 		UserData.RegisterType<Alert>();
 		LuaCustomConverters.RegisterAll();
 	}
