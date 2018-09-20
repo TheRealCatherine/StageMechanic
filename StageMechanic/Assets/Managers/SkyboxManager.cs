@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class SkyboxManager : MonoBehaviour {
 
-    private static SkyboxManager Instance;
+    internal static SkyboxManager Instance;
     public Camera MainCamera;
     public Material[] Skyboxes;
 
