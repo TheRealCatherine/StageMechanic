@@ -69,7 +69,7 @@ public class LuaProxy_AbstractBlock
 		}
 	}
 
-	public string motionState
+	public string motionstate
 	{
 		get
 		{
@@ -81,7 +81,7 @@ public class LuaProxy_AbstractBlock
 		}
 	}
 
-	public bool isGrounded
+	public bool grounded
 	{
 		get
 		{
@@ -101,82 +101,82 @@ public class LuaProxy_AbstractBlock
 		}
 	}
 
-	public bool CanBePulled(Vector3 direction, int distance = 1)
+	public bool canbepulled(Vector3 direction, int distance = 1)
 	{
 		return target.CanBePulled(direction, distance);
 	}
 
-	public bool CanBePulled(int x, int y, int z, int distance = 1)
+	public bool canbepulled(int x, int y, int z, int distance = 1)
 	{
 		return target.CanBePulled(new Vector3(x,y,z), distance);
 	}
 
-	public float PullWeight(Vector3 direction, int distance = 1)
+	public float pullweight(Vector3 direction, int distance = 1)
 	{
 		return target.PullWeight(direction, distance);
 	}
 
-	public float PullWeight(int x, int y, int z, int distance = 1)
+	public float pullweight(int x, int y, int z, int distance = 1)
 	{
 		return target.PullWeight(new Vector3(x, y, z), distance);
 	}
 
-	public bool Pull(Vector3 direction, int distance = 1)
+	public bool pull(Vector3 direction, int distance = 1)
 	{
 		return target.Pull(direction, distance);
 	}
 
-	public bool Pull(int x, int y, int z, int distance = 1)
+	public bool pull(int x, int y, int z, int distance = 1)
 	{
 		return target.Pull(new Vector3(x, y, z), distance);
 	}
 
-	public bool CanBePushed(Vector3 direction, int distance = 1)
+	public bool canbepushed(Vector3 direction, int distance = 1)
 	{
 		return target.CanBePushed(direction, distance);
 	}
 
-	public bool CanBePushed(int x, int y, int z, int distance = 1)
+	public bool canbepushed(int x, int y, int z, int distance = 1)
 	{
 		return target.CanBePushed(new Vector3(x, y, z), distance);
 	}
 
-	public float PushWeight(Vector3 direction, int distance = 1)
+	public float pushweight(Vector3 direction, int distance = 1)
 	{
 		return target.PushWeight(direction, distance);
 	}
 
-	public float PushWeight(int x, int y, int z, int distance = 1)
+	public float pushweight(int x, int y, int z, int distance = 1)
 	{
 		return target.PushWeight(new Vector3(x, y, z), distance);
 	}
 
-	public bool Push(Vector3 direction, int distance = 1)
+	public bool push(Vector3 direction, int distance = 1)
 	{
 		return target.Push(direction, distance);
 	}
 
-	public bool Push(int x, int y, int z, int distance = 1)
+	public bool push(int x, int y, int z, int distance = 1)
 	{
 		return target.Push(new Vector3(x, y, z), distance);
 	}
 
-	public void Set(string property, string value)
+	public void set(string property, string value)
 	{
 		target.Properties[property] = value;
 	}
 
-	public void Unset(string property)
+	public void unset(string property)
 	{
 		target.Properties[property] = target.DefaultProperties[property].Value;
 	}
 
-	public string Get(string property)
+	public string get(string property)
 	{
 		return target.Properties[property];
 	}
 
-	public void Run(string code)
+	public void run(string code)
 	{
 		try
 		{
