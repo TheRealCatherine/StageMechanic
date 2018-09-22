@@ -10,6 +10,9 @@ public class PropertiesDialog : MonoBehaviour {
 
 	public IBlock CurrentBlock;
 	public IItem CurrentItem;
+
+	public ISceneObject Target;
+
 	public Button BlockButton;
 	public Dpad BlockTypeCycleButtons;
 	public GameObject PropertyList;
@@ -36,22 +39,12 @@ public class PropertiesDialog : MonoBehaviour {
 		ApplyToTypeButton.onClick.AddListener(ApplyToType);
 	}
 
-	public void Show(IBlock block = null)
+	public void Show(ISceneObject target = null)
 	{
 		Clear();
-		CurrentBlock = block;
-		CurrentItem = null;
-		BlockManager.Cursor.transform.position = block.Position;
-		gameObject.SetActive(true);
-		Refresh();
-	}
-
-	public void Show(IItem item = null)
-	{
-		Clear();
-		CurrentBlock = null;
-		CurrentItem = item;
-		BlockManager.Cursor.transform.position = item.Position;
+		Target = target;
+		CurrentBlock = Target as IBlock;
+		CurrentItem = Target as IItem;
 		gameObject.SetActive(true);
 		Refresh();
 	}
@@ -60,6 +53,7 @@ public class PropertiesDialog : MonoBehaviour {
 	{
 		CurrentBlock = null;
 		CurrentItem = null;
+		Target = null;
 		foreach (GameObject obj in addedFields)
 		{
 			Destroy(obj);
@@ -75,25 +69,23 @@ public class PropertiesDialog : MonoBehaviour {
 
 	public void Apply()
 	{
-		if (CurrentBlock != null)
-			ApplyBlock();
-		else if (CurrentItem != null)
-			ApplyItem();
+		if (Target != null)
+			ApplyTarget();
 		else
 			Hide();
 	}
 
-	private void ApplyBlock()
+	private void ApplyTarget()
 	{
-		if (CurrentBlock == null)
+		if (Target is null)
 			return;
 		if (!string.IsNullOrWhiteSpace(NameField.text))
-			CurrentBlock.Name = NameField.text;
+			Target.Name = NameField.text;
 		Vector3 position = Vector3.zero;
 		position.x = float.Parse(PosXField.text);
 		position.y = float.Parse(PosYField.text);
 		position.z = float.Parse(PosZField.text);
-		CurrentBlock.Position = position;
+		Target.Position = position;
 		BlockManager.Cursor.transform.position = position;
 
 		Dictionary<string, string> properties = new Dictionary<string, string>();
@@ -108,35 +100,7 @@ public class PropertiesDialog : MonoBehaviour {
 			}
 		}
 		if (properties.Count > 0)
-			CurrentBlock.Properties = properties;
-	}
-
-	private void ApplyItem()
-	{
-		if (CurrentItem == null)
-			return;
-		if (!string.IsNullOrWhiteSpace(NameField.text))
-			CurrentItem.Name = NameField.text;
-		Vector3 position = Vector3.zero;
-		position.x = float.Parse(PosXField.text);
-		position.y = float.Parse(PosYField.text);
-		position.z = float.Parse(PosZField.text);
-		CurrentItem.Position = position;
-		BlockManager.Cursor.transform.position = position;
-
-		Dictionary<string, string> properties = new Dictionary<string, string>();
-		foreach (GameObject obj in addedFields)
-		{
-			IPropertyField prop = obj.GetComponent<IPropertyField>();
-			if (prop != null)
-			{
-				string value = prop.Value;
-				if (!string.IsNullOrWhiteSpace(value))
-					properties.Add(prop.PropertyName, value);
-			}
-		}
-		if (properties.Count > 0)
-			CurrentItem.Properties = properties;
+			Target.Properties = properties;
 	}
 
 	public void ApplyToType()

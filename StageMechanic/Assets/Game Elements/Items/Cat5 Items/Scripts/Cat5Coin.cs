@@ -9,14 +9,15 @@ using UnityEngine;
 
 public class Cat5Coin : Cat5AbstractItem {
 
-	public const int DEFAULT_SCORE = 1000;
+	[SerializeField]
+	private int Value;
 	public const string SCORE = "Score";
 
 	public override int Score
 	{
-		get;
-		set;
-	} = DEFAULT_SCORE;
+		get { return Value;  }
+		set { Value = value; }
+	}
 
 	public override int Uses
 	{
@@ -43,7 +44,7 @@ public class Cat5Coin : Cat5AbstractItem {
 		get
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-			ret[SCORE] = new DefaultValue { TypeInfo = typeof(int), Value = DEFAULT_SCORE.ToString() };
+			ret[SCORE] = new DefaultValue { TypeInfo = typeof(int), Value = Value.ToString() };
 			return ret;
 		}
 	}
@@ -53,7 +54,7 @@ public class Cat5Coin : Cat5AbstractItem {
 		get
 		{
 			Dictionary<string, string> ret = base.Properties;
-			if (Score != DEFAULT_SCORE)
+			if (Score != Value)
 				ret[SCORE] = Score.ToString();
 			else
 				ret.Remove(SCORE);

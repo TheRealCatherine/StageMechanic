@@ -137,8 +137,19 @@ public static class Utility
 	private static System.Random random = new System.Random();
 	public static string RandomString(int length)
 	{
-		const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		const string chars = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
 		return new string(Enumerable.Repeat(chars, length)
 		  .Select(s => s[random.Next(s.Length)]).ToArray());
 	}
+
+#if ENABLE_UNSAFE
+	static unsafe TDest ReinterpretCast<TSource, TDest>(TSource source)
+	{
+		var sourceRef = __makeref(source);
+		var dest = default(TDest);
+		var destRef = __makeref(dest);
+		*(IntPtr*)&destRef = *(IntPtr*)&sourceRef;
+		return __refvalue(destRef, TDest);
+	}
+#endif
 }

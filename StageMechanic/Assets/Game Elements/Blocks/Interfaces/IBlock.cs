@@ -21,7 +21,7 @@ public enum BlockMotionState
 	Extended = 255
 }
 
-public interface IBlock : INameable, IPositionable, IRotatable, IPropertyable, IHierarchical, IPullable, IPushable
+public interface IBlock : IRotatable, IHierarchical, IPullable, IPushable, ISceneObject
 {
 
 	/// <summary>
