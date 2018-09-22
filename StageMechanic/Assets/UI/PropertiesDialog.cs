@@ -292,12 +292,26 @@ public class PropertiesDialog : MonoBehaviour {
 
 			foreach (KeyValuePair<string, DefaultValue> property in CurrentItem.DefaultProperties.Reverse())
 			{
+				if (string.IsNullOrWhiteSpace(property.Key))
+					continue;
 				Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text;
 				addedFields.Add(label.gameObject);
 				label.text = property.Key;
 
-				//TODO support other types of properties
-				IPropertyField stringField = Instantiate(ListStringFieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
+
+				GameObject fieldPrefab = null;
+				foreach (IPropertyField type in FieldTypes)
+				{
+					if (property.Value.TypeInfo == type.FieldType)
+					{
+						fieldPrefab = type.GameObject;
+						break;
+					}
+				}
+				if (fieldPrefab == null)
+					fieldPrefab = ListStringFieldPrefab.gameObject;
+
+				IPropertyField stringField = Instantiate(fieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
 				addedFields.Add(stringField.GameObject);
 				stringField.Placeholder = property.Value.Value;
 				stringField.PropertyName = property.Key;

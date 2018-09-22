@@ -148,17 +148,17 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		get
 		{
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
+			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnGroupChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnPlayerEnter Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnPlayerLeave Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			ret.Add("Motion State", new DefaultValue { TypeInfo = typeof(string), Value = "Unknown" });
 			ret.Add("Rotation", new DefaultValue { TypeInfo = typeof(Quaternion), Value = Quaternion.identity.ToString() });
 			ret.Add("Fixed Rotation", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
 			ret.Add("Weight Factor", new DefaultValue { TypeInfo = typeof(float), Value = "1.0" });
 			ret.Add("Gravity Factor", new DefaultValue { TypeInfo = typeof(float), Value = "1.0" });
 			ret.Add("Block Group", new DefaultValue { TypeInfo = typeof(int), Value = "-1" });
-			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnGroupChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnPlayerEnter Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnPlayerLeave Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			return ret;
 		}
 	}
@@ -168,6 +168,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		get
 		{
 			Dictionary<string, string> ret = new Dictionary<string, string>();
+			if (!string.IsNullOrWhiteSpace(ScriptOnCreate))
+				ret.Add("OnCreate Script", ScriptOnCreate);
+			if (!string.IsNullOrWhiteSpace(ScriptOnDestroy))
+				ret.Add("OnDestroy Script", ScriptOnDestroy);
+			if (!string.IsNullOrWhiteSpace(ScriptOnGroupChange))
+				ret.Add("OnGroupChange Script", ScriptOnGroupChange);
+			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
+				ret.Add("OnPlayerEnter Script", ScriptOnPlayerEnter);
+			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerLeave))
+				ret.Add("OnPlayerLeave Script", ScriptOnPlayerLeave);
 			if (MotionState != BlockMotionState.Unknown)
 				ret.Add("Motion State", MotionStateName);
 			if (Rotation != Quaternion.identity)
@@ -180,31 +190,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ret.Add("Gravity Factor", GravityFactor.ToString());
 			if (BlockManager.BlockGroupNumber(this) != -1)
 				ret.Add("Block Group", BlockManager.BlockGroupNumber(this).ToString());
-			if (!string.IsNullOrWhiteSpace(ScriptOnCreate))
-				ret.Add("OnCreate Script", ScriptOnCreate);
-			if (!string.IsNullOrWhiteSpace(ScriptOnDestroy))
-				ret.Add("OnDestroy Script", ScriptOnDestroy);
-			if (!string.IsNullOrWhiteSpace(ScriptOnGroupChange))
-				ret.Add("OnGroupChange Script", ScriptOnGroupChange);
-			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
-				ret.Add("OnPlayerEnter Script", ScriptOnPlayerEnter);
-			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerLeave))
-				ret.Add("OnPlayerLeave Script", ScriptOnPlayerLeave);
 			return ret;
 		}
 		set
 		{
 			//    Rotation = Utility.StringToQuaternion(value["Rotation"]);*/
-			if (value.ContainsKey("Motion State"))
-				MotionStateName = value["Motion State"];
-			if (value.ContainsKey("Fixed Rotation"))
-				IsFixedRotation = Convert.ToBoolean(value["Fixed Rotation"]);
-			if (value.ContainsKey("Weight Factor"))
-				WeightFactor = (float)Convert.ToDouble(value["Weight Factor"]);
-			if (value.ContainsKey("Gravity Factor"))
-				GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
-			if (value.ContainsKey("Block Group"))
-				BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
 			if (value.ContainsKey("OnCreate Script"))
 				ScriptOnCreate = value["OnCreate Script"];
 			if (value.ContainsKey("OnDestroy Script"))
@@ -215,6 +205,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ScriptOnPlayerEnter = value["OnPlayerEnter Script"];
 			if (value.ContainsKey("OnPlayerLeave Script"))
 				ScriptOnPlayerLeave = value["OnPlayerLeave Script"];
+			if (value.ContainsKey("Motion State"))
+				MotionStateName = value["Motion State"];
+			if (value.ContainsKey("Fixed Rotation"))
+				IsFixedRotation = Convert.ToBoolean(value["Fixed Rotation"]);
+			if (value.ContainsKey("Weight Factor"))
+				WeightFactor = (float)Convert.ToDouble(value["Weight Factor"]);
+			if (value.ContainsKey("Gravity Factor"))
+				GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
+			if (value.ContainsKey("Block Group"))
+				BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
 		}
 	}
 

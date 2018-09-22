@@ -49,6 +49,7 @@ public class Cat5RemoveEnemies : Cat5AbstractItem {
 
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
+		base.OnPlayerActivate(player);
 		//List<AbstractBlock> blocks = BlockManager.GetBlocksNear(player.Position, Radius);
 		List<Vector3> locations = new List<Vector3>();
 		foreach(AbstractBlock block in BlockManager.BlockCache)
@@ -67,6 +68,7 @@ public class Cat5RemoveEnemies : Cat5AbstractItem {
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
 	{
+		base.OnGameModeChanged(newMode, oldMode);
 		if (newMode == GameManager.GameMode.StageEdit)
 			ShowModel(1);
 		else if (newMode == GameManager.GameMode.Play)

@@ -115,6 +115,7 @@ public abstract class Cat5AbstractItem : AbstractItem
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
 	{
+		base.OnGameModeChanged(newMode, oldMode);
 		if (newMode == GameManager.GameMode.StageEdit)
 			ShowModel(1);
 		else if (newMode == GameManager.GameMode.Play)

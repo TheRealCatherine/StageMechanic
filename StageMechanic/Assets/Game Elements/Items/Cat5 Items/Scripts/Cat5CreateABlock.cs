@@ -36,7 +36,7 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
 			ret.Add("Block Palette", new DefaultValue { TypeInfo = typeof(string), Value = "Cat5 Internal" });
-			ret.Add("Block Type", new DefaultValue { TypeInfo = typeof(bool), Value = "Basic" });
+			ret.Add("Block Type", new DefaultValue { TypeInfo = typeof(string), Value = "Basic" });
 			return ret;
 		}
 	}
@@ -64,6 +64,7 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 
 	public override void OnPlayerActivate(IPlayerCharacter player)
 	{
+		base.OnPlayerActivate(player);
 		BlockManager.CreateBlockAt(player.Position + player.FacingDirection, BlockPalette, BlockType);
 		if (Animation != null)
 			VisualEffectsManager.PlayEffect(BlockManager.GetBlockNear(player.Position + player.FacingDirection), Animation, 1, 1f);
@@ -71,6 +72,7 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 
 	public override void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
 	{
+		base.OnGameModeChanged(newMode, oldMode);
 		if (newMode == GameManager.GameMode.StageEdit)
 			ShowModel(1);
 		else if (newMode == GameManager.GameMode.Play)

@@ -4,6 +4,7 @@
  * See LICENSE file in the project root for full license information.
  * See CONTRIBUTORS file in the project root for full list of contributors.
  */
+using MoonSharp.Interpreter;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,15 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 {
 	public string Palette;
 	public GameManager.GameMode CurrentMode = GameManager.GameMode.Initialize;
+
+	public string ScriptOnCreate;
+	public string ScriptOnDestroy;
+	public string ScriptOnBlockDestroy;
+	public string ScriptOnPlayerActivate;
+	public string ScriptOnPlayerContact;
+	public string ScriptOnEnemyContact;
+	public string ScriptOnGameModeChange;
+
 
 
 	#region Interface property implementations
@@ -109,10 +119,10 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		{
 			if (value != null && GameObject?.transform.parent != null && value.Name == GameObject?.transform.parent.name)
 				return;
-			if(value == null)
-				GameObject.transform.SetParent(BlockManager.ActiveFloor?.transform, true); 
+			if (value == null)
+				GameObject.transform.SetParent(BlockManager.ActiveFloor?.transform, true);
 			else
-				GameObject.transform.SetParent(value?.GameObject?.transform,true);
+				GameObject.transform.SetParent(value?.GameObject?.transform, true);
 		}
 	}
 
@@ -130,7 +140,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			if (value == null)
 			{
 				//Player drops item
-				if (OwningPlayer != null) { 
+				if (OwningPlayer != null)
+				{
 					GameObject?.transform.SetParent(BlockManager.ActiveFloor?.transform, true);
 					GameObject?.SetActive(true);
 					for (int i = 0; i < PlayerManager.PlayerCount; ++i)
@@ -204,7 +215,15 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	{
 		get
 		{
+
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
+			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnBlockDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnPlayerActivate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnPlayerContact Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnEnemyContact Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnGameModeChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			ret.Add("Owning Block", new DefaultValue { TypeInfo = typeof(string), Value = "" });
 			ret.Add("Owning Player", new DefaultValue { TypeInfo = typeof(string), Value = "" });
 			ret.Add("Collectable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
@@ -220,6 +239,20 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		get
 		{
 			Dictionary<string, string> ret = new Dictionary<string, string>();
+			if (!string.IsNullOrWhiteSpace(ScriptOnCreate))
+				ret.Add("OnCreate Script", ScriptOnCreate);
+			if (!string.IsNullOrWhiteSpace(ScriptOnDestroy))
+				ret.Add("OnDestroy Script", ScriptOnDestroy);
+			if (!string.IsNullOrWhiteSpace(ScriptOnBlockDestroy))
+				ret.Add("OnBlockDestroy Script", ScriptOnBlockDestroy);
+			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerActivate))
+				ret.Add("OnPlayerActivate Script", ScriptOnPlayerActivate);
+			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerContact))
+				ret.Add("OnPlayerContact Script", ScriptOnPlayerContact);
+			if (!string.IsNullOrWhiteSpace(ScriptOnEnemyContact))
+				ret.Add("OnEnemyContact Script", ScriptOnEnemyContact);
+			if (!string.IsNullOrWhiteSpace(ScriptOnGameModeChange))
+				ret.Add("OnGameModeChange Script", ScriptOnGameModeChange);
 			if (OwningBlock != null)
 				ret.Add("Owning Block", OwningBlock.Name);
 			if (OwningPlayer != null)
@@ -237,6 +270,20 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		set
 		{
 			//    Rotation = Utility.StringToQuaternion(value["Rotation"]);*/
+			if (value.ContainsKey("OnCreate Script"))
+				ScriptOnCreate = value["OnCreate Script"];
+			if (value.ContainsKey("OnDestroy Script"))
+				ScriptOnDestroy = value["OnDestroy Script"];
+			if (value.ContainsKey("OnBlockDestroy Script"))
+				ScriptOnBlockDestroy = value["OnBlockDestory Script"];
+			if (value.ContainsKey("OnPlayerActivate Script"))
+				ScriptOnPlayerActivate = value["OnPlayerActivate Script"];
+			if (value.ContainsKey("OnPlayerContact Script"))
+				ScriptOnPlayerContact = value["OnPlayerContact Script"];
+			if (value.ContainsKey("OnEnemyContact Script"))
+				ScriptOnEnemyContact = value["OnEnemyContact Script"];
+			if (value.ContainsKey("OnGameModeChange Script"))
+				ScriptOnGameModeChange = value["OnGameModeChange Script"];
 			if (value.ContainsKey("Owning Block"))
 				StartCoroutine(UnserializeHelper(value["Owning Block"]));
 			if (value.ContainsKey("Owning Player"))
@@ -259,7 +306,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	/// <returns></returns>
 	private IEnumerator UnserializeHelper(string owningObjectName)
 	{
-		if(string.IsNullOrWhiteSpace(owningObjectName))
+		if (string.IsNullOrWhiteSpace(owningObjectName))
 			yield break;
 		GameObject owningObject = GameObject.Find(owningObjectName);
 		IBlock block = owningObject?.GetComponent<IBlock>();
@@ -272,7 +319,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			block = owningObject?.GetComponent<IBlock>();
 			player = owningObject?.GetComponent<IPlayerCharacter>();
 		}
-		if(block == null && player == null)
+		if (block == null && player == null)
 			LogController.Log("Can't find item owniner: " + owningObjectName);
 		OwningBlock = block;
 		OwningPlayer = player;
@@ -323,12 +370,35 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	{
 		name = System.Guid.NewGuid().ToString();
 	}
+
+	protected virtual void Start()
+	{
+		if (!string.IsNullOrWhiteSpace(ScriptOnCreate))
+		{
+			Script script = LuaScriptingManager.BaseScript;
+			DynValue item = UserData.Create(this);
+			script.Globals.Set("item", item);
+			LuaScriptingManager.RunScript(script, ScriptOnCreate);
+		}
+	}
+
+	private void OnDestroy()
+	{
+		if (!string.IsNullOrWhiteSpace(ScriptOnDestroy))
+		{
+			Script script = LuaScriptingManager.BaseScript;
+			DynValue item = UserData.Create(this);
+			script.Globals.Set("item", item);
+			LuaScriptingManager.RunScript(script, ScriptOnDestroy);
+		}
+		ItemManager.ItemCache.Remove(this);
+	}
 	#endregion
 
 	internal virtual void Update()
 	{
 		GameManager.GameMode newMode = (BlockManager.PlayMode ? GameManager.GameMode.Play : GameManager.GameMode.StageEdit);
-		if(newMode != CurrentMode)
+		if (newMode != CurrentMode)
 		{
 			GameManager.GameMode oldMode = CurrentMode;
 			CurrentMode = newMode;
@@ -353,10 +423,6 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		//TODO call OnPlayeContact or OnEnemyContact
 	}
 
-	public void OnDestroy()
-	{
-		ItemManager.ItemCache.Remove(this);
-	}
 
 	public void OnCollisionExit(Collision collision)
 	{
@@ -375,7 +441,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 
 		IPlayerCharacter asPlayer = other.GetComponent<IPlayerCharacter>();
-		if(asPlayer != null)
+		if (asPlayer != null)
 		{
 			OnPlayerContact(asPlayer);
 			//TODO support non-collectable usable items
@@ -397,24 +463,62 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 	}
 
-	public virtual void OnPlayerActivate(IPlayerCharacter player)
+	public virtual void OnPlayerActivate(IPlayerCharacter player) {	if (!string.IsNullOrWhiteSpace(ScriptOnPlayerActivate)) RunScriptOnPlayerActivate(player); }
+	public virtual void OnBlockDestroyed() { if (!string.IsNullOrWhiteSpace(ScriptOnBlockDestroy)) RunScriptOnBlockDestroyed(); }
+	public virtual void OnEnemyContact(INonPlayerCharacter enemy) { if (!string.IsNullOrWhiteSpace(ScriptOnEnemyContact)) RunScriptOnEnemyContact(enemy); }
+	public virtual void OnPlayerContact(IPlayerCharacter player) { if (!string.IsNullOrWhiteSpace(ScriptOnPlayerContact)) RunScriptOnPlayerContact(player); }
+	public virtual void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode) { if (!string.IsNullOrWhiteSpace(ScriptOnGameModeChange)) RunScriptOnGameModeChange(newMode,oldMode); }
+
+	protected virtual void RunScriptOnPlayerActivate(IPlayerCharacter player)
 	{
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue p = UserData.Create(player as AbstractPlayerCharacter);
+		DynValue item = UserData.Create(this);
+		script.Globals.Set("player", p);
+		script.Globals.Set("item", item);
+		LuaScriptingManager.RunScript(script, ScriptOnPlayerActivate);
 	}
 
-	public virtual void OnBlockDestroyed()
+	protected virtual void RunScriptOnBlockDestroyed()
 	{
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue block = UserData.Create(OwningBlock);
+		DynValue item = UserData.Create(this);
+		//DynValue location = UserData.Create(ev.Location);
+		script.Globals.Set("block", block);
+		script.Globals.Set("item", item);
+		//script.Globals.Set("loc", location);
+		LuaScriptingManager.RunScript(script, ScriptOnBlockDestroy);
 	}
 
-	public virtual void OnEnemyContact(INonPlayerCharacter enemy)
+	protected virtual void RunScriptOnPlayerContact(IPlayerCharacter player)
 	{
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue p = UserData.Create(player as AbstractPlayerCharacter);
+		DynValue item = UserData.Create(this);
+		script.Globals.Set("player", p);
+		script.Globals.Set("item", item);
+		LuaScriptingManager.RunScript(script, ScriptOnPlayerContact);
 	}
 
-	public virtual void OnPlayerContact(IPlayerCharacter player)
+	protected virtual void RunScriptOnEnemyContact(INonPlayerCharacter enemy)
 	{
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue p = UserData.Create(enemy); //TODO abstract
+		DynValue item = UserData.Create(this);
+		script.Globals.Set("enemy", p);
+		script.Globals.Set("item", item);
+		LuaScriptingManager.RunScript(script, ScriptOnEnemyContact);
 	}
 
-	public virtual void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
+	protected virtual void RunScriptOnGameModeChange(GameManager.GameMode newMode, GameManager.GameMode oldMode)
 	{
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue item = UserData.Create(this);
+		script.Globals.Set("item", item);
+		//TODO game mode
+		LuaScriptingManager.RunScript(script, ScriptOnEnemyContact);
 	}
+
 	#endregion
 }
