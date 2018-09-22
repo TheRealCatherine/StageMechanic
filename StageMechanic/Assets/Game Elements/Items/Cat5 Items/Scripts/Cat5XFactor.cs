@@ -62,7 +62,7 @@ public class Cat5XFactor : Cat5AbstractItem {
 		if (Sound != null)
 			AudioEffectsManager.PlaySound(Sound,0.25f);
 		if (Animation != null)
-			VisualEffectsManager.PlayEffect(player, Animation, 1, 15);
+			VisualEffectsManager.PlayEffect(player, Animation, 1, Duration);
 		(player as Cathy1PlayerCharacter).MaxClimbHeight = MaxClimbHeight;
 		ItemManager.DelayedDestroyItem(this, Duration);
 	}
