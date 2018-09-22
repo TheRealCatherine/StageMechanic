@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class MultilinePlaintextField : AbstractPropertyField
 {
+
+	private void Start()
+	{
+		gameObject.GetComponentInChildren<Button>().GetComponent<MultiLinePrefabButton>().FunctionName = PropertyName;
+	}
+
 	public override Type FieldType
 	{
 		get

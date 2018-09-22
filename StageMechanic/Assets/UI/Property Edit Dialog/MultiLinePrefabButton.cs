@@ -8,6 +8,7 @@ public class MultiLinePrefabButton : MonoBehaviour
 	public GameObject TextEditorPrefab;
 	public InputField Display;
 	private GameObject Editor;
+	public string FunctionName;
 
 	public void OnClick()
 	{
@@ -26,6 +27,12 @@ public class MultiLinePrefabButton : MonoBehaviour
 			Editor.GetComponentInChildren<CodeEditor>().gameObject.SetActive(true);
 			Editor.GetComponentInChildren<InputField>().gameObject.SetActive(false);
 		}
+		foreach(Text field in Editor.GetComponentsInChildren<Text>())
+		{
+			if (field.name == "FunctionName")
+				field.text = FunctionName;
+		}
+
 	}
 
 	private void Update()

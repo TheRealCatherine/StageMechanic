@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.5}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.79607844}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -149,13 +149,15 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: 'Click to
+
+    open code editor...'
 --- !u!1 &1850637094961154
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,3 +449,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextEditorPrefab: {fileID: 1203813180472405639, guid: 0a88b0c325f725540accc1e86f003764, type: 3}
   Display: {fileID: 114076571590972192}
+  FunctionName: 
