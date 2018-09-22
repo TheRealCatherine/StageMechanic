@@ -34,7 +34,7 @@ namespace MoonSharp.Interpreter.Loaders
 #if UNITY_5
             LoadResourcesUnityNative(assetsPath);
 #else
-			LoadResourcesWithReflection(assetsPath);
+			LoadResources(assetsPath);
 #endif
 		}
 
@@ -46,6 +46,21 @@ namespace MoonSharp.Interpreter.Loaders
 		public UnityAssetsScriptLoader(Dictionary<string, string> scriptToCodeMap)
 		{
 			m_Resources = scriptToCodeMap;
+		}
+
+
+		void LoadResources(string assetsPath)
+		{
+#if UNITY_WEBGL
+			UnityEngine.TextAsset[] array = UnityEngine.Resources.LoadAll<UnityEngine.TextAsset>(assetsPath);
+			for (int i = 0; i < array.Length; i++)
+			{
+				UnityEngine.TextAsset text = array[i];
+				m_Resources.Add(text.name, text.text);
+			}
+#else
+            LoadResourcesWithReflection(assetsPath);
+#endif
 		}
 
 #if UNITY_5
