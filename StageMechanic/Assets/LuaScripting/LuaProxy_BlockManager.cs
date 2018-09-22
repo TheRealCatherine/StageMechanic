@@ -22,46 +22,46 @@ public class LuaProxy_BlockManager
 		}
 	}
 
-	public AbstractBlock At(float x, float y, float z)
+	public AbstractBlock at(float x, float y, float z)
 	{
 		return BlockManager.GetBlockNear(new Vector3(x, y, z), 0.1f, 0f);
 	}
 
-	public AbstractBlock At(Vector3 position)
+	public AbstractBlock at(Vector3 position)
 	{
 		return BlockManager.GetBlockNear(position, 0.1f, 0f);
 	}
 
-	public void Clear()
+	public void clear()
 	{
 		BlockManager.Clear();
 	}
 
-	public AbstractBlock Create(float x, float y, float z, string type = "Basic", string palette = "Cat5 Internal")
+	public AbstractBlock create(float x, float y, float z, string type = "Basic", string palette = "Cat5 Internal")
 	{
 		return BlockManager.CreateBlockAt(x, y, z, palette, type) as AbstractBlock;
 	}
 
-	public AbstractBlock Create(Vector3 position, string type = "Basic", string palette = "Cat5 Internal")
+	public AbstractBlock create(Vector3 position, string type = "Basic", string palette = "Cat5 Internal")
 	{
 		return BlockManager.CreateBlockAt(position, palette, type) as AbstractBlock;
 	}
 
-	public void Destroy(AbstractBlock block)
+	public void destroy(AbstractBlock block)
 	{
 		BlockManager.DestroyBlock(block);
 	}
 
-	public bool Destroy(string blockName)
+	public bool destroy(string blockName)
 	{
 		if (GameObject.Find(blockName).GetComponent<AbstractBlock>() is AbstractBlock block) {
-			Destroy(block);
+			destroy(block);
 			return true;
 		}
 		return false;	
 	}
 
-	public List<AbstractBlock> GetAll(string type = null)
+	public List<AbstractBlock> getall(string type = null)
 	{
 		return BlockManager.GetBlocksOfType(type).Cast<AbstractBlock>().ToList();
 	}

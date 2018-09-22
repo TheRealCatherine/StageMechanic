@@ -28,8 +28,8 @@ public static class LuaCustomConverters
 		Script.GlobalOptions.CustomConverters.SetScriptToClrCustomConversion(DataType.Table, typeof(Vector2),
 			dynVal => {
 				Table table = dynVal.Table;
-				float x = (float)((Double)table[1]);
-				float y = (float)((Double)table[2]);
+				float x = (float)((Double)table["x"]);
+				float y = (float)((Double)table["y"]);
 				return new Vector2(x, y);
 			}
 		);
@@ -37,7 +37,9 @@ public static class LuaCustomConverters
 			(script, vector) => {
 				DynValue x = DynValue.NewNumber((double)vector.x);
 				DynValue y = DynValue.NewNumber((double)vector.y);
-				DynValue dynVal = DynValue.NewTable(script, new DynValue[] { x, y });
+				DynValue dynVal = DynValue.NewTable(script, new DynValue[] { });
+				dynVal.Table.Set("x", x);
+				dynVal.Table.Set("y", y);
 				return dynVal;
 			}
 		);
@@ -47,9 +49,9 @@ public static class LuaCustomConverters
 		Script.GlobalOptions.CustomConverters.SetScriptToClrCustomConversion(DataType.Table, typeof(Vector3),
 			dynVal => {
 				Table table = dynVal.Table;
-				float x = (float)((Double)table[1]);
-				float y = (float)((Double)table[2]);
-				float z = (float)((Double)table[3]);
+				float x = (float)((Double)table["x"]);
+				float y = (float)((Double)table["y"]);
+				float z = (float)((Double)table["z"]);
 				return new Vector3(x, y, z);
 			}
 		);
@@ -58,7 +60,10 @@ public static class LuaCustomConverters
 				DynValue x = DynValue.NewNumber((double)vector.x);
 				DynValue y = DynValue.NewNumber((double)vector.y);
 				DynValue z = DynValue.NewNumber((double)vector.z);
-				DynValue dynVal = DynValue.NewTable(script, new DynValue[] { x, y, z });
+				DynValue dynVal = DynValue.NewTable(script, new DynValue[] {});
+				dynVal.Table.Set("x", x);
+				dynVal.Table.Set("y", y);
+				dynVal.Table.Set("z", z);
 				return dynVal;
 			}
 		);

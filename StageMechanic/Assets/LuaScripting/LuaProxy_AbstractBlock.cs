@@ -191,7 +191,7 @@ public class LuaProxy_AbstractBlock
 
 	public void unset(string property)
 	{
-		target.Properties[property] = target.DefaultProperties[property].Value;
+		set(property,target.DefaultProperties[property].Value);
 	}
 
 	public string get(string property)

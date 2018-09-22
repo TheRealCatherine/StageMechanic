@@ -23,46 +23,46 @@ public class LuaProxy_ItemManager
 		}
 	}
 
-	public AbstractItem At(float x, float y, float z)
+	public AbstractItem at(float x, float y, float z)
 	{
 		return ItemManager.GetItemNear(new Vector3(x, y, z), 0.1f);
 	}
 
-	public AbstractItem At(Vector3 position)
+	public AbstractItem at(Vector3 position)
 	{
 		return ItemManager.GetItemNear(position, 0.1f);
 	}
 
-	public void Clear()
+	public void clear()
 	{
 		ItemManager.Clear();
 	}
 
-	public AbstractItem Create(float x, float y, float z, string type = "Coin", string palette = "Cat5 Internal")
+	public AbstractItem create(float x, float y, float z, string type = "Coin", string palette = "Cat5 Internal")
 	{
 		return ItemManager.CreateItemAt(new Vector3(x, y, z), palette, type) as AbstractItem;
 	}
 
-	public AbstractItem Create(Vector3 position, string type = "Coin", string palette = "Cat5 Internal")
+	public AbstractItem create(Vector3 position, string type = "Coin", string palette = "Cat5 Internal")
 	{
 		return ItemManager.CreateItemAt(position, palette, type) as AbstractItem;
 	}
 
-	public void Destroy(AbstractItem item)
+	public void destroy(AbstractItem item)
 	{
 		ItemManager.DestroyItem(item);
 	}
 
-	public bool Destroy(string itemName)
+	public bool destroy(string itemName)
 	{
 		if (GameObject.Find(itemName).GetComponent<AbstractItem>() is AbstractItem item) {
-			Destroy(item);
+			destroy(item);
 			return true;
 		}
 		return false;	
 	}
 
-	public List<AbstractItem> GetAll(string type = null)
+	public List<AbstractItem> getall(string type = null)
 	{
 		return ItemManager.GetItemsOfType(type).Cast<AbstractItem>().ToList();
 	}
