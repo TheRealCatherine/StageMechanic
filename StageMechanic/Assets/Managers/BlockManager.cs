@@ -66,6 +66,7 @@ public class BlockManager : MonoBehaviour
 			UIManager.Instance.BlockInfoBox.gameObject.SetActive(false);
 			Serializer.RecordStartState();
 			VisualEffectsManager.EnableFog(PlayerPrefs.GetInt("Fog", 1) == 1);
+			ActiveFloor.GetComponent<Platform>().OnGameModeChanged(GameManager.GameMode.Play, GameManager.GameMode.StageEdit);
 		}
 		else 
 		{
@@ -86,6 +87,7 @@ public class BlockManager : MonoBehaviour
 			}
 			VisualEffectsManager.EnableFog(false);
 			ResetCursor();
+			ActiveFloor.GetComponent<Platform>().OnGameModeChanged(GameManager.GameMode.StageEdit, GameManager.GameMode.Play);
 		}
 		UIManager.RefreshButtonMappingDialog();
 		PlayerManager.Instance.PlayMode = PlayMode;

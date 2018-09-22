@@ -8,15 +8,13 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour {
 
+	public GameObject Plane;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode)
+	{
+		if (newMode == GameManager.GameMode.Play)
+			Plane.SetActive(false);
+		else
+			Plane.SetActive(true);
 	}
 }

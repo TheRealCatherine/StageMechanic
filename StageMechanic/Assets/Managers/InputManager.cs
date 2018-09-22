@@ -627,7 +627,7 @@ public class InputManager : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.PageDown))
 		{
-			if (BlockManager.Cursor.transform.position.y > -10)
+			if (BlockManager.Cursor.transform.position.y > 10)
 				BlockManager.Cursor.transform.position += new Vector3(0, -10, 0);
 			return true;
 		}
@@ -701,7 +701,7 @@ public class InputManager : MonoBehaviour
 			}
 			else
 			{
-				if (BlockManager.Cursor.transform.position.y > -10)
+				if (BlockManager.Cursor.transform.position.y > 1)
 					BlockManager.Cursor.transform.position += new Vector3(0, -1, 0);
 				return true;
 			}
