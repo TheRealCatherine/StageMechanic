@@ -9,7 +9,14 @@ using UnityEngine;
 
 public class Cat5Coin : Cat5AbstractItem {
 
-	public int Value = 1000;
+	public const int DEFAULT_SCORE = 1000;
+	public const string SCORE = "Score";
+
+	public override int Score
+	{
+		get;
+		set;
+	} = DEFAULT_SCORE;
 
 	public override int Uses
 	{
@@ -36,7 +43,7 @@ public class Cat5Coin : Cat5AbstractItem {
 		get
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-			ret.Add("Value", new DefaultValue { TypeInfo = typeof(int), Value = "1000" });
+			ret[SCORE] = new DefaultValue { TypeInfo = typeof(int), Value = DEFAULT_SCORE.ToString() };
 			return ret;
 		}
 	}
@@ -46,21 +53,15 @@ public class Cat5Coin : Cat5AbstractItem {
 		get
 		{
 			Dictionary<string, string> ret = base.Properties;
-			if (Value != 1000)
-				ret.Add("Value", Value.ToString());
+			if (Score != DEFAULT_SCORE)
+				ret[SCORE] = Score.ToString();
+			else
+				ret.Remove(SCORE);
 			return ret;
 		}
 		set
 		{
 			base.Properties = value;
-			if (value.ContainsKey("Value"))
-				Value = int.Parse(value["Value"]);
 		}
-	}
-
-	public override void OnPlayerContact(IPlayerCharacter player)
-	{
-		base.OnPlayerContact(player);
-		(player as AbstractPlayerCharacter).Score += Value;
 	}
 }

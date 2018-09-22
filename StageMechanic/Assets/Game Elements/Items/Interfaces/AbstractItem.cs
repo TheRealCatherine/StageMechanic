@@ -459,6 +459,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 					ItemManager.DestroyItem(this);
 				}
 			}
+			(asPlayer as AbstractPlayerCharacter).Score += Score;
 			return;
 		}
 	}
