@@ -13,7 +13,7 @@ public class MultiLinePrefabButton : MonoBehaviour
 	{
 		Canvas mainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 		Editor = Instantiate(TextEditorPrefab, mainCanvas.transform);
-		if (GameManager.IsLiteBuild)
+		if (GameManager.IsLiteBuild && Application.platform == RuntimePlatform.Android)
 		{
 			Editor.GetComponentInChildren<InputField>().text = Display.text;
 			Editor.GetComponentInChildren<InputField>().gameObject.SetActive(true);
@@ -32,7 +32,7 @@ public class MultiLinePrefabButton : MonoBehaviour
 	{
 		if (Editor != null)
 		{
-			if(GameManager.IsLiteBuild)
+			if(GameManager.IsLiteBuild && Application.platform == RuntimePlatform.Android)
 				Display.text = Editor.GetComponentInChildren<InputField>().text;
 			else
 				Display.text = Editor.GetComponentInChildren<CodeEditor>().mainInput.text;

@@ -163,7 +163,30 @@ public class LuaProxy_AbstractBlock
 
 	public void set(string property, string value)
 	{
-		target.Properties[property] = value;
+		Dictionary<string, string> dic = target.Properties;
+		dic[property] = value;
+		target.Properties = dic;
+	}
+
+	public void set(string property, int value)
+	{
+		Dictionary<string, string> dic = target.Properties;
+		dic[property] = value.ToString();
+		target.Properties = dic;
+	}
+
+	public void set(string property, float value)
+	{
+		Dictionary<string, string> dic = target.Properties;
+		dic[property] = value.ToString();
+		target.Properties = dic;
+	}
+
+	public void set(string property, bool value)
+	{
+		Dictionary<string, string> dic = target.Properties;
+		dic[property] = value.ToString();
+		target.Properties = dic;
 	}
 
 	public void unset(string property)

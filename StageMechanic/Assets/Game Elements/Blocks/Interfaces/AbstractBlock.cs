@@ -26,8 +26,11 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	public float EdgeEffectScale = 1f;
 	public float EdgeEffectDuration = 0.1f;
 
-	public string ScriptOnCreated;
+	public string ScriptOnCreate;
 	public string ScriptOnPlayerEnter;
+	public string ScriptOnPlayerLeave;
+	public string ScriptOnGroupChange;
+	public string ScriptOnDestroy;
 
 	#region Interface property implementations
 	/// <summary>
@@ -67,7 +70,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	{
 		get
 		{
-			if(gameObject != null)
+			if (gameObject != null)
 				return transform.position;
 			return new Vector3(float.NaN, float.NaN, float.NaN);
 		}
@@ -145,14 +148,17 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		get
 		{
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
-			ret.Add("Motion State",     new DefaultValue { TypeInfo = typeof(string),       Value = "Unknown" });
-			ret.Add("Rotation",         new DefaultValue { TypeInfo = typeof(Quaternion),   Value = Quaternion.identity.ToString() });
-			ret.Add("Fixed Rotation",   new DefaultValue { TypeInfo = typeof(bool),         Value = "False" });
-			ret.Add("Weight Factor",    new DefaultValue { TypeInfo = typeof(float),        Value = "1.0" });
-			ret.Add("Gravity Factor",   new DefaultValue { TypeInfo = typeof(float),        Value = "1.0" });
-			ret.Add("Block Group",      new DefaultValue { TypeInfo = typeof(int),          Value = "-1" });
-			ret.Add("OnCreated Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("Motion State", new DefaultValue { TypeInfo = typeof(string), Value = "Unknown" });
+			ret.Add("Rotation", new DefaultValue { TypeInfo = typeof(Quaternion), Value = Quaternion.identity.ToString() });
+			ret.Add("Fixed Rotation", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
+			ret.Add("Weight Factor", new DefaultValue { TypeInfo = typeof(float), Value = "1.0" });
+			ret.Add("Gravity Factor", new DefaultValue { TypeInfo = typeof(float), Value = "1.0" });
+			ret.Add("Block Group", new DefaultValue { TypeInfo = typeof(int), Value = "-1" });
+			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnGroupChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			ret.Add("OnPlayerEnter Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnPlayerLeave Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			return ret;
 		}
 	}
@@ -174,10 +180,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ret.Add("Gravity Factor", GravityFactor.ToString());
 			if (BlockManager.BlockGroupNumber(this) != -1)
 				ret.Add("Block Group", BlockManager.BlockGroupNumber(this).ToString());
-			if (!string.IsNullOrWhiteSpace(ScriptOnCreated))
-				ret.Add("OnCreated Script", ScriptOnCreated);
+			if (!string.IsNullOrWhiteSpace(ScriptOnCreate))
+				ret.Add("OnCreate Script", ScriptOnCreate);
+			if (!string.IsNullOrWhiteSpace(ScriptOnDestroy))
+				ret.Add("OnDestroy Script", ScriptOnDestroy);
+			if (!string.IsNullOrWhiteSpace(ScriptOnGroupChange))
+				ret.Add("OnGroupChange Script", ScriptOnGroupChange);
 			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
 				ret.Add("OnPlayerEnter Script", ScriptOnPlayerEnter);
+			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerLeave))
+				ret.Add("OnPlayerLeave Script", ScriptOnPlayerLeave);
 			return ret;
 		}
 		set
@@ -193,10 +205,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
 			if (value.ContainsKey("Block Group"))
 				BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
-			if (value.ContainsKey("OnCreated Script"))
-				ScriptOnCreated = value["OnCreated Script"];
+			if (value.ContainsKey("OnCreate Script"))
+				ScriptOnCreate = value["OnCreate Script"];
+			if (value.ContainsKey("OnDestroy Script"))
+				ScriptOnDestroy = value["OnDestroy Script"];
+			if (value.ContainsKey("OnGroupChange Script"))
+				ScriptOnGroupChange = value["OnGroupChange Script"];
 			if (value.ContainsKey("OnPlayerEnter Script"))
 				ScriptOnPlayerEnter = value["OnPlayerEnter Script"];
+			if (value.ContainsKey("OnPlayerLeave Script"))
+				ScriptOnPlayerLeave = value["OnPlayerLeave Script"];
 		}
 	}
 
@@ -315,17 +333,14 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		}
 		UpdateNeighborsCache();
 
-		RunScriptOnCreated();
-	}
-
-	protected virtual void RunScriptOnCreated()
-	{
-		if(!string.IsNullOrWhiteSpace(ScriptOnCreated))
+		if (!string.IsNullOrWhiteSpace(ScriptOnCreate))
 		{
-			LogController.Log(Script.RunString(ScriptOnCreated).ToPrintString());
+			Script script = LuaScriptingManager.BaseScript;
+			DynValue block = UserData.Create(this);
+			script.Globals.Set("block", block);
+			LuaScriptingManager.RunScript(script, ScriptOnCreate);
 		}
 	}
-
 
 	private void OnDisable()
 	{
@@ -335,6 +350,13 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 
 	private void OnDestroy()
 	{
+		if (!string.IsNullOrWhiteSpace(ScriptOnDestroy))
+		{
+			Script script = LuaScriptingManager.BaseScript;
+			DynValue block = UserData.Create(this);
+			script.Globals.Set("block", block);
+			LuaScriptingManager.RunScript(script, ScriptOnDestroy);
+		}
 	}
 	#endregion
 
@@ -872,9 +894,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			int group = BlockManager.BlockGroupNumber(this);
 			if (group != -1)
 			{
-				foreach(IBlock block in BlockManager.BlockGroup(group))
+				foreach (IBlock block in BlockManager.BlockGroup(group))
 				{
-					if((block as AbstractBlock) != this)
+					if ((block as AbstractBlock) != this)
 						(block as AbstractBlock).SetGravityEnabledByMotionState();
 				}
 			}
@@ -882,7 +904,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	}
 
 	#region Block event handling
-	internal virtual void OnBlockGroupChanged(int newGroup) { }
+	internal virtual void OnBlockGroupChanged(int newGroup)
+	{
+		if (!string.IsNullOrWhiteSpace(ScriptOnGroupChange))
+		{
+			Script script = LuaScriptingManager.BaseScript;
+			DynValue block = UserData.Create(this);
+			script.Globals.Set("block", block);
+			LuaScriptingManager.RunScript(script, ScriptOnGroupChange);
+		}
+	}
 	#endregion
 
 	#region Player movement event handling
@@ -926,44 +957,34 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		}
 	}
 
-	protected virtual void OnPlayerEnter(PlayerMovementEvent ev) { RunScriptOnPlayerEnter(ev);  }
-	protected virtual void OnPlayerLeave(PlayerMovementEvent ev) { }
+	protected virtual void OnPlayerEnter(PlayerMovementEvent ev) { if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter)) RunScriptOnPlayerEnter(ev); }
+	protected virtual void OnPlayerLeave(PlayerMovementEvent ev) { if (!string.IsNullOrWhiteSpace(ScriptOnPlayerLeave)) RunScriptOnPlayerLeave(ev); }
 	protected virtual void OnPlayerStay(PlayerMovementEvent ev) { }
 	protected virtual void OnPlayerUnknownMotion(PlayerMovementEvent ev) { }
 	#endregion
 
 	protected virtual void RunScriptOnPlayerEnter(PlayerMovementEvent ev)
 	{
-		if (!string.IsNullOrWhiteSpace(ScriptOnPlayerEnter))
-		{
-			try
-			{ 
-				Script script = LuaScriptingManager.BaseScript;
-				DynValue player = UserData.Create(ev.Player);
-				DynValue block = UserData.Create(this);
-				script.Globals.Set("player", player);
-				script.Globals.Set("block", block);
-				Debug.Log(ScriptOnPlayerEnter);
-				DynValue result = script.DoString(ScriptOnPlayerEnter);
-				LogController.Log(result.ToPrintString());
-			}
-			catch (SyntaxErrorException ex)
-			{
-				Debug.Log("Syntax Error! " + ex.DecoratedMessage);
-			}
-			catch (InternalErrorException ex)
-			{
-				Debug.Log("An internal error occured! " + ex.DecoratedMessage);
-			}
-			catch (DynamicExpressionException ex)
-			{
-				Debug.Log("A dynamic expression error occured! " + ex.DecoratedMessage);
-			}
-			catch (ScriptRuntimeException ex)
-			{
-				Debug.Log("An error occured! " + ex.DecoratedMessage);
-			}
-		}
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue player = UserData.Create(ev.Player);
+		DynValue block = UserData.Create(this);
+		//DynValue location = UserData.Create(ev.Location);
+		script.Globals.Set("player", player);
+		script.Globals.Set("block", block);
+		//script.Globals.Set("loc", location);
+		LuaScriptingManager.RunScript(script, ScriptOnPlayerEnter);
+	}
+
+	protected virtual void RunScriptOnPlayerLeave(PlayerMovementEvent ev)
+	{
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue player = UserData.Create(ev.Player);
+		DynValue block = UserData.Create(this);
+		//DynValue location = UserData.Create(ev.Location);
+		script.Globals.Set("player", player);
+		script.Globals.Set("block", block);
+		//script.Globals.Set("loc", location);
+		LuaScriptingManager.RunScript(script, ScriptOnPlayerLeave);
 	}
 
 	#region input handling
@@ -981,7 +1002,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			{
 				//Only allowing clicking blocks in the non-UI part of the screen to prevent clicking both the UI and the block
 				float x = VisualEffectsManager.Instance.Camera.WorldToScreenPoint(Position).x;
-				if (x < 220 || Screen.width -  x < 250) //TODO don't hardcode width of UI elements
+				if (x < 220 || Screen.width - x < 250) //TODO don't hardcode width of UI elements
 					return;
 				if (BlockManager.ActiveBlock == this)
 					UIManager.ShowPropertyEditDialog(this);

@@ -44,6 +44,7 @@ public class LuaScriptingManager : MonoBehaviour
 		UserData.RegisterProxyType<LuaProxy_ItemManager, ItemManager>(_ => new LuaProxy_ItemManager());
 		UserData.RegisterProxyType<LuaProxy_PlayerManager, PlayerManager>(_ => new LuaProxy_PlayerManager());
 		UserData.RegisterProxyType<LuaProxy_AudioEffectsManager, AudioEffectsManager>(_ => new LuaProxy_AudioEffectsManager());
+		UserData.RegisterProxyType<LuaProxy_SkyboxManager, SkyboxManager>(_ => new LuaProxy_SkyboxManager());
 		UserData.RegisterType<Sprite>();
 		UserData.RegisterType<Alert>();
 		LuaCustomConverters.RegisterAll();
@@ -58,13 +59,46 @@ public class LuaScriptingManager : MonoBehaviour
 			DynValue itemManager = UserData.Create(ItemManager.Instance);
 			DynValue playerManager = UserData.Create(PlayerManager.Instance);
 			DynValue audioEffectsManager = UserData.Create(AudioEffectsManager.Instance);
+			DynValue skyboxManager = UserData.Create(SkyboxManager.Instance);
 			DynValue alert = UserData.Create(new Alert());
 			script.Globals.Set("blockmanager", blockManager);
 			script.Globals.Set("itemmanager", itemManager);
 			script.Globals.Set("playermanager", playerManager);
 			script.Globals.Set("soundeffectsmanager", audioEffectsManager);
+			script.Globals.Set("skyboxmanager", skyboxManager);
 			script.Globals.Set("alert", alert);
 			return script;
 		}
+	}
+
+	//TODO show error messages
+	public static DynValue RunScript(Script environment, string code)
+	{
+		if (string.IsNullOrWhiteSpace(code))
+		{
+			Debug.Log("Can't run empty script!");
+			return null;
+		}
+		try
+		{
+			return environment.DoString(code);
+		}
+		catch (SyntaxErrorException ex)
+		{
+			Debug.Log("Syntax Error! " + ex.DecoratedMessage);
+		}
+		catch (InternalErrorException ex)
+		{
+			Debug.Log("An internal error occured! " + ex.DecoratedMessage);
+		}
+		catch (DynamicExpressionException ex)
+		{
+			Debug.Log("A dynamic expression error occured! " + ex.DecoratedMessage);
+		}
+		catch (ScriptRuntimeException ex)
+		{
+			Debug.Log("An error occured! " + ex.DecoratedMessage);
+		}
+		return null;
 	}
 }
