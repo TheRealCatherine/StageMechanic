@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,14 +8,18 @@ using UnityEngine;
 
 public class MoveCursor : MonoBehaviour
 {
+	public float MoveDuration = 0.15f;
+
 	public void DoMoveCursor(Vector3 direction)
 	{
-		if (BlockManager.Cursor.transform.position.y < 60000f &&
-			BlockManager.Cursor.transform.position.y > -60000f &&
-			BlockManager.Cursor.transform.position.x < 60000f &&
-			BlockManager.Cursor.transform.position.x > -60000f)
+		Vector3 newpos = BlockManager.Cursor.transform.position + direction;
 
-				BlockManager.Cursor.transform.position += direction;
+		if (newpos.y < 60000f &&
+			newpos.y > 0f &&
+			newpos.x < 60000f &&
+			newpos.x > -60000f)
+			//BlockManager.Cursor.transform.DOMove(newpos, MoveDuration);
+			BlockManager.Cursor.transform.position = newpos;
 	}
 
 	public void MoveUp()

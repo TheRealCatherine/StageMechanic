@@ -12,9 +12,9 @@ public class LuaProxy_PlayerManager
 		}
 	}
 
-	public AbstractPlayerCharacter player(int number=0)
+	public AbstractPlayerCharacter player(int number=1)
 	{
-		return (PlayerManager.Player(number) as AbstractPlayerCharacter);
+		return (PlayerManager.Player(number-1) as AbstractPlayerCharacter);
 	}
 
 	public void clear()

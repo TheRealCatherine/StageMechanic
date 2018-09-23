@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022842664, g: 0.011234282, b: 0.040441006, a: 1}
+  m_IndirectSpecularColor: {r: 0.022753041, g: 0.011158805, b: 0.040147122, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -861,6 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130c9726ae4df42969d7d37ac7becd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveDuration: 0.15
 --- !u!114 &55018990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8240,6 +8241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130c9726ae4df42969d7d37ac7becd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveDuration: 0.15
 --- !u!114 &429908444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22770,6 +22772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130c9726ae4df42969d7d37ac7becd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveDuration: 0.15
 --- !u!114 &1260460492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24276,6 +24279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130c9726ae4df42969d7d37ac7becd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveDuration: 0.15
 --- !u!114 &1366653913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29351,6 +29355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130c9726ae4df42969d7d37ac7becd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveDuration: 0.15
 --- !u!114 &1651447224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37368,6 +37373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130c9726ae4df42969d7d37ac7becd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveDuration: 0.15
 --- !u!114 &2039934344
 MonoBehaviour:
   m_ObjectHideFlags: 0
