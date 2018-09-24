@@ -99,7 +99,7 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
         }
         set {
 			if(value.ContainsKey("Score"))
-				Score = int.Parse("Score");
+				Score = int.Parse(value["Score"]);
 		}
     }
 

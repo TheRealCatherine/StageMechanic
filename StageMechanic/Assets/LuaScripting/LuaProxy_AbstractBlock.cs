@@ -33,7 +33,7 @@ public class LuaProxy_AbstractBlock
 		}
 	}
 
-	public Vector3 position
+	public Vector3 pos
 	{
 		get
 		{

@@ -29,6 +29,8 @@ public class CodeEditor : MonoBehaviour {
 	public Color classColor;
 	public Color typeColor;
 	public Color functionColor;
+	public Color variableColor;
+	public Color propertyColor;
 	public Color blacklistColor;
 	public Color commentColor;
 	public Color stringColor;
@@ -110,11 +112,37 @@ public class CodeEditor : MonoBehaviour {
             }
 
 		//string functions = @"\b(Color|Color32|Vector2|Vector3|GameObject|MonoBehaviour)\b";
+		MatchCollection propertyMatches = Regex.Matches(input, LuaScriptingManager.Properties, RegexOptions.None);
+		delta = 0;
+		color = ColorUtility.ToHtmlStringRGB(propertyColor);
+
+		foreach (Match m in propertyMatches)
+		{
+			input = input.Insert(m.Index + delta, "<#" + color + ">");
+			delta += 9;
+			input = input.Insert(m.Index + m.Length + delta, "</color>");
+			delta += 8;
+		}
+
+		//string functions = @"\b(Color|Color32|Vector2|Vector3|GameObject|MonoBehaviour)\b";
 		MatchCollection functionMatches = Regex.Matches(input, LuaScriptingManager.Functions, RegexOptions.None);
 		delta = 0;
 		color = ColorUtility.ToHtmlStringRGB(functionColor);
 
 		foreach (Match m in functionMatches)
+		{
+			input = input.Insert(m.Index + delta, "<#" + color + ">");
+			delta += 9;
+			input = input.Insert(m.Index + m.Length + delta, "</color>");
+			delta += 8;
+		}
+
+		//string functions = @"\b(Color|Color32|Vector2|Vector3|GameObject|MonoBehaviour)\b";
+		MatchCollection variableMatches = Regex.Matches(input, LuaScriptingManager.Variables, RegexOptions.None);
+		delta = 0;
+		color = ColorUtility.ToHtmlStringRGB(variableColor);
+
+		foreach (Match m in variableMatches)
 		{
 			input = input.Insert(m.Index + delta, "<#" + color + ">");
 			delta += 9;

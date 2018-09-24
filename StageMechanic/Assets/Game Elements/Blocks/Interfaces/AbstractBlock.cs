@@ -966,7 +966,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	protected virtual void RunScriptOnPlayerEnter(PlayerMovementEvent ev)
 	{
 		Script script = LuaScriptingManager.BaseScript;
-		DynValue player = UserData.Create(ev.Player);
+		DynValue player = UserData.Create(ev.Player as AbstractPlayerCharacter);
 		DynValue block = UserData.Create(this);
 		//DynValue location = UserData.Create(ev.Location);
 		script.Globals.Set("player", player);
@@ -978,7 +978,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	protected virtual void RunScriptOnPlayerLeave(PlayerMovementEvent ev)
 	{
 		Script script = LuaScriptingManager.BaseScript;
-		DynValue player = UserData.Create(ev.Player);
+		DynValue player = UserData.Create(ev.Player as AbstractPlayerCharacter);
 		DynValue block = UserData.Create(this);
 		//DynValue location = UserData.Create(ev.Location);
 		script.Globals.Set("player", player);

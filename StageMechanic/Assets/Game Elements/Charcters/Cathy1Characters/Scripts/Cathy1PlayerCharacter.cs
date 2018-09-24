@@ -816,4 +816,20 @@ public class Cathy1PlayerCharacter : AbstractPlayerCharacter
 
 		return expectedTime;
 	}
+
+	public override Dictionary<string, string> Properties
+	{
+		get
+		{
+			Dictionary<string, string> ret = base.Properties;
+			ret.Add("Walk Time", WalkTime.ToString());
+			return ret;
+		}
+		set
+		{
+			base.Properties = value;
+			if (value.ContainsKey("Walk Time"))
+				WalkTime = int.Parse("Walk Time");
+		}
+	}
 }

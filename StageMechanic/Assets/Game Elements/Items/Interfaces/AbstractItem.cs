@@ -483,7 +483,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	protected virtual void RunScriptOnBlockDestroyed()
 	{
 		Script script = LuaScriptingManager.BaseScript;
-		DynValue block = UserData.Create(OwningBlock);
+		DynValue block = UserData.Create(OwningBlock as AbstractBlock);
 		DynValue item = UserData.Create(this);
 		//DynValue location = UserData.Create(ev.Location);
 		script.Globals.Set("block", block);

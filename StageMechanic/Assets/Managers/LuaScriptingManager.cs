@@ -8,7 +8,14 @@ public class LuaScriptingManager : MonoBehaviour
 {
 	public static LuaScriptingManager Instance;
 	public const string Keywords = @"\b(and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b";
-	public const string Classes = @"\b(blockmanager|itemmanager|playermanager|audiomanager|visualeffectsmanager|skyboxmanager|alert|coroutine|string|utf8|table|math|io|file|os|debug)\b";
+	public const string Classes = @"\b(blockmanager|itemmanager|playermanager|audiomanager|visualeffectsmanager|skyboxmanager|alert|coroutine|string|utf8|table|math|io|file|os|debug|vector3)\b";
+	public const string Variables = @"\b(block|item|player)\b";
+	public const string Properties = @"\b(\.name|\.type|\.pos|\.weight|\.gravity|\.motionstate|\.grounded|\.group"
+		+ @"|blockmanager\.count|blockmanager\.types|itemmanager\.count|itemmanager\.types|playermanager\.count"
+		+ @"|\.owningblock|\.owningplayer|\.icon|\.collectable|\.uses|\.trigger|\.score"
+		+ @"|\.facing|\.allstates|\.state|\.item"
+		+ @"|\.x|\.y|\.z"
+		+ @")\b";
 	public const string Functions = @"\b(assert|collectgarbage|error|_G|getmetatable|ipairs|next|pairs|pcall|print|rawequal|rawget|rawlen|rawset|select|setmetatable|ronumber|tostring|type|_VERSION|xpcall"
 		+ @"|coroutine\.create|coroutine\.isyieldable|coroutine\.resume|coroutine\.running|coroutine\.status|coroutine\.wrap|coroutine\.yield"
 		+ @"|package\.congig|package\.cpath|package\.loaded|package\.loadlib|package\.path|package\.preload|package\.searchers|package\.searchpath" 
@@ -17,6 +24,15 @@ public class LuaScriptingManager : MonoBehaviour
 		+ @"|table\.concat|table\.insert|table\.move|table\.pack|table\.remove|table\.sort|table\.unpack"
 		+ @"|math\.abs|math\.acos|math\.asin|math\.atan|math\.ceil|math\.cos|math\.deg|math\.exp|math\.floor|math\.fmod|math\.hugh|math\.log|math\.max|math\.maxinteger|math\.min|math\.mininteger|math\.modf|math\.pi|math\.rad|math\.random|math\.randomseed|math\.sin|math\.sqrt|math\.tan|math\.tointeger|math\.type|math\.ult"
 		+ @"|os\.clock|os\.date|os\.difftime|os\.time"
+		+ @"|\.play"
+		+ @"|\.canbepulled|\.pullweight|\.pull|\.canbepushed|\.pushweight|\.push|\.set|\.unset|\.get|\.run"
+		+ @"|blockmanager\.at|blockmanager\.clear|blockmanager\.create|blockmanager\.destroy|blockmanager\.getall"
+		+ @"|itemmanager\.at|itemmanager\.clear|itemmanager\.create|itemmanager\.destroy|itemmanager\.getall"
+		+ @"|\.applygravity|\.turnaround|\.turn|\.turnright|\.turnleft|\.takedamage|\.useitem"
+		+ @"|playermanager\.player|playermanager\.clear|playermanager\.showall|playermanager\.hideall|playermanager\.at"
+		+ @"|skyboxmanager\.count|skyboxmanager\.index|skyboxmanager\.next"
+		+ @"|vector3.add|vector3.sub"
+		+ @"|alert\.info"
 		+ @")\b";
 
 	public const string Blacklist = @"\b("
@@ -47,6 +63,7 @@ public class LuaScriptingManager : MonoBehaviour
 		UserData.RegisterProxyType<LuaProxy_SkyboxManager, SkyboxManager>(_ => new LuaProxy_SkyboxManager());
 		UserData.RegisterType<Sprite>();
 		UserData.RegisterType<Alert>();
+		UserData.RegisterType<VectorMath>();
 		LuaCustomConverters.RegisterAll();
 	}
 
@@ -61,12 +78,14 @@ public class LuaScriptingManager : MonoBehaviour
 			DynValue audioEffectsManager = UserData.Create(AudioEffectsManager.Instance);
 			DynValue skyboxManager = UserData.Create(SkyboxManager.Instance);
 			DynValue alert = UserData.Create(new Alert());
+			DynValue vectormath = UserData.Create(new VectorMath());
 			script.Globals.Set("blockmanager", blockManager);
 			script.Globals.Set("itemmanager", itemManager);
 			script.Globals.Set("playermanager", playerManager);
 			script.Globals.Set("soundeffectsmanager", audioEffectsManager);
 			script.Globals.Set("skyboxmanager", skyboxManager);
 			script.Globals.Set("alert", alert);
+			script.Globals.Set("vector3", vectormath);
 			return script;
 		}
 	}
@@ -85,19 +104,33 @@ public class LuaScriptingManager : MonoBehaviour
 		}
 		catch (SyntaxErrorException ex)
 		{
-			Debug.Log("Syntax Error! " + ex.DecoratedMessage);
+			string message = "Syntax Error!\n" + ex.DecoratedMessage;
+			UIManager.ShowMessage(message, 5);
+			Debug.Log(message);
 		}
 		catch (InternalErrorException ex)
 		{
-			Debug.Log("An internal error occured! " + ex.DecoratedMessage);
+			string message = "Lua Interpreter Error!\n" + ex.DecoratedMessage;
+			UIManager.ShowMessage(message, 5);
+			Debug.Log(message);
 		}
 		catch (DynamicExpressionException ex)
 		{
-			Debug.Log("A dynamic expression error occured! " + ex.DecoratedMessage);
+			string message = "Dynamic Expression Error!\n" + ex.DecoratedMessage;
+			UIManager.ShowMessage(message, 5);
+			Debug.Log(message);
 		}
 		catch (ScriptRuntimeException ex)
 		{
-			Debug.Log("An error occured! " + ex.DecoratedMessage);
+			string message = "Runtime Error!\n" + ex.DecoratedMessage;
+			UIManager.ShowMessage(message, 5);
+			Debug.Log(message);
+		}
+		catch (System.Exception ex)
+		{
+			string message = "Stage Mechanic Engine Error!\n";
+			UIManager.ShowMessage(message, 5);
+			Debug.Log(ex.Message);
 		}
 		return null;
 	}

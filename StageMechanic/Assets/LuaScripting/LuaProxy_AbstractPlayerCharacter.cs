@@ -25,7 +25,7 @@ public class LuaProxy_AbstractPlayerCharacter
 		}
 	}
 
-	public Vector3 position
+	public Vector3 pos
 	{
 		get
 		{
@@ -94,30 +94,22 @@ public class LuaProxy_AbstractPlayerCharacter
 
 	public void set(string property, string value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value;
-		target.Properties = dic;
+		target.SetProperty(property, value);
 	}
 
 	public void set(string property, int value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value.ToString();
-		target.Properties = dic;
+		target.SetProperty(property, value.ToString());
 	}
 
 	public void set(string property, float value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value.ToString();
-		target.Properties = dic;
+		target.SetProperty(property, value.ToString());
 	}
 
 	public void set(string property, bool value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value.ToString();
-		target.Properties = dic;
+		target.SetProperty(property, value.ToString());
 	}
 
 	public void unset(string property)
