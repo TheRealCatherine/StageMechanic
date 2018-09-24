@@ -102,6 +102,7 @@ public class Cathy1Block : AbstractBlock
 				outline.OutlineColor = Color.red;
 				break;
 		}
+		base.OnBlockGroupChanged(newGroup);
 	}
 
 	public virtual void ApplyTheme( Cathy1BlockTheme theme )

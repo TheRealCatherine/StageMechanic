@@ -9,7 +9,7 @@ public class LuaScriptingManager : MonoBehaviour
 	public static LuaScriptingManager Instance;
 	public const string Keywords = @"\b(and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b";
 	public const string Classes = @"\b(blockmanager|itemmanager|playermanager|audiomanager|visualeffectsmanager|skyboxmanager|alert|coroutine|string|utf8|table|math|io|file|os|debug|vector3)\b";
-	public const string Variables = @"\b(block|item|player)\b";
+	public const string Variables = @"\b(block|item|player|PI)\b";
 	public const string Properties = @"\b(\.name|\.type|\.pos|\.weight|\.gravity|\.motionstate|\.grounded|\.group"
 		+ @"|blockmanager\.count|blockmanager\.types|itemmanager\.count|itemmanager\.types|playermanager\.count"
 		+ @"|\.owningblock|\.owningplayer|\.icon|\.collectable|\.uses|\.trigger|\.score"
@@ -40,6 +40,7 @@ public class LuaScriptingManager : MonoBehaviour
 		+ @"|os\.execute|os\.exit|os\.getenv|os\.remove|os\.rename|os\.setlocale|os\.tmpname"
 		+ @"|io\.close|io\.flush|io\.input|io\.lines|io\.open|io\.output|io\.popen|io\.read|io\.tmpfile|io\.type|io\.write|file:close|file:flush|file:lines|file:read|file:seek|file:setvbuf|file:write"
 		+ @"|debug\.debug|debug\.gethook|debug\.getinfo|debug\.getlocal|debug\.getmetatable|debug\.getregistry|debug\.getupvalue|debug\.getuservalue|debug\.sethook|debug\.setlocal|debug\.setmetatable|debug\.setupvalue|debug\.setuservalue|debug\.traceback|debug\.upvalueid|debug\.upvaluejoin"
+		+ @"|_ALERT|_ERRORMESSAGE|_INPUT|_OUTPUT|_STDERR|_STDIN|STDOUT|PROPMPT"
 		+ @"\b)";
 
 	public const string Types = @"\b(nil|boolean|number|string|userdata|function|thread|table)\b";
