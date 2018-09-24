@@ -189,7 +189,7 @@ public class CodeEditor : MonoBehaviour {
 				delta += 8;
             }
 
-			string comments = @"(\/\/.+?$|\/\*.+?\*\/)";   
+			string comments = @"(?s)--\[(=*)\[(.*?)\]\1\]";   
             MatchCollection commentMatches = Regex.Matches(input, comments, RegexOptions.Multiline);
 			delta = 0;
 			color = ColorUtility.ToHtmlStringRGB(commentColor);
@@ -202,7 +202,20 @@ public class CodeEditor : MonoBehaviour {
 				delta += 8;
             }
 
-            string strings = "\".+?\"";
+			string comment = @"(--.+?$)";
+			MatchCollection commenMatches = Regex.Matches(input, comment, RegexOptions.Multiline);
+			delta = 0;
+			color = ColorUtility.ToHtmlStringRGB(commentColor);
+
+			foreach (Match m in commenMatches)
+			{
+				input = input.Insert(m.Index + delta, "<#" + color + ">");
+				delta += 9;
+				input = input.Insert(m.Index + m.Length + delta, "</color>");
+				delta += 8;
+			}
+
+		string strings = "\".+?\"|'.+?'";
             MatchCollection stringMatches = Regex.Matches(input, strings);
 			delta = 0;
 			color = ColorUtility.ToHtmlStringRGB(stringColor);
