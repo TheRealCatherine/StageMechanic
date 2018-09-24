@@ -231,7 +231,19 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	/// <summary>
 	/// See <see cref="IBlock.GravityFactor"/>
 	/// </summary>
-	public float GravityFactor { get; set; } = 1.0f;
+	private float _gravityFactor = 1.0f;
+	public float GravityFactor
+	{
+		get
+		{
+			return _gravityFactor;
+		}
+		set
+		{
+			_gravityFactor = value;
+			GetComponent<Rigidbody>().drag = (1f / value) * 1.1f;
+		}
+	}
 
 	public float DensityFactor { get; set; } = 1.0f;
 
