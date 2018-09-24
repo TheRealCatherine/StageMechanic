@@ -31,6 +31,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	public string ScriptOnPlayerLeave;
 	public string ScriptOnGroupChange;
 	public string ScriptOnDestroy;
+	public string ScriptOnMotionStateChange;
 
 	#region Interface property implementations
 	/// <summary>
@@ -153,6 +154,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			ret.Add("OnGroupChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			ret.Add("OnPlayerEnter Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			ret.Add("OnPlayerLeave Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnMotionStateChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
 			ret.Add("Motion State", new DefaultValue { TypeInfo = typeof(string), Value = "Unknown" });
 			ret.Add("Rotation", new DefaultValue { TypeInfo = typeof(Quaternion), Value = Quaternion.identity.ToString() });
 			ret.Add("Fixed Rotation", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
@@ -178,6 +180,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ret.Add("OnPlayerEnter Script", ScriptOnPlayerEnter);
 			if (!string.IsNullOrWhiteSpace(ScriptOnPlayerLeave))
 				ret.Add("OnPlayerLeave Script", ScriptOnPlayerLeave);
+			if (!string.IsNullOrWhiteSpace(ScriptOnMotionStateChange))
+				ret.Add("OnMotionStateChange Script", ScriptOnMotionStateChange);
 			if (MotionState != BlockMotionState.Unknown)
 				ret.Add("Motion State", MotionStateName);
 			if (Rotation != Quaternion.identity)
@@ -205,6 +209,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ScriptOnPlayerEnter = value["OnPlayerEnter Script"];
 			if (value.ContainsKey("OnPlayerLeave Script"))
 				ScriptOnPlayerLeave = value["OnPlayerLeave Script"];
+			if (value.ContainsKey("OnMotionStateChange Script"))
+				ScriptOnMotionStateChange = value["OnMotionStateChange Script"];
 			if (value.ContainsKey("Motion State"))
 				MotionStateName = value["Motion State"];
 			if (value.ContainsKey("Fixed Rotation"))
@@ -287,13 +293,13 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	}
 
 	/// <summary>
-	/// This will be set to true only if the state is Falling in this implementation.
+	/// true if the block is in a state the player can stand on (but this includes hovering and sliding, so they might not be there long
 	/// </summary>
 	public virtual bool IsGrounded
 	{
 		get
 		{
-			return MotionState != BlockMotionState.Falling;
+			return MotionState == BlockMotionState.Grounded || MotionState == BlockMotionState.Edged || MotionState == BlockMotionState.GroupHover || MotionState == BlockMotionState.Hovering || MotionState == BlockMotionState.Moving || MotionState == BlockMotionState.Sliding;
 		}
 	}
 
@@ -894,7 +900,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		}
 		_startedHover = false;
 		_gravityDirty = true;
+		BlockMotionState oldState = MotionState;
 		MotionState = BlockMotionState.Falling;
+		OnMotionStateChanged(MotionState, oldState);
 	}
 	#endregion
 
@@ -913,6 +921,16 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				}
 			}
 		}
+		if (!string.IsNullOrWhiteSpace(ScriptOnMotionStateChange)) RunScriptOnMotionStateChange(newState,oldState);
+	}
+
+	protected virtual void RunScriptOnMotionStateChange(BlockMotionState newState, BlockMotionState oldState)
+	{
+		Script script = LuaScriptingManager.BaseScript;
+		DynValue block = UserData.Create(this);
+		script.Globals.Set("block", block);
+		//TODO old state
+		LuaScriptingManager.RunScript(script, ScriptOnMotionStateChange);
 	}
 
 	#region Block event handling
