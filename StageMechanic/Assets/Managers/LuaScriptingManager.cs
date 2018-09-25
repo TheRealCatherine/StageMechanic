@@ -14,7 +14,7 @@ public class LuaScriptingManager : MonoBehaviour
 		+ @"|blockmanager\.count|blockmanager\.types|itemmanager\.count|itemmanager\.types|playermanager\.count"
 		+ @"|\.owningblock|\.owningplayer|\.icon|\.collectable|\.uses|\.trigger|\.score"
 		+ @"|\.facing|\.allstates|\.state|\.item"
-		+ @"|\.x|\.y|\.z"
+		+ @"|\.x|\.y|\.z|\.down|\.up|\.left|\.right|\.zero"
 		+ @")\b";
 	public const string Functions = @"\b(assert|collectgarbage|error|_G|getmetatable|ipairs|next|pairs|pcall|print|rawequal|rawget|rawlen|rawset|select|setmetatable|ronumber|tostring|type|_VERSION|xpcall"
 		+ @"|coroutine\.create|coroutine\.isyieldable|coroutine\.resume|coroutine\.running|coroutine\.status|coroutine\.wrap|coroutine\.yield"
@@ -64,7 +64,7 @@ public class LuaScriptingManager : MonoBehaviour
 		UserData.RegisterProxyType<LuaProxy_SkyboxManager, SkyboxManager>(_ => new LuaProxy_SkyboxManager());
 		UserData.RegisterType<Sprite>();
 		UserData.RegisterType<Alert>();
-		UserData.RegisterType<VectorMath>();
+		UserData.RegisterType<LuaVector3>();
 		LuaCustomConverters.RegisterAll();
 	}
 
@@ -79,7 +79,7 @@ public class LuaScriptingManager : MonoBehaviour
 			DynValue audioEffectsManager = UserData.Create(AudioEffectsManager.Instance);
 			DynValue skyboxManager = UserData.Create(SkyboxManager.Instance);
 			DynValue alert = UserData.Create(new Alert());
-			DynValue vectormath = UserData.Create(new VectorMath());
+			DynValue vectormath = UserData.Create(new LuaVector3());
 			script.Globals.Set("blockmanager", blockManager);
 			script.Globals.Set("itemmanager", itemManager);
 			script.Globals.Set("playermanager", playerManager);

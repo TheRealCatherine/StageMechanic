@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VectorMath 
+public class LuaVector3 
 {
+
+	public static readonly Vector3 up = Vector3.up;
+	public static readonly Vector3 down = Vector3.down;
+	public static readonly Vector3 left = Vector3.left;
+	public static readonly Vector3 right = Vector3.right;
+	public static readonly Vector3 zero = Vector3.zero;
 
 	public Vector3 add(Vector3 first, Vector3 second)
 	{
