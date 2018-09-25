@@ -96,7 +96,14 @@ public class LuaProxy_AbstractItem
 
 	public string get(string property)
 	{
-		return target.Properties[property];
+		Dictionary<string, string> props = target.Properties;
+		if (props.ContainsKey(property))
+			return props[property];
+		else if (target.DefaultProperties.ContainsKey(property))
+			return target.DefaultProperties[property].Value;
+		else
+			return "";
+		//TODO user properties and maybe throw error
 	}
 
 	public Sprite icon

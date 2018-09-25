@@ -149,12 +149,12 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		get
 		{
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
-			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnGroupChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnPlayerEnter Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnPlayerLeave Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnMotionStateChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
+			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnGroupChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnPlayerEnter Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnPlayerLeave Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnMotionStateChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
 			ret.Add("Motion State", new DefaultValue { TypeInfo = typeof(string), Value = "Unknown" });
 			ret.Add("Rotation", new DefaultValue { TypeInfo = typeof(Quaternion), Value = Quaternion.identity.ToString() });
 			ret.Add("Fixed Rotation", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });

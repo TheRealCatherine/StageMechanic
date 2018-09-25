@@ -11,6 +11,11 @@ public class LuaVector3
 	public static readonly Vector3 right = Vector3.right;
 	public static readonly Vector3 zero = Vector3.zero;
 
+	public Vector3 reverse(Vector3 vector)
+	{
+		return new Vector3(-vector.x, -vector.y, -vector.z);
+	}
+
 	public Vector3 add(Vector3 first, Vector3 second)
 	{
 		return first + second;

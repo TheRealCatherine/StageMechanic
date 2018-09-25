@@ -95,7 +95,9 @@ public class PropertiesDialog : MonoBehaviour {
 			if (prop != null)
 			{
 				string value = prop.Value;
-				if (!string.IsNullOrWhiteSpace(value))
+				//TODO maybe we should set it baed on the default? This is to fix when you delete a script
+				//but it doesn't dissapear
+				if ((!string.IsNullOrWhiteSpace(value)) || prop.PropertyName.EndsWith(" Script"))
 					properties.Add(prop.PropertyName, value);
 			}
 		}

@@ -217,15 +217,15 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		{
 
 			Dictionary<string, DefaultValue> ret = new Dictionary<string, DefaultValue>();
-			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnBlockDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnPlayerActivate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnPlayerContact Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnEnemyContact Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("OnGameModeChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = "" });
-			ret.Add("Owning Block", new DefaultValue { TypeInfo = typeof(string), Value = "" });
-			ret.Add("Owning Player", new DefaultValue { TypeInfo = typeof(string), Value = "" });
+			ret.Add("OnCreate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnBlockDestroy Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnPlayerActivate Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnPlayerContact Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnEnemyContact Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("OnGameModeChange Script", new DefaultValue { TypeInfo = typeof(MultilinePlaintext), Value = null });
+			ret.Add("Owning Block", new DefaultValue { TypeInfo = typeof(string), Value = null });
+			ret.Add("Owning Player", new DefaultValue { TypeInfo = typeof(string), Value = null });
 			ret.Add("Collectable", new DefaultValue { TypeInfo = typeof(bool), Value = "True" });
 			ret.Add("Uses", new DefaultValue { TypeInfo = typeof(int), Value = "1" });
 			ret.Add("Trigger", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
