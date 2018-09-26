@@ -20,6 +20,8 @@ public class BlockBinaryDelegate
 	public float PositionZ;
 	public string[] PropertyKeys;
 	public string[] PropertyValues;
+	public string[] CustomPropertyKeys;
+	public string[] CustomPropertyValues;
 
 	public BlockBinaryDelegate(IBlock block)
 	{
@@ -36,6 +38,11 @@ public class BlockBinaryDelegate
 		Dictionary<string, string> properties = block.Properties;
 		PropertyKeys = properties.Keys.ToArray();
 		PropertyValues = properties.Values.ToArray();
+		if(abfab.CustomProperties != null)
+		{
+			CustomPropertyKeys = abfab.CustomProperties.Keys.ToArray();
+			CustomPropertyValues = abfab.CustomProperties.Values.ToArray();
+		}
 	}
 
 	[OnDeserialized]
@@ -50,5 +57,15 @@ public class BlockBinaryDelegate
 			properties.Add(PropertyKeys[i], PropertyValues[i]);
 		}
 		newBlock.Properties = properties;
+
+		if(CustomPropertyKeys != null)
+		{
+			Dictionary<string, string> customProperties = new Dictionary<string, string>();
+			for (int i = 0; i < CustomPropertyKeys.Length; ++i)
+			{
+				customProperties.Add(CustomPropertyKeys[i], CustomPropertyValues[i]);
+			}
+			(newBlock as AbstractBlock).CustomProperties = customProperties;
+		}
 	}
 }

@@ -198,6 +198,81 @@ public class PropertiesDialog : MonoBehaviour {
 		RefreshItems();
 	}
 
+	private void PopulateBuiltinProperties()
+	{
+		foreach (KeyValuePair<string, DefaultValue> property in Target.DefaultProperties.Reverse())
+		{
+			Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text;
+			addedFields.Add(label.gameObject);
+			label.text = property.Key;
+
+			GameObject fieldPrefab = null;
+			foreach (IPropertyField type in FieldTypes)
+			{
+				if (property.Value.TypeInfo == type.FieldType)
+				{
+					fieldPrefab = type.GameObject;
+					break;
+				}
+			}
+			if (fieldPrefab == null)
+				fieldPrefab = ListStringFieldPrefab.gameObject;
+
+			IPropertyField stringField = Instantiate(fieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
+			addedFields.Add(stringField.GameObject);
+			stringField.Placeholder = property.Value.Value;
+			stringField.PropertyName = property.Key;
+			stringField.PropertyDefault = property.Value.Value;
+
+			foreach (KeyValuePair<string, string> setProperty in Target.Properties)
+			{
+				if (setProperty.Key == property.Key)
+					stringField.Value = setProperty.Value;
+			}
+		}
+	}
+
+	private void PopulateCustomProperties()
+	{
+		Dictionary<string, string> list;
+		if (CurrentBlock != null)
+			list = (CurrentBlock as AbstractBlock).CustomProperties;
+		else
+			list = (CurrentItem as AbstractItem).CustomProperties;
+		//TODO add this to an interface
+
+		if (list is null)
+			return;
+
+		foreach (KeyValuePair<string, string> property in list)
+		{
+			Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text;
+			addedFields.Add(label.gameObject);
+			label.text = property.Key;
+
+			GameObject fieldPrefab = null;
+			foreach (IPropertyField type in FieldTypes)
+			{
+				//TODO support non-string custom fields
+				if (typeof(string) == type.FieldType)
+				{
+					fieldPrefab = type.GameObject;
+					break;
+				}
+			}
+			if (fieldPrefab == null)
+				fieldPrefab = ListStringFieldPrefab.gameObject;
+
+			IPropertyField stringField = Instantiate(fieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
+			addedFields.Add(stringField.GameObject);
+			stringField.Placeholder = "Custom Property";
+			stringField.PropertyName = property.Key;
+			stringField.PropertyDefault = null;
+			stringField.Value = property.Value;
+		}
+
+	}
+
 	private void RefreshBlocks()
 	{
 		if (CurrentBlock != null)
@@ -211,36 +286,8 @@ public class PropertiesDialog : MonoBehaviour {
 			PosYField.text = CurrentBlock.Position.y.ToString();
 			PosZField.text = CurrentBlock.Position.z.ToString();
 
-			foreach (KeyValuePair<string, DefaultValue> property in CurrentBlock.DefaultProperties.Reverse())
-			{
-				Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text;
-				addedFields.Add(label.gameObject);
-				label.text = property.Key;
-
-				GameObject fieldPrefab = null;
-				foreach (IPropertyField type in FieldTypes)
-				{
-					if (property.Value.TypeInfo == type.FieldType)
-					{
-						fieldPrefab = type.GameObject;
-						break;
-					}
-				}
-				if (fieldPrefab == null)
-					fieldPrefab = ListStringFieldPrefab.gameObject;
-
-				IPropertyField stringField = Instantiate(fieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
-				addedFields.Add(stringField.GameObject);
-				stringField.Placeholder = property.Value.Value;
-				stringField.PropertyName = property.Key;
-				stringField.PropertyDefault = property.Value.Value;
-
-				foreach (KeyValuePair<string, string> setProperty in CurrentBlock.Properties)
-				{
-					if (setProperty.Key == property.Key)
-						stringField.Value = setProperty.Value;
-				}
-			}
+			PopulateCustomProperties();
+			PopulateBuiltinProperties();
 		}
 	}
 	
@@ -256,40 +303,7 @@ public class PropertiesDialog : MonoBehaviour {
 			PosYField.text = CurrentItem.Position.y.ToString();
 			PosZField.text = CurrentItem.Position.z.ToString();
 
-			foreach (KeyValuePair<string, DefaultValue> property in CurrentItem.DefaultProperties.Reverse())
-			{
-				if (string.IsNullOrWhiteSpace(property.Key))
-					continue;
-				Text label = Instantiate(ListLabelPrefab, PropertyList.transform) as Text;
-				addedFields.Add(label.gameObject);
-				label.text = property.Key;
-
-
-				GameObject fieldPrefab = null;
-				foreach (IPropertyField type in FieldTypes)
-				{
-					if (property.Value.TypeInfo == type.FieldType)
-					{
-						fieldPrefab = type.GameObject;
-						break;
-					}
-				}
-				if (fieldPrefab == null)
-					fieldPrefab = ListStringFieldPrefab.gameObject;
-
-				IPropertyField stringField = Instantiate(fieldPrefab, PropertyList.transform).GetComponent<IPropertyField>();
-				addedFields.Add(stringField.GameObject);
-				stringField.Placeholder = property.Value.Value;
-				stringField.PropertyName = property.Key;
-				stringField.PropertyDefault = property.Value.Value;
-
-				foreach (KeyValuePair<string, string> setProperty in CurrentItem.Properties)
-				{
-					if (setProperty.Key == property.Key)
-						stringField.Value = setProperty.Value;
-				}
-			}
-
+			PopulateBuiltinProperties();
 		}
 	}
 

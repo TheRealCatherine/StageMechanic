@@ -127,7 +127,7 @@ public class LuaProxy_AbstractPlayerCharacter
 		//else if (target.DefaultProperties.ContainsKey(property))
 		//	return target.DefaultProperties[property].Value;
 		else
-			return "";
+			return null;
 		//TODO user properties and maybe throw error
 	}
 

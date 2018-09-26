@@ -23,7 +23,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	public string ScriptOnPlayerContact;
 	public string ScriptOnEnemyContact;
 	public string ScriptOnGameModeChange;
-
+	public Dictionary<string, string> CustomProperties;
 
 
 	#region Interface property implementations
@@ -275,7 +275,7 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 			if (value.ContainsKey("OnDestroy Script"))
 				ScriptOnDestroy = value["OnDestroy Script"];
 			if (value.ContainsKey("OnBlockDestroy Script"))
-				ScriptOnBlockDestroy = value["OnBlockDestory Script"];
+				ScriptOnBlockDestroy = value["OnBlockDestroy Script"];
 			if (value.ContainsKey("OnPlayerActivate Script"))
 				ScriptOnPlayerActivate = value["OnPlayerActivate Script"];
 			if (value.ContainsKey("OnPlayerContact Script"))
@@ -299,6 +299,21 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 	}
 
+	public void SetProperty(string name, string value)
+	{
+		if (DefaultProperties.ContainsKey(name))
+		{
+			Dictionary<string, string> dict = new Dictionary<string, string>(1);
+			dict.Add(name, value);
+			Properties = dict;
+		}
+		else
+		{
+			if (CustomProperties is null)
+				CustomProperties = new Dictionary<string, string>();
+			CustomProperties[name] = value;
+		}
+	}
 	/// <summary>
 	/// Ensure owning block/player has been created when deserializing.
 	/// </summary>

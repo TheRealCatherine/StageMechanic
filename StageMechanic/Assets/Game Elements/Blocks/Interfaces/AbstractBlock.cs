@@ -33,6 +33,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	public string ScriptOnDestroy;
 	public string ScriptOnMotionStateChange;
 
+	public Dictionary<string, string> CustomProperties;
+
 	#region Interface property implementations
 	/// <summary>
 	/// Synonym/passthrough for GameObject.name
@@ -221,6 +223,22 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
 			if (value.ContainsKey("Block Group"))
 				BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
+		}
+	}
+
+	public void SetProperty(string name, string value)
+	{
+		if (DefaultProperties.ContainsKey(name))
+		{
+			Dictionary<string, string> dict = new Dictionary<string, string>(1);
+			dict.Add(name, value);
+			Properties = dict;
+		}
+		else
+		{
+			if (CustomProperties is null)
+				CustomProperties = new Dictionary<string, string>();
+			CustomProperties[name] = value;
 		}
 	}
 

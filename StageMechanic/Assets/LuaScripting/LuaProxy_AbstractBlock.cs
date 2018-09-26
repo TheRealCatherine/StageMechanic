@@ -163,35 +163,30 @@ public class LuaProxy_AbstractBlock
 
 	public void set(string property, string value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value;
-		target.Properties = dic;
+		target.SetProperty(property, value);
 	}
 
 	public void set(string property, int value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value.ToString();
-		target.Properties = dic;
+		target.SetProperty(property, value.ToString());
 	}
 
 	public void set(string property, float value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value.ToString();
-		target.Properties = dic;
+		target.SetProperty(property, value.ToString());
 	}
 
 	public void set(string property, bool value)
 	{
-		Dictionary<string, string> dic = target.Properties;
-		dic[property] = value.ToString();
-		target.Properties = dic;
+		target.SetProperty(property, value.ToString());
 	}
 
 	public void unset(string property)
 	{
-		set(property,target.DefaultProperties[property].Value);
+		if (target.DefaultProperties.ContainsKey(property))
+			set(property, target.DefaultProperties[property].Value);
+		else if (target.CustomProperties != null && target.CustomProperties.ContainsKey(property))
+			target.CustomProperties.Remove(property);
 	}
 
 	public string get(string property)
@@ -201,8 +196,10 @@ public class LuaProxy_AbstractBlock
 			return props[property];
 		else if (target.DefaultProperties.ContainsKey(property))
 			return target.DefaultProperties[property].Value;
+		else if (target.CustomProperties != null && target.CustomProperties.ContainsKey(property))
+			return target.CustomProperties[property];
 		else
-			return "";
+			return null;
 		//TODO user properties and maybe throw error
 	}
 

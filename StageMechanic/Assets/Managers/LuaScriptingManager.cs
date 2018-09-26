@@ -16,7 +16,7 @@ public class LuaScriptingManager : MonoBehaviour
 		+ @"|\.facing|\.allstates|\.state|\.item"
 		+ @"|\.x|\.y|\.z|\.down|\.up|\.left|\.right|\.zero"
 		+ @")\b";
-	public const string Functions = @"\b(assert|collectgarbage|error|_G|getmetatable|ipairs|next|pairs|pcall|print|rawequal|rawget|rawlen|rawset|select|setmetatable|ronumber|tostring|type|_VERSION|xpcall"
+	public const string Functions = @"\b(assert|collectgarbage|error|_G|getmetatable|ipairs|next|pairs|pcall|print|rawequal|rawget|rawlen|rawset|select|setmetatable|tonumber|tostring|type|_VERSION|xpcall"
 		+ @"|coroutine\.create|coroutine\.isyieldable|coroutine\.resume|coroutine\.running|coroutine\.status|coroutine\.wrap|coroutine\.yield"
 		+ @"|package\.congig|package\.cpath|package\.loaded|package\.loadlib|package\.path|package\.preload|package\.searchers|package\.searchpath" 
 		+ @"|string\.byte|string\.char|string\.dump|string\.find|string\.format|string\.gmatch|string\.gsub|string\.len|string\.lower|string\.match|string\.pack|string\.packsize|string\.rep|string\.reverse|string\.sub|string\.unpack|string\.upper"

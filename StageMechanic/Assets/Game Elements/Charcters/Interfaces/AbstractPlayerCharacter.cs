@@ -110,6 +110,7 @@ public abstract class AbstractPlayerCharacter : MonoBehaviour, IPlayerCharacter
 	/// <param name="value"></param>
 	public void SetProperty(string name, string value)
 	{
+		//TODO custom properties
 		Dictionary<string, string> dict = new Dictionary<string, string>(1);
 		dict.Add(name, value);
 		Properties = dict;

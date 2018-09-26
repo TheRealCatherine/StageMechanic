@@ -20,6 +20,7 @@ public class ItemJsonDelegate
 	internal Vector3 _pos;
 	internal string _palette = null;
 	internal Dictionary<string, string> _properties;
+	internal Dictionary<string, string> _customProperties;
 
 	public ItemJsonDelegate(IItem itemToSerialize)
 	{
@@ -110,6 +111,29 @@ public class ItemJsonDelegate
 		}
 	}
 
+	[DataMember(Name = "CustomProperties", Order = 110)]
+	public List<PropertyJsonDelegate> CustomProperties
+	{
+		get
+		{
+			Debug.Assert(Item != null);
+			List<PropertyJsonDelegate> properties = new List<PropertyJsonDelegate>();
+			foreach (KeyValuePair<string, string> item in (Item as AbstractItem).CustomProperties)
+				properties.Add(new PropertyJsonDelegate(item));
+			return properties;
+		}
+		set
+		{
+			if (value != null)
+			{
+				Dictionary<string, string> properties = new Dictionary<string, string>();
+				foreach (PropertyJsonDelegate property in value)
+					properties.Add(property.Key, property.Value);
+				_customProperties = properties;
+			}
+		}
+	}
+
 	[OnDeserialized()]
 	internal void OnDeserialedMethod(StreamingContext context)
 	{
@@ -120,5 +144,6 @@ public class ItemJsonDelegate
 		newItem.Name = _name;
 		if (_properties != null && _properties.Count > 0)
 			newItem.Properties = _properties;
+		(newItem as AbstractItem).CustomProperties = _customProperties;
 	}
 }

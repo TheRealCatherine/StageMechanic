@@ -19,6 +19,8 @@ public class ItemBinaryDelegate
 	public float PositionZ;
 	public string[] PropertyKeys;
 	public string[] PropertyValues;
+	public string[] CustomPropertyKeys;
+	public string[] CustomPropertyValues;
 	public string Palette;
 	public string TypeName;
 	public string Name;
@@ -42,6 +44,11 @@ public class ItemBinaryDelegate
 		Palette = ev.Palette;
 		TypeName = ev.TypeName;
 		Name = ev.Name;
+		if (ev.CustomProperties != null)
+		{
+			CustomPropertyKeys = ev.CustomProperties.Keys.ToArray();
+			CustomPropertyValues = ev.CustomProperties.Values.ToArray();
+		}
 	}
 
 	[OnDeserialized]
@@ -56,6 +63,16 @@ public class ItemBinaryDelegate
 		newItem.Name = Name;
 		if (properties != null && properties.Count > 0)
 			newItem.Properties = properties;
+
+		if (CustomPropertyKeys != null)
+		{
+			Dictionary<string, string> customProperties = new Dictionary<string, string>();
+			for (int i = 0; i < CustomPropertyKeys.Length; ++i)
+			{
+				customProperties.Add(CustomPropertyKeys[i], CustomPropertyValues[i]);
+			}
+			(newItem as AbstractItem).CustomProperties = customProperties;
+		}
 	}
 }
 

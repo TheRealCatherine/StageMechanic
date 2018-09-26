@@ -61,6 +61,11 @@ public class LuaProxy_BlockManager
 		return false;	
 	}
 
+	public AbstractBlock find(string name)
+	{
+		return GameObject.Find(name)?.GetComponent<AbstractBlock>();
+	}
+
 	public List<AbstractBlock> getall(string type = null)
 	{
 		return BlockManager.GetBlocksOfType(type).Cast<AbstractBlock>().ToList();
