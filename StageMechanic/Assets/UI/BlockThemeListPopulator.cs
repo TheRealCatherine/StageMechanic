@@ -2,12 +2,14 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ThemeListPopulator : MonoBehaviour {
+public class BlockThemeListPopulator : MonoBehaviour {
 
 	//TODO make this generic
+	//TODO combine this with the item one
 	public Cathy1BlockFactory Cathy1BlockFactory;
 	public Button ButtonPrefab;
 	public BlockTypeScrollBoxPopulator BlockList;
+	public ScrollRect Box;
 
 	void Start()
 	{
@@ -36,7 +38,7 @@ public class ThemeListPopulator : MonoBehaviour {
 			{
 				Cathy1BlockFactory.ApplyTheme(theme);
 				BlockList.Repopulate();
-				UIManager.Instance.BlockThemeDialog.SetActive(false);
+				Box.gameObject.SetActive(false);
 				return;
 			}
 		}
