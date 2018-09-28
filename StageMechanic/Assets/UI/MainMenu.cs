@@ -182,8 +182,8 @@ public class MainMenu : MonoBehaviour
 		//TODO don't zero the score for this
 		GameManager.PlayerScores[0] = 0;
 		if (BlockManager.BlockCount == 0) {
-			//if (!UIManager.Instance.ShowOnscreenControlls)
-			//	UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
+			if (!UIManager.Instance.ShowOnscreenControlls)
+				UIManager.ShowMessage("Use arrow keys, comma, and period to move the cursor");
 			gameObject.SetActive(false);
 			if (BlockManager.PlayMode)
 				BlockManager.Instance.TogglePlayMode();

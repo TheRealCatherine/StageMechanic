@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c1546161c5e8541a26c06e13a0c301, type: 3}
+  m_Name: Cat5 Halloween Item Theme
+  m_EditorClassIdentifier: 
+  Name: Placeholder Theme
+  Icon: {fileID: 21300000, guid: 9757cf8451ed862498136f102f673fd6, type: 3}
+  Alcohol: 0
+  Drugs: 0
+  Sexuality: 0
+  IntenseSexuality: 0
+  Gambling: 0
+  MatureLanguage: 0
+  MatureHumor: 0
+  Blood: 0
+  Gore: 0
+  ComicMiscief: 0
+  CartoonViolence: 0
+  FantasyViolence: 0
+  IntenseViolence: 0
+  SexualViolence: 0
+  PlayerStartPlaceholder: {fileID: 1710421898612386, guid: aa732d91b474c3d40819015c0b5f0a92, type: 3}
+  PlayerStartObject: {fileID: 0}
+  PlayerAvatar: {fileID: 1215896293952690, guid: b1fc4e6ba2e2b2a49bfffa6d4ce43973, type: 3}
+  Player2StartPlaceholder: {fileID: 1086069087686138, guid: 5d02c224ef5968147a750ddb556c715a, type: 3}
+  Player2StartObject: {fileID: 0}
+  Player2Avatar: {fileID: 1215896293952690, guid: 6d5d2269eb661d842bec8d5da19fc747, type: 3}
+  Player3StartPlaceholder: {fileID: 1001550540044334, guid: d261be730948fc442b0252e361f26c66, type: 3}
+  Player3StartObject: {fileID: 0}
+  Player3Avatar: {fileID: 1215896293952690, guid: 9e1ecf5509bc5054f8ec18edffe28e76, type: 3}
+  PlayerStartIcon: {fileID: 21300000, guid: 4cb0ec8709eaad947abd8480ff5f14b2, type: 3}
+  GoalPlaceholder: {fileID: 0}
+  GoalObject: {fileID: 0}
+  GoalIcon: {fileID: 0}
+  CheckpointPlaceholder: {fileID: 0}
+  CheckpointObject: {fileID: 0}
+  CheckpointIcon: {fileID: 0}
+  EnemySpawnPlaceholder: {fileID: 0}
+  EnemySpawnObject: {fileID: 0}
+  EnemySpawnIcon: {fileID: 0}
+  SectionSpawnPlaceholder: {fileID: 0}
+  SectionSpawnObject: {fileID: 0}
+  SectionSpawnIcon: {fileID: 0}
+  PlatformMovePlaceholder: {fileID: 0}
+  PlatformMoveObject: {fileID: 0}
+  PlatformMoveIcon: {fileID: 0}
+  StoryPlaceholder: {fileID: 0}
+  StoryObject: {fileID: 0}
+  StoryIcon: {fileID: 0}
+  BossStatePlaceholder: {fileID: 0}
+  BossStateObject: {fileID: 0}
+  BossStateIcon: {fileID: 0}
+  CoinPlaceholder: {fileID: 1919725532536798, guid: 84db12376f2067c478ebfc3b1fcfa989, type: 3}
+  CoinObject: {fileID: 1919725532536798, guid: 84db12376f2067c478ebfc3b1fcfa989, type: 3}
+  CoinIcon: {fileID: 21300000, guid: e0dfa603f1dea7e49bedfe1269a87100, type: 3}
+  SpecialCollectableObject1: {fileID: 1907135363936256, guid: 8526c7a1cf9a1c749936d6c80e84c3e7, type: 3}
+  SpecialCollectableObject2: {fileID: 1305954340334282, guid: 819d0d7f03e4ece45a28e91f984a0185, type: 3}
+  SpecialCollectableObject3: {fileID: 1923206454498984, guid: e782e7537d461604ba346b1d11f4b45b, type: 3}
+  SpecialCollectableObject4: {fileID: 1599919366821504, guid: dc654fad02a3ef94cba9705fe0e10ca0, type: 3}
+  SpecialCollectableIcon1: {fileID: 21300000, guid: 7e7828c3c01535546b9001b788499433, type: 3}
+  SpecialCollectableIcon2: {fileID: 21300000, guid: 29dd73abd8bc5fb4abe33ffd79ee1b4e, type: 3}
+  SpecialCollectableIcon3: {fileID: 21300000, guid: 84352bf64a5565d40b0ec2303c0b9765, type: 3}
+  SpecialCollectableIcon4: {fileID: 21300000, guid: 7e2c05a710b69d34c91ba5c346fd7e55, type: 3}
+  CreateBasicBlocksPlaceholder: {fileID: 1190030644376734, guid: 0121abbbc30940a4487f3dd8d4da792b, type: 3}
+  CreateBasicBlockObject: {fileID: 1190030644376734, guid: 0121abbbc30940a4487f3dd8d4da792b, type: 3}
+  CreateBlockAnimation: {fileID: 19800002, guid: a89abc0d2591545288f4c041059ae633, type: 3}
+  CreateBasicBlocksIcon: {fileID: 21300000, guid: b5e24376adb814f448d05de471091f4a, type: 3}
+  CreateImmobileBlocksPlaceholder: {fileID: 1626968916591160, guid: 091fe98bb79505743809166a378f76c2, type: 3}
+  CreateImmobileBlockObject: {fileID: 1626968916591160, guid: 091fe98bb79505743809166a378f76c2, type: 3}
+  CreateImmobileBlocksIcon: {fileID: 21300000, guid: 2eddab649fd595144a18113700036d3a, type: 3}
+  EnemyRemovalPlaceholder: {fileID: 1750586709520680, guid: 7543980c62947ac42b800af0cde0a47a, type: 3}
+  EnemyRemovalObject: {fileID: 1750586709520680, guid: 7543980c62947ac42b800af0cde0a47a, type: 3}
+  EnemyRemovalAnimation: {fileID: 19800004, guid: 44dd4fdbb6f10429a844c51183a4c84e, type: 3}
+  EnemyRemovalIcon: {fileID: 21300000, guid: cc0c061f67f82c54989653851a90424a, type: 3}
+  OneUpPlaceholder: {fileID: 1599919366821504, guid: dc654fad02a3ef94cba9705fe0e10ca0, type: 3}
+  OneUpObject: {fileID: 1599919366821504, guid: dc654fad02a3ef94cba9705fe0e10ca0, type: 3}
+  OneUpIcon: {fileID: 21300000, guid: edaca666263bb6c409ba16c5c3ee34ff, type: 3}
+  XFactorPlaceholder: {fileID: 4901868381507672886, guid: a3f69a87d0886c4499e7b78709c327ac, type: 3}
+  XFactorObject: {fileID: 4901868381507672886, guid: a3f69a87d0886c4499e7b78709c327ac, type: 3}
+  XFactorActiveAudio: {fileID: 8300000, guid: 922e6632a7f29aa4b83d62ce259e0749, type: 3}
+  XFactorActiveAnimation: {fileID: 19800000, guid: 391ec6f1311384e75b4888fd6fc26b7e, type: 3}
+  XFactorIcon: {fileID: 21300006, guid: 9e579bc1a6dea1146a0144f1f21d5cce, type: 3}
+  SpecialBlockRemoverPlaceholder: {fileID: 6273127695485373491, guid: 115f2fdb82e34254589de7962a278ea4, type: 3}
+  SpecialBlockRemoverObject: {fileID: 6273127695485373491, guid: 115f2fdb82e34254589de7962a278ea4, type: 3}
+  SpecialBlockRemoverAnimation: {fileID: 19800004, guid: bcf46e46336114145b09deb1db11d480, type: 3}
+  SpecialBlockRemoverIcon: {fileID: 21300002, guid: 9e579bc1a6dea1146a0144f1f21d5cce, type: 3}
+  StopwatchPlaceholder: {fileID: 0}
+  StopwatchObject: {fileID: 0}
+  StopwatchIcon: {fileID: 0}
+  ItemStealPlaceholder: {fileID: 0}
+  ItemStelObject: {fileID: 0}
+  ItemStealIcon: {fileID: 0}
+  ItemRandomizerPlaceholder: {fileID: 0}
+  ItemRandomizerObject: {fileID: 0}
+  ItemRandomizerIcon: {fileID: 0}
+  FrisbeePlaceholder: {fileID: 0}
+  FrisbeeObject: {fileID: 0}
+  FrisbeeIcon: {fileID: 0}

@@ -14962,6 +14962,10 @@ PrefabInstance:
       propertyPath: Themes.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114712924106512534, guid: c702a19f99f09d84784952184e9c1adf, type: 3}
+      propertyPath: Themes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4408721821948828, guid: c702a19f99f09d84784952184e9c1adf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15054,6 +15058,14 @@ PrefabInstance:
       propertyPath: Items.Array.data[11]
       value: 
       objectReference: {fileID: 114270412628627442, guid: f1289044d837d1d42af9589b7078ae33, type: 3}
+    - target: {fileID: 114712924106512534, guid: c702a19f99f09d84784952184e9c1adf, type: 3}
+      propertyPath: Themes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b516454063d59e44295ac03234405751, type: 2}
+    - target: {fileID: 114712924106512534, guid: c702a19f99f09d84784952184e9c1adf, type: 3}
+      propertyPath: CurrentTheme
+      value: 
+      objectReference: {fileID: 11400000, guid: b516454063d59e44295ac03234405751, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c702a19f99f09d84784952184e9c1adf, type: 3}
 --- !u!1 &849027277
