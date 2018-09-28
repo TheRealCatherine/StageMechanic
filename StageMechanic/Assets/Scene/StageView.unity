@@ -4983,19 +4983,19 @@ PrefabInstance:
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[4]
       value: 
-      objectReference: {fileID: 2100000, guid: 20d4f77b9022eab48b4d94599ed4bf82, type: 2}
+      objectReference: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[5]
       value: 
-      objectReference: {fileID: 2100000, guid: f15c336556dd74f40aaca655f7767970, type: 2}
+      objectReference: {fileID: 2100000, guid: 39489e6a7fe27b04190bb9d0ce8a7724, type: 2}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[6]
       value: 
-      objectReference: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+      objectReference: {fileID: 2100000, guid: 54fed8cadee450e4285219103c828a13, type: 2}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[7]
       value: 
-      objectReference: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[8]
       value: 
@@ -5007,7 +5007,7 @@ PrefabInstance:
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[10]
       value: 
-      objectReference: {fileID: 2100000, guid: fe7585ebc43b1dc4d9c89c8d9dc0e47a, type: 2}
+      objectReference: {fileID: 2100000, guid: 6ecf57427d8881940b7379e1399fdefe, type: 2}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[11]
       value: 
@@ -5015,7 +5015,7 @@ PrefabInstance:
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Skyboxes.Array.data[3]
       value: 
-      objectReference: {fileID: 2100000, guid: d9dca9ae1786c394f9e79c637aa9a7bf, type: 2}
+      objectReference: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: Clips.Array.data[3]
       value: 
@@ -5072,6 +5072,18 @@ PrefabInstance:
       propertyPath: BasicPlatformPrefab
       value: 
       objectReference: {fileID: 139376506117407693, guid: af3bffe70d995e34aa3da26b52a2da39, type: 3}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
+      propertyPath: Skyboxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
+      propertyPath: Skyboxes.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 50199f2ae12c631498aab8b60b56adf7, type: 2}
+    - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
+      propertyPath: Skyboxes.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: d9dca9ae1786c394f9e79c637aa9a7bf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
 --- !u!1 &241227834
