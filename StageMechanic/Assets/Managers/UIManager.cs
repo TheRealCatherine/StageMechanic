@@ -56,6 +56,8 @@ public class UIManager : MonoBehaviour
 
 	public TooltipDisplay TooltipDisplay;
 
+	public HamburgerMenuButton HamburgerMenuButton;
+
 	//TODO Singleton flame war
 	public static UIManager Instance;
 	public static bool IsSinglePlayerDeathDialogOpen

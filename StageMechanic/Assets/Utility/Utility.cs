@@ -142,6 +142,11 @@ public static class Utility
 		  .Select(s => s[random.Next(s.Length)]).ToArray());
 	}
 
+	public static bool IsPrefab(this GameObject a_Object)
+	{
+		return a_Object.scene.rootCount == 0;
+	}
+
 #if ENABLE_UNSAFE
 	static unsafe TDest ReinterpretCast<TSource, TDest>(TSource source)
 	{
