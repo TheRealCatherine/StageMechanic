@@ -11,5 +11,6 @@ public class ShowMainMenu : MonoBehaviour {
 	public void onButtonClicked()
     {
         UIManager.ToggleMainMenu();
+		UIManager.Instance.HamburgerMenuButton.HideMenu();
     }
 }

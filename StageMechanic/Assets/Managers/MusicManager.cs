@@ -17,12 +17,14 @@ public class MusicManager : MonoBehaviour {
 
 	private void Start()
 	{
-		Instance = this;
+
 	}
 
 	//Using Awake instead of Start so that label on menu is updated during proram load
 	void Awake () {
-        Player.volume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
+		Instance = this;
+
+		Player.volume = PlayerPrefs.GetFloat("MusicVolume", 0.2f);
         if (PlayerPrefs.HasKey("MusicTrackIndex"))
             StartCoroutine(Play(PlayerPrefs.GetInt("MusicTrackIndex")));
         else

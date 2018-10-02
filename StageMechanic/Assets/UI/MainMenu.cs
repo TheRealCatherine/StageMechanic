@@ -43,6 +43,14 @@ public class MainMenu : MonoBehaviour
 	public Dropdown PrincessLevel;
 	public GameObject LevelSelectPanel;
 
+	public GameObject SplashScreen;
+
+	public void Start()
+	{
+		if(SplashScreen != null)
+			SplashScreen.SetActive(true);
+	}
+
 	private void OnEnable()
 	{
 		BlockManager.Cursor?.SetActive(false);
