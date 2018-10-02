@@ -38,7 +38,7 @@ public class ItemThemeListPopulator : MonoBehaviour {
 			{
 				Cat5ItemFactory.ApplyTheme(theme);
 				ItemList.Repopulate();
-				Box.gameObject.SetActive(false);
+				//Box.gameObject.SetActive(false);
 				return;
 			}
 		}

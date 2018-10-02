@@ -10,7 +10,7 @@ public class SplashScreen : MonoBehaviour
 	public GameObject MainMenuLogo;
 	public AudioClip StartupSound;
 
-	private void Start()
+	private void OnEnable()
 	{
 		AudioEffectsManager.PlaySound(StartupSound);
 		Edition.transform.DOShakePosition(StartupSound.length, 40f, 20).OnComplete(Hide);

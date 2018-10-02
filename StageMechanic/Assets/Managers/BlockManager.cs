@@ -183,9 +183,10 @@ public class BlockManager : MonoBehaviour
 		ItemManager.Clear();
 		Serializer.ClearUndoStates();
 		Serializer.LastAccessedFileName = null;
-
-		ActiveFloor.transform.position = Vector3.zero;
-		Cursor.transform.position = new Vector3(0f, 1f, 0f);
+		if(ActiveFloor != null)
+			ActiveFloor.transform.position = Vector3.zero;
+		if(Cursor != null)
+			Cursor.transform.position = new Vector3(0f, 1f, 0f);
 	}
 
 	/// <summary>

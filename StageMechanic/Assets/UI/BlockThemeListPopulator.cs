@@ -38,7 +38,7 @@ public class BlockThemeListPopulator : MonoBehaviour {
 			{
 				Cathy1BlockFactory.ApplyTheme(theme);
 				BlockList.Repopulate();
-				Box.gameObject.SetActive(false);
+				//Box.gameObject.SetActive(false);
 				return;
 			}
 		}
