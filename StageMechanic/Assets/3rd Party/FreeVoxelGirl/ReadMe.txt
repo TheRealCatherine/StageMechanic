@@ -1,8 +1,8 @@
-Free Voxel Girl ver1.20
+Free Voxel Girl ver1.30
 
 The version of unity in which this asset was created is 5.4.5p5.
 
-These models have 560~564 tris.
+These models have 564 tris.
 
 These models are rigged and animated.
 
@@ -17,6 +17,8 @@ Twitter : https://twitter.com/shiouten
 
 
 ---Update---
+
+ver1.30 Added improved models ( 6 types )
 
 ver1.20 Added 3 animations - Damage, Death, Lose
 

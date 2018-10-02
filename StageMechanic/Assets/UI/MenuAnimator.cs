@@ -15,15 +15,27 @@ public class MenuAnimator : MonoBehaviour
 	private Vector3 LoadFromCloudButtonPosition;
 	private Vector3 LoadFileButtonPosition;
 
-    void Start()
-    {
-		foreach(GameObject element in Elements)
+
+	private void _RESET()
+	{
+		if(ButtonLocations.Count != Elements.Length)
 		{
-			ButtonLocations.Add(element.transform.position);
+			ButtonLocations.Clear();
+			foreach (GameObject element in Elements)
+				ButtonLocations.Add(element.transform.position);
+		}
+
+		foreach (GameObject element in Elements)
+		{
 			element.transform.position = transform.position;
 			element.transform.localScale = Vector3.zero;
 			element.transform.gameObject.SetActive(false);
 		}
+	}
+
+	void Start()
+    {
+		_RESET();
 	}
 
 	public void OnClicked()

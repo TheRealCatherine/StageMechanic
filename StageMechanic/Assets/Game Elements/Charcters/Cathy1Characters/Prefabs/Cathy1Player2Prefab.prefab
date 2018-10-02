@@ -1,21 +1,11 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1215896293952690}
-  m_IsPrefabAsset: 1
 --- !u!1 &1215896293952690
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4870390456981910}
@@ -31,9 +21,10 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4870390456981910
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215896293952690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -44,9 +35,10 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &65286048763870208
 BoxCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215896293952690}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -54,11 +46,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114281130150146252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215896293952690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8e648174dc6774f996823ad996df33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1Prefab: {fileID: 1000013402385712, guid: f80e0ab64f84e2e488a668f703542800, type: 3}
+  Player1AnimationController: {fileID: 9100000, guid: 1ef510c1f98eff44cb8be337e1674b55, type: 2}
+  Player1Avatar: {fileID: 9000000, guid: dd5ec58cfd06ebb46b1307b2d0cba432, type: 3}
+  WalkSound: {fileID: 8300000, guid: a9450009b1707134cb0b28b6c4eaec90, type: 3}
+  JumpSound: {fileID: 8300000, guid: f2e1568b37f862d448155f9997dc77eb, type: 3}
+  LandSound: {fileID: 0}
+  DieSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
+  ThudSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
+  GameOverSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
+  EffortSounds: []
+  HighestStepChain: 0
 --- !u!82 &82951904006498222
 AudioSource:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215896293952690}
   m_Enabled: 1
   serializedVersion: 4
@@ -149,26 +165,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114281130150146252
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1215896293952690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b8e648174dc6774f996823ad996df33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player1Prefab: {fileID: 1000013402385712, guid: f80e0ab64f84e2e488a668f703542800,
-    type: 2}
-  Player1AnimationController: {fileID: 9100000, guid: 1ef510c1f98eff44cb8be337e1674b55,
-    type: 2}
-  Player1Avatar: {fileID: 9000000, guid: dd5ec58cfd06ebb46b1307b2d0cba432, type: 3}
-  WalkSound: {fileID: 8300000, guid: a9450009b1707134cb0b28b6c4eaec90, type: 3}
-  JumpSound: {fileID: 8300000, guid: f2e1568b37f862d448155f9997dc77eb, type: 3}
-  LandSound: {fileID: 0}
-  DieSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
-  ThudSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
-  GameOverSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
-  EffortSounds: []

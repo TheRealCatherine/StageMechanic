@@ -7,17 +7,22 @@ public class ThemeDialogAutoHider : MonoBehaviour
 {
 	public ScrollRect BlockThemes;
 	public ScrollRect ItemThemes;
+	private bool _restoreMainMenu;
 
     void OnEnable()
     {
-		BlockThemes.gameObject.SetActive(true);
-		ItemThemes.gameObject.SetActive(true);
+		_restoreMainMenu = UIManager.Instance.MainMenu.isActiveAndEnabled;
+		UIManager.Instance.MainMenu.gameObject.SetActive(false);
+		Time.timeScale = 0;
 	}
 
-    void Update()
+	private void OnDisable()
+	{
+		if(_restoreMainMenu)
+			UIManager.Instance.MainMenu.gameObject.SetActive(true);
+	}
+
+	void Update()
     {
-		if (BlockThemes.gameObject.activeInHierarchy || ItemThemes.gameObject.activeInHierarchy)
-			return;
-		gameObject.SetActive(false);
     }
 }
