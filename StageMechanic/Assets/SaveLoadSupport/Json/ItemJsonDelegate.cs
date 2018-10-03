@@ -118,8 +118,12 @@ public class ItemJsonDelegate
 		{
 			Debug.Assert(Item != null);
 			List<PropertyJsonDelegate> properties = new List<PropertyJsonDelegate>();
-			foreach (KeyValuePair<string, string> item in (Item as AbstractItem).CustomProperties)
-				properties.Add(new PropertyJsonDelegate(item));
+			AbstractItem abs = Item as AbstractItem;
+			if (abs.CustomProperties != null)
+			{
+				foreach (KeyValuePair<string, string> item in (Item as AbstractItem).CustomProperties)
+					properties.Add(new PropertyJsonDelegate(item));
+			}
 			return properties;
 		}
 		set

@@ -199,7 +199,9 @@ public class ItemManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(seconds);
 		//TODO right now this is the only thing that does this but we need to figure out good way
-		(PlayerManager.Player(0) as Cathy1PlayerCharacter).MaxClimbHeight = 1;
+		Cathy1PlayerCharacter pc = (PlayerManager.Player(0) as Cathy1PlayerCharacter);
+		if(pc != null)
+			pc.MaxClimbHeight = 1;
 	}
 	#endregion
 

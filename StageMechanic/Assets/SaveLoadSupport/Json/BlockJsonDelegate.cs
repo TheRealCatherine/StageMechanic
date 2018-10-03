@@ -142,8 +142,12 @@ public class BlockJsonDelegate
 		{
 			Debug.Assert(_block != null);
 			List<PropertyJsonDelegate> properties = new List<PropertyJsonDelegate>();
-			foreach (KeyValuePair<string, string> item in (_block as AbstractBlock).CustomProperties)
-				properties.Add(new PropertyJsonDelegate(item));
+			AbstractBlock abs = _block as AbstractBlock;
+			if (abs.CustomProperties != null)
+			{
+				foreach (KeyValuePair<string, string> item in (_block as AbstractBlock).CustomProperties)
+					properties.Add(new PropertyJsonDelegate(item));
+			}
 			return properties;
 		}
 		set
