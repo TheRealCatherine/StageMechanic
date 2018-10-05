@@ -22,6 +22,7 @@ public class Cat5XFactor : Cat5AbstractItem {
 		Model2 = theme.XFactorObject;
 		Sound = theme.XFactorActiveAudio;
 		Animation = theme.XFactorActiveAnimation;
+		CollectSound = theme.XFactorCollectSound;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties

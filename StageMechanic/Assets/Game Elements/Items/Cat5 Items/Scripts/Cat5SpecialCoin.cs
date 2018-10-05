@@ -34,5 +34,6 @@ public class Cat5SpecialCoin : Cat5Coin
 				Model2 = theme.SpecialCollectableObject4;
 				break;
 		}
+		CollectSound = theme.SpecialCollectableSound;
 	}
 }

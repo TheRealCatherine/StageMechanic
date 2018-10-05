@@ -14,6 +14,7 @@ public class Cat5ItemTheme : AbstractItemTheme
 	public GameObject Player3StartObject;
 	public GameObject Player3Avatar;
 	public Sprite PlayerStartIcon;
+	public AudioClip PlayerSpawnSound;
 
 	[Header("Goal")]
 	public GameObject GoalPlaceholder;
@@ -54,6 +55,7 @@ public class Cat5ItemTheme : AbstractItemTheme
 	public GameObject CoinPlaceholder;
 	public GameObject CoinObject;
 	public Sprite CoinIcon;
+	public AudioClip CoinCollectionSound;
 
 	[Header("Special Collectable")]
 	public GameObject SpecialCollectableObject1;
@@ -64,28 +66,36 @@ public class Cat5ItemTheme : AbstractItemTheme
 	public Sprite SpecialCollectableIcon2;
 	public Sprite SpecialCollectableIcon3;
 	public Sprite SpecialCollectableIcon4;
+	public AudioClip SpecialCollectableSound;
 
 	[Header("Create Basic Blocks")]
 	public GameObject CreateBasicBlocksPlaceholder;
 	public GameObject CreateBasicBlockObject;
 	public ParticleSystem CreateBlockAnimation;
 	public Sprite CreateBasicBlocksIcon;
+	public AudioClip CreateBasicBlocksCollectSound;
+	public AudioClip CreateBasicBlocksUseSound;
 
 	[Header("Create Immobile Blocks")]
 	public GameObject CreateImmobileBlocksPlaceholder;
 	public GameObject CreateImmobileBlockObject;
 	public Sprite CreateImmobileBlocksIcon;
+	public AudioClip CreateImmobileBlocksCollectSound;
+	public AudioClip CreateImmobileBlocksUseSound;
 
 	[Header("Enemy Removal")]
 	public GameObject EnemyRemovalPlaceholder;
 	public GameObject EnemyRemovalObject;
 	public ParticleSystem EnemyRemovalAnimation;
 	public Sprite EnemyRemovalIcon;
+	public AudioClip EnemyRemovalCollectSound;
+	public AudioClip EnemyRemovalUseSound;
 
 	[Header("1 Up")]
 	public GameObject OneUpPlaceholder;
 	public GameObject OneUpObject;
 	public Sprite OneUpIcon;
+	public AudioClip OneUpSound;
 
 	[Header("X-Factor")]
 	public GameObject XFactorPlaceholder;
@@ -93,12 +103,15 @@ public class Cat5ItemTheme : AbstractItemTheme
 	public AudioClip XFactorActiveAudio;
 	public ParticleSystem XFactorActiveAnimation;
 	public Sprite XFactorIcon;
+	public AudioClip XFactorCollectSound;
 
 	[Header("Special Block Remover")]
 	public GameObject SpecialBlockRemoverPlaceholder;
 	public GameObject SpecialBlockRemoverObject;
 	public ParticleSystem SpecialBlockRemoverAnimation;
 	public Sprite SpecialBlockRemoverIcon;
+	public AudioClip SpecialBlockRemoverCollectSound;
+	public AudioClip SpecialBlockRemoverUseSound;
 
 	[Header("Stopwatch")]
 	public GameObject StopwatchPlaceholder;

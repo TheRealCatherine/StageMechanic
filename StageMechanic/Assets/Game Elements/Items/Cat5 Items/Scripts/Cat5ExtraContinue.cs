@@ -29,6 +29,8 @@ public class Cat5ExtraContinue : Cat5AbstractItem {
 		Debug.Assert(theme.OneUpPlaceholder != null);
 		Model1 = theme.OneUpPlaceholder;
 		Model2 = theme.OneUpObject;
+
+		CollectSound = theme.OneUpSound;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties

@@ -18,6 +18,8 @@ public class Cat5TurnBlocksBasic : Cat5AbstractItem {
 		Model1 = theme.SpecialBlockRemoverPlaceholder;
 		Model2 = theme.SpecialBlockRemoverObject;
 		Animation = theme.SpecialBlockRemoverAnimation;
+		CollectSound = theme.SpecialBlockRemoverCollectSound;
+		UseSound = theme.SpecialBlockRemoverUseSound;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties

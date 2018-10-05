@@ -18,6 +18,8 @@ public class Cat5RemoveEnemies : Cat5AbstractItem {
 		Model1 = theme.EnemyRemovalPlaceholder;
 		Model2 = theme.EnemyRemovalObject;
 		Animation = theme.EnemyRemovalAnimation;
+		CollectSound = theme.EnemyRemovalCollectSound;
+		UseSound = theme.EnemyRemovalUseSound;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties

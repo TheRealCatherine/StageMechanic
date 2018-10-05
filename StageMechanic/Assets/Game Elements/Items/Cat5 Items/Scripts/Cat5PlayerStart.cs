@@ -91,6 +91,7 @@ public class Cat5PlayerStart : Cat5AbstractItem {
 			Model2 = theme.Player3StartObject;
 			Model3 = theme.Player3Avatar;
 		}
+		UseSound = theme.PlayerSpawnSound;
 	}
 
 	/// <summary>
@@ -134,6 +135,8 @@ public class Cat5PlayerStart : Cat5AbstractItem {
 		base.OnGameModeChanged(newMode, oldMode);
 		if(newMode == GameManager.GameMode.Play)
 		{
+			if (UseSound != null)
+				AudioEffectsManager.PlaySound(UseSound);
 			PlayerManager.InstantiatePlayer(PlayerNumber, Position, Model3);
 		}
 	}

@@ -58,8 +58,9 @@ public abstract class Cat5AbstractItem : AbstractItem
 	{
 	}
 
-	internal virtual void Start()
+	protected override void Start()
 	{
+		base.Start();
 		if (CurrentModelNumber == 0)
 			ShowModel(1);
 	}

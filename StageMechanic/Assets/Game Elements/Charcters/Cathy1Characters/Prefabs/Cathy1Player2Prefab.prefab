@@ -58,15 +58,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8e648174dc6774f996823ad996df33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1Prefab: {fileID: 1000013402385712, guid: f80e0ab64f84e2e488a668f703542800, type: 3}
-  Player1AnimationController: {fileID: 9100000, guid: 1ef510c1f98eff44cb8be337e1674b55, type: 2}
+  Player1Prefab: {fileID: 1000013402385712, guid: f80e0ab64f84e2e488a668f703542800,
+    type: 3}
+  Player1AnimationController: {fileID: 9100000, guid: 1ef510c1f98eff44cb8be337e1674b55,
+    type: 2}
   Player1Avatar: {fileID: 9000000, guid: dd5ec58cfd06ebb46b1307b2d0cba432, type: 3}
   WalkSound: {fileID: 8300000, guid: a9450009b1707134cb0b28b6c4eaec90, type: 3}
   JumpSound: {fileID: 8300000, guid: f2e1568b37f862d448155f9997dc77eb, type: 3}
   LandSound: {fileID: 0}
-  DieSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
-  ThudSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
-  GameOverSound: {fileID: 8300000, guid: c126071d6c9eaab438a7c3ecbb99a16c, type: 3}
+  DieSound: {fileID: 8300000, guid: 8715c4aa5f8ed014cb2421736c6dcdec, type: 3}
+  ThudSound: {fileID: 8300000, guid: 8715c4aa5f8ed014cb2421736c6dcdec, type: 3}
+  GameOverSound: {fileID: 8300000, guid: 8715c4aa5f8ed014cb2421736c6dcdec, type: 3}
   EffortSounds: []
   HighestStepChain: 0
 --- !u!82 &82951904006498222

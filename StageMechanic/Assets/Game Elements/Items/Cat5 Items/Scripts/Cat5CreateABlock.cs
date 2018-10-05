@@ -20,12 +20,18 @@ public class Cat5CreateABlock : Cat5AbstractItem {
 			Debug.Assert(theme.CreateBasicBlocksPlaceholder != null);
 			Model1 = theme.CreateBasicBlocksPlaceholder;
 			Model2 = theme.CreateBasicBlockObject;
+
+			CollectSound = theme.CreateBasicBlocksCollectSound;
+			UseSound = theme.CreateBasicBlocksUseSound;
 		}
 		else
 		{
 			Debug.Assert(theme.CreateImmobileBlocksPlaceholder != null);
 			Model1 = theme.CreateImmobileBlocksPlaceholder;
 			Model2 = theme.CreateImmobileBlockObject;
+
+			CollectSound = theme.CreateImmobileBlocksCollectSound;
+			UseSound = theme.CreateImmobileBlocksUseSound;
 		}
 		Animation = theme.CreateBlockAnimation;
 	}

@@ -37,6 +37,8 @@ public class Cat5Coin : Cat5AbstractItem {
 		Debug.Assert(theme.CoinPlaceholder != null);
 		Model1 = theme.CoinPlaceholder;
 		Model2 = theme.CoinObject;
+
+		CollectSound = theme.CoinCollectionSound;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties

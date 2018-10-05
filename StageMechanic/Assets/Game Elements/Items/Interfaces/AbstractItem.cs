@@ -25,6 +25,8 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 	public string ScriptOnGameModeChange;
 	public Dictionary<string, string> CustomProperties;
 
+	public AudioClip CollectSound;
+	public AudioClip UseSound;
 
 	#region Interface property implementations
 	/// <summary>
@@ -479,11 +481,25 @@ public abstract class AbstractItem : MonoBehaviour, IItem
 		}
 	}
 
-	public virtual void OnPlayerActivate(IPlayerCharacter player) {	if (!string.IsNullOrWhiteSpace(ScriptOnPlayerActivate)) RunScriptOnPlayerActivate(player); }
+	public virtual void OnPlayerActivate(IPlayerCharacter player)
+	{
+		if (UseSound != null)
+			AudioEffectsManager.PlaySound(UseSound);
+		if (!string.IsNullOrWhiteSpace(ScriptOnPlayerActivate))
+			RunScriptOnPlayerActivate(player);
+	}
+
 	public virtual void OnBlockDestroyed() { if (!string.IsNullOrWhiteSpace(ScriptOnBlockDestroy)) RunScriptOnBlockDestroyed(); }
 	public virtual void OnEnemyContact(INonPlayerCharacter enemy) { if (!string.IsNullOrWhiteSpace(ScriptOnEnemyContact)) RunScriptOnEnemyContact(enemy); }
-	public virtual void OnPlayerContact(IPlayerCharacter player) { if (!string.IsNullOrWhiteSpace(ScriptOnPlayerContact)) RunScriptOnPlayerContact(player); }
-	public virtual void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode) { if (!string.IsNullOrWhiteSpace(ScriptOnGameModeChange)) RunScriptOnGameModeChange(newMode,oldMode); }
+	public virtual void OnPlayerContact(IPlayerCharacter player)
+	{
+		if (CollectSound != null)
+			AudioEffectsManager.PlaySound(CollectSound);
+		if (!string.IsNullOrWhiteSpace(ScriptOnPlayerContact))
+			RunScriptOnPlayerContact(player);
+	}
+
+	public virtual void OnGameModeChanged(GameManager.GameMode newMode, GameManager.GameMode oldMode) { if (!string.IsNullOrWhiteSpace(ScriptOnGameModeChange)) RunScriptOnGameModeChange(newMode, oldMode); }
 
 	protected virtual void RunScriptOnPlayerActivate(IPlayerCharacter player)
 	{
