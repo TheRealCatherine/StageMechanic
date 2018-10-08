@@ -43,7 +43,7 @@ MonoBehaviour:
   Player3StartObject: {fileID: 0}
   Player3Avatar: {fileID: 1215896293952690, guid: 9e1ecf5509bc5054f8ec18edffe28e76,
     type: 3}
-  PlayerStartIcon: {fileID: 21300000, guid: 4cb0ec8709eaad947abd8480ff5f14b2, type: 3}
+  PlayerStartIcon: {fileID: 21300000, guid: 4524698b77e9f4940be63717e05402bf, type: 3}
   PlayerSpawnSound: {fileID: 0}
   GoalPlaceholder: {fileID: 0}
   GoalObject: {fileID: 0}
@@ -98,16 +98,20 @@ MonoBehaviour:
     type: 3}
   CreateBasicBlocksIcon: {fileID: 21300000, guid: b5e24376adb814f448d05de471091f4a,
     type: 3}
-  CreateBasicBlocksCollectSound: {fileID: 0}
-  CreateBasicBlocksUseSound: {fileID: 0}
+  CreateBasicBlocksCollectSound: {fileID: 8300000, guid: 37b4f947449159848bb87b45a65b142e,
+    type: 3}
+  CreateBasicBlocksUseSound: {fileID: 8300000, guid: 06698a1cb993d8942b849b1c854bc299,
+    type: 3}
   CreateImmobileBlocksPlaceholder: {fileID: 1626968916591160, guid: 091fe98bb79505743809166a378f76c2,
     type: 3}
   CreateImmobileBlockObject: {fileID: 1626968916591160, guid: 091fe98bb79505743809166a378f76c2,
     type: 3}
   CreateImmobileBlocksIcon: {fileID: 21300000, guid: 2eddab649fd595144a18113700036d3a,
     type: 3}
-  CreateImmobileBlocksCollectSound: {fileID: 0}
-  CreateImmobileBlocksUseSound: {fileID: 0}
+  CreateImmobileBlocksCollectSound: {fileID: 8300000, guid: 37b4f947449159848bb87b45a65b142e,
+    type: 3}
+  CreateImmobileBlocksUseSound: {fileID: 8300000, guid: 06698a1cb993d8942b849b1c854bc299,
+    type: 3}
   EnemyRemovalPlaceholder: {fileID: 1750586709520680, guid: 7543980c62947ac42b800af0cde0a47a,
     type: 3}
   EnemyRemovalObject: {fileID: 1750586709520680, guid: 7543980c62947ac42b800af0cde0a47a,
@@ -115,14 +119,16 @@ MonoBehaviour:
   EnemyRemovalAnimation: {fileID: 19800004, guid: 44dd4fdbb6f10429a844c51183a4c84e,
     type: 3}
   EnemyRemovalIcon: {fileID: 21300000, guid: cc0c061f67f82c54989653851a90424a, type: 3}
-  EnemyRemovalCollectSound: {fileID: 0}
-  EnemyRemovalUseSound: {fileID: 0}
+  EnemyRemovalCollectSound: {fileID: 8300000, guid: 557f154a356ae0745bb8c92f37ae07d5,
+    type: 3}
+  EnemyRemovalUseSound: {fileID: 8300000, guid: 79c69623c39c81c42b7a9e1fc2369936,
+    type: 3}
   OneUpPlaceholder: {fileID: 1599919366821504, guid: dc654fad02a3ef94cba9705fe0e10ca0,
     type: 3}
   OneUpObject: {fileID: 1599919366821504, guid: dc654fad02a3ef94cba9705fe0e10ca0,
     type: 3}
   OneUpIcon: {fileID: 21300000, guid: edaca666263bb6c409ba16c5c3ee34ff, type: 3}
-  OneUpSound: {fileID: 0}
+  OneUpSound: {fileID: 8300000, guid: f96510e2913929c4a950f0667c99de47, type: 3}
   XFactorPlaceholder: {fileID: 4901868381507672886, guid: a3f69a87d0886c4499e7b78709c327ac,
     type: 3}
   XFactorObject: {fileID: 4901868381507672886, guid: a3f69a87d0886c4499e7b78709c327ac,
@@ -131,7 +137,7 @@ MonoBehaviour:
   XFactorActiveAnimation: {fileID: 19800000, guid: 391ec6f1311384e75b4888fd6fc26b7e,
     type: 3}
   XFactorIcon: {fileID: 21300006, guid: 9e579bc1a6dea1146a0144f1f21d5cce, type: 3}
-  XFactorCollectSound: {fileID: 8300000, guid: 97d0d399953f941489694b4f822796f4, type: 3}
+  XFactorCollectSound: {fileID: 8300000, guid: 3ccffa09b3b31f94cac3755664334be8, type: 3}
   SpecialBlockRemoverPlaceholder: {fileID: 6273127695485373491, guid: 115f2fdb82e34254589de7962a278ea4,
     type: 3}
   SpecialBlockRemoverObject: {fileID: 6273127695485373491, guid: 115f2fdb82e34254589de7962a278ea4,
@@ -140,7 +146,8 @@ MonoBehaviour:
     type: 3}
   SpecialBlockRemoverIcon: {fileID: 21300002, guid: 9e579bc1a6dea1146a0144f1f21d5cce,
     type: 3}
-  SpecialBlockRemoverCollectSound: {fileID: 0}
+  SpecialBlockRemoverCollectSound: {fileID: 8300000, guid: 9ea7609f4d0874b49a8e8111198ce63d,
+    type: 3}
   SpecialBlockRemoverUseSound: {fileID: 8300000, guid: 88d76fee5e6bc1841b067b064dc03b46,
     type: 3}
   StopwatchPlaceholder: {fileID: 0}

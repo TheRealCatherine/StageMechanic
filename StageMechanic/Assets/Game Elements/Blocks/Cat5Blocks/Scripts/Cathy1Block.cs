@@ -14,7 +14,6 @@ public class Cathy1Block : AbstractBlock
 	public GameObject Model3;
 	public GameObject Model4;
 
-	public GameObject CurrentModel;
 	public int CurrentModelNumber=0;
 
 	public void ShowRandomModel()

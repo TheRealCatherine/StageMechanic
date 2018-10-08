@@ -32,11 +32,13 @@ public abstract class AbstractBloxelsBlock : AbstractBlock
 			{
 				StaticMeshInstance.gameObject.SetActive(false);
 				PlaceholderInstance.gameObject.SetActive(true);
+				CurrentModel = PlaceholderInstance.gameObject;
 			}
 			else if (currentMode == GameManager.GameMode.Play)
 			{
 				StaticMeshInstance.gameObject.SetActive(true);
 				PlaceholderInstance.gameObject.SetActive(false);
+				CurrentModel = StaticMeshInstance.gameObject;
 			}
 		}
 	}

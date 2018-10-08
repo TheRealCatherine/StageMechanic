@@ -33,6 +33,21 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	public string ScriptOnDestroy;
 	public string ScriptOnMotionStateChange;
 
+	private Quaternion _currentModelOriginalRotation;
+	private GameObject _currentModel;
+	public GameObject CurrentModel
+	{
+		get
+		{
+			return _currentModel;
+		}
+		set
+		{
+			_currentModel = value;
+			_currentModelOriginalRotation = value.transform.rotation;
+		}
+	}
+
 	public Dictionary<string, string> CustomProperties;
 
 	#region Interface property implementations
@@ -797,6 +812,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			{
 				transform.position = Utility.Round(Position, 0);
 				transform.rotation = Quaternion.identity;
+				CurrentModel.transform.rotation = _currentModelOriginalRotation;
 				GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 				GetComponent<Rigidbody>().useGravity = false;
 				_gravityEnabled = false;
@@ -867,9 +883,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			yield break;
 		}
 		if (BlockManager.PlayMode)
-		{
+		{ 
 			rb.constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
-			transform.Rotate(0f, 0f, 2f);
+			CurrentModel.transform.Rotate(0f, 0f, 2f, Space.World);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
 			{
@@ -877,7 +893,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				_gravityDirty = true;
 				yield break;
 			}
-			transform.Rotate(0f, 0f, -5f);
+			CurrentModel.transform.Rotate(0f, 0f, -5f, Space.World);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
 			{
@@ -885,7 +901,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				_gravityDirty = true;
 				yield break;
 			}
-			transform.Rotate(0f, 0f, 10f);
+			CurrentModel.transform.Rotate(0f, 0f, 10f, Space.World);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
 			{
@@ -893,7 +909,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				_gravityDirty = true;
 				yield break;
 			}
-			transform.Rotate(0f, 0f, -2f);
+			CurrentModel.transform.Rotate(0f, 0f, -2f, Space.World);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
 			{
@@ -901,7 +917,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				_gravityDirty = true;
 				yield break;
 			}
-			transform.rotation = Quaternion.identity;
+			CurrentModel.transform.rotation = _currentModelOriginalRotation;
 			if (MotionState != BlockMotionState.Hovering)
 			{
 				_startedHover = false;
