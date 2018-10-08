@@ -41,7 +41,8 @@ public class MusicManager : MonoBehaviour {
 
 	public static string TrackName()
 	{
-		Debug.Assert(Instance.Player != null);
+		if (Instance is null)
+			return "";
 		return Instance.Player.clip.name;
 	}
 
