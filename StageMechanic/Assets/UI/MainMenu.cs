@@ -56,10 +56,10 @@ public class MainMenu : MonoBehaviour
 		BlockManager.Cursor?.SetActive(false);
 		BlockManager.Clear();
 		MinimizePanning.isOn = !UIManager.MinimizePanning;
-		AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
-		FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
+		//AutoPlay.isOn = (PlayerPrefs.GetInt("AutoPlayOnLoad", 1) == 1);
+		//FogToggle.isOn = (PlayerPrefs.GetInt("Fog", 1) == 1);
 		DestructivePlayMode.isOn = (PlayerPrefs.GetInt("DestructivePlayMode", 0) == 1);
-		CameraEffectsToggle.isOn = (PlayerPrefs.GetInt("PostProcessing", 1) == 1);
+		//CameraEffectsToggle.isOn = (PlayerPrefs.GetInt("PostProcessing", 1) == 1);
 		//VisiblePlatformToggle.isOn = (PlayerPrefs.GetInt("PlatformVisible", 1) == 1);
 		Version.text = "v" + Application.version;
 		if (GameManager.IsLiteBuild)

@@ -57,6 +57,8 @@ public class UIManager : MonoBehaviour
 	public TooltipDisplay TooltipDisplay;
 
 	public HamburgerMenuButton HamburgerMenuButton;
+	public GameObject CongratulationDialog;
+	public Canvas MainCanvas;
 
 	//TODO Singleton flame war
 	public static UIManager Instance;
@@ -361,6 +363,13 @@ public class UIManager : MonoBehaviour
 			Instance.NetworkStatusDialog.UrlInput.text = key;
 			Instance.NetworkStatusDialog.CopyButton.gameObject.SetActive(true);
 		}
+	}
+
+	public static void ShowCongratulationDialog()
+	{
+		if (Instance.CongratulationDialog.IsPrefab())
+			Instance.CongratulationDialog = Instantiate(Instance.CongratulationDialog,Instance.MainCanvas.transform) as GameObject;
+		Instance.CongratulationDialog.SetActive(true);
 	}
 
 	public static void ShowMessage(string status, float delay = 3f)

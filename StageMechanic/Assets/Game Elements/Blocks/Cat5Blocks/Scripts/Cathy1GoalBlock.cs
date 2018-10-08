@@ -134,7 +134,7 @@ public class Cathy1GoalBlock : Cathy1Block
 			{
 				if (!_hasShownDialog) {
 					_hasShownDialog = true;
-					UIManager.ShowNetworkStatus("Congratulation!", true);
+					UIManager.ShowCongratulationDialog();
 				}
 			}
 		}

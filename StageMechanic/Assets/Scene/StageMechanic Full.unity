@@ -2876,7 +2876,7 @@ GameObject:
   - component: {fileID: 123366090}
   - component: {fileID: 123366089}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: In-Game Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6434,6 +6434,17 @@ PrefabInstance:
       propertyPath: HamburgerMenuButton
       value: 
       objectReference: {fileID: 1597963086}
+    - target: {fileID: 114704978017189584, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 3}
+      propertyPath: CongratulationDialog
+      value: 
+      objectReference: {fileID: 4867743827105194963, guid: ebe4d4d2099bd8843a6b16ebc7bfe127,
+        type: 3}
+    - target: {fileID: 114704978017189584, guid: 68c3d27a260911d4494f03cf47cd8060,
+        type: 3}
+      propertyPath: MainCanvas
+      value: 
+      objectReference: {fileID: 596162138}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
 --- !u!1 &241227834
@@ -15887,7 +15898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 530.6, y: -36.45}
+  m_AnchoredPosition: {x: 530.6001, y: -36.44995}
   m_SizeDelta: {x: 1041.2, y: 62.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755729550
@@ -32064,6 +32075,7 @@ GameObject:
   - component: {fileID: 1603202455}
   - component: {fileID: 1603202454}
   - component: {fileID: 1603202453}
+  - component: {fileID: 1603202456}
   m_Layer: 5
   m_Name: Create Mode Button
   m_TagString: Untagged
@@ -32131,17 +32143,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1805545130}
-        m_MethodName: TogglePlayMode
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1597963086}
         m_MethodName: HideMenu
         m_Mode: 1
@@ -32192,6 +32193,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603202451}
   m_CullTransparentMesh: 0
+--- !u!114 &1603202456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603202451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f681ad8d761242244a18fec6dde1746f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayModeIcon: {fileID: 21300000, guid: 3895850cfc5902d43b410f2807e410e7, type: 3}
+  EditModeIcon: {fileID: 21300000, guid: 9757cf8451ed862498136f102f673fd6, type: 3}
 --- !u!1 &1611802357
 GameObject:
   m_ObjectHideFlags: 0
@@ -36915,18 +36930,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4915b28ce17fbcc488afaeac506dfb21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1805545130 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114964328166331634, guid: 68c3d27a260911d4494f03cf47cd8060,
-    type: 3}
-  m_PrefabInstance: {fileID: 240614622}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805545126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13cce30059b7a3c4e82408b18ced9672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1805545132
@@ -41752,7 +41755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.20007324, y: 97}
+  m_AnchoredPosition: {x: -0.20019531, y: 97}
   m_SizeDelta: {x: -0.4, y: -801.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2021999755
