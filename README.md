@@ -40,6 +40,10 @@ Unlike these games, StageMechanic is in 3D space and includes the possibility to
 
 StageMechanic is [BSD licensed](https://opensource.org/licenses/BSD-3-Clause) allowing anyone to create their own open-source or commercial games based on our engine. See below for more information on licensing. 
 
+### AI Researchers
+
+Future versions of StageMechanic will include both the Encog neural network library and TensorFlow accessable via the built-in Lua interpreter and code editor, allowing real-time AI experimentation.
+
 ## Licensing
 
 This project is being developed as an open-source project entirely by volunteers. The resulting application is made freely available to users and all source code made freely available to developers/artists/etc. Sales of the Full version go to help fund development and delivery of [free, instructor-led 3D modeling and programming classes](https://gitlab.com/youreperfectstudio/RoyalGameOfUrCourse) at the [Hanock County Public Library](http://www.hancocklibraries.info/) located in [one of the poorest, least educated states in the USA](https://www.usnews.com/news/best-states/mississippi)
