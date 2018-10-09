@@ -12,7 +12,7 @@ Sales of the Full version go to help fund development and delivery of [free, ins
 
 ## Target audences
 
-### Education and Makers Movement proponents
+### Education and Makers Movement
 
 We include a built-in level editor that acts as the star of the show.
 
@@ -25,6 +25,10 @@ For the casual aspiring creator, we offer a range of pre-made blocks and charact
 Intermediate level creators can use the [built-in Lua interpreter and code editor](https://www.youtube.com/watch?v=FvleCxA1DH8&list=PLANow1r53Tu5EiuWOlDKUoO6J7Ul8WRAf) to modify all of the built in blocks, items, and characters and even create their own original mechanics. In the future users will also be able to easily import their own 3D models create in tools like [MagicaVoxel](https://ephtracy.github.io/) and [Tinkercad](https://www.tinkercad.com/#/) as well as create their own music, sound effects, etc.
 
 Advanced users have full acess to the project's C# source code, allowing for infinite custamizability. As a professionally engineered and developed non-trivial project, StageMechanic offers a unique chance for students to move beyond tutorials and get hands on experience in a complex real-world game.
+
+### AI Researchers
+
+Future versions of StageMechanic will include both the Encog neural network library and TensorFlow accessable via the built-in Lua interpreter and code editor, allowing real-time AI experimentation.
 
 ### Block-pushing game fans
 
@@ -39,10 +43,6 @@ Unlike these games, StageMechanic is in 3D space and includes the possibility to
 ### Game Developers
 
 StageMechanic is [BSD licensed](https://opensource.org/licenses/BSD-3-Clause) allowing anyone to create their own open-source or commercial games based on our engine. See below for more information on licensing. 
-
-### AI Researchers
-
-Future versions of StageMechanic will include both the Encog neural network library and TensorFlow accessable via the built-in Lua interpreter and code editor, allowing real-time AI experimentation.
 
 ## Licensing
 
