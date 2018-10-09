@@ -31,8 +31,8 @@ public class Cathy1SpikeTrapBlock : Cathy1AbstractTrapBlock
 
 	public override void ApplyTheme(Cathy1BlockTheme theme)
 	{
-		Debug.Assert(theme.TrapArmed != null);
-		Debug.Assert(theme.TrapDisarmed != null);
+		//Debug.Assert(theme.TrapArmed != null);
+		//Debug.Assert(theme.TrapDisarmed != null);
 		Model1 = theme.TrapArmed;
 		Model2 = theme.TrapDisarmed;
 		Model3 = theme.TrapWarning;

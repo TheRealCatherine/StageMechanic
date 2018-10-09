@@ -31,6 +31,20 @@ public class BlockManager : MonoBehaviour
 	/// TODO Singleton flamewar, is there a better pattern in Unity for doing this?
 	public static BlockManager Instance { get; private set; }
 
+	//workaround for supporting Create from File/Cloud buttons on main menu
+	//TODO needs to be reworked when Serializer is cleaned up
+	public static bool StartInEditFlag = false;
+
+	public void SetStartInEditFlag()
+	{
+		StartInEditFlag = true;
+	}
+
+	public void ClearStartInEditFlag()
+	{
+		StartInEditFlag = false;
+	}
+
 
 	/// <summary>
 	/// Used by many classes to determine current game state, eventually this will be moved into
@@ -53,6 +67,12 @@ public class BlockManager : MonoBehaviour
 	/// TODO use GameManager class
 	public void TogglePlayMode(float delay = 0)
 	{
+		if((!PlayMode) && StartInEditFlag)
+		{
+			ClearStartInEditFlag();
+			return;
+		}
+
 		if(delay > 0)
 		{
 			StartCoroutine(DelayTogglePlayModeHelper(delay));
