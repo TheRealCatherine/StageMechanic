@@ -252,9 +252,14 @@ public class InputManager : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			//TODO toggle
-			UIManager.ShowMainMenu();
-			return true;
+			if(!UIManager.Instance.MainMenu.isActiveAndEnabled)
+			{
+				if(UIManager.Instance.HamburgerMenuButton.HamburgerMenu.gameObject.activeInHierarchy)
+					UIManager.Instance.HamburgerMenuButton.HideMenu();
+				else
+					UIManager.Instance.HamburgerMenuButton.ShowMenu();
+				return true;
+			}
 		}
 		return false;
 	}

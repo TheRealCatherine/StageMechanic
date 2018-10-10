@@ -12,10 +12,13 @@ public class SplashScreen : MonoBehaviour
 
 	private void OnEnable()
 	{
-		AudioEffectsManager.PlaySound(StartupSound);
-		Edition.transform.DOShakePosition(StartupSound.length, 40f, 20).OnComplete(Hide);
+		Edition.transform.DOShakePosition(StartupSound.length, 40f, 20).OnComplete(Hide).OnStart(PlaySound);
 	}
 
+	public void PlaySound()
+	{
+		AudioEffectsManager.PlaySound(StartupSound);
+	}
 	public void Hide()
 	{
 		transform.DOScale(0, 0.5f).OnComplete(OnHideComplete);
@@ -24,6 +27,15 @@ public class SplashScreen : MonoBehaviour
 
 	public void OnHideComplete()
 	{
+		//to be used for a trophy later
+		int launchCount = PlayerPrefs.GetInt("LaunchCount", 0);
+		if (launchCount == 0)
+		{
+			UIManager.Instance.MainMenu.FirstLaunchDialog.SetActive(true);
+		}
+		PlayerPrefs.SetInt("LaunchCount", launchCount + 1);
+		PlayerPrefs.Save();
+
 		gameObject.SetActive(false);
 		Destroy(gameObject);
 	}

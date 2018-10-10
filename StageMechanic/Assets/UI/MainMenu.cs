@@ -45,6 +45,8 @@ public class MainMenu : MonoBehaviour
 
 	public GameObject SplashScreen;
 
+	public GameObject FirstLaunchDialog;
+
 	public MenuAnimator[] MenuButtons;
 
 	public void Start()
@@ -368,6 +370,11 @@ public class MainMenu : MonoBehaviour
 	{
 		//Serializer.SaveToPastebin();
 		Serializer.SaveToGameJolt();
+	}
+
+	public void OnNewTutorialButtonClicked()
+	{
+		LoadBuiltinLevel("Tutorial", "Tutorial1");
 	}
 
 	public void OnOpenTutorialClicked()
