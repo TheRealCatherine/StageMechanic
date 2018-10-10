@@ -45,6 +45,8 @@ public class MainMenu : MonoBehaviour
 
 	public GameObject SplashScreen;
 
+	public MenuAnimator[] MenuButtons;
+
 	public void Start()
 	{
 		if(SplashScreen != null)
@@ -110,7 +112,7 @@ public class MainMenu : MonoBehaviour
 
 		Debug.Assert(FlavorText.Entries != null);
 		Debug.Assert(FlavorText.Entries.Length > 1);
-		FlavorTextBox.text = FlavorText.Entries[Random.Range(0, FlavorText.Entries.Length - 1)];
+		//FlavorTextBox.text = FlavorText.Entries[Random.Range(0, FlavorText.Entries.Length - 1)];
 
 		if (StartupSound != null)
 			GetComponent<AudioSource>()?.PlayOneShot(StartupSound);
@@ -118,6 +120,11 @@ public class MainMenu : MonoBehaviour
 		//if (Application.platform == RuntimePlatform.Android)
 		//	LoadURLButton.gameObject.SetActive(false);
 		StartCoroutine(StartMusicThingy());
+
+		foreach(MenuAnimator menu in MenuButtons)
+		{
+			menu.Hide();
+		}
 	}
 
 	private IEnumerator StartMusicThingy()

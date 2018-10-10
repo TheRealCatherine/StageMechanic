@@ -13,7 +13,7 @@ public class Cathy1CrackedBlock : Cathy1Block {
 	public int StepsRemaining = 2;
 	public AudioClip Crack;
 	public AudioClip Collapse;
-	public ParticleSystem Dust;
+	public GameObject Dust;
 	public Vector3 DustOffset;
 
 	public override void ApplyTheme(Cathy1BlockTheme theme)
@@ -67,6 +67,8 @@ public class Cathy1CrackedBlock : Cathy1Block {
 		{
 			AudioEffectsManager.PlaySound(this, Collapse);
 			yield return new WaitForSeconds(0.55f);
+			if (Dust.GetComponent<AutoDestroy>() is AutoDestroy ad) //In this case it is an animated model, not particles
+				Instantiate(Dust, Position, Rotation);
 			BlockManager.DestroyBlock(this);
 		}
 			

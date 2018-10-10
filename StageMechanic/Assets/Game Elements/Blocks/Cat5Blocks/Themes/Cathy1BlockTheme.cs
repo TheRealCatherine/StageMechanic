@@ -31,7 +31,7 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	[Header("Cracked")]
 	public GameObject LightCracks;
 	public GameObject HeavyCracks;
-	public ParticleSystem DisintigrationDust; //Optional
+	public GameObject DisintigrationDust; //Optional
 	public Vector3 DustOffset; //Optional
 	public AudioClip CrackSound; //Optional
 	public AudioClip DisintigrateSound; //Optional

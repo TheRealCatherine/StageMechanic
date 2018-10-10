@@ -41,23 +41,33 @@ public class MenuAnimator : MonoBehaviour
 	public void OnClicked()
 	{
 		Debug.Assert(Elements.Length > 0);
-		if(Elements[0].gameObject.activeInHierarchy)
-		{
-			for (int i = 0; i < Elements.Length; ++i)
-			{
-				Elements[i].transform.DOMove(transform.position, AnimationDuration);
-				Elements[i].transform.DOScale(0, AnimationDuration).OnComplete(OnHideComplete);
-			}
-
-		}
+		if (Elements[0].gameObject.activeInHierarchy)
+			Hide();
 		else
+			Show();
+	}
+
+	public void Show()
+	{
+		foreach (MenuAnimator menu in UIManager.Instance.MainMenu.MenuButtons)
 		{
-			for (int i = 0; i < Elements.Length; ++i)
-			{
-				Elements[i].gameObject.SetActive(true);
-				Elements[i].transform.DOMove(ButtonLocations[i], AnimationDuration);
-				Elements[i].transform.DOScale(1, AnimationDuration);
-			}
+			if(menu != this)
+				menu.Hide();
+		}
+		for (int i = 0; i < Elements.Length; ++i)
+		{
+			Elements[i].gameObject.SetActive(true);
+			Elements[i].transform.DOMove(ButtonLocations[i], AnimationDuration);
+			Elements[i].transform.DOScale(1, AnimationDuration);
+		}
+	}
+
+	public void Hide()
+	{
+		for (int i = 0; i < Elements.Length; ++i)
+		{
+			Elements[i].transform.DOMove(transform.position, AnimationDuration);
+			Elements[i].transform.DOScale(0, AnimationDuration).OnComplete(OnHideComplete);
 		}
 	}
 
