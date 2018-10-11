@@ -55,7 +55,12 @@ public static class Utility
         return (Math.Abs(double1 - double2) <= precision);
     }
 
-    public static Vector3 Round(Vector3 vector, int places)
+	public static bool AlmostEquals(this float double1, float double2, float precision)
+	{
+		return (Math.Abs(double1 - double2) <= precision);
+	}
+
+	public static Vector3 Round(Vector3 vector, int places)
     {
         return new Vector3((float)Math.Round(vector.x, places), (float)Math.Round(vector.y, places), (float)Math.Round(vector.z, places));
     }

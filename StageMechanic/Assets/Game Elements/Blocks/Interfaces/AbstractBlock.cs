@@ -44,7 +44,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		set
 		{
 			_currentModel = value;
-			if(_currentModel != null)
+			if (_currentModel != null)
 				_currentModelOriginalRotation = value.transform.rotation;
 		}
 	}
@@ -813,7 +813,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			{
 				transform.position = Utility.Round(Position, 0);
 				transform.rotation = Quaternion.identity;
-				if(CurrentModel != null)
+				if (CurrentModel != null)
 					CurrentModel.transform.rotation = _currentModelOriginalRotation;
 				GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 				GetComponent<Rigidbody>().useGravity = false;
@@ -885,9 +885,9 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			yield break;
 		}
 		if (BlockManager.PlayMode)
-		{ 
+		{
 			rb.constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
-			if(CurrentModel != null)
+			if (CurrentModel != null)
 				CurrentModel.transform.Rotate(0f, 0f, 2f, Space.World);
 			yield return new WaitForSeconds(0.1f);
 			if (MotionState != BlockMotionState.Hovering)
@@ -962,7 +962,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				}
 			}
 		}
-		if (!string.IsNullOrWhiteSpace(ScriptOnMotionStateChange)) RunScriptOnMotionStateChange(newState,oldState);
+		if (!string.IsNullOrWhiteSpace(ScriptOnMotionStateChange)) RunScriptOnMotionStateChange(newState, oldState);
 	}
 
 	protected virtual void RunScriptOnMotionStateChange(BlockMotionState newState, BlockMotionState oldState)
@@ -1075,14 +1075,69 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				float x = VisualEffectsManager.Instance.Camera.WorldToScreenPoint(Position).x;
 				if (x < 220 || Screen.width - x < 250) //TODO don't hardcode width of UI elements
 					return;
+				if(UIManager.Instance.ShowOnscreenControlls)
+				{
+					if (x < 420 || Screen.width - x < 250) //TODO don't hardcode width of UI elements
+						return;
+				}
+
 				if (BlockManager.ActiveBlock == this)
 					UIManager.ShowPropertyEditDialog(this);
 				BlockManager.Cursor.transform.position = Position;
+			}
+			else if(!UIManager.Instance.ShowOnscreenControlls)
+			{
+				//TODO improve this click-block-to-walk-to-it code
+				if (PlayerManager.Player(0) as AbstractPlayerCharacter is AbstractPlayerCharacter player1)
+				{
+					if(Position.x > player1.Position.x)
+					{
+						player1.Face(Vector3.right);
+						int spaces = (int)Math.Round(Position.x - player1.Position.x);
+						StartCoroutine(DoPlayerMove(spaces, Vector3.right));
+					}
+					else if (Position.x < player1.Position.x)
+					{
+						player1.Face(Vector3.left);
+						int spaces = (int)Math.Round(player1.Position.x - Position.x);
+						StartCoroutine(DoPlayerMove(spaces,Vector3.left));
+					}
+					else if (Position.z > player1.Position.z)
+					{
+						player1.Face(Vector3.forward);
+						int spaces = (int)Math.Round(Position.z - player1.Position.z);
+						StartCoroutine(DoPlayerMove(spaces, Vector3.forward));
+					}
+					else if (Position.z < player1.Position.z)
+					{
+						player1.Face(Vector3.back);
+						int spaces = (int)Math.Round(player1.Position.z - Position.z);
+						StartCoroutine(DoPlayerMove(spaces, Vector3.back));
+					}
+					else
+					{
+						StartCoroutine(DoPlayerMove(1, Vector3.back));
+					}
+				}
+
 			}
 #if UNITY_EDITOR
 			Selection.activeGameObject = gameObject;
 #endif
 		}
+	}
+
+	public IEnumerator DoPlayerMove(int spaces, Vector3 direction)
+	{
+		if (PlayerManager.Player(0) as AbstractPlayerCharacter is AbstractPlayerCharacter player1)
+		{
+			for (int i = 0; i < spaces; ++i)
+			{
+				float time = (player1 as Cathy1PlayerCharacter).QueueMove(direction);
+				yield return new WaitForSeconds(time);
+			}
+		}
+		yield break;
 	}
 
 	public void AddChild(IHierarchical child)
