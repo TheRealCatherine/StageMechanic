@@ -8716,7 +8716,7 @@ RectTransform:
   m_Father: {fileID: 443170609}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.00000010172548}
+  m_AnchorMin: {x: 0, y: 0.00000020345097}
   m_AnchorMax: {x: 1, y: 0.98666686}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -11148,7 +11148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000040040046, y: 3.9999113}
+  m_AnchoredPosition: {x: -0.00008203027, y: 3.9999113}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &486882747
@@ -12861,6 +12861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayModeIcon: {fileID: 21300000, guid: 3895850cfc5902d43b410f2807e410e7, type: 3}
   EditModeIcon: {fileID: 21300000, guid: 9757cf8451ed862498136f102f673fd6, type: 3}
+  Text: {fileID: 0}
 --- !u!114 &558200452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19221,7 +19222,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 354902096}
   m_HandleRect: {fileID: 354902095}
   m_Direction: 2
-  m_Value: 0.000007629453
+  m_Value: 0.000015258905
   m_Size: 0.98666674
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -32893,6 +32894,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1603202456}
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1603202454
@@ -32946,6 +32958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayModeIcon: {fileID: 21300000, guid: 3895850cfc5902d43b410f2807e410e7, type: 3}
   EditModeIcon: {fileID: 21300000, guid: 9757cf8451ed862498136f102f673fd6, type: 3}
+  Text: {fileID: 0}
 --- !u!1 &1611802357
 GameObject:
   m_ObjectHideFlags: 0
@@ -36277,7 +36290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1744842008
 MonoBehaviour:
   m_ObjectHideFlags: 0

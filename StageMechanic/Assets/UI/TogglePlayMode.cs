@@ -11,30 +11,43 @@ public class TogglePlayMode : MonoBehaviour {
 
     public Sprite PlayModeIcon;
     public Sprite EditModeIcon;
+	public Text Text;
 
-    public void OnPressed()
+	private void Start()
+	{
+		Text = GetComponentInChildren<Text>();
+	}
+
+	public void OnPressed()
     {
         BlockManager.Instance.TogglePlayMode();
         if(BlockManager.PlayMode)
         {
             GetComponent<Button>().image.sprite = EditModeIcon;
+			if (Text != null)
+				Text.text = "Edit this Stage";
         }
         else
         {
             GetComponent<Button>().image.sprite = PlayModeIcon;
-        }
-    }
+			if (Text != null)
+				Text.text = "Play this Stage";
+		}
+	}
 
     private void Update()
     {
         if (BlockManager.PlayMode)
         {
             GetComponent<Button>().image.sprite = EditModeIcon;
-        }
-        else
+			if (Text != null)
+				Text.text = "Edit this Stage";
+		}
+		else
         {
             GetComponent<Button>().image.sprite = PlayModeIcon;
-        }
-
-    }
+			if (Text != null)
+				Text.text = "Play this Stage";
+		}
+	}
 }
