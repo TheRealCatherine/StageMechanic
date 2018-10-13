@@ -7,10 +7,19 @@
 using UnityEngine;
 
 public class ShowMainMenu : MonoBehaviour {
-   
+
+	public GameObject ConfirmationDialog;
+
 	public void onButtonClicked()
     {
-        UIManager.ToggleMainMenu();
+		if(!BlockManager.PlayMode)
+		{
+			ConfirmationDialog.SetActive(true);
+		}
+		else
+		{
+			UIManager.ShowMainMenu();
+		}
 		UIManager.Instance.HamburgerMenuButton.HideMenu();
     }
 }
