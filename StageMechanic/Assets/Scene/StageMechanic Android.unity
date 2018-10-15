@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022842664, g: 0.011234282, b: 0.040441006, a: 1}
+  m_IndirectSpecularColor: {r: 0.022717528, g: 0.011127195, b: 0.040056244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6442,12 +6442,12 @@ PrefabInstance:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.size
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.size
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4625271195422440, guid: 68c3d27a260911d4494f03cf47cd8060, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6720,17 +6720,17 @@ PrefabInstance:
         type: 3}
       propertyPath: Skyboxes.Array.data[4]
       value: 
-      objectReference: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[5]
       value: 
-      objectReference: {fileID: 2100000, guid: 39489e6a7fe27b04190bb9d0ce8a7724, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[6]
       value: 
-      objectReference: {fileID: 2100000, guid: 54fed8cadee450e4285219103c828a13, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[7]
@@ -6760,17 +6760,17 @@ PrefabInstance:
         type: 3}
       propertyPath: Skyboxes.Array.data[3]
       value: 
-      objectReference: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 1601ca491a618c441a2a8611a9a8b2db, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: 7ee417240af2c814f808888d91ebfd3d, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[1]
@@ -6780,17 +6780,17 @@ PrefabInstance:
         type: 3}
       propertyPath: Clips.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: ad2416d159c094d4a9603a3845bbe6ce, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[5]
       value: 
-      objectReference: {fileID: 8300000, guid: f368cab0e7d103f44b82a0a737cd15e0, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[6]
       value: 
-      objectReference: {fileID: 8300000, guid: 5ca5a3f2a2c3f1348b05df877277f7eb, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[8]
@@ -6800,7 +6800,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Clips.Array.data[7]
       value: 
-      objectReference: {fileID: 8300000, guid: 0630d478c4f864642bed9aedf1dfaf8c, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[9]
@@ -6836,17 +6836,17 @@ PrefabInstance:
         type: 3}
       propertyPath: Skyboxes.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
+      objectReference: {fileID: 2100000, guid: 39489e6a7fe27b04190bb9d0ce8a7724, type: 2}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 50199f2ae12c631498aab8b60b56adf7, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: d9dca9ae1786c394f9e79c637aa9a7bf, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[0]
@@ -18306,12 +18306,12 @@ PrefabInstance:
     - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
         type: 3}
       propertyPath: Themes.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114712924106512534, guid: c702a19f99f09d84784952184e9c1adf,
         type: 3}
       propertyPath: Themes.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4408721821948828, guid: c702a19f99f09d84784952184e9c1adf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18355,13 +18355,13 @@ PrefabInstance:
         type: 3}
       propertyPath: Themes.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d2bf08f024f4cf64ca22a6aef92cadc5,
+      objectReference: {fileID: 11400000, guid: b7589f4bba6234b489d369ff673c2cb3,
         type: 2}
     - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
         type: 3}
       propertyPath: Themes.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 5e3354c0d33c8884d9ddfb83637616ce,
+      objectReference: {fileID: 11400000, guid: b7589f4bba6234b489d369ff673c2cb3,
         type: 2}
     - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
         type: 3}
@@ -18438,8 +18438,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Themes.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: b516454063d59e44295ac03234405751,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114712924106512534, guid: c702a19f99f09d84784952184e9c1adf,
         type: 3}
       propertyPath: CurrentTheme
@@ -18449,6 +18448,18 @@ PrefabInstance:
     - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
         type: 3}
       propertyPath: CurrentTheme
+      value: 
+      objectReference: {fileID: 11400000, guid: b7589f4bba6234b489d369ff673c2cb3,
+        type: 2}
+    - target: {fileID: 114712924106512534, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 3}
+      propertyPath: Themes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b516454063d59e44295ac03234405751,
+        type: 2}
+    - target: {fileID: 114183816763478142, guid: c702a19f99f09d84784952184e9c1adf,
+        type: 3}
+      propertyPath: Themes.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: b7589f4bba6234b489d369ff673c2cb3,
         type: 2}

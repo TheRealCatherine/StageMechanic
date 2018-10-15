@@ -147,7 +147,9 @@ public static class Serializer
 	{
 		if (_startState != null)
 		{
+			byte[] old = _startState;
 			BlockManager.Clear();
+			_startState = old;
 			BlocksFromBinaryStream(_startState);
 		}
 	}

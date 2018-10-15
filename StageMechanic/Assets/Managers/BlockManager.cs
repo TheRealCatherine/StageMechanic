@@ -202,6 +202,7 @@ public class BlockManager : MonoBehaviour
 		PlayerManager.Clear();
 		ItemManager.Clear();
 		Serializer.ClearUndoStates();
+		Serializer.ClearStartState();
 		Serializer.LastAccessedFileName = null;
 		if(ActiveFloor != null)
 			ActiveFloor.transform.position = Vector3.zero;
