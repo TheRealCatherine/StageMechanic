@@ -474,7 +474,7 @@ public static class Serializer
 
 	public static void HandleLoad(Stream stream, bool clearFirst = true)
 	{
-		UIManager.ShowNetworkStatus("Setting the stage...", false);
+		UIManager.ShowNetworkStatus("Setting the stage...", false, showMainMenu: false);
 		CurrentState = State.Deserializing;
 		if (clearFirst)
 			BlockManager.Clear();
@@ -696,7 +696,7 @@ public static class Serializer
 
 	private static IEnumerator SaveToPastebinHelper()
 	{
-		UIManager.ShowNetworkStatus("Sharing to glot.io...", false);
+		UIManager.ShowNetworkStatus("Sharing to glot.io...", false, showMainMenu: false);
 
 		string json = BlocksToCondensedJson();
 
@@ -731,13 +731,13 @@ public static class Serializer
 			{
 				Debug.Log("Network Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Share failed", true);
+				UIManager.ShowNetworkStatus("Share failed", true, showMainMenu: false);
 			}
 			else if (www.isHttpError)
 			{
 				Debug.Log("HTTP Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Share failed", true);
+				UIManager.ShowNetworkStatus("Share failed", true, showMainMenu: false);
 			}
 			else
 			{
@@ -745,14 +745,14 @@ public static class Serializer
 				// Or retrieve results as binary data
 				byte[] results = www.downloadHandler.data;
 				string id = Encoding.UTF8.GetString(results).Substring(7,10);
-				UIManager.ShowNetworkStatus("Success! Your stage key is: ", true, id);
+				UIManager.ShowNetworkStatus("Success! Your stage key is: ", true, id, showMainMenu: false);
 			}
 		}
 	}
 
 	private static IEnumerator LoadFromPastebinHelper(string key)
 	{
-		UIManager.ShowNetworkStatus("Fetching stage " + key + " from glot.io", false);
+		UIManager.ShowNetworkStatus("Fetching stage " + key + " from glot.io", false, showMainMenu: false);
 
 		using (UnityWebRequest www = UnityWebRequest.Get("https://snippets.glot.io/snippets/" + key.ToLower()))
 		{
@@ -765,14 +765,14 @@ public static class Serializer
 			{
 				Debug.Log("Network Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Load failed: " + www.downloadHandler.text, true);
+				UIManager.ShowNetworkStatus("Load failed: " + www.downloadHandler.text, true, showMainMenu: true);
 
 			}
 			else if (www.isHttpError)
 			{
 				Debug.Log("HTTP Error:" + www.error);
 				Debug.Log(www.downloadHandler.text);
-				UIManager.ShowNetworkStatus("Load failed: " + www.downloadHandler.text, true);
+				UIManager.ShowNetworkStatus("Load failed: " + www.downloadHandler.text, true, showMainMenu: true);
 			}
 			else
 			{
@@ -798,7 +798,7 @@ public static class Serializer
 		string data = BlocksToCondensedJson();
 		if (data.Length > 1000000)
 		{ //1MB limit accounting for unicode this should be ok for now
-			UIManager.ShowNetworkStatus("Level too big (we are working on this)", true);
+			UIManager.ShowNetworkStatus("Level too big (we are working on this)", true, showMainMenu: false);
 			return;
 		}
 		lastSharedKey = Utility.RandomString(6);
@@ -808,9 +808,9 @@ public static class Serializer
 	public static void SaveToGameJoltComplete(bool status)
 	{
 		if (status)
-			UIManager.ShowNetworkStatus("Success! Your stage key is:", true, lastSharedKey);
+			UIManager.ShowNetworkStatus("Success! Your stage key is:", true, lastSharedKey, showMainMenu: false);
 		else
-			UIManager.ShowNetworkStatus("Share failed", true);
+			UIManager.ShowNetworkStatus("Share failed", true, showMainMenu: false);
 		lastSharedKey = null;
 	}
 
@@ -824,7 +824,7 @@ public static class Serializer
 	{
 		if (string.IsNullOrWhiteSpace(results))
 		{
-			UIManager.ShowNetworkStatus("Loading failed", true);
+			UIManager.ShowNetworkStatus("Loading failed", true, showMainMenu: true);
 			return;
 		}
 		BlockManager.Clear();

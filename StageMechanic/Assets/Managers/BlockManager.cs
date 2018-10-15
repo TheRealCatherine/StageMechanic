@@ -117,7 +117,7 @@ public class BlockManager : MonoBehaviour
 
 	public IEnumerator DelayTogglePlayModeHelper(float seconds=0.25f)
 	{
-		UIManager.ShowNetworkStatus("Get ready!", true);
+		UIManager.ShowNetworkStatus("Get ready!", true, showMainMenu:false);
 		if (PlayMode)
 			Instance.TogglePlayMode();
 		yield return new WaitForSeconds(seconds);

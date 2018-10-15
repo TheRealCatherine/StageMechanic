@@ -310,6 +310,7 @@ public class UIManager : MonoBehaviour
 	{
 		Instance.MainMenu.gameObject.SetActive(false);
 		Instance.NetworkLoadDialog.gameObject.SetActive(true);
+		Instance.NetworkLoadDialog.ShowMainMenu = true;
 	}
 
 	public static void ToggleOnscreenControlls()
@@ -346,12 +347,13 @@ public class UIManager : MonoBehaviour
 	}
 	private void LoadFileUsingPath(string path) { Serializer.LoadFileUsingLocalPath(path); }
 
-	public static void ShowNetworkStatus(string status, bool showClose, string key=null)
+	public static void ShowNetworkStatus(string status, bool showClose, string key=null, bool showMainMenu=false)
 	{
 		Instance.MainMenu.gameObject.SetActive(false);
 		Instance.NetworkStatusDialog.gameObject.SetActive(true);
 		Instance.NetworkStatusDialog.Label.text = status;
 		Instance.NetworkStatusDialog.CancelButton.gameObject.SetActive(showClose);
+		Instance.NetworkLoadDialog.ShowMainMenu = showMainMenu;
 		if(string.IsNullOrWhiteSpace(key))
 		{
 			Instance.NetworkStatusDialog.UrlInput.gameObject.SetActive(false);

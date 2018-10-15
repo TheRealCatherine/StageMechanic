@@ -9,6 +9,7 @@ public class NetworkLoadDialog : MonoBehaviour {
 	public Button GoButton;
 	public Button CancelButton;
 	public Button CopyButton;
+	public bool ShowMainMenu = false;
 
 	void Update () {
 		if (string.IsNullOrEmpty(UrlInput.text) || UrlInput.text.Length < 6)
@@ -49,7 +50,8 @@ public class NetworkLoadDialog : MonoBehaviour {
 
 	public void OnCancelClicked()
 	{
-		UIManager.ShowMainMenu();
+		if(ShowMainMenu)
+			UIManager.ShowMainMenu();
 		gameObject.SetActive(false);
 	}
 
