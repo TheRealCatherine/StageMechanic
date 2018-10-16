@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HideInLightVersion : MonoBehaviour
 {
-    void Start()
+    void Update()
     {
 		if (GameManager.IsLiteBuild)
 			gameObject.SetActive(false);

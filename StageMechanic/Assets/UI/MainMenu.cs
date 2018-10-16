@@ -77,38 +77,38 @@ public class MainMenu : MonoBehaviour
 		TogglePlayModeButton.gameObject.SetActive(false);
 		if (string.IsNullOrWhiteSpace(Serializer.LastAccessedFileName))
 		{
-			SaveButton.gameObject.SetActive(false);
+			//SaveButton.gameObject.SetActive(false);
 		}
 		else
 		{
-			SaveButton.gameObject.SetActive(true);
+			//SaveButton.gameObject.SetActive(true);
 		}
 		if (BlockManager.BlockCount == 0)
 		{
-			PlayButton.gameObject.SetActive(false);
-			SaveAsButton.gameObject.SetActive(false);
-			ShareButton.gameObject.SetActive(false);
+			//PlayButton.gameObject.SetActive(false);
+			//SaveAsButton.gameObject.SetActive(false);
+			//ShareButton.gameObject.SetActive(false);
 		}
 		else
 		{
-			PlayButton.gameObject.SetActive(true);
-			SaveAsButton.gameObject.SetActive(true);
-			ShareButton.gameObject.SetActive(true);
+			//PlayButton.gameObject.SetActive(true);
+			//SaveAsButton.gameObject.SetActive(true);
+			//ShareButton.gameObject.SetActive(true);
 		}
 		if (Application.internetReachability == NetworkReachability.NotReachable)
 		{
-			LoadURLButton.gameObject.SetActive(false);
-			ShareButton.gameObject.SetActive(false);
+			//LoadURLButton.gameObject.SetActive(false);
+			//ShareButton.gameObject.SetActive(false);
 		}
 
 		if (Application.platform == RuntimePlatform.WebGLPlayer)
 		{
-			SaveAsButton.gameObject.SetActive(false);
-			SaveButton.gameObject.SetActive(false);
-			LoadButton.gameObject.SetActive(false);
+			//SaveAsButton.gameObject.SetActive(false);
+			//SaveButton.gameObject.SetActive(false);
+			//LoadButton.gameObject.SetActive(false);
 			//ShareButton.gameObject.SetActive(false);
-			InputsButton.gameObject.SetActive(false);
-			QuitButton.gameObject.SetActive(false);
+			//InputsButton.gameObject.SetActive(false);
+			//QuitButton.gameObject.SetActive(false);
 			LiteText.text = "Demo";
 		}
 

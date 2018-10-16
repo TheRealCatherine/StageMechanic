@@ -22,11 +22,16 @@ public class MenuAnimator : MonoBehaviour
 		{
 			ButtonLocations.Clear();
 			foreach (GameObject element in Elements)
-				ButtonLocations.Add(element.transform.position);
+			{
+				if(element != null)
+					ButtonLocations.Add(element.transform.position);
+			}
 		}
 
 		foreach (GameObject element in Elements)
 		{
+			if (element == null)
+				continue;
 			element.transform.position = transform.position;
 			element.transform.localScale = Vector3.zero;
 			element.transform.gameObject.SetActive(false);
@@ -51,7 +56,7 @@ public class MenuAnimator : MonoBehaviour
 	{
 		foreach (MenuAnimator menu in UIManager.Instance.MainMenu.MenuButtons)
 		{
-			if(menu != this)
+			if(menu != null && menu != this)
 				menu.Hide();
 		}
 		for (int i = 0; i < Elements.Length; ++i)
@@ -66,6 +71,8 @@ public class MenuAnimator : MonoBehaviour
 	{
 		for (int i = 0; i < Elements.Length; ++i)
 		{
+			if (Elements[i] == null)
+				continue;
 			Elements[i].transform.DOMove(transform.position, AnimationDuration);
 			Elements[i].transform.DOScale(0, AnimationDuration).OnComplete(OnHideComplete);
 		}
@@ -75,6 +82,8 @@ public class MenuAnimator : MonoBehaviour
 	{
 		for (int i = 0; i < Elements.Length; ++i)
 		{
+			if (Elements[i] == null)
+				continue;
 			Elements[i].gameObject.SetActive(false);
 		}
 
