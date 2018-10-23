@@ -175,6 +175,7 @@ public class Cathy1MonsterBlock : Cathy1Block
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
 			ret.Add("Move Probability", new DefaultValue { TypeInfo = typeof(float), Value = DEFAULT_MOVE_PROBABILITY.ToString() });
+			ret.Add("Armed", new DefaultValue { TypeInfo = typeof(bool), Value = true.ToString() });
 			return ret;
 		}
 	}
@@ -186,6 +187,8 @@ public class Cathy1MonsterBlock : Cathy1Block
 			Dictionary<string, string> ret = base.Properties;
 			if (MoveProbability != DEFAULT_MOVE_PROBABILITY)
 				ret.Add("Move Probability", MoveProbability.ToString());
+			if (CurrentState == State.Disarmed)
+				ret.Add("Armed", false.ToString());
 			return ret;
 		}
 		set
@@ -193,6 +196,9 @@ public class Cathy1MonsterBlock : Cathy1Block
 			base.Properties = value;
 			if (value.ContainsKey("Move Probability"))
 				MoveProbability = float.Parse(value["Move Probability"]);
+			if (value.ContainsKey("Armed") && value["Armed"] == false.ToString())
+				CurrentState = State.Disarmed;
+
 		}
 	}
 }
