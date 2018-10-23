@@ -56,6 +56,7 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 	internal override void OnGameModeChange( GameManager.GameMode oldMode, GameManager.GameMode newMode )
 	{
 		base.OnGameModeChange(oldMode, newMode);
+		_pushing = _rotating = _moveLeft = false;
 		if (newMode == GameManager.GameMode.Play) {
 			_moveLeft = _moveLeftProperty;
 			StaticMeshInstance.gameObject.transform.RotateAround(transform.position, transform.up, _moveLeft?90f:-90f);
@@ -191,6 +192,10 @@ public class BloxelsEnemyBlock : AbstractBloxelsBlock
 			if (value.ContainsKey(PROPNAME_TURNSPEED)) {
 				_turnSpeedProperty = float.Parse(value[PROPNAME_TURNSPEED]);
 			}
+			//TODO ...
+			//quick fix to position after undo
+			Position = Utility.Round(Position, 0);
+			MotionState = BlockMotionState.Grounded;
 		}
 	}
 
