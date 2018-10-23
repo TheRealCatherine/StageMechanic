@@ -887,65 +887,32 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 		if (BlockManager.PlayMode)
 		{
 			rb.constraints = (RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePosition);
-			if (CurrentModel != null)
-				CurrentModel.transform.Rotate(0f, 0f, 2f, Space.World);
-			yield return new WaitForSeconds(0.1f);
-			if (MotionState != BlockMotionState.Hovering)
-			{
-				_startedHover = false;
-				_gravityDirty = true;
-				yield break;
-			}
-			if (CurrentModel != null)
-				CurrentModel.transform.Rotate(0f, 0f, -5f, Space.World);
-			yield return new WaitForSeconds(0.1f);
-			if (MotionState != BlockMotionState.Hovering)
-			{
-				_startedHover = false;
-				_gravityDirty = true;
-				yield break;
-			}
-			if (CurrentModel != null)
-				CurrentModel.transform.Rotate(0f, 0f, 10f, Space.World);
-			yield return new WaitForSeconds(0.1f);
-			if (MotionState != BlockMotionState.Hovering)
-			{
-				_startedHover = false;
-				_gravityDirty = true;
-				yield break;
-			}
-			if (CurrentModel != null)
-				CurrentModel.transform.Rotate(0f, 0f, -2f, Space.World);
-			yield return new WaitForSeconds(0.1f);
-			if (MotionState != BlockMotionState.Hovering)
-			{
-				_startedHover = false;
-				_gravityDirty = true;
-				yield break;
-			}
-			if (CurrentModel != null)
-				CurrentModel.transform.rotation = _currentModelOriginalRotation;
-			if (MotionState != BlockMotionState.Hovering)
-			{
-				_startedHover = false;
-				_gravityDirty = true;
-				yield break;
-			}
-			yield return new WaitForSeconds(0.5f);
-			if (MotionState != BlockMotionState.Hovering)
-			{
-				_startedHover = false;
-				_gravityDirty = true;
-				yield break;
-			}
+			Sequence hoverSequence = DOTween.Sequence();
+			hoverSequence.Append(CurrentModel.transform.DORotate(new Vector3(0f, 0f, -5f), 0.1f, RotateMode.WorldAxisAdd));
+			hoverSequence.Append(CurrentModel.transform.DORotate(new Vector3(0f, 0f, 5f), 0.1f, RotateMode.WorldAxisAdd));
+			hoverSequence.Append(CurrentModel.transform.DORotate(new Vector3(0f, 0f, -10f), 0.1f, RotateMode.WorldAxisAdd));
+			hoverSequence.Append(CurrentModel.transform.DORotate(new Vector3(0f, 0f, 10f), 0.1f, RotateMode.WorldAxisAdd));
+			hoverSequence.AppendCallback(OnHoverAnimationComplete);
 		}
+		else
+		{
+			_startedHover = false;
+			_gravityDirty = true;
+			BlockMotionState oldState = MotionState;
+			MotionState = BlockMotionState.Falling;
+			OnMotionStateChanged(MotionState, oldState);
+		}
+	}
+	#endregion
+
+	protected void OnHoverAnimationComplete()
+	{
 		_startedHover = false;
 		_gravityDirty = true;
 		BlockMotionState oldState = MotionState;
 		MotionState = BlockMotionState.Falling;
 		OnMotionStateChanged(MotionState, oldState);
 	}
-	#endregion
 
 	protected virtual void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState)
 	{
