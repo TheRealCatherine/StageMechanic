@@ -724,7 +724,7 @@ public static class Serializer
 			www.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(data));
 			www.downloadHandler = new DownloadHandlerBuffer();
 			//TODO regenerate this and make it not in the public repository somehow
-			www.SetRequestHeader("Authorization", "Token 3832e929-129f-4ede-b5f8-9a4afab29681");
+			www.SetRequestHeader("Authorization", "Token");
 			www.SetRequestHeader("Content-Type", "application/json");
 			www.chunkedTransfer = false;
 			yield return www.SendWebRequest();
