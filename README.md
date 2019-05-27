@@ -45,7 +45,7 @@ StageMechanic is [BSD licensed](https://opensource.org/licenses/BSD-3-Clause) al
 
 ## Licensing
 
-This project is being developed as an open-source project entirely by volunteers. The resulting application is made freely available to users and all source code made freely available to developers/artists/etc. Sales of the Full version go to help fund development and delivery of [free, instructor-led 3D modeling and programming classes](https://gitlab.com/youreperfectstudio/RoyalGameOfUrCourse) at the [Hanock County Public Library](http://www.hancocklibraries.info/) located in [one of the poorest, least educated states in the USA](https://www.usnews.com/news/best-states/mississippi)
+This project is being developed as an open-source project entirely by volunteers. The resulting application is made freely available to users and all source code made freely available to developers/artists/etc.
 
 We are using the BSD 3-clause license. This allows maximum freedom while protecting contributors. Essentially anyone is allowed to do whatever they want to with anything published as part of this project. 
 
