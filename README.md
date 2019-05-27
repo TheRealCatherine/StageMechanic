@@ -4,11 +4,10 @@
 
 We are creating a game engine that allows one to play, create, and share 3D-tile/block based games.
 
-StageMechanic is currently in Early Access and is available for PC and web through [GameJolt](https://gamejolt.com/games/StageMechanic/357305) and [itch.io](https://youreperfect.itch.io/stagemechanic).
+StageMechanic is currently in Early Access and is available for PC and web through [GameJolt](https://gamejolt.com/games/StageMechanic/357305).
 
 StageMechanic for Android is available [in the Google Play Store](https://play.google.com/store/apps/developer?id=You%27re+Perfect+Studio)
 
-Sales of the Full version go to help fund development and delivery of [free, instructor-led 3D modeling and programming classes](https://gitlab.com/youreperfectstudio/RoyalGameOfUrCourse) at the [Hanock County Public Library](http://www.hancocklibraries.info/) located in [one of the poorest, least educated states in the USA](https://www.usnews.com/news/best-states/mississippi)
 
 ## Target audences
 
