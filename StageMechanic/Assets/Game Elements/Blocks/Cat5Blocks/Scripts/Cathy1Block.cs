@@ -25,6 +25,7 @@ public class Cathy1Block : AbstractBlock
 	{
 		if (CurrentModelNumber == number && CurrentModel != null)
 			return;
+		float oldOpacity = MaterialOpacity;
 		Destroy(CurrentModel);
 		switch (number) {
 			default:
@@ -54,6 +55,7 @@ public class Cathy1Block : AbstractBlock
 				CurrentModelNumber = 4;
 				break;
 		}
+		MaterialOpacity = oldOpacity;
 		int blockGroup = BlockManager.BlockGroupNumber(this);
 		if (blockGroup != -1)
 			OnBlockGroupChanged(blockGroup);

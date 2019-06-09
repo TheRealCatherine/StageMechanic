@@ -12,7 +12,7 @@ public class SplashScreen : MonoBehaviour
 
 	private void Start()
 	{
-		Edition.transform.DOShakePosition(StartupSound.length, 40f, 20).OnComplete(Hide).OnStart(PlaySound);
+		Edition.transform.DOShakePosition(StartupSound.length, 40f, 20).OnComplete(Hide);
 	}
 
 	public void PlaySound()

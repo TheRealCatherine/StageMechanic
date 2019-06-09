@@ -117,6 +117,12 @@ public interface IBlock : IRotatable, IHierarchical, IPullable, IPushable, IScen
 		set;
 	}
 
+	float MaterialOpacity
+	{
+		get;
+		set;
+	}
+
 	/// <summary>
 	/// A list of items associated with this block. Typically
 	/// destroying or moving the block will destroy or move

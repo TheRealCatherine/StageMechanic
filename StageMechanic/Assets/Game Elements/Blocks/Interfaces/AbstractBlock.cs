@@ -178,6 +178,7 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 			ret.Add("Fixed Rotation", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
 			ret.Add("Weight Factor", new DefaultValue { TypeInfo = typeof(float), Value = "1.0" });
 			ret.Add("Gravity Factor", new DefaultValue { TypeInfo = typeof(float), Value = "1.0" });
+			ret.Add("Opacity", new DefaultValue { TypeInfo = typeof(float), Value = "1.0" });
 			ret.Add("Block Group", new DefaultValue { TypeInfo = typeof(int), Value = "-1" });
 			return ret;
 		}
@@ -210,6 +211,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				ret.Add("Weight Factor", WeightFactor.ToString());
 			if (GravityFactor != 1.0f)
 				ret.Add("Gravity Factor", GravityFactor.ToString());
+			if (MaterialOpacity != 1.0f)
+				ret.Add("Opacity", MaterialOpacity.ToString());
 			if (BlockManager.BlockGroupNumber(this) != -1)
 				ret.Add("Block Group", BlockManager.BlockGroupNumber(this).ToString());
 			return ret;
@@ -237,6 +240,8 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 				WeightFactor = (float)Convert.ToDouble(value["Weight Factor"]);
 			if (value.ContainsKey("Gravity Factor"))
 				GravityFactor = (float)Convert.ToDouble(value["Gravity Factor"]);
+			if (value.ContainsKey("Opacity"))
+				MaterialOpacity = (float)Convert.ToDouble(value["Opacity"]);
 			if (value.ContainsKey("Block Group"))
 				BlockManager.AddBlockToGroup(this, Convert.ToInt32(value["Block Group"]));
 		}
@@ -286,6 +291,45 @@ public abstract class AbstractBlock : MonoBehaviour, IBlock
 	}
 
 	public float DensityFactor { get; set; } = 1.0f;
+
+	public float MaterialOpacity
+	{
+		get
+		{
+			if (CurrentModel is null)
+				return 1;
+			return CurrentModel.GetComponent<MeshRenderer>().material.color.a;
+		}
+		set
+		{
+			if (CurrentModel is null)
+			{
+				StartCoroutine(SetMaterialOpacityDelayed(value));
+			}
+			else
+			{
+				if (value >= 1.0)
+					Utility.ChangeRenderMode(CurrentModel.GetComponent<MeshRenderer>().material, Utility.BlendMode.Opaque);
+				else
+					Utility.ChangeRenderMode(CurrentModel.GetComponent<MeshRenderer>().material, Utility.BlendMode.Transparent);
+				Color c = CurrentModel.GetComponent<MeshRenderer>().material.color;
+				c.a = value;
+				CurrentModel.GetComponent<MeshRenderer>().material.color = c;
+			}
+		}
+	}
+
+	IEnumerator SetMaterialOpacityDelayed(float value)
+	{
+		while(CurrentModel == null)
+		{
+			if (value == 1)
+				yield break;
+			yield return new WaitForEndOfFrame();
+		}
+		MaterialOpacity = value;
+	}
+
 
 	[SerializeField]
 	private BlockMotionState _motionState = BlockMotionState.Unknown;
