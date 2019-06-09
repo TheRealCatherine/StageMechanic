@@ -1,45 +1,131 @@
 fileFormatVersion: 2
 guid: 4ba992931d587094ab6e1cb6db035e01
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: rock
-    100002: rock_dripping_slime0
-    100004: rock_dripping_slime1
-    100006: rock_dripping_slime2
-    100008: rock_dripping_slime3
-    100010: rock_slime_top
-    100012: //RootNode
-    400000: rock
-    400002: rock_dripping_slime0
-    400004: rock_dripping_slime1
-    400006: rock_dripping_slime2
-    400008: rock_dripping_slime3
-    400010: rock_slime_top
-    400012: //RootNode
-    2100000: slime_moving
-    2100002: rock
-    2100004: slime
-    2300000: rock
-    2300002: rock_dripping_slime0
-    2300004: rock_dripping_slime1
-    2300006: rock_dripping_slime2
-    2300008: rock_dripping_slime3
-    2300010: rock_slime_top
-    3300000: rock
-    3300002: rock_dripping_slime0
-    3300004: rock_dripping_slime1
-    3300006: rock_dripping_slime2
-    3300008: rock_dripping_slime3
-    3300010: rock_slime_top
-    4300000: rock_dripping_slime2
-    4300002: rock_dripping_slime3
-    4300004: rock
-    4300006: rock_dripping_slime1
-    4300008: rock_slime_top
-    4300010: rock_dripping_slime0
-    7400000: Default Take
-    9500000: //RootNode
+  serializedVersion: 27
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: rock
+  - first:
+      1: 100002
+    second: rock_dripping_slime0
+  - first:
+      1: 100004
+    second: rock_dripping_slime1
+  - first:
+      1: 100006
+    second: rock_dripping_slime2
+  - first:
+      1: 100008
+    second: rock_dripping_slime3
+  - first:
+      1: 100010
+    second: rock_slime_top
+  - first:
+      1: 100012
+    second: //RootNode
+  - first:
+      4: 400000
+    second: rock
+  - first:
+      4: 400002
+    second: rock_dripping_slime0
+  - first:
+      4: 400004
+    second: rock_dripping_slime1
+  - first:
+      4: 400006
+    second: rock_dripping_slime2
+  - first:
+      4: 400008
+    second: rock_dripping_slime3
+  - first:
+      4: 400010
+    second: rock_slime_top
+  - first:
+      4: 400012
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: slime_moving
+  - first:
+      21: 2100002
+    second: rock
+  - first:
+      21: 2100004
+    second: slime
+  - first:
+      23: 2300000
+    second: rock
+  - first:
+      23: 2300002
+    second: rock_dripping_slime0
+  - first:
+      23: 2300004
+    second: rock_dripping_slime1
+  - first:
+      23: 2300006
+    second: rock_dripping_slime2
+  - first:
+      23: 2300008
+    second: rock_dripping_slime3
+  - first:
+      23: 2300010
+    second: rock_slime_top
+  - first:
+      33: 3300000
+    second: rock
+  - first:
+      33: 3300002
+    second: rock_dripping_slime0
+  - first:
+      33: 3300004
+    second: rock_dripping_slime1
+  - first:
+      33: 3300006
+    second: rock_dripping_slime2
+  - first:
+      33: 3300008
+    second: rock_dripping_slime3
+  - first:
+      33: 3300010
+    second: rock_slime_top
+  - first:
+      43: 4300000
+    second: rock_dripping_slime2
+  - first:
+      43: 4300002
+    second: rock_dripping_slime3
+  - first:
+      43: 4300004
+    second: rock
+  - first:
+      43: 4300006
+    second: rock_dripping_slime1
+  - first:
+      43: 4300008
+    second: rock_slime_top
+  - first:
+      43: 4300010
+    second: rock_dripping_slime0
+  - first:
+      74: 7400000
+    second: Default Take
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      74: -8234112671759779086
+    second: rock_dripping_slime2|CubeAction
+  - first:
+      74: 1153431079411726083
+    second: rock_dripping_slime3|CubeAction
+  - first:
+      74: -8132976268203080416
+    second: rock|CubeAction
+  - first:
+      74: 5719152790653779066
+    second: rock_dripping_slime0|CubeAction
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -67,13 +153,131 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: rock_dripping_slime2|CubeAction
+      takeName: rock_dripping_slime2|CubeAction
+      internalID: -8234112671759779086
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rock_dripping_slime3|CubeAction
+      takeName: rock_dripping_slime3|CubeAction
+      internalID: 1153431079411726083
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rock|CubeAction
+      takeName: rock|CubeAction
+      internalID: -8132976268203080416
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rock_dripping_slime0|CubeAction
+      takeName: rock_dripping_slime0|CubeAction
+      internalID: 5719152790653779066
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -81,27 +285,31 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -111,14 +319,15 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

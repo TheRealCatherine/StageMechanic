@@ -1,118 +1,389 @@
 fileFormatVersion: 2
 guid: 0cebd95065eea2243ad77ed036f81e00
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: arm_lower_L
-    100002: arm_lower_R
-    100004: arm_upper_L
-    100006: arm_upper_R
-    100008: Body
-    100010: bone_shape_elbow
-    100012: bone_shape_knuckle
-    100014: bone_shape_wrist
-    100016: Club
-    100018: finger_index_base_L
-    100020: finger_index_base_R
-    100022: finger_index_mid_L
-    100024: finger_index_mid_R
-    100026: finger_index_tip_L
-    100028: finger_index_tip_R
-    100030: finger_mid_base_L
-    100032: finger_mid_base_R
-    100034: finger_mid_mid_L
-    100036: finger_mid_mid_R
-    100038: finger_mid_tip_L
-    100040: finger_mid_tip_R
-    100042: finger_pinkie_base_L
-    100044: finger_pinkie_base_R
-    100046: finger_pinkie_mid_L
-    100048: finger_pinkie_mid_R
-    100050: finger_pinkie_tip_L
-    100052: finger_pinkie_tip_R
-    100054: hand_L
-    100056: hand_R
-    100058: jaw
-    100060: shoulder_L
-    100062: shoulder_R
-    100064: thumb_base_L
-    100066: thumb_base_R
-    100068: thumb_mid_L
-    100070: thumb_mid_R
-    100072: thumb_tip_L
-    100074: thumb_tip_R
-    100076: Zantar
-    100078: //RootNode
-    100080: Zantar_Armature
-    400000: arm_lower_L
-    400002: arm_lower_R
-    400004: arm_upper_L
-    400006: arm_upper_R
-    400008: Body
-    400010: bone_shape_elbow
-    400012: bone_shape_knuckle
-    400014: bone_shape_wrist
-    400016: Club
-    400018: finger_index_base_L
-    400020: finger_index_base_R
-    400022: finger_index_mid_L
-    400024: finger_index_mid_R
-    400026: finger_index_tip_L
-    400028: finger_index_tip_R
-    400030: finger_mid_base_L
-    400032: finger_mid_base_R
-    400034: finger_mid_mid_L
-    400036: finger_mid_mid_R
-    400038: finger_mid_tip_L
-    400040: finger_mid_tip_R
-    400042: finger_pinkie_base_L
-    400044: finger_pinkie_base_R
-    400046: finger_pinkie_mid_L
-    400048: finger_pinkie_mid_R
-    400050: finger_pinkie_tip_L
-    400052: finger_pinkie_tip_R
-    400054: hand_L
-    400056: hand_R
-    400058: jaw
-    400060: shoulder_L
-    400062: shoulder_R
-    400064: thumb_base_L
-    400066: thumb_base_R
-    400068: thumb_mid_L
-    400070: thumb_mid_R
-    400072: thumb_tip_L
-    400074: thumb_tip_R
-    400076: Zantar
-    400078: //RootNode
-    400080: Zantar_Armature
-    2100000: unnamed
-    2100002: Material_001__zantar_texture
-    2100004: Material_001
-    2100006: Material_002__Club_texture
-    2300000: bone_shape_elbow
-    2300002: bone_shape_knuckle
-    2300004: bone_shape_wrist
-    3300000: bone_shape_elbow
-    3300002: bone_shape_knuckle
-    3300004: bone_shape_wrist
-    4300000: bone_shape_wrist
-    4300002: bone_shape_elbow
-    4300004: Zantar
-    4300006: Club
-    4300008: bone_shape_knuckle
-    7400000: Default Take
-    7400002: Attack
-    7400004: B_to_R
-    7400006: Eat
-    7400008: Idle
-    7400010: Move_Forward
-    7400012: Move_Left
-    7400014: Move_Right
-    7400016: Move_Backwards
-    9500000: //RootNode
-    13700000: Club
-    13700002: Zantar
-    2186277476908879412: ImportLogs
+  serializedVersion: 27
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: arm_lower_L
+  - first:
+      1: 100002
+    second: arm_lower_R
+  - first:
+      1: 100004
+    second: arm_upper_L
+  - first:
+      1: 100006
+    second: arm_upper_R
+  - first:
+      1: 100008
+    second: Body
+  - first:
+      1: 100010
+    second: bone_shape_elbow
+  - first:
+      1: 100012
+    second: bone_shape_knuckle
+  - first:
+      1: 100014
+    second: bone_shape_wrist
+  - first:
+      1: 100016
+    second: Club
+  - first:
+      1: 100018
+    second: finger_index_base_L
+  - first:
+      1: 100020
+    second: finger_index_base_R
+  - first:
+      1: 100022
+    second: finger_index_mid_L
+  - first:
+      1: 100024
+    second: finger_index_mid_R
+  - first:
+      1: 100026
+    second: finger_index_tip_L
+  - first:
+      1: 100028
+    second: finger_index_tip_R
+  - first:
+      1: 100030
+    second: finger_mid_base_L
+  - first:
+      1: 100032
+    second: finger_mid_base_R
+  - first:
+      1: 100034
+    second: finger_mid_mid_L
+  - first:
+      1: 100036
+    second: finger_mid_mid_R
+  - first:
+      1: 100038
+    second: finger_mid_tip_L
+  - first:
+      1: 100040
+    second: finger_mid_tip_R
+  - first:
+      1: 100042
+    second: finger_pinkie_base_L
+  - first:
+      1: 100044
+    second: finger_pinkie_base_R
+  - first:
+      1: 100046
+    second: finger_pinkie_mid_L
+  - first:
+      1: 100048
+    second: finger_pinkie_mid_R
+  - first:
+      1: 100050
+    second: finger_pinkie_tip_L
+  - first:
+      1: 100052
+    second: finger_pinkie_tip_R
+  - first:
+      1: 100054
+    second: hand_L
+  - first:
+      1: 100056
+    second: hand_R
+  - first:
+      1: 100058
+    second: jaw
+  - first:
+      1: 100060
+    second: shoulder_L
+  - first:
+      1: 100062
+    second: shoulder_R
+  - first:
+      1: 100064
+    second: thumb_base_L
+  - first:
+      1: 100066
+    second: thumb_base_R
+  - first:
+      1: 100068
+    second: thumb_mid_L
+  - first:
+      1: 100070
+    second: thumb_mid_R
+  - first:
+      1: 100072
+    second: thumb_tip_L
+  - first:
+      1: 100074
+    second: thumb_tip_R
+  - first:
+      1: 100076
+    second: Zantar
+  - first:
+      1: 100078
+    second: //RootNode
+  - first:
+      1: 100080
+    second: Zantar_Armature
+  - first:
+      4: 400000
+    second: arm_lower_L
+  - first:
+      4: 400002
+    second: arm_lower_R
+  - first:
+      4: 400004
+    second: arm_upper_L
+  - first:
+      4: 400006
+    second: arm_upper_R
+  - first:
+      4: 400008
+    second: Body
+  - first:
+      4: 400010
+    second: bone_shape_elbow
+  - first:
+      4: 400012
+    second: bone_shape_knuckle
+  - first:
+      4: 400014
+    second: bone_shape_wrist
+  - first:
+      4: 400016
+    second: Club
+  - first:
+      4: 400018
+    second: finger_index_base_L
+  - first:
+      4: 400020
+    second: finger_index_base_R
+  - first:
+      4: 400022
+    second: finger_index_mid_L
+  - first:
+      4: 400024
+    second: finger_index_mid_R
+  - first:
+      4: 400026
+    second: finger_index_tip_L
+  - first:
+      4: 400028
+    second: finger_index_tip_R
+  - first:
+      4: 400030
+    second: finger_mid_base_L
+  - first:
+      4: 400032
+    second: finger_mid_base_R
+  - first:
+      4: 400034
+    second: finger_mid_mid_L
+  - first:
+      4: 400036
+    second: finger_mid_mid_R
+  - first:
+      4: 400038
+    second: finger_mid_tip_L
+  - first:
+      4: 400040
+    second: finger_mid_tip_R
+  - first:
+      4: 400042
+    second: finger_pinkie_base_L
+  - first:
+      4: 400044
+    second: finger_pinkie_base_R
+  - first:
+      4: 400046
+    second: finger_pinkie_mid_L
+  - first:
+      4: 400048
+    second: finger_pinkie_mid_R
+  - first:
+      4: 400050
+    second: finger_pinkie_tip_L
+  - first:
+      4: 400052
+    second: finger_pinkie_tip_R
+  - first:
+      4: 400054
+    second: hand_L
+  - first:
+      4: 400056
+    second: hand_R
+  - first:
+      4: 400058
+    second: jaw
+  - first:
+      4: 400060
+    second: shoulder_L
+  - first:
+      4: 400062
+    second: shoulder_R
+  - first:
+      4: 400064
+    second: thumb_base_L
+  - first:
+      4: 400066
+    second: thumb_base_R
+  - first:
+      4: 400068
+    second: thumb_mid_L
+  - first:
+      4: 400070
+    second: thumb_mid_R
+  - first:
+      4: 400072
+    second: thumb_tip_L
+  - first:
+      4: 400074
+    second: thumb_tip_R
+  - first:
+      4: 400076
+    second: Zantar
+  - first:
+      4: 400078
+    second: //RootNode
+  - first:
+      4: 400080
+    second: Zantar_Armature
+  - first:
+      21: 2100000
+    second: unnamed
+  - first:
+      21: 2100002
+    second: Material_001__zantar_texture
+  - first:
+      21: 2100004
+    second: Material_001
+  - first:
+      21: 2100006
+    second: Material_002__Club_texture
+  - first:
+      23: 2300000
+    second: bone_shape_elbow
+  - first:
+      23: 2300002
+    second: bone_shape_knuckle
+  - first:
+      23: 2300004
+    second: bone_shape_wrist
+  - first:
+      33: 3300000
+    second: bone_shape_elbow
+  - first:
+      33: 3300002
+    second: bone_shape_knuckle
+  - first:
+      33: 3300004
+    second: bone_shape_wrist
+  - first:
+      43: 4300000
+    second: bone_shape_wrist
+  - first:
+      43: 4300002
+    second: bone_shape_elbow
+  - first:
+      43: 4300004
+    second: Zantar
+  - first:
+      43: 4300006
+    second: Club
+  - first:
+      43: 4300008
+    second: bone_shape_knuckle
+  - first:
+      74: 7400000
+    second: Default Take
+  - first:
+      74: 7400002
+    second: Attack
+  - first:
+      74: 7400004
+    second: B_to_R
+  - first:
+      74: 7400006
+    second: Eat
+  - first:
+      74: 7400008
+    second: Idle
+  - first:
+      74: 7400010
+    second: Move_Forward
+  - first:
+      74: 7400012
+    second: Move_Left
+  - first:
+      74: 7400014
+    second: Move_Right
+  - first:
+      74: 7400016
+    second: Move_Backwards
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Club
+  - first:
+      137: 13700002
+    second: Zantar
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
+  - first:
+      74: 751668910222068593
+    second: Spot|translate
+  - first:
+      74: 171577364583069708
+    second: Spot|Translate
+  - first:
+      74: -3261633840117790499
+    second: Zantar|translate
+  - first:
+      74: 5957579280414858811
+    second: Zantar|Translate
+  - first:
+      74: 6443627760574248656
+    second: Club|Attack
+  - first:
+      74: 4410554489156107085
+    second: Club|translate
+  - first:
+      74: 8072754381656705813
+    second: Club|Translate
+  - first:
+      74: -2190291933429237287
+    second: Zantar Armature|Attack
+  - first:
+      74: -896867456483416077
+    second: Zantar Armature|B to R
+  - first:
+      74: -7771076256788025400
+    second: Zantar Armature|Eat
+  - first:
+      74: -6373961304912290088
+    second: Zantar Armature|Idle
+  - first:
+      74: 5952886118493348275
+    second: Zantar Armature|Move Forward
+  - first:
+      74: 8441725035257713216
+    second: Zantar Armature|Move Left
+  - first:
+      74: -2382704561780884237
+    second: Zantar Armature|Move Right
+  - first:
+      74: -78469305155177340
+    second: Zantar Armature|translate
+  - first:
+      74: -4005875145650954908
+    second: Zantar Armature|Move Backwards
+  - first:
+      74: 1202922061510496876
+    second: Zantar Armature|Translate
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -140,13 +411,508 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Spot|translate
+      takeName: Spot|translate
+      internalID: 751668910222068593
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Spot|Translate
+      takeName: Spot|Translate
+      internalID: 171577364583069708
+      firstFrame: 0
+      lastFrame: 286
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar|translate
+      takeName: Zantar|translate
+      internalID: -3261633840117790499
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar|Translate
+      takeName: Zantar|Translate
+      internalID: 5957579280414858811
+      firstFrame: 0
+      lastFrame: 286
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Club|Attack
+      takeName: Club|Attack
+      internalID: 6443627760574248656
+      firstFrame: 0
+      lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Club|translate
+      takeName: Club|translate
+      internalID: 4410554489156107085
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Club|Translate
+      takeName: Club|Translate
+      internalID: 8072754381656705813
+      firstFrame: 0
+      lastFrame: 286
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Attack
+      takeName: Zantar Armature|Attack
+      internalID: -2190291933429237287
+      firstFrame: 0
+      lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|B to R
+      takeName: Zantar Armature|B to R
+      internalID: -896867456483416077
+      firstFrame: 0
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Eat
+      takeName: Zantar Armature|Eat
+      internalID: -7771076256788025400
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Idle
+      takeName: Zantar Armature|Idle
+      internalID: -6373961304912290088
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Move Forward
+      takeName: Zantar Armature|Move Forward
+      internalID: 5952886118493348275
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Move Left
+      takeName: Zantar Armature|Move Left
+      internalID: 8441725035257713216
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Move Right
+      takeName: Zantar Armature|Move Right
+      internalID: -2382704561780884237
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|translate
+      takeName: Zantar Armature|translate
+      internalID: -78469305155177340
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Move Backwards
+      takeName: Zantar Armature|Move Backwards
+      internalID: -4005875145650954908
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Zantar Armature|Translate
+      takeName: Zantar Armature|Translate
+      internalID: 1202922061510496876
+      firstFrame: 0
+      lastFrame: 286
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -154,10 +920,13 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -169,10 +938,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -182,14 +954,15 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

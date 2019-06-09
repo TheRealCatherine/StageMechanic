@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Utility
     {
         // An incredibly simple menu which, when given references
         // to gameobjects in the scene
-        public GUIText camSwitchButton;
+        public UnityEngine.UI.Image camSwitchButton;
         public GameObject[] objects;
 
 
@@ -17,11 +17,11 @@ namespace UnityStandardAssets.Utility
         {
             // active object starts from first in array
             m_CurrentActiveObject = 0;
-            camSwitchButton.text = objects[m_CurrentActiveObject].name;
-        }
+			//Unity 2019.3 update camSwitchButton.text = objects[m_CurrentActiveObject].name;
+		}
 
 
-        public void NextCamera()
+		public void NextCamera()
         {
             int nextactiveobject = m_CurrentActiveObject + 1 >= objects.Length ? 0 : m_CurrentActiveObject + 1;
 
@@ -31,7 +31,7 @@ namespace UnityStandardAssets.Utility
             }
 
             m_CurrentActiveObject = nextactiveobject;
-            camSwitchButton.text = objects[m_CurrentActiveObject].name;
+            //Unity 2019.3 update camSwitchButton.text = objects[m_CurrentActiveObject].name;
         }
     }
 }
