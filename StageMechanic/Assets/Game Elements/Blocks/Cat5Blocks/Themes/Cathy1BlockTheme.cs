@@ -124,4 +124,13 @@ public class Cathy1BlockTheme : AbstractBlockTheme
 	public Vector3 VortexEffectOffset; //Optional
 	public Sprite VortexIcon; //Optional
 
+	[Header("Teleport")]
+	public GameObject IdleTeleport;
+	public GameObject ActiveTeleport; //Optional
+	public ParticleSystem IdleTeleportEffect; //Optional
+	public ParticleSystem ActiveTeleportEffect; //Optional
+	public Vector3 TeleportEffectsOffset; //Optional
+	public AudioClip TeleportSound; //Optional
+	public Sprite TeleportIcon; //Optional
+
 }

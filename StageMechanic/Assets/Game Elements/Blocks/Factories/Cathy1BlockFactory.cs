@@ -111,6 +111,10 @@ public class Cathy1BlockFactory : AbstractBlockFactory
 				if (CurrentTheme.VortexIcon != null)
 					return CurrentTheme.VortexIcon;
 				break;
+			case "Teleport":
+				if (CurrentTheme.TeleportIcon != null)
+					return CurrentTheme.TeleportIcon;
+				break;
 		}
 
 		return _prefabs[name].Icon;
