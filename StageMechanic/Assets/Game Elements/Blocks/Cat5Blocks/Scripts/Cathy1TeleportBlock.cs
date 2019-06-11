@@ -14,10 +14,10 @@ public class Cathy1TeleportBlock : Cathy1Block
 	public ParticleSystem IdleEffect;
 	public ParticleSystem ActiveEffect;
 	public Vector3 EffectOffset;
-	public AudioClip Applause;
-	public string NextStageFilename;
-	public string NextStageStartPos;
-	public bool MustNotFall = false;
+	public AudioClip SoundEffect;
+	public string DestinationStage;
+	public string DestinationBlock;
+	public bool hasPlayer = false;
 
 	public override string TypeName
 	{
@@ -43,7 +43,7 @@ public class Cathy1TeleportBlock : Cathy1Block
 		IdleEffect = theme.IdleTeleportEffect;
 		ActiveEffect = theme.ActiveTeleportEffect;
 		EffectOffset = theme.TeleportEffectsOffset;
-		Applause = theme.TeleportSound;
+		SoundEffect = theme.TeleportSound;
 	}
 
 	public override void Awake()
@@ -57,6 +57,9 @@ public class Cathy1TeleportBlock : Cathy1Block
 	bool _hasShownDialog = false;
 	virtual internal void HandlePlayer(PlayerMovementEvent ev)
 	{
+		if (hasPlayer)
+			return;
+
 		if (ev.Location != PlayerMovementEvent.EventLocation.Top)
 			return;
 		string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
@@ -64,18 +67,42 @@ public class Cathy1TeleportBlock : Cathy1Block
 		{
 			if (!_hasPlayedSound)
 			{
-				if (Applause != null)
-					AudioEffectsManager.PlaySound(this, Applause);
+				if (SoundEffect != null)
+					AudioEffectsManager.PlaySound(this, SoundEffect);
 				_hasPlayedSound = true;
 			}
-			//TODO support game jolt level chaining
-			if (!string.IsNullOrWhiteSpace(NextStageFilename) && PlayerPrefs.HasKey("LastLoadDir") && !PlayerPrefs.GetString("LastLoadDir").StartsWith("#/"))
+
+			string[] startPos = null;
+			if (!string.IsNullOrWhiteSpace(DestinationBlock))
 			{
-				Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename);
+				startPos = new string[1];
+				startPos[0] = DestinationBlock;
+			}
+			if(string.IsNullOrWhiteSpace(DestinationStage) && !string.IsNullOrWhiteSpace(DestinationBlock))
+			{
+				IBlock startBlock = null;
+				foreach (IBlock block in BlockManager.BlockCache)
+				{
+					for (int i = 0; i < startPos.Length; ++i)
+					{
+						if (block.Name == startPos[i])
+							startBlock = block;
+					}
+				}
+				if(startBlock as Cathy1TeleportBlock)
+					(startBlock as Cathy1TeleportBlock).hasPlayer = true;
+				PlayerManager.SetPlayer1Location(startBlock.Position + Vector3.up);
+			}
+			//Serializer.BlocksFromJson(location, startPlayMode: true, startPositionOverrides: startPos);
+
+			//TODO support game jolt level chaining
+			if (!string.IsNullOrWhiteSpace(DestinationStage) && PlayerPrefs.HasKey("LastLoadDir") && !PlayerPrefs.GetString("LastLoadDir").StartsWith("#/"))
+			{
+				Uri location = new Uri(PlayerPrefs.GetString("LastLoadDir") + "/" + DestinationStage);
 				BlockManager.Instance.TogglePlayMode();
 				if (Serializer.UseBinaryFiles)
 				{
-					string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
+					string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + DestinationStage;
 					loc = loc.Replace(".json", ".bin");
 					if (Application.platform == RuntimePlatform.WebGLPlayer)
 					{
@@ -121,7 +148,7 @@ public class Cathy1TeleportBlock : Cathy1Block
 							|| Application.platform == RuntimePlatform.LinuxPlayer)
 							BlockManager.Instance.TogglePlayMode(0.4f);
 
-						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + NextStageFilename;
+						string loc = PlayerPrefs.GetString("LastLoadDir") + "/" + DestinationStage;
 						if (BetterStreamingAssets.FileExists(loc))
 						{
 							BlockManager.Instance.TogglePlayMode(0.4f);
@@ -144,13 +171,18 @@ public class Cathy1TeleportBlock : Cathy1Block
 					}
 				}
 			}
-			else if (string.IsNullOrWhiteSpace(NextStageFilename)
-				||(!PlayerPrefs.HasKey("LastLoadDir"))
-				|| PlayerPrefs.GetString("LastLoadDir").StartsWith("#/"))
+			else if (string.IsNullOrWhiteSpace(DestinationStage) && string.IsNullOrWhiteSpace(DestinationBlock))
 			{
-				if (!_hasShownDialog) {
-					_hasShownDialog = true;
-					UIManager.ShowCongratulationDialog();
+				IBlock startBlock = null;
+				List<IBlock> blocks = BlockManager.GetBlocksOfType("Teleport");
+				if (blocks.Count > 1) {
+					blocks.Remove(this);
+					startBlock = blocks.RandomElement();
+				}
+				if (startBlock as Cathy1TeleportBlock)
+				{
+					(startBlock as Cathy1TeleportBlock).hasPlayer = true;
+					PlayerManager.SetPlayer1Location(startBlock.Position + Vector3.up);
 				}
 			}
 		}
@@ -161,6 +193,7 @@ public class Cathy1TeleportBlock : Cathy1Block
 		base.OnPlayerEnter(ev);
 		ShowModel(2);
 		HandlePlayer(ev);
+		hasPlayer = true;
 	}
 
 	protected override void OnPlayerStay(PlayerMovementEvent ev)
@@ -168,6 +201,7 @@ public class Cathy1TeleportBlock : Cathy1Block
 		base.OnPlayerStay(ev);
 		ShowModel(2);
 		HandlePlayer(ev);
+		hasPlayer = true;
 	}
 
 	protected override void OnPlayerLeave(PlayerMovementEvent ev)
@@ -175,17 +209,7 @@ public class Cathy1TeleportBlock : Cathy1Block
 		base.OnPlayerLeave(ev);
 		ShowModel(1);
 		_hasPlayedSound = false;
-	}
-
-	protected override void OnMotionStateChanged(BlockMotionState newState, BlockMotionState oldState)
-	{
-		base.OnMotionStateChanged(newState, oldState);
-		if (MustNotFall && newState == BlockMotionState.Falling)
-		{
-			PlayerManager.DestroyAllPlayers();
-			UIManager.ShowSinglePlayerDeathDialog();
-		}
-
+		hasPlayer = false;
 	}
 
 	public override Dictionary<string, DefaultValue> DefaultProperties
@@ -193,9 +217,8 @@ public class Cathy1TeleportBlock : Cathy1Block
 		get
 		{
 			Dictionary<string, DefaultValue> ret = base.DefaultProperties;
-			ret.Add("Next Stage Filename", new DefaultValue { TypeInfo = typeof(string), Value = string.Empty });
-			ret.Add("Next Stage Start Block Override", new DefaultValue { TypeInfo = typeof(string), Value = string.Empty });
-			ret.Add("Must Not Fall", new DefaultValue { TypeInfo = typeof(bool), Value = "False" });
+			//TODO ret.Add("Destination Stage", new DefaultValue { TypeInfo = typeof(string), Value = string.Empty });
+			ret.Add("Destination Block", new DefaultValue { TypeInfo = typeof(string), Value = string.Empty });
 			return ret;
 		}
 	}
@@ -205,23 +228,19 @@ public class Cathy1TeleportBlock : Cathy1Block
 		get
 		{
 			Dictionary<string, string> ret = base.Properties;
-			if (!string.IsNullOrEmpty(NextStageFilename) && !string.IsNullOrWhiteSpace(NextStageFilename))
-				ret.Add("Next Stage Filename", NextStageFilename);
-			if (!string.IsNullOrEmpty(NextStageStartPos) && !string.IsNullOrWhiteSpace(NextStageStartPos))
-				ret.Add("Next Stage Start Block Override", NextStageStartPos);
-			if (MustNotFall)
-				ret.Add("Must Not Fall", true.ToString());
+			if (!string.IsNullOrEmpty(DestinationStage) && !string.IsNullOrWhiteSpace(DestinationStage))
+				ret.Add("Destination Stage", DestinationStage);
+			if (!string.IsNullOrEmpty(DestinationBlock) && !string.IsNullOrWhiteSpace(DestinationBlock))
+				ret.Add("Destination Block", DestinationBlock);
 			return ret;
 		}
 		set
 		{
 			base.Properties = value;
-			if (value.ContainsKey("Next Stage Filename"))
-				NextStageFilename = value["Next Stage Filename"];
-			if (value.ContainsKey("Next Stage Start Block Override"))
-				NextStageStartPos = value["Next Stage Start Block Override"];
-			if (value.ContainsKey("Must Not Fall"))
-				MustNotFall = bool.Parse(value["Must Not Fall"]);
+			if (value.ContainsKey("Destination Stage"))
+				DestinationStage = value["Destination Stage"];
+			if (value.ContainsKey("Destination Block"))
+				DestinationBlock = value["Destination Block"];
 		}
 	}
 }
