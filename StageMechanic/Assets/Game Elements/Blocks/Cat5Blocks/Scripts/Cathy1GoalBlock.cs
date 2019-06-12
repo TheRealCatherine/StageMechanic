@@ -44,7 +44,7 @@ public class Cathy1GoalBlock : Cathy1Block
 		if (ev.Location != PlayerMovementEvent.EventLocation.Top)
 			return;
 		string statename = ev.Player.StateNames[ev.Player.CurrentStateIndex];
-		if (statename == "Idle" || statename == "Walk" || statename == "Center")
+		if (statename == "Idle" || statename == "Walk" || statename == "Center" || statename == "PushPull" || statename == "Slide")
 		{
 			if (!_hasPlayedSound)
 			{
