@@ -67,8 +67,11 @@ public class Cathy1CrackedBlock : Cathy1Block {
 		{
 			AudioEffectsManager.PlaySound(this, Collapse);
 			yield return new WaitForSeconds(0.55f);
-			if (Dust.GetComponent<AutoDestroy>() is AutoDestroy ad) //In this case it is an animated model, not particles
-				Instantiate(Dust, Position, Rotation);
+			if (Dust != null)
+			{
+				if (Dust.GetComponent<AutoDestroy>() is AutoDestroy ad) //In this case it is an animated model, not particles
+					Instantiate(Dust, Position, Rotation);
+			}
 			BlockManager.DestroyBlock(this);
 		}
 			
