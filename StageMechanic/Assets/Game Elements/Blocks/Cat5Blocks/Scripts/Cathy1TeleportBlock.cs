@@ -92,6 +92,7 @@ public class Cathy1TeleportBlock : Cathy1Block
 				if(startBlock as Cathy1TeleportBlock)
 					(startBlock as Cathy1TeleportBlock).hasPlayer = true;
 				PlayerManager.SetPlayer1Location(startBlock.Position + Vector3.up);
+				hasPlayer = false;
 			}
 			//Serializer.BlocksFromJson(location, startPlayMode: true, startPositionOverrides: startPos);
 
@@ -183,6 +184,7 @@ public class Cathy1TeleportBlock : Cathy1Block
 				{
 					(startBlock as Cathy1TeleportBlock).hasPlayer = true;
 					PlayerManager.SetPlayer1Location(startBlock.Position + Vector3.up);
+					hasPlayer = false;
 				}
 			}
 		}
