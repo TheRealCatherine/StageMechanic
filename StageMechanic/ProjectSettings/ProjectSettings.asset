@@ -167,9 +167,9 @@ PlayerSettings:
     Android: com.YourePerfectStudio.StageMechanicLite
     Standalone: com.YourePerfectStudio.StageMechanic
   buildNumber: {}
-  AndroidBundleVersionCode: 310
+  AndroidBundleVersionCode: 500
   AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 26
+  AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 0
@@ -268,7 +268,7 @@ PlayerSettings:
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 1
+  androidUseCustomKeystore: 0
   m_AndroidBanners:
   - width: 320
     height: 180
