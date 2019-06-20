@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15518118, g: 0.15568686, b: 0.15384722, a: 1}
+  m_IndirectSpecularColor: {r: 0.053126, g: 0.055535205, b: 0.056759983, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6531,7 +6531,7 @@ PrefabInstance:
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
@@ -6552,7 +6552,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Clips.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 1601ca491a618c441a2a8611a9a8b2db, type: 3}
+      objectReference: {fileID: 8300000, guid: 2a863b70565361c4fb7393079bc9ff83, type: 3}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[4]
@@ -6567,7 +6567,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Clips.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 684cff790196e8b4f8be3726ecefc66f, type: 3}
+      objectReference: {fileID: 8300000, guid: 1601ca491a618c441a2a8611a9a8b2db, type: 3}
     - target: {fileID: 114755100471324398, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Clips.Array.data[5]
@@ -6621,7 +6621,7 @@ PrefabInstance:
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.size
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
@@ -6632,12 +6632,12 @@ PrefabInstance:
         type: 3}
       propertyPath: Skyboxes.Array.data[4]
       value: 
-      objectReference: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+      objectReference: {fileID: 2100000, guid: 54fed8cadee450e4285219103c828a13, type: 2}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[5]
       value: 
-      objectReference: {fileID: 2100000, guid: 39489e6a7fe27b04190bb9d0ce8a7724, type: 2}
+      objectReference: {fileID: 2100000, guid: 54fed8cadee450e4285219103c828a13, type: 2}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[6]
@@ -6672,7 +6672,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Skyboxes.Array.data[3]
       value: 
-      objectReference: {fileID: 2100000, guid: d9dca9ae1786c394f9e79c637aa9a7bf, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087102915176762, guid: 68c3d27a260911d4494f03cf47cd8060,
         type: 3}
       propertyPath: Skyboxes.Array.data[0]
@@ -17134,7 +17134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 530.6001, y: -36.45}
+  m_AnchoredPosition: {x: 530.6001, y: -36.44995}
   m_SizeDelta: {x: 1041.2, y: 62.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755729550
